@@ -18,106 +18,92 @@
       background-color: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      height: 100vh;
-      display: flex;
+      min-height: 100vh;
     }
 
-    .sidebar {
-      width: 250px;
-      background-color: #000;
-      padding: 40px 20px;
+    header {
+      width: 100%;
+      height: 80px;
       display: flex;
-      flex-direction: column;
-      gap: 25px;
-      border-right: 1px solid #222;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid #222;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 25px;
+      font-weight: 700;
       letter-spacing: 2px;
-      padding-bottom: 5px;
-      margin-bottom: 20px;
-      width: fit-content;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: #fff;
+      text-decoration: none;
     }
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    .logo,
+    .nav a {
+      position: relative;
     }
 
-    .menu a {
+    .nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav a {
       text-decoration: none;
       color: #fff;
-      font-size: 18px;
-      position: relative;
-      transition: all 0.2s ease-in-out;
-      width: fit-content;
+      font-size: 16px;
+      letter-spacing: 1px;
     }
 
-    .menu a::after {
+    .logo::after,
+    .nav a::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -4px;
+      bottom: -6px;
       width: 0;
       height: 1px;
-      background-color: #ffffff;
-      transition: width 0.3s;
+      background: #fff;
+      transition: width 0.3s ease;
     }
 
-    .menu a:hover {
-      transform: translateX(8px);
-    }
-
-    .menu a:hover::after {
+    .logo:hover::after,
+    .nav a:hover::after {
       width: 100%;
-    }
-
-    .social {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding-top: 20px;
-   }
-   
-    /* Responsive simple para móvil */
-    @media screen and (max-width: 600px) {
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #222;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-      /* Ya no necesitas redefinir .logo aquí */
     }
   </style>
 </head>
 <body>
-  <div class="sidebar"><div class="logo">PÓRTICO_LAB</div>
-    <div class="menu">
-      <a href="buscar.html"><img src="iconos/lupa.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_BUSCAR</a>
-      <a href="nosotros.html"><img src="iconos/nosotros.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_NOSOTROS</a>
-      <a href="proyectos.html"><img src="iconos/bombillo.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_PROYECTOS</a>
-      <a href="contacto.html"><img src="iconos/contacto.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_CONTACTO</a>
-      <a href="inspiracion.html"><img src="iconos/mas.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_INSPIRACIÓN</a>
-    </div>
-     <div class="social">
-      <a href="https://linkedin.com/company/pórtico-lab" target="_blank"><img src="iconos/linkedin1.png" alt="Linkedin" style="height:1.5em;margin-right:10px;"></a>
-      <a href="https://instagram.com/portico.lab" target="_blank"><img src="iconos/instagram.png" alt="Instagram" style="height:1.5em;margin-right:10px;"></a>
-    </div>
-  </div>
+<header>
+  <a href="index.html" class="logo">PORTICO_LAB</a>
+
+  <nav class="nav">
+    <a href="proyectos.html">PROYECTOS</a>
+    <a href="inspiracion.html">INSPIRACIÓN</a>
+    <a href="contacto.html">CONTACTO</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Aquí va el contenido -->
+   <section class="gallery">
+
+  <a href="proyecto-01.html">
+    <img src="imagenes/proyecto1.jpg" alt="Proyecto 01">
+  </a>
+
+  <a href="proyecto-02.html">
+    <img src="imagenes/proyecto2.jpg" alt="Proyecto 02">
+  </a>
+
+  <a href="proyecto-03.html">
+    <img src="imagenes/proyecto3.jpg" alt="Proyecto 03">
+  </a>
+
+</section>
+
+</main>
+
 </body>
 </html>
