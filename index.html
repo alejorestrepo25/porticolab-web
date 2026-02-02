@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PÓRTICO_LAB</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #000;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      border-right: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+      position: relative;
+      transition: all 0.2s ease-in-out;
+      width: fit-content;
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background-color: #ffffff;
+      transition: width 0.3s;
+    }
+
+    .menu a:hover {
+      transform: translateX(8px);
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .social {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 20px;
+   }
+   
+    /* Responsive simple para móvil */
+    @media screen and (max-width: 600px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #222;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      /* Ya no necesitas redefinir .logo aquí */
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar"><div class="logo">PÓRTICO_LAB</div>
+    <div class="menu">
+      <a href="buscar.html"><img src="lupa.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_BUSCAR</a>
+      <a href="nosotros.html"><img src="nosotros.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_NOSOTROS</a>
+      <a href="proyectos.html"><img src="bombillo.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_PROYECTOS</a>
+      <a href="contacto.html"><img src="contacto.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_CONTACTO</a>
+      <a href="inspiracion.html"><img src="mas.png" alt="Buscar" style="height:1em;vertical-align:middle;margin-right:8px;">_INSPIRACIÓN</a>
+    </div>
+     <div class="social">
+      <a href="https://linkedin.com/company/pórtico-lab" target="_blank"><img src="linkedin1.png" alt="Linkedin" style="height:1.5em;margin-right:10px;"></a>
+      <a href="https://instagram.com/portico.lab" target="_blank"><img src="instagram.png" alt="Instagram" style="height:1.5em;margin-right:10px;"></a>
+    </div>
+  </div>
+</body>
+</html>
