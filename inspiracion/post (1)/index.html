@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estructura Paramétrica - PORTICO LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -14,7 +17,7 @@
     body {
       background-color: #000;
       color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
     }
 
@@ -52,7 +55,12 @@
       width: 100%;
     }
 
-    .back-btn {
+    .nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav a {
       text-decoration: none;
       color: #fff;
       font-size: 16px;
@@ -60,7 +68,7 @@
       position: relative;
     }
 
-    .back-btn::after {
+    .nav a::after {
       content: '';
       position: absolute;
       left: 0;
@@ -71,39 +79,21 @@
       transition: width 0.3s ease;
     }
 
-    .back-btn:hover::after {
+    .nav a:hover::after {
       width: 100%;
     }
 
     main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      padding: 60px 40px;
     }
 
     .post-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .post-header {
-      border-bottom: 1px solid #222;
-      padding-bottom: 20px;
-    }
-
-    .post-header h1 {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-
-    .post-meta {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      color: #999;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .post-image {
@@ -119,19 +109,37 @@
     }
 
     .post-content {
-      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .post-content h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: #999;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222;
     }
 
     .post-content h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      margin-top: 30px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 20px;
     }
 
     .post-content p {
       line-height: 1.8;
       color: #ccc;
-      margin-bottom: 15px;
+      font-size: 15px;
     }
 
     .tags {
@@ -148,17 +156,37 @@
       font-size: 13px;
     }
 
+    @media (max-width: 1024px) {
+      .post-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      main {
+        padding: 40px 20px;
+      }
+
+      .post-content h1 {
+        font-size: 36px;
+      }
+    }
+
     @media (max-width: 768px) {
       header {
         padding: 0 20px;
       }
 
-      .post-header h1 {
-        font-size: 32px;
+      main {
+        padding: 30px 20px;
       }
 
-      main {
-        padding: 20px 10px;
+      .post-content h1 {
+        font-size: 28px;
+      }
+
+      .nav {
+        gap: 15px;
+        font-size: 14px;
       }
     }
   </style>
@@ -166,37 +194,46 @@
 <body>
   <header>
     <a href="../../index.html" class="logo">PORTICO_LAB</a>
-    <a href="../../index.html" class="back-btn">← VOLVER</a>
+    <nav class="nav">
+      <a href="../../laboratorio.html">LABORATORIO</a>
+      <a href="../../inspiracion.html">INSPIRACIÓN</a>
+      <a href="../../nosotros.html">NOSOTROS</a>
+    </nav>
   </header>
 
   <main>
     <div class="post-container">
-      <div class="post-header">
+      <div class="post-image">
+        <img src="portada.jpg" alt="Estructura Paramétrica" loading="lazy">
+      </div>
+
+      <div class="post-content">
         <h1>Estructura Paramétrica</h1>
+        
         <div class="post-meta">
           <span>📍 Bogotá, Colombia</span>
           <span>📅 2026</span>
         </div>
-      </div>
 
-      <div class="post-image">
-        <img src="portada.jpg" alt="Estructura Paramétrica">
-      </div>
+        <div>
+          <h2>Descripción del Proyecto</h2>
+          <p>
+            Esta es una estructura paramétrica diseñada con precisión y detalle. 
+            El proyecto utiliza tecnologías avanzadas de diseño y construcción para crear 
+            una forma única y funcional que se adapta a los requisitos específicos del sitio.
+          </p>
+        </div>
 
-      <div class="post-content">
-        <h2>Descripción del Proyecto</h2>
-        <p>
-          Esta es una estructura paramétrica diseñada con precisión y detalle. 
-          El proyecto utiliza tecnologías avanzadas de diseño y construcción.
-        </p>
-
-        <h2>Características Principales</h2>
-        <p>
-          • Diseño paramétrico innovador<br>
-          • Materiales de alta calidad<br>
-          • Sostenibilidad ambiental<br>
-          • Tecnología de construcción moderna
-        </p>
+        <div>
+          <h2>Características Principales</h2>
+          <p>
+            • Diseño paramétrico innovador<br>
+            • Materiales de alta calidad<br>
+            • Sostenibilidad ambiental<br>
+            • Tecnología de construcción moderna<br>
+            • Optimización estructural
+          </p>
+        </div>
 
         <div class="tags">
           <span class="tag">#parametrico</span>
