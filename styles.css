@@ -52,6 +52,25 @@ body {
   margin-bottom: 8px;
 }
 
+.mini-gallery {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.mini-gallery img {
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.mini-gallery img:hover {
+  transform: scale(1.5); /* efecto al pasar el cursor */
+}
+
 /* Zoom Modal */
 .zoom-overlay {
   position: fixed;
