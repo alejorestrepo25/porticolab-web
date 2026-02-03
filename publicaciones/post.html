@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Post - PORTICO LAB</title>
 
-<link rel="icon" href="../../iconos/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../iconos/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -202,11 +202,11 @@ main{
 <body>
 
 <header>
-  <a href="../../index.html" class="logo">PORTICO_LAB</a>
+  <a href="../index.html" class="logo">PORTICO_LAB</a>
   <nav class="nav">
-    <a href="../../laboratorio.html">LABORATORIO</a>
-    <a href="../../inspiracion.html">INSPIRACIÓN</a>
-    <a href="../../nosotros.html">NOSOTROS</a>
+    <a href="../laboratorio.html">LABORATORIO</a>
+    <a href="../inspiracion.html">INSPIRACIÓN</a>
+    <a href="../nosotros.html">NOSOTROS</a>
   </nav>
 </header>
 
@@ -214,16 +214,8 @@ main{
 
   <!-- GALERÍA -->
   <div class="post-image">
-    <img id="main-image" src="portada.jpg" alt="">
-    <div class="mini-gallery">
-      <img src="portada.jpg">
-      <img src="foto (1).jpg">
-      <img src="foto (2).jpg">
-      <img src="foto (3).jpg">
-      <img src="foto (4).jpg">
-      <img src="foto (5).jpg">
-      <img src="foto (6).jpg">
-    </div>
+    <img id="main-image" src="" alt="">
+    <div class="mini-gallery"></div>
   </div>
 
   <!-- CONTENIDO -->
@@ -237,7 +229,7 @@ main{
 
     <p id="post-description"></p>
 
-    <h2 style="margin-top:30px;">Características Principales</h2>
+    <h2 id="post-features-title" style="margin-top:30px;">Características Principales</h2>
     <ul id="post-features"></ul>
 
     <div class="tags" id="post-tags"></div>
@@ -258,20 +250,13 @@ main{
 <script>
 /* LIGHTBOX */
 const mainImage = document.getElementById('main-image');
-const thumbnails = document.querySelectorAll('.mini-gallery img');
+const gallery = document.querySelector('.mini-gallery');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const counter = document.getElementById('lightbox-counter');
 let currentIndex = 0;
+let images = [];
 
-const images = Array.from(thumbnails).map(img => img.src);
-
-thumbnails.forEach((img,i)=>{
-  img.addEventListener('click',()=>{
-    currentIndex=i;
-    open();
-  });
-});
 mainImage.addEventListener('click',()=>{currentIndex=0;open();});
 
 function open(){
@@ -287,31 +272,88 @@ document.getElementById('next').onclick=()=>{currentIndex=(currentIndex+1)%image
 lightbox.onclick=e=>{if(e.target===lightbox) lightbox.style.display='none';};
 
 /* POST DINÁMICO */
+const postTitle = document.getElementById('post-title');
+const postLocation = document.getElementById('post-location');
+const postYear = document.getElementById('post-year');
+const postDescription = document.getElementById('post-description');
+const postFeatures = document.getElementById('post-features');
+const postFeaturesTitle = document.getElementById('post-features-title');
+const postTags = document.getElementById('post-tags');
+
 const params = new URLSearchParams(window.location.search);
-const post = params.get("post");
-if(!post) return;
+const post = params.get("post") || "post (1)";
+
+const fallback = {
+  title: post.replace(/^post\s*\((\d+)\)$/i, 'Publicación $1'),
+  location: "",
+  year: "",
+  description: "",
+  features: [],
+  tags: [],
+  images: ["portada.jpg"]
+};
 
 fetch(`./${post}/data.json`)
-  .then(r=>r.json())
-  .then(d=>{
-    postTitle.textContent=d.title;
-    postLocation.textContent=`📍 ${d.location}`;
-    postYear.textContent=`📅 ${d.year}`;
-    postDescription.textContent=d.description;
+  .then(r=>{
+    if(!r.ok) throw new Error("missing");
+    return r.json();
+  })
+  .then(d=>render(d))
+  .catch(()=>render(fallback));
 
-    d.features.forEach(f=>{
+function render(d){
+  postTitle.textContent = d.title || "";
+  postLocation.textContent = d.location ? `📍 ${d.location}` : "";
+  postYear.textContent = d.year ? `📅 ${d.year}` : "";
+  postDescription.textContent = d.description || "";
+
+  postFeatures.innerHTML = "";
+  postTags.innerHTML = "";
+
+  const featureList = Array.isArray(d.features) ? d.features : [];
+  const tagList = Array.isArray(d.tags) ? d.tags : [];
+
+  if(featureList.length){
+    featureList.forEach(f=>{
       const li=document.createElement("li");
       li.textContent=f;
       postFeatures.appendChild(li);
     });
+    postFeaturesTitle.style.display = "";
+  }else{
+    postFeaturesTitle.style.display = "none";
+  }
 
-    d.tags.forEach(t=>{
-      const s=document.createElement("span");
-      s.className="tag";
-      s.textContent="#"+t;
-      postTags.appendChild(s);
-    });
+  tagList.forEach(t=>{
+    const s=document.createElement("span");
+    s.className="tag";
+    s.textContent="#"+t;
+    postTags.appendChild(s);
   });
+
+  const imageNames = Array.isArray(d.images) && d.images.length ? d.images : ["portada.jpg"];
+  images = imageNames.map(name => `./${post}/${name}`);
+  renderGallery(d.title || "Publicación", images);
+}
+
+function renderGallery(title, imageList){
+  gallery.innerHTML = "";
+  if(!imageList.length) return;
+
+  mainImage.src = imageList[0];
+  mainImage.alt = title;
+
+  imageList.forEach((src, i)=>{
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `${title} ${i+1}`;
+    img.addEventListener('click',()=>{
+      currentIndex=i;
+      open();
+    });
+    gallery.appendChild(img);
+  });
+}
 </script>
 
 </body>
