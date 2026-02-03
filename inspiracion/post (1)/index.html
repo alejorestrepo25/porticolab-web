@@ -1,433 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cubierta Bahareque - PORTICO LAB</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="icon" href="iconos/favicon.ico" type="image/ico">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cubierta Bahareque - PORTICO LAB</title>
 
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-    }
+<!-- Favicon correcto -->
+<link rel="icon" href="../../iconos/favicon.ico" type="image/x-icon">
 
-    header {
-      width: 100%;
-      height: 65px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      border-bottom: 1px solid #222;
-    }
-
-    .logo {
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #fff;
-      text-decoration: none;
-      position: relative;
-    }
-
-    .logo::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 1px;
-      background: #fff;
-      transition: width 0.3s ease;
-    }
-
-    .logo:hover::after {
-      width: 100%;
-    }
-
-    .nav {
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 16px;
-      letter-spacing: 1px;
-      position: relative;
-    }
-
-    .nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 1px;
-      background: #fff;
-      transition: width 0.3s ease;
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      padding: 60px 40px;
-    }
-
-    .post-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .post-image {
-      width: 100%;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .post-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-width: 550px;
-    }
-
-    .post-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .post-content h1 {
-      font-size: 48px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      line-height: 1.2;
-    }
-
-    .post-meta {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      color: #999;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #222;
-    }
-
-    .post-content h2 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-top: 20px;
-    }
-
-    .post-content p {
-      line-height: 1.8;
-      color: #ccc;
-      font-size: 15px;
-    }
-
-    .tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .tag {
-      background: #222;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-    }
-
-    .gallery-section {
-      margin-top: 80px;
-      padding-top: 60px;
-      border-top: 1px solid #222;
-    }
-
-    .gallery-section h2 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 40px;
-      letter-spacing: 1px;
-    }
-
-    .gallery-viewer {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      max-width: 800px;
-      margin: 0 auto 60px;
-    }
-
-    .main-gallery-image {
-      width: 100%;
-      max-width: 600px;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .main-gallery-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .gallery-controls {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .gallery-btn {
-      background: #222;
-      color: #fff;
-      border: 1px solid #444;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-btn:hover {
-      background: #333;
-      border-color: #666;
-    }
-
-    .gallery-counter {
-      font-size: 14px;
-      color: #999;
-      min-width: 60px;
-      text-align: center;
-    }
-
-    .gallery-thumbnails {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 10px;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .thumbnail {
-      aspect-ratio: 1;
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      opacity: 0.6;
-    }
-
-    .thumbnail:hover {
-      opacity: 1;
-    }
-
-    .thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .thumbnail.active {
-      border-color: #fff;
-      opacity: 1;
-    }
-
-    @media (max-width: 1024px) {
-      .post-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      main {
-        padding: 40px 20px;
-      }
-
-      .post-content h1 {
-        font-size: 36px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 0 20px;
-      }
-
-      main {
-        padding: 30px 20px;
-      }
-
-      .post-content h1 {
-        font-size: 28px;
-      }
-
-      .nav {
-        gap: 15px;
-        font-size: 14px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <a href="../../index.html" class="logo">PORTICO_LAB</a>
-    <nav class="nav">
-      <a href="../../laboratorio.html">LABORATORIO</a>
-      <a href="../../inspiracion.html">INSPIRACIÓN</a>
-      <a href="../../nosotros.html">NOSOTROS</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="post-container">
-
-      <div class="post-content">
-        <h1>Cubierta Bahareque</h1>
-        
-        <div class="post-meta">
-          <span>📍 Barichara, Colombia</span>
-          <span>📅 2026</span>
-        </div>
-
-        <div>
-          <p>
-            Esta cubierta de bahareque está diseñada con atención al detalle y a
-             la funcionalidad.El proyecto combina técnicas tradicionales con soluciones 
-             contemporáneas, logrando una estructura resistente y estética, con acabado 
-             inferior en blanco que aporta luminosidad y elegancia al espacio, 
-             adaptándose de manera precisa a las condiciones del sitio.
-          </p>
-        </div>
-
-        <div>
-          <h2>Características Principales</h2>
-          <p>
-            • Diseño paramétrico innovador<br>
-            • Materiales de alta calidad<br>
-            • Sostenibilidad ambiental<br>
-            • Tecnología de construcción moderna<br>
-            • Optimización estructural
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">#parametrico</span>
-          <span class="tag">#concreto</span>
-          <span class="tag">#arquitectura</span>
-          <span class="tag">#diseño</span>
-        </div>
-      </div>
-    </div>
-    <section class="gallery-section" aria-label="Galeria de fotos">
-      <h2>Galeria de fotos</h2>
-
-      <div class="gallery-viewer">
-        <div class="main-gallery-image">
-          <img id="gallery-main" src="foto (1).jpg" alt="Galeria 1" loading="lazy">
-        </div>
-
-        <div class="gallery-controls">
-          <button class="gallery-btn" id="gallery-prev" type="button">Anterior</button>
-          <span class="gallery-counter" id="gallery-counter">1 / 6</span>
-          <button class="gallery-btn" id="gallery-next" type="button">Siguiente</button>
-        </div>
-
-        <div class="post-container">
-  <div class="post-image">
-    <!-- Galería de miniaturas debajo de la portada -->
-
-    <!-- Imagen principal -->
-  <img id="main-image" src="portada.jpg" alt="Cubierta Bahareque" loading="lazy">
-
-  <!-- Galería de miniaturas -->
-  <div class="mini-gallery">
-    <img src="foto (1).jpg" alt="Galeria 1" loading="lazy">
-    <img src="foto (2).jpg" alt="Galeria 2" loading="lazy">
-    <img src="foto (3).jpg" alt="Galeria 3" loading="lazy">
-    <img src="foto (4).jpg" alt="Galeria 4" loading="lazy">
-    <img src="foto (5).jpg" alt="Galeria 5" loading="lazy">
-    <img src="foto (6).jpg" alt="Galeria 6" loading="lazy">
-  </div>
-</div>
+<!-- Fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-.post-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+header{width:100%;height:65px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid #222;}
+.logo{font-size:30px;font-weight:700;letter-spacing:3px;color:#fff;text-decoration:none;position:relative;}
+.logo::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition: width 0.3s;}
+.logo:hover::after{width:100%;}
+.nav{display:flex;gap:30px;}
+.nav a{text-decoration:none;color:#fff;font-size:16px;letter-spacing:1px;position:relative;}
+.nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition: width 0.3s;}
+.nav a:hover::after{width:100%;}
+main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.post-content h1{font-size:48px;font-weight:700;letter-spacing:2px;line-height:1.2;}
+.post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding-bottom:20px;border-bottom:1px solid #222;}
+.post-content p{line-height:1.8;color:#ccc;font-size:15px;}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.tag{background:#222;padding:8px 16px;border-radius:20px;font-size:13px;}
 
-.post-image img#main-image {
-  width: 100%;
-  max-width: 550px;
-  border-radius: 8px;
-}
+.post-image{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.post-image img#main-image{width:100%;max-width:550px;border-radius:8px;cursor:pointer;}
+.mini-gallery{display:flex;gap:5px;flex-wrap:wrap;}
+.mini-gallery img{width:50px;height:50px;object-fit:cover;border-radius:4px;cursor:pointer;opacity:0.7;transition: all 0.2s;}
+.mini-gallery img:hover{transform:scale(1.2);opacity:1;}
 
-.mini-gallery {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+.lightbox{
+  position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);
+  display:none;justify-content:center;align-items:center;z-index:1000;
 }
+.lightbox img{max-width:90%;max-height:90%;border-radius:8px;}
 
-.mini-gallery img {
-  width: 50px;   /* tamaño pequeño para miniaturas */
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: all 0.2s ease;
-}
-
-.mini-gallery img:hover {
-  transform: scale(1.2);
-  opacity: 1;
-}
+/* Responsive */
+@media(max-width:1024px){main{grid-template-columns:1fr;gap:40px;} .post-content h1{font-size:36px;}}
+@media(max-width:768px){header{padding:0 20px;}main{padding:30px 20px;} .post-content h1{font-size:28px;} .nav{gap:15px;font-size:14px;}}
 </style>
+</head>
+
+<body>
+<header>
+<a href="../../index.html" class="logo">PORTICO_LAB</a>
+<nav class="nav">
+<a href="../../laboratorio.html">LABORATORIO</a>
+<a href="../../inspiracion.html">INSPIRACIÓN</a>
+<a href="../../nosotros.html">NOSOTROS</a>
+</nav>
+</header>
+
+<main>
+  <!-- Galería y portada -->
+  <div class="post-image">
+    <img id="main-image" src="portada.jpg" alt="Cubierta Bahareque" loading="lazy">
+    <div class="mini-gallery">
+      <img src="foto (1).jpg" alt="Galeria 1" loading="lazy">
+      <img src="foto (2).jpg" alt="Galeria 2" loading="lazy">
+      <img src="foto (3).jpg" alt="Galeria 3" loading="lazy">
+      <img src="foto (4).jpg" alt="Galeria 4" loading="lazy">
+      <img src="foto (5).jpg" alt="Galeria 5" loading="lazy">
+      <img src="foto (6).jpg" alt="Galeria 6" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="post-content">
+    <h1>Cubierta Bahareque</h1>
+    <div class="post-meta">
+      <span>📍 Barichara, Colombia</span>
+      <span>📅 2026</span>
+    </div>
+    <p>
+      Esta cubierta de bahareque está diseñada con atención al detalle y a la funcionalidad.
+      El proyecto combina técnicas tradicionales con soluciones contemporáneas, logrando
+      una estructura resistente y estética, con acabado inferior en blanco que aporta
+      luminosidad y elegancia al espacio.
+    </p>
+    <h2>Características Principales</h2>
+    <p>
+      • Diseño paramétrico innovador<br>
+      • Materiales de alta calidad<br>
+      • Sostenibilidad ambiental<br>
+      • Tecnología de construcción moderna<br>
+      • Optimización estructural
+    </p>
+    <div class="tags">
+      <span class="tag">#parametrico</span>
+      <span class="tag">#concreto</span>
+      <span class="tag">#arquitectura</span>
+      <span class="tag">#diseño</span>
+    </div>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
 
 <script>
-// Seleccionamos la imagen principal y todas las miniaturas
+// Galería miniaturas: click reemplaza portada
 const mainImage = document.getElementById('main-image');
 const thumbnails = document.querySelectorAll('.mini-gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
 
-// Al hacer click en una miniatura, reemplaza la imagen principal
+// Al hacer click en miniatura -> cambia imagen principal
 thumbnails.forEach(thumb => {
   thumb.addEventListener('click', () => {
     mainImage.src = thumb.src;
     mainImage.alt = thumb.alt;
   });
 });
-    
 
+// Al hacer click en la imagen principal -> abrir lightbox
+mainImage.addEventListener('click', () => {
+  lightbox.style.display = 'flex';
+  lightboxImg.src = mainImage.src;
+  lightboxImg.alt = mainImage.alt;
+});
 
-
-
-  </script>
+// Cerrar lightbox al hacer click en fondo
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
 </body>
 </html>
