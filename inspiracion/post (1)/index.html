@@ -149,16 +149,89 @@ lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.dis
 
 <!-- DIVISORIA -->
 <div style="height:40px;border-top:1px solid #222;margin-bottom:40px;"></div>
-
 <!-- PUBLICACIONES RELACIONADAS -->
 <section class="related-posts">
-  <h2>Publicaciones Relacionadas</h2>
   <div class="related-container">
-    <div class="related-card"><a href="proyecto1.html"><img src="relacionado1.jpg" alt="Proyecto 1" loading="lazy"><p>Proyecto 1</p></a></div>
-    <div class="related-card"><a href="proyecto2.html"><img src="relacionado2.jpg" alt="Proyecto 2" loading="lazy"><p>Proyecto 2</p></a></div>
-    <div class="related-card"><a href="proyecto3.html"><img src="relacionado3.jpg" alt="Proyecto 3" loading="lazy"><p>Proyecto 3</p></a></div>
-    <div class="related-card"><a href="proyecto4.html"><img src="relacionado4.jpg" alt="Proyecto 4" loading="lazy"><p>Proyecto 4</p></a></div>
+    <!-- Aquí se generarán las cards automáticamente desde la galería -->
   </div>
+</section>
+
+<style>
+.related-posts{
+  max-width:1200px;
+  margin:0 auto 80px;
+}
+.related-posts h2{
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:30px;
+  letter-spacing:1px;
+}
+.related-container{
+  display:flex;
+  gap:20px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.related-card{
+  flex:1 1 calc(25% - 20px); /* 4 por fila */
+  background:#111;
+  border-radius:8px;
+  overflow:hidden;
+  text-align:center;
+  cursor:pointer;
+  transition:transform 0.3s;
+  margin-bottom:20px;
+}
+.related-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.related-card p{
+  color:#fff;
+  padding:10px;
+  font-size:14px;
+}
+.related-card:hover{
+  transform:scale(1.05);
+}
+</style>
+
+<script>
+const relatedContainer = document.querySelector('.related-container');
+
+// Seleccionamos todas las publicaciones de la galería
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+// Para que no aparezca la misma publicación que el post actual
+// Por ejemplo, si estás en post 1
+const currentPost = 1;
+
+// Filtrar otras publicaciones
+const relatedItems = Array.from(galleryItems).filter(item => parseInt(item.dataset.post) !== currentPost);
+
+// Tomamos las primeras 4 relacionadas
+relatedItems.slice(0,4).forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'related-card';
+  
+  const link = document.createElement('a');
+  link.href = item.dataset.page; // va al post correspondiente
+
+  const img = document.createElement('img');
+  img.src = item.querySelector('img').src;
+  img.alt = item.querySelector('img').alt;
+
+  const title = document.createElement('p');
+  title.textContent = item.querySelector('h3').textContent;
+
+  link.appendChild(img);
+  link.appendChild(title);
+  card.appendChild(link);
+  relatedContainer.appendChild(card);
+});
+</script>
 </section>
 </body>
 </html>
