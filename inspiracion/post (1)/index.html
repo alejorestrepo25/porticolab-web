@@ -161,5 +161,84 @@ lightbox.addEventListener('click', (e) => {
   if(e.target === lightbox) lightbox.style.display = 'none';
 });
 </script>
+
+<!-- Espacio después de la galería -->
+<div style="height:60px;"></div> <!-- puedes ajustar el valor a gusto -->
+
+<!-- Publicaciones Relacionadas -->
+<section class="related-posts">
+  <h2>Publicaciones Relacionadas</h2>
+  <div class="related-container">
+    <div class="related-card">
+      <a href="proyecto1.html">
+        <img src="relacionado1.jpg" alt="Proyecto 1" loading="lazy">
+        <p>Proyecto 1</p>
+      </a>
+    </div>
+    <div class="related-card">
+      <a href="proyecto2.html">
+        <img src="relacionado2.jpg" alt="Proyecto 2" loading="lazy">
+        <p>Proyecto 2</p>
+      </a>
+    </div>
+    <div class="related-card">
+      <a href="proyecto3.html">
+        <img src="relacionado3.jpg" alt="Proyecto 3" loading="lazy">
+        <p>Proyecto 3</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.related-posts {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+.related-posts h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.related-container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between; /* aquí está el space-between */
+  flex-wrap: wrap;
+}
+
+.related-card {
+  flex: 1 1 calc(25% - 20px); /* 3 cards por fila, ajustable */
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.related-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.related-card p {
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.related-card:hover {
+  transform: scale(1.05);
+}
+</style>
+
+
+
+
 </body>
 </html>
