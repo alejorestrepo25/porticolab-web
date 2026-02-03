@@ -305,9 +305,6 @@
 
   <main>
     <div class="post-container">
-      <div class="post-image">
-        <img src="portada.jpg" alt="Cubierta Bahareque" loading="lazy">
-      </div>
 
       <div class="post-content">
         <h1>Cubierta Bahareque</h1>
@@ -362,56 +359,75 @@
 
         <div class="post-container">
   <div class="post-image">
-    <img src="portada.jpg" alt="Cubierta Bahareque" loading="lazy">
-    
     <!-- Galería de miniaturas debajo de la portada -->
 
-    <div class="mini-gallery">
-      <img src="foto (1).jpg" loading="lazy">
-      <img src="foto (2).jpg" loading="lazy">
-      <img src="foto (3).jpg" loading="lazy">
-      <img src="foto (4).jpg" loading="lazy">
-      <img src="foto (5).jpg" loading="lazy">
-      <img src="foto (6).jpg" loading="lazy">
-      </div>
-    </section>
-  </main>
+    <!-- Imagen principal -->
+  <img id="main-image" src="portada.jpg" alt="Cubierta Bahareque" loading="lazy">
 
-  <script>
-    const thumbnails = Array.from(document.querySelectorAll(".thumbnail"));
-    const mainImage = document.getElementById("gallery-main");
-    const counter = document.getElementById("gallery-counter");
-    const prevBtn = document.getElementById("gallery-prev");
-    const nextBtn = document.getElementById("gallery-next");
+  <!-- Galería de miniaturas -->
+  <div class="mini-gallery">
+    <img src="foto (1).jpg" alt="Galeria 1" loading="lazy">
+    <img src="foto (2).jpg" alt="Galeria 2" loading="lazy">
+    <img src="foto (3).jpg" alt="Galeria 3" loading="lazy">
+    <img src="foto (4).jpg" alt="Galeria 4" loading="lazy">
+    <img src="foto (5).jpg" alt="Galeria 5" loading="lazy">
+    <img src="foto (6).jpg" alt="Galeria 6" loading="lazy">
+  </div>
+</div>
 
-    let currentIndex = 0;
+<style>
+.post-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
-    const updateGallery = (index) => {
-      const total = thumbnails.length;
-      currentIndex = (index + total) % total;
-      const activeThumb = thumbnails[currentIndex];
-      const src = activeThumb.getAttribute("data-src");
-      const alt = activeThumb.getAttribute("data-alt");
+.post-image img#main-image {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 8px;
+}
 
-      mainImage.src = src;
-      mainImage.alt = alt;
-      counter.textContent = `${currentIndex + 1} / ${total}`;
+.mini-gallery {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
 
-      thumbnails.forEach((thumb, i) => {
-        if (i === currentIndex) {
-          thumb.classList.add("active");
-        } else {
-          thumb.classList.remove("active");
-        }
-      });
-    };
+.mini-gallery img {
+  width: 50px;   /* tamaño pequeño para miniaturas */
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
 
-    thumbnails.forEach((thumb, index) => {
-      thumb.addEventListener("click", () => updateGallery(index));
-    });
+.mini-gallery img:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+</style>
 
-    prevBtn.addEventListener("click", () => updateGallery(currentIndex - 1));
-    nextBtn.addEventListener("click", () => updateGallery(currentIndex + 1));
+<script>
+// Seleccionamos la imagen principal y todas las miniaturas
+const mainImage = document.getElementById('main-image');
+const thumbnails = document.querySelectorAll('.mini-gallery img');
+
+// Al hacer click en una miniatura, reemplaza la imagen principal
+thumbnails.forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    mainImage.src = thumb.src;
+    mainImage.alt = thumb.alt;
+  });
+});
+    
+
+
+
+
   </script>
 </body>
 </html>
