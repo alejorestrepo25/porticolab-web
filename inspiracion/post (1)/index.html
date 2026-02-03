@@ -106,6 +106,7 @@
       width: 100%;
       height: auto;
       display: block;
+      max-width: 400px;
     }
 
     .post-content {
@@ -154,6 +155,106 @@
       padding: 8px 16px;
       border-radius: 20px;
       font-size: 13px;
+    }
+
+    .gallery-section {
+      margin-top: 80px;
+      padding-top: 60px;
+      border-top: 1px solid #222;
+    }
+
+    .gallery-section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .gallery-viewer {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+    }
+
+    .main-gallery-image {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-gallery-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery-controls {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .gallery-btn {
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-btn:hover {
+      background: #333;
+      border-color: #666;
+    }
+
+    .gallery-counter {
+      font-size: 14px;
+      color: #999;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .gallery-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .thumbnail {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      opacity: 0.6;
+    }
+
+    .thumbnail:hover {
+      opacity: 1;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail.active {
+      border-color: #fff;
+      opacity: 1;
     }
 
     @media (max-width: 1024px) {
@@ -208,19 +309,20 @@
       </div>
 
       <div class="post-content">
-        <h1>Estructura Paramétrica</h1>
+        <h1>Cubierta Bahareque</h1>
         
         <div class="post-meta">
-          <span>📍 Bogotá, Colombia</span>
+          <span>📍 Barichara, Colombia</span>
           <span>📅 2026</span>
         </div>
 
         <div>
-          <h2>Descripción del Proyecto</h2>
           <p>
-            Esta es una estructura paramétrica diseñada con precisión y detalle. 
-            El proyecto utiliza tecnologías avanzadas de diseño y construcción para crear 
-            una forma única y funcional que se adapta a los requisitos específicos del sitio.
+            EEsta cubierta de bahareque está diseñada con atención al detalle y a
+             la funcionalidad.El proyecto combina técnicas tradicionales con soluciones 
+             contemporáneas, logrando una estructura resistente y estética, con acabado 
+             inferior en blanco que aporta luminosidad y elegancia al espacio, 
+             adaptándose de manera precisa a las condiciones del sitio.
           </p>
         </div>
 
@@ -243,6 +345,79 @@
         </div>
       </div>
     </div>
+    <section class="gallery-section" aria-label="Galeria de fotos">
+      <h2>Galeria de fotos</h2>
+
+      <div class="gallery-viewer">
+        <div class="main-gallery-image">
+          <img id="gallery-main" src="foto (1).jpg" alt="Galeria 1" loading="lazy">
+        </div>
+
+        <div class="gallery-controls">
+          <button class="gallery-btn" id="gallery-prev" type="button">Anterior</button>
+          <span class="gallery-counter" id="gallery-counter">1 / 6</span>
+          <button class="gallery-btn" id="gallery-next" type="button">Siguiente</button>
+        </div>
+
+        <div class="gallery-thumbnails" id="gallery-thumbnails">
+          <div class="thumbnail active" data-src="foto (1).jpg" data-alt="Galeria 1">
+            <img src="foto (1).jpg" alt="Miniatura 1" loading="lazy">
+          </div>
+          <div class="thumbnail" data-src="foto (2).jpg" data-alt="Galeria 2">
+            <img src="foto (2).jpg" alt="Miniatura 2" loading="lazy">
+          </div>
+          <div class="thumbnail" data-src="foto (3).jpg" data-alt="Galeria 3">
+            <img src="foto (3).jpg" alt="Miniatura 3" loading="lazy">
+          </div>
+          <div class="thumbnail" data-src="foto (4).jpg" data-alt="Galeria 4">
+            <img src="foto (4).jpg" alt="Miniatura 4" loading="lazy">
+          </div>
+          <div class="thumbnail" data-src="foto (5).jpg" data-alt="Galeria 5">
+            <img src="foto (5).jpg" alt="Miniatura 5" loading="lazy">
+          </div>
+          <div class="thumbnail" data-src="foto (6).jpg" data-alt="Galeria 6">
+            <img src="foto (6).jpg" alt="Miniatura 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const thumbnails = Array.from(document.querySelectorAll(".thumbnail"));
+    const mainImage = document.getElementById("gallery-main");
+    const counter = document.getElementById("gallery-counter");
+    const prevBtn = document.getElementById("gallery-prev");
+    const nextBtn = document.getElementById("gallery-next");
+
+    let currentIndex = 0;
+
+    const updateGallery = (index) => {
+      const total = thumbnails.length;
+      currentIndex = (index + total) % total;
+      const activeThumb = thumbnails[currentIndex];
+      const src = activeThumb.getAttribute("data-src");
+      const alt = activeThumb.getAttribute("data-alt");
+
+      mainImage.src = src;
+      mainImage.alt = alt;
+      counter.textContent = `${currentIndex + 1} / ${total}`;
+
+      thumbnails.forEach((thumb, i) => {
+        if (i === currentIndex) {
+          thumb.classList.add("active");
+        } else {
+          thumb.classList.remove("active");
+        }
+      });
+    };
+
+    thumbnails.forEach((thumb, index) => {
+      thumb.addEventListener("click", () => updateGallery(index));
+    });
+
+    prevBtn.addEventListener("click", () => updateGallery(currentIndex - 1));
+    nextBtn.addEventListener("click", () => updateGallery(currentIndex + 1));
+  </script>
 </body>
 </html>
