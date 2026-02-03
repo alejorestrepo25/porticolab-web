@@ -9,16 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* RESET */
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
 header{width:100%;height:65px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid #222;}
 .logo{font-size:30px;font-weight:700;letter-spacing:3px;color:#fff;text-decoration:none;position:relative;}
-.logo::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition: width 0.3s;}
+.logo::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition:0.3s;}
 .logo:hover::after{width:100%;}
 .nav{display:flex;gap:30px;}
 .nav a{text-decoration:none;color:#fff;font-size:16px;letter-spacing:1px;position:relative;}
-.nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition: width 0.3s;}
+.nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition:0.3s;}
 .nav a:hover::after{width:100%;}
+
+/* MAIN */
 main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
 .post-content h1{font-size:48px;font-weight:700;letter-spacing:2px;line-height:1.2;}
 .post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding-bottom:20px;border-bottom:1px solid #222;}
@@ -26,12 +29,14 @@ main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template
 .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
 .tag{background:#222;padding:8px 16px;border-radius:20px;font-size:13px;}
 
+/* GALERÍA */
 .post-image{display:flex;flex-direction:column;align-items:center;gap:10px;}
 .post-image img#main-image{width:100%;max-width:550px;border-radius:8px;cursor:pointer;}
 .mini-gallery{display:flex;gap:5px;flex-wrap:wrap;}
-.mini-gallery img{width:50px;height:50px;object-fit:cover;border-radius:4px;cursor:pointer;opacity:0.7;transition: all 0.2s;}
+.mini-gallery img{width:50px;height:50px;object-fit:cover;border-radius:4px;cursor:pointer;opacity:0.7;transition:all 0.2s;}
 .mini-gallery img:hover{transform:scale(1.2);opacity:1;}
 
+/* LIGHTBOX */
 .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;justify-content:center;align-items:center;flex-direction:column;z-index:1000;}
 .lightbox img{max-width:90%;max-height:80%;border-radius:8px;}
 .lightbox-controls{display:flex;gap:20px;margin-top:15px;align-items:center;color:#fff;font-size:16px;}
@@ -39,6 +44,16 @@ main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template
 .lightbox-btn:hover{background:#333;border-color:#666;}
 .lightbox-counter{min-width:50px;text-align:center;}
 
+/* PUBLICACIONES RELACIONADAS */
+.related-posts{max-width:1200px;margin:0 auto 80px;}
+.related-posts h2{font-size:28px;font-weight:600;margin-bottom:30px;letter-spacing:1px;}
+.related-container{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;}
+.related-card{flex:1 1 calc(25% - 20px); /* Ajusta a 25% para 4 por fila */ background:#111;border-radius:8px;overflow:hidden;text-align:center;cursor:pointer;transition:transform 0.3s;}
+.related-card img{width:100%;height:180px;object-fit:cover;}
+.related-card p{color:#fff;padding:10px;font-size:14px;}
+.related-card:hover{transform:scale(1.05);}
+
+/* MEDIA */
 @media(max-width:1024px){main{grid-template-columns:1fr;gap:40px;} .post-content h1{font-size:36px;}}
 @media(max-width:768px){header{padding:0 20px;}main{padding:30px 20px;} .post-content h1{font-size:28px;} .nav{gap:15px;font-size:14px;}}
 </style>
@@ -55,7 +70,7 @@ main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template
 </header>
 
 <main>
-  <!-- Portada + mini-galería -->
+  <!-- GALERÍA -->
   <div class="post-image">
     <img id="main-image" src="portada.jpg" alt="Portada" loading="lazy">
     <div class="mini-gallery">
@@ -69,7 +84,7 @@ main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template
     </div>
   </div>
 
-  <!-- Contenido -->
+  <!-- CONTENIDO -->
   <div class="post-content">
     <h1>Cubierta Bahareque</h1>
     <div class="post-meta">
@@ -99,7 +114,7 @@ main{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template
   </div>
 </main>
 
-<!-- Lightbox -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <img src="" alt="">
   <div class="lightbox-controls">
@@ -118,127 +133,32 @@ const counter = document.getElementById('lightbox-counter');
 const btnPrev = document.getElementById('prev');
 const btnNext = document.getElementById('next');
 
-// Array de todas las fotos (portada incluida)
 const images = Array.from(thumbnails).map(img => ({src: img.src, alt: img.alt}));
 let currentIndex = 0;
 
-// Abrir lightbox en clic de portada o miniatura
-thumbnails.forEach((thumb, index) => {
-  thumb.addEventListener('click', () => {
-    currentIndex = index;
-    openLightbox();
-  });
-});
+thumbnails.forEach((thumb,index)=>thumb.addEventListener('click',()=>{currentIndex=index;openLightbox();}));
+mainImage.addEventListener('click',()=>{currentIndex=0;openLightbox();});
 
-mainImage.addEventListener('click', () => {
-  currentIndex = 0; // portada
-  openLightbox();
-});
+function openLightbox(){lightbox.style.display='flex';updateLightbox();}
+function updateLightbox(){lightboxImg.src=images[currentIndex].src;lightboxImg.alt=images[currentIndex].alt;counter.textContent=`${currentIndex+1} / ${images.length}`;}
 
-function openLightbox() {
-  lightbox.style.display = 'flex';
-  updateLightbox();
-}
-
-function updateLightbox() {
-  lightboxImg.src = images[currentIndex].src;
-  lightboxImg.alt = images[currentIndex].alt;
-  counter.textContent = `${currentIndex + 1} / ${images.length}`;
-}
-
-// Navegación
-btnPrev.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateLightbox();
-});
-btnNext.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateLightbox();
-});
-
-// Cerrar lightbox al hacer click en fondo
-lightbox.addEventListener('click', (e) => {
-  if(e.target === lightbox) lightbox.style.display = 'none';
-});
+btnPrev.addEventListener('click',()=>{currentIndex=(currentIndex-1+images.length)%images.length;updateLightbox();});
+btnNext.addEventListener('click',()=>{currentIndex=(currentIndex+1)%images.length;updateLightbox();});
+lightbox.addEventListener('click',e=>{if(e.target===lightbox) lightbox.style.display='none';});
 </script>
 
-<!-- Espacio después de la galería -->
-<div style="height:60px;"></div> <!-- puedes ajustar el valor a gusto -->
+<!-- DIVISORIA -->
+<div style="height:40px;border-top:1px solid #222;margin-bottom:40px;"></div>
 
-<!-- Publicaciones Relacionadas -->
+<!-- PUBLICACIONES RELACIONADAS -->
 <section class="related-posts">
   <h2>Publicaciones Relacionadas</h2>
   <div class="related-container">
-    <div class="related-card">
-      <a href="proyecto1.html">
-        <img src="relacionado1.jpg" alt="Proyecto 1" loading="lazy">
-        <p>Proyecto 1</p>
-      </a>
-    </div>
-    <div class="related-card">
-      <a href="proyecto2.html">
-        <img src="relacionado2.jpg" alt="Proyecto 2" loading="lazy">
-        <p>Proyecto 2</p>
-      </a>
-    </div>
-    <div class="related-card">
-      <a href="proyecto3.html">
-        <img src="relacionado3.jpg" alt="Proyecto 3" loading="lazy">
-        <p>Proyecto 3</p>
-      </a>
-    </div>
+    <div class="related-card"><a href="proyecto1.html"><img src="relacionado1.jpg" alt="Proyecto 1" loading="lazy"><p>Proyecto 1</p></a></div>
+    <div class="related-card"><a href="proyecto2.html"><img src="relacionado2.jpg" alt="Proyecto 2" loading="lazy"><p>Proyecto 2</p></a></div>
+    <div class="related-card"><a href="proyecto3.html"><img src="relacionado3.jpg" alt="Proyecto 3" loading="lazy"><p>Proyecto 3</p></a></div>
+    <div class="related-card"><a href="proyecto4.html"><img src="relacionado4.jpg" alt="Proyecto 4" loading="lazy"><p>Proyecto 4</p></a></div>
   </div>
 </section>
-
-<style>
-.related-posts {
-  max-width: 1200px;
-  margin: 0 auto 80px;
-}
-
-.related-posts h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
-
-.related-container {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between; /* aquí está el space-between */
-  flex-wrap: wrap;
-}
-
-.related-card {
-  flex: 1 1 calc(25% - 20px); /* 3 cards por fila, ajustable */
-  background: #111;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.related-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.related-card p {
-  color: #fff;
-  padding: 10px;
-  font-size: 14px;
-}
-
-.related-card:hover {
-  transform: scale(1.05);
-}
-</style>
-
-
-
-
 </body>
 </html>
