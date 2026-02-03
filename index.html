@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PORTICO LAB</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
@@ -93,7 +94,7 @@
     <!-- Publicación 1 -->
     <div class="gallery-item">
       <a href="inspiracion/post (1)/">
-        <img src="inspiracion/post (1)/portada.jpg" alt="Estructura Paramétrica">
+        <img src="inspiracion/post (1)/portada.jpg" alt="Estructura Paramétrica" loading="lazy">
       </a>
       <h3>Estructura Paramétrica</h3>
       <p>#parametrico #concreto</p>
@@ -102,7 +103,7 @@
     <!-- Publicación 2 -->
     <div class="gallery-item">
       <a href="inspiracion/post (2)/">
-        <img src="inspiracion/post (2)/portada.jpg" alt="Fachada Modular">
+        <img src="inspiracion/post (2)/portada.jpg" alt="Fachada Modular" loading="lazy">
       </a>
       <h3>Fachada Modular</h3>
       <p>#parametrico #concreto</p>
@@ -111,7 +112,7 @@
     <!-- Publicación 3 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (3)/">
-        <img src="inspiracion/post (3)/portada.jpg" alt="Cubierta Tensada">
+        <img src="inspiracion/post (3)/portada.jpg" alt="Cubierta Tensada" loading="lazy">
       </a>
       <h3>Cubierta Tensada</h3>
       <p>#parametrico #concreto</p>
@@ -120,7 +121,7 @@
     <!-- Publicación 4 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (4)/">
-        <img src="inspiracion/post (4)/portada.jpg" alt="Proyecto 4">
+        <img src="inspiracion/post (4)/portada.jpg" alt="Proyecto 4" loading="lazy">
       </a>
       <h3>Proyecto 4</h3>
       <p>#parametrico #concreto</p>
@@ -129,7 +130,7 @@
     <!-- Publicación 5 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (5)/">
-        <img src="inspiracion/post (5)/portada.jpg" alt="Proyecto 5">
+        <img src="inspiracion/post (5)/portada.jpg" alt="Proyecto 5" loading="lazy">
       </a>
       <h3>Proyecto 5</h3>
       <p>#parametrico #concreto</p>
@@ -138,7 +139,7 @@
     <!-- Publicación 6 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (6)/">
-        <img src="inspiracion/post (6)/portada.jpg" alt="Proyecto 6">
+        <img src="inspiracion/post (6)/portada.jpg" alt="Proyecto 6" loading="lazy">
       </a>
       <h3>Proyecto 6</h3>
       <p>#parametrico #concreto</p>
@@ -147,7 +148,7 @@
     <!-- Publicación 7 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (7)/">
-        <img src="inspiracion/post (7)/portada.jpg" alt="Proyecto 7">
+        <img src="inspiracion/post (7)/portada.jpg" alt="Proyecto 7" loading="lazy">
       </a>
       <h3>Proyecto 7</h3>
       <p>#parametrico #concreto</p>
@@ -156,7 +157,7 @@
     <!-- Publicación 8 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (8)/">
-        <img src="inspiracion/post (8)/portada.jpg" alt="Proyecto 8">
+        <img src="inspiracion/post (8)/portada.jpg" alt="Proyecto 8" loading="lazy">
       </a>
       <h3>Proyecto 8</h3>
       <p>#parametrico #concreto</p>
@@ -165,7 +166,7 @@
     <!-- Publicación 9 -->
     <div class="gallery-item">            
       <a href="inspiracion/post (9)/">
-        <img src="inspiracion/post (9)/portada.jpg" alt="Proyecto 9">
+        <img src="inspiracion/post (9)/portada.jpg" alt="Proyecto 9" loading="lazy">
       </a>
       <h3>Proyecto 9</h3>
       <p>#parametrico #concreto</p>
@@ -213,13 +214,11 @@
   const overlayImg = document.createElement('img');
   overlay.appendChild(overlayImg);
 
-  // Mostrar imagen en overlay al hacer click
-  document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      overlayImg.src = img.src;
-      overlay.classList.add('active');
+  // Navegar a la página de la publicación al hacer click en la imagen
+  document.querySelectorAll('.gallery-item a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Permitir la navegación normal
+      window.location.href = link.href;
     });
   });
 
