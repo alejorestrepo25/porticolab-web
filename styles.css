@@ -24,6 +24,7 @@ body {
   width: 100%;
   border-radius: 12px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: zoom-in;
 }
 
 .gallery-item img:hover {
@@ -68,7 +69,7 @@ body {
 }
 
 .mini-gallery img:hover {
-  transform: scale(1.5); /* efecto al pasar el cursor */
+  transform: scale(1.5);
 }
 
 /* Zoom Modal */
@@ -113,10 +114,6 @@ body {
   }
 }
 
-.gallery-item img {
-  cursor: zoom-in;
-}
-
 /* Responsive */
 @media (max-width: 1200px) {
   .gallery { column-count: 3; }
@@ -127,5 +124,5 @@ body {
 }
 
 @media (max-width: 480px) {
-  .gallery { column-count: 1; }
+  .gallery { column-count: 2; }
 }
