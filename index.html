@@ -92,8 +92,8 @@
   <section class="gallery">
     <!-- Publicación 1 -->
     <div class="gallery-item">
-      <a href="post (1)/">
-        <img src="img/portada.jpg" alt="Estructura Paramétrica">
+      <a href="inspiracion/post (1)/">
+        <img src="inspiracion/post (1)/portada.jpg" alt="Estructura Paramétrica">
       </a>
       <h3>Estructura Paramétrica</h3>
       <p>#parametrico #concreto</p>
@@ -101,8 +101,8 @@
 
     <!-- Publicación 2 -->
     <div class="gallery-item">
-      <a href="post (2)/">
-        <img src="img/portada.jpg" alt="Fachada Modular">
+      <a href="inspiracion/post (2)/">
+        <img src="inspiracion/post (2)/portada.jpg" alt="Fachada Modular">
       </a>
       <h3>Fachada Modular</h3>
       <p>#parametrico #concreto</p>
@@ -110,8 +110,8 @@
 
     <!-- Publicación 3 -->
     <div class="gallery-item">            
-      <a href="post (3)/">
-        <img src="img/portada.jpg" alt="Cubierta Tensada">
+      <a href="inspiracion/post (3)/">
+        <img src="inspiracion/post (3)/portada.jpg" alt="Cubierta Tensada">
       </a>
       <h3>Cubierta Tensada</h3>
       <p>#parametrico #concreto</p>
@@ -119,8 +119,8 @@
 
     <!-- Publicación 4 -->
     <div class="gallery-item">            
-      <a href="post (4)/">
-        <img src="img/portada.jpg" alt="Proyecto 4">
+      <a href="inspiracion/post (4)/">
+        <img src="inspiracion/post (4)/portada.jpg" alt="Proyecto 4">
       </a>
       <h3>Proyecto 4</h3>
       <p>#parametrico #concreto</p>
@@ -128,8 +128,8 @@
 
     <!-- Publicación 5 -->
     <div class="gallery-item">            
-      <a href="post (5)/">
-        <img src="img/portada.jpg" alt="Proyecto 5">
+      <a href="inspiracion/post (5)/">
+        <img src="inspiracion/post (5)/portada.jpg" alt="Proyecto 5">
       </a>
       <h3>Proyecto 5</h3>
       <p>#parametrico #concreto</p>
@@ -137,8 +137,8 @@
 
     <!-- Publicación 6 -->
     <div class="gallery-item">            
-      <a href="post (6)/">
-        <img src="img/portada.jpg" alt="Proyecto 6">
+      <a href="inspiracion/post (6)/">
+        <img src="inspiracion/post (6)/portada.jpg" alt="Proyecto 6">
       </a>
       <h3>Proyecto 6</h3>
       <p>#parametrico #concreto</p>
@@ -146,8 +146,8 @@
 
     <!-- Publicación 7 -->
     <div class="gallery-item">            
-      <a href="post (7)/">
-        <img src="img/portada.jpg" alt="Proyecto 7">
+      <a href="inspiracion/post (7)/">
+        <img src="inspiracion/post (7)/portada.jpg" alt="Proyecto 7">
       </a>
       <h3>Proyecto 7</h3>
       <p>#parametrico #concreto</p>
@@ -155,8 +155,8 @@
 
     <!-- Publicación 8 -->
     <div class="gallery-item">            
-      <a href="post (8)/">
-        <img src="img/portada.jpg" alt="Proyecto 8">
+      <a href="inspiracion/post (8)/">
+        <img src="inspiracion/post (8)/portada.jpg" alt="Proyecto 8">
       </a>
       <h3>Proyecto 8</h3>
       <p>#parametrico #concreto</p>
@@ -164,8 +164,8 @@
 
     <!-- Publicación 9 -->
     <div class="gallery-item">            
-      <a href="post (9)/">
-        <img src="img/portada.jpg" alt="Proyecto 9">
+      <a href="inspiracion/post (9)/">
+        <img src="inspiracion/post (9)/portada.jpg" alt="Proyecto 9">
       </a>
       <h3>Proyecto 9</h3>
       <p>#parametrico #concreto</p>
@@ -207,43 +207,32 @@
 
   // Crear el overlay para zoom
   const overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.background = 'rgba(0,0,0,0.9)';
-  overlay.style.display = 'flex';
-  overlay.style.justifyContent = 'center';
-  overlay.style.alignItems = 'center';
-  overlay.style.cursor = 'zoom-out';
-  overlay.style.opacity = '0';
-  overlay.style.transition = 'opacity 0.3s ease';
-  overlay.style.zIndex = '999';
-  overlay.style.visibility = 'hidden';
+  overlay.className = 'zoom-overlay';
   document.body.appendChild(overlay);
 
   const overlayImg = document.createElement('img');
-  overlayImg.style.maxWidth = '90%';
-  overlayImg.style.maxHeight = '90%';
-  overlayImg.style.boxShadow = '0 0 20px rgba(0,0,0,0.7)';
   overlay.appendChild(overlayImg);
 
   // Mostrar imagen en overlay al hacer click
   document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', e => {
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       overlayImg.src = img.src;
-      overlay.style.visibility = 'visible';
-      overlay.style.opacity = '1';
+      overlay.classList.add('active');
     });
   });
 
-  // Cerrar overlay al hacer click fuera de la imagen
+  // Cerrar overlay al hacer click en el overlay (fuera de la imagen)
   overlay.addEventListener('click', () => {
-    overlay.style.opacity = '0';
-    setTimeout(() => {
-      overlay.style.visibility = 'hidden';
-    }, 300);
+    overlay.classList.remove('active');
+  });
+
+  // Cerrar con la tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      overlay.classList.remove('active');
+    }
   });
 </script>
 

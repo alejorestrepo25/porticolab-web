@@ -39,6 +39,52 @@ body {
   display: none;
 }
 
+/* Zoom Modal */
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  cursor: zoom-out;
+}
+
+.zoom-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.zoom-overlay img {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gallery-item img {
+  cursor: zoom-in;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .gallery { column-count: 3; }
