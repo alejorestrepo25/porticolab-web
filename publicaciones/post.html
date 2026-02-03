@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post - PORTICO LAB</title>
+
+<link rel="icon" href="../../iconos/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+
+header{
+  width:100%;
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  border-bottom:1px solid #222;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:#fff;
+  text-decoration:none;
+  position:relative;
+}
+
+.logo::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:1px;
+  background:#fff;
+  transition:0.3s;
+}
+.logo:hover::after{width:100%;}
+
+.nav{display:flex;gap:30px;}
+.nav a{
+  text-decoration:none;
+  color:#fff;
+  font-size:16px;
+  letter-spacing:1px;
+  position:relative;
+}
+.nav a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:1px;
+  background:#fff;
+  transition:0.3s;
+}
+.nav a:hover::after{width:100%;}
+
+/* MAIN */
+main{
+  padding:60px 40px;
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+}
+
+.post-content h1{
+  font-size:48px;
+  font-weight:700;
+  letter-spacing:2px;
+  line-height:1.2;
+}
+
+.post-meta{
+  display:flex;
+  gap:20px;
+  font-size:14px;
+  color:#999;
+  padding-bottom:20px;
+  border-bottom:1px solid #222;
+}
+
+.post-content p{
+  line-height:1.8;
+  color:#ccc;
+  font-size:15px;
+  margin-top:20px;
+}
+
+#post-features{
+  margin-top:20px;
+  padding-left:20px;
+  color:#ccc;
+  line-height:1.8;
+}
+
+.tags{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.tag{
+  background:#222;
+  padding:8px 16px;
+  border-radius:20px;
+  font-size:13px;
+}
+
+/* GALERÍA */
+.post-image{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.post-image img#main-image{
+  width:100%;
+  max-width:550px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.mini-gallery{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+.mini-gallery img{
+  width:50px;
+  height:50px;
+  object-fit:cover;
+  border-radius:4px;
+  cursor:pointer;
+  opacity:0.7;
+  transition:0.2s;
+}
+.mini-gallery img:hover{
+  transform:scale(1.2);
+  opacity:1;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:1000;
+}
+.lightbox img{
+  max-width:90%;
+  max-height:80%;
+  border-radius:8px;
+}
+.lightbox-controls{
+  display:flex;
+  gap:20px;
+  margin-top:15px;
+  align-items:center;
+}
+.lightbox-btn{
+  background:#222;
+  color:#fff;
+  border:1px solid #444;
+  padding:8px 15px;
+  border-radius:4px;
+  cursor:pointer;
+}
+.lightbox-counter{
+  min-width:50px;
+  text-align:center;
+}
+
+/* MEDIA */
+@media(max-width:1024px){
+  main{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  header{padding:0 20px;}
+  main{padding:30px 20px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="../../index.html" class="logo">PORTICO_LAB</a>
+  <nav class="nav">
+    <a href="../../laboratorio.html">LABORATORIO</a>
+    <a href="../../inspiracion.html">INSPIRACIÓN</a>
+    <a href="../../nosotros.html">NOSOTROS</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- GALERÍA -->
+  <div class="post-image">
+    <img id="main-image" src="portada.jpg" alt="">
+    <div class="mini-gallery">
+      <img src="portada.jpg">
+      <img src="foto (1).jpg">
+      <img src="foto (2).jpg">
+      <img src="foto (3).jpg">
+      <img src="foto (4).jpg">
+      <img src="foto (5).jpg">
+      <img src="foto (6).jpg">
+    </div>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="post-content">
+    <h1 id="post-title"></h1>
+
+    <div class="post-meta">
+      <span id="post-location"></span>
+      <span id="post-year"></span>
+    </div>
+
+    <p id="post-description"></p>
+
+    <h2 style="margin-top:30px;">Características Principales</h2>
+    <ul id="post-features"></ul>
+
+    <div class="tags" id="post-tags"></div>
+  </div>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img>
+  <div class="lightbox-controls">
+    <button class="lightbox-btn" id="prev">Anterior</button>
+    <span class="lightbox-counter" id="lightbox-counter">1 / 7</span>
+    <button class="lightbox-btn" id="next">Siguiente</button>
+  </div>
+</div>
+
+<script>
+/* LIGHTBOX */
+const mainImage = document.getElementById('main-image');
+const thumbnails = document.querySelectorAll('.mini-gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const counter = document.getElementById('lightbox-counter');
+let currentIndex = 0;
+
+const images = Array.from(thumbnails).map(img => img.src);
+
+thumbnails.forEach((img,i)=>{
+  img.addEventListener('click',()=>{
+    currentIndex=i;
+    open();
+  });
+});
+mainImage.addEventListener('click',()=>{currentIndex=0;open();});
+
+function open(){
+  lightbox.style.display='flex';
+  update();
+}
+function update(){
+  lightboxImg.src = images[currentIndex];
+  counter.textContent = `${currentIndex+1} / ${images.length}`;
+}
+document.getElementById('prev').onclick=()=>{currentIndex=(currentIndex-1+images.length)%images.length;update();};
+document.getElementById('next').onclick=()=>{currentIndex=(currentIndex+1)%images.length;update();};
+lightbox.onclick=e=>{if(e.target===lightbox) lightbox.style.display='none';};
+
+/* POST DINÁMICO */
+const params = new URLSearchParams(window.location.search);
+const post = params.get("post");
+if(!post) return;
+
+fetch(`./${post}/data.json`)
+  .then(r=>r.json())
+  .then(d=>{
+    postTitle.textContent=d.title;
+    postLocation.textContent=`📍 ${d.location}`;
+    postYear.textContent=`📅 ${d.year}`;
+    postDescription.textContent=d.description;
+
+    d.features.forEach(f=>{
+      const li=document.createElement("li");
+      li.textContent=f;
+      postFeatures.appendChild(li);
+    });
+
+    d.tags.forEach(t=>{
+      const s=document.createElement("span");
+      s.className="tag";
+      s.textContent="#"+t;
+      postTags.appendChild(s);
+    });
+  });
+</script>
+
+</body>
+</html>
