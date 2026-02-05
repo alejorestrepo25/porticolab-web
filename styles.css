@@ -121,17 +121,14 @@ body {
   padding: 24px;
 }
 
-/* laptops */
 @media (max-width: 1200px) {
   .gallery { column-count: 3; }
 }
 
-/* tablets */
 @media (max-width: 768px) {
   .gallery { column-count: 2; }
 }
 
-/* móviles */
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
