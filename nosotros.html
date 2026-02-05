@@ -2,22 +2,99 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Laboratorio – PORTICO LAB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTICO LAB</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="iconos/favicon.ico" type="image/ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Inter, sans-serif;
-      padding: 40px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .gallery-item {
-      margin-bottom: 20px;
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo,
+    .nav a {
+      position: relative;
+    }
+
+    .nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .logo::after,
+    .nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+
+    .logo:hover::after,
+    .nav a:hover::after {
+      width: 100%;
     }
   </style>
 </head>
 
-<body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const FILTER_TAG = 'laboratorio';
 
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const tags = item.dataset.tags
+        .split(',')
+        .map(tag => tag.trim().toLowerCase());
+
+      if (!tags.includes(FILTER_TAG)) {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<body>
+  
 <h1>LABORATORIO</h1>
 
 <section class="gallery">
@@ -30,10 +107,23 @@
     <h3>Post inspiración</h3>
   </div>
 
-</section>
+<header>
+  <a href="index.html" class="logo">PORTICO_LAB</a>
+
+  <nav class="nav">
+    <a href="laboratorio.html">LABORATORIO</a>
+    <a href="inspiracion.html">INSPIRACIÓN</a>
+    <a href="nosotros.html">NOSOTROS</a>
+  </nav>
+</header>
+
+<main>
+
+</main>
+
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+   document.addEventListener('DOMContentLoaded', () => {
     const FILTER_TAG = 'laboratorio';
 
     document.querySelectorAll('.gallery-item').forEach(item => {
