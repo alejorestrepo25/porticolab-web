@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -178,13 +178,13 @@
 </main>
 
 <script>
-  // 1️⃣ seleccionamos la galería
+  // 1 seleccionamos la galería
   const gallery = document.querySelector('.gallery');
 
-  // 2️⃣ obtenemos todas las publicaciones
+  // 2 obtenemos todas las publicaciones
   const items = Array.from(gallery.querySelectorAll('.gallery-item'));
 
-  // 3️⃣ función para mezclar (Fisher–Yates shuffle)
+  // 3 función para mezclar (Fisher–Yates shuffle)
   function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 
@@ -199,10 +199,10 @@
     return array;
   }
 
-  // 4️⃣ mezclamos los items
+  // 4 mezclamos los items
   const shuffledItems = shuffle(items);
 
-  // 5️⃣ limpiamos la galería y agregamos en orden aleatorio
+  // 5 limpiamos la galería y agregamos en orden aleatorio
   gallery.innerHTML = '';
   shuffledItems.forEach(item => gallery.appendChild(item));
 
@@ -237,3 +237,5 @@
 
 </body>
 </html>
+
+
