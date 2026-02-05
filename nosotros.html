@@ -76,6 +76,23 @@
     }
   </style>
 </head>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const FILTER_TAG = 'laboratorio';
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const tags = item.dataset.tags
+        .split(',')
+        .map(tag => tag.trim().toLowerCase());
+
+      if (!tags.includes(FILTER_TAG)) {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 <body>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
