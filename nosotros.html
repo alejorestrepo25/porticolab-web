@@ -88,66 +88,13 @@
 </header>
 
 <main>
-  
 
 </main>
 
-<script>
-  // 1️⃣ seleccionamos la galería
-  const gallery = document.querySelector('.gallery');
 
-  // 2️⃣ obtenemos todas las publicaciones
-  const items = Array.from(gallery.querySelectorAll('.gallery-item'));
+</script>
 
-  // 3️⃣ función para mezclar (Fisher–Yates shuffle)
-  function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
 
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // intercambiar
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-  }
-
-  // 4️⃣ mezclamos los items
-  const shuffledItems = shuffle(items);
-
-  // 5️⃣ limpiamos la galería y agregamos en orden aleatorio
-  gallery.innerHTML = '';
-  shuffledItems.forEach(item => gallery.appendChild(item));
-
-  // Crear el overlay para zoom
-  const overlay = document.createElement('div');
-  overlay.className = 'zoom-overlay';
-  document.body.appendChild(overlay);
-
-  const overlayImg = document.createElement('img');
-  overlay.appendChild(overlayImg);
-
-  // Navegar a la página de la publicación al hacer click en la imagen
-  document.querySelectorAll('.gallery-item a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Permitir la navegación normal
-      window.location.href = link.href;
-    });
-  });
-
-  // Cerrar overlay al hacer click en el overlay (fuera de la imagen)
-  overlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
-  });
-
-  // Cerrar con la tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      overlay.classList.remove('active');
-    }
-  });
 </script>
 
 </body>
