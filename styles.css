@@ -119,10 +119,10 @@ body {
   .gallery { column-count: 3; }
 }
 
-@media (min-width: 1400px)
-  .gallery {
-    column-count: 4;
-  }
+@media (max-width: 1400px) {
+  .gallery { column-count: 4; }
+}
+
 
 @media (max-width: 768px) {
   .gallery { column-count: 2; }
