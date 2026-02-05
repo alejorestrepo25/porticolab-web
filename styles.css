@@ -193,3 +193,20 @@ body {
   font-size: 12px;
   color: #666;
 }
+
+/* ===== TAGS DE CADA PUBLICACIÓN ===== */
+
+/* Contenedor de las etiquetas (#tags) */
+.post-tags {
+  margin-top: 8px;        /* separación respecto al título o contenido */
+  display: flex;          /* alinea los tags en fila */
+  gap: 10px;              /* espacio entre cada tag */
+  flex-wrap: wrap;        /* permite que bajen de línea si no caben */
+}
+
+/* Estilo individual de cada tag */
+.post-tags span {
+  font-size: 12px;        /* tamaño pequeño, secundario */
+  color: #777;            /* gris suave, no roba protagonismo */
+  letter-spacing: 0.5px;  /* aire entre letras, look editorial */
+}
