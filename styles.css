@@ -126,3 +126,23 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 2; }
 }
+
+.filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  color: #fff;
+  opacity: 0.6;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+}
+
+.filters button.active {
+  opacity: 1;
+  text-decoration: underline;
+}
