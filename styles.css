@@ -146,3 +146,50 @@ body {
   opacity: 1;
   text-decoration: underline;
 }
+
+/* ===== NOSOTROS ===== */
+
+.about {
+  padding: 80px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-hero h1 {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 60px;
+}
+
+.about-text p {
+  max-width: 600px;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  color: #ccc;
+}
+
+.about-axes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 80px 0;
+}
+
+.axis h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.axis p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #aaa;
+}
+
+.about-footer {
+  margin-top: 80px;
+  font-size: 12px;
+  color: #666;
+}

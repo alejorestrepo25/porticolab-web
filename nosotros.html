@@ -77,7 +77,7 @@
   </style>
 </head>
 
-<body data-filter="laboratorio">
+<body>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
@@ -88,45 +88,67 @@
   </nav>
 </header>
 
-<main>
+<main class="about">
 
-<section class="gallery"></section>
+  <!-- Declaración -->
+  <section class="about-hero">
+    <h1>
+      Diseñamos y construimos<br>
+      explorando sistemas,<br>
+      materia y forma.
+    </h1>
+  </section>
+
+  <!-- Manifiesto -->
+  <section class="about-text">
+    <p>
+      PÓRTICO LAB es un espacio de exploración.
+      Un cruce entre arquitectura, fabricación digital
+      y pensamiento constructivo.
+    </p>
+    <p>
+      Trabajamos desde el proceso.
+      Probamos, ajustamos y construimos.
+      Cada proyecto es un prototipo.
+    </p>
+  </section>
+
+  <!-- Ejes -->
+  <section class="about-axes">
+    <div class="axis">
+      <h3>Laboratorio</h3>
+      <p>
+        Investigación material, geometría paramétrica
+        y sistemas constructivos.
+      </p>
+    </div>
+
+    <div class="axis">
+      <h3>Inspiración</h3>
+      <p>
+        Referencias, paisajes, estructuras,
+        procesos y cultura visual.
+      </p>
+    </div>
+
+    <div class="axis">
+      <h3>Construcción</h3>
+      <p>
+        Del diseño al objeto.
+        Precisión, técnica y ejecución real.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cierre -->
+  <section class="about-footer">
+    <p>
+      Pórtico Lab · Medellín · 2026
+    </p>
+  </section>
+
 
 </main>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-
-  const FILTER_TAG = document.body.dataset.filter;
-  if (!FILTER_TAG) return;
-
-  // 1️⃣ cargar index.html
-  const response = await fetch('index.html');
-  const htmlText = await response.text();
-
-  // 2️⃣ convertir texto en DOM
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlText, 'text/html');
-
-  // 3️⃣ obtener publicaciones originales
-  const originalItems = doc.querySelectorAll('.gallery-item');
-  const gallery = document.querySelector('.gallery');
-
-  // 4️⃣ clonar + filtrar
-  originalItems.forEach(item => {
-    const tags = item.dataset.tags
-      ?.toLowerCase()
-      .split(',')
-      .map(t => t.trim()) || [];
-
-    if (tags.includes(FILTER_TAG)) {
-      gallery.appendChild(item.cloneNode(true));
-    }
-  });
-
-});
-</script>
 
 
 
