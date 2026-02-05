@@ -106,27 +106,44 @@
 
 <main>
 
+<section class="gallery"></section>
+
 </main>
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const FILTER_TAG = document.body.dataset.filter;
+document.addEventListener('DOMContentLoaded', async () => {
 
-    if (!FILTER_TAG) return;
+  const FILTER_TAG = document.body.dataset.filter;
+  if (!FILTER_TAG) return;
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      const tags = item.dataset.tags
-        .toLowerCase()
-        .split(',')
-        .map(t => t.trim());
+  // 1️⃣ cargar index.html
+  const response = await fetch('index.html');
+  const htmlText = await response.text();
 
-      if (!tags.includes(FILTER_TAG)) {
-        item.style.display = 'none';
-      }
-    });
+  // 2️⃣ convertir texto en DOM
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlText, 'text/html');
+
+  // 3️⃣ obtener publicaciones originales
+  const originalItems = doc.querySelectorAll('.gallery-item');
+  const gallery = document.querySelector('.gallery');
+
+  // 4️⃣ clonar + filtrar
+  originalItems.forEach(item => {
+    const tags = item.dataset.tags
+      ?.toLowerCase()
+      .split(',')
+      .map(t => t.trim()) || [];
+
+    if (tags.includes(FILTER_TAG)) {
+      gallery.appendChild(item.cloneNode(true));
+    }
   });
+
+});
 </script>
+
 
 
 </body>
