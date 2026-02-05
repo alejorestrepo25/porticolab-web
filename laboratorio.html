@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -97,34 +97,33 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
-
   const FILTER_TAG = document.body.dataset.filter;
-  if (!FILTER_TAG) return;
-
-  // 1️⃣ cargar index.html
   const response = await fetch('index.html');
   const htmlText = await response.text();
 
-  // 2️⃣ convertir texto en DOM
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlText, 'text/html');
 
-  // 3️⃣ obtener publicaciones originales
   const originalItems = doc.querySelectorAll('.gallery-item');
   const gallery = document.querySelector('.gallery');
+  if (!gallery) return;
 
-  // 4️⃣ clonar + filtrar
+  const matches = [];
   originalItems.forEach(item => {
     const tags = item.dataset.tags
       ?.toLowerCase()
       .split(',')
       .map(t => t.trim()) || [];
 
-    if (tags.includes(FILTER_TAG)) {
-      gallery.appendChild(item.cloneNode(true));
+    if (FILTER_TAG && tags.includes(FILTER_TAG)) {
+      matches.push(item);
     }
   });
 
+  const itemsToShow = matches.length ? matches : Array.from(originalItems);
+  itemsToShow.slice(0, 4).forEach(item => {
+    gallery.appendChild(item.cloneNode(true));
+  });
 });
 </script>
 
@@ -132,3 +131,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 </body>
 </html>
+
