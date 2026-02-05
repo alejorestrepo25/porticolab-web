@@ -114,22 +114,26 @@ body {
   }
 }
 
-/* Responsive */
+/* DEFAULT – pantallas grandes */
+.gallery {
+  column-count: 4;
+  column-gap: 16px;
+  padding: 24px;
+}
+
+/* laptops */
 @media (max-width: 1200px) {
   .gallery { column-count: 3; }
 }
 
-@media (max-width: 1400px) {
-  .gallery { column-count: 4; }
-}
-
-
+/* tablets */
 @media (max-width: 768px) {
   .gallery { column-count: 2; }
 }
 
+/* móviles */
 @media (max-width: 480px) {
-  .gallery { column-count: 2; }
+  .gallery { column-count: 1; }
 }
 
 .filters {
