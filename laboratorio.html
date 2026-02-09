@@ -82,7 +82,10 @@
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
   <nav class="nav">
-    <a href="laboratorio.html">LABORATORIO</a>
+    <a href="laboratorio.html" class="nav-link active-lab">
+      LABORATORIO
+      <span class="slogan">fabricación, prueba y exploración</span>
+    </a>
     <a href="inspiracion.html">INSPIRACIÓN</a>
     <a href="nosotros.html">NOSOTROS</a>
   </nav>
@@ -127,7 +130,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 </script>
 
-
+  <script>
+    window.addEventListener('load', () => {
+      document.querySelector('.active-lab')?.classList.add('animate');
+    });
+  </script>
 
 </body>
 </html>
