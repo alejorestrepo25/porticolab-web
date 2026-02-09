@@ -119,15 +119,15 @@ body {
 }
 
 @media (max-width: 1400px) {
-  .gallery { column-count: 3; }
+  .gallery { column-count: 4; }
 }
 
 @media (max-width: 900px) {
-  .gallery { column-count: 2; }
+  .gallery { column-count: 4; }
 }
 
 @media (max-width: 500px) {
-  .gallery { column-count: 1; }
+  .gallery { column-count: 4; }
 }
 
 
