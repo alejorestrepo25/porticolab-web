@@ -215,16 +215,31 @@ body {
   letter-spacing: 0.5px;  /* aire entre letras, look editorial */
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* link base */
 .nav-link {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  white-space: nowrap;
   transition: transform 0.6s ease;
 }
 
-/* estado inicial del slogan */
+/* mover LABORATORIO completamente a la izquierda */
+.nav-link.active-lab {
+  transform: translateX(calc(-100% - 30px));
+}
+
+/* slogan */
 .nav-link .slogan {
+  position: absolute;
+  left: 100%;
+  margin-left: 16px;
   opacity: 0;
   transform: translateX(-10px);
   white-space: nowrap;
@@ -234,11 +249,7 @@ body {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* cuando la pestaña está activa */
-.nav-link.active-lab {
-  transform: translateX(-20px);
-}
-
+/* mostrar slogan */
 .nav-link.active-lab .slogan {
   opacity: 1;
   transform: translateX(0);
