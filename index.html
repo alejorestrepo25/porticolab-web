@@ -166,8 +166,9 @@
 
     for (const id of posts) {
       try {
-        // ✅ CORREGIDO: Eliminar espacios y usar template strings correctos
-        const res = await fetch(`publicaciones/post${id}/data.json`);
+        // ✅ CORREGIDO: Usar la estructura "post (1)", "post (2)", etc.
+        const postFolder = `post (${id})`;
+        const res = await fetch(`publicaciones/${postFolder}/data.json`);
         if (!res.ok) continue;
 
         const data = await res.json();
@@ -176,11 +177,11 @@
         item.className = "gallery-item";
         item.dataset.tags = (data.tags || []).join(",");
 
-        // ✅ CORREGIDO: URLs sin espacios ni paréntesis
+        // ✅ CORREGIDO: Codificar espacios como %20 en la URL
         item.innerHTML = `
-          <a href="publicaciones/post.html?post=post${id}">
+          <a href="publicaciones/post.html?post=post%20(${id})">
             <img 
-              src="publicaciones/post${id}/portada.jpg" 
+              src="publicaciones/${postFolder}/portada.jpg" 
               alt="${data.title || 'Proyecto'}" 
               loading="lazy">
           </a>
@@ -203,7 +204,7 @@
     // Render final
     items.forEach(item => gallery.appendChild(item));
 
-    // Función de mezcla 
+    // Función de mezcla
     function shuffle(array) {
       let i = array.length;
       while (i > 0) {
