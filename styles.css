@@ -251,16 +251,6 @@ body {
   transform: translateX(0);
 }
 
-.gallery {
-  column-count: 4;
-  column-gap: 20px;
-  padding: 40px;
-}
-
-.gallery-item {
-  break-inside: avoid;
-  margin-bottom: 20px;
-}
 
 .gallery-item img {
   width: 100%;
