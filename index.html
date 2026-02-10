@@ -48,12 +48,12 @@
         const res = await fetch(`publicaciones/${postFolder}/data.json`);
         
         if (!res.ok) {
-          console.warn(`❌ Post ${id} no encontrado (HTTP ${res.status})`);
+          console.warn(`❌ Post (${id}) no encontrado (HTTP ${res.status})`);
           continue;
         }
 
         const data = await res.json();
-        console.log(`✅ Post ${id} cargado:`, data.title);
+        console.log(`✅ Post (${id}) cargado:`, data.title);
 
         const item = document.createElement("div");
         item.className = "gallery-item";
@@ -77,7 +77,7 @@
         items.push(item);
 
       } catch (err) {
-        console.error(`❌ Error cargando post ${id}:`, err.message);
+        console.error(`❌ Error cargando post (${id}):`, err.message);
       }
     }
 
