@@ -74,10 +74,67 @@
     .nav a:hover::after {
       width: 100%;
     }
+
+    /* ESTILOS DE LA GALERÍA */
+    main {
+      padding: 40px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item h3 {
+      padding: 20px 20px 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .post-tags {
+      padding: 0 20px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .post-tags span {
+      font-size: 12px;
+      color: #888;
+      background: #1a1a1a;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .gallery-item a {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
-
-
 
 <body>
 <header>
@@ -90,83 +147,73 @@
   </nav>
 </header>
 
-
- <!-- BARRA SUPERIOR -->
-
-
 <main>
-  <!-- Aquí va el contenido -->
   <section class="gallery"></section>
-
 </main>
+
 <script>
   console.log("SCRIPT DE INDEX CARGADO");
-document.addEventListener("DOMContentLoaded", async () => {
-  console.log("DOM LISTO");
+  
+  document.addEventListener("DOMContentLoaded", async () => {
+    console.log("DOM LISTO");
 
-  const gallery = document.querySelector(".gallery");
-  if (!gallery) return;
+    const gallery = document.querySelector(".gallery");
+    if (!gallery) return;
 
-  // 👉 lista temporal de posts
-  const posts = [1,2,3,4,5,6,7,8,9];
-  const items = [];
+    // Lista de posts
+    const posts = [1,2,3,4,5,6,7,8,9];
+    const items = [];
 
-  for (const id of posts) {
-    try {
-      const res = await fetch(`publicaciones/post (${id})/data.json`);
-      if (!res.ok) continue;
+    for (const id of posts) {
+      try {
+        // ✅ CORREGIDO: Eliminar espacios y usar template strings correctos
+        const res = await fetch(`publicaciones/post${id}/data.json`);
+        if (!res.ok) continue;
 
-      const data = await res.json();
+        const data = await res.json();
 
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-      item.dataset.tags = (data.tags || []).join(",");
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+        item.dataset.tags = (data.tags || []).join(",");
 
-      item.innerHTML = `
-        <a href="publicaciones/post.html?post=post%20(${id})">
-          <img 
-            src="publicaciones/post (${id})/portada.jpg" 
-            alt="${data.title || 'Proyecto'}" 
-            loading="lazy">
-        </a>
-        <h3>${data.title || 'Proyecto'}</h3>
-        <div class="post-tags">
-          ${(data.tags || []).map(t => `<span>#${t}</span>`).join("")}
-        </div>
-      `;
+        // ✅ CORREGIDO: URLs sin espacios ni paréntesis
+        item.innerHTML = `
+          <a href="publicaciones/post.html?post=post${id}">
+            <img 
+              src="publicaciones/post${id}/portada.jpg" 
+              alt="${data.title || 'Proyecto'}" 
+              loading="lazy">
+          </a>
+          <h3>${data.title || 'Proyecto'}</h3>
+          <div class="post-tags">
+            ${(data.tags || []).map(t => `<span>#${t}</span>`).join("")}
+          </div>
+        `;
 
-      items.push(item);
+        items.push(item);
 
-    } catch (err) {
-      console.warn("No se pudo cargar el post:", id);
+      } catch (err) {
+        console.warn("No se pudo cargar el post:", id, err);
+      }
     }
-  }
 
-  // 🔀 mezclar después de crear todo
-  shuffle(items);
+    // Mezclar después de crear todo
+    shuffle(items);
 
-  // 🧱 render final
-  items.forEach(item => gallery.appendChild(item));
+    // Render final
+    items.forEach(item => gallery.appendChild(item));
 
-  // ---------- utils ----------
-  function shuffle(array) {
-    let i = array.length;
-    while (i > 0) {
-      const j = Math.floor(Math.random() * i--);
-      [array[i], array[j]] = [array[j], array[i]];
+    // Función de mezcla
+    function shuffle(array) {
+      let i = array.length;
+      while (i > 0) {
+        const j = Math.floor(Math.random() * i--);
+        [array[i], array[j]] = [array[j], array[i]];
+      }
     }
-  }
 
-});
+  });
 </script>
-
-
-
-
-
-
 
 </body>
 </html>
-
-
