@@ -86,6 +86,7 @@
 
     // Render final
     items.forEach(item => gallery.appendChild(item));
+    gallery.style.columnCount = getComputedStyle(gallery).columnCount;
     
     console.log(`📊 Total de posts cargados: ${items.length} de ${posts.length}`);
     

@@ -98,37 +98,70 @@
 </main>
 
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-  const FILTER_TAG = document.body.dataset.filter;
-  if (!FILTER_TAG) return;
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
 
-  // 1️⃣ cargar index.html
-  const response = await fetch('index.html');
-  const htmlText = await response.text();
+  // 🔎 filtro desde el body
+  const FILTER_TAG = document.body.dataset.filter || null;
 
-  // 2️⃣ convertir texto en DOM
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlText, 'text/html');
+  // 👉 lista temporal de posts
+  const posts = [1,2,3,4,5,6,7,8,9];
+  const items = [];
 
-  // 3️⃣ obtener publicaciones originales
-  const originalItems = doc.querySelectorAll('.gallery-item');
-  const gallery = document.querySelector('.gallery');
+  for (const id of posts) {
+    try {
+      const folder = `post (${id})`;
+      const res = await fetch(`publicaciones/${folder}/data.json`);
+      if (!res.ok) continue;
 
-  // 4️⃣ clonar + filtrar
-  originalItems.forEach(item => {
-    const tags = item.dataset.tags
-      ?.toLowerCase()
-      .split(',')
-      .map(t => t.trim()) || [];
+      const data = await res.json();
+      const tags = data.tags || [];
 
-    if (tags.includes(FILTER_TAG)) {
-      gallery.appendChild(item.cloneNode(true));
+      // ⛔ filtro por tag
+      if (FILTER_TAG && !tags.includes(FILTER_TAG)) continue;
+
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+
+      item.innerHTML = `
+        <a href="publicaciones/post.html?post=post%20(${id})">
+          <img
+            src="publicaciones/${folder}/portada.jpg"
+            alt="${data.title || 'Proyecto'}"
+            loading="lazy">
+        </a>
+        <h3>${data.title || 'Proyecto'}</h3>
+        <div class="post-tags">
+          ${tags.map(t => `<span>#${t}</span>`).join("")}
+        </div>
+      `;
+
+      items.push(item);
+
+    } catch (err) {
+      console.warn("No se pudo cargar post", id);
     }
-  });
+  }
+
+  // 🔀 mezclar
+  shuffle(items);
+
+  // 🧱 render
+  items.forEach(i => gallery.appendChild(i));
+
+  function shuffle(array) {
+    let i = array.length;
+    while (i > 0) {
+      const j = Math.floor(Math.random() * i--);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
 });
 </script>
+
 
 
 
