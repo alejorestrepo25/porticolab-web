@@ -1,70 +1,234 @@
 /* styles.css */
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  background: #000;
-  color: #fff;
+  padding: 0;
 }
 
-.gallery-item {
-  display: inline-block;
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+
+header {
   width: 100%;
-  margin-bottom: 16px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  border-bottom: 1px solid #222;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+
+.logo::after,
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.logo:hover::after,
+.nav a:hover::after {
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+/* link base */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: transform 0.6s ease;
+}
+
+/* mover LABORATORIO completamente a la izquierda */
+.nav-link.active-lab {
+  transform: translateX(calc(-100% - 30px));
+}
+
+/* slogan */
+.nav-link .slogan {
+  position: absolute;
+  left: 100%;
+  margin-left: 16px;
+  opacity: 0;
+  transform: translateX(-10px);
+  white-space: nowrap;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #aaa;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* mostrar slogan */
+.nav-link.active-lab .slogan {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== MAIN & GALLERY ===== */
+
+main {
+  padding: 40px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive grid */
+@media (max-width: 1200px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== GALLERY ITEMS ===== */
+
+.gallery-item {
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  break-inside: avoid;
-  page-break-inside: avoid;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+}
+
+.gallery-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .gallery-item img {
   width: 100%;
-  border-radius: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: zoom-in;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
 }
 
-.gallery-item img:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.gallery-item p {
-  display: none;
+.gallery-item:hover img {
+  transform: scale(1.05);
 }
 
 .gallery-item h3 {
-  margin: 8px 0 4px 0;
-  font-size: 16px;
+  padding: 20px 20px 10px;
+  font-size: 18px;
   font-weight: 600;
+  color: #fff;
 }
 
-.gallery-item .location {
-  display: block;
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 8px;
-}
+/* ===== TAGS DE CADA PUBLICACIÓN ===== */
 
-.mini-gallery {
+.post-tags {
+  padding: 0 20px 20px;
   display: flex;
-  gap: 5px;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.mini-gallery img {
-  width: 15px;
-  height: 15px;
-  object-fit: cover;
-  border-radius: 2px;
+.post-tags span {
+  font-size: 12px;
+  color: #888;
+  background: #1a1a1a;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== FILTROS ===== */
+
+.filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  color: #fff;
+  opacity: 0.6;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: opacity 0.3s ease;
 }
 
-.mini-gallery img:hover {
-  transform: scale(1.5);
+.filters button:hover {
+  opacity: 0.8;
 }
 
-/* Zoom Modal */
+.filters button.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===== ZOOM MODAL ===== */
+
 .zoom-overlay {
   position: fixed;
   top: 0;
@@ -106,46 +270,26 @@ body {
   }
 }
 
-/* DEFAULT – pantallas grandes 2026 */
-.gallery {
-  max-width: 1600px;
-  margin: 0 auto;
-  column-count: 4;
-  column-gap: 16px;
-  padding: 24px;
-}
+/* ===== MINI GALLERY ===== */
 
-@media (max-width: 1400px) {
-  .gallery { column-count: 3; }
-}
-
-@media (max-width: 900px) {
-  .gallery { column-count: 2; }
-}
-
-@media (max-width: 500px) {
-  .gallery { column-count: 1; }
-}
-
-
-.filters {
+.mini-gallery {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 0 20px;
 }
 
-.filters button {
-  background: none;
-  border: none;
-  color: #fff;
-  opacity: 0.6;
-  font-family: Inter, sans-serif;
+.mini-gallery img {
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.filters button.active {
-  opacity: 1;
-  text-decoration: underline;
+.mini-gallery img:hover {
+  transform: scale(1.5);
 }
 
 /* ===== NOSOTROS ===== */
@@ -178,6 +322,18 @@ body {
   margin: 80px 0;
 }
 
+@media (max-width: 900px) {
+  .about-axes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .about-axes {
+    grid-template-columns: 1fr;
+  }
+}
+
 .axis h3 {
   font-size: 18px;
   margin-bottom: 12px;
@@ -195,60 +351,16 @@ body {
   color: #666;
 }
 
-/* ===== TAGS DE CADA PUBLICACIÓN ===== */
+/* ===== LOCATION ===== */
 
-/* Contenedor de las etiquetas (#tags) */
-.post-tags {
-  margin-top: 8px;        /* separación respecto al título o contenido */
-  display: flex;          /* alinea los tags en fila */
-  gap: 10px;              /* espacio entre cada tag */
-  flex-wrap: wrap;        /* permite que bajen de línea si no caben */
-}
-
-/* Estilo individual de cada tag */
-.post-tags span {
-  font-size: 12px;        /* tamaño pequeño, secundario */
-  color: #777;            /* gris suave, no roba protagonismo */
-  letter-spacing: 0.5px;  /* aire entre letras, look editorial */
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-/* link base */
-.nav-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  transition: transform 0.6s ease;
-}
-
-/* mover LABORATORIO completamente a la izquierda */
-.nav-link.active-lab {
-  transform: translateX(calc(-100% - 30px));
-}
-
-/* slogan */
-.nav-link .slogan {
-  position: absolute;
-  left: 100%;
-  margin-left: 16px;
-  opacity: 0;
-  transform: translateX(-10px);
-  white-space: nowrap;
+.gallery-item .location {
+  display: block;
   font-size: 13px;
-  letter-spacing: 0.5px;
-  color: #aaa;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  color: #666;
+  margin-bottom: 8px;
+  padding: 0 20px;
 }
 
-/* mostrar slogan */
-.nav-link.active-lab .slogan {
-  opacity: 1;
-  transform: translateX(0);
+.gallery-item p {
+  display: none;
 }
-
