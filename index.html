@@ -90,20 +90,24 @@
   </nav>
 </header>
 
+
+ <!-- BARRA SUPERIOR -->
+
+
 <main>
   <!-- Aquí va el contenido -->
   <section class="gallery"></section>
 
 </main>
-
-
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
 
   const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
 
-  // 👇 LISTA DE POSTS (por ahora manual, luego se automatiza)
+  // 👉 lista temporal de posts
   const posts = [1,2,3,4,5,6,7,8,9];
+  const items = [];
 
   for (const id of posts) {
     try {
@@ -114,84 +118,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const item = document.createElement("div");
       item.className = "gallery-item";
-      item.dataset.tags = data.tags.join(",");
+      item.dataset.tags = (data.tags || []).join(",");
 
       item.innerHTML = `
         <a href="publicaciones/post.html?post=post%20(${id})">
-          <img src="publicaciones/post (${id})/portada.jpg" alt="${data.title}" loading="lazy">
+          <img 
+            src="publicaciones/post (${id})/portada.jpg" 
+            alt="${data.title || 'Proyecto'}" 
+            loading="lazy">
         </a>
-        <h3>${data.title}</h3>
+        <h3>${data.title || 'Proyecto'}</h3>
         <div class="post-tags">
-          ${data.tags.map(t => `<span>#${t}</span>`).join("")}
+          ${(data.tags || []).map(t => `<span>#${t}</span>`).join("")}
         </div>
       `;
 
-      gallery.appendChild(item);
+      items.push(item);
 
-    } catch (e) {
-      console.warn("Post no cargado:", id);
+    } catch (err) {
+      console.warn("No se pudo cargar el post:", id);
     }
   }
+
+  // 🔀 mezclar después de crear todo
+  shuffle(items);
+
+  // 🧱 render final
+  items.forEach(item => gallery.appendChild(item));
+
+  // ---------- utils ----------
+  function shuffle(array) {
+    let i = array.length;
+    while (i > 0) {
+      const j = Math.floor(Math.random() * i--);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
 });
 </script>
 
-<script>
-  // 1 seleccionamos la galería
-  const gallery = document.querySelector('.gallery');
-
-  // 2 obtenemos todas las publicaciones
-  const items = Array.from(gallery.querySelectorAll('.gallery-item'));
-
-  // 3 función para mezclar (Fisher–Yates shuffle)
-  function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // intercambiar
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-  }
-
-  // 4 mezclamos los items
-  const shuffledItems = shuffle(items);
-
-  // 5 limpiamos la galería y agregamos en orden aleatorio
-  gallery.innerHTML = '';
-  shuffledItems.forEach(item => gallery.appendChild(item));
-
-  // Crear el overlay para zoom
-  const overlay = document.createElement('div');
-  overlay.className = 'zoom-overlay';
-  document.body.appendChild(overlay);
-
-  const overlayImg = document.createElement('img');
-  overlay.appendChild(overlayImg);
-
-  // Navegar a la página de la publicación al hacer click en la imagen
-  document.querySelectorAll('.gallery-item a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Permitir la navegación normal
-      window.location.href = link.href;
-    });
-  });
-
-  // Cerrar overlay al hacer click en el overlay (fuera de la imagen)
-  overlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
-  });
-
-  // Cerrar con la tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      overlay.classList.remove('active');
-    }
-  });
-</script>
 
 
 
