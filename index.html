@@ -116,99 +116,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </main>
 
+
 <script>
-  // 1 seleccionamos la galería
-  const gallery = document.querySelector('.gallery');
+document.addEventListener("DOMContentLoaded", async () => {
 
-  // 2 obtenemos todas las publicaciones
-  const items = Array.from(gallery.querySelectorAll('.gallery-item'));
+  const gallery = document.querySelector(".gallery");
 
-  // 3 función para mezclar (Fisher–Yates shuffle)
-  function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
+  // 👇 LISTA DE POSTS (por ahora manual, luego se automatiza)
+  const posts = [1,2,3,4,5,6,7,8,9];
 
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
+  for (const id of posts) {
+    try {
+      const res = await fetch(`publicaciones/post (${id})/data.json`);
+      if (!res.ok) continue;
 
-      // intercambiar
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      const data = await res.json();
+
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+      item.dataset.tags = data.tags.join(",");
+
+      item.innerHTML = `
+        <a href="publicaciones/post.html?post=post%20(${id})">
+          <img src="publicaciones/post (${id})/portada.jpg" alt="${data.title}" loading="lazy">
+        </a>
+        <h3>${data.title}</h3>
+        <div class="post-tags">
+          ${data.tags.map(t => `<span>#${t}</span>`).join("")}
+        </div>
+      `;
+
+      gallery.appendChild(item);
+
+    } catch (e) {
+      console.warn("Post no cargado:", id);
     }
-
-    return array;
   }
-
-  // 4 mezclamos los items
-  const shuffledItems = shuffle(items);
-
-  // 5 limpiamos la galería y agregamos en orden aleatorio
-  gallery.innerHTML = '';
-  shuffledItems.forEach(item => gallery.appendChild(item));
-
-  // Crear el overlay para zoom
-  const overlay = document.createElement('div');
-  overlay.className = 'zoom-overlay';
-  document.body.appendChild(overlay);
-
-  const overlayImg = document.createElement('img');
-  overlay.appendChild(overlayImg);
-
-  // Navegar a la página de la publicación al hacer click en la imagen
-  document.querySelectorAll('.gallery-item a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Permitir la navegación normal
-      window.location.href = link.href;
-    });
-  });
-
-  // Cerrar overlay al hacer click en el overlay (fuera de la imagen)
-  overlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
-  });
-
-  // Cerrar con la tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      overlay.classList.remove('active');
-    }
-  });
-</script>
-
-<script>
-const posts = [
-  { id: 1, title: "Estructura Paramétrica", tags: "laboratorio,parametria,concreto" },
-  { id: 2, title: "Fachada Modular", tags: "laboratorio,parametria,concreto" },
-  { id: 3, title: "Cubierta Tensada", tags: "laboratorio,parametria,concreto" },
-  { id: 4, title: "Proyecto 4", tags: "laboratorio,parametria,concreto" },
-  { id: 5, title: "Proyecto 5", tags: "laboratorio,parametria,concreto" },
-  { id: 6, title: "Proyecto 6", tags: "laboratorio,parametria,concreto" },
-  { id: 7, title: "Proyecto 7", tags: "laboratorio,parametria,concreto" },
-  { id: 8, title: "Proyecto 8", tags: "laboratorio,parametria,concreto" },
-  { id: 9, title: "Proyecto 9", tags: "inspiracion,parametria,concreto" }
-];
-
-const gallery = document.querySelector('.gallery');
-
-posts.forEach(post => {
-  const item = document.createElement('div');
-  item.className = 'gallery-item';
-  item.dataset.post = post.id;
-  item.dataset.tags = post.tags;
-
-  item.innerHTML = `
-    <a href="publicaciones/post.html?post=post%20(${post.id})">
-      <img 
-        src="publicaciones/post (${post.id})/portada.jpg" 
-        alt="${post.title}" 
-        loading="lazy">
-    </a>
-    <h3>${post.title}</h3>
-    <div class="post-tags"></div>
-  `;
-
-  gallery.appendChild(item);
 });
 </script>
+
 
 
 
