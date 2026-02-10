@@ -79,7 +79,7 @@
 
 
 
-<body>
+<body data-filter="laboratorio">
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
@@ -89,12 +89,47 @@
     <a href="nosotros.html">NOSOTROS</a>
   </nav>
 </header>
-
+<!-- BARRA SUPERIOR -->
 
 <main>
 
+  <section class="gallery"></section>
 
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+
+  const FILTER_TAG = document.body.dataset.filter;
+  if (!FILTER_TAG) return;
+
+  // 1️⃣ cargar index.html
+  const response = await fetch('index.html');
+  const htmlText = await response.text();
+
+  // 2️⃣ convertir texto en DOM
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlText, 'text/html');
+
+  // 3️⃣ obtener publicaciones originales
+  const originalItems = doc.querySelectorAll('.gallery-item');
+  const gallery = document.querySelector('.gallery');
+
+  // 4️⃣ clonar + filtrar
+  originalItems.forEach(item => {
+    const tags = item.dataset.tags
+      ?.toLowerCase()
+      .split(',')
+      .map(t => t.trim()) || [];
+
+    if (tags.includes(FILTER_TAG)) {
+      gallery.appendChild(item.cloneNode(true));
+    }
+  });
+
+});
+</script>
+
 
 
 </body>
