@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEBUG - PORTICO LAB</title>
+  <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .success { color: #0f0; }
+    .error { color: #f00; }
+    .warning { color: #ff0; }
+    h1 { color: #fff; margin-bottom: 30px; }
+    pre { background: #111; padding: 20px; border-radius: 8px; overflow-x: auto; }
+    .test-item { margin: 15px 0; padding: 10px; border-left: 3px solid #333; }
+  </style>
+</head>
+<body>
+  <h1>🔍 DIAGNÓSTICO DE PUBLICACIONES</h1>
+  <div id="output"></div>
+
+  <script>
+    const output = document.getElementById('output');
+    
+    async function testPost(id) {
+      const postFolder = `post (${id})`;
+      const jsonPath = `publicaciones/${postFolder}/data.json`;
+      const imgPath = `publicaciones/${postFolder}/portada.jpg`;
+      
+      let html = `<div class="test-item">`;
+      html += `<strong>POST ${id}</strong><br>`;
+      
+      // Test JSON
+      try {
+        const res = await fetch(jsonPath);
+        if (res.ok) {
+          const data = await res.json();
+          html += `<span class="success">✅ data.json encontrado</span><br>`;
+          html += `   Título: "${data.title}"<br>`;
+          html += `   Tags: ${(data.tags || []).join(', ')}<br>`;
+          html += `   Imágenes: ${(data.images || []).length}<br>`;
+        } else {
+          html += `<span class="error">❌ data.json no encontrado (HTTP ${res.status})</span><br>`;
+        }
+      } catch (err) {
+        html += `<span class="error">❌ Error al cargar data.json: ${err.message}</span><br>`;
+      }
+      
+      // Test imagen
+      try {
+        const imgRes = await fetch(imgPath, { method: 'HEAD' });
+        if (imgRes.ok) {
+          html += `<span class="success">✅ portada.jpg encontrado</span><br>`;
+        } else {
+          html += `<span class="warning">⚠️ portada.jpg no encontrado (HTTP ${imgRes.status})</span><br>`;
+        }
+      } catch (err) {
+        html += `<span class="warning">⚠️ No se pudo verificar portada.jpg</span><br>`;
+      }
+      
+      html += `</div>`;
+      output.innerHTML += html;
+    }
+    
+    async function runTests() {
+      output.innerHTML = '<p class="warning">🔄 Ejecutando pruebas...</p>';
+      
+      for (let i = 1; i <= 9; i++) {
+        await testPost(i);
+      }
+      
+      output.innerHTML += `<br><p class="success">✅ Diagnóstico completado</p>`;
+      
+      // Verificar estructura de carpetas
+      output.innerHTML += `<br><h2>📁 VERIFICA TU ESTRUCTURA:</h2>`;
+      output.innerHTML += `<pre>
+tu-sitio/
+├── index.html
+├── styles.css
+├── publicaciones/
+│   ├── post.html
+│   ├── post (1)/
+│   │   ├── data.json
+│   │   └── portada.jpg
+│   ├── post (2)/
+│   │   ├── data.json
+│   │   └── portada.jpg
+│   └── ...
+      </pre>`;
+      
+      output.innerHTML += `<br><p class="warning">💡 TIPS:</p>`;
+      output.innerHTML += `<ul>
+        <li>Los nombres de carpeta deben ser EXACTAMENTE: "post (1)", "post (2)", etc.</li>
+        <li>Hay un ESPACIO entre "post" y "(1)"</li>
+        <li>Los paréntesis son importantes</li>
+        <li>Verifica mayúsculas/minúsculas en "publicaciones"</li>
+      </ul>`;
+    }
+    
+    runTests();
+  </script>
+</body>
+</html>
