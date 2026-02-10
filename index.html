@@ -168,10 +168,17 @@
       try {
         // ✅ CORREGIDO: Usar la estructura "post (1)", "post (2)", etc.
         const postFolder = `post (${id})`;
+        console.log(`Intentando cargar: publicaciones/${postFolder}/data.json`);
+        
         const res = await fetch(`publicaciones/${postFolder}/data.json`);
-        if (!res.ok) continue;
+        
+        if (!res.ok) {
+          console.warn(`❌ Post ${id} no encontrado (HTTP ${res.status})`);
+          continue;
+        }
 
         const data = await res.json();
+        console.log(`✅ Post ${id} cargado:`, data.title);
 
         const item = document.createElement("div");
         item.className = "gallery-item";
@@ -183,7 +190,8 @@
             <img 
               src="publicaciones/${postFolder}/portada.jpg" 
               alt="${data.title || 'Proyecto'}" 
-              loading="lazy">
+              loading="lazy"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'%3E%3Crect fill=\'%23222\' width=\'300\' height=\'250\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%23666\' font-size=\'14\' font-family=\'Arial\'%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
           </a>
           <h3>${data.title || 'Proyecto'}</h3>
           <div class="post-tags">
@@ -194,7 +202,7 @@
         items.push(item);
 
       } catch (err) {
-        console.warn("No se pudo cargar el post:", id, err);
+        console.error(`❌ Error cargando post ${id}:`, err.message);
       }
     }
 
@@ -203,6 +211,12 @@
 
     // Render final
     items.forEach(item => gallery.appendChild(item));
+    
+    console.log(`📊 Total de posts cargados: ${items.length} de ${posts.length}`);
+    
+    if (items.length === 0) {
+      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#666;font-size:18px;">No se encontraron publicaciones.<br><span style="font-size:14px;color:#444;">Verifica que existan las carpetas publicaciones/post (1)/, post (2)/, etc. con sus archivos data.json</span></div>';
+    }
 
     // Función de mezcla
     function shuffle(array) {
