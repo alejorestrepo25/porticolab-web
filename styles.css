@@ -371,21 +371,43 @@ main {
   display: none;
 }
 
-/* ===== CONTACTO ===== */
+/* ===== CONTACTO – CAJA DE CORREO ===== */
 
 .about-contact {
   margin-top: 6rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(0,0,0,0.15);
+  padding: 2rem;
+  border: 1px solid #222;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0d0d0d, #080808);
   max-width: 480px;
 }
 
 .about-contact p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 14px;
+  color: #aaa;
 }
 
 .about-contact-mail {
-  text-decoration: none;
+  display: inline-block;
+  padding: 14px 18px;
+  font-size: 15px;
   font-weight: 500;
-  border-bottom: 1px solid currentColor;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #111;
+  transition: 
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.about-contact-mail:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  transform: translateY(-2px);
 }
