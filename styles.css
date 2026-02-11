@@ -370,3 +370,22 @@ main {
 .gallery-item p {
   display: none;
 }
+
+/* ===== CONTACTO ===== */
+
+.about-contact {
+  margin-top: 6rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  max-width: 480px;
+}
+
+.about-contact p {
+  margin-bottom: 1rem;
+}
+
+.about-contact-mail {
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid currentColor;
+}
