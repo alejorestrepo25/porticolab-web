@@ -93,55 +93,54 @@
   <!-- Declaración -->
   <section class="about-hero">
     <h1>
-    Diseñamos mobiliario<br>
-    y objetos arquitectónicos<br>
-    desde la estructura.
-</h1>
+      Diseñamos mobiliario<br>
+      y objetos arquitectónicos<br>
+      desde la estructura.
+    </h1>
   </section>
 
   <!-- Manifiesto -->
   <section class="about-text">
-  <p>
-    PÓRTICO LAB es un estudio de diseño
-    enfocado en mobiliario y objetos arquitectónicos.
-    Trabajamos desde la lógica constructiva,
-    el material y la forma.
-  </p>
-  <p>
-    Nos interesa que cada pieza sea clara.
-    Que se entienda cómo funciona,
-    cómo se sostiene
-    y por qué existe.
-  </p>
-</section>
+    <p>
+      PÓRTICO LAB es un estudio de diseño
+      enfocado en mobiliario y objetos arquitectónicos.
+      Trabajamos desde la lógica constructiva,
+      el material y la forma.
+    </p>
+    <p>
+      Nos interesa que cada pieza sea clara.
+      Que se entienda cómo funciona,
+      cómo se sostiene
+      y por qué existe.
+    </p>
+  </section>
 
   <!-- Ejes -->
   <section class="about-axes">
-  <div class="axis">
-    <h3>Estructura</h3>
-    <p>
-      Pensamos cada objeto desde su sistema
-      portante y su equilibrio.
-    </p>
-  </div>
+    <div class="axis">
+      <h3>Estructura</h3>
+      <p>
+        Pensamos cada objeto desde su sistema
+        portante y su equilibrio.
+      </p>
+    </div>
 
-  <div class="axis">
-    <h3>Proceso</h3>
-    <p>
-      Diseño paramétrico y fabricación digital
-      como herramientas de precisión.
-    </p>
-  </div>
+    <div class="axis">
+      <h3>Proceso</h3>
+      <p>
+        Diseño paramétrico y fabricación digital
+        como herramientas de precisión.
+      </p>
+    </div>
 
-  <div class="axis">
-    <h3>Materia</h3>
-    <p>
-      El material como generador de forma,
-      no como acabado.
-    </p>
-  </div>
-</section>
-
+    <div class="axis">
+      <h3>Materia</h3>
+      <p>
+        El material como generador de forma,
+        no como acabado.
+      </p>
+    </div>
+  </section>
 
   <!-- Cierre -->
   <section class="about-footer">
@@ -150,59 +149,64 @@
     </p>
   </section>
 
-  
- <!-- Contacto -->
-<section class="about-contact">
-  <p>
-    Para proyectos, colaboraciones
-    o consultas.
-  </p>
+  <!-- Contacto -->
+  <section class="about-contact">
+    <p>
+      Para proyectos, colaboraciones
+      o consultas.
+    </p>
 
-  <a href="mailto:contacto@porticolab.co"
-     class="about-contact-mail">
-    contacto@porticolab.co
-  </a>
-</section>
+    <a href="mailto:xxx@gmail.com"
+       class="about-contact-mail">
+      xxx@gmail.com
+    </a>
+  </section>
 
-
-
+  <!-- Galería -->
   <section class="gallery"></section>
 
 </main>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
-  const FILTER_TAG = document.body.dataset.filter;
-  const response = await fetch('index.html');
-  const htmlText = await response.text();
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlText, 'text/html');
-
-  const originalItems = doc.querySelectorAll('.gallery-item');
   const gallery = document.querySelector('.gallery');
   if (!gallery) return;
 
-  const matches = [];
-  originalItems.forEach(item => {
-    const tags = item.dataset.tags
-      ?.toLowerCase()
-      .split(',')
-      .map(t => t.trim()) || [];
+  try {
+    const response = await fetch('index.html');
+    if (!response.ok) throw new Error('No se pudo cargar index.html');
 
-    if (FILTER_TAG && tags.includes(FILTER_TAG)) {
-      matches.push(item);
-    }
-  });
+    const htmlText = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, 'text/html');
 
-  const itemsToShow = matches.length ? matches : Array.from(originalItems);
-  itemsToShow.slice(0, 4).forEach(item => {
-    gallery.appendChild(item.cloneNode(true));
-  });
+    const originalItems = Array.from(doc.querySelectorAll('.gallery-item'));
+    if (!originalItems.length) return;
+
+    const FILTER_TAG = document.body.dataset.filter?.toLowerCase();
+
+    const itemsToShow = FILTER_TAG
+      ? originalItems.filter(item => {
+          const tags = item.dataset.tags
+            ?.toLowerCase()
+            .split(',')
+            .map(t => t.trim()) || [];
+          return tags.includes(FILTER_TAG);
+        })
+      : originalItems;
+
+    itemsToShow.slice(0, 4).forEach(item => {
+      gallery.appendChild(item.cloneNode(true));
+    });
+
+  } catch (error) {
+    console.error('Error cargando la galería:', error);
+  }
 });
 </script>
+
+
+
 </body>
 </html>
 
