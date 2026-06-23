@@ -27,82 +27,69 @@
 </main>
 
 <script>
-  console.log("SCRIPT DE INDEX CARGADO");
-  
-  document.addEventListener("DOMContentLoaded", async () => {
-    console.log("DOM LISTO");
+  const SANITY_PROJECT_ID = '32sykluw';
+  const SANITY_DATASET = 'production';
+  const SANITY_API_VERSION = '2024-01-01';
 
+  function sanityImageUrl(ref, width = 800) {
+    const [, id, dimensions, format] = ref.split('-');
+    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
+  }
+
+  async function fetchProyectos() {
+    const query = encodeURIComponent(`*[_type == "proyecto"] | order(_createdAt desc) { _id, title, slug, tags, portada, disponible, precio }`);
+    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+    const res = await fetch(url);
+    const json = await res.json();
+    return json.result || [];
+  }
+
+  function shuffle(array) {
+    let i = array.length;
+    while (i > 0) {
+      const j = Math.floor(Math.random() * i--);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
     const gallery = document.querySelector(".gallery");
     if (!gallery) return;
 
-    // Lista de posts
-    const posts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-    const items = [];
+    const proyectos = await fetchProyectos();
+    shuffle(proyectos);
 
-    for (const id of posts) {
-      try {
-        // ✅ CORREGIDO: Usar la estructura "post (1)", "post (2)", etc.
-        const postFolder = `post (${id})`;
-        console.log(`Intentando cargar: publicaciones/${postFolder}/data.json`);
-        
-        const res = await fetch(`publicaciones/${postFolder}/data.json`);
-        
-        if (!res.ok) {
-          console.warn(`❌ Post (${id}) no encontrado (HTTP ${res.status})`);
-          continue;
-        }
-
-        const data = await res.json();
-        console.log(`✅ Post (${id}) cargado:`, data.title);
-
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-        item.dataset.tags = (data.tags || []).join(",");
-
-        // ✅ CORREGIDO: Codificar espacios como %20 en la URL
-        item.innerHTML = `
-          <a href="publicaciones/post.html?post=post%20(${id})">
-            <img 
-              src="publicaciones/${postFolder}/portada.jpg" 
-              alt="${data.title || 'Proyecto'}" 
-              loading="lazy"
-              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'%3E%3Crect fill=\'%23222\' width=\'300\' height=\'250\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%23666\' font-size=\'14\' font-family=\'Arial\'%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
-          </a>
-          <h3>${data.title || 'Proyecto'}</h3>
-          <div class="post-tags">
-            ${(data.tags || []).map(t => `<span>#${t}</span>`).join("")}
-          </div>
-        `;
-
-        items.push(item);
-
-      } catch (err) {
-        console.error(`❌ Error cargando post (${id}):`, err.message);
-      }
+    if (proyectos.length === 0) {
+      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#666;font-size:18px;">No se encontraron publicaciones.</div>';
+      return;
     }
 
-    // Mezclar después de crear todo
-    shuffle(items);
+    proyectos.forEach(p => {
+      const imgUrl = p.portada?.asset?._ref
+        ? sanityImageUrl(p.portada.asset._ref, 800)
+        : '';
 
-    // Render final
-    items.forEach(item => gallery.appendChild(item));
-    gallery.style.columnCount = getComputedStyle(gallery).columnCount;
-    
-    console.log(`📊 Total de posts cargados: ${items.length} de ${posts.length}`);
-    
-    if (items.length === 0) {
-      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#666;font-size:18px;">No se encontraron publicaciones.<br><span style="font-size:14px;color:#444;">Verifica que existan las carpetas publicaciones/post (1)/, post (2)/, etc. con sus archivos data.json</span></div>';
-    }
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+      item.dataset.tags = (p.tags || []).join(",");
 
-    // Función de mezcla
-    function shuffle(array) {
-      let i = array.length;
-      while (i > 0) {
-        const j = Math.floor(Math.random() * i--);
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
+      item.innerHTML = `
+        <a href="publicaciones/post.html?id=${p._id}">
+          <img
+            src="${imgUrl}"
+            alt="${p.title || 'Proyecto'}"
+            loading="lazy"
+            decoding="async"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'%3E%3Crect fill=\'%23222\' width=\'300\' height=\'250\'/%3E%3C/svg%3E'">
+        </a>
+        <h3>${p.title || 'Proyecto'}</h3>
+        <div class="post-tags">
+          ${(p.tags || []).map(t => `<span>#${t}</span>`).join("")}
+        </div>
+      `;
 
+      gallery.appendChild(item);
+    });
   });
 </script>
 
