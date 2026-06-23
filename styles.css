@@ -8,7 +8,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
   background: #000;
   color: #fff;
   min-height: 100vh;
@@ -217,7 +217,7 @@ main {
   border: none;
   color: #fff;
   opacity: 0.6;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   font-size: 14px;
   padding: 8px 16px;
