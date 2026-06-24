@@ -390,6 +390,38 @@ main {
   }
 }
 
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+  }
+
+  .about-axes {
+    gap: 24px;
+    margin: 40px 0;
+  }
+
+  .axis h3 {
+    font-size: 15px;
+  }
+
+  .axis p {
+    font-size: 13px;
+  }
+
+  .about-footer {
+    margin-top: 40px;
+  }
+
+  .about-contact {
+    margin-top: 3rem;
+  }
+}
+
 .axis h3 {
   font-size: 18px;
   margin-bottom: 12px;
