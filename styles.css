@@ -133,11 +133,44 @@ main {
 
 @media (max-width: 500px) {
   .gallery {
-    column-count: 1;
+    column-count: 2;
+    column-gap: 8px;
   }
-  
+
   main {
-    padding: 20px;
+    padding: 12px 8px;
+  }
+
+  header {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .nav {
+    gap: 16px;
+  }
+
+  .nav a {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .gallery-item {
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+
+  .gallery-item h3 {
+    font-size: 11px;
+  }
+
+  .post-tags span {
+    font-size: 9px;
   }
 }
 
