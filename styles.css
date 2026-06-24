@@ -152,16 +152,9 @@ main {
     width: 100%;
   }
 
-  /* Mostrar versión corta en móvil */
-  .nav a[data-short] {
-    font-size: 0;
-    letter-spacing: 0;
-  }
-
-  .nav a[data-short]::before {
-    content: attr(data-short);
+  .nav a {
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
 
   main {
