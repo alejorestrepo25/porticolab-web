@@ -53,7 +53,12 @@ main{
   align-items:start;
 }
 .post-content h1{font-size:48px;font-weight:700;letter-spacing:2px;line-height:1.2;}
-.post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding:20px 0;border-bottom:1px solid #222;margin-bottom:20px;}
+.post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding:20px 0;border-bottom:1px solid #222;margin-bottom:20px;flex-wrap:wrap;}
+.precio-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:10px 16px;border:1px solid #333;border-radius:8px;background:#0d0d0d;}
+.precio-badge .precio-valor{font-size:18px;font-weight:600;color:#fff;}
+.precio-badge .precio-label{font-size:12px;color:#666;letter-spacing:1px;}
+.disponible-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;display:inline-block;}
+.no-disponible-dot{width:8px;height:8px;border-radius:50%;background:#666;display:inline-block;}
 .post-content p{line-height:1.8;color:#ccc;font-size:15px;}
 #post-features{margin-top:15px;padding-left:24px;color:#ccc;line-height:2;}
 #post-features li{margin-bottom:8px;}
@@ -124,6 +129,13 @@ main{
     </div>
     <p id="post-description"></p>
     <ul id="post-features"></ul>
+    <div id="precio-badge" style="display:none;" class="precio-badge">
+      <span id="disponible-dot"></span>
+      <div>
+        <div class="precio-label">PRECIO</div>
+        <div class="precio-valor" id="precio-valor"></div>
+      </div>
+    </div>
     <div class="tags" id="post-tags"></div>
   </div>
 </main>
@@ -187,7 +199,7 @@ async function loadPost() {
   const id = new URLSearchParams(window.location.search).get('id');
   if (!id) { document.getElementById('loading').textContent = 'Proyecto no encontrado.'; return; }
 
-  const query = encodeURIComponent(`*[_type == "proyecto" && _id == "${id}"][0]{ title, location, year, description, features, tags, portada, galeria }`);
+  const query = encodeURIComponent(`*[_type == "proyecto" && _id == "${id}"][0]{ title, location, year, description, features, tags, portada, galeria, precio, disponible }`);
   const res  = await fetch(`https://${PROJECT_ID}.api.sanity.io/v${API_VER}/data/query/${DATASET}?query=${query}`);
   const { result } = await res.json();
 
@@ -208,6 +220,16 @@ async function loadPost() {
   if (result.tags?.length) {
     document.getElementById('post-tags').innerHTML =
       result.tags.map(t => `<span class="tag">#${t}</span>`).join('');
+  }
+
+  if (result.precio) {
+    const badge = document.getElementById('precio-badge');
+    const dot = document.getElementById('disponible-dot');
+    badge.style.display = 'inline-flex';
+    document.getElementById('precio-valor').textContent =
+      '$ ' + result.precio.toLocaleString('es-CO') + ' COP';
+    dot.className = result.disponible ? 'disponible-dot' : 'no-disponible-dot';
+    dot.title = result.disponible ? 'Disponible' : 'No disponible';
   }
 
   // Imágenes
