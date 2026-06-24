@@ -125,39 +125,45 @@ main {
   .gallery {
     column-count: 2;
   }
-  
+
   main {
     padding: 30px 20px;
   }
 }
 
-@media (max-width: 500px) {
-  .gallery {
-    column-count: 2;
-    column-gap: 8px;
+@media (max-width: 768px) {
+  header {
+    padding: 0 16px;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .logo {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .nav {
+    gap: 16px;
+    width: 100%;
+  }
+
+  .nav a {
+    font-size: 11px;
+    letter-spacing: 0.5px;
   }
 
   main {
     padding: 12px 8px;
   }
 
-  header {
-    padding: 0 16px;
-    height: 56px;
-  }
-
-  .logo {
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
-
-  .nav {
-    gap: 16px;
-  }
-
-  .nav a {
-    font-size: 11px;
-    letter-spacing: 0.5px;
+  .gallery {
+    column-count: 2;
+    column-gap: 8px;
   }
 
   .gallery-item {
@@ -167,10 +173,20 @@ main {
 
   .gallery-item h3 {
     font-size: 11px;
+    padding: 8px 8px 4px;
+  }
+
+  .post-tags {
+    padding: 0 8px 8px;
   }
 
   .post-tags span {
     font-size: 9px;
+  }
+
+  #mascota-wrapper {
+    bottom: 16px;
+    right: 16px;
   }
 }
 
