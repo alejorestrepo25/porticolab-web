@@ -189,41 +189,38 @@
 </main>
 
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
-  const gallery = document.querySelector('.gallery');
-  if (!gallery) return;
+  const SANITY_PROJECT_ID = '32sykluw';
+  const SANITY_DATASET = 'production';
+  const SANITY_API_VERSION = '2024-01-01';
 
-  try {
-    const response = await fetch('index.html');
-    if (!response.ok) throw new Error('No se pudo cargar index.html');
-
-    const htmlText = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlText, 'text/html');
-
-    const originalItems = Array.from(doc.querySelectorAll('.gallery-item'));
-    if (!originalItems.length) return;
-
-    const FILTER_TAG = document.body.dataset.filter?.toLowerCase();
-
-    const itemsToShow = FILTER_TAG
-      ? originalItems.filter(item => {
-          const tags = item.dataset.tags
-            ?.toLowerCase()
-            .split(',')
-            .map(t => t.trim()) || [];
-          return tags.includes(FILTER_TAG);
-        })
-      : originalItems;
-
-    itemsToShow.slice(0, 4).forEach(item => {
-      gallery.appendChild(item.cloneNode(true));
-    });
-
-  } catch (error) {
-    console.error('Error cargando la galería:', error);
+  function sanityImageUrl(ref, width = 800) {
+    const parts = ref.split('-');
+    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${parts[1]}-${parts[2]}.${parts[3]}?w=${width}&auto=format`;
   }
-});
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const gallery = document.querySelector('.gallery');
+    if (!gallery) return;
+
+    const query = encodeURIComponent(`*[_type == "proyecto"] | order(_createdAt desc) [0...4] { _id, title, tags, portada }`);
+    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+    const res = await fetch(url);
+    const { result = [] } = await res.json();
+
+    result.forEach(p => {
+      const imgUrl = p.portada?.asset?._ref ? sanityImageUrl(p.portada.asset._ref, 800) : '';
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.innerHTML = `
+        <a href="publicaciones/post.html?id=${p._id}">
+          <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
+        </a>
+        <h3>${p.title || 'Proyecto'}</h3>
+        <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
+      `;
+      gallery.appendChild(item);
+    });
+  });
 </script>
 
 
