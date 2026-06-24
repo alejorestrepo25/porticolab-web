@@ -106,9 +106,8 @@
 <!-- BARRA SUPERIOR -->
 
 <main>
-
+  <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
   <section class="gallery"></section>
-
 </main>
 
 <script>
@@ -138,6 +137,7 @@
     const res = await fetch(url);
     const { result = [] } = await res.json();
 
+    document.getElementById('gallery-loading').style.display = 'none';
     shuffle(result);
 
     result.forEach(p => {

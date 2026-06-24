@@ -25,6 +25,7 @@
 </header>
 
 <main>
+  <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
   <section class="gallery"></section>
 </main>
 
@@ -60,6 +61,8 @@
 
     const proyectos = await fetchProyectos();
     shuffle(proyectos);
+
+    document.getElementById('gallery-loading').style.display = 'none';
 
     if (proyectos.length === 0) {
       gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#666;font-size:18px;">No se encontraron publicaciones.</div>';
