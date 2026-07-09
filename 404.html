@@ -26,8 +26,7 @@ p{font-size:14px;color:#666;margin-bottom:40px;}
 .btn{display:inline-block;padding:14px 32px;border:1px solid #333;border-radius:8px;color:#fff;text-decoration:none;font-size:14px;letter-spacing:1px;transition:all 0.3s;}
 .btn:hover{background:#fff;color:#000;border-color:#fff;}
 @media(max-width:768px){
-  header{flex-direction:row;align-items:center;flex-wrap:wrap;padding:12px 16px;gap:0;}
-  .logo{font-size:20px;flex:1;}
+  header{flex-direction:column;align-items:flex-start;padding:12px 16px;gap:8px;}
   .logo{font-size:20px;}
   .nav{gap:16px;}
   .nav a{font-size:11px;}
@@ -38,7 +37,6 @@ p{font-size:14px;color:#666;margin-bottom:40px;}
 <body>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
-  <button class="nav-toggle" aria-label="Menú" aria-expanded="false">&#9776;</button>
   <nav class="nav">
     <a href="laboratorio.html">LABORATORIO</a>
     <a href="arquitectura.html">ARQUITECTURA</a>
@@ -52,7 +50,6 @@ p{font-size:14px;color:#666;margin-bottom:40px;}
   <p>La URL que buscas no existe o fue movida.</p>
   <a href="index.html" class="btn">VOLVER AL INICIO</a>
 </main>
-<script src="nav.js"></script>
 <script src="mascota.js"></script>
 </body>
 </html>
