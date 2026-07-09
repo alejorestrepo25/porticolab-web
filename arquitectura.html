@@ -1,90 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTICO LAB</title>
+  <title>Arquitectura - PORTICO LAB</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 100%;
-      min-height: 65px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      border-bottom: 1px solid #222;
-    }
-
-    .logo {
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .logo,
-    .nav a {
-      position: relative;
-    }
-
-    .nav {
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 16px;
-      letter-spacing: 1px;
-    }
-
-    .logo::after,
-    .nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 1px;
-      background: #fff;
-      transition: width 0.3s ease;
-    }
-
-    .logo:hover::after,
-    .nav a:hover::after {
-      width: 100%;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; }
+    header { width: 100%; min-height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #222; }
+    .logo { font-size: 30px; font-weight: 700; letter-spacing: 3px; color: #fff; text-decoration: none; }
+    .logo, .nav a { position: relative; }
+    .nav { display: flex; gap: 30px; }
+    .nav a { text-decoration: none; color: #fff; font-size: 16px; letter-spacing: 1px; }
+    .logo::after, .nav a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: #fff; transition: width 0.3s ease; }
+    .logo:hover::after, .nav a:hover::after { width: 100%; }
     @media (max-width: 768px) {
-      header {
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 12px 16px;
-        gap: 8px;
-      }
+      header { height: auto; flex-direction: column; align-items: flex-start; padding: 12px 16px; gap: 8px; }
       .logo { font-size: 20px; letter-spacing: 2px; }
       .nav { gap: 16px; }
       .nav a { font-size: 11px; letter-spacing: 0.5px; }
@@ -92,10 +30,9 @@
   </style>
 </head>
 
-<body data-filter="inspiración">
+<body>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
-
   <nav class="nav">
     <a href="laboratorio.html">LABORATORIO</a>
     <a href="arquitectura.html">ARQUITECTURA</a>
@@ -109,7 +46,6 @@
   <section class="gallery"></section>
 </main>
 
-
 <script>
   const SANITY_PROJECT_ID = '32sykluw';
   const SANITY_DATASET = 'production';
@@ -117,10 +53,7 @@
 
   function sanityImageUrl(ref, width = 800) {
     const parts = ref.split('-');
-    const id = parts[1];
-    const dimensions = parts[2];
-    const format = parts[3];
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
+    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${parts[1]}-${parts[2]}.${parts[3]}?w=${width}&auto=format`;
   }
 
   function shuffle(array) {
@@ -132,7 +65,7 @@
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
-    const query = encodeURIComponent(`*[_type == "proyecto" && "inspiracion" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
+    const query = encodeURIComponent(`*[_type == "proyecto" && "arquitectura" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
     const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
     const res = await fetch(url);
     const { result = [] } = await res.json();
@@ -156,9 +89,6 @@
     });
   });
 </script>
-
-
-
 
 <script src="mascota.js"></script>
 </body>
