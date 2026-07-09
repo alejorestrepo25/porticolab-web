@@ -24,38 +24,32 @@
       transition: opacity 0.3s;
     }
 
-    #mascota-wrapper:hover #mascota-label { opacity: 1; }
+    #mascota-wrapper:hover #mascota-label {
+      opacity: 1;
+    }
 
     #mascota-svg {
-      animation: mascota-float 3.5s ease-in-out infinite;
+      animation: mascota-float 3s ease-in-out infinite;
       filter: drop-shadow(0 0 6px rgba(255,255,255,0.12));
       transition: filter 0.3s;
-      overflow: visible;
     }
 
     #mascota-wrapper:hover #mascota-svg {
-      filter: drop-shadow(0 0 18px rgba(255,255,255,0.4));
+      filter: drop-shadow(0 0 16px rgba(255,255,255,0.45));
     }
 
     @keyframes mascota-float {
       0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-7px); }
+      50%       { transform: translateY(-8px); }
     }
 
     .dome-panel {
       animation: dome-pulse 2.8s ease-in-out infinite;
     }
-    @keyframes dome-pulse {
-      0%, 100% { opacity: 0.06; }
-      50%       { opacity: 0.35; }
-    }
 
-    .bill-eye-glow {
-      animation: eye-glow 1.8s ease-in-out infinite;
-    }
-    @keyframes eye-glow {
-      0%, 100% { opacity: 0.5; }
-      50%       { opacity: 1; }
+    @keyframes dome-pulse {
+      0%, 100% { opacity: 0.1; }
+      50%       { opacity: 0.5; }
     }
 
     /* Modal */
@@ -69,7 +63,10 @@
       justify-content: center;
       backdrop-filter: blur(6px);
     }
-    #mascota-modal-overlay.open { display: flex; }
+
+    #mascota-modal-overlay.open {
+      display: flex;
+    }
 
     #mascota-modal {
       background: #111;
@@ -84,6 +81,7 @@
       position: relative;
       animation: modal-in 0.25s ease;
     }
+
     @keyframes modal-in {
       from { opacity: 0; transform: translateY(16px) scale(0.97); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -101,6 +99,7 @@
       line-height: 1;
       transition: color 0.2s;
     }
+
     #mascota-modal-close:hover { color: #fff; }
 
     #mascota-modal h2 {
@@ -112,6 +111,7 @@
       color: #fff;
       text-align: center;
     }
+
     #mascota-modal p {
       font-family: 'Montserrat', sans-serif;
       font-size: 12px;
@@ -139,7 +139,12 @@
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s;
     }
-    .mascota-btn:hover { background: #222; border-color: #444; }
+
+    .mascota-btn:hover {
+      background: #222;
+      border-color: #444;
+    }
+
     .mascota-btn svg { flex-shrink: 0; }
   `;
 
@@ -147,169 +152,157 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Bill Cipher paramétrico ──
-     Cuerpo: triángulo (30,14) – (7,68) – (53,68)
-     Celosía tipo bambú: grid rotado 45° dentro del triángulo
-     Ojo pulsante en (30,41), sombrero arquitectónico,
-     brazos tipo arco, piernas columna, pajarita.
+  /* ── Domo geodésico SVG (esbelto) ──
+     Elipse: centro (30,58), rx=22, ry=40
+     Ápice: (30,18)
+     Anillo 1: (18,30) (30,27) (42,30)
+     Anillo 2: (10,44) (20,39) (30,42) (40,39) (50,44)
+     Base:     (8,58)  (18,55) (30,57) (42,55) (52,58)
   */
-  const BILL = `<svg id="mascota-svg" width="58" height="92" viewBox="-2 0 64 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const DOME = `<svg id="mascota-svg" width="44" height="74" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Celosía de diamantes -->
-    <pattern id="blatice" x="0" y="0" width="7" height="7"
-             patternUnits="userSpaceOnUse" patternTransform="rotate(45 30 41)">
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#2e2e2e" stroke-width="0.55"/>
-      <line x1="0" y1="0" x2="7" y2="0" stroke="#2e2e2e" stroke-width="0.55"/>
-    </pattern>
-    <!-- Clip del cuerpo triangular -->
-    <clipPath id="bill-clip">
-      <polygon points="30,14 7,68 53,68"/>
-    </clipPath>
-    <!-- Clip del sombrero -->
-    <clipPath id="hat-clip">
-      <rect x="23" y="3" width="14" height="8"/>
+    <clipPath id="dome-clip">
+      <path d="M 8,58 A 22,40 0 0 1 52,58 Z"/>
     </clipPath>
   </defs>
 
-  <!-- ── SOMBRA SUELO ── -->
-  <ellipse cx="30" cy="87" rx="16" ry="2" fill="#111"/>
+  <!-- Sombra base -->
+  <ellipse cx="30" cy="64" rx="16" ry="2.5" fill="#141414"/>
 
-  <!-- ── PIERNAS ── -->
-  <line x1="19" y1="68" x2="14" y2="82" stroke="#4a4a4a" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="41" y1="68" x2="46" y2="82" stroke="#4a4a4a" stroke-width="1.4" stroke-linecap="round"/>
-  <!-- Zapatos -->
-  <line x1="14" y1="82" x2="9"  y2="81" stroke="#4a4a4a" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="14" y1="82" x2="14" y2="84" stroke="#3a3a3a" stroke-width="0.8"/>
-  <line x1="46" y1="82" x2="51" y2="81" stroke="#4a4a4a" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="46" y1="82" x2="46" y2="84" stroke="#3a3a3a" stroke-width="0.8"/>
+  <!-- Anillo base -->
+  <ellipse cx="30" cy="58" rx="22" ry="3.5" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
 
-  <!-- ── PAJARITA ── -->
-  <polygon points="22,64 29,67.5 22,71" fill="#1c1c1c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <polygon points="38,64 31,67.5 38,71" fill="#1c1c1c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <circle cx="30" cy="67.5" r="1.8" fill="#3a3a3a"/>
+  <!-- Fondo cúpula -->
+  <path d="M 8,58 A 22,40 0 0 1 52,58 Z" fill="#0f0f0f"/>
 
-  <!-- ── CUERPO TRIANGULAR ── -->
-  <!-- Fondo oscuro -->
-  <polygon points="30,14 7,68 53,68" fill="#0c0c0c"/>
-  <!-- Celosía paramétrica de bambú -->
-  <rect x="-5" y="0" width="70" height="92" fill="url(#blatice)" clip-path="url(#bill-clip)"/>
-  <!-- Paneles con brillo sutil -->
-  <polygon class="dome-panel" style="animation-delay:0s"
-    points="30,14 19,41 30,38" fill="#fff" opacity="0.08" clip-path="url(#bill-clip)"/>
-  <polygon class="dome-panel" style="animation-delay:0.9s"
-    points="30,14 41,41 30,38" fill="#fff" opacity="0.06" clip-path="url(#bill-clip)"/>
-  <polygon class="dome-panel" style="animation-delay:1.7s"
-    points="7,68 19,55 13,68" fill="#fff" opacity="0.07" clip-path="url(#bill-clip)"/>
-  <polygon class="dome-panel" style="animation-delay:0.5s"
-    points="53,68 41,55 47,68" fill="#fff" opacity="0.07" clip-path="url(#bill-clip)"/>
-  <!-- Contorno triángulo -->
-  <polygon points="30,14 7,68 53,68" fill="none" stroke="#444" stroke-width="0.9"/>
-  <!-- Costilla central -->
-  <line x1="30" y1="14" x2="30" y2="68" stroke="#333" stroke-width="0.5" opacity="0.6"/>
-  <!-- Costillas laterales -->
-  <line x1="30" y1="14" x2="7"  y2="68" stroke="#2a2a2a" stroke-width="0.5" opacity="0.5"/>
-  <line x1="30" y1="14" x2="53" y2="68" stroke="#2a2a2a" stroke-width="0.5" opacity="0.5"/>
-  <!-- Cinturón horizontal -->
-  <line x1="14" y1="50" x2="46" y2="50" stroke="#333" stroke-width="0.5" opacity="0.5"/>
-  <line x1="18" y1="35" x2="42" y2="35" stroke="#2a2a2a" stroke-width="0.5" opacity="0.4"/>
+  <!-- Paneles y ribs -->
+  <g clip-path="url(#dome-clip)">
 
-  <!-- ── BRAZOS (arcos paramétricos) ── -->
-  <path d="M 12,48 C 4,44 1,38 2,32" fill="none" stroke="#4a4a4a" stroke-width="1.3" stroke-linecap="round"/>
-  <!-- Mano izquierda (3 dedos) -->
-  <line x1="2"  y1="32" x2="-1" y2="29" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
-  <line x1="2"  y1="32" x2="2"  y2="28" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
-  <line x1="2"  y1="32" x2="5"  y2="30" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
+    <!-- PANELES -->
+    <!-- Tier superior -->
+    <polygon class="dome-panel" style="animation-delay:0s"    points="30,18 18,30 30,27" fill="#fff" opacity="0.18"/>
+    <polygon class="dome-panel" style="animation-delay:0.7s"  points="30,18 30,27 42,30" fill="#fff" opacity="0.12"/>
 
-  <path d="M 48,48 C 56,44 59,38 58,32" fill="none" stroke="#4a4a4a" stroke-width="1.3" stroke-linecap="round"/>
-  <!-- Mano derecha -->
-  <line x1="58" y1="32" x2="61" y2="29" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
-  <line x1="58" y1="32" x2="58" y2="28" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
-  <line x1="58" y1="32" x2="55" y2="30" stroke="#3a3a3a" stroke-width="0.9" stroke-linecap="round"/>
+    <!-- Tier medio -->
+    <polygon class="dome-panel" style="animation-delay:1.2s"  points="18,30 10,44 20,39" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.3s"  points="18,30 20,39 30,27" fill="#fff" opacity="0.22"/>
+    <polygon class="dome-panel" style="animation-delay:1.6s"  points="30,27 20,39 30,42" fill="#fff" opacity="0.09"/>
+    <polygon class="dome-panel" style="animation-delay:0.5s"  points="30,27 30,42 40,39" fill="#fff" opacity="0.16"/>
+    <polygon class="dome-panel" style="animation-delay:1.0s"  points="30,27 40,39 42,30" fill="#fff" opacity="0.20"/>
+    <polygon class="dome-panel" style="animation-delay:0.2s"  points="42,30 40,39 50,44" fill="#fff" opacity="0.10"/>
 
-  <!-- ── OJO ── -->
-  <!-- Esclerótica -->
-  <circle cx="30" cy="41" r="9" fill="#080808" stroke="#555" stroke-width="0.7"/>
-  <!-- Anillo exterior pulsante -->
-  <circle class="bill-eye-glow" cx="30" cy="41" r="8.5" fill="none" stroke="#fff" stroke-width="0.4" opacity="0.4"/>
-  <!-- Iris -->
-  <ellipse cx="30" cy="41" rx="5.5" ry="6" fill="#0a0a0a"/>
-  <ellipse cx="30" cy="41" rx="5.5" ry="6" fill="none" stroke="#666" stroke-width="0.5"/>
-  <!-- Pupila -->
-  <circle class="bill-eye-glow" cx="30" cy="41" r="2.8" fill="#fff" opacity="0.9"/>
-  <circle cx="30" cy="41" r="1.4" fill="#fff"/>
+    <!-- Tier inferior -->
+    <polygon class="dome-panel" style="animation-delay:1.9s"  points="10,44 8,58 18,55"  fill="#fff" opacity="0.07"/>
+    <polygon class="dome-panel" style="animation-delay:0.4s"  points="10,44 18,55 20,39" fill="#fff" opacity="0.17"/>
+    <polygon class="dome-panel" style="animation-delay:1.3s"  points="20,39 18,55 30,57" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.1s"  points="20,39 30,57 30,42" fill="#fff" opacity="0.24"/>
+    <polygon class="dome-panel" style="animation-delay:1.7s"  points="30,42 30,57 40,39" fill="#fff" opacity="0.09"/>
+    <polygon class="dome-panel" style="animation-delay:0.6s"  points="40,39 30,57 42,55" fill="#fff" opacity="0.19"/>
+    <polygon class="dome-panel" style="animation-delay:1.1s"  points="40,39 42,55 50,44" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.9s"  points="50,44 42,55 52,58" fill="#fff" opacity="0.13"/>
 
-  <!-- ── SONRISA ── -->
-  <polyline points="20,53 23,50 26,54 29,51 33,55 37,51 40,54 43,51"
-    fill="none" stroke="#666" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- RIBS -->
+    <g stroke="#3a3a3a" stroke-width="0.6">
+      <line x1="30" y1="18" x2="18" y2="30"/>
+      <line x1="30" y1="18" x2="30" y2="27"/>
+      <line x1="30" y1="18" x2="42" y2="30"/>
+      <line x1="18" y1="30" x2="30" y2="27"/>
+      <line x1="30" y1="27" x2="42" y2="30"/>
+      <line x1="18" y1="30" x2="10" y2="44"/>
+      <line x1="18" y1="30" x2="20" y2="39"/>
+      <line x1="30" y1="27" x2="20" y2="39"/>
+      <line x1="30" y1="27" x2="30" y2="42"/>
+      <line x1="30" y1="27" x2="40" y2="39"/>
+      <line x1="42" y1="30" x2="40" y2="39"/>
+      <line x1="42" y1="30" x2="50" y2="44"/>
+      <line x1="10" y1="44" x2="20" y2="39"/>
+      <line x1="20" y1="39" x2="30" y2="42"/>
+      <line x1="30" y1="42" x2="40" y2="39"/>
+      <line x1="40" y1="39" x2="50" y2="44"/>
+      <line x1="10" y1="44" x2="8"  y2="58"/>
+      <line x1="10" y1="44" x2="18" y2="55"/>
+      <line x1="20" y1="39" x2="18" y2="55"/>
+      <line x1="20" y1="39" x2="30" y2="57"/>
+      <line x1="30" y1="42" x2="30" y2="57"/>
+      <line x1="40" y1="39" x2="30" y2="57"/>
+      <line x1="40" y1="39" x2="42" y2="55"/>
+      <line x1="50" y1="44" x2="42" y2="55"/>
+      <line x1="50" y1="44" x2="52" y2="58"/>
+      <line x1="8"  y1="58" x2="18" y2="55"/>
+      <line x1="18" y1="55" x2="30" y2="57"/>
+      <line x1="30" y1="57" x2="42" y2="55"/>
+      <line x1="42" y1="55" x2="52" y2="58"/>
+    </g>
+  </g>
 
-  <!-- ── SOMBRERO ── -->
-  <!-- Corona con celosía -->
-  <rect x="23" y="3" width="14" height="9" rx="0.5" fill="#0c0c0c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <rect x="23" y="3" width="14" height="9" fill="url(#blatice)" clip-path="url(#hat-clip)"/>
-  <rect x="23" y="3" width="14" height="9" fill="none" stroke="#3a3a3a" stroke-width="0.6"/>
-  <!-- Franja del sombrero -->
-  <rect x="23" y="9" width="14" height="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="0.4"/>
-  <!-- Ala del sombrero -->
-  <rect x="17" y="11" width="26" height="4" rx="0.5" fill="#0c0c0c" stroke="#3a3a3a" stroke-width="0.7"/>
+  <!-- Contorno cúpula -->
+  <path d="M 8,58 A 22,40 0 0 1 52,58" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
+
+  <!-- Hub ápice -->
+  <circle cx="30" cy="18" r="2.5" fill="#fff" opacity="0.9"/>
+  <circle cx="30" cy="18" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
 </svg>`;
 
-  const BILL_MODAL = `<svg width="46" height="70" viewBox="-2 0 64 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const DOME_MODAL = `<svg width="44" height="52" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <pattern id="blatice-m" x="0" y="0" width="7" height="7"
-             patternUnits="userSpaceOnUse" patternTransform="rotate(45 30 41)">
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#2e2e2e" stroke-width="0.55"/>
-      <line x1="0" y1="0" x2="7" y2="0" stroke="#2e2e2e" stroke-width="0.55"/>
-    </pattern>
-    <clipPath id="bill-clip-m"><polygon points="30,14 7,68 53,68"/></clipPath>
-    <clipPath id="hat-clip-m"><rect x="23" y="3" width="14" height="8"/></clipPath>
+    <clipPath id="dome-clip-modal">
+      <path d="M 2,50 A 28,28 0 0 1 58,50 Z"/>
+    </clipPath>
   </defs>
-  <!-- Piernas -->
-  <line x1="19" y1="68" x2="14" y2="80" stroke="#4a4a4a" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="41" y1="68" x2="46" y2="80" stroke="#4a4a4a" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="14" y1="80" x2="9" y2="79" stroke="#4a4a4a" stroke-width="1" stroke-linecap="round"/>
-  <line x1="46" y1="80" x2="51" y2="79" stroke="#4a4a4a" stroke-width="1" stroke-linecap="round"/>
-  <!-- Pajarita -->
-  <polygon points="22,64 29,67.5 22,71" fill="#1c1c1c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <polygon points="38,64 31,67.5 38,71" fill="#1c1c1c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <circle cx="30" cy="67.5" r="1.8" fill="#3a3a3a"/>
-  <!-- Cuerpo -->
-  <polygon points="30,14 7,68 53,68" fill="#0c0c0c"/>
-  <rect x="-5" y="0" width="70" height="92" fill="url(#blatice-m)" clip-path="url(#bill-clip-m)"/>
-  <polygon points="30,14 7,68 53,68" fill="none" stroke="#444" stroke-width="0.9"/>
-  <line x1="30" y1="14" x2="30" y2="68" stroke="#333" stroke-width="0.5" opacity="0.6"/>
-  <!-- Ojo -->
-  <circle cx="30" cy="41" r="9" fill="#080808" stroke="#555" stroke-width="0.7"/>
-  <ellipse cx="30" cy="41" rx="5.5" ry="6" fill="#0a0a0a"/>
-  <ellipse cx="30" cy="41" rx="5.5" ry="6" fill="none" stroke="#666" stroke-width="0.5"/>
-  <circle cx="30" cy="41" r="2.8" fill="#fff" opacity="0.9"/>
-  <circle cx="30" cy="41" r="1.4" fill="#fff"/>
-  <!-- Sonrisa -->
-  <polyline points="20,53 23,50 26,54 29,51 33,55 37,51 40,54 43,51"
-    fill="none" stroke="#666" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Sombrero -->
-  <rect x="23" y="3" width="14" height="9" rx="0.5" fill="#0c0c0c" stroke="#3a3a3a" stroke-width="0.6"/>
-  <rect x="23" y="3" width="14" height="9" fill="url(#blatice-m)" clip-path="url(#hat-clip-m)"/>
-  <rect x="23" y="3" width="14" height="9" fill="none" stroke="#3a3a3a" stroke-width="0.6"/>
-  <rect x="23" y="9" width="14" height="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="0.4"/>
-  <rect x="17" y="11" width="26" height="4" rx="0.5" fill="#0c0c0c" stroke="#3a3a3a" stroke-width="0.7"/>
+  <ellipse cx="30" cy="50" rx="28" ry="4" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
+  <path d="M 2,50 A 28,28 0 0 1 58,50 Z" fill="#0f0f0f"/>
+  <g clip-path="url(#dome-clip-modal)">
+    <polygon points="30,22 16,30 30,27" fill="#fff" opacity="0.25"/>
+    <polygon points="30,22 30,27 44,30" fill="#fff" opacity="0.18"/>
+    <polygon points="16,30 18,35 30,27" fill="#fff" opacity="0.30"/>
+    <polygon points="30,27 30,37 42,35" fill="#fff" opacity="0.22"/>
+    <polygon points="30,27 42,35 44,30" fill="#fff" opacity="0.28"/>
+    <polygon points="18,35 30,49 30,37" fill="#fff" opacity="0.30"/>
+    <polygon points="42,35 30,49 46,47" fill="#fff" opacity="0.24"/>
+    <g stroke="#444" stroke-width="0.6">
+      <line x1="30" y1="22" x2="16" y2="30"/>
+      <line x1="30" y1="22" x2="30" y2="27"/>
+      <line x1="30" y1="22" x2="44" y2="30"/>
+      <line x1="16" y1="30" x2="30" y2="27"/>
+      <line x1="30" y1="27" x2="44" y2="30"/>
+      <line x1="16" y1="30" x2="18" y2="35"/>
+      <line x1="30" y1="27" x2="18" y2="35"/>
+      <line x1="30" y1="27" x2="30" y2="37"/>
+      <line x1="30" y1="27" x2="42" y2="35"/>
+      <line x1="44" y1="30" x2="42" y2="35"/>
+      <line x1="18" y1="35" x2="30" y2="37"/>
+      <line x1="30" y1="37" x2="42" y2="35"/>
+      <line x1="18" y1="35" x2="30" y2="49"/>
+      <line x1="30" y1="37" x2="30" y2="49"/>
+      <line x1="42" y1="35" x2="30" y2="49"/>
+      <line x1="42" y1="35" x2="46" y2="47"/>
+    </g>
+  </g>
+  <path d="M 2,50 A 28,28 0 0 1 58,50" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
+  <circle cx="30" cy="22" r="2.5" fill="#fff" opacity="0.9"/>
+  <circle cx="30" cy="22" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
 </svg>`;
 
   const wrapper = document.createElement('div');
   wrapper.id = 'mascota-wrapper';
-  wrapper.innerHTML = BILL + `<span id="mascota-label">Contacto</span>`;
+  wrapper.innerHTML = DOME + `<span id="mascota-label">Contacto</span>`;
 
   const overlay = document.createElement('div');
   overlay.id = 'mascota-modal-overlay';
   overlay.innerHTML = `
     <div id="mascota-modal">
       <button id="mascota-modal-close">&#x2715;</button>
-      ${BILL_MODAL}
+
+      ${DOME_MODAL}
+
       <h2>Hablemos</h2>
       <p>¿Te interesa alguno de nuestros proyectos?<br>Escríbenos y te contamos más.</p>
+
       <a class="mascota-btn" href="https://wa.me/573147924600?text=Hola%20Portico%20Lab%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.18-1.58A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.06-1.38l-.36-.22-3.73.95.99-3.62-.24-.37A9.93 9.93 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.47-7.4c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
         WhatsApp
       </a>
+
       <a class="mascota-btn" href="mailto:alrestreporo@gmail.com?subject=Proyecto%20Portico%20Lab" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         Email
