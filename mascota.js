@@ -152,101 +152,95 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Domo geodésico SVG ──
-     Círculo base: centro (30,50), r=28
-     Vértice ápice: (30,22)
-     Anillo 1: (16,30) (30,27) (44,30)
-     Anillo 2: (5,40)  (18,35) (30,37) (42,35) (55,40)
-     Base:     (2,50)  (14,47) (30,49) (46,47) (58,50)
+  /* ── Domo geodésico SVG (esbelto) ──
+     Elipse: centro (30,58), rx=22, ry=40
+     Ápice: (30,18)
+     Anillo 1: (18,30) (30,27) (42,30)
+     Anillo 2: (10,44) (20,39) (30,42) (40,39) (50,44)
+     Base:     (8,58)  (18,55) (30,57) (42,55) (52,58)
   */
-  const DOME = `<svg id="mascota-svg" width="60" height="70" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const DOME = `<svg id="mascota-svg" width="44" height="74" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <clipPath id="dome-clip">
-      <path d="M 2,50 A 28,28 0 0 1 58,50 Z"/>
+      <path d="M 8,58 A 22,40 0 0 1 52,58 Z"/>
     </clipPath>
   </defs>
 
   <!-- Sombra base -->
-  <ellipse cx="30" cy="56" rx="20" ry="3" fill="#141414"/>
+  <ellipse cx="30" cy="64" rx="16" ry="2.5" fill="#141414"/>
 
   <!-- Anillo base -->
-  <ellipse cx="30" cy="50" rx="28" ry="4" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
+  <ellipse cx="30" cy="58" rx="22" ry="3.5" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
 
   <!-- Fondo cúpula -->
-  <path d="M 2,50 A 28,28 0 0 1 58,50 Z" fill="#0f0f0f"/>
+  <path d="M 8,58 A 22,40 0 0 1 52,58 Z" fill="#0f0f0f"/>
 
-  <!-- Paneles y ribs dentro de la cúpula -->
+  <!-- Paneles y ribs -->
   <g clip-path="url(#dome-clip)">
 
-    <!-- PANELES con animación de brillo -->
+    <!-- PANELES -->
     <!-- Tier superior -->
-    <polygon class="dome-panel" style="animation-delay:0s"    points="30,22 16,30 30,27" fill="#fff" opacity="0.18"/>
-    <polygon class="dome-panel" style="animation-delay:0.7s"  points="30,22 30,27 44,30" fill="#fff" opacity="0.12"/>
+    <polygon class="dome-panel" style="animation-delay:0s"    points="30,18 18,30 30,27" fill="#fff" opacity="0.18"/>
+    <polygon class="dome-panel" style="animation-delay:0.7s"  points="30,18 30,27 42,30" fill="#fff" opacity="0.12"/>
 
     <!-- Tier medio -->
-    <polygon class="dome-panel" style="animation-delay:1.2s"  points="16,30 5,40 18,35"  fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.3s"  points="16,30 18,35 30,27" fill="#fff" opacity="0.22"/>
-    <polygon class="dome-panel" style="animation-delay:1.6s"  points="30,27 18,35 30,37" fill="#fff" opacity="0.09"/>
-    <polygon class="dome-panel" style="animation-delay:0.5s"  points="30,27 30,37 42,35" fill="#fff" opacity="0.16"/>
-    <polygon class="dome-panel" style="animation-delay:1.0s"  points="30,27 42,35 44,30" fill="#fff" opacity="0.20"/>
-    <polygon class="dome-panel" style="animation-delay:0.2s"  points="44,30 42,35 55,40" fill="#fff" opacity="0.10"/>
+    <polygon class="dome-panel" style="animation-delay:1.2s"  points="18,30 10,44 20,39" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.3s"  points="18,30 20,39 30,27" fill="#fff" opacity="0.22"/>
+    <polygon class="dome-panel" style="animation-delay:1.6s"  points="30,27 20,39 30,42" fill="#fff" opacity="0.09"/>
+    <polygon class="dome-panel" style="animation-delay:0.5s"  points="30,27 30,42 40,39" fill="#fff" opacity="0.16"/>
+    <polygon class="dome-panel" style="animation-delay:1.0s"  points="30,27 40,39 42,30" fill="#fff" opacity="0.20"/>
+    <polygon class="dome-panel" style="animation-delay:0.2s"  points="42,30 40,39 50,44" fill="#fff" opacity="0.10"/>
 
     <!-- Tier inferior -->
-    <polygon class="dome-panel" style="animation-delay:1.9s"  points="5,40 2,50 14,47"   fill="#fff" opacity="0.07"/>
-    <polygon class="dome-panel" style="animation-delay:0.4s"  points="5,40 14,47 18,35"  fill="#fff" opacity="0.17"/>
-    <polygon class="dome-panel" style="animation-delay:1.3s"  points="18,35 14,47 30,49" fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.1s"  points="18,35 30,49 30,37" fill="#fff" opacity="0.24"/>
-    <polygon class="dome-panel" style="animation-delay:1.7s"  points="30,37 30,49 42,35" fill="#fff" opacity="0.09"/>
-    <polygon class="dome-panel" style="animation-delay:0.6s"  points="42,35 30,49 46,47" fill="#fff" opacity="0.19"/>
-    <polygon class="dome-panel" style="animation-delay:1.1s"  points="42,35 46,47 55,40" fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.9s"  points="55,40 46,47 58,50" fill="#fff" opacity="0.13"/>
+    <polygon class="dome-panel" style="animation-delay:1.9s"  points="10,44 8,58 18,55"  fill="#fff" opacity="0.07"/>
+    <polygon class="dome-panel" style="animation-delay:0.4s"  points="10,44 18,55 20,39" fill="#fff" opacity="0.17"/>
+    <polygon class="dome-panel" style="animation-delay:1.3s"  points="20,39 18,55 30,57" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.1s"  points="20,39 30,57 30,42" fill="#fff" opacity="0.24"/>
+    <polygon class="dome-panel" style="animation-delay:1.7s"  points="30,42 30,57 40,39" fill="#fff" opacity="0.09"/>
+    <polygon class="dome-panel" style="animation-delay:0.6s"  points="40,39 30,57 42,55" fill="#fff" opacity="0.19"/>
+    <polygon class="dome-panel" style="animation-delay:1.1s"  points="40,39 42,55 50,44" fill="#fff" opacity="0.08"/>
+    <polygon class="dome-panel" style="animation-delay:0.9s"  points="50,44 42,55 52,58" fill="#fff" opacity="0.13"/>
 
-    <!-- RIBS estructurales -->
+    <!-- RIBS -->
     <g stroke="#3a3a3a" stroke-width="0.6">
-      <!-- Ápice a anillo 1 -->
-      <line x1="30" y1="22" x2="16" y2="30"/>
-      <line x1="30" y1="22" x2="30" y2="27"/>
-      <line x1="30" y1="22" x2="44" y2="30"/>
-      <!-- Anillo 1 horizontal -->
-      <line x1="16" y1="30" x2="30" y2="27"/>
-      <line x1="30" y1="27" x2="44" y2="30"/>
-      <!-- Anillo 1 a anillo 2 -->
-      <line x1="16" y1="30" x2="5"  y2="40"/>
-      <line x1="16" y1="30" x2="18" y2="35"/>
-      <line x1="30" y1="27" x2="18" y2="35"/>
-      <line x1="30" y1="27" x2="30" y2="37"/>
-      <line x1="30" y1="27" x2="42" y2="35"/>
-      <line x1="44" y1="30" x2="42" y2="35"/>
-      <line x1="44" y1="30" x2="55" y2="40"/>
-      <!-- Anillo 2 horizontal -->
-      <line x1="5"  y1="40" x2="18" y2="35"/>
-      <line x1="18" y1="35" x2="30" y2="37"/>
-      <line x1="30" y1="37" x2="42" y2="35"/>
-      <line x1="42" y1="35" x2="55" y2="40"/>
-      <!-- Anillo 2 a base -->
-      <line x1="5"  y1="40" x2="2"  y2="50"/>
-      <line x1="5"  y1="40" x2="14" y2="47"/>
-      <line x1="18" y1="35" x2="14" y2="47"/>
-      <line x1="18" y1="35" x2="30" y2="49"/>
-      <line x1="30" y1="37" x2="30" y2="49"/>
-      <line x1="42" y1="35" x2="30" y2="49"/>
-      <line x1="42" y1="35" x2="46" y2="47"/>
-      <line x1="55" y1="40" x2="46" y2="47"/>
-      <line x1="55" y1="40" x2="58" y2="50"/>
-      <!-- Base -->
-      <line x1="2"  y1="50" x2="14" y2="47"/>
-      <line x1="14" y1="47" x2="30" y2="49"/>
-      <line x1="30" y1="49" x2="46" y2="47"/>
-      <line x1="46" y1="47" x2="58" y2="50"/>
+      <line x1="30" y1="18" x2="18" y2="30"/>
+      <line x1="30" y1="18" x2="30" y2="27"/>
+      <line x1="30" y1="18" x2="42" y2="30"/>
+      <line x1="18" y1="30" x2="30" y2="27"/>
+      <line x1="30" y1="27" x2="42" y2="30"/>
+      <line x1="18" y1="30" x2="10" y2="44"/>
+      <line x1="18" y1="30" x2="20" y2="39"/>
+      <line x1="30" y1="27" x2="20" y2="39"/>
+      <line x1="30" y1="27" x2="30" y2="42"/>
+      <line x1="30" y1="27" x2="40" y2="39"/>
+      <line x1="42" y1="30" x2="40" y2="39"/>
+      <line x1="42" y1="30" x2="50" y2="44"/>
+      <line x1="10" y1="44" x2="20" y2="39"/>
+      <line x1="20" y1="39" x2="30" y2="42"/>
+      <line x1="30" y1="42" x2="40" y2="39"/>
+      <line x1="40" y1="39" x2="50" y2="44"/>
+      <line x1="10" y1="44" x2="8"  y2="58"/>
+      <line x1="10" y1="44" x2="18" y2="55"/>
+      <line x1="20" y1="39" x2="18" y2="55"/>
+      <line x1="20" y1="39" x2="30" y2="57"/>
+      <line x1="30" y1="42" x2="30" y2="57"/>
+      <line x1="40" y1="39" x2="30" y2="57"/>
+      <line x1="40" y1="39" x2="42" y2="55"/>
+      <line x1="50" y1="44" x2="42" y2="55"/>
+      <line x1="50" y1="44" x2="52" y2="58"/>
+      <line x1="8"  y1="58" x2="18" y2="55"/>
+      <line x1="18" y1="55" x2="30" y2="57"/>
+      <line x1="30" y1="57" x2="42" y2="55"/>
+      <line x1="42" y1="55" x2="52" y2="58"/>
     </g>
   </g>
 
   <!-- Contorno cúpula -->
-  <path d="M 2,50 A 28,28 0 0 1 58,50" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
+  <path d="M 8,58 A 22,40 0 0 1 52,58" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
 
-  <!-- Hub del ápice -->
-  <circle cx="30" cy="22" r="2.5" fill="#fff" opacity="0.9"/>
-  <circle cx="30" cy="22" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
+  <!-- Hub ápice -->
+  <circle cx="30" cy="18" r="2.5" fill="#fff" opacity="0.9"/>
+  <circle cx="30" cy="18" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
 </svg>`;
 
   const DOME_MODAL = `<svg width="44" height="52" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
