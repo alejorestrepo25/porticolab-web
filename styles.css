@@ -161,9 +161,6 @@ header {
   to   { transform: translateX(-50%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .wip-track { animation: none; }
-}
 
 /* ===== MAIN & GALLERY ===== */
 
