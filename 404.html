@@ -29,8 +29,8 @@ p{font-size:14px;color:#666;margin-bottom:40px;}
 .wip-banner::before,.wip-banner::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
 .wip-banner::before{left:0;background:linear-gradient(to right,#F5C400 40%,transparent);}
 .wip-banner::after{right:0;background:linear-gradient(to left,#F5C400 40%,transparent);}
-.wip-track{display:flex;white-space:nowrap;animation:wip-scroll 28s linear infinite;}
-.wip-track span{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:2.5px;color:#111;text-transform:uppercase;}
+.wip-track{display:flex;flex-wrap:nowrap;flex-shrink:0;white-space:nowrap;animation:wip-scroll 28s linear infinite;will-change:transform;}
+.wip-track span{display:block;flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;color:#111;text-transform:uppercase;white-space:nowrap;}
 @keyframes wip-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media(max-width:768px){
   header{flex-direction:column;align-items:flex-start;padding:12px 16px;gap:8px;}
