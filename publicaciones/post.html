@@ -193,6 +193,33 @@ const SHEET_WEBHOOK_URL = 'PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT';
 
 const WHATSAPP_NUMERO = '573147924600';
 
+const PEDIDO_PENDIENTE_KEY = 'porticolab_pedido_pendiente';
+
+function guardarPedidoPendiente(data) {
+  try { sessionStorage.setItem(PEDIDO_PENDIENTE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function limpiarPedidoPendiente() {
+  try { sessionStorage.removeItem(PEDIDO_PENDIENTE_KEY); } catch (e) {}
+}
+
+// PSE, Bancolombia, etc. sacan al comprador del sitio hacia el banco: al volver,
+// el callback de checkout.open() nunca se dispara porque la pagina se recargo.
+// Por eso guardamos el pedido antes de abrir el widget y lo revisamos al regresar.
+function revisarRegresoDePago() {
+  let raw;
+  try { raw = sessionStorage.getItem(PEDIDO_PENDIENTE_KEY); } catch (e) { return; }
+  if (!raw) return;
+  limpiarPedidoPendiente();
+
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { return; }
+
+  registrarPedido(Object.assign({}, data, { estadoPago: 'Redirigido - verificar en Wompi' }));
+  notificarWhatsApp(data);
+  alert('Volviste del proceso de pago. Si fue exitoso, nos pondremos en contacto pronto para coordinar la entrega de "' + data.producto + '".');
+}
+
 function iniciarPago(producto, id) {
   const nombre = document.getElementById('envio-nombre').value.trim();
   const telefono = document.getElementById('envio-telefono').value.trim();
@@ -209,7 +236,9 @@ function iniciarPago(producto, id) {
   }
 
   const referencia = `porticolab-${id}-${Date.now()}`;
-  const envio = { nombre, telefono, direccion, ciudad };
+  const pedido = { referencia, producto: producto.title, precio: producto.precio, nombre, telefono, direccion, ciudad };
+
+  guardarPedidoPendiente(pedido);
 
   const checkout = new WidgetCheckout({
     currency: 'COP',
@@ -220,17 +249,15 @@ function iniciarPago(producto, id) {
   });
 
   checkout.open(function (result) {
+    // Si llegamos aqui es porque NO hubo redireccion (tarjeta, Nequi) — se maneja
+    // en el momento y se limpia el pendiente para que no se duplique al recargar.
+    limpiarPedidoPendiente();
     const tx = result.transaction;
     if (!tx) return;
 
     if (tx.status === 'APPROVED' || tx.status === 'PENDING') {
-      registrarPedido(Object.assign({
-        referencia,
-        producto: producto.title,
-        precio: producto.precio,
-        estadoPago: tx.status,
-      }, envio));
-      notificarWhatsApp(Object.assign({ referencia, producto: producto.title, precio: producto.precio }, envio));
+      registrarPedido(Object.assign({}, pedido, { estadoPago: tx.status }));
+      notificarWhatsApp(pedido);
     }
 
     if (tx.status === 'APPROVED') {
@@ -385,6 +412,7 @@ async function loadPost() {
 }
 
 loadPost();
+revisarRegresoDePago();
 </script>
 
 <script src="https://checkout.wompi.co/widget.js"></script>
