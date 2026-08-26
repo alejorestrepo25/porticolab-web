@@ -137,11 +137,25 @@
     while (i > 0) { const j = Math.floor(Math.random() * i--); [array[i], array[j]] = [array[j], array[i]]; }
   }
 
+  function priceStockBadge(p) {
+    if (!p.precio) return '';
+    const hasStock = typeof p.stock === 'number';
+    const enStock = hasStock ? p.stock > 0 : !!p.disponible;
+    const stockLabel = hasStock
+      ? (p.stock > 0 ? `${p.stock} disponible${p.stock === 1 ? '' : 's'}` : 'Agotado')
+      : (p.disponible ? 'Disponible' : 'No disponible');
+    return `
+      <div class="card-price-row">
+        <span class="card-price">$ ${p.precio.toLocaleString('es-CO')} COP</span>
+        <span class="card-stock"><span class="${enStock ? 'disponible-dot' : 'no-disponible-dot'}"></span>${stockLabel}</span>
+      </div>`;
+  }
+
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
-    const query = encodeURIComponent(`*[_type == "proyecto" && "laboratorio" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
+    const query = encodeURIComponent(`*[_type == "proyecto" && "laboratorio" in tags] | order(_createdAt desc) { _id, title, tags, portada, precio, disponible, stock }`);
     const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
     const res = await fetch(url);
     const { result = [] } = await res.json();
@@ -159,6 +173,7 @@
           <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
         </a>
         <h3>${p.title || 'Proyecto'}</h3>
+        ${priceStockBadge(p)}
         <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
       `;
       gallery.appendChild(item);

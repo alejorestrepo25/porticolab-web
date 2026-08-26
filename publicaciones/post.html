@@ -59,8 +59,12 @@ main{
 .precio-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:10px 16px;border:1px solid #333;border-radius:8px;background:#0d0d0d;}
 .precio-badge .precio-valor{font-size:18px;font-weight:600;color:#fff;}
 .precio-badge .precio-label{font-size:12px;color:#666;letter-spacing:1px;}
+.precio-badge .stock-label{font-size:12px;color:#999;margin-top:4px;}
 .disponible-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;display:inline-block;}
 .no-disponible-dot{width:8px;height:8px;border-radius:50%;background:#666;display:inline-block;}
+.comprar-btn{display:none;margin-top:16px;padding:14px 28px;background:#fff;color:#000;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;}
+.comprar-btn:hover{background:#eee;transform:translateY(-2px);}
+.comprar-btn:disabled{background:#333;color:#777;cursor:not-allowed;transform:none;}
 .post-content p{line-height:1.8;color:#ccc;font-size:15px;}
 #post-features{margin-top:15px;padding-left:24px;color:#ccc;line-height:2;}
 #post-features li{margin-bottom:8px;}
@@ -145,8 +149,10 @@ main{
       <div>
         <div class="precio-label">PRECIO</div>
         <div class="precio-valor" id="precio-valor"></div>
+        <div class="stock-label" id="stock-label"></div>
       </div>
     </div>
+    <button id="comprar-btn" class="comprar-btn">Comprar ahora</button>
     <div class="tags" id="post-tags"></div>
   </div>
 </main>
@@ -165,6 +171,35 @@ main{
 const PROJECT_ID = '32sykluw';
 const DATASET    = 'production';
 const API_VER    = '2024-01-01';
+
+// Llave PÚBLICA de Wompi (modo pruebas) — segura para exponer en el front-end.
+// Al lanzar a producción, reemplazar por la llave pub_prod_...
+const WOMPI_PUBLIC_KEY = 'pub_test_yfPVIzEU2B3RPXYFf2sFFsKckUzKL9PF';
+
+function iniciarPago(producto, id) {
+  if (typeof WidgetCheckout === 'undefined') {
+    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
+    return;
+  }
+  const checkout = new WidgetCheckout({
+    currency: 'COP',
+    amountInCents: Math.round(producto.precio * 100),
+    reference: `porticolab-${id}-${Date.now()}`,
+    publicKey: WOMPI_PUBLIC_KEY,
+    redirectUrl: window.location.href.split('?')[0] + '?id=' + id,
+  });
+  checkout.open(function (result) {
+    const tx = result.transaction;
+    if (!tx) return;
+    if (tx.status === 'APPROVED') {
+      alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega de "' + producto.title + '".');
+    } else if (tx.status === 'PENDING') {
+      alert('Tu pago está en proceso. Te avisaremos cuando se confirme.');
+    } else {
+      alert('El pago no se completó (estado: ' + tx.status + '). Puedes intentarlo de nuevo.');
+    }
+  });
+}
 
 function imgUrl(ref, w = 1200) {
   const [, id, dim, fmt] = ref.split('-');
@@ -210,7 +245,7 @@ async function loadPost() {
   const id = new URLSearchParams(window.location.search).get('id');
   if (!id) { document.getElementById('loading').textContent = 'Proyecto no encontrado.'; return; }
 
-  const query = encodeURIComponent(`*[_type == "proyecto" && _id == "${id}"][0]{ title, location, year, description, features, tags, portada, galeria, precio, disponible }`);
+  const query = encodeURIComponent(`*[_type == "proyecto" && _id == "${id}"][0]{ title, location, year, description, features, tags, portada, galeria, precio, disponible, stock }`);
   const res  = await fetch(`https://${PROJECT_ID}.api.sanity.io/v${API_VER}/data/query/${DATASET}?query=${query}`);
   const { result } = await res.json();
 
@@ -236,11 +271,26 @@ async function loadPost() {
   if (result.precio) {
     const badge = document.getElementById('precio-badge');
     const dot = document.getElementById('disponible-dot');
+    const comprarBtn = document.getElementById('comprar-btn');
     badge.style.display = 'inline-flex';
     document.getElementById('precio-valor').textContent =
       '$ ' + result.precio.toLocaleString('es-CO') + ' COP';
-    dot.className = result.disponible ? 'disponible-dot' : 'no-disponible-dot';
-    dot.title = result.disponible ? 'Disponible' : 'No disponible';
+
+    const hasStock = typeof result.stock === 'number';
+    const unidades = hasStock ? result.stock : null;
+    const enStock = hasStock ? unidades > 0 : !!result.disponible;
+
+    dot.className = enStock ? 'disponible-dot' : 'no-disponible-dot';
+    dot.title = enStock ? 'Disponible' : 'No disponible';
+
+    document.getElementById('stock-label').textContent = hasStock
+      ? (unidades > 0 ? `${unidades} unidad${unidades === 1 ? '' : 'es'} disponible${unidades === 1 ? '' : 's'}` : 'Agotado')
+      : (result.disponible ? 'Disponible' : 'No disponible por ahora');
+
+    if (result.disponible && enStock) {
+      comprarBtn.style.display = 'inline-block';
+      comprarBtn.onclick = () => iniciarPago(result, id);
+    }
   }
 
   // Imágenes
@@ -278,6 +328,7 @@ async function loadPost() {
 loadPost();
 </script>
 
+<script src="https://checkout.wompi.co/widget.js"></script>
 <script src="../mascota.js"></script>
 </body>
 </html>
