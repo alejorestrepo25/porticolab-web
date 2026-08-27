@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito - PORTICO LAB</title>
+
+<link rel="icon" href="iconos/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+main.carrito{padding:60px 40px;max-width:800px;margin:0 auto;}
+main.carrito h1{font-size:32px;font-weight:700;letter-spacing:1px;margin-bottom:40px;}
+
+.carrito-vacio{text-align:center;padding:80px 20px;color:#666;}
+.carrito-vacio a{color:#fff;text-decoration:underline;}
+
+.carrito-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid #222;}
+.carrito-item-info{flex:1;}
+.carrito-item-info h3{font-size:16px;font-weight:600;margin-bottom:6px;}
+.carrito-item-info .precio-unit{font-size:13px;color:#999;}
+.carrito-item-qty{display:flex;align-items:center;gap:10px;}
+.carrito-item-qty button{width:28px;height:28px;background:#111;border:1px solid #333;color:#fff;border-radius:6px;cursor:pointer;font-size:16px;font-family:'Montserrat',sans-serif;}
+.carrito-item-qty button:hover{background:#222;}
+.carrito-item-qty span{min-width:20px;text-align:center;}
+.carrito-item-subtotal{min-width:110px;text-align:right;font-weight:600;}
+.carrito-item-remove{background:none;border:none;color:#666;font-size:20px;cursor:pointer;padding:0 4px;}
+.carrito-item-remove:hover{color:#fff;}
+
+.carrito-total{display:flex;justify-content:space-between;align-items:center;padding:24px 0;font-size:20px;font-weight:700;}
+
+.envio-form{display:flex;flex-direction:column;gap:10px;margin:20px 0;max-width:400px;}
+.envio-form .envio-label{font-size:12px;color:#666;letter-spacing:1px;}
+.envio-form input{background:#111;border:1px solid #333;border-radius:6px;padding:12px;color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;}
+.envio-form input:focus{outline:none;border-color:#666;}
+.envio-form input::placeholder{color:#666;}
+
+.pagar-btn{width:100%;max-width:400px;padding:16px;background:#fff;color:#000;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;}
+.pagar-btn:hover{background:#eee;transform:translateY(-2px);}
+.pagar-btn:disabled{background:#333;color:#777;cursor:not-allowed;transform:none;}
+
+@media(max-width:600px){
+  main.carrito{padding:30px 20px;}
+  .carrito-item{flex-wrap:wrap;}
+  .carrito-item-subtotal{min-width:auto;}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a href="index.html" class="logo">PORTICO_LAB</a>
+  <nav class="nav">
+    <a href="laboratorio.html">LABORATORIO</a>
+    <a href="arquitectura.html">ARQUITECTURA</a>
+    <a href="inspiracion.html">INSPIRACIÓN</a>
+    <a href="nosotros.html">NOSOTROS</a>
+  </nav>
+  <a href="carrito.html" class="cart-icon" aria-label="Carrito">🛒<span class="cart-badge" id="cart-badge">0</span></a>
+</header>
+
+<div class="wip-banner" aria-hidden="true">
+  <div class="wip-track">
+    <span>🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp;</span>
+    <span>🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en construcción &nbsp;&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<main class="carrito">
+  <h1>Tu carrito</h1>
+  <div id="carrito-contenido"></div>
+</main>
+
+<script src="carrito.js"></script>
+<script>
+// --- Pasarela de pago activa: 'bold' o 'wompi'. Cambia esta linea si una falla. ---
+const PAYMENT_PROVIDER = 'bold';
+
+// Llave de IDENTIDAD de Bold (pública, segura para exponer en el front-end).
+// La llave SECRETA de Bold nunca va aquí: se configura en el Apps Script (Script Properties).
+const BOLD_IDENTITY_KEY = 'oAlQrfvTZyqGX8CfHnobs-Md-T_IuWGiLwb8fhvm514'; // llave de PRUEBAS
+
+// Llave PÚBLICA de Wompi (modo pruebas) — segura para exponer en el front-end.
+const WOMPI_PUBLIC_KEY = 'pub_test_yfPVIzEU2B3RPXYFf2sFFsKckUzKL9PF';
+
+// URL del Apps Script (Google Sheets) que registra los pedidos y genera el hash de Bold.
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec';
+
+const WHATSAPP_NUMERO = '573147924600';
+
+// Carga el script de Bold una sola vez, sin bloquear el resto de la página.
+(function initBoldCheckout() {
+  if (document.querySelector('script[src="https://checkout.bold.co/library/boldPaymentButton.js"]')) return;
+  const js = document.createElement('script');
+  js.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
+  document.head.appendChild(js);
+})();
+
+function renderCarrito() {
+  const cont = document.getElementById('carrito-contenido');
+  const items = getCarrito();
+
+  if (items.length === 0) {
+    cont.innerHTML = `<div class="carrito-vacio">Tu carrito está vacío.<br><a href="index.html">Ver productos</a></div>`;
+    return;
+  }
+
+  const filas = items.map(it => `
+    <div class="carrito-item" data-id="${it.id}">
+      <div class="carrito-item-info">
+        <h3>${it.title}</h3>
+        <div class="precio-unit">$ ${it.precio.toLocaleString('es-CO')} COP c/u</div>
+      </div>
+      <div class="carrito-item-qty">
+        <button onclick="cambiarCantidad('${it.id}', ${it.cantidad - 1})">-</button>
+        <span>${it.cantidad}</span>
+        <button onclick="cambiarCantidad('${it.id}', ${it.cantidad + 1})">+</button>
+      </div>
+      <div class="carrito-item-subtotal">$ ${(it.precio * it.cantidad).toLocaleString('es-CO')}</div>
+      <button class="carrito-item-remove" onclick="quitarDelCarrito('${it.id}'); renderCarrito();" aria-label="Quitar">&times;</button>
+    </div>
+  `).join('');
+
+  cont.innerHTML = `
+    ${filas}
+    <div class="carrito-total">
+      <span>Total</span>
+      <span>$ ${totalCarrito().toLocaleString('es-CO')} COP</span>
+    </div>
+    <div id="envio-form" class="envio-form">
+      <div class="envio-label">DATOS DE ENVÍO</div>
+      <input type="text" id="envio-nombre" placeholder="Nombre completo">
+      <input type="tel" id="envio-telefono" placeholder="Teléfono / WhatsApp">
+      <input type="text" id="envio-direccion" placeholder="Dirección de envío">
+      <input type="text" id="envio-ciudad" placeholder="Ciudad">
+    </div>
+    <button id="pagar-btn" class="pagar-btn" onclick="iniciarPago()">Pagar $ ${totalCarrito().toLocaleString('es-CO')} COP</button>
+  `;
+}
+
+function cambiarCantidad(id, cantidad) {
+  actualizarCantidadCarrito(id, cantidad);
+  renderCarrito();
+}
+
+const PEDIDO_PENDIENTE_KEY = 'porticolab_pedido_pendiente';
+
+function guardarPedidoPendiente(data) {
+  try { sessionStorage.setItem(PEDIDO_PENDIENTE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function limpiarPedidoPendiente() {
+  try { sessionStorage.removeItem(PEDIDO_PENDIENTE_KEY); } catch (e) {}
+}
+
+// Bold siempre redirige, y Wompi lo hace para PSE/Bancolombia: en ambos casos
+// el comprador sale del sitio y el callback de JS nunca se dispara al volver
+// porque la pagina se recargo. Por eso guardamos el pedido antes de abrir el
+// pago y lo revisamos al regresar, usando el estado real si la pasarela lo trae.
+function revisarRegresoDePago() {
+  let raw;
+  try { raw = sessionStorage.getItem(PEDIDO_PENDIENTE_KEY); } catch (e) { return; }
+  if (!raw) return;
+  limpiarPedidoPendiente();
+
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { return; }
+
+  const params = new URLSearchParams(window.location.search);
+  const boldStatus = params.get('bold-tx-status');
+  const estadoPago = boldStatus ? `Bold: ${boldStatus}` : 'Redirigido - verificar en la pasarela';
+
+  registrarPedido(Object.assign({}, data, { estadoPago }));
+  notificarWhatsApp(data);
+
+  const aprobado = boldStatus && (boldStatus.toLowerCase().indexOf('aprob') !== -1 || boldStatus.toLowerCase().indexOf('approv') !== -1);
+  if (aprobado) {
+    alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega.');
+  } else if (boldStatus) {
+    alert('Tu pago quedó en estado "' + boldStatus + '".');
+  } else {
+    alert('Volviste del proceso de pago. Si fue exitoso, nos pondremos en contacto pronto.');
+  }
+}
+
+async function iniciarPago() {
+  const items = getCarrito();
+  if (items.length === 0) return;
+
+  const nombre = document.getElementById('envio-nombre').value.trim();
+  const telefono = document.getElementById('envio-telefono').value.trim();
+  const direccion = document.getElementById('envio-direccion').value.trim();
+  const ciudad = document.getElementById('envio-ciudad').value.trim();
+
+  if (!nombre || !telefono || !direccion || !ciudad) {
+    alert('Completa tus datos de envío antes de pagar.');
+    return;
+  }
+
+  const total = totalCarrito();
+  const descripcion = items.map(it => `${it.title} x${it.cantidad}`).join(', ');
+  const referencia = `porticolab-carrito-${Date.now()}`;
+  const pedido = { referencia, producto: descripcion, precio: total, nombre, telefono, direccion, ciudad };
+
+  if (PAYMENT_PROVIDER === 'bold') {
+    await iniciarPagoBold(total, referencia, pedido);
+  } else {
+    iniciarPagoWompi(total, referencia, pedido);
+  }
+}
+
+async function iniciarPagoBold(total, referencia, pedido) {
+  if (typeof BoldCheckout === 'undefined') {
+    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
+    return;
+  }
+
+  const amount = String(Math.round(total));
+  let hash;
+  try {
+    const res = await fetch(`${SHEET_WEBHOOK_URL}?action=bold-hash&orderId=${encodeURIComponent(referencia)}&amount=${amount}&currency=COP`);
+    const data = await res.json();
+    hash = data.hash;
+  } catch (e) {
+    hash = null;
+  }
+  if (!hash) {
+    alert('No se pudo preparar el pago en este momento. Intenta de nuevo o contáctanos por WhatsApp.');
+    return;
+  }
+
+  guardarPedidoPendiente(pedido);
+  vaciarCarrito();
+
+  const checkout = new BoldCheckout({
+    orderId: referencia,
+    currency: 'COP',
+    amount: amount,
+    apiKey: BOLD_IDENTITY_KEY,
+    integritySignature: hash,
+    description: pedido.producto.slice(0, 100),
+    redirectionUrl: window.location.href.split('?')[0],
+  });
+  checkout.open();
+}
+
+function iniciarPagoWompi(total, referencia, pedido) {
+  if (typeof WidgetCheckout === 'undefined') {
+    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
+    return;
+  }
+
+  guardarPedidoPendiente(pedido);
+  vaciarCarrito();
+
+  const checkout = new WidgetCheckout({
+    currency: 'COP',
+    amountInCents: Math.round(total * 100),
+    reference: referencia,
+    publicKey: WOMPI_PUBLIC_KEY,
+    redirectUrl: window.location.href.split('?')[0],
+  });
+
+  checkout.open(function (result) {
+    limpiarPedidoPendiente();
+    const tx = result.transaction;
+    if (!tx) return;
+
+    if (tx.status === 'APPROVED' || tx.status === 'PENDING') {
+      registrarPedido(Object.assign({}, pedido, { estadoPago: tx.status }));
+      notificarWhatsApp(pedido);
+    }
+
+    if (tx.status === 'APPROVED') {
+      alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega.');
+    } else if (tx.status === 'PENDING') {
+      alert('Tu pago está en proceso. Te avisaremos cuando se confirme.');
+    } else {
+      alert('El pago no se completó (estado: ' + tx.status + '). Puedes intentarlo de nuevo.');
+    }
+    renderCarrito();
+  });
+}
+
+function registrarPedido(data) {
+  if (!SHEET_WEBHOOK_URL.startsWith('http')) return;
+  fetch(SHEET_WEBHOOK_URL, { method: 'POST', body: JSON.stringify(data) }).catch(() => {});
+}
+
+function notificarWhatsApp(data) {
+  const msg = `Nuevo pedido Pórtico Lab\n` +
+    `Productos: ${data.producto}\n` +
+    `Total: $${data.precio.toLocaleString('es-CO')} COP\n` +
+    `Referencia: ${data.referencia}\n\n` +
+    `Datos de envío:\n` +
+    `${data.nombre} - ${data.telefono}\n` +
+    `${data.direccion}, ${data.ciudad}`;
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+renderCarrito();
+revisarRegresoDePago();
+</script>
+
+<script src="https://checkout.wompi.co/widget.js"></script>
+<script src="mascota.js"></script>
+</body>
+</html>

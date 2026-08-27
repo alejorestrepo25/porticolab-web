@@ -29,6 +29,8 @@ header{
 .logo::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition:0.3s;}
 .logo:hover::after{width:100%;}
 .nav{display:flex;gap:30px;}
+.cart-icon{position:relative;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;margin-left:20px;}
+.cart-badge{display:none;align-items:center;justify-content:center;position:absolute;top:-6px;right:-10px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#fff;color:#000;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif;}
 .nav a{text-decoration:none;color:#fff;font-size:16px;letter-spacing:1px;position:relative;}
 .nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition:0.3s;}
 .nav a:hover::after{width:100%;}
@@ -65,11 +67,6 @@ main{
 .comprar-btn{display:none;margin-top:16px;padding:14px 28px;background:#fff;color:#000;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;}
 .comprar-btn:hover{background:#eee;transform:translateY(-2px);}
 .comprar-btn:disabled{background:#333;color:#777;cursor:not-allowed;transform:none;}
-.envio-form{display:none;flex-direction:column;gap:10px;margin-top:20px;max-width:340px;}
-.envio-form .envio-label{font-size:12px;color:#666;letter-spacing:1px;}
-.envio-form input{background:#111;border:1px solid #333;border-radius:6px;padding:10px 12px;color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;}
-.envio-form input:focus{outline:none;border-color:#666;}
-.envio-form input::placeholder{color:#666;}
 .post-content p{line-height:1.8;color:#ccc;font-size:15px;}
 #post-features{margin-top:15px;padding-left:24px;color:#ccc;line-height:2;}
 #post-features li{margin-bottom:8px;}
@@ -124,6 +121,7 @@ main{
     <a href="../inspiracion.html">INSPIRACIÓN</a>
     <a href="../nosotros.html">NOSOTROS</a>
   </nav>
+  <a href="../carrito.html" class="cart-icon" aria-label="Carrito">🛒<span class="cart-badge" id="cart-badge">0</span></a>
 </header>
 
 <div style="width:100%;height:32px;background:#F5C400;border-bottom:1px solid #D4A900;overflow:hidden;display:flex;align-items:center;position:relative;" aria-hidden="true">
@@ -157,14 +155,7 @@ main{
         <div class="stock-label" id="stock-label"></div>
       </div>
     </div>
-    <div id="envio-form" class="envio-form">
-      <div class="envio-label">DATOS DE ENVÍO</div>
-      <input type="text" id="envio-nombre" placeholder="Nombre completo">
-      <input type="tel" id="envio-telefono" placeholder="Teléfono / WhatsApp">
-      <input type="text" id="envio-direccion" placeholder="Dirección de envío">
-      <input type="text" id="envio-ciudad" placeholder="Ciudad">
-    </div>
-    <button id="comprar-btn" class="comprar-btn">Comprar ahora</button>
+    <button id="comprar-btn" class="comprar-btn">Agregar al carrito</button>
     <div class="tags" id="post-tags"></div>
   </div>
 </main>
@@ -183,108 +174,6 @@ main{
 const PROJECT_ID = '32sykluw';
 const DATASET    = 'production';
 const API_VER    = '2024-01-01';
-
-// Llave PÚBLICA de Wompi (modo pruebas) — segura para exponer en el front-end.
-// Al lanzar a producción, reemplazar por la llave pub_prod_...
-const WOMPI_PUBLIC_KEY = 'pub_test_yfPVIzEU2B3RPXYFf2sFFsKckUzKL9PF';
-
-// URL del Apps Script (Google Sheets) que registra los pedidos. Pégala aquí cuando la despliegues.
-const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec';
-
-const WHATSAPP_NUMERO = '573147924600';
-
-const PEDIDO_PENDIENTE_KEY = 'porticolab_pedido_pendiente';
-
-function guardarPedidoPendiente(data) {
-  try { sessionStorage.setItem(PEDIDO_PENDIENTE_KEY, JSON.stringify(data)); } catch (e) {}
-}
-
-function limpiarPedidoPendiente() {
-  try { sessionStorage.removeItem(PEDIDO_PENDIENTE_KEY); } catch (e) {}
-}
-
-// PSE, Bancolombia, etc. sacan al comprador del sitio hacia el banco: al volver,
-// el callback de checkout.open() nunca se dispara porque la pagina se recargo.
-// Por eso guardamos el pedido antes de abrir el widget y lo revisamos al regresar.
-function revisarRegresoDePago() {
-  let raw;
-  try { raw = sessionStorage.getItem(PEDIDO_PENDIENTE_KEY); } catch (e) { return; }
-  if (!raw) return;
-  limpiarPedidoPendiente();
-
-  let data;
-  try { data = JSON.parse(raw); } catch (e) { return; }
-
-  registrarPedido(Object.assign({}, data, { estadoPago: 'Redirigido - verificar en Wompi' }));
-  notificarWhatsApp(data);
-  alert('Volviste del proceso de pago. Si fue exitoso, nos pondremos en contacto pronto para coordinar la entrega de "' + data.producto + '".');
-}
-
-function iniciarPago(producto, id) {
-  const nombre = document.getElementById('envio-nombre').value.trim();
-  const telefono = document.getElementById('envio-telefono').value.trim();
-  const direccion = document.getElementById('envio-direccion').value.trim();
-  const ciudad = document.getElementById('envio-ciudad').value.trim();
-
-  if (!nombre || !telefono || !direccion || !ciudad) {
-    alert('Completa tus datos de envío antes de pagar.');
-    return;
-  }
-  if (typeof WidgetCheckout === 'undefined') {
-    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
-    return;
-  }
-
-  const referencia = `porticolab-${id}-${Date.now()}`;
-  const pedido = { referencia, producto: producto.title, precio: producto.precio, nombre, telefono, direccion, ciudad };
-
-  guardarPedidoPendiente(pedido);
-
-  const checkout = new WidgetCheckout({
-    currency: 'COP',
-    amountInCents: Math.round(producto.precio * 100),
-    reference: referencia,
-    publicKey: WOMPI_PUBLIC_KEY,
-    redirectUrl: window.location.href.split('?')[0] + '?id=' + id,
-  });
-
-  checkout.open(function (result) {
-    // Si llegamos aqui es porque NO hubo redireccion (tarjeta, Nequi) — se maneja
-    // en el momento y se limpia el pendiente para que no se duplique al recargar.
-    limpiarPedidoPendiente();
-    const tx = result.transaction;
-    if (!tx) return;
-
-    if (tx.status === 'APPROVED' || tx.status === 'PENDING') {
-      registrarPedido(Object.assign({}, pedido, { estadoPago: tx.status }));
-      notificarWhatsApp(pedido);
-    }
-
-    if (tx.status === 'APPROVED') {
-      alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega de "' + producto.title + '".');
-    } else if (tx.status === 'PENDING') {
-      alert('Tu pago está en proceso. Te avisaremos cuando se confirme.');
-    } else {
-      alert('El pago no se completó (estado: ' + tx.status + '). Puedes intentarlo de nuevo.');
-    }
-  });
-}
-
-function registrarPedido(data) {
-  if (!SHEET_WEBHOOK_URL.startsWith('http')) return;
-  fetch(SHEET_WEBHOOK_URL, { method: 'POST', body: JSON.stringify(data) }).catch(() => {});
-}
-
-function notificarWhatsApp(data) {
-  const msg = `Nuevo pedido Pórtico Lab\n` +
-    `Producto: ${data.producto}\n` +
-    `Precio: $${data.precio.toLocaleString('es-CO')} COP\n` +
-    `Referencia: ${data.referencia}\n\n` +
-    `Datos de envío:\n` +
-    `${data.nombre} - ${data.telefono}\n` +
-    `${data.direccion}, ${data.ciudad}`;
-  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`, '_blank');
-}
 
 function imgUrl(ref, w = 1200) {
   const [, id, dim, fmt] = ref.split('-');
@@ -373,9 +262,12 @@ async function loadPost() {
       : (result.disponible ? 'Disponible' : 'No disponible por ahora');
 
     if (result.disponible && enStock) {
-      document.getElementById('envio-form').style.display = 'flex';
       comprarBtn.style.display = 'inline-block';
-      comprarBtn.onclick = () => iniciarPago(result, id);
+      comprarBtn.onclick = () => {
+        agregarAlCarrito(id, result.title, result.precio);
+        comprarBtn.textContent = 'Agregado ✓';
+        setTimeout(() => { comprarBtn.textContent = 'Agregar al carrito'; }, 1500);
+      };
     }
   }
 
@@ -412,10 +304,9 @@ async function loadPost() {
 }
 
 loadPost();
-revisarRegresoDePago();
 </script>
 
-<script src="https://checkout.wompi.co/widget.js"></script>
+<script src="../carrito.js"></script>
 <script src="../mascota.js"></script>
 </body>
 </html>

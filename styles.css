@@ -101,6 +101,40 @@ header {
   transform: translateX(0);
 }
 
+/* ===== CARRITO ===== */
+
+.cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.cart-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .cart-icon { margin-left: 12px; font-size: 18px; }
+}
+
 /* ===== BANNER CONSTRUCCIÓN ===== */
 
 .wip-banner {
@@ -333,6 +367,24 @@ main {
 .disponible-dot { background: #4caf50; }
 .no-disponible-dot { background: #666; }
 
+.card-add-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 0 16px 16px;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.card-add-btn:hover { background: #ddd; }
+
 @media (max-width: 768px) {
   .card-price-row {
     padding: 0 8px 8px;
@@ -340,6 +392,7 @@ main {
   }
   .card-price { font-size: 12px; }
   .card-stock { font-size: 10px; }
+  .card-add-btn { width: calc(100% - 16px); margin: 0 8px 8px; font-size: 11px; padding: 8px; }
 }
 
 /* ===== TAGS DE CADA PUBLICACIÓN ===== */

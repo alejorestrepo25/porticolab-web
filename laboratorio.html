@@ -104,6 +104,7 @@
     <a href="inspiracion.html">INSPIRACIÓN</a>
     <a href="nosotros.html">NOSOTROS</a>
   </nav>
+  <a href="carrito.html" class="cart-icon" aria-label="Carrito">🛒<span class="cart-badge" id="cart-badge">0</span></a>
 </header>
 
 <div class="wip-banner" aria-hidden="true">
@@ -144,11 +145,13 @@
     const stockLabel = hasStock
       ? (p.stock > 0 ? `${p.stock} disponible${p.stock === 1 ? '' : 's'}` : 'Agotado')
       : (p.disponible ? 'Disponible' : 'No disponible');
+    const comprableClass = (p.disponible && enStock) ? '' : ' style="display:none;"';
     return `
       <div class="card-price-row">
         <span class="card-price">$ ${p.precio.toLocaleString('es-CO')} COP</span>
         <span class="card-stock"><span class="${enStock ? 'disponible-dot' : 'no-disponible-dot'}"></span>${stockLabel}</span>
-      </div>`;
+      </div>
+      <button class="card-add-btn" onclick="event.preventDefault(); agregarAlCarrito('${p._id}', '${(p.title || 'Proyecto').replace(/'/g, "\\'")}', ${p.precio}); this.textContent='Agregado ✓';"${comprableClass}>Agregar al carrito</button>`;
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
@@ -182,6 +185,7 @@
 </script>
 
 
+<script src="carrito.js"></script>
 <script src="mascota.js"></script>
 </body>
 </html>
