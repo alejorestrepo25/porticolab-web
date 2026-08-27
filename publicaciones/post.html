@@ -57,16 +57,20 @@ main{
   align-items:start;
 }
 .post-content h1{font-size:48px;font-weight:700;letter-spacing:2px;line-height:1.2;}
-.post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding:20px 0;border-bottom:1px solid #222;margin-bottom:20px;flex-wrap:wrap;}
-.precio-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:10px 16px;border:1px solid #333;border-radius:8px;background:#0d0d0d;}
-.precio-badge .precio-valor{font-size:18px;font-weight:600;color:#fff;}
-.precio-badge .precio-label{font-size:12px;color:#666;letter-spacing:1px;}
-.precio-badge .stock-label{font-size:12px;color:#999;margin-top:4px;}
+.post-meta{display:flex;gap:20px;font-size:14px;color:#999;padding:20px 0;border-bottom:1px solid #222;margin-bottom:24px;flex-wrap:wrap;}
+
+/* Caja de compra: precio + stock + boton juntos, arriba, antes de cualquier texto largo */
+.buy-box{display:none;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:32px;padding:20px 24px;border:1px solid #222;border-radius:14px;background:#0d0d0d;}
+.precio-badge{display:inline-flex;align-items:center;gap:10px;}
+.precio-badge .precio-valor{font-size:20px;font-weight:700;color:#fff;}
+.precio-badge .precio-label{font-size:11px;color:#777;letter-spacing:1px;}
+.precio-badge .stock-label{font-size:12px;color:#999;margin-top:3px;}
 .disponible-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;display:inline-block;}
 .no-disponible-dot{width:8px;height:8px;border-radius:50%;background:#666;display:inline-block;}
-.comprar-btn{display:none;margin-top:16px;padding:14px 28px;background:#fff;color:#000;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;}
+.comprar-btn{display:none;flex-shrink:0;padding:14px 28px;background:#fff;color:#000;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s ease;}
 .comprar-btn:hover{background:#eee;transform:translateY(-2px);}
 .comprar-btn:disabled{background:#333;color:#777;cursor:not-allowed;transform:none;}
+
 .post-content p{line-height:1.8;color:#ccc;font-size:15px;}
 #post-features{margin-top:15px;padding-left:24px;color:#ccc;line-height:2;}
 #post-features li{margin-bottom:8px;}
@@ -145,17 +149,19 @@ main{
       <span id="post-location"></span>
       <span id="post-year"></span>
     </div>
+    <div id="buy-box" class="buy-box">
+      <div id="precio-badge" class="precio-badge">
+        <span id="disponible-dot"></span>
+        <div>
+          <div class="precio-label">PRECIO</div>
+          <div class="precio-valor" id="precio-valor"></div>
+          <div class="stock-label" id="stock-label"></div>
+        </div>
+      </div>
+      <button id="comprar-btn" class="comprar-btn">Agregar al carrito</button>
+    </div>
     <p id="post-description"></p>
     <ul id="post-features"></ul>
-    <div id="precio-badge" style="display:none;" class="precio-badge">
-      <span id="disponible-dot"></span>
-      <div>
-        <div class="precio-label">PRECIO</div>
-        <div class="precio-valor" id="precio-valor"></div>
-        <div class="stock-label" id="stock-label"></div>
-      </div>
-    </div>
-    <button id="comprar-btn" class="comprar-btn">Agregar al carrito</button>
     <div class="tags" id="post-tags"></div>
   </div>
 </main>
@@ -243,10 +249,10 @@ async function loadPost() {
   }
 
   if (result.precio) {
-    const badge = document.getElementById('precio-badge');
+    const buyBox = document.getElementById('buy-box');
     const dot = document.getElementById('disponible-dot');
     const comprarBtn = document.getElementById('comprar-btn');
-    badge.style.display = 'inline-flex';
+    buyBox.style.display = 'flex';
     document.getElementById('precio-valor').textContent =
       '$ ' + result.precio.toLocaleString('es-CO') + ' COP';
 
@@ -258,7 +264,7 @@ async function loadPost() {
     dot.title = enStock ? 'Disponible' : 'No disponible';
 
     document.getElementById('stock-label').textContent = hasStock
-      ? (unidades > 0 ? `${unidades} unidad${unidades === 1 ? '' : 'es'} disponible${unidades === 1 ? '' : 's'}` : 'Agotado')
+      ? (unidades === 0 ? 'Agotado' : unidades === 1 ? 'Última unidad disponible' : `${unidades} unidades disponibles`)
       : (result.disponible ? 'Disponible' : 'No disponible por ahora');
 
     if (result.disponible && enStock) {
