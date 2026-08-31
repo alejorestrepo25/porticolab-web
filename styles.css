@@ -14,6 +14,13 @@ body {
   min-height: 100vh;
 }
 
+/* Transicion nativa entre paginas (crossfade), respeta prefers-reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 /* ===== HEADER ===== */
 
 header {
@@ -24,6 +31,14 @@ header {
   justify-content: space-between;
   padding: 0 40px;
   border-bottom: 1px solid #222;
+}
+
+/* Header fijo al hacer scroll (se suma a las propiedades de arriba) */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #000;
 }
 
 .logo {
@@ -303,6 +318,20 @@ main {
 .gallery-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+}
+
+/* Aparicion suave de cada tarjeta al entrar en pantalla (progresivo: sin fallback, es decorativo) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .gallery-item {
+      animation: gallery-item-reveal auto linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+    @keyframes gallery-item-reveal {
+      from { opacity: 0; translate: 0 24px; }
+    }
+  }
 }
 
 .gallery-item a {

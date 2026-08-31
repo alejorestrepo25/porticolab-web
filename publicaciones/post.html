@@ -16,6 +16,13 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#000;color:#fff;font-family:'Montserrat',sans-serif;min-height:100vh;}
 
+/* Transicion nativa entre paginas (crossfade), respeta prefers-reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 header{
   width:100%;
   min-height:65px;
@@ -24,6 +31,10 @@ header{
   justify-content:space-between;
   padding:0 40px;
   border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:#000;
 }
 .logo{font-size:30px;font-weight:700;letter-spacing:3px;color:#fff;text-decoration:none;position:relative;}
 .logo::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#fff;transition:0.3s;}
