@@ -10,12 +10,13 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="y2k.css">
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 </head>
 
-<body>
+<body class="y2k">
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
@@ -32,6 +33,29 @@
     <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
     <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
   </div>
+</div>
+
+<section class="y2k-hero" aria-label="Inicio">
+  <div class="y2k-hero__txt">
+    <span class="hud"><b>[ SYS.OK ]</b> Pórtico Lab // Medellín // 2026</span>
+    <h1>Fabricamos <em>lo imposible.</em></h1>
+    <p>Diseño, fabricación digital y objetos de concreto. Del archivo a la pieza, hechos en nuestro taller.</p>
+    <div class="y2k-hero__acciones">
+      <a class="btn-cromo" href="servicios.html">Ver servicios →</a>
+      <a class="btn-fantasma" href="#proyectos">Ver proyectos</a>
+    </div>
+  </div>
+  <div class="y2k-hero__vis" data-y2k-hero>
+    <img src="img/hero-lampara.jpg" alt="Lámpara curva de concreto diseñada por Pórtico Lab" width="900" height="900" fetchpriority="high">
+    <canvas aria-hidden="true"></canvas>
+    <span class="hud hud--tl">FIG. 01 // Lámpara curva</span>
+    <span class="hud hud--br">Microconcreto<br>// 2026</span>
+  </div>
+</section>
+
+<div class="y2k-seccion" id="proyectos">
+  <span class="hud">[ Archivo ]</span>
+  <h2>Proyectos</h2>
 </div>
 
 <main>
@@ -79,7 +103,7 @@
       return;
     }
 
-    proyectos.forEach(p => {
+    proyectos.forEach((p, i) => {
       const imgUrl = p.portada?.asset?._ref
         ? sanityImageUrl(p.portada.asset._ref, 800)
         : '';
@@ -97,6 +121,7 @@
             decoding="async"
             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'%3E%3Crect fill=\'%23222\' width=\'300\' height=\'250\'/%3E%3C/svg%3E'">
         </a>
+        <span class="hud">[ REF-${String(i + 1).padStart(3, '0')} ]</span>
         <h3>${p.title || 'Proyecto'}</h3>
         <div class="post-tags">
           ${(p.tags || []).map(t => `<span>#${t}</span>`).join("")}
@@ -108,6 +133,7 @@
   });
 </script>
 
+<script type="module" src="webgl-hero.js" fetchpriority="low"></script>
 <script src="mascota.js"></script>
 </body>
 </html>
