@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios - PORTICO LAB</title>
+  <meta name="description" content="Maquetas en impresión 3D, diseño arquitectónico y presupuestos de obra en Medellín. Cotiza en línea en un minuto.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="iconos/favicon.ico" type="image/ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; }
+    header { width: 100%; min-height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #222; }
+    .logo { font-size: 30px; font-weight: 700; letter-spacing: 3px; color: #fff; text-decoration: none; }
+    .logo, .nav a { position: relative; }
+    .nav { display: flex; gap: 30px; }
+    .nav a { text-decoration: none; color: #fff; font-size: 16px; letter-spacing: 1px; }
+    .logo::after, .nav a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: #fff; transition: width 0.3s ease; }
+    .logo:hover::after, .nav a:hover::after, .nav a.activo::after { width: 100%; }
+
+    .srv-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 40px 80px; }
+    .srv-intro h1 { font-size: 28px; letter-spacing: 3px; font-weight: 700; }
+    .srv-intro p { color: #aaa; font-size: 14px; line-height: 1.7; margin-top: 12px; max-width: 640px; }
+    .pasos { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .pasos span { font-size: 11px; letter-spacing: 2px; color: #777; }
+    .pasos b { color: #fff; font-weight: 600; margin-right: 6px; }
+
+    .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #222; border: 1px solid #222; margin-top: 40px; }
+    .srv-card { background: #000; padding: 26px 22px; cursor: pointer; text-align: left; color: #fff; border: 0; font-family: inherit; transition: background 0.2s ease; }
+    .srv-card:hover { background: #0d0d0d; }
+    .srv-card.sel { background: #fff; color: #000; }
+    .srv-card .num { font-size: 11px; letter-spacing: 2px; color: #666; }
+    .srv-card.sel .num { color: #555; }
+    .srv-card h2 { font-size: 15px; letter-spacing: 1.5px; font-weight: 600; margin-top: 14px; text-transform: uppercase; }
+    .srv-card p { font-size: 12px; line-height: 1.6; color: #888; margin-top: 8px; }
+    .srv-card.sel p { color: #333; }
+    .srv-card .desde { font-size: 11px; letter-spacing: 1px; margin-top: 14px; color: #bbb; }
+    .srv-card.sel .desde { color: #000; }
+
+    .cotizador { display: none; grid-template-columns: 1.2fr 1fr; gap: 40px; margin-top: 48px; }
+    .cotizador.visible { display: grid; }
+    .bloque-titulo { font-size: 11px; letter-spacing: 2px; color: #777; margin-bottom: 18px; }
+    .campo { margin-bottom: 18px; }
+    .campo label { display: block; font-size: 12px; letter-spacing: 1px; color: #ccc; margin-bottom: 8px; }
+    .campo .ayuda { font-size: 11px; color: #666; margin-top: 6px; line-height: 1.5; }
+    .campo input, .campo select, .campo textarea { width: 100%; background: #0b0b0b; color: #fff; border: 1px solid #333; padding: 12px 14px; font-family: inherit; font-size: 14px; border-radius: 0; }
+    .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: #fff; }
+    .campo textarea { min-height: 80px; resize: vertical; }
+    .fila-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .oferta { border: 1px solid #333; padding: 28px; position: sticky; top: 24px; align-self: start; }
+    .oferta .servicio-nombre { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+    .oferta .etiqueta-precio { font-size: 11px; letter-spacing: 2px; color: #777; margin-top: 18px; text-transform: uppercase; }
+    .oferta .precio { font-size: 30px; font-weight: 700; margin-top: 6px; letter-spacing: 1px; }
+    .oferta .precio small { font-size: 13px; font-weight: 500; color: #888; margin-left: 6px; }
+    .oferta .linea { display: flex; justify-content: space-between; font-size: 13px; padding: 10px 0; border-bottom: 1px solid #1c1c1c; color: #ccc; }
+    .oferta .linea b { color: #fff; font-weight: 600; }
+    .oferta .desglose { margin-top: 14px; font-size: 12px; color: #777; line-height: 1.7; }
+    .oferta .nota { font-size: 11px; color: #666; line-height: 1.6; margin-top: 16px; }
+    .btn { display: block; width: 100%; padding: 15px; margin-top: 14px; font-family: inherit; font-size: 13px; letter-spacing: 2px; font-weight: 600; cursor: pointer; border: 1px solid #fff; text-transform: uppercase; }
+    .btn-primario { background: #fff; color: #000; }
+    .btn-primario:hover { background: #ddd; }
+    .btn-secundario { background: transparent; color: #fff; }
+    .btn-secundario:hover { background: #111; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 11px; color: #999; line-height: 1.6; margin-top: 18px; }
+    .acepto input { margin-top: 3px; accent-color: #fff; }
+    .error { color: #ff6b6b; font-size: 12px; margin-top: 10px; min-height: 16px; }
+
+    .confirmacion { display: none; border: 1px solid #333; padding: 36px; margin-top: 48px; }
+    .confirmacion.visible { display: block; }
+    .confirmacion h2 { font-size: 18px; letter-spacing: 2px; }
+    .confirmacion p { color: #aaa; font-size: 14px; line-height: 1.8; margin-top: 14px; }
+    .confirmacion .ref { color: #fff; font-weight: 600; letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      .cotizador.visible { grid-template-columns: 1fr; }
+      .oferta { position: static; }
+    }
+    @media (max-width: 768px) {
+      header { height: auto; flex-direction: column; align-items: flex-start; padding: 12px 16px; gap: 8px; }
+      .logo { font-size: 20px; letter-spacing: 2px; }
+      .nav { gap: 16px; flex-wrap: wrap; }
+      .nav a { font-size: 11px; letter-spacing: 0.5px; }
+      .srv-wrap { padding: 32px 16px 60px; }
+      .srv-intro h1 { font-size: 22px; }
+      .srv-grid { grid-template-columns: 1fr; }
+      .fila-2 { grid-template-columns: 1fr; }
+      .oferta { padding: 22px; }
+      .oferta .precio { font-size: 24px; }
+    }
+  </style>
+  <!-- Metricool -->
+  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
+</head>
+
+<body>
+<header>
+  <a href="index.html" class="logo">PORTICO_LAB</a>
+  <nav class="nav">
+    <a href="laboratorio.html">LABORATORIO</a>
+    <a href="arquitectura.html">ARQUITECTURA</a>
+    <a href="servicios.html" class="activo">SERVICIOS</a>
+    <a href="inspiracion.html">INSPIRACIÓN</a>
+    <a href="nosotros.html">NOSOTROS</a>
+  </nav>
+</header>
+
+<div class="wip-banner" aria-hidden="true">
+  <div class="wip-track">
+    <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
+    <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<main class="srv-wrap">
+  <section class="srv-intro">
+    <h1>SERVICIOS</h1>
+    <p>Diseño, presupuestos y fabricación digital con criterio de arquitecto. Elige un servicio, responde unas preguntas y recibe tu cotización al instante.</p>
+    <div class="pasos">
+      <span><b>01</b>COTIZA</span>
+      <span><b>02</b>ACEPTA LA OFERTA Y EL PLAZO</span>
+      <span><b>03</b>PAGA EL ANTICIPO</span>
+      <span><b>04</b>ARRANCAMOS</span>
+    </div>
+  </section>
+
+  <section class="srv-grid" id="srv-grid" aria-label="Servicios"></section>
+
+  <section class="cotizador" id="cotizador">
+    <div>
+      <div class="bloque-titulo" id="form-titulo">DATOS DEL PROYECTO</div>
+      <form id="form-servicio" onsubmit="return false"></form>
+
+      <div class="bloque-titulo" style="margin-top:34px">TUS DATOS</div>
+      <form id="form-cliente" onsubmit="return false">
+        <div class="fila-2">
+          <div class="campo"><label for="cli-nombre">Nombre completo</label><input id="cli-nombre" type="text" autocomplete="name"></div>
+          <div class="campo"><label for="cli-telefono">Teléfono / WhatsApp</label><input id="cli-telefono" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="fila-2">
+          <div class="campo"><label for="cli-correo">Correo</label><input id="cli-correo" type="email" autocomplete="email"></div>
+          <div class="campo"><label for="cli-ciudad">Ciudad</label><input id="cli-ciudad" type="text" autocomplete="address-level2"></div>
+        </div>
+        <div class="campo"><label for="cli-notas">Cuéntanos del proyecto (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, referencias, lo que tengas en mente..."></textarea></div>
+      </form>
+    </div>
+
+    <aside class="oferta" id="oferta" aria-live="polite">
+      <div class="servicio-nombre" id="of-servicio"></div>
+      <div class="etiqueta-precio" id="of-etiqueta"></div>
+      <div class="precio" id="of-precio"></div>
+      <div class="linea"><span>Plazo estimado</span><b id="of-plazo"></b></div>
+      <div class="linea"><span id="of-anticipo-label">Anticipo para iniciar</span><b id="of-anticipo"></b></div>
+      <div class="linea" id="of-saldo-linea"><span>Saldo contra entrega</span><b id="of-saldo"></b></div>
+      <div class="desglose" id="of-desglose"></div>
+      <label class="acepto"><input type="checkbox" id="of-acepto"><span id="of-acepto-texto"></span></label>
+      <button class="btn btn-primario" id="btn-aceptar" type="button"></button>
+      <button class="btn btn-secundario" id="btn-dudas" type="button">Tengo dudas, hablemos</button>
+      <div class="error" id="of-error" role="alert"></div>
+      <div class="nota" id="of-nota"></div>
+    </aside>
+  </section>
+
+  <section class="confirmacion" id="confirmacion" aria-live="polite">
+    <h2 id="conf-titulo">PEDIDO RECIBIDO</h2>
+    <p>Tu referencia es <span class="ref" id="conf-ref"></span>.</p>
+    <p id="conf-texto"></p>
+    <button class="btn btn-secundario" type="button" style="max-width:320px" onclick="location.href='servicios.html'">Cotizar otro servicio</button>
+  </section>
+</main>
+
+<script>
+// =====================================================================
+//  CONFIGURACIÓN — todo lo que se ajusta está aquí.
+// =====================================================================
+const CONFIG = {
+  anticipoPct: 50,          // % de anticipo para iniciar
+  pagoEnLinea: false,       // true cuando Bold tenga llaves de PRODUCCIÓN (solo maquetas: precio cerrado)
+  expressRecargo: 0.40,     // +40% por entrega express
+  expressFactorPlazo: 0.60, // el plazo express es el 60% del normal
+  whatsapp: '573147924600',
+  sheetWebhook: 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec',
+  boldIdentityKey: 'oAlQrfvTZyqGX8CfHnobs-Md-T_IuWGiLwb8fhvm514' // llave de PRUEBAS
+};
+
+// TARIFAS (COP) — BORRADOR: reemplazar por las tarifas reales de Pórtico Lab.
+const T = {
+  maqueta: {
+    precioGramo: 300,        // venta por gramo de filamento (material + margen)
+    precioHora: 4000,        // venta por hora de impresora
+    gramosPorHora: 12,       // rendimiento promedio de la impresora
+    horasImpresoraDia: 10,   // horas de impresión por día de trabajo
+    gramosPorCm2: { volumetrica: 0.35, detallada: 0.55 },
+    terreno: 0.35,           // +35% de material si lleva terreno/topografía
+    armado: { s20: 60000, s30: 90000, s40: 140000, s60: 220000 },
+    diasArmado: { s20: 1, s30: 1, s40: 2, s60: 3 },
+    modelado: 250000,        // si el cliente no tiene modelo 3D
+    diasModelado: 3,
+    minimo: 180000
+  },
+  diseno: {
+    m2: { anteproyecto: 18000, licencia: 35000, licencia_renders: 42000 },
+    tipo: { vivienda: 1, comercial: 1.15, remodelacion: 1.1 },
+    minimo: 1200000,
+    rango: [0.85, 1.25]      // el rango mostrado va de -15% a +25%
+  },
+  presupuesto: {
+    parametricoBase: 250000, parametricoM2: 1200,
+    detalladoM2: 3500, detalladoMin: 900000,
+    tipo: { nueva: 1, remodelacion: 1.2 },
+    sinPlanos: 0.35,
+    rango: [0.85, 1.25]
+  }
+};
+
+const URGENCIA = { id: 'urgencia', label: 'Entrega', type: 'select', options: [['normal', 'Normal'], ['express', 'Express (+40%, menos tiempo)']] };
+
+const SERVICIOS = [
+  {
+    id: 'maquetas', nombre: 'Maquetas en impresión 3D', modo: 'cerrado',
+    desc: 'Maquetas volumétricas o de detalle impresas en 3D, con terreno y base, para presentar, vender o concursar.',
+    campos: [
+      { id: 'base', label: 'Tamaño de la base', type: 'select', options: [['s20', '20 x 20 cm'], ['s30', '30 x 30 cm'], ['s40', '40 x 40 cm'], ['s60', '60 x 40 cm']] },
+      { id: 'nivel', label: 'Nivel de detalle', type: 'select', options: [['volumetrica', 'Volumétrica (masas y cubiertas)'], ['detallada', 'Detallada (vanos, balcones, texturas)']] },
+      { id: 'terreno', label: 'Terreno', type: 'select', options: [['no', 'Base plana'], ['si', 'Con terreno / topografía']] },
+      { id: 'modelo', label: '¿Tienes modelo 3D (Revit, SketchUp, Rhino, STL)?', type: 'select', options: [['si', 'Sí, lo envío'], ['no', 'No, solo planos o imágenes']], ayuda: 'Si no hay modelo, lo construimos a partir de tus planos.' },
+      URGENCIA
+    ],
+    calcular(v) {
+      const m = T.maqueta;
+      const cm2 = { s20: 400, s30: 900, s40: 1600, s60: 2400 }[v.base];
+      const gramos = cm2 * m.gramosPorCm2[v.nivel] * (v.terreno === 'si' ? 1 + m.terreno : 1);
+      const horas = gramos / m.gramosPorHora;
+      let precio = gramos * m.precioGramo + horas * m.precioHora + m.armado[v.base];
+      if (v.modelo === 'no') precio += m.modelado;
+      precio = Math.max(m.minimo, precio);
+      const dias = Math.ceil(horas / m.horasImpresoraDia) + m.diasArmado[v.base] + (v.modelo === 'no' ? m.diasModelado : 0);
+      return { precio, dias, detalle: `${txt(this, 'base', v.base)} · ${txt(this, 'nivel', v.nivel)}${v.terreno === 'si' ? ' · con terreno' : ''}${v.modelo === 'no' ? ' · incluye modelado 3D' : ''} · ~${Math.round(horas)} h de impresión` };
+    }
+  },
+  {
+    id: 'diseno', nombre: 'Diseño arquitectónico', modo: 'rango',
+    desc: 'Anteproyecto, proyecto para licencia y renders para vivienda, comercio o remodelación.',
+    campos: [
+      { id: 'tipo', label: 'Tipo de proyecto', type: 'select', options: [['vivienda', 'Vivienda'], ['comercial', 'Comercial / oficinas'], ['remodelacion', 'Remodelación']] },
+      { id: 'area', label: 'Área aproximada (m²)', type: 'number', min: 20, max: 5000, value: 80, ayuda: 'Área construida total del proyecto.' },
+      { id: 'alcance', label: 'Alcance', type: 'select', options: [['anteproyecto', 'Anteproyecto (plantas, fachadas, concepto)'], ['licencia', 'Proyecto arquitectónico para licencia'], ['licencia_renders', 'Proyecto para licencia + renders']] },
+      URGENCIA
+    ],
+    calcular(v) {
+      const d = T.diseno;
+      const precio = Math.max(d.minimo, v.area * d.m2[v.alcance] * d.tipo[v.tipo]);
+      const dias = v.alcance === 'anteproyecto' ? 7 + v.area / 40 : 15 + v.area / 25 + (v.alcance === 'licencia_renders' ? 3 : 0);
+      return { precio, dias, rango: d.rango, detalle: `${fmtNum(v.area)} m² · ${txt(this, 'alcance', v.alcance)} · ${txt(this, 'tipo', v.tipo)}` };
+    }
+  },
+  {
+    id: 'presupuesto', nombre: 'Presupuesto de obra', modo: 'rango',
+    desc: 'Estimado rápido por m² para decidir, o presupuesto detallado con cantidades y APU para contratar.',
+    campos: [
+      { id: 'tipo', label: 'Tipo de obra', type: 'select', options: [['nueva', 'Obra nueva'], ['remodelacion', 'Remodelación / adecuación']] },
+      { id: 'area', label: 'Área a intervenir (m²)', type: 'number', min: 10, max: 20000, value: 100 },
+      { id: 'nivel', label: 'Nivel de detalle', type: 'select', options: [['parametrico', 'Estimado rápido por m² (para decidir)'], ['detallado', 'Detallado con cantidades y APU (para contratar)']] },
+      { id: 'planos', label: '¿Tienes planos?', type: 'select', options: [['si', 'Sí, tengo planos'], ['no', 'No, hay que tomar medidas']] },
+      URGENCIA
+    ],
+    calcular(v) {
+      const p = T.presupuesto;
+      let precio = v.nivel === 'parametrico'
+        ? p.parametricoBase + v.area * p.parametricoM2
+        : Math.max(p.detalladoMin, v.area * p.detalladoM2);
+      precio *= p.tipo[v.tipo];
+      if (v.planos === 'no') precio *= (1 + p.sinPlanos);
+      const dias = (v.nivel === 'parametrico' ? 2 + v.area / 200 : 5 + v.area / 60) + (v.planos === 'no' ? 2 : 0);
+      return { precio, dias, rango: p.rango, detalle: `${fmtNum(v.area)} m² · ${txt(this, 'nivel', v.nivel)}${v.planos === 'no' ? ' · incluye toma de medidas' : ''}` };
+    }
+  }
+];
+
+// =====================================================================
+//  LÓGICA
+// =====================================================================
+let servicioActual = null;
+let cotizacionActual = null;
+
+const fmtCOP = n => '$ ' + Math.round(n).toLocaleString('es-CO');
+const fmtNum = n => Number(n).toLocaleString('es-CO');
+const redondear = (n, paso) => Math.ceil(n / paso) * paso;
+function txt(servicio, campoId, valor) {
+  const c = servicio.campos.find(x => x.id === campoId);
+  const o = c && c.options.find(x => x[0] === valor);
+  return o ? o[1] : valor;
+}
+function desdePrecio(s) {
+  const v = {};
+  s.campos.forEach(c => { v[c.id] = c.type === 'number' ? c.min : c.options[0][0]; });
+  const r = s.calcular(v);
+  return r.rango ? r.precio * r.rango[0] : r.precio;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('srv-grid');
+  SERVICIOS.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'srv-card';
+    b.dataset.id = s.id;
+    b.innerHTML = `<div class="num">0${i + 1}</div><h2>${s.nombre}</h2><p>${s.desc}</p><div class="desde">Desde ${fmtCOP(redondear(desdePrecio(s), 10000))}</div>`;
+    b.addEventListener('click', () => seleccionar(s.id));
+    grid.appendChild(b);
+  });
+}
+
+function seleccionar(id) {
+  servicioActual = SERVICIOS.find(s => s.id === id);
+  document.querySelectorAll('.srv-card').forEach(c => c.classList.toggle('sel', c.dataset.id === id));
+  const form = document.getElementById('form-servicio');
+  form.innerHTML = '';
+  servicioActual.campos.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'campo';
+    const inputId = `f-${c.id}`;
+    const control = c.type === 'select'
+      ? `<select id="${inputId}">${c.options.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select>`
+      : `<input id="${inputId}" type="number" inputmode="numeric" min="${c.min}" max="${c.max}" value="${c.value}">`;
+    div.innerHTML = `<label for="${inputId}">${c.label}</label>${control}${c.ayuda ? `<div class="ayuda">${c.ayuda}</div>` : ''}`;
+    form.appendChild(div);
+  });
+  form.querySelectorAll('input,select').forEach(el => el.addEventListener('input', cotizar));
+  document.getElementById('form-titulo').textContent = 'DATOS DEL PROYECTO — ' + servicioActual.nombre.toUpperCase();
+  document.getElementById('cotizador').classList.add('visible');
+  document.getElementById('of-acepto').checked = false;
+  document.getElementById('of-error').textContent = '';
+  cotizar();
+  document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function leerValores() {
+  const v = {};
+  servicioActual.campos.forEach(c => {
+    const el = document.getElementById(`f-${c.id}`);
+    if (c.type === 'number') {
+      let n = parseFloat(el.value);
+      if (!isFinite(n)) n = c.min;
+      v[c.id] = Math.min(c.max, Math.max(c.min, n));
+    } else {
+      v[c.id] = el.value;
+    }
+  });
+  return v;
+}
+
+function cotizar() {
+  const v = leerValores();
+  const r = servicioActual.calcular(v);
+  const express = v.urgencia === 'express';
+  let precio = r.precio * (express ? 1 + CONFIG.expressRecargo : 1);
+  let dias = Math.max(1, Math.ceil(r.dias * (express ? CONFIG.expressFactorPlazo : 1)));
+  const cerrado = servicioActual.modo === 'cerrado';
+  const detalle = r.detalle + (express ? ' · entrega express' : '');
+
+  if (cerrado) {
+    precio = redondear(precio, 10000);
+    const anticipo = redondear(precio * CONFIG.anticipoPct / 100, 1000);
+    cotizacionActual = { servicio: servicioActual.nombre, cerrado, precio, dias, anticipo, saldo: precio - anticipo, detalle };
+    document.getElementById('of-etiqueta').textContent = 'Valor total';
+    document.getElementById('of-precio').innerHTML = `${fmtCOP(precio)}<small>COP</small>`;
+    document.getElementById('of-anticipo-label').textContent = 'Anticipo para iniciar';
+    document.getElementById('of-anticipo').textContent = `${fmtCOP(anticipo)} (${CONFIG.anticipoPct}%)`;
+    document.getElementById('of-saldo-linea').style.display = '';
+    document.getElementById('of-saldo').textContent = fmtCOP(precio - anticipo);
+    document.getElementById('of-acepto-texto').textContent = 'Acepto la oferta y el plazo. Si al revisar el modelo o los planos el alcance cambia, la ajustamos antes de cobrar el saldo.';
+    document.getElementById('btn-aceptar').textContent = CONFIG.pagoEnLinea ? `Aceptar y pagar anticipo ${fmtCOP(anticipo)}` : 'Aceptar oferta';
+    document.getElementById('of-nota').textContent = 'Precios en pesos colombianos. El plazo cuenta desde que recibimos el anticipo y el modelo o los planos.';
+  } else {
+    const min = redondear(precio * r.rango[0], 50000);
+    const max = redondear(precio * r.rango[1], 50000);
+    cotizacionActual = { servicio: servicioActual.nombre, cerrado, min, max, dias, detalle };
+    document.getElementById('of-etiqueta').textContent = 'Rango estimado';
+    document.getElementById('of-precio').innerHTML = `${fmtCOP(min)} – ${fmtCOP(max)}<small>COP</small>`;
+    document.getElementById('of-anticipo-label').textContent = 'Anticipo';
+    document.getElementById('of-anticipo').textContent = `${CONFIG.anticipoPct}% al confirmar`;
+    document.getElementById('of-saldo-linea').style.display = 'none';
+    document.getElementById('of-acepto-texto').textContent = 'Entiendo que es un rango preliminar. En menos de 24 horas revisamos mi proyecto y me envían la oferta final con plazo; el trabajo inicia al aceptarla y pagar el anticipo.';
+    document.getElementById('btn-aceptar').textContent = 'Solicitar oferta final';
+    document.getElementById('of-nota').textContent = 'Precios en pesos colombianos. El valor final depende de los planos, el lote y el alcance definitivo.';
+  }
+  document.getElementById('of-servicio').textContent = servicioActual.nombre;
+  document.getElementById('of-plazo').textContent = `${dias} día${dias === 1 ? '' : 's'} hábil${dias === 1 ? '' : 'es'}`;
+  document.getElementById('of-desglose').textContent = detalle;
+}
+
+function datosCliente() {
+  const val = id => document.getElementById(id).value.trim();
+  return { nombre: val('cli-nombre'), telefono: val('cli-telefono'), correo: val('cli-correo'), ciudad: val('cli-ciudad'), notas: val('cli-notas') };
+}
+
+function validar(c) {
+  if (!c.nombre || !c.telefono || !c.correo || !c.ciudad) return 'Completa tus datos para enviar el pedido.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.correo)) return 'Revisa el correo.';
+  if (c.telefono.replace(/\D/g, '').length < 7) return 'Revisa el teléfono.';
+  return '';
+}
+
+function valorTexto(q) { return q.cerrado ? fmtCOP(q.precio) : `${fmtCOP(q.min)} – ${fmtCOP(q.max)}`; }
+
+function armarPedido(c, estado) {
+  const q = cotizacionActual;
+  return {
+    referencia: `PL-SRV-${Date.now()}`,
+    producto: `SERVICIO ${q.servicio}: ${q.detalle} | Valor ${valorTexto(q)} | Plazo ${q.dias} días hábiles${q.cerrado ? ' | Anticipo ' + fmtCOP(q.anticipo) : ''} | Correo ${c.correo}${c.notas ? ' | Notas: ' + c.notas : ''}`,
+    precio: q.cerrado ? q.precio : q.max,
+    nombre: c.nombre,
+    telefono: c.telefono,
+    direccion: c.correo,
+    ciudad: c.ciudad,
+    estadoPago: estado
+  };
+}
+
+function registrarPedido(data) {
+  if (!CONFIG.sheetWebhook.startsWith('http')) return;
+  fetch(CONFIG.sheetWebhook, { method: 'POST', body: JSON.stringify(data) }).catch(() => {});
+}
+
+function mensajeWhatsApp(c, ref, intro) {
+  const q = cotizacionActual;
+  return `${intro}\n` +
+    `Servicio: ${q.servicio}\n` +
+    `Detalle: ${q.detalle}\n` +
+    `Valor: ${valorTexto(q)} COP\n` +
+    `Plazo: ${q.dias} días hábiles\n` +
+    (q.cerrado ? `Anticipo (${CONFIG.anticipoPct}%): ${fmtCOP(q.anticipo)}\n` : '') +
+    (ref ? `Referencia: ${ref}\n` : '') +
+    (c.nombre ? `\n${c.nombre} - ${c.telefono}\n${c.correo} - ${c.ciudad}` : '') +
+    (c.notas ? `\nNotas: ${c.notas}` : '');
+}
+
+function abrirWhatsApp(texto) {
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`, '_blank');
+}
+
+function mostrarConfirmacion(titulo, ref, texto) {
+  document.getElementById('cotizador').classList.remove('visible');
+  document.getElementById('srv-grid').style.display = 'none';
+  document.getElementById('conf-titulo').textContent = titulo;
+  document.getElementById('conf-ref').textContent = ref;
+  document.getElementById('conf-texto').textContent = texto;
+  document.getElementById('confirmacion').classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function aceptarOferta() {
+  const err = document.getElementById('of-error');
+  err.textContent = '';
+  const c = datosCliente();
+  const problema = validar(c);
+  if (problema) { err.textContent = problema; return; }
+  if (!document.getElementById('of-acepto').checked) { err.textContent = 'Marca la casilla para continuar.'; return; }
+  const q = cotizacionActual;
+
+  if (!q.cerrado) {
+    const pedido = armarPedido(c, 'Solicitud de oferta final');
+    registrarPedido(pedido);
+    abrirWhatsApp(mensajeWhatsApp(c, pedido.referencia, 'Hola, quiero la oferta final de Pórtico Lab para:'));
+    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia,
+      'En menos de 24 horas revisamos tu proyecto y te enviamos la oferta final con el plazo. Si la aceptas, pagas el anticipo y arrancamos.');
+    return;
+  }
+
+  const pedido = armarPedido(c, CONFIG.pagoEnLinea ? 'Oferta aceptada - anticipo en proceso' : 'Oferta aceptada - enviar link de anticipo');
+  registrarPedido(pedido);
+  if (CONFIG.pagoEnLinea) { await pagarAnticipoBold(pedido); return; }
+  abrirWhatsApp(mensajeWhatsApp(c, pedido.referencia, 'Hola, acepto esta oferta de Pórtico Lab:'));
+  mostrarConfirmacion('PEDIDO RECIBIDO', pedido.referencia,
+    `Te enviamos el link para pagar el anticipo de ${fmtCOP(q.anticipo)}. Apenas se acredite y tengamos tu modelo o planos, arrancamos: el plazo de ${q.dias} días hábiles empieza a correr.`);
+}
+
+function tengoDudas() {
+  const c = datosCliente();
+  if (c.nombre && c.telefono) registrarPedido(armarPedido(c, 'Cotización - quiere hablar'));
+  abrirWhatsApp(mensajeWhatsApp(c, null, 'Hola, coticé este servicio en porticolab.com y tengo algunas dudas:'));
+}
+
+// ---- Pago del anticipo con Bold (solo si CONFIG.pagoEnLinea = true) ----
+function cargarBold() {
+  if (document.querySelector('script[src="https://checkout.bold.co/library/boldPaymentButton.js"]')) return;
+  const js = document.createElement('script');
+  js.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
+  document.head.appendChild(js);
+}
+
+async function pagarAnticipoBold(pedido) {
+  const err = document.getElementById('of-error');
+  if (typeof BoldCheckout === 'undefined') { err.textContent = 'No se pudo cargar el pago. Intenta de nuevo o escríbenos por WhatsApp.'; return; }
+  const amount = String(Math.round(cotizacionActual.anticipo));
+  let hash = null;
+  try {
+    const res = await fetch(`${CONFIG.sheetWebhook}?action=bold-hash&orderId=${encodeURIComponent(pedido.referencia)}&amount=${amount}&currency=COP`);
+    hash = (await res.json()).hash;
+  } catch (e) { hash = null; }
+  if (!hash) { err.textContent = 'No se pudo preparar el pago. Intenta de nuevo o escríbenos por WhatsApp.'; return; }
+  try { sessionStorage.setItem('porticolab_servicio_pendiente', JSON.stringify(pedido)); } catch (e) {}
+  new BoldCheckout({
+    orderId: pedido.referencia, currency: 'COP', amount,
+    apiKey: CONFIG.boldIdentityKey, integritySignature: hash,
+    description: `Anticipo ${cotizacionActual.servicio}`.slice(0, 100),
+    redirectionUrl: window.location.href.split('?')[0]
+  }).open();
+}
+
+function revisarRegresoDePago() {
+  let raw = null;
+  try { raw = sessionStorage.getItem('porticolab_servicio_pendiente'); sessionStorage.removeItem('porticolab_servicio_pendiente'); } catch (e) {}
+  if (!raw) return;
+  let pedido;
+  try { pedido = JSON.parse(raw); } catch (e) { return; }
+  const estado = new URLSearchParams(location.search).get('bold-tx-status');
+  registrarPedido(Object.assign({}, pedido, { estadoPago: estado ? `Anticipo Bold: ${estado}` : 'Anticipo - verificar en Bold' }));
+  const ok = estado && /aprob|approv/i.test(estado);
+  mostrarConfirmacion(ok ? 'ANTICIPO RECIBIDO' : 'PEDIDO EN PROCESO', pedido.referencia, ok
+    ? 'Ya estamos trabajando en tu proyecto. Te escribimos hoy mismo para coordinar los detalles.'
+    : 'Volviste del proceso de pago. Si quedó aprobado, te escribimos para arrancar; si no, puedes intentarlo de nuevo o escribirnos por WhatsApp.');
+}
+
+document.getElementById('btn-aceptar').addEventListener('click', aceptarOferta);
+document.getElementById('btn-dudas').addEventListener('click', tengoDudas);
+if (CONFIG.pagoEnLinea) cargarBold();
+renderGrid();
+revisarRegresoDePago();
+const pre = new URLSearchParams(location.search).get('servicio');
+if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
+</script>
+
+<script src="mascota.js"></script>
+</body>
+</html>
