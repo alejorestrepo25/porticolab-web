@@ -1,105 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arquitectura - PORTICO LAB</title>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="iconos/favicon.ico" type="image/ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; }
-    header { width: 100%; min-height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #222; }
-    .logo { font-size: 30px; font-weight: 700; letter-spacing: 3px; color: #fff; text-decoration: none; }
-    .logo, .nav a { position: relative; }
-    .nav { display: flex; gap: 30px; }
-    .nav a { text-decoration: none; color: #fff; font-size: 16px; letter-spacing: 1px; }
-    .logo::after, .nav a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: #fff; transition: width 0.3s ease; }
-    .logo:hover::after, .nav a:hover::after { width: 100%; }
-    @media (max-width: 768px) {
-      header { height: auto; flex-direction: column; align-items: flex-start; padding: 12px 16px; gap: 8px; }
-      .logo { font-size: 20px; letter-spacing: 2px; }
-      .nav { gap: 16px; }
-      .nav a { font-size: 11px; letter-spacing: 0.5px; }
-    }
-  </style>
-  <!-- Metricool -->
-  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTICO LAB</title>
+<meta http-equiv="refresh" content="0; url=laboratorio.html">
+<link rel="canonical" href="https://porticolab.com/laboratorio.html">
+<script>location.replace('laboratorio.html');</script>
 </head>
-
-<body>
-<header>
-  <a href="index.html" class="logo">PORTICO_LAB</a>
-  <nav class="nav">
-    <a href="laboratorio.html">LABORATORIO</a>
-    <a href="arquitectura.html">ARQUITECTURA</a>
-    <a href="servicios.html">SERVICIOS</a>
-    <a href="inspiracion.html">INSPIRACIÓN</a>
-    <a href="nosotros.html">NOSOTROS</a>
-  </nav>
-</header>
-
-<div class="wip-banner" aria-hidden="true">
-  <div class="wip-track">
-    <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
-    <span>🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp; 🚧 &nbsp; Sitio en desarrollo &nbsp;&nbsp;&nbsp;</span>
-  </div>
-</div>
-
-<main>
-  <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
-  <section class="gallery"></section>
-</main>
-
-<script>
-  const SANITY_PROJECT_ID = '32sykluw';
-  const SANITY_DATASET = 'production';
-  const SANITY_API_VERSION = '2024-01-01';
-
-  function sanityImageUrl(ref, width = 800) {
-    const parts = ref.split('-');
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${parts[1]}-${parts[2]}.${parts[3]}?w=${width}&auto=format`;
-  }
-
-  function shuffle(array) {
-    let i = array.length;
-    while (i > 0) { const j = Math.floor(Math.random() * i--); [array[i], array[j]] = [array[j], array[i]]; }
-  }
-
-  document.addEventListener('DOMContentLoaded', async () => {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-
-    const query = encodeURIComponent(`*[_type == "proyecto" && "arquitectura" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
-    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
-    const res = await fetch(url);
-    const { result = [] } = await res.json();
-
-    document.getElementById('gallery-loading').style.display = 'none';
-    shuffle(result);
-
-    result.forEach(p => {
-      const imgUrl = p.portada?.asset?._ref ? sanityImageUrl(p.portada.asset._ref, 800) : '';
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.dataset.tags = (p.tags || []).join(',');
-      item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}">
-          <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
-        </a>
-        <h3>${p.title || 'Proyecto'}</h3>
-        <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
-      `;
-      gallery.appendChild(item);
-    });
-  });
-</script>
-
-<script src="mascota.js"></script>
-</body>
+<body style="background:#000;color:#fff;font-family:sans-serif;padding:24px"><a href="laboratorio.html" style="color:#fff">Ir a Laboratorio</a></body>
 </html>
