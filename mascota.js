@@ -42,6 +42,20 @@
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
     .mascota-sprite .viga, .mascota-sprite .col-i, .mascota-sprite .col-d { transform-box: fill-box; }
 
+    /* Materiales: concreto, madera y acero (misma forma, otra piel) */
+    .mascota-sprite { --c: #cfcfd7; --l: #f0f0f5; --m: #8f8f9a; --g: #8f8f9a; }
+    .mascota-sprite.mat-madera { --c: #c08a55; --l: #e2b57f; --m: #7a4f2c; --g: #8a5a30; }
+    .mascota-sprite.mat-acero { --c: #9fb0c0; --l: #e3ecf4; --m: #55646f; --g: #3f4c57; }
+    .mascota-sprite .c { fill: var(--c); }
+    .mascota-sprite .l { fill: var(--l); }
+    .mascota-sprite .m { fill: var(--m); }
+    .mascota-sprite .g { fill: var(--g); }
+    .mascota-sprite .v { fill: #0b0b0b; }
+    .mascota-sprite .tx { display: none; }
+    .mascota-sprite .tx-concreto { display: inline; }
+    .mascota-sprite.mat-madera .tx-concreto, .mascota-sprite.mat-acero .tx-concreto { display: none; }
+    .mascota-sprite.mat-madera .tx-madera, .mascota-sprite.mat-acero .tx-acero { display: inline; }
+
     #mascota-modal .mascota-sprite { width: 56px; height: 63px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
@@ -62,6 +76,11 @@
       @keyframes mascota-escaneo {
         0% { transform: translateX(-1px); } 20% { transform: translateX(1px); } 40% { transform: translateX(-1px); }
         60% { transform: translateX(1px); } 80% { transform: translateX(0); }
+      }
+
+      #mascota-wrapper .cambia .todo { animation: mascota-cambia 0.7s steps(1) 1; }
+      @keyframes mascota-cambia {
+        0% { opacity: 1; } 15% { opacity: 0.15; } 30% { opacity: 1; } 45% { opacity: 0.15; } 60% { opacity: 1; } 75% { opacity: 0.4; } 90% { opacity: 1; }
       }
 
       #mascota-wrapper .salta .todo { animation: mascota-salto 0.72s steps(1) 1; }
@@ -184,20 +203,34 @@
 
   /* ── Personaje: un pórtico hecho de monolitos articulados (guiño a TARS) ──
      Viga con dos ojos alargados (como los de Claude) sobre dos columnas de dos bloques cada una.
+     La piel cambia entre concreto, madera y acero: la forma no depende del material.
      Cuadrícula de 16 x 18 unidades; cada rect es un bloque de píxeles. */
-  const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
+  const R = (x, y, w, h, k) => '<rect class="' + k + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"/>';
+  const MATERIALES = ['concreto', 'madera', 'acero'];
   function sprite(id) {
-    const C = '#cfcfd7', L = '#f0f0f5', M = '#8f8f9a', V = '#0b0b0b';
-    const losa = (x, y, w, h) => R(x, y, w, h, C) + R(x, y, 1, h, L) + R(x + w - 1, y, 1, h, M);
-    const columna = (x) => losa(x, 8, 3, 4) + losa(x, 13, 3, 4);
+    const losa = (x, y, w, h) => R(x, y, w, h, 'c') + R(x, y, 1, h, 'l') + R(x + w - 1, y, 1, h, 'm');
+    const columna = (x, tx) => losa(x, 8, 3, 4) + losa(x, 13, 3, 4) + tx;
+    // texturas por material (solo se ve la del material activo)
+    const txIzq = '<g class="tx tx-concreto">' + R(3, 10, 1, 1, 'g') + R(3, 15, 1, 1, 'g') + '</g>' +
+      '<g class="tx tx-madera">' + R(3, 9, 1, 2, 'g') + R(3, 14, 1, 2, 'g') + '</g>' +
+      '<g class="tx tx-acero">' + R(3, 9, 1, 1, 'g') + R(3, 15, 1, 1, 'g') + '</g>';
+    const txDer = '<g class="tx tx-concreto">' + R(12, 9, 1, 1, 'g') + R(12, 14, 1, 1, 'g') + '</g>' +
+      '<g class="tx tx-madera">' + R(12, 10, 1, 2, 'g') + R(12, 13, 1, 2, 'g') + '</g>' +
+      '<g class="tx tx-acero">' + R(12, 9, 1, 1, 'g') + R(12, 15, 1, 1, 'g') + '</g>';
+    const txViga = '<g class="tx tx-concreto">' + R(2, 6, 1, 1, 'g') + R(7, 3, 1, 1, 'g') + R(8, 5, 1, 1, 'g') + R(13, 2, 1, 1, 'g') + '</g>' +
+      '<g class="tx tx-madera">' + R(1, 3, 2, 1, 'g') + R(6, 2, 4, 1, 'g') + R(7, 5, 3, 1, 'g') + R(13, 4, 2, 1, 'g') + R(1, 6, 3, 1, 'g') + '</g>' +
+      '<g class="tx tx-acero">' + R(1, 2, 1, 1, 'g') + R(14, 2, 1, 1, 'g') + R(1, 6, 1, 1, 'g') + R(14, 6, 1, 1, 'g') + '</g>';
     return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
       '<g class="todo">' +
-        R(1, 17, 14, 1, 'rgba(0,0,0,0.5)') +
-        '<g class="col-i">' + columna(2) + '</g>' +
-        '<g class="col-d">' + columna(11) + '</g>' +
-        '<g class="viga">' + losa(0, 1, 16, 7) + R(0, 1, 16, 1, L) + R(0, 7, 16, 1, M) +
-          '<g class="ojos">' + R(4, 3, 2, 3, V) + R(10, 3, 2, 3, V) + '</g></g>' +
+        '<rect x="1" y="17" width="14" height="1" fill="rgba(0,0,0,0.5)"/>' +
+        '<g class="col-i">' + columna(2, txIzq) + '</g>' +
+        '<g class="col-d">' + columna(11, txDer) + '</g>' +
+        '<g class="viga">' + losa(0, 1, 16, 7) + R(0, 1, 16, 1, 'l') + R(0, 7, 16, 1, 'm') + txViga +
+          '<g class="ojos">' + R(4, 3, 2, 3, 'v') + R(10, 3, 2, 3, 'v') + '</g></g>' +
       '</g></svg>';
+  }
+  function material(svgEl, nombre) {
+    MATERIALES.forEach((m) => svgEl.classList.toggle('mat-' + m, m === nombre));
   }
 
   const wrapper = document.createElement('div');
@@ -233,6 +266,14 @@
 
   document.body.appendChild(wrapper);
   document.body.appendChild(overlay);
+
+  // cada visita llega con un material distinto
+  let actual = MATERIALES[Math.floor(Math.random() * MATERIALES.length)];
+  const aplicarMaterial = () => {
+    material(document.getElementById('mascota-svg'), actual);
+    material(document.getElementById('mascota-modal-sprite'), actual);
+  };
+  aplicarMaterial();
 
   const abrir = () => overlay.classList.add('open');
   wrapper.addEventListener('click', abrir);
@@ -274,6 +315,15 @@
     }
     setTimeout(accion, 2800 + Math.random() * 3600);
   }
+  // cada tanto cambia de piel: concreto, madera, acero
+  function transformar() {
+    if (!document.hidden && !overlay.classList.contains('open') && !ocupada.has('cambia')) {
+      animar('cambia', 700);
+      setTimeout(() => { actual = MATERIALES[(MATERIALES.indexOf(actual) + 1) % MATERIALES.length]; aplicarMaterial(); }, 300);
+    }
+    setTimeout(transformar, 14000 + Math.random() * 8000);
+  }
+  setTimeout(transformar, 11000);
   setTimeout(caminar, 1800);                       // al llegar, da unos pasos
   setTimeout(accion, 6000);
   wrapper.addEventListener('mouseenter', saltar);
