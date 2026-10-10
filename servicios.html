@@ -281,7 +281,8 @@
             <div class="campo"><label for="cli-correo">Correo</label><input id="cli-correo" type="email" autocomplete="email"></div>
             <div class="campo"><label for="cli-ciudad">Ciudad</label><input id="cli-ciudad" type="text" autocomplete="address-level2"></div>
           </div>
-          <div class="campo"><label for="cli-notas">Cuéntanos del proyecto (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, referencias, lo que tengas en mente..."></textarea></div>
+          <input type="text" id="cli-web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="campo"><label for="cli-notas">Cuéntanos del proyecto (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, referencias, lo que tengas en mente..."></textarea></div>
         </form>
       </div>
     </div>
@@ -308,6 +309,7 @@
     <h2 id="conf-titulo">PEDIDO RECIBIDO</h2>
     <p>Tu referencia es <span class="ref" id="conf-ref"></span>.</p>
     <p id="conf-texto"></p>
+    <a class="btn btn-primario" id="conf-wa" href="#" target="_blank" rel="noopener" hidden style="margin-right:10px">Escribir por WhatsApp</a>
     <a class="btn btn-secundario" href="servicios.html">Cotizar otro servicio</a>
   </section>
 
@@ -330,7 +332,6 @@
       <details><summary>¿Cómo se paga?</summary><p>Un anticipo del 50% para iniciar y el saldo contra entrega. Por ahora te enviamos el link de pago del anticipo por WhatsApp.</p></details>
       <details><summary>¿Qué necesito para empezar?</summary><p>Para imprimir, tu archivo OBJ o STL y, si quieres, imágenes de referencia; si no tienes archivo, lo diseñamos a partir de tu descripción. Para diseño, el área y lo que tengas en mente del lote. Para un presupuesto, los planos; si no existen, tomamos medidas.</p></details>
       <details><summary>¿Cuándo empieza a contar el plazo?</summary><p>Desde que recibimos el anticipo y el modelo o los planos.</p></details>
-      <details><summary>¿Puedo pedirlo más rápido?</summary><p>Sí. La entrega express cuesta un 40% más y reduce el plazo al 60% del normal.</p></details>
       <details><summary>Mi proyecto no encaja en las opciones</summary><p>Escríbenos por WhatsApp y lo cotizamos a medida.</p></details>
     </div>
   </section>
@@ -354,9 +355,9 @@
 const CONFIG = {
   anticipoPct: 50,          // % de anticipo para iniciar
   pagoEnLinea: false,       // true cuando Bold tenga llaves de PRODUCCIÓN (solo impresión 3D con archivo: precio cerrado)
-  expressRecargo: 0.40,     // +40% por entrega express
-  expressFactorPlazo: 0.60, // el plazo express es el 60% del normal
   whatsapp: '573147924600',
+  // URL del Apps Script "Cotizaciones" que envía el correo con los archivos adjuntos (vacía = solo Sheet + WhatsApp)
+  cotizacionesUrl: '',
   sheetWebhook: 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec',
   boldIdentityKey: 'oAlQrfvTZyqGX8CfHnobs-Md-T_IuWGiLwb8fhvm514' // llave de PRUEBAS
 };
@@ -396,8 +397,6 @@ const T = {
 };
 
 // Opciones: [valor, etiqueta, pista opcional]
-const URGENCIA = { id: 'urgencia', label: '¿Qué tan pronto lo necesitas?', type: 'select', options: [['normal', 'Plazo normal'], ['express', 'Express', '+40% y menos tiempo']] };
-
 const TIPO_PIEZA = { id: 'tipo', label: '¿Qué vas a imprimir?', type: 'select', options: [['arquitectonica', 'Pieza arquitectónica', 'Fachada, detalle o elemento'], ['mobiliario', 'Mobiliario / objeto', 'Piezas de diseño'], ['maqueta', 'Maqueta pequeña'], ['molde', 'Molde', 'Para vaciar concreto, yeso…']] };
 const IMAGENES_REF = { id: 'imagenes', label: 'Imágenes de referencia (opcional)', type: 'imagenes' };
 
@@ -481,8 +480,7 @@ const SERVICIOS = [
           { id: 'archivo', label: 'Tu archivo 3D (OBJ o STL)', type: 'archivo3d' },
           { id: 'cantidad', label: '¿Cuántas piezas?', type: 'number', min: 1, max: 500, value: 1, presets: [1, 2, 5, 10], sufijo: ' und.' },
           { id: 'peso', label: 'Peso aproximado por pieza (g)', type: 'number', min: 1, max: 20000, value: 50, ayuda: 'Si subes el archivo lo calculamos por ti (puedes corregirlo). Si no, estímalo.' },
-          IMAGENES_REF,
-          URGENCIA
+          IMAGENES_REF
         ],
         calcular(v) {
           const m = T.impresion;
@@ -502,8 +500,7 @@ const SERVICIOS = [
           { id: 'complejidad', label: '¿Qué tan compleja es?', type: 'select', options: [['sencilla', 'Sencilla', 'Formas básicas'], ['media', 'Media', 'Detalles y encajes'], ['alta', 'Compleja', 'Formas orgánicas o muy detalladas']] },
           { id: 'cantidad', label: '¿Cuántas piezas?', type: 'number', min: 1, max: 500, value: 1, presets: [1, 2, 5, 10], sufijo: ' und.' },
           { id: 'descripcion', label: 'Describe la pieza que necesitas', type: 'texto', placeholder: 'Qué es, para qué se usa, medidas que conozcas, materiales o acabados...' },
-          IMAGENES_REF,
-          URGENCIA
+          IMAGENES_REF
         ],
         validar(v) { return v.descripcion.length < 10 ? 'Describe brevemente la pieza que necesitas.' : ''; },
         calcular(v) {
@@ -527,8 +524,7 @@ const SERVICIOS = [
     campos: [
       { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda'], ['comercial', 'Comercial / oficinas'], ['remodelacion', 'Remodelación']] },
       { id: 'area', label: '¿Cuántos m² tiene?', type: 'number', min: 20, max: 5000, value: 80, presets: [60, 100, 150, 250], ayuda: 'Área construida total aproximada.' },
-      { id: 'alcance', label: '¿Qué necesitas?', type: 'select', options: [['anteproyecto', 'Anteproyecto', 'Plantas, fachadas y concepto'], ['licencia', 'Para licencia', 'Proyecto arquitectónico completo'], ['licencia_renders', 'Licencia + renders', 'Incluye imágenes realistas']] },
-      URGENCIA
+      { id: 'alcance', label: '¿Qué necesitas?', type: 'select', options: [['anteproyecto', 'Anteproyecto', 'Plantas, fachadas y concepto'], ['licencia', 'Para licencia', 'Proyecto arquitectónico completo'], ['licencia_renders', 'Licencia + renders', 'Incluye imágenes realistas']] }
     ],
     calcular(v) {
       const d = T.diseno;
@@ -547,8 +543,7 @@ const SERVICIOS = [
       { id: 'tipo', label: '¿Qué tipo de obra es?', type: 'select', options: [['nueva', 'Obra nueva'], ['remodelacion', 'Remodelación', 'Adecuación o reforma']] },
       { id: 'area', label: '¿Cuántos m² vas a intervenir?', type: 'number', min: 10, max: 20000, value: 100, presets: [50, 100, 200, 400] },
       { id: 'nivel', label: '¿Qué tan detallado?', type: 'select', options: [['parametrico', 'Estimado rápido', 'Por m², para decidir'], ['detallado', 'Detallado con APU', 'Cantidades y precios, para contratar']] },
-      { id: 'planos', label: '¿Tienes planos?', type: 'select', options: [['si', 'Sí, tengo planos'], ['no', 'No, hay que medir', '+35% y +2 días']] },
-      URGENCIA
+      { id: 'planos', label: '¿Tienes planos?', type: 'select', options: [['si', 'Sí, tengo planos'], ['no', 'No, hay que medir', '+35% y +2 días']] }
     ],
     calcular(v) {
       const p = T.presupuesto;
@@ -571,6 +566,7 @@ let servicioActual = null;    // tarjeta + pestaña (variante) activa
 let cotizacionActual = null;
 let archivo3d = null;         // { nombre, dimsRaw, volRaw, aproximado, dimsCm, volCm3 } — se lee en el navegador, no se sube
 let imagenes3d = [];          // nombres de las imágenes de referencia elegidas
+let imagenes3dFiles = [];     // los archivos de imagen (para adjuntarlos al correo)
 
 const fmtCOP = n => '$ ' + Math.round(n).toLocaleString('es-CO');
 const fmtNum = n => Number(n).toLocaleString('es-CO');
@@ -779,7 +775,7 @@ function crearCampo(c) {
       estado.textContent = 'Analizando el archivo…';
       try {
         const r = await analizarArchivo3D(f);
-        archivo3d = { nombre: f.name, dimsRaw: r.dimsRaw, volRaw: r.volRaw, aproximado: r.aproximado, dimsCm: [0, 0, 0], volCm3: 0 };
+        archivo3d = { nombre: f.name, file: f, dimsRaw: r.dimsRaw, volRaw: r.volRaw, aproximado: r.aproximado, dimsCm: [0, 0, 0], volCm3: 0 };
         unidades.hidden = false;
         aplicarUnidad(oculto.value);
       } catch (e) {
@@ -794,7 +790,9 @@ function crearCampo(c) {
     div.appendChild(estado);
     const nota = document.createElement('div');
     nota.className = 'ayuda';
-    nota.textContent = 'El archivo no se sube a la web: lo leemos aquí para calcular. Al aceptar, nos lo envías por WhatsApp.';
+    nota.textContent = CONFIG.cotizacionesUrl
+      ? 'Lo leemos aquí para calcular el peso y las medidas. Al aceptar, el archivo viaja adjunto con tu cotización.'
+      : 'El archivo no se sube a la web: lo leemos aquí para calcular. Al aceptar, nos lo envías por WhatsApp.';
     div.appendChild(nota);
   } else if (c.type === 'imagenes') {
     const file = document.createElement('input');
@@ -807,6 +805,7 @@ function crearCampo(c) {
       mini.innerHTML = '';
       const fs = Array.from(file.files).slice(0, 6);
       imagenes3d = fs.map(f => f.name);
+      imagenes3dFiles = fs;
       fs.forEach(f => { const im = document.createElement('img'); im.src = URL.createObjectURL(f); im.alt = f.name; mini.appendChild(im); });
       dispararInput(file);
     });
@@ -814,7 +813,9 @@ function crearCampo(c) {
     div.appendChild(mini);
     const nota = document.createElement('div');
     nota.className = 'ayuda';
-    nota.textContent = 'Hasta 6 imágenes. Tampoco se suben a la web: nos las envías por WhatsApp al aceptar.';
+    nota.textContent = CONFIG.cotizacionesUrl
+      ? 'Hasta 6 imágenes. Se reducen de tamaño y viajan adjuntas con tu cotización.'
+      : 'Hasta 6 imágenes. Tampoco se suben a la web: nos las envías por WhatsApp al aceptar.';
     div.appendChild(nota);
   } else if (c.type === 'texto') {
     const ta = document.createElement('textarea');
@@ -857,6 +858,7 @@ function activarVariante(varId) {
     : servicioBase;
   archivo3d = null;
   imagenes3d = [];
+  imagenes3dFiles = [];
   const form = $('form-servicio');
   form.innerHTML = '';
   servicioActual.campos.forEach(c => form.appendChild(crearCampo(c)));
@@ -937,11 +939,10 @@ function mostrarPrecio(a, b, rango) {
 function cotizar() {
   const v = leerValores();
   const r = servicioActual.calcular(v);
-  const express = v.urgencia === 'express';
-  let precio = r.precio * (express ? 1 + CONFIG.expressRecargo : 1);
-  const dias = Math.max(1, Math.ceil(r.dias * (express ? CONFIG.expressFactorPlazo : 1)));
+  let precio = r.precio;
+  const dias = Math.max(1, Math.ceil(r.dias));
   const cerrado = servicioActual.modo === 'cerrado';
-  const detalle = r.detalle + (express ? ' · entrega express' : '');
+  const detalle = r.detalle;
 
   if (cerrado) {
     precio = redondear(precio, 10000);
@@ -991,8 +992,9 @@ function extrasPedido() {
   const v = leerValores();
   const p = [];
   if (v.descripcion) p.push('Descripción: ' + v.descripcion);
-  if (archivo3d) p.push(`Archivo 3D: ${archivo3d.nombre} (se envía por WhatsApp)`);
-  if (imagenes3d.length) p.push(`Imágenes: ${imagenes3d.join(', ')} (se envían por WhatsApp)`);
+  const via = CONFIG.cotizacionesUrl ? 'adjunto en el correo' : 'se envía por WhatsApp';
+  if (archivo3d) p.push(`Archivo 3D: ${archivo3d.nombre} (${via})`);
+  if (imagenes3d.length) p.push(`Imágenes: ${imagenes3d.join(', ')} (${via})`);
   return p;
 }
 const pideAdjuntos = () => !!archivo3d || imagenes3d.length > 0;
@@ -1035,14 +1037,96 @@ function mensajeWhatsApp(c, ref, intro) {
 
 function abrirWhatsApp(texto) { window.open(urlWhatsApp(texto), '_blank'); }
 
-function mostrarConfirmacion(titulo, ref, texto) {
+function mostrarConfirmacion(titulo, ref, texto, waTexto) {
   ['cotizador', 'servicios', 'como-funciona'].forEach(id => { const e = $(id); e.classList.remove('visible'); if (id !== 'cotizador') e.style.display = 'none'; });
   $('barra-movil').classList.remove('visible');
   $('conf-titulo').textContent = titulo;
   $('conf-ref').textContent = ref;
   $('conf-texto').textContent = texto;
+  const wa = $('conf-wa');
+  wa.hidden = !waTexto;
+  if (waTexto) wa.href = urlWhatsApp(waTexto);
   $('confirmacion').classList.add('visible');
   $('confirmacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ---- Envío de la cotización por correo, con archivo 3D e imágenes adjuntos (Apps Script "Cotizaciones") ----
+const LIMITE_ADJUNTOS = 12 * 1024 * 1024; // bytes ya comprimidos (con la codificación base64 el envío crece ~33 %)
+
+function bufferABase64(buf) {
+  const bytes = new Uint8Array(buf);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+
+async function comprimirArchivo(file) {
+  if (!('CompressionStream' in window)) return { gzip: false, buf: await file.arrayBuffer() };
+  const flujo = file.stream().pipeThrough(new CompressionStream('gzip'));
+  return { gzip: true, buf: await new Response(flujo).arrayBuffer() };
+}
+
+async function reducirImagen(file) {
+  try {
+    const bmp = await createImageBitmap(file);
+    const esc = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+    const lienzo = document.createElement('canvas');
+    lienzo.width = Math.max(1, Math.round(bmp.width * esc));
+    lienzo.height = Math.max(1, Math.round(bmp.height * esc));
+    lienzo.getContext('2d').drawImage(bmp, 0, 0, lienzo.width, lienzo.height);
+    const blob = await new Promise(r => lienzo.toBlob(r, 'image/jpeg', 0.82));
+    return { nombre: file.name.replace(/\.[^.]+$/, '') + '.jpg', mime: 'image/jpeg', buf: await blob.arrayBuffer() };
+  } catch (e) {
+    return { nombre: file.name, mime: file.type || 'application/octet-stream', buf: await file.arrayBuffer() };
+  }
+}
+
+async function armarAdjuntos() {
+  const res = { archivo: null, imagenes: [], omitidos: [] };
+  let usado = 0;
+  if (archivo3d && archivo3d.file) {
+    const z = await comprimirArchivo(archivo3d.file);
+    if (z.buf.byteLength > LIMITE_ADJUNTOS) res.omitidos.push(archivo3d.nombre);
+    else { usado += z.buf.byteLength; res.archivo = { nombre: archivo3d.nombre, gzip: z.gzip, b64: bufferABase64(z.buf) }; }
+  }
+  for (const f of imagenes3dFiles) {
+    const im = await reducirImagen(f);
+    if (usado + im.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
+    usado += im.buf.byteLength;
+    res.imagenes.push({ nombre: im.nombre, mime: im.mime, b64: bufferABase64(im.buf) });
+  }
+  return res;
+}
+
+async function enviarCotizacion(pedido, c) {
+  const q = cotizacionActual;
+  try {
+    const adj = await armarAdjuntos();
+    const carga = {
+      tipo: 'cotizacion',
+      web: $('cli-web').value,
+      referencia: pedido.referencia,
+      servicio: q.servicio,
+      detalle: q.detalle,
+      valor: `${valorTexto(q)} COP`,
+      plazo: `${q.dias} días hábiles`,
+      anticipo: q.cerrado ? `${fmtCOP(q.anticipo)} (${CONFIG.anticipoPct}%)` : '',
+      oferta: q.cerrado ? 'Precio cerrado' : 'Rango preliminar: confirmar oferta final en 24 h',
+      extras: extrasPedido().filter(x => !/^(Archivo 3D|Imágenes)/.test(x)),
+      cliente: c,
+      archivo: adj.archivo,
+      imagenes: adj.imagenes,
+      omitidos: adj.omitidos
+    };
+    const control = new AbortController();
+    const corte = setTimeout(() => control.abort(), 90000);
+    const r = await fetch(CONFIG.cotizacionesUrl, { method: 'POST', body: JSON.stringify(carga), signal: control.signal });
+    clearTimeout(corte);
+    const j = await r.json();
+    return { ok: !!j.ok, omitidos: adj.omitidos };
+  } catch (e) {
+    return { ok: false, omitidos: [] };
+  }
 }
 
 async function aceptarOferta() {
@@ -1055,22 +1139,44 @@ async function aceptarOferta() {
   if (pv) { err.textContent = pv; return; }
   if (!$('of-acepto').checked) { err.textContent = 'Marca la casilla para continuar.'; return; }
   const q = cotizacionActual;
+  const rango = !q.cerrado;
 
-  if (!q.cerrado) {
-    const pedido = armarPedido(c, 'Solicitud de oferta final');
-    registrarPedido(pedido);
-    abrirWhatsApp(mensajeWhatsApp(c, pedido.referencia, 'Hola, quiero la oferta final de Pórtico Lab para:'));
-    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia,
-      'En menos de 24 horas revisamos tu proyecto y te enviamos la oferta final con el plazo. Si la aceptas, pagas el anticipo y arrancamos.' + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
+  const pedido = armarPedido(c, rango ? 'Solicitud de oferta final' : (CONFIG.pagoEnLinea ? 'Oferta aceptada - anticipo en proceso' : 'Oferta aceptada - enviar link de anticipo'));
+  registrarPedido(pedido);
+  const conCorreo = !!CONFIG.cotizacionesUrl;
+
+  if (!rango && CONFIG.pagoEnLinea) {
+    if (conCorreo) await enviarCotizacion(pedido, c);
+    await pagarAnticipoBold(pedido);
     return;
   }
 
-  const pedido = armarPedido(c, CONFIG.pagoEnLinea ? 'Oferta aceptada - anticipo en proceso' : 'Oferta aceptada - enviar link de anticipo');
-  registrarPedido(pedido);
-  if (CONFIG.pagoEnLinea) { await pagarAnticipoBold(pedido); return; }
-  abrirWhatsApp(mensajeWhatsApp(c, pedido.referencia, 'Hola, acepto esta oferta de Pórtico Lab:'));
-  mostrarConfirmacion('PEDIDO RECIBIDO', pedido.referencia,
-    `Te enviamos el link para pagar el anticipo de ${fmtCOP(q.anticipo)}. Apenas se acredite y tengamos tu modelo o planos, arrancamos: el plazo de ${q.dias} días hábiles empieza a correr.` + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
+  const titulo = rango ? 'SOLICITUD RECIBIDA' : 'PEDIDO RECIBIDO';
+  const waTexto = mensajeWhatsApp(c, pedido.referencia, rango ? 'Hola, quiero la oferta final de Pórtico Lab para:' : 'Hola, acepto esta oferta de Pórtico Lab:');
+  const base = rango
+    ? 'En menos de 24 horas revisamos tu proyecto y te enviamos la oferta final con el plazo. Si la aceptas, pagas el anticipo y arrancamos.'
+    : `Te enviamos el link para pagar el anticipo de ${fmtCOP(q.anticipo)}. Apenas se acredite y tengamos tu modelo o planos, arrancamos: el plazo de ${q.dias} días hábiles empieza a correr.`;
+
+  if (!conCorreo) {
+    abrirWhatsApp(waTexto);
+    mostrarConfirmacion(titulo, pedido.referencia, base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
+    return;
+  }
+
+  const boton = $('btn-aceptar');
+  const textoBoton = boton.textContent;
+  boton.disabled = true;
+  boton.textContent = 'Enviando…';
+  const envio = await enviarCotizacion(pedido, c);
+  boton.disabled = false;
+  boton.textContent = textoBoton;
+
+  if (envio.ok) {
+    const aviso = envio.omitidos.length ? ` Algunos archivos eran muy pesados para enviarlos aquí (${envio.omitidos.join(', ')}): envíalos por WhatsApp.` : '';
+    mostrarConfirmacion(titulo, pedido.referencia, (pideAdjuntos() ? 'Recibimos tu cotización con tus archivos. ' : 'Recibimos tu cotización. ') + base + aviso, waTexto);
+  } else {
+    mostrarConfirmacion(titulo, pedido.referencia, 'Registramos tu pedido, pero no pudimos enviar los archivos automáticamente. ' + base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''), waTexto);
+  }
 }
 
 function tengoDudas() {
