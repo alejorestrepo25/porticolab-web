@@ -8,13 +8,14 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="y2k.css">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace; --acento: #F5C400; --linea: #222; --radio: 14px; }
+    :root { --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace; --acento: #b9a7ff; --linea: #222; --radio: 14px; }
     html { scroll-behavior: smooth; }
     body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; }
     header { width: 100%; min-height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #222; }
@@ -35,7 +36,7 @@
     /* ---------- BOTONES ---------- */
     .btn { display: inline-block; text-align: center; padding: 14px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; font-weight: 600; cursor: pointer; border: 1px solid #fff; border-radius: 10px; text-transform: uppercase; text-decoration: none; transition: background 0.2s ease, color 0.2s ease; }
     .btn-block { display: block; width: 100%; margin-top: 12px; }
-    .btn-primario { background: var(--acento); border-color: var(--acento); color: #000; }
+    .btn-primario { background: var(--cromo); border-color: transparent; color: #000; }
     .btn-primario:hover { background: #fff; border-color: #fff; }
     .btn-secundario { background: transparent; color: #fff; border-color: #444; }
     .btn-secundario:hover { background: #111; border-color: #fff; }
@@ -46,7 +47,10 @@
       background: linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.2) 100%), url('img/servicios/hero.jpg') center / cover no-repeat; }
     .hero-txt { padding: 48px; max-width: 640px; }
     .hero h1 { font-size: 40px; line-height: 1.15; font-weight: 700; margin-top: 14px; }
-    .hero h1 em { font-style: normal; color: var(--acento); }
+    .hero h1 { font-family: var(--display); text-transform: uppercase; font-size: clamp(26px, 4vw, 44px); }
+    .hero h1 em { font-style: normal; color: var(--acento); background: var(--cromo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .srv-body h3, .seccion { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3px; }
+    .srv-body h3 { font-size: 15px; }
     .hero p { color: #ccc; font-size: 15px; line-height: 1.7; margin-top: 16px; }
     .hero-acciones { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
 
@@ -99,7 +103,7 @@
     .chip { background: #0b0b0b; color: #ddd; border: 1px solid #333; border-radius: 10px; padding: 11px 14px; font-family: inherit; font-size: 13px; cursor: pointer; text-align: left; line-height: 1.3; transition: border-color 0.15s ease, background 0.15s ease; }
     .chip small { display: block; font-family: var(--mono); font-size: 10px; color: #777; margin-top: 3px; letter-spacing: 0.3px; }
     .chip:hover { border-color: #777; }
-    .chip[aria-checked=true] { background: var(--acento); border-color: var(--acento); color: #000; font-weight: 600; }
+    .chip[aria-checked=true] { background: var(--cromo); border-color: transparent; color: #000; font-weight: 600; }
     .chip[aria-checked=true] small { color: #333; }
     .chip:focus-visible, .btn:focus-visible, .link-volver:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     .presets { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -109,8 +113,8 @@
     .oferta .oferta-tit { display: flex; align-items: center; gap: 12px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; }
     .oferta .servicio-nombre { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-top: 16px; }
     .oferta .etiqueta-precio { font-size: 11px; letter-spacing: 2px; color: #777; margin-top: 18px; text-transform: uppercase; }
-    .oferta .precio { font-size: 28px; font-weight: 600; margin-top: 6px; color: var(--acento); line-height: 1.2; }
-    .oferta .precio small { font-size: 12px; font-weight: 500; color: #888; margin-left: 6px; }
+    .oferta .precio { font-size: 28px; font-weight: 700; margin-top: 6px; color: var(--acento); line-height: 1.2; background: var(--cromo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-variant-numeric: tabular-nums; }
+    .oferta .precio small { font-size: 12px; font-weight: 500; color: #888; -webkit-text-fill-color: #888; margin-left: 6px; }
     .oferta .linea { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; padding: 10px 0; border-bottom: 1px solid #1c1c1c; color: #ccc; }
     .oferta .linea b { color: #fff; font-weight: 600; text-align: right; }
     .oferta .desglose { margin-top: 14px; font-size: 11px; color: #777; line-height: 1.7; }
@@ -151,7 +155,7 @@
     .tabs[hidden] { display: none; }
     .tabs button { flex: 1; min-width: 150px; background: #0b0b0b; color: #bbb; border: 1px solid #333; border-radius: 10px; padding: 13px 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
     .tabs button:hover { border-color: #777; }
-    .tabs button[aria-selected=true] { background: var(--acento); border-color: var(--acento); color: #000; font-weight: 600; }
+    .tabs button[aria-selected=true] { background: var(--cromo); border-color: transparent; color: #000; font-weight: 600; }
     .tabs button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     .campo input[type=file] { width: 100%; background: #0b0b0b; color: #bbb; border: 1px dashed #555; border-radius: 10px; padding: 12px; font-family: var(--mono); font-size: 12px; cursor: pointer; }
     .campo input[type=file]::file-selector-button { background: #fff; color: #000; border: 0; border-radius: 6px; padding: 8px 12px; margin-right: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; cursor: pointer; }
@@ -207,7 +211,7 @@
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 </head>
 
-<body>
+<body class="y2k">
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
   <nav class="nav">
@@ -283,6 +287,7 @@
     </div>
 
     <aside class="oferta" id="oferta" aria-live="polite">
+      <span class="hud" style="margin-bottom:14px"><b>[ SYS.OK ]</b> Oferta // en vivo</span>
       <div class="oferta-tit"><span class="paso-titulo" style="margin:0"><span class="pn">3</span>Tu oferta</span></div>
       <div class="servicio-nombre" id="of-servicio"></div>
       <div class="etiqueta-precio" id="of-etiqueta"></div>
@@ -310,10 +315,10 @@
     <h2 class="seccion">Hecho en nuestro taller</h2>
     <p class="seccion-sub">Maquetas, modelos y piezas que diseñamos y fabricamos en Medellín.</p>
     <div class="trabajo-grid">
-      <figure><img src="img/servicios/maqueta-torre.jpg" alt="Maqueta estructural en varillas de madera" loading="lazy"><figcaption>Maqueta estructural</figcaption></figure>
-      <figure><img src="img/servicios/terreno.jpg" alt="Modelo de terreno con curvas de nivel para impresión 3D" loading="lazy"><figcaption>Terreno para impresión 3D</figcaption></figure>
-      <figure><img src="img/servicios/exposicion.jpg" alt="Mobiliario de exposición en madera con ensambles" loading="lazy"><figcaption>Mobiliario de exposición</figcaption></figure>
-      <figure><img src="img/servicios/taller.jpg" alt="Mesa de trabajo del taller de Pórtico Lab" loading="lazy"><figcaption>El taller</figcaption></figure>
+      <figure><img src="img/servicios/maqueta-torre.jpg" alt="Maqueta estructural en varillas de madera" loading="lazy" data-dither><figcaption>Maqueta estructural</figcaption></figure>
+      <figure><img src="img/servicios/terreno.jpg" alt="Modelo de terreno con curvas de nivel para impresión 3D" loading="lazy" data-dither><figcaption>Terreno para impresión 3D</figcaption></figure>
+      <figure><img src="img/servicios/exposicion.jpg" alt="Mobiliario de exposición en madera con ensambles" loading="lazy" data-dither><figcaption>Mobiliario de exposición</figcaption></figure>
+      <figure><img src="img/servicios/taller.jpg" alt="Mesa de trabajo del taller de Pórtico Lab" loading="lazy" data-dither><figcaption>El taller</figcaption></figure>
     </div>
     <a class="ver-mas" href="inspiracion.html">Ver más proyectos →</a>
   </section>
@@ -396,55 +401,54 @@ const URGENCIA = { id: 'urgencia', label: '¿Qué tan pronto lo necesitas?', typ
 const TIPO_PIEZA = { id: 'tipo', label: '¿Qué vas a imprimir?', type: 'select', options: [['arquitectonica', 'Pieza arquitectónica', 'Fachada, detalle o elemento'], ['mobiliario', 'Mobiliario / objeto', 'Piezas de diseño'], ['maqueta', 'Maqueta pequeña'], ['molde', 'Molde', 'Para vaciar concreto, yeso…']] };
 const IMAGENES_REF = { id: 'imagenes', label: 'Imágenes de referencia (opcional)', type: 'imagenes' };
 
-const ILUSTRACION_PRESUPUESTO =`<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una planilla de presupuesto de obra">
-  <rect y="-50" width="400" height="400" fill="#0b0b0b"/>
-  <g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>
-  <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="#F5C400" font-size="12" font-weight="600">PRESUPUESTO DE OBRA</text>
+const FONDO_SVG = `<defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs><rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
+
+const ILUSTRACION_PRESUPUESTO = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una planilla de presupuesto de obra">
+  ${FONDO_SVG}
+  <g font-family="Space Mono, monospace" font-size="11" fill="#999">
+    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">PRESUPUESTO DE OBRA</text>
     <text x="32" y="86">01 PRELIMINARES</text><rect x="168" y="77" width="70" height="10" rx="2" fill="#333"/>
     <text x="32" y="116">02 ESTRUCTURA</text><rect x="168" y="107" width="190" height="10" rx="2" fill="#555"/>
     <text x="32" y="146">03 MAMPOSTERÍA</text><rect x="168" y="137" width="120" height="10" rx="2" fill="#444"/>
     <text x="32" y="176">04 INSTALACIONES</text><rect x="168" y="167" width="150" height="10" rx="2" fill="#4a4a4a"/>
     <text x="32" y="206">05 ACABADOS</text><rect x="168" y="197" width="210" height="10" rx="2" fill="#666"/>
-    <path d="M32 232H368" stroke="#F5C400" stroke-width="1.5"/>
-    <text x="32" y="258" fill="#fff" font-weight="600">TOTAL</text><rect x="168" y="249" width="200" height="12" rx="2" fill="#F5C400"/>
+    <path d="M32 232H368" stroke="#b9a7ff" stroke-width="1.5"/>
+    <text x="32" y="258" fill="#fff" font-weight="600">TOTAL</text><rect x="168" y="249" width="200" height="12" rx="2" fill="url(#cromo)"/>
   </g>
 </svg>`;
 
-const FONDO_SVG = `<rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
-
 const ILUSTRACION_IMPRESION = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una pieza impresa en 3D por capas">
   ${FONDO_SVG}
-  <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="#F5C400" font-size="12" font-weight="600">IMPRESIÓN 3D</text>
+  <g font-family="Space Mono, monospace" font-size="11" fill="#999">
+    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">IMPRESIÓN 3D</text>
     <g stroke="#666" stroke-width="1" fill="#1b1b1b">
       ${Array.from({length: 6}, (_, i) => { const y = 190 - i * 14; return `<polygon points="120,${y - 30} 180,${y} 120,${y + 30} 60,${y}"/>`; }).join('')}
-      <polygon points="120,76 180,106 120,136 60,106" stroke="#F5C400" fill="#2a2410"/>
+      <polygon points="120,76 180,106 120,136 60,106" stroke="#b9a7ff" fill="#1d1830"/>
     </g>
     <text x="215" y="92" font-size="9" fill="#777">ARCHIVO</text><text x="215" y="108" fill="#ddd">.OBJ  .STL</text>
     <text x="215" y="140" font-size="9" fill="#777">PIEZAS</text><text x="215" y="156" fill="#ddd">× 5</text>
     <text x="215" y="188" font-size="9" fill="#777">PESO ESTIMADO</text><text x="215" y="204" fill="#ddd">~ 38 g</text>
-    <path d="M32 232H368" stroke="#F5C400" stroke-width="1.5"/>
-    <text x="32" y="258" fill="#fff" font-weight="600">PRECIO</text><rect x="110" y="249" width="258" height="12" rx="2" fill="#F5C400"/>
+    <path d="M32 232H368" stroke="#b9a7ff" stroke-width="1.5"/>
+    <text x="32" y="258" fill="#fff" font-weight="600">PRECIO</text><rect x="110" y="249" width="258" height="12" rx="2" fill="url(#cromo)"/>
   </g>
 </svg>`;
 
 const ILUSTRACION_DISENO = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de la fachada de una vivienda con cotas">
   ${FONDO_SVG}
-  <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="#F5C400" font-size="12" font-weight="600">DISEÑO ARQUITECTÓNICO</text>
+  <g font-family="Space Mono, monospace" font-size="11" fill="#999">
+    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO ARQUITECTÓNICO</text>
     <g fill="none" stroke="#888" stroke-width="1.2">
       <path d="M40 190H360" stroke="#555"/>
       <rect x="100" y="120" width="200" height="70"/>
-      <path d="M90 120L200 80L310 120" stroke="#F5C400" stroke-width="1.8"/>
+      <path d="M90 120L200 80L310 120" stroke="#b9a7ff" stroke-width="1.8"/>
       <rect x="185" y="150" width="30" height="40"/>
       <rect x="120" y="138" width="40" height="28"/><path d="M140 138V166M120 152H160" stroke="#555"/>
       <rect x="240" y="138" width="40" height="28"/><path d="M260 138V166M240 152H280" stroke="#555"/>
     </g>
     <g stroke="#666" stroke-width="1" fill="none"><path d="M100 204H300M100 199V209M300 199V209"/><path d="M330 120V190M325 120H335M325 190H335"/></g>
-    <text x="200" y="220" font-size="9" text-anchor="middle" fill="#F5C400">12,00 m</text>
+    <text x="200" y="220" font-size="9" text-anchor="middle" fill="url(#cromo)">12,00 m</text>
     <text x="340" y="160" font-size="9" fill="#777">3,5 m</text>
-    <path d="M32 236H368" stroke="#F5C400" stroke-width="1.5"/>
+    <path d="M32 236H368" stroke="#b9a7ff" stroke-width="1.5"/>
     <text x="32" y="260" font-size="9" fill="#bbb">ANTEPROYECTO  →  LICENCIA  →  RENDERS</text>
   </g>
 </svg>`;
@@ -894,6 +898,29 @@ function leerValores() {
   return v;
 }
 
+// El precio "cuenta" hasta el valor final (estilo HUD); sin animación si el usuario pidió menos movimiento
+let precioMostrado = { a: 0, b: 0 };
+let animPrecio = 0;
+let cierrePrecio = 0;
+function mostrarPrecio(a, b, rango) {
+  const pintar = (x, y) => { $('of-precio').innerHTML = (rango ? `${fmtCOP(x)} – ${fmtCOP(y)}` : fmtCOP(x)) + '<small>COP</small>'; };
+  const final = () => { precioMostrado = { a, b }; pintar(a, b); };
+  cancelAnimationFrame(animPrecio);
+  clearTimeout(cierrePrecio);
+  const desde = Object.assign({}, precioMostrado);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || (desde.a === a && desde.b === b)) { final(); return; }
+  const t0 = performance.now();
+  const paso = ahora => {
+    const t = Math.min(1, (ahora - t0) / 450);
+    const e = 1 - Math.pow(1 - t, 3);
+    precioMostrado = { a: desde.a + (a - desde.a) * e, b: desde.b + (b - desde.b) * e };
+    pintar(precioMostrado.a, precioMostrado.b);
+    if (t < 1) animPrecio = requestAnimationFrame(paso);
+  };
+  animPrecio = requestAnimationFrame(paso);
+  cierrePrecio = setTimeout(() => { cancelAnimationFrame(animPrecio); final(); }, 600);
+}
+
 function cotizar() {
   const v = leerValores();
   const r = servicioActual.calcular(v);
@@ -908,7 +935,7 @@ function cotizar() {
     const anticipo = redondear(precio * CONFIG.anticipoPct / 100, 1000);
     cotizacionActual = { servicio: servicioActual.nombre, cerrado, precio, dias, anticipo, saldo: precio - anticipo, detalle };
     $('of-etiqueta').textContent = 'Valor total';
-    $('of-precio').innerHTML = `${fmtCOP(precio)}<small>COP</small>`;
+    mostrarPrecio(precio, precio, false);
     $('of-anticipo-label').textContent = 'Anticipo para iniciar';
     $('of-anticipo').textContent = `${fmtCOP(anticipo)} (${CONFIG.anticipoPct}%)`;
     $('of-saldo-linea').style.display = '';
@@ -921,7 +948,7 @@ function cotizar() {
     const max = redondear(precio * r.rango[1], 50000);
     cotizacionActual = { servicio: servicioActual.nombre, cerrado, min, max, dias, detalle };
     $('of-etiqueta').textContent = 'Rango estimado';
-    $('of-precio').innerHTML = `${fmtCOP(min)} – ${fmtCOP(max)}<small>COP</small>`;
+    mostrarPrecio(min, max, true);
     $('of-anticipo-label').textContent = 'Anticipo';
     $('of-anticipo').textContent = `${CONFIG.anticipoPct}% al confirmar`;
     $('of-saldo-linea').style.display = 'none';
@@ -1104,6 +1131,8 @@ const pre = new URLSearchParams(location.search).get('servicio');
 if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 </script>
 
+<script src="y2k.js" defer></script>
+<script src="dither.js" defer></script>
 <script src="mascota.js"></script>
 </body>
 </html>
