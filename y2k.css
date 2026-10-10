@@ -237,7 +237,7 @@ body.y2k .gallery-item:hover {
   transition: opacity 0.35s ease;
 }
 .dither-wrap figcaption { z-index: 1; }
-:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within) .dither { opacity: 0; }
+:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within, .revelado) .dither { opacity: 0; }
 .dither-scope { position: relative; border-radius: 12px; overflow: hidden; }
 .dither-scope img { border-radius: inherit; }
 @media (prefers-reduced-motion: reduce) { .dither { transition: none; } }

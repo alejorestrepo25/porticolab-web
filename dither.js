@@ -1,8 +1,28 @@
 // Dithering "concreto cromado": las fotos se ven como una trama de puntos (Bayer 4x4) con degradado
-// plata -> lila -> cian y pasan a la foto real al pasar el mouse. Solo en dispositivos con mouse.
+// plata -> lila -> cian y pasan a la foto real al pasar el mouse. En pantallas táctiles, que no tienen
+// "hover", la foto se revela cuando queda en la franja central de la pantalla al hacer scroll.
 // Si la imagen no permite leer sus píxeles (sin CORS), se deja la foto tal cual.
 (() => {
-  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const conMouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // Táctil: se revela la tarjeta que cruza la franja central (38 % - 62 % de la altura de la pantalla)
+  const tarjetas = new Set();
+  let pendiente = false;
+  function revisar() {
+    pendiente = false;
+    const a = innerHeight * 0.38;
+    const b = innerHeight * 0.62;
+    tarjetas.forEach(t => {
+      const r = t.getBoundingClientRect();
+      t.classList.toggle('revelado', r.top < b && r.bottom > a);
+    });
+  }
+  function pedirRevision() {
+    if (!pendiente) { pendiente = true; setTimeout(revisar, 60); }
+  }
+  if (!conMouse) {
+    addEventListener('scroll', pedirRevision, { passive: true });
+    addEventListener('resize', pedirRevision);
+  }
 
   const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
   const ANCHO = 120;
@@ -43,6 +63,8 @@
     const marco = img.parentElement;
     marco.classList.add('dither-wrap');
     marco.appendChild(lienzo);
+    const tarjeta = img.closest('.gallery-item, figure, .dither-scope');
+    if (!conMouse && tarjeta) { tarjetas.add(tarjeta); pedirRevision(); }
   }
 
   function procesar(img) {
