@@ -190,11 +190,88 @@ body.y2k .post-tags span { font-family: var(--mono); }
   text-transform: uppercase;
 }
 
+/* ---------- Páginas internas ---------- */
+body.y2k .about-hero h1,
+body.y2k .about-axes h3 {
+  font-family: var(--display, 'Unbounded', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+body.y2k .about-contact-mail { font-family: var(--mono, 'Space Mono', monospace); }
+body.y2k .about-footer p { font-family: var(--mono, 'Space Mono', monospace); }
+
+/* ---------- Página de producto ---------- */
+body.y2k .post-content h1 {
+  font-family: var(--display, 'Unbounded', sans-serif);
+  font-weight: 700;
+  font-size: clamp(24px, 3.4vw, 40px);
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+}
+body.y2k .post-meta,
+body.y2k .tag,
+body.y2k .lightbox-counter,
+body.y2k .lightbox-btn { font-family: var(--mono, 'Space Mono', monospace); }
+body.y2k .post-meta { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+body.y2k .tag { font-size: 12px; }
+body.y2k .post-image img#main-image:hover { box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.1); }
+
 /* ---------- Tarjetas de la galería ---------- */
 body.y2k .gallery-item .hud { margin: 14px 0 6px; padding: 0 2px; }
 body.y2k .gallery-item:hover {
   box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.08);
 }
+
+/* ---------- Imágenes en dithering: trama cromada que pasa a la foto real al hover ---------- */
+.dither-wrap { position: relative; }
+.dither {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+}
+.dither-wrap figcaption { z-index: 1; }
+:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within) .dither { opacity: 0; }
+.dither-scope { position: relative; border-radius: 12px; overflow: hidden; }
+.dither-scope img { border-radius: inherit; }
+@media (prefers-reduced-motion: reduce) { .dither { transition: none; } }
+
+/* ---------- Cursor personalizado ---------- */
+.y2k-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+.y2k-cursor::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  margin: -1px 0 0 -1px;
+  background: #fff;
+  border-radius: 50%;
+}
+.y2k-cursor.on { opacity: 1; }
+.y2k-cursor.act { width: 38px; height: 38px; margin: -19px 0 0 -19px; }
+@media (prefers-reduced-motion: reduce) { .y2k-cursor { transition: opacity 0.2s ease; } }
 
 /* ---------- Carga: glitch + scanline (≤ 600 ms) ---------- */
 @media (prefers-reduced-motion: no-preference) {
