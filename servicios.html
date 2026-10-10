@@ -411,10 +411,48 @@ const ILUSTRACION_PRESUPUESTO =`<svg viewBox="0 -50 400 400" xmlns="http://www.w
   </g>
 </svg>`;
 
+const FONDO_SVG = `<rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
+
+const ILUSTRACION_IMPRESION = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una pieza impresa en 3D por capas">
+  ${FONDO_SVG}
+  <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#999">
+    <text x="32" y="48" fill="#F5C400" font-size="12" font-weight="600">IMPRESIÓN 3D</text>
+    <g stroke="#666" stroke-width="1" fill="#1b1b1b">
+      ${Array.from({length: 6}, (_, i) => { const y = 190 - i * 14; return `<polygon points="120,${y - 30} 180,${y} 120,${y + 30} 60,${y}"/>`; }).join('')}
+      <polygon points="120,76 180,106 120,136 60,106" stroke="#F5C400" fill="#2a2410"/>
+    </g>
+    <text x="215" y="92" font-size="9" fill="#777">ARCHIVO</text><text x="215" y="108" fill="#ddd">.OBJ  .STL</text>
+    <text x="215" y="140" font-size="9" fill="#777">PIEZAS</text><text x="215" y="156" fill="#ddd">× 5</text>
+    <text x="215" y="188" font-size="9" fill="#777">PESO ESTIMADO</text><text x="215" y="204" fill="#ddd">~ 38 g</text>
+    <path d="M32 232H368" stroke="#F5C400" stroke-width="1.5"/>
+    <text x="32" y="258" fill="#fff" font-weight="600">PRECIO</text><rect x="110" y="249" width="258" height="12" rx="2" fill="#F5C400"/>
+  </g>
+</svg>`;
+
+const ILUSTRACION_DISENO = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de la fachada de una vivienda con cotas">
+  ${FONDO_SVG}
+  <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#999">
+    <text x="32" y="48" fill="#F5C400" font-size="12" font-weight="600">DISEÑO ARQUITECTÓNICO</text>
+    <g fill="none" stroke="#888" stroke-width="1.2">
+      <path d="M40 190H360" stroke="#555"/>
+      <rect x="100" y="120" width="200" height="70"/>
+      <path d="M90 120L200 80L310 120" stroke="#F5C400" stroke-width="1.8"/>
+      <rect x="185" y="150" width="30" height="40"/>
+      <rect x="120" y="138" width="40" height="28"/><path d="M140 138V166M120 152H160" stroke="#555"/>
+      <rect x="240" y="138" width="40" height="28"/><path d="M260 138V166M240 152H280" stroke="#555"/>
+    </g>
+    <g stroke="#666" stroke-width="1" fill="none"><path d="M100 204H300M100 199V209M300 199V209"/><path d="M330 120V190M325 120H335M325 190H335"/></g>
+    <text x="200" y="220" font-size="9" text-anchor="middle" fill="#F5C400">12,00 m</text>
+    <text x="340" y="160" font-size="9" fill="#777">3,5 m</text>
+    <path d="M32 236H368" stroke="#F5C400" stroke-width="1.5"/>
+    <text x="32" y="260" font-size="9" fill="#bbb">ANTEPROYECTO  →  LICENCIA  →  RENDERS</text>
+  </g>
+</svg>`;
+
 const SERVICIOS = [
   {
     id: 'impresion3d', nombre: 'Impresión 3D',
-    badge: 'SUBE TU ARCHIVO', imagen: 'img/servicios/impresion3d.jpg', alt: 'Piezas de una lámpara en modelo 3D listas para imprimir',
+    badge: 'SUBE TU ARCHIVO', ilustracion: ILUSTRACION_IMPRESION,
     promesa: 'Piezas arquitectónicas, de mobiliario, maquetas pequeñas y moldes. Sube tu archivo y ve el precio al instante.',
     incluye: ['Sube tu OBJ o STL: calculamos peso, medidas y precio', 'Piezas arquitectónicas, mobiliario, maquetas y moldes', '¿Sin archivo? Lo diseñamos por ti'],
     cta: 'Cotizar impresión',
@@ -465,7 +503,7 @@ const SERVICIOS = [
   },
   {
     id: 'diseno', nombre: 'Diseño arquitectónico', modo: 'rango',
-    badge: 'OFERTA EN 24 H', imagen: 'img/servicios/diseno.jpg', alt: 'Render de una lámpara diseñada por Pórtico Lab',
+    badge: 'OFERTA EN 24 H', ilustracion: ILUSTRACION_DISENO,
     promesa: 'De la idea a los planos y las imágenes que necesitas para decidir y construir.',
     incluye: ['Anteproyecto: plantas, fachadas y concepto', 'Proyecto arquitectónico para licencia', 'Renders para ver tu proyecto antes de construir'],
     cta: 'Cotizar diseño',
