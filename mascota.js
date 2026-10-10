@@ -2,54 +2,75 @@
   const css = `
     #mascota-wrapper {
       position: fixed;
-      bottom: 32px;
-      right: 32px;
+      bottom: 24px;
+      right: 24px;
       z-index: 1000;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       cursor: pointer;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
+    #mascota-wrapper:focus-visible { outline: 2px solid #b9a7ff; outline-offset: 6px; border-radius: 6px; }
 
     #mascota-label {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Space Mono', 'Montserrat', monospace;
       font-size: 10px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 2px;
       color: #fff;
-      opacity: 0.5;
+      opacity: 0.55;
       text-transform: uppercase;
       transition: opacity 0.3s;
     }
+    #mascota-wrapper:hover #mascota-label,
+    #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    #mascota-wrapper:hover #mascota-label {
-      opacity: 1;
-    }
-
-    #mascota-svg {
-      animation: mascota-float 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.12));
+    /* Personaje en pixel art: 1 unidad del dibujo = 4 px */
+    .mascota-sprite {
+      display: block;
+      width: 64px;
+      height: 56px;
+      overflow: visible;
+      shape-rendering: crispEdges;
+      filter: drop-shadow(0 0 6px rgba(185, 167, 255, 0.28));
       transition: filter 0.3s;
     }
+    #mascota-wrapper:hover .mascota-sprite { filter: drop-shadow(0 0 14px rgba(126, 232, 255, 0.55)); }
+    .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
+    .mascota-sprite .antena { animation: mascota-antena 1.4s steps(1) infinite; }
+    @keyframes mascota-antena { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
 
-    #mascota-wrapper:hover #mascota-svg {
-      filter: drop-shadow(0 0 16px rgba(255,255,255,0.45));
+    #mascota-modal .mascota-sprite { width: 48px; height: 42px; filter: drop-shadow(0 0 8px rgba(185, 167, 255, 0.35)); }
+
+    @media (max-width: 768px) {
+      #mascota-wrapper { bottom: 14px; right: 14px; }
+      .mascota-sprite { width: 48px; height: 42px; }
     }
 
-    @keyframes mascota-float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-8px); }
-    }
+    /* Movimiento: solo si el usuario no pidió menos animación */
+    @media (prefers-reduced-motion: no-preference) {
+      #mascota-wrapper .todo { animation: mascota-respira 1.6s steps(1) infinite; }
+      @keyframes mascota-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
 
-    .dome-panel {
-      animation: dome-pulse 2.8s ease-in-out infinite;
-    }
+      #mascota-wrapper .parpadea .ojos { transform: scaleY(0.15); }
+      #mascota-wrapper .mira-i .ojos { transform: translateX(-1px); }
+      #mascota-wrapper .mira-d .ojos { transform: translateX(1px); }
 
-    @keyframes dome-pulse {
-      0%, 100% { opacity: 0.1; }
-      50%       { opacity: 0.5; }
+      #mascota-wrapper .salta .todo { animation: mascota-salto 0.72s steps(1) 1; }
+      @keyframes mascota-salto {
+        0% { transform: translateY(0); }  12% { transform: translateY(-1px); } 24% { transform: translateY(-2px); }
+        36% { transform: translateY(-3px); } 52% { transform: translateY(-2px); } 66% { transform: translateY(-1px); }
+        80% { transform: translateY(0); } 90% { transform: translateY(1px); } 100% { transform: translateY(0); }
+      }
+
+      #mascota-wrapper .saluda .brazo-d { animation: mascota-saludo 0.3s steps(1) 6; }
+      @keyframes mascota-saludo {
+        0% { transform: translate(0, -2px); }
+        50% { transform: translate(1px, -3px); }
+      }
     }
 
     /* Modal */
@@ -152,140 +173,30 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Domo geodésico SVG (esbelto) ──
-     Elipse: centro (30,58), rx=22, ry=40
-     Ápice: (30,18)
-     Anillo 1: (18,30) (30,27) (42,30)
-     Anillo 2: (10,44) (20,39) (30,42) (40,39) (50,44)
-     Base:     (8,58)  (18,55) (30,57) (42,55) (52,58)
-  */
-  const DOME = `<svg id="mascota-svg" width="44" height="74" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <clipPath id="dome-clip">
-      <path d="M 8,58 A 22,40 0 0 1 52,58 Z"/>
-    </clipPath>
-  </defs>
-
-  <!-- Sombra base -->
-  <ellipse cx="30" cy="64" rx="16" ry="2.5" fill="#141414"/>
-
-  <!-- Anillo base -->
-  <ellipse cx="30" cy="58" rx="22" ry="3.5" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
-
-  <!-- Fondo cúpula -->
-  <path d="M 8,58 A 22,40 0 0 1 52,58 Z" fill="#0f0f0f"/>
-
-  <!-- Paneles y ribs -->
-  <g clip-path="url(#dome-clip)">
-
-    <!-- PANELES -->
-    <!-- Tier superior -->
-    <polygon class="dome-panel" style="animation-delay:0s"    points="30,18 18,30 30,27" fill="#fff" opacity="0.18"/>
-    <polygon class="dome-panel" style="animation-delay:0.7s"  points="30,18 30,27 42,30" fill="#fff" opacity="0.12"/>
-
-    <!-- Tier medio -->
-    <polygon class="dome-panel" style="animation-delay:1.2s"  points="18,30 10,44 20,39" fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.3s"  points="18,30 20,39 30,27" fill="#fff" opacity="0.22"/>
-    <polygon class="dome-panel" style="animation-delay:1.6s"  points="30,27 20,39 30,42" fill="#fff" opacity="0.09"/>
-    <polygon class="dome-panel" style="animation-delay:0.5s"  points="30,27 30,42 40,39" fill="#fff" opacity="0.16"/>
-    <polygon class="dome-panel" style="animation-delay:1.0s"  points="30,27 40,39 42,30" fill="#fff" opacity="0.20"/>
-    <polygon class="dome-panel" style="animation-delay:0.2s"  points="42,30 40,39 50,44" fill="#fff" opacity="0.10"/>
-
-    <!-- Tier inferior -->
-    <polygon class="dome-panel" style="animation-delay:1.9s"  points="10,44 8,58 18,55"  fill="#fff" opacity="0.07"/>
-    <polygon class="dome-panel" style="animation-delay:0.4s"  points="10,44 18,55 20,39" fill="#fff" opacity="0.17"/>
-    <polygon class="dome-panel" style="animation-delay:1.3s"  points="20,39 18,55 30,57" fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.1s"  points="20,39 30,57 30,42" fill="#fff" opacity="0.24"/>
-    <polygon class="dome-panel" style="animation-delay:1.7s"  points="30,42 30,57 40,39" fill="#fff" opacity="0.09"/>
-    <polygon class="dome-panel" style="animation-delay:0.6s"  points="40,39 30,57 42,55" fill="#fff" opacity="0.19"/>
-    <polygon class="dome-panel" style="animation-delay:1.1s"  points="40,39 42,55 50,44" fill="#fff" opacity="0.08"/>
-    <polygon class="dome-panel" style="animation-delay:0.9s"  points="50,44 42,55 52,58" fill="#fff" opacity="0.13"/>
-
-    <!-- RIBS -->
-    <g stroke="#3a3a3a" stroke-width="0.6">
-      <line x1="30" y1="18" x2="18" y2="30"/>
-      <line x1="30" y1="18" x2="30" y2="27"/>
-      <line x1="30" y1="18" x2="42" y2="30"/>
-      <line x1="18" y1="30" x2="30" y2="27"/>
-      <line x1="30" y1="27" x2="42" y2="30"/>
-      <line x1="18" y1="30" x2="10" y2="44"/>
-      <line x1="18" y1="30" x2="20" y2="39"/>
-      <line x1="30" y1="27" x2="20" y2="39"/>
-      <line x1="30" y1="27" x2="30" y2="42"/>
-      <line x1="30" y1="27" x2="40" y2="39"/>
-      <line x1="42" y1="30" x2="40" y2="39"/>
-      <line x1="42" y1="30" x2="50" y2="44"/>
-      <line x1="10" y1="44" x2="20" y2="39"/>
-      <line x1="20" y1="39" x2="30" y2="42"/>
-      <line x1="30" y1="42" x2="40" y2="39"/>
-      <line x1="40" y1="39" x2="50" y2="44"/>
-      <line x1="10" y1="44" x2="8"  y2="58"/>
-      <line x1="10" y1="44" x2="18" y2="55"/>
-      <line x1="20" y1="39" x2="18" y2="55"/>
-      <line x1="20" y1="39" x2="30" y2="57"/>
-      <line x1="30" y1="42" x2="30" y2="57"/>
-      <line x1="40" y1="39" x2="30" y2="57"/>
-      <line x1="40" y1="39" x2="42" y2="55"/>
-      <line x1="50" y1="44" x2="42" y2="55"/>
-      <line x1="50" y1="44" x2="52" y2="58"/>
-      <line x1="8"  y1="58" x2="18" y2="55"/>
-      <line x1="18" y1="55" x2="30" y2="57"/>
-      <line x1="30" y1="57" x2="42" y2="55"/>
-      <line x1="42" y1="55" x2="52" y2="58"/>
-    </g>
-  </g>
-
-  <!-- Contorno cúpula -->
-  <path d="M 8,58 A 22,40 0 0 1 52,58" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
-
-  <!-- Hub ápice -->
-  <circle cx="30" cy="18" r="2.5" fill="#fff" opacity="0.9"/>
-  <circle cx="30" cy="18" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
-</svg>`;
-
-  const DOME_MODAL = `<svg width="44" height="52" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <clipPath id="dome-clip-modal">
-      <path d="M 2,50 A 28,28 0 0 1 58,50 Z"/>
-    </clipPath>
-  </defs>
-  <ellipse cx="30" cy="50" rx="28" ry="4" fill="#1a1a1a" stroke="#333" stroke-width="0.6"/>
-  <path d="M 2,50 A 28,28 0 0 1 58,50 Z" fill="#0f0f0f"/>
-  <g clip-path="url(#dome-clip-modal)">
-    <polygon points="30,22 16,30 30,27" fill="#fff" opacity="0.25"/>
-    <polygon points="30,22 30,27 44,30" fill="#fff" opacity="0.18"/>
-    <polygon points="16,30 18,35 30,27" fill="#fff" opacity="0.30"/>
-    <polygon points="30,27 30,37 42,35" fill="#fff" opacity="0.22"/>
-    <polygon points="30,27 42,35 44,30" fill="#fff" opacity="0.28"/>
-    <polygon points="18,35 30,49 30,37" fill="#fff" opacity="0.30"/>
-    <polygon points="42,35 30,49 46,47" fill="#fff" opacity="0.24"/>
-    <g stroke="#444" stroke-width="0.6">
-      <line x1="30" y1="22" x2="16" y2="30"/>
-      <line x1="30" y1="22" x2="30" y2="27"/>
-      <line x1="30" y1="22" x2="44" y2="30"/>
-      <line x1="16" y1="30" x2="30" y2="27"/>
-      <line x1="30" y1="27" x2="44" y2="30"/>
-      <line x1="16" y1="30" x2="18" y2="35"/>
-      <line x1="30" y1="27" x2="18" y2="35"/>
-      <line x1="30" y1="27" x2="30" y2="37"/>
-      <line x1="30" y1="27" x2="42" y2="35"/>
-      <line x1="44" y1="30" x2="42" y2="35"/>
-      <line x1="18" y1="35" x2="30" y2="37"/>
-      <line x1="30" y1="37" x2="42" y2="35"/>
-      <line x1="18" y1="35" x2="30" y2="49"/>
-      <line x1="30" y1="37" x2="30" y2="49"/>
-      <line x1="42" y1="35" x2="30" y2="49"/>
-      <line x1="42" y1="35" x2="46" y2="47"/>
-    </g>
-  </g>
-  <path d="M 2,50 A 28,28 0 0 1 58,50" fill="none" stroke="#4a4a4a" stroke-width="0.8"/>
-  <circle cx="30" cy="22" r="2.5" fill="#fff" opacity="0.9"/>
-  <circle cx="30" cy="22" r="5"   fill="none" stroke="#fff" stroke-width="0.4" opacity="0.3"/>
-</svg>`;
+  /* ── Personaje: un pequeño "pórtico" (cornisa, cuerpo y dos columnas) en pixel art ──
+     Cuadrícula de 16 x 14 unidades; cada rect es un bloque de píxeles. */
+  const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
+  function sprite(id) {
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
+      '<g class="todo">' +
+        R(2, 13, 12, 1, 'rgba(0,0,0,0.5)') +
+        '<g class="piernas">' + R(4, 8, 3, 4, '#e8e8ee') + R(9, 8, 3, 4, '#e8e8ee') + R(6, 8, 1, 4, '#c9c9e0') + R(11, 8, 1, 4, '#c9c9e0') + R(3, 12, 5, 1, '#7ee8ff') + R(8, 12, 5, 1, '#7ee8ff') + '</g>' +
+        '<g class="antena">' + R(7, 0, 2, 1, '#7ee8ff') + '</g>' +
+        R(2, 1, 12, 1, '#e8e8ee') + R(3, 2, 10, 1, '#c9c9e0') +
+        R(3, 3, 10, 5, '#b9a7ff') + R(3, 3, 1, 4, '#d6ccff') + R(12, 3, 1, 4, '#9d8cf0') + R(3, 7, 10, 1, '#8f7ee0') +
+        '<g class="ojos">' + R(5, 4, 2, 2, '#0b0b0b') + R(9, 4, 2, 2, '#0b0b0b') + R(5, 4, 1, 1, '#7ee8ff') + R(9, 4, 1, 1, '#7ee8ff') + '</g>' +
+        R(7, 6, 2, 1, '#0b0b0b') +
+        '<g class="brazo-i">' + R(1, 5, 2, 2, '#b9a7ff') + '</g>' +
+        '<g class="brazo-d">' + R(13, 5, 2, 2, '#b9a7ff') + '</g>' +
+      '</g></svg>';
+  }
 
   const wrapper = document.createElement('div');
   wrapper.id = 'mascota-wrapper';
-  wrapper.innerHTML = DOME + `<span id="mascota-label">Contacto</span>`;
+  wrapper.setAttribute('role', 'button');
+  wrapper.setAttribute('tabindex', '0');
+  wrapper.setAttribute('aria-label', 'Contacto');
+  wrapper.innerHTML = sprite('mascota-svg') + '<span id="mascota-label">Contacto</span>';
 
   const overlay = document.createElement('div');
   overlay.id = 'mascota-modal-overlay';
@@ -293,7 +204,7 @@
     <div id="mascota-modal">
       <button id="mascota-modal-close">&#x2715;</button>
 
-      ${DOME_MODAL}
+      ${sprite('mascota-modal-sprite')}
 
       <h2>Hablemos</h2>
       <p>¿Te interesa alguno de nuestros proyectos?<br>Escríbenos y te contamos más.</p>
@@ -310,14 +221,49 @@
     </div>
   `;
 
+
   document.body.appendChild(wrapper);
   document.body.appendChild(overlay);
 
-  wrapper.addEventListener('click', () => overlay.classList.add('open'));
+  const abrir = () => overlay.classList.add('open');
+  wrapper.addEventListener('click', abrir);
+  wrapper.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); }
+  });
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.classList.remove('open');
   });
   document.getElementById('mascota-modal-close').addEventListener('click', () => {
     overlay.classList.remove('open');
   });
+
+  /* ── Vida propia: cada cierto tiempo parpadea, mira a los lados, salta o saluda ── */
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const svg = document.getElementById('mascota-svg');
+  const ocupada = new Set();
+  function animar(clase, ms) {
+    if (ocupada.has(clase)) return;
+    ocupada.add(clase);
+    svg.classList.add(clase);
+    setTimeout(() => { svg.classList.remove(clase); ocupada.delete(clase); }, ms);
+  }
+  const parpadear = () => { animar('parpadea', 160); if (Math.random() < 0.3) setTimeout(() => animar('parpadea', 160), 380); };
+  const mirar = () => { const c = Math.random() < 0.5 ? 'mira-i' : 'mira-d'; animar(c, 900); setTimeout(parpadear, 950); };
+  const saltar = () => animar('salta', 720);
+  const saludar = () => animar('saluda', 1800);
+
+  function accion() {
+    if (!document.hidden && !overlay.classList.contains('open')) {
+      const r = Math.random();
+      if (r < 0.4) parpadear();
+      else if (r < 0.62) mirar();
+      else if (r < 0.82) saltar();
+      else saludar();
+    }
+    setTimeout(accion, 2800 + Math.random() * 3600);
+  }
+  setTimeout(saludar, 1800);                       // un saludo al llegar
+  setTimeout(accion, 6000);
+  wrapper.addEventListener('mouseenter', saltar);
 })();
