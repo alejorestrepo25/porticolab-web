@@ -222,9 +222,9 @@ body.y2k .gallery-item:hover {
   box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.08);
 }
 
-/* ---------- Imágenes en dithering: trama cromada que pasa a la foto real al hover ---------- */
-.dither-wrap { position: relative; }
-.dither {
+/* ---------- Fotos: al pasar el puntero, el fondo se vuelve un mosaico de píxeles y el objeto queda nítido ---------- */
+.fondo-pixel-wrap { position: relative; }
+.fondo-pixel {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -234,13 +234,15 @@ body.y2k .gallery-item:hover {
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.35s ease;
+  opacity: 0;
+  transition: opacity 0.3s steps(4, end), transform 0.25s ease;
 }
-.dither-wrap figcaption { z-index: 1; }
-:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within, .revelado) .dither { opacity: 0; }
+.fondo-pixel-wrap figcaption { z-index: 1; }
+:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within, .revelado) .fondo-pixel { opacity: 1; }
+.gallery-item:hover .fondo-pixel { transform: scale(1.05); }
 .dither-scope { position: relative; border-radius: 12px; overflow: hidden; }
 .dither-scope img { border-radius: inherit; }
-@media (prefers-reduced-motion: reduce) { .dither { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .fondo-pixel { transition: none; } }
 
 /* ---------- Cursor personalizado ---------- */
 .y2k-cursor {
