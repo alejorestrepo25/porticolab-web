@@ -1,0 +1,230 @@
+/* Rediseño "Concreto cromado": Y2K como acento sobre la base negra y brutalista.
+   Todo va acotado a body.y2k para poder extenderlo página por página. */
+
+@property --y2k-ang {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+body.y2k {
+  --negro: #000;
+  --blanco: #fff;
+  --concreto: #8a8a85;
+  --cromo: linear-gradient(110deg, #e8e8ee 0%, #b9a7ff 48%, #7ee8ff 100%);
+  --cromo-1: #e8e8ee;
+  --cromo-2: #b9a7ff;
+  --cromo-3: #7ee8ff;
+  --display: 'Unbounded', 'Montserrat', sans-serif;
+  --mono: 'Space Mono', ui-monospace, Consolas, monospace;
+}
+
+/* ---------- Tipografía ---------- */
+body.y2k .logo { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 1px; }
+body.y2k .nav a { font-family: var(--mono); font-size: 13px; letter-spacing: 1.5px; }
+body.y2k .gallery-item h3 { font-family: var(--display); font-weight: 500; font-size: 14px; letter-spacing: 0.3px; }
+body.y2k .post-tags span { font-family: var(--mono); }
+
+.hud {
+  display: block;
+  font-family: var(--mono, 'Space Mono', monospace);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--concreto, #8a8a85);
+  text-transform: uppercase;
+}
+.hud b { color: var(--cromo-3, #7ee8ff); font-weight: 400; }
+
+/* ---------- Botones con borde cromado ---------- */
+.btn-cromo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 24px;
+  font-family: var(--mono, 'Space Mono', monospace);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  background-image:
+    linear-gradient(#000, #000),
+    conic-gradient(from var(--y2k-ang), #e8e8ee, #b9a7ff, #7ee8ff, #e8e8ee);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: color 0.2s ease;
+}
+.btn-cromo:hover,
+.btn-cromo:focus-visible { color: #7ee8ff; outline: none; }
+.btn-cromo:focus-visible { box-shadow: 0 0 0 2px #000, 0 0 0 4px #b9a7ff; }
+.btn-fantasma {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px 24px;
+  font-family: var(--mono, 'Space Mono', monospace);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #bbb;
+  border: 1px solid #333;
+  border-radius: 10px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.btn-fantasma:hover,
+.btn-fantasma:focus-visible { color: #fff; border-color: #8a8a85; outline: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-cromo:hover,
+  .btn-cromo:focus-visible { animation: y2k-giro 2.4s linear infinite; }
+  @keyframes y2k-giro { to { --y2k-ang: 360deg; } }
+}
+
+/* ---------- Hero ---------- */
+.y2k-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: min(78vh, 660px);
+  padding: 48px 40px;
+  overflow: hidden;
+  border-bottom: 1px solid #161616;
+}
+/* retícula en perspectiva, discreta */
+.y2k-hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -25%;
+  right: -25%;
+  bottom: -8%;
+  height: 62%;
+  background-image:
+    linear-gradient(rgba(185, 167, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 167, 255, 0.2) 1px, transparent 1px);
+  background-size: 52px 52px;
+  transform: perspective(430px) rotateX(64deg);
+  transform-origin: center bottom;
+  -webkit-mask-image: linear-gradient(to top, #000 8%, transparent 82%);
+  mask-image: linear-gradient(to top, #000 8%, transparent 82%);
+}
+
+.y2k-hero__txt { max-width: 560px; }
+.y2k-hero__txt .hud { margin-bottom: 18px; }
+.y2k-hero h1 {
+  font-family: var(--display, 'Unbounded', sans-serif);
+  font-weight: 700;
+  font-size: clamp(30px, 4.6vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+.y2k-hero h1 em {
+  font-style: normal;
+  color: #b9a7ff;
+  background: var(--cromo);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.y2k-hero p {
+  margin-top: 20px;
+  max-width: 46ch;
+  color: #bdbdb8;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.y2k-hero__acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+.y2k-hero__vis {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 580px;
+  justify-self: center;
+}
+.y2k-hero__vis canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.y2k-hero__vis img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: opacity 0.8s ease;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 42%, transparent 74%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 42%, transparent 74%);
+}
+.y2k-hero__vis.is-live canvas { opacity: 1; }
+.y2k-hero__vis.is-live img { opacity: 0; }
+.y2k-hero__vis .hud { position: absolute; z-index: 1; }
+.y2k-hero__vis .hud--tl { top: 8px; left: 4px; }
+.y2k-hero__vis .hud--br { bottom: 8px; left: 4px; }
+
+/* ---------- Encabezado de sección ---------- */
+.y2k-seccion { max-width: 1400px; margin: 0 auto; padding: 56px 40px 0; }
+.y2k-seccion h2 {
+  margin-top: 8px;
+  font-family: var(--display, 'Unbounded', sans-serif);
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ---------- Tarjetas de la galería ---------- */
+body.y2k .gallery-item .hud { margin: 14px 0 6px; padding: 0 2px; }
+body.y2k .gallery-item:hover {
+  box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.08);
+}
+
+/* ---------- Carga: glitch + scanline (≤ 600 ms) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  body.y2k .y2k-hero h1 { animation: y2k-glitch 0.55s steps(1, end) 1; }
+  @keyframes y2k-glitch {
+    0%   { transform: translateX(0); text-shadow: none; }
+    20%  { transform: translateX(-4px); text-shadow: 3px 0 #7ee8ff, -3px 0 #b9a7ff; }
+    45%  { transform: translateX(3px); text-shadow: -3px 0 #7ee8ff, 3px 0 #b9a7ff; }
+    70%  { transform: translateX(-1px); text-shadow: 1px 0 #b9a7ff; }
+    100% { transform: translateX(0); text-shadow: none; }
+  }
+  body.y2k::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+    animation: y2k-scan 0.6s ease-out forwards;
+  }
+  @keyframes y2k-scan { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .y2k-hero { grid-template-columns: 1fr; padding: 32px 16px 12px; min-height: 0; gap: 8px; }
+  .y2k-hero__vis { max-height: 380px; }
+  .y2k-seccion { padding: 40px 16px 0; }
+}
+@media (max-width: 768px) {
+  body.y2k .logo { font-size: 17px; }
+  body.y2k .nav a { font-size: 11px; letter-spacing: 0.5px; }
+}
