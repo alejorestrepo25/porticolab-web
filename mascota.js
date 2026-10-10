@@ -28,11 +28,11 @@
     #mascota-wrapper:hover #mascota-label,
     #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    /* Personaje en pixel art: 1 unidad del dibujo = 5 px */
+    /* Personaje en pixel art: 1 unidad del dibujo = 4.5 px */
     .mascota-sprite {
       display: block;
-      width: 70px;
-      height: 60px;
+      width: 72px;
+      height: 76px;
       overflow: visible;
       shape-rendering: crispEdges;
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14));
@@ -40,32 +40,46 @@
     }
     #mascota-wrapper:hover .mascota-sprite { filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.35)); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
+    .mascota-sprite .viga, .mascota-sprite .col-i, .mascota-sprite .col-d { transform-box: fill-box; }
 
-    #mascota-modal .mascota-sprite { width: 56px; height: 48px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
+    #mascota-modal .mascota-sprite { width: 56px; height: 60px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      .mascota-sprite { width: 56px; height: 48px; }
+      .mascota-sprite { width: 56px; height: 60px; }
     }
 
     /* Movimiento: solo si el usuario no pidió menos animación */
     @media (prefers-reduced-motion: no-preference) {
-      #mascota-wrapper .todo { animation: mascota-respira 1.6s steps(1) infinite; }
+      #mascota-wrapper .todo { animation: mascota-respira 1.8s steps(1) infinite; }
       @keyframes mascota-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
 
       #mascota-wrapper .parpadea .ojos { transform: scaleY(0.15); }
       #mascota-wrapper .mira-i .ojos { transform: translateX(-1px); }
       #mascota-wrapper .mira-d .ojos { transform: translateX(1px); }
 
+      #mascota-wrapper .escanea .ojos { animation: mascota-escaneo 1s steps(1) 1; }
+      @keyframes mascota-escaneo {
+        0% { transform: translateX(-1px); } 20% { transform: translateX(1px); } 40% { transform: translateX(-1px); }
+        60% { transform: translateX(1px); } 80% { transform: translateX(0); }
+      }
+
       #mascota-wrapper .salta .todo { animation: mascota-salto 0.72s steps(1) 1; }
       @keyframes mascota-salto {
-        0% { transform: translateY(0); }  12% { transform: translateY(-1px); } 24% { transform: translateY(-2px); }
+        0% { transform: translateY(0); } 12% { transform: translateY(-1px); } 24% { transform: translateY(-2px); }
         36% { transform: translateY(-3px); } 52% { transform: translateY(-2px); } 66% { transform: translateY(-1px); }
         80% { transform: translateY(0); } 90% { transform: translateY(1px); } 100% { transform: translateY(0); }
       }
 
-      #mascota-wrapper .asiente .todo { animation: mascota-asiente 0.5s steps(1) 2; }
-      @keyframes mascota-asiente { 0% { transform: translateY(0); } 50% { transform: translateY(1px); } }
+      /* Paso estilo TARS: las columnas se alternan y la viga se balancea encima */
+      #mascota-wrapper .camina .col-i { animation: mascota-paso-i 1.6s steps(1) 1; }
+      #mascota-wrapper .camina .col-d { animation: mascota-paso-d 1.6s steps(1) 1; }
+      #mascota-wrapper .camina .viga { animation: mascota-balanceo 1.6s steps(1) 1; }
+      @keyframes mascota-paso-i { 0% { transform: translate(0, -2px); } 12.5% { transform: translate(1px, 0); } 25% { transform: translate(0, 0); }
+        50% { transform: translate(0, -2px); } 62.5% { transform: translate(1px, 0); } 75% { transform: translate(0, 0); } }
+      @keyframes mascota-paso-d { 0% { transform: translate(0, 0); } 25% { transform: translate(0, -2px); } 37.5% { transform: translate(-1px, 0); } 50% { transform: translate(0, 0); }
+        75% { transform: translate(0, -2px); } 87.5% { transform: translate(-1px, 0); } 100% { transform: translate(0, 0); } }
+      @keyframes mascota-balanceo { 0% { transform: translateX(-1px); } 25% { transform: translateX(1px); } 50% { transform: translateX(-1px); } 75% { transform: translateX(1px); } 100% { transform: translateX(0); } }
     }
 
     /* Modal */
@@ -168,20 +182,21 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Personaje: la silueta mínima de un pórtico (frontón, viga y dos columnas) en pixel art ──
-     Cuadrícula de 14 x 12 unidades; cada rect es un bloque de píxeles. */
+  /* ── Personaje: un pórtico hecho de monolitos articulados (guiño a TARS) ──
+     Viga con pantalla y ojos sobre dos columnas de dos bloques cada una, separados por una junta.
+     Cuadrícula de 16 x 17 unidades; cada rect es un bloque de píxeles. */
   const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
   function sprite(id) {
-    const C = '#d6d6dc', L = '#f2f2f6', M = '#9a9aa6', V = '#0b0b0b', A = '#7ee8ff';
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 14 12" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
+    const C = '#cfcfd7', L = '#f0f0f5', M = '#8f8f9a', V = '#0b0b0b', A = '#7ee8ff';
+    const losa = (x, y, w, h) => R(x, y, w, h, C) + R(x, y, 1, h, L) + R(x + w - 1, y, 1, h, M);
+    const columna = (x) => losa(x, 7, 3, 4) + losa(x, 12, 3, 4);
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
       '<g class="todo">' +
-        R(0, 11, 14, 1, 'rgba(0,0,0,0.5)') +
-        R(4, 5, 6, 5, V) +
-        '<g class="ojos">' + R(5, 6, 1, 2, A) + R(8, 6, 1, 2, A) + '</g>' +
-        R(1, 5, 3, 5, C) + R(10, 5, 3, 5, C) +
-        R(0, 10, 14, 1, M) +
-        R(0, 3, 14, 2, L) +
-        R(2, 2, 10, 1, C) + R(4, 1, 6, 1, C) + R(6, 0, 2, 1, C) +
+        R(1, 16, 14, 1, 'rgba(0,0,0,0.5)') +
+        '<g class="col-i">' + columna(2) + '</g>' +
+        '<g class="col-d">' + columna(11) + '</g>' +
+        '<g class="viga">' + losa(0, 1, 16, 6) + R(0, 1, 16, 1, L) + R(0, 6, 16, 1, M) + R(2, 2, 12, 4, V) +
+          '<g class="ojos">' + R(4, 3, 2, 2, A) + R(10, 3, 2, 2, A) + '</g></g>' +
       '</g></svg>';
   }
 
@@ -231,7 +246,7 @@
     overlay.classList.remove('open');
   });
 
-  /* ── Vida propia: cada cierto tiempo parpadea, mira a los lados, salta o asiente ── */
+  /* ── Vida propia: cada cierto tiempo parpadea, mira a los lados, camina, salta o escanea ── */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const svg = document.getElementById('mascota-svg');
@@ -245,19 +260,21 @@
   const parpadear = () => { animar('parpadea', 160); if (Math.random() < 0.3) setTimeout(() => animar('parpadea', 160), 380); };
   const mirar = () => { const c = Math.random() < 0.5 ? 'mira-i' : 'mira-d'; animar(c, 900); setTimeout(parpadear, 950); };
   const saltar = () => animar('salta', 720);
-  const asentir = () => animar('asiente', 1000);
+  const caminar = () => animar('camina', 1600);
+  const escanear = () => animar('escanea', 1000);
 
   function accion() {
     if (!document.hidden && !overlay.classList.contains('open')) {
       const r = Math.random();
-      if (r < 0.4) parpadear();
-      else if (r < 0.62) mirar();
-      else if (r < 0.82) saltar();
-      else asentir();
+      if (r < 0.3) parpadear();
+      else if (r < 0.5) mirar();
+      else if (r < 0.7) caminar();
+      else if (r < 0.85) saltar();
+      else escanear();
     }
     setTimeout(accion, 2800 + Math.random() * 3600);
   }
-  setTimeout(asentir, 1800);                       // un cabeceo al llegar
+  setTimeout(caminar, 1800);                       // al llegar, da unos pasos
   setTimeout(accion, 6000);
   wrapper.addEventListener('mouseenter', saltar);
 })();
