@@ -13,7 +13,7 @@
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-    #mascota-wrapper:focus-visible { outline: 2px solid #b9a7ff; outline-offset: 6px; border-radius: 6px; }
+    #mascota-wrapper:focus-visible { outline: 2px solid #fff; outline-offset: 6px; border-radius: 6px; }
 
     #mascota-label {
       font-family: 'Space Mono', 'Montserrat', monospace;
@@ -31,23 +31,21 @@
     /* Personaje en pixel art: 1 unidad del dibujo = 4 px */
     .mascota-sprite {
       display: block;
-      width: 64px;
-      height: 56px;
+      width: 84px;
+      height: 72px;
       overflow: visible;
       shape-rendering: crispEdges;
-      filter: drop-shadow(0 0 6px rgba(185, 167, 255, 0.28));
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14));
       transition: filter 0.3s;
     }
-    #mascota-wrapper:hover .mascota-sprite { filter: drop-shadow(0 0 14px rgba(126, 232, 255, 0.55)); }
+    #mascota-wrapper:hover .mascota-sprite { filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.35)); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
-    .mascota-sprite .antena { animation: mascota-antena 1.4s steps(1) infinite; }
-    @keyframes mascota-antena { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
 
-    #mascota-modal .mascota-sprite { width: 48px; height: 42px; filter: drop-shadow(0 0 8px rgba(185, 167, 255, 0.35)); }
+    #mascota-modal .mascota-sprite { width: 63px; height: 54px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      .mascota-sprite { width: 48px; height: 42px; }
+      .mascota-sprite { width: 63px; height: 54px; }
     }
 
     /* Movimiento: solo si el usuario no pidió menos animación */
@@ -66,6 +64,10 @@
         80% { transform: translateY(0); } 90% { transform: translateY(1px); } 100% { transform: translateY(0); }
       }
 
+      #mascota-wrapper .plomada { animation: mascota-plomada 2.4s steps(1) infinite; }
+      @keyframes mascota-plomada {
+        0%, 100% { transform: translateX(0); } 25% { transform: translateX(-1px); } 75% { transform: translateX(1px); }
+      }
       #mascota-wrapper .saluda .brazo-d { animation: mascota-saludo 0.3s steps(1) 6; }
       @keyframes mascota-saludo {
         0% { transform: translate(0, -2px); }
@@ -173,21 +175,32 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Personaje: un pequeño "pórtico" (cornisa, cuerpo y dos columnas) en pixel art ──
-     Cuadrícula de 16 x 14 unidades; cada rect es un bloque de píxeles. */
+  /* ── Personaje: un pórtico constructivo (zapatas, dos columnas de concreto, viga con nivel, frontón y plomada) en pixel art ──
+     Cuadrícula de 21 x 18 unidades; cada rect es un bloque de píxeles. */
   const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
   function sprite(id) {
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
+    const L = '#f0f0f4', C = '#cfcfd6', M = '#a9a9b4', D = '#6e6e7a', V = '#0b0b0b', A = '#7ee8ff';
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
       '<g class="todo">' +
-        R(2, 13, 12, 1, 'rgba(0,0,0,0.5)') +
-        '<g class="piernas">' + R(4, 8, 3, 4, '#e8e8ee') + R(9, 8, 3, 4, '#e8e8ee') + R(6, 8, 1, 4, '#c9c9e0') + R(11, 8, 1, 4, '#c9c9e0') + R(3, 12, 5, 1, '#7ee8ff') + R(8, 12, 5, 1, '#7ee8ff') + '</g>' +
-        '<g class="antena">' + R(7, 0, 2, 1, '#7ee8ff') + '</g>' +
-        R(2, 1, 12, 1, '#e8e8ee') + R(3, 2, 10, 1, '#c9c9e0') +
-        R(3, 3, 10, 5, '#b9a7ff') + R(3, 3, 1, 4, '#d6ccff') + R(12, 3, 1, 4, '#9d8cf0') + R(3, 7, 10, 1, '#8f7ee0') +
-        '<g class="ojos">' + R(5, 4, 2, 2, '#0b0b0b') + R(9, 4, 2, 2, '#0b0b0b') + R(5, 4, 1, 1, '#7ee8ff') + R(9, 4, 1, 1, '#7ee8ff') + '</g>' +
-        R(7, 6, 2, 1, '#0b0b0b') +
-        '<g class="brazo-i">' + R(1, 5, 2, 2, '#b9a7ff') + '</g>' +
-        '<g class="brazo-d">' + R(13, 5, 2, 2, '#b9a7ff') + '</g>' +
+        R(2, 17, 17, 1, 'rgba(0,0,0,0.5)') +
+        // vano entre columnas con ojos y plomada
+        R(7, 7, 7, 8, V) +
+        '<g class="ojos">' + R(8, 9, 2, 2, A) + R(11, 9, 2, 2, A) + '</g>' +
+        '<g class="plomada">' + R(10, 7, 1, 5, D) + R(9, 12, 3, 1, C) + R(10, 13, 1, 1, C) + '</g>' +
+        // columnas de concreto con juntas de encofrado
+        R(3, 7, 4, 8, C) + R(3, 7, 1, 8, L) + R(6, 7, 1, 8, M) + R(3, 10, 4, 1, M) + R(3, 13, 4, 1, M) +
+        R(14, 7, 4, 8, C) + R(14, 7, 1, 8, L) + R(17, 7, 1, 8, M) + R(14, 10, 4, 1, M) + R(14, 13, 4, 1, M) +
+        // zapatas
+        R(2, 15, 6, 2, M) + R(2, 15, 6, 1, C) + R(13, 15, 6, 2, M) + R(13, 15, 6, 1, C) +
+        // viga con remaches y nivel de burbuja
+        R(2, 4, 17, 1, L) + R(2, 5, 17, 1, C) + R(2, 6, 17, 1, M) +
+        R(3, 5, 1, 1, D) + R(6, 5, 1, 1, D) + R(14, 5, 1, 1, D) + R(17, 5, 1, 1, D) +
+        R(8, 5, 5, 1, D) + R(10, 5, 1, 1, L) +
+        // manos
+        '<g class="brazo-i">' + R(1, 9, 2, 2, M) + '</g>' +
+        '<g class="brazo-d">' + R(18, 9, 2, 2, M) + '</g>' +
+        // frontón escalonado
+        R(9, 1, 3, 1, L) + R(7, 2, 7, 1, C) + R(5, 3, 11, 1, M) +
       '</g></svg>';
   }
 
