@@ -28,11 +28,11 @@
     #mascota-wrapper:hover #mascota-label,
     #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    /* Personaje en pixel art: 1 unidad del dibujo = 4 px */
+    /* Personaje en pixel art: 1 unidad del dibujo = 5 px */
     .mascota-sprite {
       display: block;
-      width: 84px;
-      height: 72px;
+      width: 70px;
+      height: 60px;
       overflow: visible;
       shape-rendering: crispEdges;
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14));
@@ -41,11 +41,11 @@
     #mascota-wrapper:hover .mascota-sprite { filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.35)); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
 
-    #mascota-modal .mascota-sprite { width: 63px; height: 54px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
+    #mascota-modal .mascota-sprite { width: 56px; height: 48px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      .mascota-sprite { width: 63px; height: 54px; }
+      .mascota-sprite { width: 56px; height: 48px; }
     }
 
     /* Movimiento: solo si el usuario no pidió menos animación */
@@ -64,15 +64,8 @@
         80% { transform: translateY(0); } 90% { transform: translateY(1px); } 100% { transform: translateY(0); }
       }
 
-      #mascota-wrapper .plomada { animation: mascota-plomada 2.4s steps(1) infinite; }
-      @keyframes mascota-plomada {
-        0%, 100% { transform: translateX(0); } 25% { transform: translateX(-1px); } 75% { transform: translateX(1px); }
-      }
-      #mascota-wrapper .saluda .brazo-d { animation: mascota-saludo 0.3s steps(1) 6; }
-      @keyframes mascota-saludo {
-        0% { transform: translate(0, -2px); }
-        50% { transform: translate(1px, -3px); }
-      }
+      #mascota-wrapper .asiente .todo { animation: mascota-asiente 0.5s steps(1) 2; }
+      @keyframes mascota-asiente { 0% { transform: translateY(0); } 50% { transform: translateY(1px); } }
     }
 
     /* Modal */
@@ -175,32 +168,20 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Personaje: un pórtico constructivo (zapatas, dos columnas de concreto, viga con nivel, frontón y plomada) en pixel art ──
-     Cuadrícula de 21 x 18 unidades; cada rect es un bloque de píxeles. */
+  /* ── Personaje: la silueta mínima de un pórtico (frontón, viga y dos columnas) en pixel art ──
+     Cuadrícula de 14 x 12 unidades; cada rect es un bloque de píxeles. */
   const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
   function sprite(id) {
-    const L = '#f0f0f4', C = '#cfcfd6', M = '#a9a9b4', D = '#6e6e7a', V = '#0b0b0b', A = '#7ee8ff';
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
+    const C = '#d6d6dc', L = '#f2f2f6', M = '#9a9aa6', V = '#0b0b0b', A = '#7ee8ff';
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 14 12" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
       '<g class="todo">' +
-        R(2, 17, 17, 1, 'rgba(0,0,0,0.5)') +
-        // vano entre columnas con ojos y plomada
-        R(7, 7, 7, 8, V) +
-        '<g class="ojos">' + R(8, 9, 2, 2, A) + R(11, 9, 2, 2, A) + '</g>' +
-        '<g class="plomada">' + R(10, 7, 1, 5, D) + R(9, 12, 3, 1, C) + R(10, 13, 1, 1, C) + '</g>' +
-        // columnas de concreto con juntas de encofrado
-        R(3, 7, 4, 8, C) + R(3, 7, 1, 8, L) + R(6, 7, 1, 8, M) + R(3, 10, 4, 1, M) + R(3, 13, 4, 1, M) +
-        R(14, 7, 4, 8, C) + R(14, 7, 1, 8, L) + R(17, 7, 1, 8, M) + R(14, 10, 4, 1, M) + R(14, 13, 4, 1, M) +
-        // zapatas
-        R(2, 15, 6, 2, M) + R(2, 15, 6, 1, C) + R(13, 15, 6, 2, M) + R(13, 15, 6, 1, C) +
-        // viga con remaches y nivel de burbuja
-        R(2, 4, 17, 1, L) + R(2, 5, 17, 1, C) + R(2, 6, 17, 1, M) +
-        R(3, 5, 1, 1, D) + R(6, 5, 1, 1, D) + R(14, 5, 1, 1, D) + R(17, 5, 1, 1, D) +
-        R(8, 5, 5, 1, D) + R(10, 5, 1, 1, L) +
-        // manos
-        '<g class="brazo-i">' + R(1, 9, 2, 2, M) + '</g>' +
-        '<g class="brazo-d">' + R(18, 9, 2, 2, M) + '</g>' +
-        // frontón escalonado
-        R(9, 1, 3, 1, L) + R(7, 2, 7, 1, C) + R(5, 3, 11, 1, M) +
+        R(0, 11, 14, 1, 'rgba(0,0,0,0.5)') +
+        R(4, 5, 6, 5, V) +
+        '<g class="ojos">' + R(5, 6, 1, 2, A) + R(8, 6, 1, 2, A) + '</g>' +
+        R(1, 5, 3, 5, C) + R(10, 5, 3, 5, C) +
+        R(0, 10, 14, 1, M) +
+        R(0, 3, 14, 2, L) +
+        R(2, 2, 10, 1, C) + R(4, 1, 6, 1, C) + R(6, 0, 2, 1, C) +
       '</g></svg>';
   }
 
@@ -250,7 +231,7 @@
     overlay.classList.remove('open');
   });
 
-  /* ── Vida propia: cada cierto tiempo parpadea, mira a los lados, salta o saluda ── */
+  /* ── Vida propia: cada cierto tiempo parpadea, mira a los lados, salta o asiente ── */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const svg = document.getElementById('mascota-svg');
@@ -264,7 +245,7 @@
   const parpadear = () => { animar('parpadea', 160); if (Math.random() < 0.3) setTimeout(() => animar('parpadea', 160), 380); };
   const mirar = () => { const c = Math.random() < 0.5 ? 'mira-i' : 'mira-d'; animar(c, 900); setTimeout(parpadear, 950); };
   const saltar = () => animar('salta', 720);
-  const saludar = () => animar('saluda', 1800);
+  const asentir = () => animar('asiente', 1000);
 
   function accion() {
     if (!document.hidden && !overlay.classList.contains('open')) {
@@ -272,11 +253,11 @@
       if (r < 0.4) parpadear();
       else if (r < 0.62) mirar();
       else if (r < 0.82) saltar();
-      else saludar();
+      else asentir();
     }
     setTimeout(accion, 2800 + Math.random() * 3600);
   }
-  setTimeout(saludar, 1800);                       // un saludo al llegar
+  setTimeout(asentir, 1800);                       // un cabeceo al llegar
   setTimeout(accion, 6000);
   wrapper.addEventListener('mouseenter', saltar);
 })();
