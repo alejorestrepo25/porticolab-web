@@ -48,6 +48,8 @@
   function procesar(img) {
     if (procesadas.has(img) || !img.src) return;
     procesadas.add(img);
+    // Las láminas vectoriales (PNG) ya tienen el estilo y pierden legibilidad con la trama
+    if (/\.png(\?|$)/i.test(img.src)) return;
     const origen = new Image();
     origen.crossOrigin = 'anonymous';
     origen.onload = () => { try { pintar(img, origen); } catch (e) { /* sin CORS: queda la foto */ } };
