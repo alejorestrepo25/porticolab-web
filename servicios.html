@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios - PORTICO LAB</title>
-  <meta name="description" content="Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra en Medellín. Cotiza en línea en un minuto.">
+  <meta name="description" content="Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra con metodología BIM en Medellín. Cotiza en línea en un minuto.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css">
@@ -73,6 +73,8 @@
     .srv-body .num { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: #666; }
     .srv-body h3 { font-size: 17px; font-weight: 700; margin-top: 8px; }
     .srv-body .promesa { font-size: 13px; color: #aaa; line-height: 1.6; margin-top: 8px; }
+    .srv-body .num { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .bim { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: #000; background: var(--cromo); padding: 4px 8px; border-radius: 6px; }
     .incluye { list-style: none; margin-top: 14px; }
     .incluye li { font-size: 12px; color: #ccc; line-height: 1.5; padding: 6px 0 6px 20px; position: relative; border-top: 1px solid #151515; }
     .incluye li::before { content: '+'; position: absolute; left: 0; color: var(--acento); font-family: var(--mono); font-weight: 600; }
@@ -235,7 +237,7 @@
     <div class="hero-txt">
       <div class="kicker">&gt; SERVICIOS_</div>
       <h1>Del archivo a la pieza. <em>Cotiza en un minuto.</em></h1>
-      <p>Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra, hechos en nuestro taller de Medellín. Elige un servicio y ve tu precio y tu plazo al instante.</p>
+      <p>Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra con metodología BIM, hechos en nuestro taller de Medellín. Elige un servicio y ve tu precio y tu plazo al instante.</p>
       <div class="hero-acciones">
         <a class="btn btn-primario" href="#servicios">Ver servicios</a>
         <a class="btn btn-secundario" id="hero-wa" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
@@ -328,7 +330,9 @@
   <section id="preguntas">
     <h2 class="seccion">Preguntas frecuentes</h2>
     <div class="faq">
-      <details><summary>¿Cuánto cuesta y cómo se calcula?</summary><p>En impresión 3D con archivo el precio es cerrado y depende del peso, la cantidad de piezas y el plazo. Si necesitas que diseñemos la pieza, y en diseño y presupuestos, te mostramos un rango y confirmamos el valor final en menos de 24 horas.</p></details>
+      <details><summary>¿Cuánto cuesta y cómo se calcula?</summary><p>En impresión 3D con archivo el precio es cerrado y depende del peso, la cantidad de piezas y el plazo. En diseño y presupuestos el valor se calcula por metro cuadrado construido: te mostramos un rango y confirmamos el valor final en menos de 24 horas. Lo mismo si necesitas que diseñemos tu pieza 3D.</p></details>
+      <details><summary>¿Qué incluye el diseño de una remodelación?</summary><p>Una remodelación lleva más detalle arquitectónico que una obra nueva. Además de los planos (que sirven para licencia) puedes sumar diseño de interiores, renders especiales, diseño de mobiliario y una propuesta de colores, acabados y recubrimientos.</p></details>
+      <details><summary>¿Trabajan con metodología BIM?</summary><p>Sí, siempre. Los proyectos se desarrollan en BIM: los planos, las cantidades y el presupuesto salen de un mismo modelo, lo que ayuda a evitar errores y a que los cambios se reflejen en todo.</p></details>
       <details><summary>¿Cómo se paga?</summary><p>Un anticipo del 50% para iniciar y el saldo contra entrega. Por ahora te enviamos el link de pago del anticipo por WhatsApp.</p></details>
       <details><summary>¿Qué necesito para empezar?</summary><p>Para imprimir, tu archivo OBJ o STL y, si quieres, imágenes de referencia; si no tienes archivo, lo diseñamos a partir de tu descripción. Para diseño, el área y lo que tengas en mente del lote. Para un presupuesto, los planos; si no existen, tomamos medidas.</p></details>
       <details><summary>¿Cuándo empieza a contar el plazo?</summary><p>Desde que recibimos el anticipo y el modelo o los planos.</p></details>
@@ -382,8 +386,13 @@ const T = {
     rango: [0.85, 1.25]
   },
   diseno: {
-    m2: { anteproyecto: 18000, licencia: 35000, licencia_renders: 42000 },
-    tipo: { vivienda: 1, comercial: 1.15, remodelacion: 1.1 },
+    // Tarifa base por m² construido según el alcance (todos los planos del proyecto sirven para licencia)
+    m2: { anteproyecto: 18000, proyecto: 35000 },
+    // La remodelación pide más detalle arquitectónico, por eso pesa más que una obra nueva
+    tipo: { vivienda: 1, comercial: 1.15, remodelacion: 1.35 },
+    // Adicionales opcionales, también por m² construido
+    extrasM2: { interiores: 12000, renders: 7000, mobiliario: 9000, acabados: 5000 },
+    diasExtras: { interiores: 5, renders: 3, mobiliario: 5, acabados: 2 },
     minimo: 1200000,
     rango: [0.85, 1.25]      // el rango mostrado va de -15% a +25%
   },
@@ -518,25 +527,31 @@ const SERVICIOS = [
   {
     id: 'diseno', nombre: 'Diseño arquitectónico', modo: 'rango',
     badge: 'OFERTA EN 24 H', ilustracion: ILUSTRACION_DISENO,
-    promesa: 'De la idea a los planos y las imágenes que necesitas para decidir y construir.',
-    incluye: ['Anteproyecto: plantas, fachadas y concepto', 'Proyecto arquitectónico para licencia', 'Renders para ver tu proyecto antes de construir'],
+    bim: true,
+    promesa: 'Diseñado en BIM: de la idea a los planos que necesitas para decidir, tramitar y construir.',
+    incluye: ['Anteproyecto o proyecto arquitectónico completo (los planos sirven para licencia)', 'Remodelaciones con diseño de interiores, mobiliario, colores y acabados', 'Renders para ver tu proyecto antes de construir'],
     cta: 'Cotizar diseño',
     campos: [
-      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda'], ['comercial', 'Comercial / oficinas'], ['remodelacion', 'Remodelación']] },
-      { id: 'area', label: '¿Cuántos m² tiene?', type: 'number', min: 20, max: 5000, value: 80, presets: [60, 100, 150, 250], ayuda: 'Área construida total aproximada.' },
-      { id: 'alcance', label: '¿Qué necesitas?', type: 'select', options: [['anteproyecto', 'Anteproyecto', 'Plantas, fachadas y concepto'], ['licencia', 'Para licencia', 'Proyecto arquitectónico completo'], ['licencia_renders', 'Licencia + renders', 'Incluye imágenes realistas']] }
+      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda nueva'], ['comercial', 'Comercial / oficinas'], ['remodelacion', 'Remodelación', 'Lleva más detalle arquitectónico']] },
+      { id: 'area', label: '¿Cuántos m² construidos?', type: 'number', min: 20, max: 5000, value: 80, presets: [60, 100, 150, 250], ayuda: 'Área construida total (en una remodelación, la que se interviene).' },
+      { id: 'alcance', label: '¿Qué necesitas?', type: 'select', options: [['anteproyecto', 'Anteproyecto', 'Plantas, fachadas y concepto'], ['proyecto', 'Proyecto arquitectónico', 'Planos completos; sirven para licencia']] },
+      { id: 'extras', label: '¿Quieres sumar algo más? (opcional)', type: 'multi', ayuda: 'Una remodelación suele necesitar interiores, renders especiales, mobiliario y propuesta de acabados.', options: [['interiores', 'Diseño de interiores'], ['renders', 'Renders', 'Imágenes realistas'], ['mobiliario', 'Diseño de mobiliario', 'A medida'], ['acabados', 'Colores y acabados', 'Paleta, materiales y recubrimientos']] }
     ],
     calcular(v) {
       const d = T.diseno;
-      const precio = Math.max(d.minimo, v.area * d.m2[v.alcance] * d.tipo[v.tipo]);
-      const dias = v.alcance === 'anteproyecto' ? 7 + v.area / 40 : 15 + v.area / 25 + (v.alcance === 'licencia_renders' ? 3 : 0);
-      return { precio, dias, rango: d.rango, detalle: `${fmtNum(v.area)} m² · ${txt(this, 'alcance', v.alcance)} · ${txt(this, 'tipo', v.tipo)}` };
+      const extras = v.extras ? v.extras.split(',') : [];
+      const porM2 = d.m2[v.alcance] * d.tipo[v.tipo] + extras.reduce((s, e) => s + d.extrasM2[e], 0);
+      const precio = Math.max(d.minimo, v.area * porM2);
+      const dias = (v.alcance === 'anteproyecto' ? 7 + v.area / 40 : 15 + v.area / 25) + extras.reduce((s, e) => s + d.diasExtras[e], 0);
+      const lista = extras.map(e => txt(this, 'extras', e).toLowerCase());
+      return { precio, dias, rango: d.rango, detalle: `${fmtNum(v.area)} m² construidos · ${txt(this, 'alcance', v.alcance)} · ${txt(this, 'tipo', v.tipo)}${lista.length ? ' · + ' + lista.join(', ') : ''} · ${fmtCOP(porM2)} por m² · metodología BIM` };
     }
   },
   {
     id: 'presupuesto', nombre: 'Presupuesto de obra', modo: 'rango',
     badge: 'OFERTA EN 24 H', ilustracion: ILUSTRACION_PRESUPUESTO,
-    promesa: 'Sabe cuánto cuesta tu obra antes de empezar, para decidir o para contratar con respaldo.',
+    bim: true,
+    promesa: 'Sabe cuánto cuesta tu obra antes de empezar, con cantidades y presupuesto trabajados en BIM.',
     incluye: ['Estimado rápido por m² para decidir', 'Detallado con cantidades y APU para contratar', 'Si no tienes planos, tomamos las medidas'],
     cta: 'Cotizar presupuesto',
     campos: [
@@ -582,7 +597,7 @@ function valoresMinimos(s) {
   s.campos.forEach(c => {
     if (c.type === 'number') v[c.id] = c.min;
     else if (c.type === 'select') v[c.id] = c.options[0][0];
-    else if (c.type === 'texto') v[c.id] = '';
+    else if (c.type === 'texto' || c.type === 'multi') v[c.id] = '';
   });
   return v;
 }
@@ -688,7 +703,7 @@ function renderGrid() {
     card.innerHTML =
       `<div class="srv-img">${media}<span class="badge">${s.badge}</span></div>` +
       `<div class="srv-body">` +
-        `<div class="num">[0${i + 1}]</div>` +
+        `<div class="num">[0${i + 1}]${s.bim ? '<span class="bim">METODOLOGÍA BIM</span>' : ''}</div>` +
         `<h3>${s.nombre}</h3>` +
         `<p class="promesa">${s.promesa}</p>` +
         `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
@@ -732,6 +747,33 @@ function crearCampo(c) {
         grupo.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-checked', 'false'));
         b.setAttribute('aria-checked', 'true');
         oculto.value = o[0];
+        dispararInput(oculto);
+      });
+      grupo.appendChild(b);
+    });
+    div.appendChild(grupo);
+    div.appendChild(oculto);
+  } else if (c.type === 'multi') {
+    const oculto = document.createElement('input');
+    oculto.type = 'hidden';
+    oculto.id = `f-${c.id}`;
+    oculto.value = '';
+    const grupo = document.createElement('div');
+    grupo.className = 'chips';
+    grupo.setAttribute('role', 'group');
+    grupo.setAttribute('aria-labelledby', lbl.id);
+    c.options.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.setAttribute('role', 'checkbox');
+      b.setAttribute('aria-checked', 'false');
+      b.dataset.valor = o[0];
+      b.textContent = o[1];
+      if (o[2]) { const s = document.createElement('small'); s.textContent = o[2]; b.appendChild(s); }
+      b.addEventListener('click', () => {
+        b.setAttribute('aria-checked', b.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+        oculto.value = [...grupo.querySelectorAll('.chip[aria-checked=true]')].map(x => x.dataset.valor).join(',');
         dispararInput(oculto);
       });
       grupo.appendChild(b);
