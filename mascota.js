@@ -32,7 +32,7 @@
     .mascota-sprite {
       display: block;
       width: 72px;
-      height: 76px;
+      height: 81px;
       overflow: visible;
       shape-rendering: crispEdges;
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14));
@@ -42,11 +42,11 @@
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
     .mascota-sprite .viga, .mascota-sprite .col-i, .mascota-sprite .col-d { transform-box: fill-box; }
 
-    #mascota-modal .mascota-sprite { width: 56px; height: 60px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
+    #mascota-modal .mascota-sprite { width: 56px; height: 63px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      .mascota-sprite { width: 56px; height: 60px; }
+      .mascota-sprite { width: 56px; height: 63px; }
     }
 
     /* Movimiento: solo si el usuario no pidió menos animación */
@@ -183,20 +183,20 @@
   document.head.appendChild(style);
 
   /* ── Personaje: un pórtico hecho de monolitos articulados (guiño a TARS) ──
-     Viga con pantalla y ojos sobre dos columnas de dos bloques cada una, separados por una junta.
-     Cuadrícula de 16 x 17 unidades; cada rect es un bloque de píxeles. */
+     Viga con dos ojos alargados (como los de Claude) sobre dos columnas de dos bloques cada una.
+     Cuadrícula de 16 x 18 unidades; cada rect es un bloque de píxeles. */
   const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
   function sprite(id) {
-    const C = '#cfcfd7', L = '#f0f0f5', M = '#8f8f9a', V = '#0b0b0b', A = '#7ee8ff';
+    const C = '#cfcfd7', L = '#f0f0f5', M = '#8f8f9a', V = '#0b0b0b';
     const losa = (x, y, w, h) => R(x, y, w, h, C) + R(x, y, 1, h, L) + R(x + w - 1, y, 1, h, M);
-    const columna = (x) => losa(x, 7, 3, 4) + losa(x, 12, 3, 4);
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
+    const columna = (x) => losa(x, 8, 3, 4) + losa(x, 13, 3, 4);
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 16 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascota de Pórtico Lab">' +
       '<g class="todo">' +
-        R(1, 16, 14, 1, 'rgba(0,0,0,0.5)') +
+        R(1, 17, 14, 1, 'rgba(0,0,0,0.5)') +
         '<g class="col-i">' + columna(2) + '</g>' +
         '<g class="col-d">' + columna(11) + '</g>' +
-        '<g class="viga">' + losa(0, 1, 16, 6) + R(0, 1, 16, 1, L) + R(0, 6, 16, 1, M) + R(2, 2, 12, 4, V) +
-          '<g class="ojos">' + R(4, 3, 2, 2, A) + R(10, 3, 2, 2, A) + '</g></g>' +
+        '<g class="viga">' + losa(0, 1, 16, 7) + R(0, 1, 16, 1, L) + R(0, 7, 16, 1, M) +
+          '<g class="ojos">' + R(4, 3, 2, 3, V) + R(10, 3, 2, 3, V) + '</g></g>' +
       '</g></svg>';
   }
 
