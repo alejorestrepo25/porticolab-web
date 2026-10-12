@@ -402,52 +402,107 @@ const ILUSTRACION_BIM = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2
   </g>
 </svg>`;
 
-// Maqueta de exhibición: volumen con cubierta inclinada y escalonada, arcos iluminados, base y árboles
+// Maqueta de exhibición: cubierta curva con terrazas y vegetación, plaza circular, fachada con arcos y celosía, base en madera y una lupa de detalle
 const ILUSTRACION_MAQUETA = (() => {
   const F1 = [60, 208], F2 = [214, 250], F3 = [350, 194], FR = [196, 152];       // planta del volumen
-  const h = { f1: 34, f2: 62, f3: 92, fr: 64 };                                    // alturas: la cubierta sube hacia la derecha
+  const h = { f1: 40, f2: 70, f3: 104, fr: 74 };                                   // alturas: la cubierta sube hacia la derecha
   const T1 = [F1[0], F1[1] - h.f1], T2 = [F2[0], F2[1] - h.f2], T3 = [F3[0], F3[1] - h.f3], TR = [FR[0], FR[1] - h.fr];
   const lerp = (a, b, u) => [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u];
-  const pts = (...p) => p.map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join(' ');
-  const arcos = [0.08, 0.3, 0.52, 0.74].map(u => {
-    const bl = lerp(F1, F2, u), br = lerp(F1, F2, u + 0.13);
-    const hl = h.f1 + (h.f2 - h.f1) * u, hr = h.f1 + (h.f2 - h.f1) * (u + 0.13);
-    const al = hl * 0.5, ar = hr * 0.5, m = lerp(bl, br, 0.5), am = (al + ar) / 2 + 12;
-    return '<path d="M' + bl[0].toFixed(1) + ' ' + bl[1].toFixed(1) + 'V' + (bl[1] - al).toFixed(1) + 'Q' + m[0].toFixed(1) + ' ' + (m[1] - am - 14).toFixed(1) + ' ' + br[0].toFixed(1) + ' ' + (br[1] - ar).toFixed(1) + 'V' + br[1].toFixed(1) + 'Z" fill="rgba(255,217,160,0.3)" stroke="#ffd9a0" stroke-width="1.3"/>';
+  const n1 = x => x.toFixed(1);
+  const P = p => n1(p[0]) + ',' + n1(p[1]);
+  const L = (a, b, extra) => '<path d="M' + n1(a[0]) + ' ' + n1(a[1]) + 'L' + n1(b[0]) + ' ' + n1(b[1]) + '"' + (extra || '') + '/>';
+  const curva = (a, b, alto) => Array.from({ length: 15 }, (_, i) => { const v = i / 14, p = lerp(a, b, v); return [p[0], p[1] - alto * Math.sin(Math.PI * v)]; });
+
+  // --- base en madera: tres láminas apiladas y vetas grabadas
+  const A = [30, 216], B = [214, 266], C = [372, 198], D = [188, 148];
+  const lamina = (dy, op) => '<polygon points="' + P([A[0], A[1] + dy]) + ' ' + P([B[0], B[1] + dy]) + ' ' + P([C[0], C[1] + dy]) + ' ' + P([D[0], D[1] + dy]) + '" fill="none" stroke="#c8a27c" stroke-width="1" opacity="' + op + '"/>';
+  const lados = '<polygon points="' + P(A) + ' ' + P(B) + ' ' + P([B[0], B[1] + 18]) + ' ' + P([A[0], A[1] + 18]) + '" fill="#161210" stroke="#c8a27c" stroke-width="1.2"/>' +
+    '<polygon points="' + P(B) + ' ' + P(C) + ' ' + P([C[0], C[1] + 18]) + ' ' + P([B[0], B[1] + 18]) + '" fill="#0f0c0a" stroke="#c8a27c" stroke-width="1.2"/>' +
+    '<g stroke="#c8a27c" stroke-width="0.8" opacity="0.55">' + L([A[0], A[1] + 6], [B[0], B[1] + 6]) + L([A[0], A[1] + 12], [B[0], B[1] + 12]) + L([B[0], B[1] + 6], [C[0], C[1] + 6]) + L([B[0], B[1] + 12], [C[0], C[1] + 12]) + '</g>';
+  const veta = [0.08, 0.16, 0.24].map(k => L(lerp(A, D, k), lerp(B, C, k), ' stroke="#c8a27c" stroke-width="0.7" opacity="0.35"')).join('');
+  const sendero = '<g fill="none" stroke="#e8e8ee" stroke-width="1" opacity="0.45">' + L(lerp(A, B, 0.52), lerp(D, C, 0.52)) + L(lerp(A, B, 0.56), lerp(D, C, 0.56)) + '</g>';
+
+  // --- fachada izquierda: celosía diagonal + arcos con doble borde
+  const celosia = Array.from({ length: 26 }, (_, k) => L(lerp(F1, F2, k / 26), lerp(T1, T2, Math.min(1, (k + 4) / 26)), ' stroke="#b9a7ff" stroke-width="0.6" opacity="0.18"')).join('') +
+    Array.from({ length: 26 }, (_, k) => L(lerp(F1, F2, Math.min(1, (k + 4) / 26)), lerp(T1, T2, k / 26), ' stroke="#b9a7ff" stroke-width="0.6" opacity="0.14"')).join('');
+  const arcos = [0.05, 0.22, 0.39, 0.56, 0.73, 0.88].map((u, i) => {
+    const w = i === 5 ? 0.08 : 0.12;
+    const bl = lerp(F1, F2, u), br = lerp(F1, F2, u + w);
+    const hl = h.f1 + (h.f2 - h.f1) * u, hr = h.f1 + (h.f2 - h.f1) * (u + w);
+    const al = hl * 0.52, ar = hr * 0.52, m = lerp(bl, br, 0.5);
+    const cima = (al + ar) / 2 + 20;
+    const forma = (d) => 'M' + n1(bl[0] - d) + ' ' + n1(bl[1]) + 'V' + n1(bl[1] - al) + 'Q' + n1(m[0]) + ' ' + n1(m[1] - cima - d) + ' ' + n1(br[0] + d) + ' ' + n1(br[1] - ar) + 'V' + n1(br[1]) + 'Z';
+    return '<path d="' + forma(2.2) + '" fill="none" stroke="#e8e8ee" stroke-width="0.9" opacity="0.7"/><path d="' + forma(0) + '" fill="url(#luzArco)" stroke="#ffd9a0" stroke-width="1.3"/>';
   }).join('');
-  const terrazas = [0.18, 0.36, 0.54, 0.72, 0.9].map(u => {
-    const p = lerp(T1, T2, u), q = lerp(TR, T3, u);
-    return '<path d="M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + 'L' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + '"/>';
+
+  // --- fachada derecha: aletas verticales que siguen la curva de la cubierta
+  const aletas = Array.from({ length: 24 }, (_, k) => { const a = lerp(F2, F3, k / 23), b = lerp(T2, T3, k / 23); return L(a, [b[0], b[1] + 4 + 3 * Math.sin(k / 23 * Math.PI * 2)], ' stroke="#8a8a85" stroke-width="0.8" opacity="0.5"'); }).join('');
+  const bandas = [0.32, 0.64].map(k => L(lerp(F2, T2, k), lerp(F3, T3, k), ' stroke="#b9a7ff" stroke-width="1" opacity="0.65"')).join('');
+
+  // --- cubierta curva: bordes combados, terrazas con vegetación, plaza circular y escalones
+  const bordeDer = curva(T2, T3, 9), bordeIzq = curva(T1, TR, 9);
+  const contorno = 'M' + P(T1) + 'L' + P(T2) + bordeDer.slice(1).map(p => 'L' + P(p)).join('') + 'L' + P(TR) + bordeIzq.slice().reverse().slice(1).map(p => 'L' + P(p)).join('') + 'Z';
+  const terrazas = [0.16, 0.32, 0.48, 0.64, 0.8, 0.94].map((u, i) => {
+    const pts = curva(lerp(T1, T2, u), lerp(TR, T3, u), 9);
+    const ruta = 'M' + pts.map(p => P(p)).join('L');
+    const plantas = pts.filter((_, j) => j % 1 === 0).map((p, j) => '<circle cx="' + n1(p[0]) + '" cy="' + n1(p[1] - 2.2) + '" r="' + (j % 3 === 0 ? 1.9 : 1.4) + '" fill="' + (j % 2 ? '#7ee8ff' : '#b9f2c8') + '" opacity="0.9"/>').join('');
+    return '<path d="' + ruta + '" fill="none" stroke="#7ee8ff" stroke-width="1.6" opacity="0.85"/>' + plantas;
   }).join('');
-  const bandas = [0.35, 0.68].map(k => {
-    const a = lerp(F2, T2, k), b = lerp(F3, T3, k);
-    return '<path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + 'L' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + '"/>';
+  const c = [(T1[0] + T2[0] + T3[0] + TR[0]) / 4, (T1[1] + T2[1] + T3[1] + TR[1]) / 4 - 5];
+  const plaza = [[34, 12], [24, 8.6], [14, 5]].map(([rx, ry], i) => '<ellipse cx="' + n1(c[0]) + '" cy="' + n1(c[1]) + '" rx="' + rx + '" ry="' + ry + '" fill="' + (i === 0 ? 'rgba(185,167,255,0.16)' : 'none') + '" stroke="' + (i === 1 ? '#b9a7ff' : '#e8e8ee') + '" stroke-width="' + (i === 0 ? 1.6 : 1) + '"/>').join('') +
+    Array.from({ length: 14 }, (_, k) => { const t = k / 14 * Math.PI * 2; return L([c[0] + 14 * Math.cos(t), c[1] + 5 * Math.sin(t)], [c[0] + 34 * Math.cos(t), c[1] + 12 * Math.sin(t)], ' stroke="#e8e8ee" stroke-width="0.5" opacity="0.5"'); }).join('');
+  const escalones = Array.from({ length: 6 }, (_, k) => { const p = lerp(lerp(T1, T2, 0.18), lerp(T1, T2, 0.3), k / 5); const q = lerp(p, lerp(TR, T3, 0.22), 0.13); return L([p[0], p[1] - 1], [q[0], q[1] - 1], ' stroke="#ffd9a0" stroke-width="1" opacity="0.7"'); }).join('');
+
+  // --- árboles, personas a escala y luz del contorno
+  const arboles = [[0.1, 14], [0.27, 12], [0.44, 14], [0.62, 12], [0.8, 14]].map(([t, r], i) => {
+    const p = lerp(A, B, t); const x = p[0] + 4, y = p[1] - 4;
+    return '<path d="M' + n1(x) + ' ' + n1(y) + 'V' + n1(y - 10) + '" stroke="#8a8a85" fill="none"/><circle cx="' + n1(x) + '" cy="' + n1(y - 16) + '" r="' + (r * 0.62).toFixed(1) + '" fill="rgba(126,232,255,0.14)" stroke="#7ee8ff" stroke-width="1.3"/><circle cx="' + n1(x - 2) + '" cy="' + n1(y - 18) + '" r="' + (r * 0.3).toFixed(1) + '" fill="none" stroke="#b9f2c8" stroke-width="0.8"/>';
+  }).join('') + [[0.25, 0.3], [0.6, 0.45], [0.8, 0.6]].map(([t, v]) => {
+    const p = lerp(lerp(B, C, t), lerp(A, B, 1 - t * 0.2), 0.0); const x = p[0] - 6 * v, y = p[1] - 3;
+    return '<circle cx="' + n1(x) + '" cy="' + n1(y - 9) + '" r="1.5" fill="#e8e8ee"/><path d="M' + n1(x) + ' ' + n1(y - 7) + 'V' + n1(y) + '" stroke="#e8e8ee" stroke-width="1.2"/>';
+  }).join('') + [[0.3], [0.55], [0.8]].map(([t]) => {
+    const p = lerp(B, C, t); const x = p[0] - 2, y = p[1] - 5;
+    return '<path d="M' + n1(x) + ' ' + n1(y) + 'V' + n1(y - 9) + '" stroke="#8a8a85" fill="none"/><circle cx="' + n1(x) + '" cy="' + n1(y - 15) + '" r="7" fill="rgba(126,232,255,0.14)" stroke="#7ee8ff" stroke-width="1.3"/>';
   }).join('');
-  const centro = [(T1[0] + T2[0] + T3[0] + TR[0]) / 4, (T1[1] + T2[1] + T3[1] + TR[1]) / 4];
-  const arboles = [[96, 232], [136, 246], [300, 236], [334, 216]].map(([x, y]) =>
-    '<path d="M' + x + ' ' + y + 'V' + (y - 9) + '" fill="none" stroke="#8a8a85"/><circle cx="' + x + '" cy="' + (y - 16) + '" r="8"/>').join('');
-  return '<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una maqueta de exhibición con cubierta inclinada y escalonada, arcos iluminados y árboles sobre su base">' +
+
+  // --- lupa de detalle: la celosía y un arco, ampliados
+  const lx = 312, ly = -8, lr = 34;
+  const lupa = '<clipPath id="lupa"><circle cx="' + lx + '" cy="' + ly + '" r="' + (lr - 1) + '"/></clipPath>' +
+    '<circle cx="' + lx + '" cy="' + ly + '" r="' + lr + '" fill="#0b0b0b" stroke="url(#cromo)" stroke-width="2"/>' +
+    '<g clip-path="url(#lupa)">' +
+      Array.from({ length: 9 }, (_, k) => L([lx - 44 + k * 11, ly + 40], [lx - 44 + k * 11 + 40, ly - 40], ' stroke="#b9a7ff" stroke-width="0.9" opacity="0.5"')).join('') +
+      Array.from({ length: 9 }, (_, k) => L([lx - 44 + k * 11, ly - 40], [lx - 44 + k * 11 + 40, ly + 40], ' stroke="#b9a7ff" stroke-width="0.9" opacity="0.35"')).join('') +
+      '<path d="M' + (lx - 18) + ' ' + (ly + 36) + 'V' + (ly + 2) + 'Q' + lx + ' ' + (ly - 40) + ' ' + (lx + 18) + ' ' + (ly + 2) + 'V' + (ly + 36) + 'Z" fill="url(#luzArco)" stroke="#ffd9a0" stroke-width="2"/>' +
+      '<path d="M' + (lx - 22) + ' ' + (ly + 36) + 'V' + (ly + 2) + 'Q' + lx + ' ' + (ly - 46) + ' ' + (lx + 22) + ' ' + (ly + 2) + 'V' + (ly + 36) + '" fill="none" stroke="#e8e8ee" stroke-width="1" opacity="0.7"/>' +
+    '</g>' +
+    '<text x="' + lx + '" y="' + (ly + lr + 11) + '" text-anchor="middle" font-size="8" fill="#7ee8ff">DETALLE</text>';
+  const m3 = lerp(F1, F2, 0.45); const objetivo = [m3[0] * 0.93 + 10, (m3[1] - 22) * 0.93 - 30];
+  const guia = '<path d="M' + n1(lx - lr + 8) + ' ' + n1(ly + 24) + 'L' + n1(objetivo[0]) + ' ' + n1(objetivo[1]) + '" stroke="#b9a7ff" stroke-width="1" stroke-dasharray="3 3" fill="none"/>';
+
+  return '<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración detallada de una maqueta de exhibición con cubierta curva y terrazas, fachada con arcos y celosía, plaza circular, base en madera y una lupa que muestra el detalle">' +
     FONDO_SVG +
-    '<defs><radialGradient id="luz" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.45"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient></defs>' +
+    '<defs>' +
+      '<radialGradient id="luz" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.45"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient>' +
+      '<linearGradient id="luzArco" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.55"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0.08"/></linearGradient>' +
+    '</defs>' +
     '<g font-family="Space Mono, monospace" font-size="11" fill="#999">' +
       '<text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">MAQUETA DE EXHIBICIÓN</text>' +
-      '<g transform="translate(24 -18) scale(0.92)">' +
-        '<ellipse cx="205" cy="268" rx="190" ry="32" fill="url(#luz)"/>' +
-        '<polygon points="36,214 214,262 366,198 190,150" fill="#141414" stroke="#444" stroke-width="1.2"/>' +
-        '<polygon points="36,214 214,262 214,274 36,226" fill="#0e0e0e" stroke="#444" stroke-width="1.2"/>' +
-        '<polygon points="214,262 366,198 366,210 214,274" fill="#0a0a0a" stroke="#444" stroke-width="1.2"/>' +
-        '<polygon points="' + pts(F1, F2, T2, T1) + '" fill="#1c1c1c" stroke="#8a8a85" stroke-width="1.4"/>' +
-        arcos +
-        '<polygon points="' + pts(F2, F3, T3, T2) + '" fill="#242424" stroke="#8a8a85" stroke-width="1.4"/>' +
-        '<g stroke="#b9a7ff" stroke-width="1" opacity="0.7">' + bandas + '</g>' +
-        '<polygon points="' + pts(T1, T2, T3, TR) + '" fill="#151515" stroke="url(#cromo)" stroke-width="2"/>' +
-        '<g stroke="#7ee8ff" stroke-width="2.2" opacity="0.85">' + terrazas + '</g>' +
-        '<ellipse cx="' + centro[0].toFixed(1) + '" cy="' + centro[1].toFixed(1) + '" rx="30" ry="11" fill="rgba(185,167,255,0.14)" stroke="#e8e8ee" stroke-width="1.6"/>' +
-        '<ellipse cx="' + centro[0].toFixed(1) + '" cy="' + centro[1].toFixed(1) + '" rx="13" ry="4.5" fill="none" stroke="#b9a7ff" stroke-width="1.2"/>' +
-        '<g stroke="#7ee8ff" stroke-width="1.4" fill="rgba(126,232,255,0.14)">' + arboles + '</g>' +
+      '<g transform="translate(10 -30) scale(0.93)">' +
+        '<ellipse cx="205" cy="276" rx="196" ry="34" fill="url(#luz)"/>' +
+        lados +
+        '<polygon points="' + P(A) + ' ' + P(B) + ' ' + P(C) + ' ' + P(D) + '" fill="#171310" stroke="#c8a27c" stroke-width="1.4"/>' +
+        lamina(-4, 0.4) + veta + sendero +
+        '<polygon points="' + P(F1) + ' ' + P(F2) + ' ' + P(T2) + ' ' + P(T1) + '" fill="#1c1c1c" stroke="#8a8a85" stroke-width="1.4"/>' +
+        celosia + arcos +
+        '<polygon points="' + P(F2) + ' ' + P(F3) + ' ' + P(T3) + ' ' + P(T2) + '" fill="#232323" stroke="#8a8a85" stroke-width="1.4"/>' +
+        aletas + bandas +
+        '<path d="' + contorno + '" fill="#141414" stroke="url(#cromo)" stroke-width="2.2"/>' +
+        terrazas + plaza + escalones + arboles +
       '</g>' +
+      guia + '<circle cx="' + n1(objetivo[0]) + '" cy="' + n1(objetivo[1]) + '" r="3" fill="none" stroke="#b9a7ff"/>' + lupa +
       '<path d="M32 240H368" stroke="#b9a7ff" stroke-width="1.5"/>' +
       '<text x="32" y="262" font-size="9" fill="#bbb">CONCRETO · MADERA · PLÁSTICO 3D · CARTÓN</text>' +
+      '<text x="368" y="262" font-size="9" fill="#7ee8ff" text-anchor="end">ESC 1:200</text>' +
     '</g>' +
   '</svg>';
 })();
