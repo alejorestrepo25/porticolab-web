@@ -256,7 +256,7 @@
         WhatsApp
       </a>
 
-      <a class="mascota-btn" href="mailto:alrestreporo@gmail.com?subject=Proyecto%20Portico%20Lab" target="_blank" rel="noopener">
+      <a class="mascota-btn" href="mailto:contacto@porticolab.com?subject=Proyecto%20Portico%20Lab" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         Email
       </a>
