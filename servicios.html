@@ -402,10 +402,60 @@ const ILUSTRACION_BIM = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2
   </g>
 </svg>`;
 
+// Maqueta de exhibición: volumen con cubierta inclinada y escalonada, arcos iluminados, base y árboles
+const ILUSTRACION_MAQUETA = (() => {
+  const F1 = [60, 208], F2 = [214, 250], F3 = [350, 194], FR = [196, 152];       // planta del volumen
+  const h = { f1: 34, f2: 62, f3: 92, fr: 64 };                                    // alturas: la cubierta sube hacia la derecha
+  const T1 = [F1[0], F1[1] - h.f1], T2 = [F2[0], F2[1] - h.f2], T3 = [F3[0], F3[1] - h.f3], TR = [FR[0], FR[1] - h.fr];
+  const lerp = (a, b, u) => [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u];
+  const pts = (...p) => p.map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join(' ');
+  const arcos = [0.08, 0.3, 0.52, 0.74].map(u => {
+    const bl = lerp(F1, F2, u), br = lerp(F1, F2, u + 0.13);
+    const hl = h.f1 + (h.f2 - h.f1) * u, hr = h.f1 + (h.f2 - h.f1) * (u + 0.13);
+    const al = hl * 0.5, ar = hr * 0.5, m = lerp(bl, br, 0.5), am = (al + ar) / 2 + 12;
+    return '<path d="M' + bl[0].toFixed(1) + ' ' + bl[1].toFixed(1) + 'V' + (bl[1] - al).toFixed(1) + 'Q' + m[0].toFixed(1) + ' ' + (m[1] - am - 14).toFixed(1) + ' ' + br[0].toFixed(1) + ' ' + (br[1] - ar).toFixed(1) + 'V' + br[1].toFixed(1) + 'Z" fill="rgba(255,217,160,0.3)" stroke="#ffd9a0" stroke-width="1.3"/>';
+  }).join('');
+  const terrazas = [0.18, 0.36, 0.54, 0.72, 0.9].map(u => {
+    const p = lerp(T1, T2, u), q = lerp(TR, T3, u);
+    return '<path d="M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + 'L' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + '"/>';
+  }).join('');
+  const bandas = [0.35, 0.68].map(k => {
+    const a = lerp(F2, T2, k), b = lerp(F3, T3, k);
+    return '<path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + 'L' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + '"/>';
+  }).join('');
+  const centro = [(T1[0] + T2[0] + T3[0] + TR[0]) / 4, (T1[1] + T2[1] + T3[1] + TR[1]) / 4];
+  const arboles = [[96, 232], [136, 246], [300, 236], [334, 216]].map(([x, y]) =>
+    '<path d="M' + x + ' ' + y + 'V' + (y - 9) + '" fill="none" stroke="#8a8a85"/><circle cx="' + x + '" cy="' + (y - 16) + '" r="8"/>').join('');
+  return '<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una maqueta de exhibición con cubierta inclinada y escalonada, arcos iluminados y árboles sobre su base">' +
+    FONDO_SVG +
+    '<defs><radialGradient id="luz" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.45"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient></defs>' +
+    '<g font-family="Space Mono, monospace" font-size="11" fill="#999">' +
+      '<text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">MAQUETA DE EXHIBICIÓN</text>' +
+      '<g transform="translate(24 -18) scale(0.92)">' +
+        '<ellipse cx="205" cy="268" rx="190" ry="32" fill="url(#luz)"/>' +
+        '<polygon points="36,214 214,262 366,198 190,150" fill="#141414" stroke="#444" stroke-width="1.2"/>' +
+        '<polygon points="36,214 214,262 214,274 36,226" fill="#0e0e0e" stroke="#444" stroke-width="1.2"/>' +
+        '<polygon points="214,262 366,198 366,210 214,274" fill="#0a0a0a" stroke="#444" stroke-width="1.2"/>' +
+        '<polygon points="' + pts(F1, F2, T2, T1) + '" fill="#1c1c1c" stroke="#8a8a85" stroke-width="1.4"/>' +
+        arcos +
+        '<polygon points="' + pts(F2, F3, T3, T2) + '" fill="#242424" stroke="#8a8a85" stroke-width="1.4"/>' +
+        '<g stroke="#b9a7ff" stroke-width="1" opacity="0.7">' + bandas + '</g>' +
+        '<polygon points="' + pts(T1, T2, T3, TR) + '" fill="#151515" stroke="url(#cromo)" stroke-width="2"/>' +
+        '<g stroke="#7ee8ff" stroke-width="2.2" opacity="0.85">' + terrazas + '</g>' +
+        '<ellipse cx="' + centro[0].toFixed(1) + '" cy="' + centro[1].toFixed(1) + '" rx="30" ry="11" fill="rgba(185,167,255,0.14)" stroke="#e8e8ee" stroke-width="1.6"/>' +
+        '<ellipse cx="' + centro[0].toFixed(1) + '" cy="' + centro[1].toFixed(1) + '" rx="13" ry="4.5" fill="none" stroke="#b9a7ff" stroke-width="1.2"/>' +
+        '<g stroke="#7ee8ff" stroke-width="1.4" fill="rgba(126,232,255,0.14)">' + arboles + '</g>' +
+      '</g>' +
+      '<path d="M32 240H368" stroke="#b9a7ff" stroke-width="1.5"/>' +
+      '<text x="32" y="262" font-size="9" fill="#bbb">CONCRETO · MADERA · PLÁSTICO 3D · CARTÓN</text>' +
+    '</g>' +
+  '</svg>';
+})();
+
 const SERVICIOS = [
   {
     id: 'maquetas', nombre: 'Maquetas de exhibición',
-    badge: 'PREMIUM', imagen: 'img/servicios/maqueta-torre.jpg', alt: 'Maqueta arquitectónica en madera con estructura detallada',
+    badge: 'PREMIUM', ilustracion: ILUSTRACION_MAQUETA,
     promesa: 'Maquetas físicas de alta gama que sirven para cerrar ventas. Cada proceso se define según tu proyecto, con el material que mejor lo cuente y detalles digitales pensados para impactar.',
     incluye: ['Materiales a elegir: concreto, madera, plástico de impresión, cartón y papeles especiales', 'Concreto moldeado en silicón y bases en madera de carpintería fina', 'Elementos paramétricos y digitales que la hacen única'],
     meta: ['Propuesta a la medida', 'Pieza premium'],
