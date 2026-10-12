@@ -253,7 +253,7 @@
     <div class="kicker">// CÓMO FUNCIONA</div>
     <div class="pasos-row">
       <div class="paso-card"><div class="n">01</div><h3>Cuéntanos tu proyecto</h3><p>Unas preguntas sencillas y, si quieres, tus planos o referencias.</p></div>
-      <div class="paso-card"><div class="n">02</div><h3>Te enviamos una propuesta</h3><p>Alcance, valor y plazo a la medida de tu proyecto.</p></div>
+      <div class="paso-card"><div class="n">02</div><h3>Te enviamos una propuesta</h3><p>Alcance y valor a la medida de tu proyecto.</p></div>
       <div class="paso-card"><div class="n">03</div><h3>Acordamos condiciones</h3><p>Ajustamos lo que haga falta antes de empezar.</p></div>
       <div class="paso-card"><div class="n">04</div><h3>Arrancamos</h3><p>Producimos o modelamos y te mantenemos al tanto.</p></div>
     </div>
@@ -303,7 +303,7 @@
       <div class="oferta-tit"><span class="paso-titulo" style="margin:0"><span class="pn">3</span>Tu solicitud</span></div>
       <div class="servicio-nombre" id="of-servicio"></div>
       <div class="desglose" id="of-desglose" style="margin-top:12px"></div>
-      <div class="nota">Revisamos tu proyecto y te enviamos una propuesta a la medida: alcance, valor y plazo.</div>
+      <div class="nota">Revisamos tu proyecto y te enviamos una propuesta a la medida: alcance y valor.</div>
       <label class="acepto"><input type="checkbox" id="of-acepto"><span id="of-acepto-texto">Acepto que Pórtico Lab me contacte para enviarme una propuesta. No tiene costo ni compromiso.</span></label>
       <button class="btn btn-primario btn-block" id="btn-aceptar" type="button">Solicitar propuesta</button>
       <button class="btn btn-secundario btn-block" id="btn-dudas" type="button">Prefiero hablar por WhatsApp</button>
@@ -335,8 +335,8 @@
   <section id="preguntas">
     <h2 class="seccion">Preguntas frecuentes</h2>
     <div class="faq">
-      <details><summary>¿Cuánto cuesta?</summary><p>Cada proyecto es distinto, así que preparamos una propuesta a la medida. En las maquetas el valor depende del tamaño, los materiales y los elementos digitales; en la consultoría, del tamaño del proyecto y del alcance.</p></details>
-      <details><summary>¿Qué es una maqueta de exhibición híbrida?</summary><p>Una maqueta física de alta gama que combina materiales expresivos: concreto moldeado en silicón, bases de madera de carpintería fina y elementos paramétricos o digitales. Está pensada como herramienta de ventas, no como un simple prototipo.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Cada proyecto es distinto, así que preparamos una propuesta a la medida. En las maquetas el valor depende del tamaño, los materiales y el nivel de detalle; en la consultoría, del tamaño del proyecto y del alcance.</p></details>
+      <details><summary>¿Qué es una maqueta de exhibición híbrida?</summary><p>Una maqueta física de alta gama que se hace con los materiales que mejor cuentan tu proyecto: concreto moldeado en silicón, madera de carpintería fina, plástico de impresión 3D, cartón y papeles especiales, junto con elementos paramétricos o digitales. Cada proceso es distinto según el proyecto. Está pensada como herramienta de ventas, no como un simple prototipo.</p></details>
       <details><summary>¿Qué incluye el diseño arquitectónico con costos BIM?</summary><p>Diseño arquitectónico y control de costos dinámico trabajados en un mismo modelo BIM, desde la fase previa hasta la ejecución. Así el presupuesto no es una foto estática: se actualiza con el modelo y el cronograma.</p></details>
       <details><summary>¿Qué es el 5D BIM?</summary><p>Es sumar costo y tiempo al modelo: el presupuesto se vincula con el avance del modelo y el cronograma, y se monitorea en tiempo real. Ayuda a ver sobrecostos e interferencias antes de que lleguen a obra.</p></details>
       <details><summary>¿Los cómputos métricos son automáticos?</summary><p>Estamos trabajando en automatizar la extracción de cantidades desde el modelo BIM. Cuéntanos tu caso y te explicamos qué podemos entregar hoy.</p></details>
@@ -406,17 +406,16 @@ const SERVICIOS = [
   {
     id: 'maquetas', nombre: 'Maquetas de exhibición',
     badge: 'PREMIUM', imagen: 'img/servicios/maqueta-torre.jpg', alt: 'Maqueta arquitectónica en madera con estructura detallada',
-    promesa: 'Maquetas físicas de alta gama que sirven para cerrar ventas: materiales expresivos y detalles digitales pensados para impactar en la sala de ventas y en la reunión de inversionistas.',
-    incluye: ['Concreto moldeado en silicón: texturas y volúmenes fieles al proyecto', 'Bases en madera trabajadas en carpintería fina', 'Elementos paramétricos y digitales que la hacen única'],
+    promesa: 'Maquetas físicas de alta gama que sirven para cerrar ventas. Cada proceso se define según tu proyecto, con el material que mejor lo cuente y detalles digitales pensados para impactar.',
+    incluye: ['Materiales a elegir: concreto, madera, plástico de impresión, cartón y papeles especiales', 'Concreto moldeado en silicón y bases en madera de carpintería fina', 'Elementos paramétricos y digitales que la hacen única'],
     meta: ['Propuesta a la medida', 'Pieza premium'],
     cta: 'Solicitar propuesta',
     campos: [
       { id: 'uso', label: '¿Para qué la necesitas?', type: 'select', options: [['ventas', 'Sala de ventas', 'Para mostrar y vender el proyecto'], ['inversion', 'Inversionistas y juntas', 'Presentaciones de alto nivel'], ['feria', 'Feria o exhibición'], ['otro', 'Otro uso']] },
       { id: 'proyecto', label: '¿Qué vamos a representar?', type: 'select', options: [['edificio', 'Edificio o torre'], ['conjunto', 'Conjunto o urbanismo'], ['vivienda', 'Vivienda o casa modelo'], ['interior', 'Espacio interior o comercial'], ['otro', 'Otro']] },
       { id: 'escala', label: '¿De qué tamaño?', type: 'select', options: [['mesa', 'De mesa', 'Hasta unos 60 cm'], ['sala', 'Sala de ventas', 'Hasta 1 m'], ['grande', 'Gran formato', 'Más de 1 m'], ['definir', 'Aún no lo sé', 'Lo definimos juntos']] },
-      { id: 'elementos', label: '¿Qué materiales y elementos te interesan? (opcional)', type: 'multi', ayuda: 'Es la combinación de materiales lo que la hace premium; podemos proponerte la mejor para tu proyecto.', options: [['concreto', 'Concreto moldeado', 'Moldes en silicón'], ['madera', 'Bases en madera', 'Carpintería fina'], ['digital', 'Elementos paramétricos / digitales', 'Piezas diseñadas con algoritmos']] },
-      { id: 'fecha', label: '¿Para cuándo la necesitas? (opcional)', type: 'linea', placeholder: 'Ej. lanzamiento el 15 de noviembre' },
-      { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Qué se va a vender o presentar, a quién va dirigida, referencias que te gusten...' },
+      { id: 'elementos', label: '¿Qué materiales y elementos te interesan? (opcional)', type: 'multi', ayuda: 'Puedes combinarlos. Si no estás seguro, te proponemos la mejor mezcla para tu proyecto.', options: [['concreto', 'Concreto', 'Moldeado en silicón'], ['madera', 'Madera', 'Carpintería fina'], ['plastico', 'Plástico de impresión', 'Piezas impresas en 3D'], ['carton', 'Cartón y papeles especiales'], ['digital', 'Elementos paramétricos / digitales', 'Piezas diseñadas con algoritmos']] },
+            { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Qué se va a vender o presentar, a quién va dirigida, referencias que te gusten...' },
       ADJUNTOS
     ],
     resumen(v) {
@@ -425,8 +424,7 @@ const SERVICIOS = [
         ['Representa', txt(this, 'proyecto', v.proyecto)],
         ['Tamaño', txt(this, 'escala', v.escala)],
         v.elementos ? ['Materiales', etiquetas(this, 'elementos', v.elementos)] : null,
-        v.fecha ? ['Fecha', v.fecha] : null,
-        v.descripcion ? ['Descripción', v.descripcion] : null
+                v.descripcion ? ['Descripción', v.descripcion] : null
       ];
     }
   },
@@ -444,7 +442,7 @@ const SERVICIOS = [
       { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'number', min: 20, max: 200000, value: 500, presets: [200, 500, 2000, 8000], ayuda: 'Un estimado basta; lo afinamos en la propuesta.' },
       { id: 'necesidad', label: '¿Qué necesitas? (opcional)', type: 'multi', options: [['diseno', 'Diseño arquitectónico en BIM'], ['computos', 'Cómputos métricos del modelo', 'Automatización en desarrollo'], ['costos', 'Control de costos en tiempo real', '5D BIM'], ['riesgos', 'Sobrecostos e interferencias', 'Detección antes de obra']] },
       { id: 'insumo', label: '¿Con qué cuentas hoy?', type: 'select', options: [['modelo', 'Un modelo BIM', 'Revit, IFC u otro'], ['planos', 'Planos 2D', 'CAD o PDF'], ['idea', 'Solo la idea o el lote']] },
-      { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Ubicación, etapa, qué te preocupa del costo o del plazo...' },
+      { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Ubicación, etapa, qué te preocupa del costo...' },
       ADJUNTOS
     ],
     resumen(v) {
@@ -835,7 +833,7 @@ async function enviarCotizacion(pedido, c) {
       servicio: q.servicio,
       detalle: q.detalle,
       valor: 'Propuesta a la medida',
-      plazo: 'Por definir con el cliente',
+      plazo: 'A convenir',
       anticipo: '',
       oferta: 'Solicitud de propuesta',
       extras: extrasPedido().filter(x => !/^Archivos/.test(x)),
@@ -867,7 +865,7 @@ async function enviarSolicitud() {
   const pedido = armarPedido(c, 'Solicitud de propuesta');
   registrarPedido(pedido);
   const waTexto = mensajeWhatsApp(c, pedido.referencia, 'Hola, quiero una propuesta de Pórtico Lab para:');
-  const base = 'Revisamos tu proyecto y te escribimos con una propuesta a la medida: alcance, valor y plazo. Sin costo ni compromiso.';
+  const base = 'Revisamos tu proyecto y te escribimos con una propuesta a la medida: alcance y valor. Sin costo ni compromiso.';
 
   if (!CONFIG.cotizacionesUrl) {
     abrirWhatsApp(waTexto);
