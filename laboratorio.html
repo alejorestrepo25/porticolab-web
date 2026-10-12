@@ -94,9 +94,11 @@
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
   <style>
-    /* Pocas piezas: en una fila (no en columnas que apilan la tercera debajo) */
-    .gallery { column-count: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+    /* Galería del Laboratorio: 4 columnas, una fila de tarjetas de izquierda a derecha */
+    .gallery { column-count: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
     .gallery .gallery-item { margin-bottom: 0; }
+    @media (max-width: 1400px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
   </style>
 </head>
 
@@ -176,7 +178,6 @@
 
 
 <script src="y2k.js?v=3" defer></script>
-<script src="dither.js?v=5" defer></script>
 <script src="mascota.js?v=10"></script>
 </body>
 </html>
