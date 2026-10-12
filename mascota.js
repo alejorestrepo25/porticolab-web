@@ -31,8 +31,8 @@
     /* Personaje en pixel art: 1 unidad del dibujo = 4.5 px */
     .mascota-sprite {
       display: block;
-      width: 72px;
-      height: 81px;
+      width: 60px;
+      height: 68px;
       overflow: visible;
       shape-rendering: crispEdges;
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14));
@@ -56,11 +56,11 @@
     .mascota-sprite.mat-madera .tx-concreto, .mascota-sprite.mat-acero .tx-concreto { display: none; }
     .mascota-sprite.mat-madera .tx-madera, .mascota-sprite.mat-acero .tx-acero { display: inline; }
 
-    #mascota-modal .mascota-sprite { width: 56px; height: 63px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
+    #mascota-modal .mascota-sprite { width: 48px; height: 54px; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      .mascota-sprite { width: 56px; height: 63px; }
+      .mascota-sprite { width: 46px; height: 52px; }
     }
 
     /* Movimiento: solo si el usuario no pidió menos animación */
@@ -90,15 +90,27 @@
         80% { transform: translateY(0); } 90% { transform: translateY(1px); } 100% { transform: translateY(0); }
       }
 
-      /* Paso estilo TARS: las columnas se alternan y la viga se balancea encima */
-      #mascota-wrapper .camina .col-i { animation: mascota-paso-i 1.6s steps(1) 1; }
-      #mascota-wrapper .camina .col-d { animation: mascota-paso-d 1.6s steps(1) 1; }
-      #mascota-wrapper .camina .viga { animation: mascota-balanceo 1.6s steps(1) 1; }
-      @keyframes mascota-paso-i { 0% { transform: translate(0, -2px); } 12.5% { transform: translate(1px, 0); } 25% { transform: translate(0, 0); }
-        50% { transform: translate(0, -2px); } 62.5% { transform: translate(1px, 0); } 75% { transform: translate(0, 0); } }
-      @keyframes mascota-paso-d { 0% { transform: translate(0, 0); } 25% { transform: translate(0, -2px); } 37.5% { transform: translate(-1px, 0); } 50% { transform: translate(0, 0); }
-        75% { transform: translate(0, -2px); } 87.5% { transform: translate(-1px, 0); } 100% { transform: translate(0, 0); } }
-      @keyframes mascota-balanceo { 0% { transform: translateX(-1px); } 25% { transform: translateX(1px); } 50% { transform: translateX(-1px); } 75% { transform: translateX(1px); } 100% { transform: translateX(0); } }
+      /* Baile: 8 tiempos. La viga se inclina de lado a lado, las columnas alternan el paso y los ojos siguen el ritmo */
+      #mascota-wrapper .baila .viga { transform-origin: 50% 100%; animation: mascota-viga 2.4s steps(1) 1; }
+      #mascota-wrapper .baila .col-i { animation: mascota-col-i 2.4s steps(1) 1; }
+      #mascota-wrapper .baila .col-d { animation: mascota-col-d 2.4s steps(1) 1; }
+      #mascota-wrapper .baila .ojos { animation: mascota-ojos 2.4s steps(1) 1; }
+      @keyframes mascota-viga {
+        0% { transform: rotate(-4deg); } 12.5% { transform: rotate(4deg); } 25% { transform: rotate(-4deg); } 37.5% { transform: rotate(4deg); }
+        50% { transform: rotate(-4deg); } 62.5% { transform: rotate(4deg); } 75% { transform: rotate(0deg) translateY(-2px); } 87.5% { transform: translateY(-3px); } 100% { transform: none; }
+      }
+      @keyframes mascota-col-i {
+        0% { transform: translateY(-2px); } 12.5% { transform: none; } 25% { transform: translateY(-2px); } 37.5% { transform: none; }
+        50% { transform: translateY(-2px); } 62.5% { transform: none; } 75% { transform: translateY(-2px); } 87.5% { transform: translateY(-3px); } 100% { transform: none; }
+      }
+      @keyframes mascota-col-d {
+        0% { transform: none; } 12.5% { transform: translateY(-2px); } 25% { transform: none; } 37.5% { transform: translateY(-2px); }
+        50% { transform: none; } 62.5% { transform: translateY(-2px); } 75% { transform: translateY(-2px); } 87.5% { transform: translateY(-3px); } 100% { transform: none; }
+      }
+      @keyframes mascota-ojos {
+        0% { transform: translateX(-1px); } 12.5% { transform: translateX(1px); } 25% { transform: translateX(-1px); } 37.5% { transform: translateX(1px); }
+        50% { transform: translateX(-1px); } 62.5% { transform: translateX(1px); } 75% { transform: scaleY(0.2); } 87.5% { transform: none; } 100% { transform: none; }
+      }
     }
 
     /* Modal */
@@ -268,7 +280,7 @@
   document.body.appendChild(overlay);
 
   // cada visita llega con un material distinto
-  let actual = MATERIALES[Math.floor(Math.random() * MATERIALES.length)];
+  let actual = 'concreto';
   const aplicarMaterial = () => {
     material(document.getElementById('mascota-svg'), actual);
     material(document.getElementById('mascota-modal-sprite'), actual);
@@ -301,7 +313,7 @@
   const parpadear = () => { animar('parpadea', 160); if (Math.random() < 0.3) setTimeout(() => animar('parpadea', 160), 380); };
   const mirar = () => { const c = Math.random() < 0.5 ? 'mira-i' : 'mira-d'; animar(c, 900); setTimeout(parpadear, 950); };
   const saltar = () => animar('salta', 720);
-  const caminar = () => animar('camina', 1600);
+  const bailar = () => animar('baila', 2400);
   const escanear = () => animar('escanea', 1000);
 
   function accion() {
@@ -309,22 +321,13 @@
       const r = Math.random();
       if (r < 0.3) parpadear();
       else if (r < 0.5) mirar();
-      else if (r < 0.7) caminar();
+      else if (r < 0.7) bailar();
       else if (r < 0.85) saltar();
       else escanear();
     }
     setTimeout(accion, 2800 + Math.random() * 3600);
   }
-  // cada tanto cambia de piel: concreto, madera, acero
-  function transformar() {
-    if (!document.hidden && !overlay.classList.contains('open') && !ocupada.has('cambia')) {
-      animar('cambia', 700);
-      setTimeout(() => { actual = MATERIALES[(MATERIALES.indexOf(actual) + 1) % MATERIALES.length]; aplicarMaterial(); }, 300);
-    }
-    setTimeout(transformar, 14000 + Math.random() * 8000);
-  }
-  setTimeout(transformar, 11000);
-  setTimeout(caminar, 1800);                       // al llegar, da unos pasos
+  setTimeout(bailar, 1800);                        // al llegar, baila
   setTimeout(accion, 6000);
   wrapper.addEventListener('mouseenter', saltar);
 })();
