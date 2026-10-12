@@ -238,7 +238,7 @@ body.y2k .gallery-item:hover {
   transition: opacity 0.3s steps(4, end), transform 0.25s ease;
 }
 .fondo-pixel-wrap figcaption { z-index: 1; }
-:is(.gallery-item, figure, .dither-scope):is(:hover, :focus-within, .revelado) .fondo-pixel { opacity: 1; }
+:is(.gallery-item, figure, .dither-scope, .srv-card):is(:hover, :focus-within, .revelado) .fondo-pixel { opacity: 1; }
 .gallery-item:hover .fondo-pixel { transform: scale(1.05); }
 .dither-scope { position: relative; border-radius: 12px; overflow: hidden; }
 .dither-scope img { border-radius: inherit; }

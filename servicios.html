@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios - PORTICO LAB</title>
-  <meta name="description" content="Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra con metodología BIM en Medellín. Cotiza en línea en un minuto.">
+  <meta name="description" content="Maquetas de exhibición premium y diseño arquitectónico con control de costos BIM (5D) para desarrolladores, constructoras e ingenieros. Medellín.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="y2k.css?v=4">
+  <link rel="stylesheet" href="y2k.css?v=5">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,10 +62,13 @@
     .paso-card p { font-size: 12px; color: #888; line-height: 1.6; margin-top: 6px; }
 
     /* ---------- TARJETAS DE SERVICIO ---------- */
-    .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+    .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
     .srv-card { display: flex; flex-direction: column; border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; background: #070707; transition: border-color 0.2s ease, transform 0.2s ease; }
     .srv-card:hover { border-color: #555; transform: translateY(-3px); }
     .srv-card.sel { border-color: var(--acento); }
+    .ruta-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
+    .badge { z-index: 1; }
+    .archivo-chip { font-family: var(--mono); font-size: 11px; color: #ccc; border: 1px solid #333; border-radius: 8px; padding: 6px 10px; }
     .srv-img { position: relative; aspect-ratio: 4 / 3; background: #0b0b0b; overflow: hidden; }
     .srv-img img, .srv-img svg { width: 100%; height: 100%; object-fit: cover; display: block; }
     .badge { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; background: var(--acento); color: #000; padding: 6px 10px; border-radius: 6px; }
@@ -174,6 +177,7 @@
 
     @media (max-width: 900px) {
       .pasos-row { grid-template-columns: repeat(2, 1fr); }
+      .ruta-row { grid-template-columns: 1fr; }
       .srv-grid { grid-template-columns: 1fr; }
       .srv-img { aspect-ratio: 16 / 10; }
       .cotizador.visible { grid-template-columns: 1fr; }
@@ -236,8 +240,8 @@
   <section class="hero" id="inicio">
     <div class="hero-txt">
       <div class="kicker">&gt; SERVICIOS_</div>
-      <h1>Del archivo a la pieza. <em>Cotiza en un minuto.</em></h1>
-      <p>Impresión 3D de piezas y maquetas, diseño arquitectónico y presupuestos de obra con metodología BIM, hechos en nuestro taller de Medellín. Elige un servicio y ve tu precio y tu plazo al instante.</p>
+      <h1>Maquetas que cierran ventas. <em>Obras bajo control.</em></h1>
+      <p>Dos servicios para desarrolladores, constructoras e ingenieros: maquetas físicas de exhibición de alta gama y diseño arquitectónico con control de costos dinámico en metodología BIM. Hechos en Medellín.</p>
       <div class="hero-acciones">
         <a class="btn btn-primario" href="#servicios">Ver servicios</a>
         <a class="btn btn-secundario" id="hero-wa" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
@@ -248,17 +252,21 @@
   <section id="como-funciona">
     <div class="kicker">// CÓMO FUNCIONA</div>
     <div class="pasos-row">
-      <div class="paso-card"><div class="n">01</div><h3>Elige y cotiza</h3><p>Responde unas preguntas sencillas y ves el valor al instante.</p></div>
-      <div class="paso-card"><div class="n">02</div><h3>Acepta la oferta</h3><p>Con tus datos, confirmas precio y plazo.</p></div>
-      <div class="paso-card"><div class="n">03</div><h3>Paga el anticipo</h3><p>Un 50% para iniciar. El saldo, contra entrega.</p></div>
-      <div class="paso-card"><div class="n">04</div><h3>Arrancamos</h3><p>Te escribimos para coordinar y empezamos a trabajar.</p></div>
+      <div class="paso-card"><div class="n">01</div><h3>Cuéntanos tu proyecto</h3><p>Unas preguntas sencillas y, si quieres, tus planos o referencias.</p></div>
+      <div class="paso-card"><div class="n">02</div><h3>Te enviamos una propuesta</h3><p>Alcance, valor y plazo a la medida de tu proyecto.</p></div>
+      <div class="paso-card"><div class="n">03</div><h3>Acordamos condiciones</h3><p>Ajustamos lo que haga falta antes de empezar.</p></div>
+      <div class="paso-card"><div class="n">04</div><h3>Arrancamos</h3><p>Producimos o modelamos y te mantenemos al tanto.</p></div>
     </div>
   </section>
 
   <section id="servicios">
     <h2 class="seccion">¿Qué necesitas?</h2>
-    <p class="seccion-sub">Tres servicios, un mismo criterio: claridad en el precio y cumplimiento en los plazos.</p>
+    <p class="seccion-sub">Dos servicios que se complementan: uno para mostrar el proyecto y otro para controlarlo.</p>
     <div class="srv-grid" id="srv-grid"></div>
+    <div class="ruta-row">
+      <div class="paso-card"><div class="n">EMPIEZA POR LA MAQUETA</div><h3>Impacto visual desde el primer minuto</h3><p>Un objeto tangible y atractivo que abre la puerta con gerentes de proyecto y directores comerciales.</p></div>
+      <div class="paso-card"><div class="n">SIGUE CON EL CONTROL</div><h3>Que lo que se vende sea lo que se construye</h3><p>El diseño y el control de costos en BIM mantienen el proyecto dentro del presupuesto, de la idea a la obra.</p></div>
+    </div>
   </section>
 
   <section class="cotizador" id="cotizador" aria-label="Cotizador">
@@ -284,35 +292,32 @@
             <div class="campo"><label for="cli-ciudad">Ciudad</label><input id="cli-ciudad" type="text" autocomplete="address-level2"></div>
           </div>
           <input type="text" id="cli-web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <div class="campo"><label for="cli-notas">Cuéntanos del proyecto (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, referencias, lo que tengas en mente..."></textarea></div>
+        <div class="campo"><label for="cli-empresa">Empresa (si aplica)</label><input id="cli-empresa" type="text" autocomplete="organization"></div>
+        <div class="campo"><label for="cli-notas">Algo más que debamos saber (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, etapa del proyecto, lo que tengas en mente..."></textarea></div>
         </form>
       </div>
     </div>
 
     <aside class="oferta" id="oferta" aria-live="polite">
-      <span class="hud" style="margin-bottom:14px"><b>[ SYS.OK ]</b> Oferta // en vivo</span>
-      <div class="oferta-tit"><span class="paso-titulo" style="margin:0"><span class="pn">3</span>Tu oferta</span></div>
+      <span class="hud" style="margin-bottom:14px"><b>[ SYS.OK ]</b> Solicitud // en vivo</span>
+      <div class="oferta-tit"><span class="paso-titulo" style="margin:0"><span class="pn">3</span>Tu solicitud</span></div>
       <div class="servicio-nombre" id="of-servicio"></div>
-      <div class="etiqueta-precio" id="of-etiqueta"></div>
-      <div class="precio" id="of-precio"></div>
-      <div class="linea" style="margin-top:14px"><span>Plazo estimado</span><b id="of-plazo"></b></div>
-      <div class="linea"><span id="of-anticipo-label">Anticipo para iniciar</span><b id="of-anticipo"></b></div>
-      <div class="linea" id="of-saldo-linea"><span>Saldo contra entrega</span><b id="of-saldo"></b></div>
-      <div class="desglose" id="of-desglose"></div>
-      <label class="acepto"><input type="checkbox" id="of-acepto"><span id="of-acepto-texto"></span></label>
-      <button class="btn btn-primario btn-block" id="btn-aceptar" type="button"></button>
-      <button class="btn btn-secundario btn-block" id="btn-dudas" type="button">Tengo dudas, hablemos</button>
+      <div class="desglose" id="of-desglose" style="margin-top:12px"></div>
+      <div class="nota">Revisamos tu proyecto y te enviamos una propuesta a la medida: alcance, valor y plazo.</div>
+      <label class="acepto"><input type="checkbox" id="of-acepto"><span id="of-acepto-texto">Acepto que Pórtico Lab me contacte para enviarme una propuesta. No tiene costo ni compromiso.</span></label>
+      <button class="btn btn-primario btn-block" id="btn-aceptar" type="button">Solicitar propuesta</button>
+      <button class="btn btn-secundario btn-block" id="btn-dudas" type="button">Prefiero hablar por WhatsApp</button>
       <div class="error" id="of-error" role="alert"></div>
-      <div class="nota" id="of-nota"></div>
+      <div class="nota">Tus datos solo se usan para responder esta solicitud.</div>
     </aside>
   </section>
 
   <section class="confirmacion" id="confirmacion" aria-live="polite">
-    <h2 id="conf-titulo">PEDIDO RECIBIDO</h2>
+    <h2 id="conf-titulo">SOLICITUD RECIBIDA</h2>
     <p>Tu referencia es <span class="ref" id="conf-ref"></span>.</p>
     <p id="conf-texto"></p>
     <a class="btn btn-primario" id="conf-wa" href="#" target="_blank" rel="noopener" hidden style="margin-right:10px">Escribir por WhatsApp</a>
-    <a class="btn btn-secundario" href="servicios.html">Cotizar otro servicio</a>
+    <a class="btn btn-secundario" href="servicios.html">Volver a servicios</a>
   </section>
 
   <section id="trabajo">
@@ -330,26 +335,26 @@
   <section id="preguntas">
     <h2 class="seccion">Preguntas frecuentes</h2>
     <div class="faq">
-      <details><summary>¿Cuánto cuesta y cómo se calcula?</summary><p>En impresión 3D con archivo el precio es cerrado y depende del peso, la cantidad de piezas y el plazo. En diseño y presupuestos el valor se calcula por metro cuadrado construido: te mostramos un rango y confirmamos el valor final en menos de 24 horas. Lo mismo si necesitas que diseñemos tu pieza 3D.</p></details>
-      <details><summary>¿Qué incluye el diseño de una remodelación?</summary><p>Una remodelación lleva más detalle arquitectónico que una obra nueva. Además de los planos (que sirven para licencia) puedes sumar diseño de interiores, renders especiales, diseño de mobiliario y una propuesta de colores, acabados y recubrimientos.</p></details>
-      <details><summary>¿Trabajan con metodología BIM?</summary><p>Sí, siempre. Los proyectos se desarrollan en BIM: los planos, las cantidades y el presupuesto salen de un mismo modelo, lo que ayuda a evitar errores y a que los cambios se reflejen en todo.</p></details>
-      <details><summary>¿Cómo se paga?</summary><p>Un anticipo del 50% para iniciar y el saldo contra entrega. Por ahora te enviamos el link de pago del anticipo por WhatsApp.</p></details>
-      <details><summary>¿Qué necesito para empezar?</summary><p>Para imprimir, tu archivo OBJ o STL y, si quieres, imágenes de referencia; si no tienes archivo, lo diseñamos a partir de tu descripción. Para diseño, el área y lo que tengas en mente del lote. Para un presupuesto, los planos; si no existen, tomamos medidas.</p></details>
-      <details><summary>¿Cuándo empieza a contar el plazo?</summary><p>Desde que recibimos el anticipo y el modelo o los planos.</p></details>
-      <details><summary>Mi proyecto no encaja en las opciones</summary><p>Escríbenos por WhatsApp y lo cotizamos a medida.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Cada proyecto es distinto, así que preparamos una propuesta a la medida. En las maquetas el valor depende del tamaño, los materiales y los elementos digitales; en la consultoría, del tamaño del proyecto y del alcance.</p></details>
+      <details><summary>¿Qué es una maqueta de exhibición híbrida?</summary><p>Una maqueta física de alta gama que combina materiales expresivos: concreto moldeado en silicón, bases de madera de carpintería fina y elementos paramétricos o digitales. Está pensada como herramienta de ventas, no como un simple prototipo.</p></details>
+      <details><summary>¿Qué incluye el diseño arquitectónico con costos BIM?</summary><p>Diseño arquitectónico y control de costos dinámico trabajados en un mismo modelo BIM, desde la fase previa hasta la ejecución. Así el presupuesto no es una foto estática: se actualiza con el modelo y el cronograma.</p></details>
+      <details><summary>¿Qué es el 5D BIM?</summary><p>Es sumar costo y tiempo al modelo: el presupuesto se vincula con el avance del modelo y el cronograma, y se monitorea en tiempo real. Ayuda a ver sobrecostos e interferencias antes de que lleguen a obra.</p></details>
+      <details><summary>¿Los cómputos métricos son automáticos?</summary><p>Estamos trabajando en automatizar la extracción de cantidades desde el modelo BIM. Cuéntanos tu caso y te explicamos qué podemos entregar hoy.</p></details>
+      <details><summary>¿Qué necesito para empezar?</summary><p>Basta con contarnos tu proyecto. Si tienes planos, un modelo o referencias, súbelos en el formulario: nos ayudan a darte una propuesta más precisa.</p></details>
+      <details><summary>Mi proyecto no encaja en las opciones</summary><p>Escríbenos por WhatsApp y lo hablamos.</p></details>
     </div>
   </section>
 
   <section class="cierre">
-    <h2>¿No sabes cuál elegir?</h2>
+    <h2>¿Hablamos de tu proyecto?</h2>
     <p>Cuéntanos qué tienes en mente y te orientamos sin compromiso.</p>
     <a class="btn btn-primario" id="cierre-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
   </section>
 </main>
 
 <div class="barra-movil" id="barra-movil">
-  <div><small>TU OFERTA</small><b id="bm-precio"></b></div>
-  <button class="btn btn-primario" id="bm-ver" type="button">Ver oferta</button>
+  <div><small>TU SOLICITUD</small><b id="bm-servicio"></b></div>
+  <button class="btn btn-primario" id="bm-ver" type="button">Ver solicitud</button>
 </div>
 
 <script>
@@ -357,218 +362,100 @@
 //  CONFIGURACIÓN — todo lo que se ajusta está aquí.
 // =====================================================================
 const CONFIG = {
-  anticipoPct: 50,          // % de anticipo para iniciar
-  pagoEnLinea: false,       // true cuando Bold tenga llaves de PRODUCCIÓN (solo impresión 3D con archivo: precio cerrado)
   whatsapp: '573147924600',
   // URL del Apps Script "Cotizaciones" que envía el correo con los archivos adjuntos (vacía = solo Sheet + WhatsApp)
   cotizacionesUrl: '',
-  sheetWebhook: 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec',
-  boldIdentityKey: 'oAlQrfvTZyqGX8CfHnobs-Md-T_IuWGiLwb8fhvm514' // llave de PRUEBAS
+  sheetWebhook: 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec'
 };
 
-// TARIFAS (COP) — BORRADOR: reemplazar por las tarifas reales de Pórtico Lab.
-const T = {
-  impresion: {
-    precioGramo: 300,        // venta por gramo de filamento (material + margen)
-    precioHora: 4000,        // venta por hora de impresora
-    gramosPorHora: 12,       // rendimiento promedio de la impresora
-    horasImpresoraDia: 10,   // horas de impresión por día de trabajo
-    preparacion: 20000,      // preparación del archivo y de la cama, por pedido
-    minimo: 60000,           // valor mínimo de un pedido
-    factorTipo: { arquitectonica: 1, mobiliario: 1, maqueta: 1, molde: 1.2 }, // los moldes llevan más material y tiempo
-    densidad: 1.24,          // g/cm³ del filamento (PLA)
-    relleno: 0.30,           // fracción de volumen que realmente se imprime (paredes + relleno)
-    camaCm: 25,              // lado máximo de la cama de la impresora, en cm (CONFIRMAR)
-    // Si el cliente pide que diseñemos la pieza:
-    modelado: { sencilla: 120000, media: 250000, alta: 450000 },
-    diasModelado: { sencilla: 2, media: 4, alta: 7 },
-    gramosEstimados: { p: 40, m: 150, g: 400 },   // peso típico por tamaño de pieza
-    rango: [0.85, 1.25]
-  },
-  diseno: {
-    // Tarifa base por m² construido según el alcance (todos los planos del proyecto sirven para licencia)
-    m2: { anteproyecto: 18000, proyecto: 35000 },
-    // La remodelación pide más detalle arquitectónico, por eso pesa más que una obra nueva
-    tipo: { vivienda: 1, comercial: 1.15, remodelacion: 1.35 },
-    // Adicionales opcionales, también por m² construido
-    extrasM2: { interiores: 12000, renders: 7000, mobiliario: 9000, acabados: 5000 },
-    diasExtras: { interiores: 5, renders: 3, mobiliario: 5, acabados: 2 },
-    minimo: 1200000,
-    rango: [0.85, 1.25]      // el rango mostrado va de -15% a +25%
-  },
-  presupuesto: {
-    parametricoBase: 250000, parametricoM2: 1200,
-    detalladoM2: 3500, detalladoMin: 900000,
-    tipo: { nueva: 1, remodelacion: 1.2 },
-    sinPlanos: 0.35,
-    rango: [0.85, 1.25]
-  }
-};
-
+// =====================================================================
+//  SERVICIOS
+//  Cada servicio se cotiza a la medida: la página recoge el encargo y llega a Pórtico Lab como solicitud de propuesta.
+// =====================================================================
 // Opciones: [valor, etiqueta, pista opcional]
-const TIPO_PIEZA = { id: 'tipo', label: '¿Qué vas a imprimir?', type: 'select', options: [['arquitectonica', 'Pieza arquitectónica', 'Fachada, detalle o elemento'], ['mobiliario', 'Mobiliario / objeto', 'Piezas de diseño'], ['maqueta', 'Maqueta pequeña'], ['molde', 'Molde', 'Para vaciar concreto, yeso…']] };
-const IMAGENES_REF = { id: 'imagenes', label: 'Imágenes de referencia (opcional)', type: 'imagenes' };
+const ADJUNTOS = { id: 'adjuntos', label: 'Planos, modelo o referencias (opcional)', type: 'adjuntos' };
 
 const FONDO_SVG = `<defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs><rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
 
-const ILUSTRACION_PRESUPUESTO = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una planilla de presupuesto de obra">
+// Edificio en alzado con sus niveles + costo por nivel frente al presupuesto (5D)
+const ILUSTRACION_BIM = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto">
   ${FONDO_SVG}
   <g font-family="Space Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">PRESUPUESTO DE OBRA</text>
-    <text x="32" y="86">01 PRELIMINARES</text><rect x="168" y="77" width="70" height="10" rx="2" fill="#333"/>
-    <text x="32" y="116">02 ESTRUCTURA</text><rect x="168" y="107" width="190" height="10" rx="2" fill="#555"/>
-    <text x="32" y="146">03 MAMPOSTERÍA</text><rect x="168" y="137" width="120" height="10" rx="2" fill="#444"/>
-    <text x="32" y="176">04 INSTALACIONES</text><rect x="168" y="167" width="150" height="10" rx="2" fill="#4a4a4a"/>
-    <text x="32" y="206">05 ACABADOS</text><rect x="168" y="197" width="210" height="10" rx="2" fill="#666"/>
-    <path d="M32 232H368" stroke="#b9a7ff" stroke-width="1.5"/>
-    <text x="32" y="258" fill="#fff" font-weight="600">TOTAL</text><rect x="168" y="249" width="200" height="12" rx="2" fill="url(#cromo)"/>
-  </g>
-</svg>`;
-
-const ILUSTRACION_IMPRESION = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una pieza impresa en 3D por capas">
-  ${FONDO_SVG}
-  <g font-family="Space Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">IMPRESIÓN 3D</text>
-    <g stroke="#666" stroke-width="1" fill="#1b1b1b">
-      ${Array.from({length: 6}, (_, i) => { const y = 190 - i * 14; return `<polygon points="120,${y - 30} 180,${y} 120,${y + 30} 60,${y}"/>`; }).join('')}
-      <polygon points="120,76 180,106 120,136 60,106" stroke="#b9a7ff" fill="#1d1830"/>
-    </g>
-    <text x="215" y="92" font-size="9" fill="#777">ARCHIVO</text><text x="215" y="108" fill="#ddd">.OBJ  .STL</text>
-    <text x="215" y="140" font-size="9" fill="#777">PIEZAS</text><text x="215" y="156" fill="#ddd">× 5</text>
-    <text x="215" y="188" font-size="9" fill="#777">PESO ESTIMADO</text><text x="215" y="204" fill="#ddd">~ 38 g</text>
-    <path d="M32 232H368" stroke="#b9a7ff" stroke-width="1.5"/>
-    <text x="32" y="258" fill="#fff" font-weight="600">PRECIO</text><rect x="110" y="249" width="258" height="12" rx="2" fill="url(#cromo)"/>
-  </g>
-</svg>`;
-
-const ILUSTRACION_DISENO = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración técnica del alzado de un edificio con ejes, niveles y cotas">
-  ${FONDO_SVG}
-  <g font-family="Space Mono, monospace" font-size="11" fill="#999">
-    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO ARQUITECTÓNICO</text>
-    <path d="M40 205H360" stroke="#555" stroke-width="1.2"/>
-    <g stroke="#444" stroke-width="1" stroke-dasharray="3 3">${[120, 190, 260].map(x => `<path d="M${x} 62V212"/>`).join('')}</g>
-    ${[['A', 120], ['B', 190], ['C', 260]].map(([l, x]) => `<circle cx="${x}" cy="62" r="7" fill="#0b0b0b" stroke="#b9a7ff"/><text x="${x}" y="65" font-size="8" text-anchor="middle" fill="#ddd">${l}</text>`).join('')}
+    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO + COSTOS · BIM</text>
     <g fill="none" stroke="#8a8a85" stroke-width="1.2">
-      <rect x="120" y="78" width="140" height="127"/>
-      ${Array.from({length: 5}, (_, i) => `<path d="M120 ${(78 + (i + 1) * 21.17).toFixed(1)}H260"/>`).join('')}
-      <path d="M116 78H264" stroke="#b9a7ff" stroke-width="2"/>
-      <rect x="170" y="69" width="40" height="9"/>
-      ${Array.from({length: 5}, (_, f) => [0, 1].map(b => [14, 38].map(o => `<rect x="${120 + b * 70 + o}" y="${(78 + f * 21.17 + 6).toFixed(1)}" width="18" height="10" stroke="${f === 2 ? '#7ee8ff' : '#555'}"/>`).join('')).join('')).join('')}
-      <rect x="171" y="187" width="38" height="18" stroke="#b9a7ff"/>
-      <path d="M190 187V205" stroke="#b9a7ff"/>
+      <rect x="56" y="76" width="112" height="132"/>
+      ${Array.from({length: 5}, (_, i) => `<path d="M56 ${(76 + (i + 1) * 22).toFixed(0)}H168"/>`).join('')}
+      <path d="M52 76H172" stroke="#b9a7ff" stroke-width="2"/>
+      ${Array.from({length: 6}, (_, f) => [0, 1, 2].map(b => `<rect x="${66 + b * 34}" y="${(82 + f * 22).toFixed(0)}" width="22" height="10" stroke="${f === 2 ? '#7ee8ff' : '#555'}"/>`).join('')).join('')}
+      <rect x="56" y="142" width="112" height="22" stroke="#7ee8ff" stroke-width="1.6" fill="rgba(126,232,255,0.08)"/>
     </g>
-    <g stroke="#666" stroke-width="1" fill="none">
-      <path d="M100 78V205M96 78H104M96 205H104"/>
-      <path d="M120 218H260M120 213V223M190 213V223M260 213V223"/>
-      <path d="M268 205h8M268 141.5h8M268 78h8"/>
+    <g stroke="#555" stroke-width="1" fill="none"><path d="M176 153H204M200 149l4 4-4 4"/></g>
+    <text x="184" y="143" font-size="8" fill="#7ee8ff">NIVEL 3</text>
+    <!-- costo por nivel -->
+    <g>
+      ${[['N6', 58], ['N5', 66], ['N4', 62], ['N3', 96], ['N2', 60], ['N1', 64]].map(([n, w], i) => `<text x="212" y="${(90 + i * 22).toFixed(0)}" font-size="8" fill="#777">${n}</text><rect x="234" y="${(80 + i * 22).toFixed(0)}" width="${w}" height="10" rx="2" fill="${n === 'N3' ? '#ff8f8f' : 'url(#cromo)'}" opacity="${n === 'N3' ? 1 : 0.85}"/>`).join('')}
+      <path d="M312 72V210" stroke="#b9a7ff" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <text x="312" y="224" font-size="8" text-anchor="middle" fill="#b9a7ff">PRESUPUESTO</text>
     </g>
-    <text transform="translate(91 142) rotate(-90)" font-size="8" text-anchor="middle">21,60 m</text>
-    <text x="155" y="232" font-size="8" text-anchor="middle">7,00</text>
-    <text x="225" y="232" font-size="8" text-anchor="middle">7,00</text>
-    <text x="280" y="208" font-size="8" fill="#7ee8ff">+0,00</text>
-    <text x="280" y="144.5" font-size="8" fill="#7ee8ff">+10,80</text>
-    <text x="280" y="81" font-size="8" fill="#7ee8ff">+21,60</text>
-    <text x="360" y="232" font-size="8" text-anchor="end">ESC 1:100</text>
     <path d="M32 240H368" stroke="#b9a7ff" stroke-width="1.5"/>
-    <text x="32" y="262" font-size="9" fill="#bbb">ANTEPROYECTO  →  LICENCIA  →  RENDERS</text>
+    <text x="32" y="262" font-size="9" fill="#bbb">MODELO  →  CANTIDADES  →  COSTO  →  CRONOGRAMA</text>
   </g>
 </svg>`;
 
 const SERVICIOS = [
   {
-    id: 'impresion3d', nombre: 'Impresión 3D',
-    badge: 'SUBE TU ARCHIVO', ilustracion: ILUSTRACION_IMPRESION,
-    promesa: 'Piezas arquitectónicas, de mobiliario, maquetas pequeñas y moldes. Sube tu archivo y ve el precio al instante.',
-    incluye: ['Sube tu OBJ o STL: calculamos peso, medidas y precio', 'Piezas arquitectónicas, mobiliario, maquetas y moldes', '¿Sin archivo? Lo diseñamos por ti'],
-    cta: 'Cotizar impresión',
-    variantes: [
-      {
-        id: 'archivo', nombre: 'Ya tengo el archivo', modo: 'cerrado',
-        campos: [
-          TIPO_PIEZA,
-          { id: 'archivo', label: 'Tu archivo 3D (OBJ o STL)', type: 'archivo3d' },
-          { id: 'cantidad', label: '¿Cuántas piezas?', type: 'number', min: 1, max: 500, value: 1, presets: [1, 2, 5, 10], sufijo: ' und.' },
-          { id: 'peso', label: 'Peso aproximado por pieza (g)', type: 'number', min: 1, max: 20000, value: 50, ayuda: 'Si subes el archivo lo calculamos por ti (puedes corregirlo). Si no, estímalo.' },
-          IMAGENES_REF
-        ],
-        calcular(v) {
-          const m = T.impresion;
-          const gramos = v.peso * v.cantidad * m.factorTipo[v.tipo];
-          const horas = gramos / m.gramosPorHora;
-          const precio = Math.max(m.minimo, m.preparacion + gramos * m.precioGramo + horas * m.precioHora);
-          const dias = 1 + Math.ceil(horas / m.horasImpresoraDia);
-          const grande = archivo3d && Math.max.apply(null, archivo3d.dimsCm) > m.camaCm;
-          return { precio, dias, detalle: `${v.cantidad} pieza${v.cantidad === 1 ? '' : 's'} · ${txt(this, 'tipo', v.tipo)} · ~${fmtNum(v.peso)} g c/u${archivo3d ? ' · archivo ' + archivo3d.nombre : ''}${imagenes3d.length ? ' · ' + imagenes3d.length + ' imagen(es)' : ''}${grande ? ' · supera la cama: se imprime en partes' : ''}` };
-        }
-      },
-      {
-        id: 'diseno', nombre: 'Necesito el diseño', modo: 'rango',
-        campos: [
-          TIPO_PIEZA,
-          { id: 'tamano', label: '¿De qué tamaño es la pieza?', type: 'select', options: [['p', 'Pequeña', 'Hasta 10 cm'], ['m', 'Mediana', '10 a 25 cm'], ['g', 'Grande', '25 a 40 cm']] },
-          { id: 'complejidad', label: '¿Qué tan compleja es?', type: 'select', options: [['sencilla', 'Sencilla', 'Formas básicas'], ['media', 'Media', 'Detalles y encajes'], ['alta', 'Compleja', 'Formas orgánicas o muy detalladas']] },
-          { id: 'cantidad', label: '¿Cuántas piezas?', type: 'number', min: 1, max: 500, value: 1, presets: [1, 2, 5, 10], sufijo: ' und.' },
-          { id: 'descripcion', label: 'Describe la pieza que necesitas', type: 'texto', placeholder: 'Qué es, para qué se usa, medidas que conozcas, materiales o acabados...' },
-          IMAGENES_REF
-        ],
-        validar(v) { return v.descripcion.length < 10 ? 'Describe brevemente la pieza que necesitas.' : ''; },
-        calcular(v) {
-          const m = T.impresion;
-          const gramos = m.gramosEstimados[v.tamano] * v.cantidad * m.factorTipo[v.tipo];
-          const horas = gramos / m.gramosPorHora;
-          const impresion = m.preparacion + gramos * m.precioGramo + horas * m.precioHora;
-          const precio = Math.max(m.minimo, m.modelado[v.complejidad] + impresion);
-          const dias = m.diasModelado[v.complejidad] + 1 + Math.ceil(horas / m.horasImpresoraDia);
-          return { precio, dias, rango: m.rango, detalle: `Diseño + impresión · ${v.cantidad} pieza${v.cantidad === 1 ? '' : 's'} · ${txt(this, 'tipo', v.tipo)} · ${txt(this, 'tamano', v.tamano)} · ${txt(this, 'complejidad', v.complejidad).toLowerCase()}${imagenes3d.length ? ' · ' + imagenes3d.length + ' imagen(es) de referencia' : ''}` };
-        }
-      }
-    ]
-  },
-  {
-    id: 'diseno', nombre: 'Diseño arquitectónico', modo: 'rango',
-    badge: 'OFERTA EN 24 H', ilustracion: ILUSTRACION_DISENO,
-    bim: true,
-    promesa: 'Diseñado en BIM: de la idea a los planos que necesitas para decidir, tramitar y construir.',
-    incluye: ['Anteproyecto o proyecto arquitectónico completo (los planos sirven para licencia)', 'Remodelaciones con diseño de interiores, mobiliario, colores y acabados', 'Renders para ver tu proyecto antes de construir'],
-    cta: 'Cotizar diseño',
+    id: 'maquetas', nombre: 'Maquetas de exhibición',
+    badge: 'PREMIUM', imagen: 'img/servicios/maqueta-torre.jpg', alt: 'Maqueta arquitectónica en madera con estructura detallada',
+    promesa: 'Maquetas físicas de alta gama que sirven para cerrar ventas: materiales expresivos y detalles digitales pensados para impactar en la sala de ventas y en la reunión de inversionistas.',
+    incluye: ['Concreto moldeado en silicón: texturas y volúmenes fieles al proyecto', 'Bases en madera trabajadas en carpintería fina', 'Elementos paramétricos y digitales que la hacen única'],
+    meta: ['Propuesta a la medida', 'Pieza premium'],
+    cta: 'Solicitar propuesta',
     campos: [
-      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda nueva'], ['comercial', 'Comercial / oficinas'], ['remodelacion', 'Remodelación', 'Lleva más detalle arquitectónico']] },
-      { id: 'area', label: '¿Cuántos m² construidos?', type: 'number', min: 20, max: 5000, value: 80, presets: [60, 100, 150, 250], ayuda: 'Área construida total (en una remodelación, la que se interviene).' },
-      { id: 'alcance', label: '¿Qué necesitas?', type: 'select', options: [['anteproyecto', 'Anteproyecto', 'Plantas, fachadas y concepto'], ['proyecto', 'Proyecto arquitectónico', 'Planos completos; sirven para licencia']] },
-      { id: 'extras', label: '¿Quieres sumar algo más? (opcional)', type: 'multi', ayuda: 'Una remodelación suele necesitar interiores, renders especiales, mobiliario y propuesta de acabados.', options: [['interiores', 'Diseño de interiores'], ['renders', 'Renders', 'Imágenes realistas'], ['mobiliario', 'Diseño de mobiliario', 'A medida'], ['acabados', 'Colores y acabados', 'Paleta, materiales y recubrimientos']] }
+      { id: 'uso', label: '¿Para qué la necesitas?', type: 'select', options: [['ventas', 'Sala de ventas', 'Para mostrar y vender el proyecto'], ['inversion', 'Inversionistas y juntas', 'Presentaciones de alto nivel'], ['feria', 'Feria o exhibición'], ['otro', 'Otro uso']] },
+      { id: 'proyecto', label: '¿Qué vamos a representar?', type: 'select', options: [['edificio', 'Edificio o torre'], ['conjunto', 'Conjunto o urbanismo'], ['vivienda', 'Vivienda o casa modelo'], ['interior', 'Espacio interior o comercial'], ['otro', 'Otro']] },
+      { id: 'escala', label: '¿De qué tamaño?', type: 'select', options: [['mesa', 'De mesa', 'Hasta unos 60 cm'], ['sala', 'Sala de ventas', 'Hasta 1 m'], ['grande', 'Gran formato', 'Más de 1 m'], ['definir', 'Aún no lo sé', 'Lo definimos juntos']] },
+      { id: 'elementos', label: '¿Qué materiales y elementos te interesan? (opcional)', type: 'multi', ayuda: 'Es la combinación de materiales lo que la hace premium; podemos proponerte la mejor para tu proyecto.', options: [['concreto', 'Concreto moldeado', 'Moldes en silicón'], ['madera', 'Bases en madera', 'Carpintería fina'], ['digital', 'Elementos paramétricos / digitales', 'Piezas diseñadas con algoritmos']] },
+      { id: 'fecha', label: '¿Para cuándo la necesitas? (opcional)', type: 'linea', placeholder: 'Ej. lanzamiento el 15 de noviembre' },
+      { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Qué se va a vender o presentar, a quién va dirigida, referencias que te gusten...' },
+      ADJUNTOS
     ],
-    calcular(v) {
-      const d = T.diseno;
-      const extras = v.extras ? v.extras.split(',') : [];
-      const porM2 = d.m2[v.alcance] * d.tipo[v.tipo] + extras.reduce((s, e) => s + d.extrasM2[e], 0);
-      const precio = Math.max(d.minimo, v.area * porM2);
-      const dias = (v.alcance === 'anteproyecto' ? 7 + v.area / 40 : 15 + v.area / 25) + extras.reduce((s, e) => s + d.diasExtras[e], 0);
-      const lista = extras.map(e => txt(this, 'extras', e).toLowerCase());
-      return { precio, dias, rango: d.rango, detalle: `${fmtNum(v.area)} m² construidos · ${txt(this, 'alcance', v.alcance)} · ${txt(this, 'tipo', v.tipo)}${lista.length ? ' · + ' + lista.join(', ') : ''} · ${fmtCOP(porM2)} por m² · metodología BIM` };
+    resumen(v) {
+      return [
+        ['Uso', txt(this, 'uso', v.uso)],
+        ['Representa', txt(this, 'proyecto', v.proyecto)],
+        ['Tamaño', txt(this, 'escala', v.escala)],
+        v.elementos ? ['Materiales', etiquetas(this, 'elementos', v.elementos)] : null,
+        v.fecha ? ['Fecha', v.fecha] : null,
+        v.descripcion ? ['Descripción', v.descripcion] : null
+      ];
     }
   },
   {
-    id: 'presupuesto', nombre: 'Presupuesto de obra', modo: 'rango',
-    badge: 'OFERTA EN 24 H', ilustracion: ILUSTRACION_PRESUPUESTO,
+    id: 'bim', nombre: 'Diseño arquitectónico y costos BIM',
+    badge: 'DISEÑO + COSTOS', ilustracion: ILUSTRACION_BIM,
     bim: true,
-    promesa: 'Sabe cuánto cuesta tu obra antes de empezar, con cantidades y presupuesto trabajados en BIM.',
-    incluye: ['Estimado rápido por m² para decidir', 'Detallado con cantidades y APU para contratar', 'Si no tienes planos, tomamos las medidas'],
-    cta: 'Cotizar presupuesto',
+    promesa: 'Diseño arquitectónico y control de costos dinámico, apoyados en metodología BIM, desde la fase previa hasta la obra. El presupuesto deja de ser una foto estática y se mueve con el modelo.',
+    incluye: ['Cómputos métricos extraídos del modelo BIM, con menos desviaciones (automatización en desarrollo)', 'Monitoreo de costos en tiempo real con 5D BIM: presupuesto ligado al modelo y al cronograma', 'Sobrecostos e interferencias detectados antes de ejecutar en obra'],
+    meta: ['Propuesta a la medida', 'Diseño + control de costos'],
+    cta: 'Solicitar propuesta',
     campos: [
-      { id: 'tipo', label: '¿Qué tipo de obra es?', type: 'select', options: [['nueva', 'Obra nueva'], ['remodelacion', 'Remodelación', 'Adecuación o reforma']] },
-      { id: 'area', label: '¿Cuántos m² vas a intervenir?', type: 'number', min: 10, max: 20000, value: 100, presets: [50, 100, 200, 400] },
-      { id: 'nivel', label: '¿Qué tan detallado?', type: 'select', options: [['parametrico', 'Estimado rápido', 'Por m², para decidir'], ['detallado', 'Detallado con APU', 'Cantidades y precios, para contratar']] },
-      { id: 'planos', label: '¿Tienes planos?', type: 'select', options: [['si', 'Sí, tengo planos'], ['no', 'No, hay que medir', '+35% y +2 días']] }
+      { id: 'fase', label: '¿En qué fase está tu proyecto?', type: 'select', options: [['previa', 'Antes de diseñar', 'Idea, lote o estudio de viabilidad'], ['diseno', 'Diseño en desarrollo'], ['contratar', 'Listo para licencia o contratación'], ['obra', 'En obra']] },
+      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda'], ['multifamiliar', 'Edificio multifamiliar o desarrollo'], ['comercial', 'Comercial u oficinas'], ['remodelacion', 'Remodelación']] },
+      { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'number', min: 20, max: 200000, value: 500, presets: [200, 500, 2000, 8000], ayuda: 'Un estimado basta; lo afinamos en la propuesta.' },
+      { id: 'necesidad', label: '¿Qué necesitas? (opcional)', type: 'multi', options: [['diseno', 'Diseño arquitectónico en BIM'], ['computos', 'Cómputos métricos del modelo', 'Automatización en desarrollo'], ['costos', 'Control de costos en tiempo real', '5D BIM'], ['riesgos', 'Sobrecostos e interferencias', 'Detección antes de obra']] },
+      { id: 'insumo', label: '¿Con qué cuentas hoy?', type: 'select', options: [['modelo', 'Un modelo BIM', 'Revit, IFC u otro'], ['planos', 'Planos 2D', 'CAD o PDF'], ['idea', 'Solo la idea o el lote']] },
+      { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Ubicación, etapa, qué te preocupa del costo o del plazo...' },
+      ADJUNTOS
     ],
-    calcular(v) {
-      const p = T.presupuesto;
-      let precio = v.nivel === 'parametrico'
-        ? p.parametricoBase + v.area * p.parametricoM2
-        : Math.max(p.detalladoMin, v.area * p.detalladoM2);
-      precio *= p.tipo[v.tipo];
-      if (v.planos === 'no') precio *= (1 + p.sinPlanos);
-      const dias = (v.nivel === 'parametrico' ? 2 + v.area / 200 : 5 + v.area / 60) + (v.planos === 'no' ? 2 : 0);
-      return { precio, dias, rango: p.rango, detalle: `${fmtNum(v.area)} m² · ${txt(this, 'nivel', v.nivel)}${v.planos === 'no' ? ' · incluye toma de medidas' : ''}` };
+    resumen(v) {
+      return [
+        ['Fase', txt(this, 'fase', v.fase)],
+        ['Proyecto', txt(this, 'tipo', v.tipo)],
+        ['Área', `${fmtNum(v.area)} m² construidos`],
+        v.necesidad ? ['Necesita', etiquetas(this, 'necesidad', v.necesidad)] : null,
+        ['Cuenta con', txt(this, 'insumo', v.insumo)],
+        v.descripcion ? ['Descripción', v.descripcion] : null
+      ];
     }
   }
 ];
@@ -576,122 +463,23 @@ const SERVICIOS = [
 // =====================================================================
 //  LÓGICA
 // =====================================================================
-let servicioBase = null;      // tarjeta elegida
-let servicioActual = null;    // tarjeta + pestaña (variante) activa
-let cotizacionActual = null;
-let archivo3d = null;         // { nombre, dimsRaw, volRaw, aproximado, dimsCm, volCm3 } — se lee en el navegador, no se sube
-let imagenes3d = [];          // nombres de las imágenes de referencia elegidas
-let imagenes3dFiles = [];     // los archivos de imagen (para adjuntarlos al correo)
+let servicioActual = null;
+let solicitudActual = null;
+let adjuntosElegidos = [];    // archivos elegidos (se leen en el navegador y viajan adjuntos al correo)
 
-const fmtCOP = n => '$ ' + Math.round(n).toLocaleString('es-CO');
 const fmtNum = n => Number(n).toLocaleString('es-CO');
-const redondear = (n, paso) => Math.ceil(n / paso) * paso;
 const $ = id => document.getElementById(id);
 function txt(servicio, campoId, valor) {
   const c = servicio.campos.find(x => x.id === campoId);
   const o = c && c.options.find(x => x[0] === valor);
   return o ? o[1] : valor;
 }
-function valoresMinimos(s) {
-  const v = {};
-  s.campos.forEach(c => {
-    if (c.type === 'number') v[c.id] = c.min;
-    else if (c.type === 'select') v[c.id] = c.options[0][0];
-    else if (c.type === 'texto' || c.type === 'multi') v[c.id] = '';
-  });
-  return v;
-}
-const primeraVariante = s => (s.variantes ? s.variantes[0] : s);
-function desdePrecio(s) {
-  const b = primeraVariante(s);
-  const r = b.calcular(valoresMinimos(b));
-  return r.rango ? r.precio * r.rango[0] : r.precio;
-}
-function desdePlazo(s) { const b = primeraVariante(s); return Math.max(1, Math.ceil(b.calcular(valoresMinimos(b)).dias)); }
-
-// ---- Lectura local de archivos 3D (OBJ / STL): medidas y volumen, sin subir nada ----
-function volumenMalla(vertices, triangulos) {
-  let vol = 0;
-  const mn = [Infinity, Infinity, Infinity], mx = [-Infinity, -Infinity, -Infinity];
-  for (let i = 0; i < vertices.length; i += 3) for (let k = 0; k < 3; k++) { const x = vertices[i + k]; if (x < mn[k]) mn[k] = x; if (x > mx[k]) mx[k] = x; }
-  for (let t = 0; t < triangulos.length; t += 3) {
-    const a = triangulos[t] * 3, b = triangulos[t + 1] * 3, c = triangulos[t + 2] * 3;
-    vol += (vertices[a] * (vertices[b + 1] * vertices[c + 2] - vertices[b + 2] * vertices[c + 1])
-          - vertices[a + 1] * (vertices[b] * vertices[c + 2] - vertices[b + 2] * vertices[c])
-          + vertices[a + 2] * (vertices[b] * vertices[c + 1] - vertices[b + 1] * vertices[c])) / 6;
-  }
-  const dims = [mx[0] - mn[0], mx[1] - mn[1], mx[2] - mn[2]];
-  if (!dims.every(isFinite) || dims.some(d => d <= 0)) return null;
-  let volRaw = Math.abs(vol);
-  const caja = dims[0] * dims[1] * dims[2];
-  const aproximado = volRaw < caja * 0.005;       // malla abierta o invertida: no es confiable
-  if (aproximado) volRaw = caja * 0.25;
-  return { dimsRaw: dims, volRaw, aproximado };
-}
-
-function analizarOBJ(texto) {
-  const verts = [], tris = [];
-  for (const linea of texto.split('\n')) {
-    if (linea.startsWith('v ')) {
-      const p = linea.trim().split(/\s+/);
-      const x = +p[1], y = +p[2], z = +p[3];
-      if (isFinite(x + y + z)) verts.push(x, y, z);
-    } else if (linea.startsWith('f ')) {
-      const n = verts.length / 3;
-      const idx = linea.trim().split(/\s+/).slice(1).map(t => { const i = parseInt(t, 10); return i < 0 ? n + i : i - 1; });
-      for (let k = 1; k < idx.length - 1; k++) if ([idx[0], idx[k], idx[k + 1]].every(i => i >= 0 && i < n)) tris.push(idx[0], idx[k], idx[k + 1]);
-    }
-  }
-  return verts.length >= 9 && tris.length ? volumenMalla(verts, tris) : null;
-}
-
-function analizarSTL(buf) {
-  const dv = new DataView(buf);
-  const verts = [], tris = [];
-  const n = buf.byteLength >= 84 ? dv.getUint32(80, true) : 0;
-  if (buf.byteLength === 84 + 50 * n && n > 0) {              // STL binario
-    for (let i = 0; i < n; i++) {
-      const o = 84 + i * 50 + 12;
-      for (let k = 0; k < 3; k++) { verts.push(dv.getFloat32(o + k * 12, true), dv.getFloat32(o + k * 12 + 4, true), dv.getFloat32(o + k * 12 + 8, true)); tris.push(i * 3 + k); }
-    }
-  } else {                                                    // STL ASCII
-    const re = /vertex\s+(\S+)\s+(\S+)\s+(\S+)/g;
-    const t = new TextDecoder().decode(buf);
-    let m, c = 0;
-    while ((m = re.exec(t))) { verts.push(+m[1], +m[2], +m[3]); tris.push(c++); }
-  }
-  return verts.length >= 9 ? volumenMalla(verts, tris) : null;
-}
-
-async function analizarArchivo3D(file) {
-  const ext = file.name.split('.').pop().toLowerCase();
-  if (!['obj', 'stl'].includes(ext)) throw new Error('Formato no compatible. Usa OBJ o STL.');
-  if (file.size > 60 * 1024 * 1024) throw new Error('El archivo es muy grande para leerlo aquí (máx. 60 MB). Indica el peso a mano y envíanoslo por WhatsApp.');
-  const r = ext === 'obj' ? analizarOBJ(await file.text()) : analizarSTL(await file.arrayBuffer());
-  if (!r) throw new Error('No pudimos leer la geometría. Indica el peso a mano y envíanos el archivo por WhatsApp.');
-  return r;
-}
-
-const FACTOR_CM = { mm: 0.1, cm: 1, m: 100 };
-function aplicarUnidad(unidad) {
-  if (!archivo3d) return;
-  const f = FACTOR_CM[unidad] || 0.1;
-  archivo3d.dimsCm = archivo3d.dimsRaw.map(d => d * f);
-  archivo3d.volCm3 = archivo3d.volRaw * f * f * f;
-  const m = T.impresion;
-  const peso = Math.max(1, Math.round(archivo3d.volCm3 * m.densidad * m.relleno));
-  const inp = $('f-peso');
-  if (inp) { inp.value = Math.min(20000, peso); dispararInput(inp); }
-  const d = archivo3d.dimsCm.map(x => x >= 100 ? x.toFixed(0) : x.toFixed(1)).join(' × ');
-  const est = $('estado-archivo');
-  est.classList.toggle('aviso', archivo3d.dimsCm.some(x => x > m.camaCm) || archivo3d.aproximado);
-  est.textContent = `✓ ${archivo3d.nombre} · ${d} cm · ~${fmtNum(peso)} g por pieza (estimado)` +
-    (archivo3d.aproximado ? ' · la malla no está cerrada: el peso es aproximado' : '') +
-    (archivo3d.dimsCm.some(x => x > m.camaCm) ? ` · supera ${m.camaCm} cm: se imprime en partes` : '') +
-    ' · ¿las medidas no son las de tu pieza? Cambia la unidad.';
+function etiquetas(servicio, campoId, csv) {
+  return csv.split(',').filter(Boolean).map(v => txt(servicio, campoId, v)).join(', ');
 }
 
 function urlWhatsApp(texto) { return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`; }
+function dispararInput(el) { el.dispatchEvent(new Event('input', { bubbles: true })); }
 
 function renderGrid() {
   const grid = $('srv-grid');
@@ -699,7 +487,7 @@ function renderGrid() {
     const card = document.createElement('article');
     card.className = 'srv-card';
     card.dataset.id = s.id;
-    const media = s.ilustracion || `<img src="${s.imagen}" alt="${s.alt}" loading="lazy">`;
+    const media = s.ilustracion || `<img src="${s.imagen}" alt="${s.alt}" loading="lazy" data-dither>`;
     card.innerHTML =
       `<div class="srv-img">${media}<span class="badge">${s.badge}</span></div>` +
       `<div class="srv-body">` +
@@ -707,15 +495,13 @@ function renderGrid() {
         `<h3>${s.nombre}</h3>` +
         `<p class="promesa">${s.promesa}</p>` +
         `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
-        `<div class="meta"><span>Desde <b>${fmtCOP(redondear(desdePrecio(s), 10000))}</b></span><span>Desde ${desdePlazo(s)} días hábiles</span></div>` +
+        `<div class="meta"><span><b>${s.meta[0]}</b></span><span>${s.meta[1]}</span></div>` +
         `<button class="btn btn-primario" type="button">${s.cta} →</button>` +
       `</div>`;
     card.querySelector('button').addEventListener('click', () => seleccionar(s.id));
     grid.appendChild(card);
   });
 }
-
-function dispararInput(el) { el.dispatchEvent(new Event('input', { bubbles: true })); }
 
 function crearCampo(c) {
   const div = document.createElement('div');
@@ -780,75 +566,32 @@ function crearCampo(c) {
     });
     div.appendChild(grupo);
     div.appendChild(oculto);
-  } else if (c.type === 'archivo3d') {
+  } else if (c.type === 'adjuntos') {
     const file = document.createElement('input');
     file.type = 'file';
-    file.accept = '.obj,.stl';
-    file.id = 'f-archivo';
-    file.setAttribute('aria-labelledby', lbl.id);
-    const estado = document.createElement('div');
-    estado.className = 'estado-archivo';
-    estado.id = 'estado-archivo';
-    estado.setAttribute('role', 'status');
-    const unidades = document.createElement('div');
-    unidades.className = 'unidades';
-    unidades.hidden = true;
-    unidades.appendChild(document.createTextNode('Unidad del archivo:'));
-    const oculto = document.createElement('input');
-    oculto.type = 'hidden'; oculto.id = 'f-unidad'; oculto.value = 'mm';
-    ['mm', 'cm', 'm'].forEach(u => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 'chip'; b.textContent = u;
-      b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', u === 'mm' ? 'true' : 'false');
-      b.addEventListener('click', () => {
-        unidades.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-checked', 'false'));
-        b.setAttribute('aria-checked', 'true');
-        oculto.value = u;
-        aplicarUnidad(u);
-      });
-      unidades.appendChild(b);
-    });
-    file.addEventListener('change', async () => {
-      archivo3d = null;
-      unidades.hidden = true;
-      estado.classList.remove('aviso');
-      const f = file.files[0];
-      if (!f) { estado.textContent = ''; dispararInput(file); return; }
-      estado.textContent = 'Analizando el archivo…';
-      try {
-        const r = await analizarArchivo3D(f);
-        archivo3d = { nombre: f.name, file: f, dimsRaw: r.dimsRaw, volRaw: r.volRaw, aproximado: r.aproximado, dimsCm: [0, 0, 0], volCm3: 0 };
-        unidades.hidden = false;
-        aplicarUnidad(oculto.value);
-      } catch (e) {
-        estado.classList.add('aviso');
-        estado.textContent = e.message;
-      }
-      dispararInput(file);
-    });
-    div.appendChild(file);
-    div.appendChild(unidades);
-    div.appendChild(oculto);
-    div.appendChild(estado);
-    const nota = document.createElement('div');
-    nota.className = 'ayuda';
-    nota.textContent = CONFIG.cotizacionesUrl
-      ? 'Lo leemos aquí para calcular el peso y las medidas. Al aceptar, el archivo viaja adjunto con tu cotización.'
-      : 'El archivo no se sube a la web: lo leemos aquí para calcular. Al aceptar, nos lo envías por WhatsApp.';
-    div.appendChild(nota);
-  } else if (c.type === 'imagenes') {
-    const file = document.createElement('input');
-    file.type = 'file'; file.accept = 'image/*'; file.multiple = true; file.id = 'f-imagenes';
+    file.accept = 'image/*,.pdf,.obj,.stl,.ifc,.dwg,.dxf,.rvt,.skp,.3dm';
+    file.multiple = true;
+    file.id = 'f-adjuntos';
     file.setAttribute('aria-labelledby', lbl.id);
     const mini = document.createElement('div');
     mini.className = 'miniaturas';
     file.addEventListener('change', () => {
       mini.querySelectorAll('img').forEach(i => URL.revokeObjectURL(i.src));
       mini.innerHTML = '';
-      const fs = Array.from(file.files).slice(0, 6);
-      imagenes3d = fs.map(f => f.name);
-      imagenes3dFiles = fs;
-      fs.forEach(f => { const im = document.createElement('img'); im.src = URL.createObjectURL(f); im.alt = f.name; mini.appendChild(im); });
+      adjuntosElegidos = Array.from(file.files).slice(0, 6);
+      adjuntosElegidos.forEach(f => {
+        if (f.type.startsWith('image/')) {
+          const im = document.createElement('img');
+          im.src = URL.createObjectURL(f);
+          im.alt = f.name;
+          mini.appendChild(im);
+        } else {
+          const t = document.createElement('span');
+          t.className = 'archivo-chip';
+          t.textContent = f.name;
+          mini.appendChild(t);
+        }
+      });
       dispararInput(file);
     });
     div.appendChild(file);
@@ -856,8 +599,8 @@ function crearCampo(c) {
     const nota = document.createElement('div');
     nota.className = 'ayuda';
     nota.textContent = CONFIG.cotizacionesUrl
-      ? 'Hasta 6 imágenes. Se reducen de tamaño y viajan adjuntas con tu cotización.'
-      : 'Hasta 6 imágenes. Tampoco se suben a la web: nos las envías por WhatsApp al aceptar.';
+      ? 'Hasta 6 archivos: imágenes, planos en PDF o modelos (OBJ, STL, IFC, DWG, RVT…). Viajan adjuntos con tu solicitud.'
+      : 'Hasta 6 archivos. No se suben a la web: nos los envías por WhatsApp al enviar la solicitud.';
     div.appendChild(nota);
   } else if (c.type === 'texto') {
     const ta = document.createElement('textarea');
@@ -867,6 +610,14 @@ function crearCampo(c) {
     ta.placeholder = c.placeholder || '';
     ta.setAttribute('aria-labelledby', lbl.id);
     div.appendChild(ta);
+  } else if (c.type === 'linea') {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.id = `f-${c.id}`;
+    inp.maxLength = 120;
+    inp.placeholder = c.placeholder || '';
+    inp.setAttribute('aria-labelledby', lbl.id);
+    div.appendChild(inp);
   } else {
     const inp = document.createElement('input');
     inp.type = 'number';
@@ -882,7 +633,7 @@ function crearCampo(c) {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'chip';
-        b.textContent = `${fmtNum(n)}${c.sufijo || ' m²'}`;
+        b.textContent = `${fmtNum(n)} m²`;
         b.addEventListener('click', () => { inp.value = n; dispararInput(inp); });
         p.appendChild(b);
       });
@@ -893,43 +644,21 @@ function crearCampo(c) {
   return div;
 }
 
-function activarVariante(varId) {
-  const v = servicioBase.variantes ? servicioBase.variantes.find(x => x.id === varId) : null;
-  servicioActual = v
-    ? Object.assign({}, servicioBase, v, { nombre: `${servicioBase.nombre} · ${v.nombre}`, id: servicioBase.id })
-    : servicioBase;
-  archivo3d = null;
-  imagenes3d = [];
-  imagenes3dFiles = [];
-  const form = $('form-servicio');
-  form.innerHTML = '';
-  servicioActual.campos.forEach(c => form.appendChild(crearCampo(c)));
-  form.oninput = cotizar;
-  const tabs = $('tabs-variante');
-  tabs.innerHTML = '';
-  tabs.hidden = !servicioBase.variantes;
-  (servicioBase.variantes || []).forEach(x => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('role', 'tab');
-    b.setAttribute('aria-selected', x.id === varId ? 'true' : 'false');
-    b.textContent = x.nombre;
-    b.addEventListener('click', () => { if (x.id !== varId) { $('of-acepto').checked = false; $('of-error').textContent = ''; activarVariante(x.id); } });
-    tabs.appendChild(b);
-  });
-  cotizar();
-}
-
 function seleccionar(id) {
-  servicioBase = SERVICIOS.find(s => s.id === id);
+  servicioActual = SERVICIOS.find(s => s.id === id);
+  adjuntosElegidos = [];
   document.querySelectorAll('.srv-card').forEach(c => c.classList.toggle('sel', c.dataset.id === id));
-  $('cot-titulo').textContent = servicioBase.nombre;
+  $('cot-titulo').textContent = servicioActual.nombre;
   $('cotizador').classList.add('visible');
   $('of-acepto').checked = false;
   $('of-error').textContent = '';
-  activarVariante(servicioBase.variantes ? servicioBase.variantes[0].id : null);
+  const form = $('form-servicio');
+  form.innerHTML = '';
+  servicioActual.campos.forEach(c => form.appendChild(crearCampo(c)));
+  form.oninput = actualizarResumen;
+  actualizarResumen();
   $('cotizador').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  observarOferta();
+  observarPanel();
 }
 
 function volverAServicios() {
@@ -942,7 +671,7 @@ function volverAServicios() {
 function leerValores() {
   const v = {};
   servicioActual.campos.forEach(c => {
-    if (c.type === 'archivo3d' || c.type === 'imagenes') return;
+    if (c.type === 'adjuntos') return;
     const el = $(`f-${c.id}`);
     if (c.type === 'number') {
       let n = parseFloat(el.value);
@@ -955,101 +684,57 @@ function leerValores() {
   return v;
 }
 
-// El precio "cuenta" hasta el valor final (estilo HUD); sin animación si el usuario pidió menos movimiento
-let precioMostrado = { a: 0, b: 0 };
-let animPrecio = 0;
-let cierrePrecio = 0;
-function mostrarPrecio(a, b, rango) {
-  const pintar = (x, y) => { $('of-precio').innerHTML = (rango ? `${fmtCOP(x)} – ${fmtCOP(y)}` : fmtCOP(x)) + '<small>COP</small>'; };
-  const final = () => { precioMostrado = { a, b }; pintar(a, b); };
-  cancelAnimationFrame(animPrecio);
-  clearTimeout(cierrePrecio);
-  const desde = Object.assign({}, precioMostrado);
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches || (desde.a === a && desde.b === b)) { final(); return; }
-  const t0 = performance.now();
-  const paso = ahora => {
-    const t = Math.min(1, (ahora - t0) / 450);
-    const e = 1 - Math.pow(1 - t, 3);
-    precioMostrado = { a: desde.a + (a - desde.a) * e, b: desde.b + (b - desde.b) * e };
-    pintar(precioMostrado.a, precioMostrado.b);
-    if (t < 1) animPrecio = requestAnimationFrame(paso);
-  };
-  animPrecio = requestAnimationFrame(paso);
-  cierrePrecio = setTimeout(() => { cancelAnimationFrame(animPrecio); final(); }, 600);
-}
-
-function cotizar() {
+function actualizarResumen() {
   const v = leerValores();
-  const r = servicioActual.calcular(v);
-  let precio = r.precio;
-  const dias = Math.max(1, Math.ceil(r.dias));
-  const cerrado = servicioActual.modo === 'cerrado';
-  const detalle = r.detalle;
-
-  if (cerrado) {
-    precio = redondear(precio, 10000);
-    const anticipo = redondear(precio * CONFIG.anticipoPct / 100, 1000);
-    cotizacionActual = { servicio: servicioActual.nombre, cerrado, precio, dias, anticipo, saldo: precio - anticipo, detalle };
-    $('of-etiqueta').textContent = 'Valor total';
-    mostrarPrecio(precio, precio, false);
-    $('of-anticipo-label').textContent = 'Anticipo para iniciar';
-    $('of-anticipo').textContent = `${fmtCOP(anticipo)} (${CONFIG.anticipoPct}%)`;
-    $('of-saldo-linea').style.display = '';
-    $('of-saldo').textContent = fmtCOP(precio - anticipo);
-    $('of-acepto-texto').textContent = 'Acepto la oferta y el plazo. Si al revisar el modelo o los planos el alcance cambia, la ajustamos antes de cobrar el saldo.';
-    $('btn-aceptar').textContent = CONFIG.pagoEnLinea ? `Aceptar y pagar anticipo ${fmtCOP(anticipo)}` : 'Aceptar oferta';
-    $('of-nota').textContent = 'Precios en pesos colombianos. El plazo cuenta desde que recibimos el anticipo y el modelo o los planos.';
-  } else {
-    const min = redondear(precio * r.rango[0], 50000);
-    const max = redondear(precio * r.rango[1], 50000);
-    cotizacionActual = { servicio: servicioActual.nombre, cerrado, min, max, dias, detalle };
-    $('of-etiqueta').textContent = 'Rango estimado';
-    mostrarPrecio(min, max, true);
-    $('of-anticipo-label').textContent = 'Anticipo';
-    $('of-anticipo').textContent = `${CONFIG.anticipoPct}% al confirmar`;
-    $('of-saldo-linea').style.display = 'none';
-    $('of-acepto-texto').textContent = 'Entiendo que es un rango preliminar. En menos de 24 horas revisamos mi proyecto y me envían la oferta final con plazo; el trabajo inicia al aceptarla y pagar el anticipo.';
-    $('btn-aceptar').textContent = 'Solicitar oferta final';
-    $('of-nota').textContent = 'Precios en pesos colombianos. El valor final depende de los planos, el lote y el alcance definitivo.';
-  }
+  const lineas = servicioActual.resumen(v).filter(Boolean);
+  if (adjuntosElegidos.length) lineas.push(['Archivos', adjuntosElegidos.map(f => f.name).join(', ')]);
+  const detalle = lineas.map(([k, val]) => `${k}: ${val}`).join(' · ');
+  solicitudActual = { servicio: servicioActual.nombre, detalle };
   $('of-servicio').textContent = servicioActual.nombre;
-  $('of-plazo').textContent = `${dias} día${dias === 1 ? '' : 's'} hábil${dias === 1 ? '' : 'es'}`;
-  $('of-desglose').textContent = detalle;
-  $('bm-precio').textContent = valorTexto(cotizacionActual);
+  const caja = $('of-desglose');
+  caja.innerHTML = '';
+  lineas.forEach(([k, val]) => {
+    const fila = document.createElement('div');
+    fila.className = 'linea';
+    const a = document.createElement('span'); a.textContent = k;
+    const b = document.createElement('b'); b.textContent = val.length > 90 ? val.slice(0, 87) + '…' : val;
+    fila.appendChild(a); fila.appendChild(b);
+    caja.appendChild(fila);
+  });
+  $('bm-servicio').textContent = servicioActual.nombre;
 }
 
 function datosCliente() {
   const val = id => $(id).value.trim();
-  return { nombre: val('cli-nombre'), telefono: val('cli-telefono'), correo: val('cli-correo'), ciudad: val('cli-ciudad'), notas: val('cli-notas') };
+  const empresa = val('cli-empresa');
+  const notas = [empresa ? 'Empresa: ' + empresa : '', val('cli-notas')].filter(Boolean).join('\n');
+  return { nombre: val('cli-nombre'), telefono: val('cli-telefono'), correo: val('cli-correo'), ciudad: val('cli-ciudad'), empresa, notas };
 }
 
 function validar(c) {
-  if (!c.nombre || !c.telefono || !c.correo || !c.ciudad) return 'Completa tus datos para enviar el pedido.';
+  if (!c.nombre || !c.telefono || !c.correo || !c.ciudad) return 'Completa tus datos para enviar la solicitud.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.correo)) return 'Revisa el correo.';
   if (c.telefono.replace(/\D/g, '').length < 7) return 'Revisa el teléfono.';
   return '';
 }
 
 function extrasPedido() {
-  const v = leerValores();
   const p = [];
-  if (v.descripcion) p.push('Descripción: ' + v.descripcion);
-  const via = CONFIG.cotizacionesUrl ? 'adjunto en el correo' : 'se envía por WhatsApp';
-  if (archivo3d) p.push(`Archivo 3D: ${archivo3d.nombre} (${via})`);
-  if (imagenes3d.length) p.push(`Imágenes: ${imagenes3d.join(', ')} (${via})`);
+  if (adjuntosElegidos.length) {
+    const via = CONFIG.cotizacionesUrl ? 'adjuntos en el correo' : 'se envían por WhatsApp';
+    p.push(`Archivos: ${adjuntosElegidos.map(f => f.name).join(', ')} (${via})`);
+  }
   return p;
 }
-const pideAdjuntos = () => !!archivo3d || imagenes3d.length > 0;
-const AVISO_ADJUNTOS = ' Para empezar, envíanos por WhatsApp el archivo 3D y las imágenes que elegiste.';
-
-function valorTexto(q) { return q.cerrado ? fmtCOP(q.precio) : `${fmtCOP(q.min)} – ${fmtCOP(q.max)}`; }
+const pideAdjuntos = () => adjuntosElegidos.length > 0;
+const AVISO_ADJUNTOS = ' Para avanzar, envíanos por WhatsApp los archivos que elegiste.';
 
 function armarPedido(c, estado) {
-  const q = cotizacionActual;
+  const q = solicitudActual;
   return {
     referencia: `PL-SRV-${Date.now()}`,
-    producto: `SERVICIO ${q.servicio}: ${q.detalle} | Valor ${valorTexto(q)} | Plazo ${q.dias} días hábiles${q.cerrado ? ' | Anticipo ' + fmtCOP(q.anticipo) : ''} | Correo ${c.correo}${extrasPedido().map(x => ' | ' + x).join('')}${c.notas ? ' | Notas: ' + c.notas : ''}`,
-    precio: q.cerrado ? q.precio : q.max,
+    producto: `SERVICIO ${q.servicio}: ${q.detalle} | Solicitud de propuesta | Correo ${c.correo}${extrasPedido().map(x => ' | ' + x).join('')}${c.notas ? ' | Notas: ' + c.notas.replace(/\n/g, ' / ') : ''}`,
+    precio: 0,
     nombre: c.nombre,
     telefono: c.telefono,
     direccion: c.correo,
@@ -1064,17 +749,14 @@ function registrarPedido(data) {
 }
 
 function mensajeWhatsApp(c, ref, intro) {
-  const q = cotizacionActual;
+  const q = solicitudActual;
   return `${intro}\n` +
     `Servicio: ${q.servicio}\n` +
     `Detalle: ${q.detalle}\n` +
-    `Valor: ${valorTexto(q)} COP\n` +
-    `Plazo: ${q.dias} días hábiles\n` +
-    (q.cerrado ? `Anticipo (${CONFIG.anticipoPct}%): ${fmtCOP(q.anticipo)}\n` : '') +
     (ref ? `Referencia: ${ref}\n` : '') +
     extrasPedido().map(x => x + '\n').join('') +
     (c.nombre ? `\n${c.nombre} - ${c.telefono}\n${c.correo} - ${c.ciudad}` : '') +
-    (c.notas ? `\nNotas: ${c.notas}` : '');
+    (c.notas ? `\n${c.notas}` : '');
 }
 
 function abrirWhatsApp(texto) { window.open(urlWhatsApp(texto), '_blank'); }
@@ -1092,7 +774,7 @@ function mostrarConfirmacion(titulo, ref, texto, waTexto) {
   $('confirmacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ---- Envío de la cotización por correo, con archivo 3D e imágenes adjuntos (Apps Script "Cotizaciones") ----
+// ---- Envío de la solicitud por correo, con los archivos adjuntos (Apps Script "Cotizaciones") ----
 const LIMITE_ADJUNTOS = 12 * 1024 * 1024; // bytes ya comprimidos (con la codificación base64 el envío crece ~33 %)
 
 function bufferABase64(buf) {
@@ -1124,24 +806,26 @@ async function reducirImagen(file) {
 }
 
 async function armarAdjuntos() {
-  const res = { archivo: null, imagenes: [], omitidos: [] };
+  const res = { archivos: [], imagenes: [], omitidos: [] };
   let usado = 0;
-  if (archivo3d && archivo3d.file) {
-    const z = await comprimirArchivo(archivo3d.file);
-    if (z.buf.byteLength > LIMITE_ADJUNTOS) res.omitidos.push(archivo3d.nombre);
-    else { usado += z.buf.byteLength; res.archivo = { nombre: archivo3d.nombre, gzip: z.gzip, b64: bufferABase64(z.buf) }; }
-  }
-  for (const f of imagenes3dFiles) {
-    const im = await reducirImagen(f);
-    if (usado + im.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
-    usado += im.buf.byteLength;
-    res.imagenes.push({ nombre: im.nombre, mime: im.mime, b64: bufferABase64(im.buf) });
+  for (const f of adjuntosElegidos) {
+    if (f.type.startsWith('image/')) {
+      const im = await reducirImagen(f);
+      if (usado + im.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
+      usado += im.buf.byteLength;
+      res.imagenes.push({ nombre: im.nombre, mime: im.mime, b64: bufferABase64(im.buf) });
+    } else {
+      const z = await comprimirArchivo(f);
+      if (usado + z.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
+      usado += z.buf.byteLength;
+      res.archivos.push({ nombre: f.name, gzip: z.gzip, b64: bufferABase64(z.buf) });
+    }
   }
   return res;
 }
 
 async function enviarCotizacion(pedido, c) {
-  const q = cotizacionActual;
+  const q = solicitudActual;
   try {
     const adj = await armarAdjuntos();
     const carga = {
@@ -1150,13 +834,14 @@ async function enviarCotizacion(pedido, c) {
       referencia: pedido.referencia,
       servicio: q.servicio,
       detalle: q.detalle,
-      valor: `${valorTexto(q)} COP`,
-      plazo: `${q.dias} días hábiles`,
-      anticipo: q.cerrado ? `${fmtCOP(q.anticipo)} (${CONFIG.anticipoPct}%)` : '',
-      oferta: q.cerrado ? 'Precio cerrado' : 'Rango preliminar: confirmar oferta final en 24 h',
-      extras: extrasPedido().filter(x => !/^(Archivo 3D|Imágenes)/.test(x)),
+      valor: 'Propuesta a la medida',
+      plazo: 'Por definir con el cliente',
+      anticipo: '',
+      oferta: 'Solicitud de propuesta',
+      extras: extrasPedido().filter(x => !/^Archivos/.test(x)),
       cliente: c,
-      archivo: adj.archivo,
+      archivo: null,
+      archivos: adj.archivos,
       imagenes: adj.imagenes,
       omitidos: adj.omitidos
     };
@@ -1171,37 +856,22 @@ async function enviarCotizacion(pedido, c) {
   }
 }
 
-async function aceptarOferta() {
+async function enviarSolicitud() {
   const err = $('of-error');
   err.textContent = '';
   const c = datosCliente();
   const problema = validar(c);
   if (problema) { err.textContent = problema; return; }
-  const pv = servicioActual.validar ? servicioActual.validar(leerValores()) : '';
-  if (pv) { err.textContent = pv; return; }
   if (!$('of-acepto').checked) { err.textContent = 'Marca la casilla para continuar.'; return; }
-  const q = cotizacionActual;
-  const rango = !q.cerrado;
 
-  const pedido = armarPedido(c, rango ? 'Solicitud de oferta final' : (CONFIG.pagoEnLinea ? 'Oferta aceptada - anticipo en proceso' : 'Oferta aceptada - enviar link de anticipo'));
+  const pedido = armarPedido(c, 'Solicitud de propuesta');
   registrarPedido(pedido);
-  const conCorreo = !!CONFIG.cotizacionesUrl;
+  const waTexto = mensajeWhatsApp(c, pedido.referencia, 'Hola, quiero una propuesta de Pórtico Lab para:');
+  const base = 'Revisamos tu proyecto y te escribimos con una propuesta a la medida: alcance, valor y plazo. Sin costo ni compromiso.';
 
-  if (!rango && CONFIG.pagoEnLinea) {
-    if (conCorreo) await enviarCotizacion(pedido, c);
-    await pagarAnticipoBold(pedido);
-    return;
-  }
-
-  const titulo = rango ? 'SOLICITUD RECIBIDA' : 'PEDIDO RECIBIDO';
-  const waTexto = mensajeWhatsApp(c, pedido.referencia, rango ? 'Hola, quiero la oferta final de Pórtico Lab para:' : 'Hola, acepto esta oferta de Pórtico Lab:');
-  const base = rango
-    ? 'En menos de 24 horas revisamos tu proyecto y te enviamos la oferta final con el plazo. Si la aceptas, pagas el anticipo y arrancamos.'
-    : `Te enviamos el link para pagar el anticipo de ${fmtCOP(q.anticipo)}. Apenas se acredite y tengamos tu modelo o planos, arrancamos: el plazo de ${q.dias} días hábiles empieza a correr.`;
-
-  if (!conCorreo) {
+  if (!CONFIG.cotizacionesUrl) {
     abrirWhatsApp(waTexto);
-    mostrarConfirmacion(titulo, pedido.referencia, base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
+    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
     return;
   }
 
@@ -1215,85 +885,42 @@ async function aceptarOferta() {
 
   if (envio.ok) {
     const aviso = envio.omitidos.length ? ` Algunos archivos eran muy pesados para enviarlos aquí (${envio.omitidos.join(', ')}): envíalos por WhatsApp.` : '';
-    mostrarConfirmacion(titulo, pedido.referencia, (pideAdjuntos() ? 'Recibimos tu cotización con tus archivos. ' : 'Recibimos tu cotización. ') + base + aviso, waTexto);
+    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, (pideAdjuntos() ? 'Recibimos tu solicitud con tus archivos. ' : 'Recibimos tu solicitud. ') + base + aviso, waTexto);
   } else {
-    mostrarConfirmacion(titulo, pedido.referencia, 'Registramos tu pedido, pero no pudimos enviar los archivos automáticamente. ' + base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''), waTexto);
+    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, 'Registramos tu solicitud, pero no pudimos enviar los archivos automáticamente. ' + base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''), waTexto);
   }
 }
 
-function tengoDudas() {
+function prefieroWhatsApp() {
   const c = datosCliente();
-  if (c.nombre && c.telefono) registrarPedido(armarPedido(c, 'Cotización - quiere hablar'));
-  abrirWhatsApp(mensajeWhatsApp(c, null, 'Hola, coticé este servicio en porticolab.com y tengo algunas dudas:'));
+  if (c.nombre && c.telefono) registrarPedido(armarPedido(c, 'Solicitud - prefiere WhatsApp'));
+  abrirWhatsApp(mensajeWhatsApp(c, null, 'Hola, vi este servicio en porticolab.com y quiero hablar de mi proyecto:'));
 }
 
-// Barra de precio fija en móvil mientras el panel de oferta no está a la vista
-let observadorOferta = null;
-function observarOferta() {
+// Barra fija en móvil mientras el panel de la solicitud no está a la vista
+let observadorPanel = null;
+function observarPanel() {
   if (!('IntersectionObserver' in window)) return;
-  if (observadorOferta) observadorOferta.disconnect();
-  observadorOferta = new IntersectionObserver(([e]) => {
+  if (observadorPanel) observadorPanel.disconnect();
+  observadorPanel = new IntersectionObserver(([e]) => {
     $('barra-movil').classList.toggle('visible', $('cotizador').classList.contains('visible') && !e.isIntersecting);
   }, { threshold: 0.15 });
-  observadorOferta.observe($('oferta'));
+  observadorPanel.observe($('oferta'));
 }
 
-// ---- Pago del anticipo con Bold (solo si CONFIG.pagoEnLinea = true) ----
-function cargarBold() {
-  if (document.querySelector('script[src="https://checkout.bold.co/library/boldPaymentButton.js"]')) return;
-  const js = document.createElement('script');
-  js.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
-  document.head.appendChild(js);
-}
-
-async function pagarAnticipoBold(pedido) {
-  const err = $('of-error');
-  if (typeof BoldCheckout === 'undefined') { err.textContent = 'No se pudo cargar el pago. Intenta de nuevo o escríbenos por WhatsApp.'; return; }
-  const amount = String(Math.round(cotizacionActual.anticipo));
-  let hash = null;
-  try {
-    const res = await fetch(`${CONFIG.sheetWebhook}?action=bold-hash&orderId=${encodeURIComponent(pedido.referencia)}&amount=${amount}&currency=COP`);
-    hash = (await res.json()).hash;
-  } catch (e) { hash = null; }
-  if (!hash) { err.textContent = 'No se pudo preparar el pago. Intenta de nuevo o escríbenos por WhatsApp.'; return; }
-  try { sessionStorage.setItem('porticolab_servicio_pendiente', JSON.stringify(pedido)); } catch (e) {}
-  new BoldCheckout({
-    orderId: pedido.referencia, currency: 'COP', amount,
-    apiKey: CONFIG.boldIdentityKey, integritySignature: hash,
-    description: `Anticipo ${cotizacionActual.servicio}`.slice(0, 100),
-    redirectionUrl: window.location.href.split('?')[0]
-  }).open();
-}
-
-function revisarRegresoDePago() {
-  let raw = null;
-  try { raw = sessionStorage.getItem('porticolab_servicio_pendiente'); sessionStorage.removeItem('porticolab_servicio_pendiente'); } catch (e) {}
-  if (!raw) return;
-  let pedido;
-  try { pedido = JSON.parse(raw); } catch (e) { return; }
-  const estado = new URLSearchParams(location.search).get('bold-tx-status');
-  registrarPedido(Object.assign({}, pedido, { estadoPago: estado ? `Anticipo Bold: ${estado}` : 'Anticipo - verificar en Bold' }));
-  const ok = estado && /aprob|approv/i.test(estado);
-  mostrarConfirmacion(ok ? 'ANTICIPO RECIBIDO' : 'PEDIDO EN PROCESO', pedido.referencia, ok
-    ? 'Ya estamos trabajando en tu proyecto. Te escribimos hoy mismo para coordinar los detalles.'
-    : 'Volviste del proceso de pago. Si quedó aprobado, te escribimos para arrancar; si no, puedes intentarlo de nuevo o escribirnos por WhatsApp.');
-}
-
-$('btn-aceptar').addEventListener('click', aceptarOferta);
-$('btn-dudas').addEventListener('click', tengoDudas);
+$('btn-aceptar').addEventListener('click', enviarSolicitud);
+$('btn-dudas').addEventListener('click', prefieroWhatsApp);
 $('btn-volver').addEventListener('click', volverAServicios);
 $('bm-ver').addEventListener('click', () => $('oferta').scrollIntoView({ behavior: 'smooth', block: 'center' }));
 $('hero-wa').href = urlWhatsApp('Hola, vi los servicios de Pórtico Lab en porticolab.com y quiero más información.');
 $('cierre-wa').href = urlWhatsApp('Hola, vi los servicios de Pórtico Lab en porticolab.com y quiero que me orienten.');
-if (CONFIG.pagoEnLinea) cargarBold();
 renderGrid();
-revisarRegresoDePago();
 const pre = new URLSearchParams(location.search).get('servicio');
 if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 </script>
 
 <script src="y2k.js?v=3" defer></script>
-<script src="dither.js?v=4" defer></script>
+<script src="dither.js?v=5" defer></script>
 <script src="mascota.js?v=8"></script>
 </body>
 </html>

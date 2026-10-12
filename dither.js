@@ -218,7 +218,7 @@
     const marco = img.parentElement;
     marco.classList.add('fondo-pixel-wrap');
     marco.appendChild(lienzo);
-    const tarjeta = img.closest('.gallery-item, figure, .dither-scope');
+    const tarjeta = img.closest('.gallery-item, figure, .dither-scope, .srv-card');
     if (!conMouse && tarjeta) { tarjetas.add(tarjeta); pedirRevision(); }
   }
 
