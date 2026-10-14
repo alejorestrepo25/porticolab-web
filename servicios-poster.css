@@ -1,0 +1,62 @@
+/* Servicios en pantallas tipo póster: portada, cómo funciona, servicios, preguntas y cierre.
+   Solo en pantallas grandes; el cotizador (formulario) conserva el scroll normal. Todo acotado a body.srvposter. */
+
+/* Índice lateral (se crea desde servicios-poster.js) */
+body.srvposter .rail { position: fixed; left: 18px; top: 50%; transform: translateY(-50%); z-index: 900; display: flex; flex-direction: column; gap: 14px; }
+body.srvposter .rail a { position: relative; display: block; width: 10px; height: 10px; border: 1px solid #8a8a85; border-radius: 50%; transition: background .25s, border-color .25s, transform .25s; }
+body.srvposter .rail a span { position: absolute; left: 22px; top: 50%; transform: translateY(-50%) translateX(-6px); white-space: nowrap; font: 700 10px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: #fff; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; background: #000; padding: 5px 8px; border: 1px solid #333; border-radius: 6px; }
+body.srvposter .rail a:hover span, body.srvposter .rail a:focus-visible span { opacity: 1; transform: translateY(-50%); }
+body.srvposter .rail a.activo { background: var(--cromo); border-color: transparent; transform: scale(1.35); }
+@media (max-width: 1100px) { body.srvposter .rail { display: none; } }
+
+@media (min-width: 901px) and (min-height: 560px) {
+  body.srvposter .srv-wrap { max-width: 1240px; padding: 0 40px; }
+  body.srvposter .srv-wrap > section { margin-top: 0; }
+
+  /* Pantallas con caja (portada y cierre): ocupan la pantalla menos un margen */
+  body.srvposter .hero,
+  body.srvposter .cierre { margin: 20px 0; min-height: calc(100svh - var(--hh, 66px) - 40px); box-sizing: border-box; }
+  body.srvposter .hero { align-items: center; }
+  body.srvposter .hero-txt { padding: 28px 48px; }
+  body.srvposter .hero h1 { font-size: clamp(30px, 7.4vh, 60px); }
+  body.srvposter .hero p { font-size: clamp(14px, 2.2vh, 17px); }
+  body.srvposter .cierre { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  body.srvposter .cierre h2 { font-size: clamp(30px, 8vh, 72px); line-height: 1.05; }
+  body.srvposter .cierre p { font-size: clamp(14px, 2.3vh, 17px); }
+
+  /* Pantallas de contenido */
+  body.srvposter #como-funciona,
+  body.srvposter #servicios,
+  body.srvposter #preguntas { min-height: calc(100svh - var(--hh, 66px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; }
+  body.srvposter h2.seccion { font-size: clamp(26px, 6vh, 56px); line-height: 1.04; margin: 10px 0 0; letter-spacing: -.5px; }
+  body.srvposter .seccion-sub { max-width: none; font-size: clamp(13px, 2vh, 16px); margin-top: 10px; }
+
+  /* Cómo funciona */
+  body.srvposter .pasos-row { margin-top: clamp(18px, 4vh, 40px); gap: 18px; }
+  body.srvposter .paso-card { padding: clamp(18px, 3.4vh, 30px); }
+  body.srvposter .paso-card .n { font-size: clamp(12px, 1.9vh, 15px); }
+  body.srvposter .paso-card h3 { font-size: clamp(15px, 2.6vh, 22px); margin-top: 14px; }
+  body.srvposter .paso-card p { font-size: clamp(13px, 2.1vh, 16px); margin-top: 8px; }
+
+  /* Servicios: tarjetas horizontales (ilustración a la izquierda) */
+  body.srvposter .srv-grid { margin-top: clamp(12px, 2.4vh, 24px); gap: 18px; }
+  body.srvposter .srv-card { flex-direction: row; }
+  body.srvposter .srv-img { width: 40%; flex: none; aspect-ratio: auto; }
+  body.srvposter .srv-body { padding: clamp(14px, 2.4vh, 22px); }
+  body.srvposter .srv-body h3 { font-size: clamp(14px, 2.4vh, 18px); }
+  body.srvposter .srv-body .promesa { font-size: clamp(12px, 1.9vh, 14px); }
+  body.srvposter .incluye { margin-top: 10px; }
+  body.srvposter .incluye li { font-size: clamp(11px, 1.7vh, 13px); padding-block: 4px; }
+  body.srvposter .srv-body .btn { margin-top: 12px; padding-block: 12px; }
+  body.srvposter .ruta-row { margin-top: 14px; gap: 14px; }
+  body.srvposter .ruta-row .paso-card { padding: 14px 18px; }
+  body.srvposter .ruta-row .paso-card h3 { font-size: clamp(13px, 2vh, 16px); margin-top: 6px; }
+  body.srvposter .ruta-row .paso-card p { font-size: clamp(11px, 1.7vh, 13px); }
+
+  /* Preguntas */
+  body.srvposter .faq { margin-top: clamp(12px, 2.6vh, 26px); max-width: none; }
+  body.srvposter .faq summary { padding-block: clamp(10px, 2vh, 18px); }
+
+  /* Si algo no cabe, sus bloques se reducen (variable --k calculada en servicios-poster.js) */
+  body.srvposter [data-pantalla] > * { zoom: var(--k, 1); }
+}

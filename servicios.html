@@ -207,12 +207,13 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .srv-card { transition: none; } .srv-card:hover { transform: none; } }
   </style>
+  <link rel="stylesheet" href="servicios-poster.css?v=1">
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
 </head>
 
-<body class="y2k">
+<body class="y2k srvposter">
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
   <nav class="nav">
@@ -232,7 +233,7 @@
 
 <main class="srv-wrap">
 
-  <section class="hero" id="inicio">
+  <section class="hero" id="inicio" data-pantalla data-nombre="Inicio">
     <div class="hero-txt">
       <div class="kicker">&gt; SERVICIOS_</div>
       <h1>Maquetas que cierran ventas. <em>Obras bajo control</em></h1>
@@ -244,8 +245,9 @@
     </div>
   </section>
 
-  <section id="como-funciona">
+  <section id="como-funciona" data-pantalla data-nombre="Cómo funciona">
     <div class="kicker">// CÓMO FUNCIONA</div>
+    <h2 class="seccion">Así trabajamos</h2>
     <div class="pasos-row">
       <div class="paso-card"><div class="n">01</div><h3>Cuéntanos tu proyecto</h3><p>Unas preguntas sencillas y, si quieres, tus planos o referencias.</p></div>
       <div class="paso-card"><div class="n">02</div><h3>Te enviamos una propuesta</h3><p>Alcance y valor a la medida de tu proyecto.</p></div>
@@ -254,7 +256,7 @@
     </div>
   </section>
 
-  <section id="servicios">
+  <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">¿Qué necesitas?</h2>
     <p class="seccion-sub">Dos servicios que se complementan: uno para mostrar el proyecto y otro para controlarlo.</p>
     <div class="srv-grid" id="srv-grid"></div>
@@ -315,7 +317,7 @@
     <a class="btn btn-secundario" href="servicios.html">Volver a servicios</a>
   </section>
 
-  <section id="preguntas">
+  <section id="preguntas" data-pantalla data-nombre="Preguntas">
     <h2 class="seccion">Preguntas frecuentes</h2>
     <div class="faq">
       <details><summary>¿Cuánto cuesta?</summary><p>Cada proyecto es distinto, así que preparamos una propuesta a la medida. En las maquetas el valor depende del tamaño, los materiales y el nivel de detalle; en la consultoría, del tamaño del proyecto y del alcance.</p></details>
@@ -328,7 +330,7 @@
     </div>
   </section>
 
-  <section class="cierre">
+  <section class="cierre" id="cierre" data-pantalla data-nombre="Contacto">
     <h2>¿Hablamos de tu proyecto?</h2>
     <p>Cuéntanos qué tienes en mente y te orientamos sin compromiso.</p>
     <a class="btn btn-primario" id="cierre-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
@@ -913,6 +915,7 @@ if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 </script>
 
 <script src="y2k.js?v=4" defer></script>
+<script src="servicios-poster.js?v=1" defer></script>
 <script src="mascota.js?v=20"></script>
 </body>
 </html>
