@@ -60,3 +60,15 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   /* Si algo no cabe, sus bloques se reducen (variable --k calculada en servicios-poster.js) */
   body.srvposter [data-pantalla] > * { zoom: var(--k, 1); }
 }
+
+/* ===== Celular y tablet: cada vista ocupa la pantalla y el dedo encaja suavemente en la siguiente ===== */
+@media (max-width: 900px), (pointer: coarse) {
+  html { scroll-snap-type: y proximity; scroll-padding-top: 0; }
+  html:has(.cotizador.visible), html:has(.confirmacion.visible) { scroll-snap-type: none; }
+  body.srvposter .srv-wrap > section[data-pantalla] { margin-top: 0; scroll-snap-align: start; }
+  body.srvposter .hero, body.srvposter .cierre { margin: 14px 0; min-height: calc(100svh - var(--hh, 60px) - 28px); box-sizing: border-box; }
+  body.srvposter .cierre { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  body.srvposter #como-funciona, body.srvposter #servicios, body.srvposter #preguntas { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 28px 0; }
+  body.srvposter h2.seccion { font-size: clamp(24px, 7vw, 40px); line-height: 1.06; margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
