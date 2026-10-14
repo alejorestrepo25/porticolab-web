@@ -12,12 +12,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="y2k.css?v=5">
+  <link rel="stylesheet" href="home.css?v=2">
+  <script>document.documentElement.classList.add('js')</script>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
 </head>
 
-<body class="y2k">
+<body class="y2k home">
+<div class="progreso" aria-hidden="true"><i></i></div>
+<nav class="rail" aria-label="Secciones de la página">
+  <a href="#inicio" data-s="inicio"><span>Inicio</span></a>
+  <a href="#frentes" data-s="frentes"><span>Dos frentes</span></a>
+  <a href="#proyectos" data-s="proyectos"><span>Archivo</span></a>
+  <a href="#proceso" data-s="proceso"><span>Proceso</span></a>
+  <a href="#materiales" data-s="materiales"><span>Materiales</span></a>
+  <a href="#contacto" data-s="contacto"><span>Contacto</span></a>
+</nav>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
@@ -36,7 +47,7 @@
   </div>
 </div>
 
-<section class="y2k-hero" aria-label="Inicio">
+<section class="y2k-hero" id="inicio" aria-label="Inicio">
   <div class="y2k-hero__txt">
     <span class="hud"><b>[ SYS.OK ]</b> Pórtico Lab // Medellín // 2026</span>
     <h1>Hacemos <em>lo imposible.</em></h1>
@@ -50,18 +61,115 @@
     <img src="img/hero-lampara.jpg" alt="Lámpara curva de concreto diseñada por Pórtico Lab" width="900" height="900" fetchpriority="high">
     <span class="hud hud--tl">FIG. 01 // Lámpara curva</span>
     <span class="hud hud--br">Microconcreto<br>// 2026</span>
+    <span class="destello" aria-hidden="true"></span>
+  </div>
+  <a class="hero-explora" href="#frentes">Explora todo <b>↓</b></a>
+</section>
+
+<div class="marquesina" aria-hidden="true">
+  <div class="marquesina__pista">
+    <span>Diseño arquitectónico<i>◆</i>Maquetas de exhibición<i>◆</i>Metodología BIM<i>◆</i>Control de costos 5D<i>◆</i>Concreto<i>◆</i>Madera<i>◆</i>Impresión 3D<i>◆</i>Cartón y papeles especiales<i>◆</i></span>
+    <span>Diseño arquitectónico<i>◆</i>Maquetas de exhibición<i>◆</i>Metodología BIM<i>◆</i>Control de costos 5D<i>◆</i>Concreto<i>◆</i>Madera<i>◆</i>Impresión 3D<i>◆</i>Cartón y papeles especiales<i>◆</i></span>
+  </div>
+</div>
+
+<section class="seccion" id="frentes">
+  <div class="seccion__cab rev">
+    <span class="hud">[ 01 / 05 ] Dos frentes</span>
+    <h2>Mostrar el proyecto. <em>Controlarlo.</em></h2>
+    <p>Una maqueta abre la puerta con quien decide. El diseño y el control de costos en BIM hacen que lo que se vende sea lo que se construye.</p>
+  </div>
+  <div class="frentes">
+    <a class="frente rev" href="servicios.html?servicio=maquetas" style="--d:.05s">
+      <div class="frente__img"><img src="img/home/servicio-maquetas.svg" alt="Emblema isométrico de un complejo de cuatro torres de formas distintas sobre una base de madera" loading="lazy" width="400" height="300"></div>
+      <div class="frente__txt">
+        <span class="hud">Servicio 01 // Premium</span>
+        <h3>Maquetas de exhibición</h3>
+        <p>Piezas físicas de alta gama para cerrar ventas: concreto, madera, plástico de impresión, cartón y papeles especiales, con detalles paramétricos y digitales.</p>
+        <span class="frente__cta">Solicitar propuesta</span>
+      </div>
+    </a>
+    <a class="frente rev" href="servicios.html?servicio=bim" style="--d:.15s">
+      <div class="frente__img"><img src="img/home/servicio-bim.svg" alt="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto" loading="lazy" width="400" height="300"></div>
+      <div class="frente__txt">
+        <span class="hud">Servicio 02 // Diseño + costos</span>
+        <h3>Diseño arquitectónico y costos BIM</h3>
+        <p>Diseño y control de costos dinámico en un mismo modelo: cantidades, 5D BIM y detección de sobrecostos antes de llegar a obra.</p>
+        <span class="frente__cta">Solicitar propuesta</span>
+      </div>
+    </a>
   </div>
 </section>
 
-<div class="y2k-seccion" id="proyectos">
-  <span class="hud">[ Archivo ]</span>
-  <h2>Proyectos</h2>
-</div>
+<section class="seccion" id="proyectos">
+  <div class="seccion__cab rev">
+    <span class="hud">[ 02 / 05 ] Archivo</span>
+    <h2>Lo que ya <em>fabricamos.</em></h2>
+    <p>Proyectos del laboratorio: objetos, estructuras y piezas pensadas, modeladas y hechas en nuestro taller de Medellín.</p>
+  </div>
+</section>
 
 <main>
   <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
   <section class="gallery"></section>
 </main>
+<div class="ver-todo-wrap"><a class="ver-todo" href="laboratorio.html">Entrar al laboratorio completo →</a></div>
+
+<section class="seccion" id="proceso">
+  <div class="seccion__cab rev">
+    <span class="hud">[ 03 / 05 ] Proceso</span>
+    <h2>Del archivo <em>a la pieza.</em></h2>
+    <p>Cada proyecto es distinto, pero el camino se parece: se piensa en digital y se resuelve con las manos.</p>
+  </div>
+  <ol class="proceso">
+    <li class="paso rev" style="--d:.05s"><h3>Idea y brief</h3><p>Entendemos qué hay que mostrar, a quién y con qué recursos.</p><small>Planos, referencias, un lote o solo una idea</small></li>
+    <li class="paso rev" style="--d:.15s"><h3>Modelo digital</h3><p>Se modela en BIM o de forma paramétrica, y de ahí salen cantidades, cortes y piezas.</p><small>Un solo modelo para todo</small></li>
+    <li class="paso rev" style="--d:.25s"><h3>Fabricación</h3><p>Moldes, corte, impresión 3D y carpintería fina, según lo que pida el proyecto.</p><small>Procesos variados, resultado a medida</small></li>
+    <li class="paso rev" style="--d:.35s"><h3>Entrega</h3><p>La pieza o el modelo llegan listos para presentarse, venderse o construirse.</p><small>Calidad antes que prisa</small></li>
+  </ol>
+</section>
+
+<section class="seccion" id="materiales">
+  <div class="seccion__cab rev">
+    <span class="hud">[ 04 / 05 ] Materiales</span>
+    <h2>Toca para <em>sentirlo.</em></h2>
+    <p>Pasa el puntero o toca cada material. Se pueden combinar en una misma pieza.</p>
+  </div>
+  <div class="materiales rev">
+    <div class="mat-lista" role="tablist" aria-label="Materiales">
+      <button type="button" role="tab" data-titulo="Concreto" data-texto="Moldeado en silicón para conseguir texturas y volúmenes fieles al proyecto." aria-selected="true">Concreto <small>moldeado en silicón</small></button>
+      <button type="button" role="tab" data-titulo="Madera" data-texto="Carpintería fina para bases, piezas y ensambles que se ven y se sienten bien hechos." aria-selected="false">Madera <small>carpintería fina</small></button>
+      <button type="button" role="tab" data-titulo="Plástico de impresión" data-texto="Impresión 3D para moldes, detalles y elementos paramétricos imposibles de hacer a mano." aria-selected="false">Plástico de impresión <small>piezas en 3D</small></button>
+      <button type="button" role="tab" data-titulo="Cartón" data-texto="Para maquetas de estudio y volúmenes que se piensan rápido antes de fabricarlos en serio." aria-selected="false">Cartón <small>estudio y detalle</small></button>
+      <button type="button" role="tab" data-titulo="Papeles especiales" data-texto="Texturas, gramajes y acabados que cambian por completo cómo se lee una maqueta." aria-selected="false">Papeles especiales <small>texturas y acabados</small></button>
+    </div>
+    <div class="mat-panel">
+      <div class="muestra m-concreto on"></div>
+      <div class="muestra m-madera"></div>
+      <div class="muestra m-plastico"></div>
+      <div class="muestra m-carton"></div>
+      <div class="muestra m-papel"></div>
+      <div class="mat-info"><h3 id="mat-titulo">Concreto</h3><p id="mat-texto">Moldeado en silicón para conseguir texturas y volúmenes fieles al proyecto.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cierre-home" id="contacto">
+  <span class="hud">[ 05 / 05 ] Contacto</span>
+  <h2 class="rev">¿Hablamos de <em>lo imposible?</em></h2>
+  <p class="rev" style="--d:.1s">Cuéntanos qué quieres mostrar, construir o controlar. Te respondemos con una propuesta a la medida.</p>
+  <div class="cierre-acciones rev" style="--d:.2s">
+    <a class="btn-cromo" href="servicios.html">Pedir una propuesta →</a>
+    <button class="btn-fantasma copiar" type="button" data-copiar="contacto@porticolab.com">contacto@porticolab.com</button>
+    <a class="btn-fantasma" href="https://wa.me/573147924600?text=Hola%20Portico%20Lab%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</section>
+
+<footer class="pie-home">
+  <span>Pórtico Lab · Medellín · 2026</span>
+  <span><a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/company/107975627/" target="_blank" rel="noopener">LinkedIn</a></span>
+  <span>Psst… la mascota de abajo también juega 👀</span>
+</footer>
 
 <script>
   const SANITY_PROJECT_ID = '32sykluw';
@@ -132,7 +240,8 @@
   });
 </script>
 
+<script src="home.js?v=1" defer></script>
 <script src="y2k.js?v=4" defer></script>
-<script src="mascota.js?v=10"></script>
+<script src="mascota.js?v=11"></script>
 </body>
 </html>
