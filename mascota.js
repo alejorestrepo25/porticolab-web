@@ -32,7 +32,7 @@
     .mascota-sprite {
       display: block;
       width: 76px;
-      height: 68px;
+      height: 52px;
       overflow: visible;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       transition: transform 0.3s ease;
@@ -40,16 +40,16 @@
     #mascota-wrapper:hover .mascota-sprite,
     #mascota-wrapper:focus-visible .mascota-sprite { transform: translateY(-2px); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
-    .mascota-sprite .brazo-d { transform-origin: 24px 9px; transition: transform 0.35s ease; }
+    .mascota-sprite .brazo-d { transform-origin: 24px 7.5px; transition: transform 0.35s ease; }
     .mascota-sprite .casco { transform-origin: 12px -2px; }
     #mascota-wrapper:hover .mascota-sprite .brazo-d,
     #mascota-wrapper:focus-visible .mascota-sprite .brazo-d { transform: rotate(-38deg); }
 
-    #mascota-modal .mascota-sprite { width: 96px; height: 86px; }
+    #mascota-modal .mascota-sprite { width: 96px; height: 66px; }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      #mascota-wrapper .mascota-sprite { width: 60px; height: 54px; }
+      #mascota-wrapper .mascota-sprite { width: 60px; height: 41px; }
     }
 
     /* Movimiento: tranquilo, y solo si el usuario no pidió menos animación */
@@ -173,19 +173,19 @@
   function sprite(id) {
     const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
     const C = '#b4b4be', B = '#f4f4f8', Y = '#ffc61a', YD = '#e0a800', N = '#0b0b0b';
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-7 -9 38 34" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-7 -9 38 26" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
       '<g class="todo">' +
-        // patas
-        R(0, 12, 3, 12, C) + R(6, 12, 3, 12, C) + R(15, 12, 3, 12, C) + R(21, 12, 3, 12, C) +
+        // patas cortas
+        R(0, 10, 3, 5, C) + R(6, 10, 3, 5, C) + R(15, 10, 3, 5, C) + R(21, 10, 3, 5, C) +
         // cuerpo y brazos
-        R(0, 0, 24, 12, C) + R(-6, 6, 6, 6, C) +
-        '<g class="brazo-d">' + R(24, 6, 6, 6, C) + '</g>' +
+        R(0, 0, 24, 10, C) + R(-6, 5, 6, 5, C) +
+        '<g class="brazo-d">' + R(24, 5, 6, 5, C) + '</g>' +
         // bandas reflectivas
-        R(0, 8, 24, 1, B) + R(0, 10, 24, 1, B) +
+        R(0, 7, 24, 1, B) + R(0, 9, 24, 1, B) +
         // ojos
-        '<g class="ojos">' + R(3, 3, 3, 3, N) + R(18, 3, 3, 3, N) + '</g>' +
-        // casco de obra
-        '<g class="casco">' + R(5, -7, 14, 5, Y) + R(2, -2, 20, 2, YD) + R(11, -8, 2, 1, YD) + '</g>' +
+        '<g class="ojos">' + R(3, 2.5, 3, 3, N) + R(18, 2.5, 3, 3, N) + '</g>' +
+        // casco de obra, bajo y ancho
+        '<g class="casco">' + R(5, -5, 14, 3, Y) + R(2, -2, 20, 2, YD) + R(11, -6, 2, 1, YD) + '</g>' +
       '</g></svg>';
   }
 
