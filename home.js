@@ -95,4 +95,41 @@
       setTimeout(() => { copiar.textContent = original; }, 1800);
     });
   }
+
+  // Salto de pantalla en pantalla: un giro de la rueda (o una flecha) baja rápido hasta la siguiente vista
+  const pantallas = [...document.querySelectorAll('#inicio, #frentes, .archivo-poster, #proceso, #materiales, #contacto')];
+  const modoPantallas = matchMedia('(min-width: 901px) and (min-height: 560px)');
+  let bloqueado = false;
+  const altoEncabezado = () => (document.querySelector('header') || { offsetHeight: 0 }).offsetHeight;
+  const topDe = (el) => el.getBoundingClientRect().top + scrollY - altoEncabezado();
+  function actual() {
+    const y = scrollY + 4;
+    let k = 0;
+    pantallas.forEach((p, i) => { if (topDe(p) <= y + 2) k = i; });
+    return k;
+  }
+  function irA(i) {
+    i = Math.max(0, Math.min(pantallas.length - 1, i));
+    const destino = Math.min(topDe(pantallas[i]), document.documentElement.scrollHeight - innerHeight);
+    bloqueado = true;
+    scrollTo({ top: destino, behavior: "smooth" });
+    setTimeout(() => { bloqueado = false; }, 760);
+  }
+  if (pantallas.length && !reducir) {
+    addEventListener('wheel', (e) => {
+      if (!modoPantallas.matches || e.ctrlKey || Math.abs(e.deltaY) < 6) return;
+      e.preventDefault();
+      if (bloqueado) return;
+      irA(actual() + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+    addEventListener('keydown', (e) => {
+      if (!modoPantallas.matches || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
+      const k = e.key;
+      if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(actual() + 1); }
+      else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(actual() - 1); }
+      else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(0); }
+      else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(pantallas.length - 1); }
+    });
+  }
 })();

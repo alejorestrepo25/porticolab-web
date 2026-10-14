@@ -152,7 +152,7 @@ body.home .copiar:hover { border-color: #b9a7ff; }
   body.home .archivo-poster .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; column-count: auto; }
   body.home .archivo-poster .gallery-item { margin: 0; background: #070707; }
   body.home .archivo-poster .gallery-item img { height: clamp(180px, 46vh, 520px); object-fit: cover; width: 100%; }
-  body.home .archivo-poster .gallery-item .post-tags { display: none; }
+  body.home .archivo-poster .gallery-item .post-tags { display: flex; padding: 0 14px 14px; gap: 6px; flex-wrap: wrap; }
   body.home .archivo-poster .gallery-item h3 { padding: 12px 14px 14px; font-size: 14px; }
   body.home .archivo-poster .ver-todo-wrap { margin-top: 6px; }
   body.home .archivo-poster #gallery-loading { min-height: 30vh !important; }
@@ -171,7 +171,7 @@ body.home .copiar:hover { border-color: #b9a7ff; }
   body.home .seccion__cab h2 { font-size: clamp(26px, 6vh, 56px); line-height: 1.04; }
   body.home .frente__img { height: clamp(130px, 31vh, 380px); }
   body.home .frente__txt { padding: 14px 20px 18px; gap: 6px; }
-  body.home .archivo-poster .gallery-item img { height: clamp(160px, 42vh, 480px); }
+  body.home .archivo-poster .gallery-item img { height: clamp(150px, 37vh, 440px); }
   body.home .paso { padding-top: 48px; }
   body.home .mat-panel { min-height: clamp(240px, 44vh, 480px); }
   body.home .mat-lista button { padding: clamp(8px, 1.8vh, 16px) 18px; font-size: clamp(12px, 2vh, 15px); }
@@ -182,4 +182,21 @@ body.home .copiar:hover { border-color: #b9a7ff; }
   body.home .y2k-hero { height: calc(100svh - var(--hh, 66px)); min-height: 0; padding-top: 2vh; padding-bottom: 5vh; box-sizing: border-box; align-items: center; }
   body.home .y2k-hero__vis { aspect-ratio: auto; height: min(74vh, 580px); max-height: none; }
   body.home .y2k-hero h1 { font-size: clamp(30px, 8.4vh, 64px); }
+}
+
+/* Ilustraciones de los servicios: completas, sin recortes, y más compactas */
+body.home .frente__img { display: block; position: relative; }
+body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; position: absolute; inset: 0; }
+@media (min-width: 901px) and (min-height: 560px) {
+  body.home .frente__img { height: clamp(120px, 28vh, 320px); }
+  html.js { scroll-snap-type: none; }
+  body.home .pie-home { border-top: 0; padding: 18px 40px 0; margin-top: 4vh; max-width: 1240px; }
+  body.home .cierre-home { padding-bottom: 8px; }
+}
+
+/* Tarjetas de servicios: ilustración cuadrada a la izquierda y texto a la derecha, para verla completa y bien grande */
+@media (min-width: 901px) and (min-height: 560px) {
+  body.home .frente { flex-direction: row; align-items: stretch; }
+  body.home .frente__img { width: min(48%, 46vh); height: auto; aspect-ratio: 1 / 1; flex: none; }
+  body.home .frente__txt { flex: 1; justify-content: center; padding: 18px 22px; }
 }
