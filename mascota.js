@@ -28,34 +28,44 @@
     #mascota-wrapper:hover #mascota-label,
     #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    /* Marca mínima: tres trazos que forman un pórtico y un punto de estado */
+    /* Hermano constructor: un bloque de concreto con casco amarillo, dos ojos verticales y brazos laterales */
     .mascota-sprite {
       display: block;
-      width: 44px;
-      height: 44px;
+      width: 84px;
+      height: 62px;
       overflow: visible;
-      opacity: 0.92;
-      transition: opacity 0.3s, transform 0.3s;
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+      transition: transform 0.3s ease;
     }
     #mascota-wrapper:hover .mascota-sprite,
-    #mascota-wrapper:focus-visible .mascota-sprite { opacity: 1; transform: translateY(-2px); }
-    .mascota-sprite .cota { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.5s ease; }
-    #mascota-wrapper:hover .mascota-sprite .cota,
-    #mascota-wrapper:focus-visible .mascota-sprite .cota { stroke-dashoffset: 0; }
+    #mascota-wrapper:focus-visible .mascota-sprite { transform: translateY(-2px); }
+    .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
+    .mascota-sprite .brazo-d { transform-origin: 44px -20px; transition: transform 0.35s ease; }
+    .mascota-sprite .casco { transform-origin: 20px -40px; }
+    #mascota-wrapper:hover .mascota-sprite .brazo-d,
+    #mascota-wrapper:focus-visible .mascota-sprite .brazo-d { transform: rotate(-38deg); }
 
-    #mascota-modal .mascota-sprite { width: 44px; height: 44px; }
+    #mascota-modal .mascota-sprite { width: 96px; height: 71px; }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      #mascota-wrapper .mascota-sprite { width: 36px; height: 36px; }
+      #mascota-wrapper .mascota-sprite { width: 66px; height: 49px; }
     }
 
-    /* Movimiento: casi imperceptible, y solo si el usuario no pidió menos animación */
+    /* Movimiento: tranquilo, y solo si el usuario no pidió menos animación */
     @media (prefers-reduced-motion: no-preference) {
-      .mascota-sprite .estado { animation: mascota-estado 3.6s ease-in-out infinite; }
-      @keyframes mascota-estado { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-      .mascota-sprite.mide .cota { animation: mascota-cota 3s ease 1; }
-      @keyframes mascota-cota { 0% { stroke-dashoffset: 100; opacity: 1; } 45%, 70% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+      .mascota-sprite .todo { animation: mascota-respira 3.4s ease-in-out infinite; }
+      @keyframes mascota-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.9px); } }
+      .mascota-sprite.parpadea .ojos { transform: scaleY(0.1); }
+      .mascota-sprite.saluda .brazo-d { animation: mascota-saludo 1.7s ease-in-out 1; }
+      @keyframes mascota-saludo {
+        0%, 100% { transform: rotate(0deg); } 18% { transform: rotate(-58deg); } 38% { transform: rotate(-40deg); }
+        58% { transform: rotate(-58deg); } 78% { transform: rotate(-40deg); }
+      }
+      .mascota-sprite.saluda-casco .casco { animation: mascota-casco 1.3s ease-in-out 1; }
+      @keyframes mascota-casco {
+        0%, 100% { transform: none; } 25%, 70% { transform: translate(-1.5px, -5px) rotate(-9deg); }
+      }
     }
 
     /* Modal */
@@ -158,17 +168,38 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Marca: un pórtico reducido a lo esencial (viga y dos columnas) y un punto de estado ── */
+  /* ── Personaje: un constructor de bloques (hermano de la mascota de Claude Code): cuerpo de concreto, casco amarillo,
+     dos ojos verticales, brazos laterales y patas cortas. Proyección oblicua: frente plano, tapa y costado visibles. ── */
   function sprite(id) {
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pórtico Lab">' +
-      '<g fill="#f1f1f4">' +
-        '<rect x="5" y="9" width="38" height="5"/>' +
-        '<rect x="9" y="16" width="5" height="25"/>' +
-        '<rect x="34" y="16" width="5" height="25"/>' +
-      '</g>' +
-      '<circle class="estado" cx="24" cy="29" r="2" fill="#7ee8ff"/>' +
-      '<path class="cota" pathLength="100" d="M5 45.5H43" fill="none" stroke="#7ee8ff" stroke-width="1"/>' +
-    '</svg>';
+    const P = (x, d, z) => [x + 0.5 * d, -z - 0.32 * d];
+    const pt = (p) => p[0].toFixed(1) + ',' + p[1].toFixed(1);
+    const poly = (pts, fill) => '<polygon points="' + pts.map(pt).join(' ') + '" fill="' + fill + '"/>';
+    const caja = (x0, d0, z0, x1, d1, z1, c) =>
+      poly([P(x1, d0, z0), P(x1, d1, z0), P(x1, d1, z1), P(x1, d0, z1)], c.r) +
+      poly([P(x0, d0, z1), P(x1, d0, z1), P(x1, d1, z1), P(x0, d1, z1)], c.t) +
+      poly([P(x0, d0, z0), P(x1, d0, z0), P(x1, d0, z1), P(x0, d0, z1)], c.f);
+    const concreto = { f: '#bdbdc7', t: '#e3e3ea', r: '#8d8d99' };
+    const sombra = { f: '#8f8f9b', t: '#b1b1bb', r: '#6d6d78' };
+    const amarillo = { f: '#ffc61a', t: '#ffe27a', r: '#d99c00' };
+    const cresta = { f: '#e0a800', t: '#f2c230', r: '#b98a00' };
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-12 -54 78 58" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Constructor de Pórtico Lab">' +
+      '<ellipse cx="26" cy="-1" rx="30" ry="3.2" fill="rgba(0,0,0,0.45)"/>' +
+      '<g class="todo">' +
+        // patas: primero las de atrás
+        caja(13, 12, 0, 19, 19, 8, sombra) + caja(21, 12, 0, 27, 19, 8, sombra) +
+        caja(5, 2, 0, 11, 9, 8, sombra) + caja(29, 2, 0, 35, 9, 8, sombra) +
+        // cuerpo, con dos bandas reflectivas
+        caja(0, 0, 8, 40, 22, 34, concreto) +
+        '<rect x="0" y="-15.2" width="40" height="1.8" fill="#f4f4f8" opacity="0.9"/>' +
+        '<rect x="0" y="-12.2" width="40" height="1.8" fill="#f4f4f8" opacity="0.9"/>' +
+        // ojos
+        '<g class="ojos" fill="#0b0b0b"><rect x="9" y="-28" width="4" height="10"/><rect x="27" y="-28" width="4" height="10"/></g>' +
+        // brazos
+        caja(-9, 6, 14, 0, 16, 23, concreto) +
+        '<g class="brazo-d">' + caja(40, 6, 14, 49, 16, 23, concreto) + '</g>' +
+        // casco de obra
+        '<g class="casco">' + caja(2, 0, 34, 38, 22, 36.4, amarillo) + caja(7, 3, 36.4, 33, 19, 43, amarillo) + caja(18, 3, 43, 22, 19, 44.2, cresta) + '</g>' +
+      '</g></svg>';
   }
 
   const wrapper = document.createElement('div');
@@ -219,7 +250,7 @@
     if (e.key === 'Escape') overlay.classList.remove('open');
   });
 
-  /* ── Comportamiento mínimo: el punto respira y, de vez en cuando, se traza una cota de medida ── */
+  /* ── Comportamiento: parpadea, a veces saluda con la mano o se toca el casco; nada de saltos ── */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const svg = document.getElementById('mascota-svg');
@@ -230,12 +261,17 @@
     svg.classList.add(clase);
     setTimeout(() => { svg.classList.remove(clase); ocupada.delete(clase); }, ms);
   }
-  const medir = () => animar('mide', 3100);
+  const parpadear = () => { animar('parpadea', 150); if (Math.random() < 0.25) setTimeout(() => animar('parpadea', 150), 360); };
+  const saludar = () => animar('saluda', 1700);
+  const tocarCasco = () => animar('saluda-casco', 1300);
 
   function accion() {
-    if (!document.hidden && !overlay.classList.contains('open')) medir();
-    setTimeout(accion, 12000 + Math.random() * 6000);
+    if (!document.hidden && !overlay.classList.contains('open')) {
+      const r = Math.random();
+      if (r < 0.6) parpadear(); else if (r < 0.82) saludar(); else tocarCasco();
+    }
+    setTimeout(accion, 4500 + Math.random() * 4000);
   }
-  setTimeout(medir, 2500);
-  setTimeout(accion, 14000);
+  setTimeout(saludar, 1600);
+  setTimeout(accion, 6500);
 })();
