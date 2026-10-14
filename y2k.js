@@ -1,21 +1,3 @@
-// Etiquetas HUD "[ REF-001 ]" en las tarjetas de cualquier galería que todavía no las tenga
-(() => {
-  const etiquetar = () => {
-    document.querySelectorAll('.gallery .gallery-item').forEach((item, i) => {
-      if (item.querySelector('.hud')) return;
-      const titulo = item.querySelector('h3');
-      if (!titulo) return;
-      const tag = document.createElement('span');
-      tag.className = 'hud';
-      tag.textContent = `[ REF-${String(i + 1).padStart(3, '0')} ]`;
-      titulo.before(tag);
-    });
-  };
-  etiquetar();
-  const galeria = document.querySelector('.gallery');
-  if (galeria) new MutationObserver(etiquetar).observe(galeria, { childList: true });
-})();
-
 // Cursor personalizado pequeño (círculo con punto) solo con mouse. El cursor nativo se mantiene.
 (() => {
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
