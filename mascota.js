@@ -28,11 +28,11 @@
     #mascota-wrapper:hover #mascota-label,
     #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    /* Hermano constructor en 2D: bloque plano de concreto con casco amarillo, dos ojos y brazos laterales */
+    /* El calculador: bloque de concreto con lentes, un visor en el pecho que va sumando barras y tres puntos de "pensando" */
     .mascota-sprite {
       display: block;
       width: 64px;
-      height: 52px;
+      height: 46px;
       overflow: visible;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       transition: transform 0.3s ease;
@@ -40,32 +40,33 @@
     #mascota-wrapper:hover .mascota-sprite,
     #mascota-wrapper:focus-visible .mascota-sprite { transform: translateY(-2px); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
-    .mascota-sprite .brazo-d { transform-origin: 24px 7.5px; transition: transform 0.35s ease; }
-    .mascota-sprite .casco { transform-origin: 12px -2px; }
-    #mascota-wrapper:hover .mascota-sprite .brazo-d,
-    #mascota-wrapper:focus-visible .mascota-sprite .brazo-d { transform: rotate(-38deg); }
-
-    #mascota-modal .mascota-sprite { width: 82px; height: 66px; }
+    .mascota-sprite .barra { transform-box: fill-box; transform-origin: 50% 100%; }
+    .mascota-sprite .punto { opacity: 0; }
+    #mascota-modal .mascota-sprite { width: 82px; height: 59px; }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      #mascota-wrapper .mascota-sprite { width: 51px; height: 41px; }
+      #mascota-wrapper .mascota-sprite { width: 51px; height: 37px; }
     }
 
-    /* Movimiento: tranquilo, y solo si el usuario no pidió menos animación */
+    /* Movimiento: sereno y numérico, y solo si el usuario no pidió menos animación */
     @media (prefers-reduced-motion: no-preference) {
-      .mascota-sprite .todo { animation: mascota-respira 3.4s ease-in-out infinite; }
-      @keyframes mascota-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.9px); } }
+      .mascota-sprite .todo { animation: mascota-respira 3.6s ease-in-out infinite; }
+      @keyframes mascota-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.8px); } }
+      .mascota-sprite .b1 { animation: mascota-barra 3.4s steps(5, end) infinite; }
+      .mascota-sprite .b2 { animation: mascota-barra 2.6s steps(5, end) infinite reverse; }
+      .mascota-sprite .b3 { animation: mascota-barra 4.1s steps(5, end) infinite; }
+      .mascota-sprite .b4 { animation: mascota-barra 3s steps(5, end) infinite reverse; }
+      @keyframes mascota-barra { 0% { transform: scaleY(0.35); } 100% { transform: scaleY(1); } }
       .mascota-sprite.parpadea .ojos { transform: scaleY(0.1); }
-      .mascota-sprite.saluda .brazo-d { animation: mascota-saludo 1.7s ease-in-out 1; }
-      @keyframes mascota-saludo {
-        0%, 100% { transform: rotate(0deg); } 18% { transform: rotate(-58deg); } 38% { transform: rotate(-40deg); }
-        58% { transform: rotate(-58deg); } 78% { transform: rotate(-40deg); }
-      }
-      .mascota-sprite.saluda-casco .casco { animation: mascota-casco 1.3s ease-in-out 1; }
-      @keyframes mascota-casco {
-        0%, 100% { transform: none; } 25%, 70% { transform: translate(-1.5px, -5px) rotate(-9deg); }
-      }
+      .mascota-sprite.lee .ojos { animation: mascota-lee 1.7s steps(1) 1; }
+      @keyframes mascota-lee { 0% { transform: translateX(-1px); } 25% { transform: translateX(1px); } 50% { transform: translateX(-1px); } 75% { transform: translateX(1px); } 100% { transform: none; } }
+      .mascota-sprite.calcula .ojos { transform: translateY(-0.9px); }
+      .mascota-sprite.calcula .barra { animation-duration: 0.5s; }
+      .mascota-sprite.calcula .punto { animation: mascota-punto 2.2s steps(1) 1; }
+      .mascota-sprite.calcula .p2 { animation-delay: 0.35s; }
+      .mascota-sprite.calcula .p3 { animation-delay: 0.7s; }
+      @keyframes mascota-punto { 0% { opacity: 0; } 12%, 80% { opacity: 1; } 100% { opacity: 0; } }
     }
 
     /* Modal */
@@ -168,24 +169,25 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Personaje: un constructor en pixel art plano (hermano de la mascota de Claude Code): cuerpo de concreto, casco amarillo,
-     dos ojos cuadrados, brazos laterales y cuatro patas. Cada rect es un bloque de la cuadrícula. ── */
+  /* ── Personaje: el calculador, en pixel art plano (hermano de la mascota de Claude Code): cuerpo de concreto, lentes,
+     un visor en el pecho con barras que suben y bajan, y tres puntos que aparecen cuando "piensa". ── */
   function sprite(id) {
-    const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
-    const C = '#b4b4be', B = '#f4f4f8', Y = '#ffc61a', YD = '#e0a800', N = '#0b0b0b';
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-4 -9 32 26" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
+    const R = (x, y, w, h, c, k) => '<rect' + (k ? ' class="' + k + '"' : '') + ' x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
+    const C = '#b4b4be', B = '#f4f4f8', N = '#0b0b0b', A = '#7ee8ff';
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-4 -6 32 23" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Calculador de Pórtico Lab">' +
       '<g class="todo">' +
         // patas cortas
         R(0, 10, 3, 5, C) + R(6, 10, 3, 5, C) + R(15, 10, 3, 5, C) + R(21, 10, 3, 5, C) +
-        // cuerpo y brazos
-        R(0, 0, 24, 10, C) + R(-3, 6, 3, 3, C) +
-        '<g class="brazo-d">' + R(24, 6, 3, 3, C) + '</g>' +
-        // bandas reflectivas
-        R(0, 7, 24, 1, B) + R(0, 9, 24, 1, B) +
-        // ojos
-        '<g class="ojos">' + R(3, 2.5, 3, 3, N) + R(18, 2.5, 3, 3, N) + '</g>' +
-        // casco de obra, bajo y ancho
-        '<g class="casco">' + R(5, -5, 14, 3, Y) + R(2, -2, 20, 2, YD) + R(11, -6, 2, 1, YD) + '</g>' +
+        // cuerpo y brazos pequeños
+        R(0, 0, 24, 10, C) + R(-3, 6, 3, 3, C) + R(24, 6, 3, 3, C) +
+        // lentes finos y ojos
+        '<g fill="none" stroke="#f4f4f8" stroke-width="0.7"><rect x="2" y="1.3" width="5.2" height="4.4"/><rect x="16.8" y="1.3" width="5.2" height="4.4"/><path d="M7.2 3.1H16.8"/></g>' +
+        '<g class="ojos">' + R(3.3, 2.5, 2.4, 2.2, N) + R(18.3, 2.5, 2.4, 2.2, N) + '</g>' +
+        // visor del pecho con barras que suben y bajan
+        R(6.5, 6.4, 11, 3.2, N) +
+        R(8, 8.0, 1.4, 1.2, A, 'barra b1') + R(10.6, 7.0, 1.4, 2.2, A, 'barra b2') + R(13.2, 7.6, 1.4, 1.6, A, 'barra b3') + R(15.4, 6.8, 1.4, 2.4, A, 'barra b4') +
+        // puntos de "pensando"
+        R(8.5, -3.5, 1.7, 1.7, A, 'punto p1') + R(11.2, -3.5, 1.7, 1.7, A, 'punto p2') + R(13.9, -3.5, 1.7, 1.7, A, 'punto p3') +
       '</g></svg>';
   }
 
@@ -237,7 +239,7 @@
     if (e.key === 'Escape') overlay.classList.remove('open');
   });
 
-  /* ── Comportamiento: parpadea, a veces saluda con la mano o se toca el casco; nada de saltos ── */
+  /* ── Comportamiento: parpadea, lee de lado a lado como si revisara cifras y de vez en cuando "calcula" ── */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const svg = document.getElementById('mascota-svg');
@@ -248,17 +250,17 @@
     svg.classList.add(clase);
     setTimeout(() => { svg.classList.remove(clase); ocupada.delete(clase); }, ms);
   }
-  const parpadear = () => { animar('parpadea', 150); if (Math.random() < 0.25) setTimeout(() => animar('parpadea', 150), 360); };
-  const saludar = () => animar('saluda', 1700);
-  const tocarCasco = () => animar('saluda-casco', 1300);
+  const parpadear = () => { animar('parpadea', 150); if (Math.random() < 0.2) setTimeout(() => animar('parpadea', 150), 340); };
+  const leer = () => animar('lee', 1700);
+  const calcular = () => animar('calcula', 2300);
 
   function accion() {
     if (!document.hidden && !overlay.classList.contains('open')) {
       const r = Math.random();
-      if (r < 0.6) parpadear(); else if (r < 0.82) saludar(); else tocarCasco();
+      if (r < 0.5) parpadear(); else if (r < 0.75) leer(); else calcular();
     }
-    setTimeout(accion, 4500 + Math.random() * 4000);
+    setTimeout(accion, 4200 + Math.random() * 3800);
   }
-  setTimeout(saludar, 1600);
+  setTimeout(calcular, 1600);
   setTimeout(accion, 6500);
 })();
