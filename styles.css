@@ -158,10 +158,12 @@ header {
   background: #F5C400;
   border-bottom: 1px solid #D4A900;
   overflow: hidden;
-  display: flex;
+  display: none;
   align-items: center;
   position: relative;
 }
+
+html.barra-activa .wip-banner { display: flex; }
 
 .wip-banner::before,
 .wip-banner::after {

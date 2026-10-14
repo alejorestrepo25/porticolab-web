@@ -93,6 +93,7 @@
   </style>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
+<script src="barra.js?v=1"></script>
 </head>
 
 <body class="y2k">
@@ -196,7 +197,7 @@
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
-    const query = encodeURIComponent(`*[_type == "proyecto"] | order(_createdAt desc) [0...4] { _id, title, tags, portada }`);
+    const query = encodeURIComponent(`*[_type == "proyecto" && slug.current != "barra-sitio"] | order(_createdAt desc) [0...4] { _id, title, tags, portada }`);
     const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
     const res = await fetch(url);
     const { result = [] } = await res.json();
