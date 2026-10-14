@@ -217,12 +217,17 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
   body.home .archivo-poster .gallery-item img { max-height: 40vh; }
 }
 
-/* ===== Celular y tablet: cada vista ocupa la pantalla y el dedo encaja suavemente en la siguiente (ajuste nativo, sin JavaScript) ===== */
+/* ===== Celular y tablet: cada vista ocupa la pantalla y cada deslizamiento cae exactamente en una (ajuste nativo obligatorio) ===== */
 @media (max-width: 900px), (pointer: coarse) {
-  html.js { scroll-snap-type: y proximity; scroll-padding-top: 0; }
-  body.home .y2k-hero { min-height: calc(100svh - var(--hh, 60px)); scroll-snap-align: start; }
-  body.home .seccion, body.home .cierre-home { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 36px; padding-bottom: 36px; scroll-snap-align: start; }
-  body.home .archivo-poster { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-block: 28px; scroll-snap-align: start; }
+  html.js { scroll-snap-type: y mandatory; }
+  body.home .y2k-hero, body.home .seccion, body.home .cierre-home, body.home .archivo-poster { scroll-snap-align: start; scroll-snap-stop: always; }
+  body.home .archivo-poster > .seccion { scroll-snap-align: none; scroll-snap-stop: normal; }
+}
+@media (max-width: 900px) {
+  html.js { scroll-padding-top: 0; }
+  body.home .y2k-hero { min-height: calc(100svh - var(--hh, 60px)); scroll-margin-top: var(--hh, 60px); }
+  body.home .seccion, body.home .cierre-home { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 36px; padding-bottom: 36px; }
+  body.home .archivo-poster { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-block: 28px; }
   body.home .archivo-poster > .seccion { min-height: 0; padding-block: 0 12px; }
   body.home .pie-home { margin-top: 24px; }
 }
