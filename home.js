@@ -29,14 +29,24 @@
   addEventListener('scroll', alScroll, { passive: true });
   alScroll();
 
-  // Índice lateral
+  // Índice lateral: el punto activo es el de la pantalla que cruza el centro de la ventana
   const puntos = [...document.querySelectorAll('.rail a')];
-  if ('IntersectionObserver' in window && puntos.length) {
-    const io2 = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) return;
-      puntos.forEach(a => a.classList.toggle('activo', a.dataset.s === e.target.id));
-    }), { rootMargin: '-45% 0px -50% 0px' });
-    puntos.forEach(a => { const s = document.getElementById(a.dataset.s); if (s) io2.observe(s); });
+  const destinoDe = (a) => (a.dataset.s === 'proyectos' && document.querySelector('.archivo-poster')) || document.getElementById(a.dataset.s);
+  const pares = puntos.map((a) => [a, destinoDe(a)]).filter((p) => p[1]);
+  let marcando = 0;
+  function marcar() {
+    marcando = 0;
+    const mitad = innerHeight / 2;
+    let activo = null;
+    pares.forEach(([a, el]) => { const r = el.getBoundingClientRect(); if (r.top <= mitad && r.bottom > mitad) activo = a; });
+    puntos.forEach((p) => p.classList.toggle('activo', p === activo));
+  }
+  const pedirMarca = () => { if (!marcando) marcando = setTimeout(marcar, 40); };
+  if (pares.length) {
+    addEventListener('scroll', pedirMarca, { passive: true });
+    addEventListener('resize', pedirMarca);
+    addEventListener('load', pedirMarca);
+    marcar();
   }
 
   // Inclinación 3D de las tarjetas de servicios (solo con mouse)
@@ -132,4 +142,31 @@
       else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(pantallas.length - 1); }
     });
   }
+
+  // Ajuste automático: ninguna pantalla se sale por abajo, sin importar el tamaño de la ventana ni del encabezado
+  const contenedores = () => [...document.querySelectorAll('.seccion, .cierre-home, .archivo-poster')].filter((c) => !c.parentElement.classList.contains('archivo-poster'));
+  function ajustar() {
+    const conAjuste = matchMedia('(min-width: 901px) and (min-height: 560px)').matches;
+    const disponible = innerHeight - altoEncabezado();
+    contenedores().forEach((c) => {
+      c.style.removeProperty('--k');
+      if (!conAjuste) return;
+      let k = 1;
+      for (let i = 0; i < 4; i++) {
+        const h = c.getBoundingClientRect().height;
+        if (h <= disponible + 1) break;
+        k = Math.max(0.55, k * (disponible / h) * 0.985);
+        c.style.setProperty('--k', k.toFixed(3));
+      }
+    });
+  }
+  let pendiente = 0;
+  const pedirAjuste = () => { clearTimeout(pendiente); pendiente = setTimeout(ajustar, 140); };
+  addEventListener('resize', pedirAjuste);
+  addEventListener('load', pedirAjuste);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedirAjuste);
+  document.addEventListener('load', pedirAjuste, true);   // cada imagen que termina de cargar
+  const galeria = document.querySelector('.gallery');
+  if (galeria) new MutationObserver(pedirAjuste).observe(galeria, { childList: true });
+  pedirAjuste();
 })();

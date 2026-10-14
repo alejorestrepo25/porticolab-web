@@ -210,3 +210,9 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
   /* Fotos horizontales (no portadas 4:5): llenan el marco */
   body.home .archivo-poster .gallery-item img.apaisada { object-fit: cover; }
 }
+
+/* Ajuste automático: si una pantalla no cabe, sus bloques se reducen proporcionalmente (variable --k calculada en home.js) */
+@media (min-width: 901px) and (min-height: 560px) {
+  body.home .seccion > *, body.home .cierre-home > *, body.home .archivo-poster > * { zoom: var(--k, 1); }
+  body.home .archivo-poster .gallery-item img { max-height: 40vh; }
+}
