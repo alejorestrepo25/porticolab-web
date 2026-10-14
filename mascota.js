@@ -28,28 +28,28 @@
     #mascota-wrapper:hover #mascota-label,
     #mascota-wrapper:focus-visible #mascota-label { opacity: 1; }
 
-    /* Hermano constructor: un bloque de concreto con casco amarillo, dos ojos verticales y brazos laterales */
+    /* Hermano constructor en 2D: bloque plano de concreto con casco amarillo, dos ojos y brazos laterales */
     .mascota-sprite {
       display: block;
-      width: 84px;
-      height: 62px;
+      width: 76px;
+      height: 68px;
       overflow: visible;
-      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       transition: transform 0.3s ease;
     }
     #mascota-wrapper:hover .mascota-sprite,
     #mascota-wrapper:focus-visible .mascota-sprite { transform: translateY(-2px); }
     .mascota-sprite .ojos { transform-box: fill-box; transform-origin: center; }
-    .mascota-sprite .brazo-d { transform-origin: 44px -20px; transition: transform 0.35s ease; }
-    .mascota-sprite .casco { transform-origin: 20px -40px; }
+    .mascota-sprite .brazo-d { transform-origin: 24px 9px; transition: transform 0.35s ease; }
+    .mascota-sprite .casco { transform-origin: 12px -2px; }
     #mascota-wrapper:hover .mascota-sprite .brazo-d,
     #mascota-wrapper:focus-visible .mascota-sprite .brazo-d { transform: rotate(-38deg); }
 
-    #mascota-modal .mascota-sprite { width: 96px; height: 71px; }
+    #mascota-modal .mascota-sprite { width: 96px; height: 86px; }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      #mascota-wrapper .mascota-sprite { width: 66px; height: 49px; }
+      #mascota-wrapper .mascota-sprite { width: 60px; height: 54px; }
     }
 
     /* Movimiento: tranquilo, y solo si el usuario no pidió menos animación */
@@ -168,37 +168,24 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  /* ── Personaje: un constructor de bloques (hermano de la mascota de Claude Code): cuerpo de concreto, casco amarillo,
-     dos ojos verticales, brazos laterales y patas cortas. Proyección oblicua: frente plano, tapa y costado visibles. ── */
+  /* ── Personaje: un constructor en pixel art plano (hermano de la mascota de Claude Code): cuerpo de concreto, casco amarillo,
+     dos ojos cuadrados, brazos laterales y cuatro patas. Cada rect es un bloque de la cuadrícula. ── */
   function sprite(id) {
-    const P = (x, d, z) => [x + 0.5 * d, -z - 0.32 * d];
-    const pt = (p) => p[0].toFixed(1) + ',' + p[1].toFixed(1);
-    const poly = (pts, fill) => '<polygon points="' + pts.map(pt).join(' ') + '" fill="' + fill + '"/>';
-    const caja = (x0, d0, z0, x1, d1, z1, c) =>
-      poly([P(x1, d0, z0), P(x1, d1, z0), P(x1, d1, z1), P(x1, d0, z1)], c.r) +
-      poly([P(x0, d0, z1), P(x1, d0, z1), P(x1, d1, z1), P(x0, d1, z1)], c.t) +
-      poly([P(x0, d0, z0), P(x1, d0, z0), P(x1, d0, z1), P(x0, d0, z1)], c.f);
-    const concreto = { f: '#bdbdc7', t: '#e3e3ea', r: '#8d8d99' };
-    const sombra = { f: '#8f8f9b', t: '#b1b1bb', r: '#6d6d78' };
-    const amarillo = { f: '#ffc61a', t: '#ffe27a', r: '#d99c00' };
-    const cresta = { f: '#e0a800', t: '#f2c230', r: '#b98a00' };
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-12 -54 78 58" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Constructor de Pórtico Lab">' +
-      '<ellipse cx="26" cy="-1" rx="30" ry="3.2" fill="rgba(0,0,0,0.45)"/>' +
+    const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
+    const C = '#b4b4be', B = '#f4f4f8', Y = '#ffc61a', YD = '#e0a800', N = '#0b0b0b';
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-7 -9 38 34" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
       '<g class="todo">' +
-        // patas: primero las de atrás
-        caja(13, 12, 0, 19, 19, 8, sombra) + caja(21, 12, 0, 27, 19, 8, sombra) +
-        caja(5, 2, 0, 11, 9, 8, sombra) + caja(29, 2, 0, 35, 9, 8, sombra) +
-        // cuerpo, con dos bandas reflectivas
-        caja(0, 0, 8, 40, 22, 34, concreto) +
-        '<rect x="0" y="-15.2" width="40" height="1.8" fill="#f4f4f8" opacity="0.9"/>' +
-        '<rect x="0" y="-12.2" width="40" height="1.8" fill="#f4f4f8" opacity="0.9"/>' +
+        // patas
+        R(0, 12, 3, 12, C) + R(6, 12, 3, 12, C) + R(15, 12, 3, 12, C) + R(21, 12, 3, 12, C) +
+        // cuerpo y brazos
+        R(0, 0, 24, 12, C) + R(-6, 6, 6, 6, C) +
+        '<g class="brazo-d">' + R(24, 6, 6, 6, C) + '</g>' +
+        // bandas reflectivas
+        R(0, 8, 24, 1, B) + R(0, 10, 24, 1, B) +
         // ojos
-        '<g class="ojos" fill="#0b0b0b"><rect x="9" y="-28" width="4" height="10"/><rect x="27" y="-28" width="4" height="10"/></g>' +
-        // brazos
-        caja(-9, 6, 14, 0, 16, 23, concreto) +
-        '<g class="brazo-d">' + caja(40, 6, 14, 49, 16, 23, concreto) + '</g>' +
+        '<g class="ojos">' + R(3, 3, 3, 3, N) + R(18, 3, 3, 3, N) + '</g>' +
         // casco de obra
-        '<g class="casco">' + caja(2, 0, 34, 38, 22, 36.4, amarillo) + caja(7, 3, 36.4, 33, 19, 43, amarillo) + caja(18, 3, 43, 22, 19, 44.2, cresta) + '</g>' +
+        '<g class="casco">' + R(5, -7, 14, 5, Y) + R(2, -2, 20, 2, YD) + R(11, -8, 2, 1, YD) + '</g>' +
       '</g></svg>';
   }
 
