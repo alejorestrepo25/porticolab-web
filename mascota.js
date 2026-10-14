@@ -31,7 +31,7 @@
     /* Hermano constructor en 2D: bloque plano de concreto con casco amarillo, dos ojos y brazos laterales */
     .mascota-sprite {
       display: block;
-      width: 76px;
+      width: 64px;
       height: 52px;
       overflow: visible;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
@@ -45,11 +45,11 @@
     #mascota-wrapper:hover .mascota-sprite .brazo-d,
     #mascota-wrapper:focus-visible .mascota-sprite .brazo-d { transform: rotate(-38deg); }
 
-    #mascota-modal .mascota-sprite { width: 96px; height: 66px; }
+    #mascota-modal .mascota-sprite { width: 82px; height: 66px; }
 
     @media (max-width: 768px) {
       #mascota-wrapper { bottom: 14px; right: 14px; }
-      #mascota-wrapper .mascota-sprite { width: 60px; height: 41px; }
+      #mascota-wrapper .mascota-sprite { width: 51px; height: 41px; }
     }
 
     /* Movimiento: tranquilo, y solo si el usuario no pidió menos animación */
@@ -173,13 +173,13 @@
   function sprite(id) {
     const R = (x, y, w, h, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
     const C = '#b4b4be', B = '#f4f4f8', Y = '#ffc61a', YD = '#e0a800', N = '#0b0b0b';
-    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-7 -9 38 26" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
+    return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-4 -9 32 26" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Constructor de Pórtico Lab">' +
       '<g class="todo">' +
         // patas cortas
         R(0, 10, 3, 5, C) + R(6, 10, 3, 5, C) + R(15, 10, 3, 5, C) + R(21, 10, 3, 5, C) +
         // cuerpo y brazos
-        R(0, 0, 24, 10, C) + R(-6, 5, 6, 5, C) +
-        '<g class="brazo-d">' + R(24, 5, 6, 5, C) + '</g>' +
+        R(0, 0, 24, 10, C) + R(-3, 6, 3, 3, C) +
+        '<g class="brazo-d">' + R(24, 6, 3, 3, C) + '</g>' +
         // bandas reflectivas
         R(0, 7, 24, 1, B) + R(0, 9, 24, 1, B) +
         // ojos
