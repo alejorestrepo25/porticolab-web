@@ -4,6 +4,12 @@
   const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const conMouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  // Altura real del encabezado: cada sección mide exactamente la pantalla menos el encabezado
+  const medir = () => { const h = document.querySelector("header"); if (h) document.documentElement.style.setProperty("--hh", h.offsetHeight + "px"); };
+  medir();
+  addEventListener("resize", medir);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+
   // Aparecer al entrar en pantalla
   const aparecer = [...document.querySelectorAll('.rev')];
   if ('IntersectionObserver' in window && !reducir) {

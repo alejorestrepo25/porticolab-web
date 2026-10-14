@@ -126,3 +126,60 @@ body.home .pie-home a:hover { color: #fff; }
 
 body.home .copiar { background: transparent; color: #fff; border: 1px solid #3a3a3a; }
 body.home .copiar:hover { border-color: #b9a7ff; }
+
+/* ===== Cada vista, un póster: en pantallas grandes cada sección ocupa exactamente la pantalla y nada queda cortado ===== */
+@media (min-width: 901px) and (min-height: 560px) {
+  html { scroll-snap-type: y proximity; scroll-padding-top: var(--hh, 66px); }
+  body.home .y2k-hero,
+  body.home .seccion,
+  body.home .cierre-home { min-height: calc(100svh - var(--hh, 66px)); scroll-snap-align: start; }
+  body.home .seccion,
+  body.home .cierre-home { display: flex; flex-direction: column; justify-content: center; padding-top: 28px; padding-bottom: 28px; margin-bottom: 0; }
+  body.home .seccion__cab { margin-bottom: clamp(18px, 4vh, 44px); }
+  body.home .seccion__cab h2 { font-size: clamp(28px, 7.4vh, 64px); margin: 10px 0 0; }
+
+  /* Dos frentes */
+  body.home .frente__img { aspect-ratio: auto; height: clamp(150px, 36vh, 420px); }
+  body.home .frente__txt { padding: 18px 22px 22px; gap: 8px; }
+  body.home .frente__txt h3 { font-size: clamp(16px, 2.6vh, 22px); }
+  body.home .frente__txt p { font-size: 14px; line-height: 1.5; }
+
+  /* Archivo: cuatro tarjetas en una sola fila */
+  body.home #proyectos { padding-bottom: 0; min-height: 0; justify-content: flex-end; }
+  body.home .archivo-poster { min-height: calc(100svh - var(--hh, 66px)); display: flex; flex-direction: column; justify-content: center; scroll-snap-align: start; }
+  body.home .archivo-poster #proyectos { min-height: 0; padding-bottom: 0; }
+  body.home .archivo-poster main { margin: 0; }
+  body.home .archivo-poster .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; column-count: auto; }
+  body.home .archivo-poster .gallery-item { margin: 0; background: #070707; }
+  body.home .archivo-poster .gallery-item img { height: clamp(180px, 46vh, 520px); object-fit: cover; width: 100%; }
+  body.home .archivo-poster .gallery-item .post-tags { display: none; }
+  body.home .archivo-poster .gallery-item h3 { padding: 12px 14px 14px; font-size: 14px; }
+  body.home .archivo-poster .ver-todo-wrap { margin-top: 6px; }
+  body.home .archivo-poster #gallery-loading { min-height: 30vh !important; }
+
+  /* Proceso, materiales y contacto */
+  body.home .paso h3 { font-size: clamp(16px, 2.8vh, 24px); }
+  body.home .paso p { font-size: clamp(14px, 2.2vh, 17px); }
+  body.home .mat-panel { min-height: clamp(260px, 46vh, 520px); }
+  body.home .mat-lista button { padding: clamp(10px, 2vh, 18px) 20px; }
+  body.home .cierre-home h2 { font-size: clamp(32px, 9vh, 84px); }
+}
+
+/* Ajuste fino del póster: títulos en una o dos líneas y imágenes que escalan con la altura de la pantalla */
+@media (min-width: 901px) and (min-height: 560px) {
+  body.home .seccion__cab { max-width: none; margin-bottom: clamp(14px, 3vh, 34px); }
+  body.home .seccion__cab h2 { font-size: clamp(26px, 6vh, 56px); line-height: 1.04; }
+  body.home .frente__img { height: clamp(130px, 31vh, 380px); }
+  body.home .frente__txt { padding: 14px 20px 18px; gap: 6px; }
+  body.home .archivo-poster .gallery-item img { height: clamp(160px, 42vh, 480px); }
+  body.home .paso { padding-top: 48px; }
+  body.home .mat-panel { min-height: clamp(240px, 44vh, 480px); }
+  body.home .mat-lista button { padding: clamp(8px, 1.8vh, 16px) 18px; font-size: clamp(12px, 2vh, 15px); }
+}
+
+/* El hero también es una pantalla completa: la foto se adapta a la altura disponible */
+@media (min-width: 901px) and (min-height: 560px) {
+  body.home .y2k-hero { height: calc(100svh - var(--hh, 66px)); min-height: 0; padding-top: 2vh; padding-bottom: 5vh; box-sizing: border-box; align-items: center; }
+  body.home .y2k-hero__vis { aspect-ratio: auto; height: min(74vh, 580px); max-height: none; }
+  body.home .y2k-hero h1 { font-size: clamp(30px, 8.4vh, 64px); }
+}
