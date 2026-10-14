@@ -89,18 +89,23 @@
   }
 
   // Ajuste automático: si el contenido de una pantalla no cabe, se reduce hasta que quepa
+  const movil = matchMedia('(max-width: 900px)');
+  const sonda = document.createElement('div');   // mide 100svh real (la pantalla con la barra del navegador visible)
+  sonda.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';
+  document.body.appendChild(sonda);
   function ajustar() {
-    const disponible = innerHeight - alto();
+    const esMovil = movil.matches;
     pantallas().forEach((c) => {
       c.style.removeProperty('--k');
-      if (!modo.matches) return;
+      if (!modo.matches && !esMovil) return;
       const cs = getComputedStyle(c);
       const extra = (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0);
+      const disponible = esMovil ? sonda.offsetHeight - (extra > 0 ? alto() : 0) : innerHeight - alto();
       let k = 1;
       for (let i = 0; i < 4; i++) {
         const h = c.getBoundingClientRect().height + extra;
         if (h <= disponible + 1) break;
-        k = Math.max(0.5, k * (disponible / h) * 0.985);
+        k = Math.max(esMovil ? 0.62 : 0.5, k * (disponible / h) * 0.985);
         c.style.setProperty('--k', k.toFixed(3));
       }
     });

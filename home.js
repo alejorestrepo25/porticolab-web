@@ -144,18 +144,24 @@
   }
 
   // Ajuste automático: ninguna pantalla se sale por abajo, sin importar el tamaño de la ventana ni del encabezado
-  const contenedores = () => [...document.querySelectorAll('.seccion, .cierre-home, .archivo-poster')].filter((c) => !c.parentElement.classList.contains('archivo-poster'));
+  const contenedores = () => [...document.querySelectorAll('.y2k-hero, .seccion, .cierre-home, .archivo-poster')].filter((c) => !c.parentElement.classList.contains('archivo-poster'));
+  const movil = matchMedia('(max-width: 900px)');
+  const sonda = document.createElement('div');   // mide 100svh real (la pantalla con la barra del navegador visible)
+  sonda.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';
+  document.body.appendChild(sonda);
   function ajustar() {
-    const conAjuste = matchMedia('(min-width: 901px) and (min-height: 560px)').matches;
-    const disponible = innerHeight - altoEncabezado();
+    const esMovil = movil.matches;
+    const conAjuste = esMovil || matchMedia('(min-width: 901px) and (min-height: 560px)').matches;
+    const total = esMovil ? sonda.offsetHeight : innerHeight - altoEncabezado();
     contenedores().forEach((c) => {
       c.style.removeProperty('--k');
       if (!conAjuste) return;
+      const disponible = esMovil && c.classList.contains('y2k-hero') ? total - altoEncabezado() : total;
       let k = 1;
       for (let i = 0; i < 4; i++) {
         const h = c.getBoundingClientRect().height;
         if (h <= disponible + 1) break;
-        k = Math.max(0.55, k * (disponible / h) * 0.985);
+        k = Math.max(esMovil ? 0.62 : 0.55, k * (disponible / h) * 0.985);
         c.style.setProperty('--k', k.toFixed(3));
       }
     });

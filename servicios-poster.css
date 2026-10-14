@@ -77,3 +77,18 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter h2.seccion { font-size: clamp(24px, 7vw, 40px); line-height: 1.06; margin-top: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
+
+/* Celular: tarjetas compactas y ajuste automático para que cada vista quepa completa en la pantalla */
+@media (max-width: 900px) {
+  body.srvposter [data-pantalla] > * { zoom: var(--k, 1); }
+  body.srvposter .srv-grid { gap: 12px; margin-top: 14px; }
+  body.srvposter .srv-card { flex-direction: row; }
+  body.srvposter .srv-img { width: 38%; flex: none; aspect-ratio: auto; }
+  body.srvposter .srv-body { padding: 12px 14px; }
+  body.srvposter .srv-body h3 { font-size: 14px; margin-top: 4px; }
+  body.srvposter .srv-body .promesa { font-size: 12px; line-height: 1.5; margin-top: 6px; }
+  body.srvposter .srv-body .btn { margin-top: 10px; padding: 10px 12px; font-size: 11px; }
+  body.srvposter .badge { top: 8px; left: 8px; font-size: 9px; padding: 4px 6px; }
+  body.srvposter .incluye, body.srvposter .meta, body.srvposter .ruta-row { display: none; }
+  body.srvposter .seccion-sub { font-size: 13px; line-height: 1.55; }
+}
