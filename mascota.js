@@ -173,7 +173,7 @@
      un visor en el pecho con barras que suben y bajan, y tres puntos que aparecen cuando "piensa". ── */
   function sprite(id) {
     const R = (x, y, w, h, c, k) => '<rect' + (k ? ' class="' + k + '"' : '') + ' x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + c + '"/>';
-    const C = '#b4b4be', B = '#f4f4f8', N = '#0b0b0b', A = '#7ee8ff';
+    const C = '#b4b4be', B = '#f4f4f8', N = '#0b0b0b', A = '#7ee8ff', G = '#8a8a97';
     return '<svg ' + (id ? 'id="' + id + '" ' : '') + 'class="mascota-sprite" viewBox="-4 -6 32 23" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Calculador de Pórtico Lab">' +
       '<g class="todo">' +
         // patas cortas
@@ -183,9 +183,6 @@
         // lentes finos y ojos
         '<g fill="none" stroke="#f4f4f8" stroke-width="0.7"><rect x="2" y="1.3" width="5.2" height="4.4"/><rect x="16.8" y="1.3" width="5.2" height="4.4"/><path d="M7.2 3.1H16.8"/></g>' +
         '<g class="ojos">' + R(3.3, 2.5, 2.4, 2.2, N) + R(18.3, 2.5, 2.4, 2.2, N) + '</g>' +
-        // visor del pecho con barras que suben y bajan
-        R(6.5, 6.4, 11, 3.2, N) +
-        R(8, 8.0, 1.4, 1.2, A, 'barra b1') + R(10.6, 7.0, 1.4, 2.2, A, 'barra b2') + R(13.2, 7.6, 1.4, 1.6, A, 'barra b3') + R(15.4, 6.8, 1.4, 2.4, A, 'barra b4') +
         // puntos de "pensando"
         R(8.5, -3.5, 1.7, 1.7, A, 'punto p1') + R(11.2, -3.5, 1.7, 1.7, A, 'punto p2') + R(13.9, -3.5, 1.7, 1.7, A, 'punto p3') +
       '</g></svg>';
