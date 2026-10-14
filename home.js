@@ -97,7 +97,7 @@
   }
 
   // Salto de pantalla en pantalla: un giro de la rueda (o una flecha) baja rápido hasta la siguiente vista
-  const pantallas = [...document.querySelectorAll('#inicio, #frentes, .archivo-poster, #proceso, #materiales, #contacto')];
+  const pantallas = [...document.querySelectorAll('[data-pantalla], #frentes, .archivo-poster, #proceso, #contacto, #inicio')].filter((e, i, a) => a.indexOf(e) === i).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
   const modoPantallas = matchMedia('(min-width: 901px) and (min-height: 560px)');
   let bloqueado = false;
   const altoEncabezado = () => (document.querySelector('header') || { offsetHeight: 0 }).offsetHeight;

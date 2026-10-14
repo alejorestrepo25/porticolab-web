@@ -12,6 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="y2k.css?v=5">
+<link rel="stylesheet" href="home.css?v=11">
+<link rel="stylesheet" href="nosotros.css?v=1">
+<script>document.documentElement.classList.add('js')</script>
   <style>
     * {
       box-sizing: border-box;
@@ -96,7 +99,14 @@
 <script src="barra.js?v=1"></script>
 </head>
 
-<body class="y2k">
+<body class="y2k home nosotros">
+<div class="progreso" aria-hidden="true"><i></i></div>
+<nav class="rail" aria-label="Secciones de la página">
+  <a href="#inicio" data-s="inicio"><span>Inicio</span></a>
+  <a href="#taller" data-s="taller"><span>El taller</span></a>
+  <a href="#piezas" data-s="piezas"><span>Piezas</span></a>
+  <a href="#contacto" data-s="contacto"><span>Contacto</span></a>
+</nav>
 <header>
   <a href="index.html" class="logo">PORTICO_LAB</a>
 
@@ -115,114 +125,69 @@
   </div>
 </div>
 
-<main class="about">
+<section class="n-hero" id="inicio" data-pantalla aria-label="Inicio">
+  <img class="n-hero__img" src="img/nosotros/taller-panoramica.jpg" alt="El taller de Pórtico Lab: dos torres en elaboración sobre la mesa de trabajo, rodeadas de herramientas" fetchpriority="high">
+  <div class="n-hero__velo"></div>
+  <div class="n-hero__txt">
+    <span class="hud"><b>[ TALLER ]</b> Medellín // 2026</span>
+    <h1>Hacemos<br>lo imposible</h1>
+    <p>Taller de producción digital. De la idea a la pieza.</p>
+  </div>
+  <a class="hero-explora" href="#taller">Entra al taller <b>↓</b></a>
+</section>
 
-  <!-- Declaración -->
-  <section class="about-hero">
-    <h1>
-      Hacemos<br>
-      lo imposible
-    </h1>
-  </section>
+<section class="seccion" id="taller" data-pantalla>
+  <div class="seccion__cab rev">
+    <span class="hud">[ 01 / 03 ] El taller</span>
+    <h2>Toca cada rincón <em>de la mesa</em></h2>
+  </div>
+  <figure class="mapa rev">
+    <img src="img/nosotros/taller-panoramica.jpg" alt="Mesa de trabajo del taller con las piezas y herramientas señaladas" loading="lazy">
+    <button class="pin" type="button" style="--x:7.5%;--y:30%" data-titulo="Tablero de herramientas" data-texto="Todo a la vista y a la mano: destornilladores, pinceles y llaves." aria-label="Tablero de herramientas"><i></i></button>
+    <button class="pin" type="button" style="--x:12%;--y:70%" data-titulo="Puente en madera" data-texto="Un estudio de estructura hecho en listones, para entender cómo trabaja antes de construir." aria-label="Puente en madera"><i></i></button>
+    <button class="pin" type="button" style="--x:24.5%;--y:49%" data-titulo="Estructura de varillas" data-texto="Varillas cruzadas que forman una mesa liviana: la geometría hecha objeto." aria-label="Estructura de varillas"><i></i></button>
+    <button class="pin" type="button" style="--x:37%;--y:38%" data-titulo="Torre en elaboración" data-texto="Una de las dos torres curvas que se están dando forma sobre la mesa." aria-label="Torre en elaboración"><i></i></button>
+    <button class="pin" type="button" style="--x:52%;--y:33%" data-titulo="Torre con malla" data-texto="La segunda torre, con malla metálica sobre su estructura." aria-label="Torre con malla"><i></i></button>
+    <button class="pin" type="button" style="--x:71%;--y:68%" data-titulo="Taladro" data-texto="Para unir, perforar y armar las piezas." aria-label="Taladro"><i></i></button>
+    <button class="pin" type="button" style="--x:81%;--y:49%" data-titulo="Sierra de calar" data-texto="Corta las piezas con precisión antes del ensamble." aria-label="Sierra de calar"><i></i></button>
+    <button class="pin" type="button" style="--x:93%;--y:55%" data-titulo="Gubias y formones" data-texto="Las herramientas de la carpintería fina." aria-label="Gubias y formones"><i></i></button>
+    <button class="pin" type="button" style="--x:81%;--y:15%" data-titulo="Boceto de una casa" data-texto="Todo empieza dibujando." aria-label="Boceto de una casa"><i></i></button>
+    <figcaption class="mapa__info" aria-live="polite"><b>Toca un punto</b><span>y descubre qué hay en cada rincón del taller.</span></figcaption>
+  </figure>
+</section>
 
-  <!-- Manifiesto -->
-  <section class="about-text">
-    <p>
-      Taller de producción digital en Medellín.
-    </p>
-    <p>
-      De la idea a la pieza: impresión 3D,
-      corte CNC, concreto, madera y acero.
-    </p>
-  </section>
+<section class="seccion" id="piezas" data-pantalla>
+  <div class="seccion__cab rev">
+    <span class="hud">[ 02 / 03 ] Piezas</span>
+    <h2>Lo que sale <em>de aquí</em></h2>
+  </div>
+  <div class="piezas">
+    <figure class="pieza rev" style="--d:.05s"><img src="img/servicios/maqueta-torre.jpg" alt="Maqueta estructural en varillas de madera" loading="lazy"><figcaption>Maqueta estructural</figcaption></figure>
+    <figure class="pieza rev" style="--d:.12s"><img src="img/servicios/exposicion.jpg" alt="Mobiliario de exposición en madera con ensambles" loading="lazy"><figcaption>Mobiliario de exposición</figcaption></figure>
+    <figure class="pieza rev" style="--d:.19s"><img src="img/servicios/taller.jpg" alt="Torre curva en elaboración sobre la mesa de trabajo" loading="lazy"><figcaption>Torre en elaboración</figcaption></figure>
+    <figure class="pieza rev" style="--d:.26s"><img src="img/servicios/terreno.jpg" alt="Modelo de terreno con curvas de nivel" loading="lazy"><figcaption>Modelo de terreno</figcaption></figure>
+  </div>
+  <div class="ver-todo-wrap"><a class="ver-todo" href="laboratorio.html">Ver el laboratorio →</a></div>
+</section>
 
-  <!-- Taller -->
-  <section class="about-text">
-    <div class="dither-scope"><img src="img/taller.jpg" alt="Taller de Pórtico Lab" loading="lazy" data-dither style="width:100%;height:auto;display:block;"></div>
-  </section>
+<section class="cierre-home" id="contacto" data-pantalla>
+  <span class="hud">[ 03 / 03 ] Contacto</span>
+  <div class="ejes rev"><span>Diseñar</span><i>◆</i><span>Construir</span><i>◆</i><span>Habitar</span></div>
+  <h2 class="rev" style="--d:.1s">Hablemos de <em>tu proyecto</em></h2>
+  <div class="cierre-acciones rev" style="--d:.2s">
+    <a class="btn-cromo" href="servicios.html">Pedir una propuesta →</a>
+    <button class="btn-fantasma copiar" type="button" data-copiar="contacto@porticolab.com">contacto@porticolab.com</button>
+    <a class="btn-fantasma" href="https://wa.me/573147924600?text=Hola%20Portico%20Lab%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <footer class="pie-home">
+    <span>Pórtico Lab · Medellín · 2026</span>
+    <span><a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/company/107975627/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </footer>
+</section>
 
-  <!-- Ejes -->
-  <section class="about-axes">
-    <div class="axis"><h3>Diseñar</h3></div>
-    <div class="axis"><h3>Construir</h3></div>
-    <div class="axis"><h3>Habitar</h3></div>
-  </section>
-
-  <!-- Cierre -->
-  <section class="about-footer">
-    <p>
-      Pórtico Lab · Medellín · 2026
-    </p>
-    <div class="social-links">
-  <a href="https://www.instagram.com/portico_lab/" target="_blank" aria-label="Instagram">
-    <img src="iconos/instagram.png" alt="Instagram">
-  </a>
-  <a href="https://www.linkedin.com/company/107975627/" target="_blank" aria-label="LinkedIn">
-    <img src="iconos/linkedin.png" alt="LinkedIn">
-  </a>
-</div>
-
-  </section>
-
-  <!-- Contacto -->
-  <section class="about-contact">
-    <p>
-      Para proyectos, colaboraciones
-      o consultas.
-    </p>
-
-    <a href="mailto:contacto@porticolab.com"
-       class="about-contact-mail">
-      contacto@porticolab.com
-    </a>
-  </section>
-
-  <!-- Galería -->
-  <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:20vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
-  <section class="gallery"></section>
-
-</main>
-
-<script>
-  const SANITY_PROJECT_ID = '32sykluw';
-  const SANITY_DATASET = 'production';
-  const SANITY_API_VERSION = '2024-01-01';
-
-  function sanityImageUrl(ref, width = 800) {
-    const parts = ref.split('-');
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${parts[1]}-${parts[2]}.${parts[3]}?w=${width}&auto=format`;
-  }
-
-  document.addEventListener('DOMContentLoaded', async () => {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-
-    const query = encodeURIComponent(`*[_type == "proyecto" && slug.current != "barra-sitio"] | order(_createdAt desc) [0...4] { _id, title, tags, portada }`);
-    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
-    const res = await fetch(url);
-    const { result = [] } = await res.json();
-    document.getElementById('gallery-loading').style.display = 'none';
-
-    result.forEach(p => {
-      const imgUrl = p.portada?.asset?._ref ? sanityImageUrl(p.portada.asset._ref, 800) : '';
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}">
-          <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
-        </a>
-        <h3>${p.title || 'Proyecto'}</h3>
-        <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
-      `;
-      gallery.appendChild(item);
-    });
-  });
-</script>
-
-
-
+<script src="home.js?v=5" defer></script>
+<script src="nosotros.js?v=1" defer></script>
 <script src="y2k.js?v=4" defer></script>
 <script src="mascota.js?v=16"></script>
 </body>
 </html>
-
