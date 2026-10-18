@@ -1,49 +1,124 @@
-/* Nosotros en pantallas tipo póster: portada con la foto del taller, mapa con puntos para explorar, piezas y contacto.
-   Reutiliza el sistema de home.css (secciones de pantalla completa, progreso, índice lateral). */
+/* Narrativa visual de Nosotros: taller, proyectos seleccionados y contacto. */
 
-/* Portada: la foto del taller a toda pantalla */
-body.nosotros .n-hero { position: relative; display: flex; align-items: flex-end; overflow: hidden; min-height: calc(100svh - var(--hh, 66px)); border-bottom: 1px solid #161616; }
-body.nosotros .n-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
-body.nosotros .n-hero__velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 42%, rgba(0,0,0,.08) 100%), linear-gradient(0deg, rgba(0,0,0,.7) 0%, transparent 45%); }
-body.nosotros .n-hero__txt { position: relative; z-index: 1; padding: 0 56px clamp(40px, 10vh, 96px); max-width: 760px; }
+body.nosotros .n-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  min-height: calc(100svh - var(--hh, 66px));
+  border-bottom: 1px solid #161616;
+}
+body.nosotros .n-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;
+}
+body.nosotros .n-hero__velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.86), rgba(0,0,0,.46) 44%, rgba(0,0,0,.06)), linear-gradient(0deg, rgba(0,0,0,.68), transparent 48%);
+}
+body.nosotros .n-hero__txt {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 56px clamp(40px, 10vh, 96px);
+}
 body.nosotros .n-hero__txt .hud { margin-bottom: 18px; }
-body.nosotros .n-hero h1 { font: 700 clamp(34px, 9vh, 84px)/1.02 var(--display); text-transform: uppercase; letter-spacing: -1.5px; }
-body.nosotros .n-hero p { margin-top: 18px; color: #d4d4cf; font-size: clamp(15px, 2.4vh, 19px); }
+body.nosotros .n-hero h1 {
+  font: 700 clamp(34px, 9vh, 84px)/1.02 var(--display);
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+}
+body.nosotros .n-hero p { margin-top: 18px; color: #e0e0dc; font-size: clamp(15px, 2.4vh, 19px); }
 
-/* Mapa del taller */
-body.nosotros .mapa { position: relative; width: min(100%, 126vh); margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid #262626; background: #0b0b0b; }
-body.nosotros .mapa > img { display: block; width: 100%; height: auto; }
-body.nosotros .pin { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 1.5px solid #fff; background: rgba(0,0,0,.5); cursor: pointer; display: grid; place-items: center; transition: transform .2s, background .2s, border-color .2s; }
-body.nosotros .pin i { width: 8px; height: 8px; border-radius: 50%; background: #7ee8ff; box-shadow: 0 0 10px #7ee8ff; }
-body.nosotros .pin::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 1px solid rgba(126,232,255,.7); opacity: 0; animation: nos-pulso 2.6s ease-out infinite; }
-@keyframes nos-pulso { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
-body.nosotros .pin:hover, body.nosotros .pin:focus-visible { transform: translate(-50%, -50%) scale(1.18); border-color: #b9a7ff; outline: none; }
-body.nosotros .pin.activo { background: var(--cromo); border-color: transparent; transform: translate(-50%, -50%) scale(1.22); }
-body.nosotros .pin.activo i { background: #000; box-shadow: none; }
-@media (prefers-reduced-motion: reduce) { body.nosotros .pin::after { animation: none; } }
-body.nosotros .mapa__info { position: absolute; left: 14px; bottom: 14px; max-width: min(380px, calc(100% - 28px)); display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; border-radius: 12px; background: rgba(0,0,0,.8); border: 1px solid #333; backdrop-filter: blur(6px); }
-body.nosotros .mapa__info b { font: 700 13px/1.2 var(--display); text-transform: uppercase; letter-spacing: .3px; }
-body.nosotros .mapa__info span { font-size: 13px; line-height: 1.5; color: #cfcfca; }
-
-/* Piezas */
-body.nosotros .piezas { width: min(100%, calc(4 * 35vh + 42px)); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-body.nosotros .pieza { margin: 0; }
-body.nosotros .pieza img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; border: 1px solid #1f1f1f; background: #0b0b0b; transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .25s; }
-body.nosotros .pieza:hover img { transform: translateY(-4px); border-color: #b9a7ff; }
-body.nosotros .pieza figcaption { margin-top: 10px; font: 700 11px/1.3 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: #9a9a95; }
-body.nosotros .ver-todo-wrap { width: min(100%, calc(4 * 44vh + 42px)); margin: 18px auto 0; }
+/* Selección breve de proyectos: fotografías completas en marcos editoriales. */
+body.nosotros #piezas { max-width: 1320px; }
+body.nosotros .seccion__cab { max-width: 840px; }
+body.nosotros .seccion__cab h2 { max-width: 800px; }
+body.nosotros .seccion__cab p { max-width: 620px; margin-top: 12px; color: #aaa; }
+body.nosotros .piezas {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+body.nosotros .pieza {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #242424;
+  border-radius: 18px;
+  background: #080808;
+  transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+}
+body.nosotros .pieza:hover {
+  transform: translateY(-5px);
+  border-color: #777;
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+}
+body.nosotros .pieza img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
+  object-fit: contain;
+  border-radius: 17px 17px 0 0;
+  background: #f3f1eb;
+}
+body.nosotros .pieza figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+body.nosotros .pieza figcaption span {
+  color: #888;
+  font: 400 10px/1.3 var(--mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+body.nosotros .pieza figcaption b {
+  color: #f5f5f3;
+  font: 600 13px/1.3 var(--display);
+  text-transform: uppercase;
+  text-align: right;
+}
+body.nosotros .ver-todo-wrap { width: min(100%, 1120px); margin: 18px auto 0; }
 body.nosotros .ver-todo-wrap .ver-todo { margin: 0; }
 
-/* Cierre */
-body.nosotros .ejes { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 10px 0 6px; font: 700 clamp(12px, 2vh, 15px)/1 var(--mono); letter-spacing: 4px; text-transform: uppercase; color: #9a9a95; flex-wrap: wrap; }
-body.nosotros .ejes i { font-style: normal; color: #b9a7ff; }
+/* Contacto */
+body.nosotros .ejes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 10px 0 6px;
+  color: #9a9a95;
+  font: 700 clamp(12px, 2vh, 15px)/1 var(--mono);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+body.nosotros .ejes i { color: #b9a7ff; font-style: normal; }
 
 @media (max-width: 900px) {
-  body.nosotros .n-hero { min-height: 92svh; }
+  body.nosotros .n-hero { min-height: calc(100svh - var(--hh, 60px)); }
   body.nosotros .n-hero__txt { padding: 0 20px 56px; }
-  body.nosotros .mapa { width: 100%; }
-  body.nosotros .pin { width: 24px; height: 24px; }
-  body.nosotros .mapa__info { position: static; max-width: none; border-radius: 0 0 14px 14px; border: 0; border-top: 1px solid #262626; backdrop-filter: none; background: #0b0b0b; }
-  body.nosotros .piezas, body.nosotros .ver-todo-wrap { width: 100%; }
-  body.nosotros .piezas { grid-template-columns: repeat(2, 1fr); }
+  body.nosotros .n-hero__velo { background: linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.08)), linear-gradient(0deg, rgba(0,0,0,.72), transparent 55%); }
+  body.nosotros #piezas { padding-inline: 20px; }
+  body.nosotros .piezas { width: 100%; grid-template-columns: 1fr; gap: 9px; }
+  body.nosotros .pieza { display: grid; grid-template-columns: 82px minmax(0,1fr); align-items: center; gap: 0 14px; }
+  body.nosotros .pieza img { grid-row: 1; width: 82px; height: 82px; aspect-ratio: 1; padding: 5px; border-radius: 12px; }
+  body.nosotros .pieza figcaption { justify-content: space-between; padding: 12px 14px 12px 0; }
+  body.nosotros .ver-todo-wrap { width: 100%; margin-top: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.nosotros .pieza { transition: none; }
 }
