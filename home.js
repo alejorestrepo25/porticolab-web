@@ -39,7 +39,10 @@
     const mitad = innerHeight / 2;
     let activo = null;
     pares.forEach(([a, el]) => { const r = el.getBoundingClientRect(); if (r.top <= mitad && r.bottom > mitad) activo = a; });
-    puntos.forEach((p) => p.classList.toggle('activo', p === activo));
+    puntos.forEach((p) => {
+      p.classList.toggle('activo', p === activo);
+      if (p === activo && matchMedia('(max-width: 1100px), (pointer: coarse)').matches) p.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
   }
   const pedirMarca = () => { if (!marcando) marcando = setTimeout(marcar, 40); };
   if (pares.length) {

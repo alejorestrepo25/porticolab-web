@@ -69,13 +69,16 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 0; }
-  body.srvposter .srv-wrap > section[data-pantalla] { margin-top: 0; }
+  body.srvposter .srv-wrap > section[data-pantalla] { margin-top: 0; padding-bottom: calc(58px + env(safe-area-inset-bottom)); scroll-margin-bottom: calc(58px + env(safe-area-inset-bottom)); }
   body.srvposter .hero, body.srvposter .cierre { margin: 14px 0; min-height: calc(100svh - var(--hh, 60px) - 28px); box-sizing: border-box; }
   body.srvposter .hero { scroll-margin-top: calc(var(--hh, 60px) + 14px); }
   body.srvposter .cierre { display: flex; flex-direction: column; align-items: center; justify-content: center; }
   body.srvposter #como-funciona, body.srvposter #servicios, body.srvposter #preguntas { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 28px 0; }
   body.srvposter h2.seccion { font-size: clamp(24px, 7vw, 40px); line-height: 1.06; margin-top: 8px; }
 }
+body.srvposter .accion-pantalla { align-self: flex-start; margin-top: clamp(14px, 2.4vh, 24px); }
+body.srvposter #preguntas .accion-pantalla { align-self: center; }
+
 @media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
 
 /* Celular: tarjetas compactas y ajuste automático para que cada vista quepa completa en la pantalla */
@@ -91,4 +94,60 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter .badge { top: 8px; left: 8px; font-size: 9px; padding: 4px 6px; }
   body.srvposter .incluye, body.srvposter .meta, body.srvposter .ruta-row { display: none; }
   body.srvposter .seccion-sub { font-size: 13px; line-height: 1.55; }
+}
+
+/* El índice de pantallas se vuelve una guía táctil horizontal en móvil y tablet. */
+@media (max-width: 1100px), (pointer: coarse) {
+  body.srvposter .rail {
+    display: flex;
+    position: fixed;
+    left: 12px; right: 84px; top: auto;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    transform: none;
+    flex-direction: row;
+    gap: 3px;
+    width: auto;
+    max-width: none;
+    padding: 5px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border: 1px solid #35323f;
+    border-radius: 999px;
+    background: rgba(8,8,11,.94);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.42);
+  }
+  body.srvposter .rail::-webkit-scrollbar { display: none; }
+  body.srvposter .rail a {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 7px;
+    width: auto; height: 36px;
+    padding: 0 11px;
+    border: 0;
+    border-radius: 999px;
+    color: #aaa;
+    text-decoration: none;
+  }
+  body.srvposter .rail a::before { content: ''; width: 6px; height: 6px; flex: 0 0 6px; border: 1px solid #888; border-radius: 50%; }
+  body.srvposter .rail a span {
+    position: static;
+    transform: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 9px;
+    letter-spacing: 1px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  body.srvposter .rail a.activo { transform: none; background: #1a1821; color: #fff; }
+  body.srvposter .rail a.activo::before { background: var(--cromo); border-color: transparent; }
+  body.srvposter .rail a:focus-visible { outline: 2px solid #7ee8ff; outline-offset: 1px; }
+  html:has(.cotizador.visible) body.srvposter .rail,
+  html:has(.confirmacion.visible) body.srvposter .rail { display: none; }
 }

@@ -41,7 +41,9 @@
       const visible = el.offsetParent !== null;
       a.style.display = visible ? '' : 'none';
       const r = el.getBoundingClientRect();
-      a.classList.toggle('activo', visible && r.top <= mitad && r.bottom > mitad);
+      const activo = visible && r.top <= mitad && r.bottom > mitad;
+      a.classList.toggle('activo', activo);
+      if (activo && matchMedia('(max-width: 1100px), (pointer: coarse)').matches) a.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     });
   }
   const pedirMarca = () => { if (!marcando) marcando = setTimeout(marcar, 40); };

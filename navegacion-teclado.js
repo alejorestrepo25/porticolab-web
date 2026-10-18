@@ -1,5 +1,17 @@
 // Flechas horizontales: cambia entre las secciones del sitio desde páginas con menú principal.
 (() => {
+  let paginaActual = new URL(location.href).pathname;
+  if (paginaActual.endsWith('/')) paginaActual += 'index.html';
+  if (/\/publicaciones\/post\.html$/.test(paginaActual)) paginaActual = paginaActual.replace(/\/publicaciones\/post\.html$/, '/laboratorio.html');
+  else if (/\/carrito\.html$/.test(paginaActual)) paginaActual = paginaActual.replace(/\/carrito\.html$/, '/servicios.html');
+  else if (/\/404\.html$/.test(paginaActual)) paginaActual = paginaActual.replace(/\/404\.html$/, '/index.html');
+
+  document.querySelectorAll('header .logo[href], header .nav a[href]').forEach((a) => {
+    try {
+      if (new URL(a.href, location.href).pathname === paginaActual) a.setAttribute('aria-current', 'page');
+    } catch { /* Ignora enlaces no válidos. */ }
+  });
+
   const enlaces = [
     ...document.querySelectorAll('header .logo[href], header .nav a[href]')
   ].filter((a) => {
