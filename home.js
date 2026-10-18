@@ -152,14 +152,14 @@
   function ajustar() {
     const esMovil = movil.matches;
     const conAjuste = esMovil || matchMedia('(min-width: 901px) and (min-height: 560px)').matches;
-    const total = esMovil ? sonda.offsetHeight : innerHeight - altoEncabezado();
+    const total = esMovil ? sonda.offsetHeight - altoEncabezado() : innerHeight - altoEncabezado();
     contenedores().forEach((c) => {
       c.style.removeProperty('--k');
       if (!conAjuste) return;
-      const disponible = esMovil && c.classList.contains('y2k-hero') ? total - altoEncabezado() : total;
+      const disponible = total;
       let k = 1;
       for (let i = 0; i < 4; i++) {
-        const h = c.getBoundingClientRect().height;
+        const h = Math.max(c.getBoundingClientRect().height, c.scrollHeight);
         if (h <= disponible + 1) break;
         k = Math.max(esMovil ? 0.62 : 0.55, k * (disponible / h) * 0.985);
         c.style.setProperty('--k', k.toFixed(3));

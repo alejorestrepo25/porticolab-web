@@ -34,6 +34,7 @@ body.nosotros .n-hero h1 {
   letter-spacing: -1.5px;
 }
 body.nosotros .n-hero p { margin-top: 18px; color: #e0e0dc; font-size: clamp(15px, 2.4vh, 19px); }
+html.barra-activa body.nosotros .n-hero { min-height: calc(100svh - var(--hh, 66px) - 32px); }
 
 /* Selección breve de proyectos: fotografías completas en marcos editoriales. */
 body.nosotros #piezas { max-width: 1320px; }
@@ -92,6 +93,21 @@ body.nosotros .pieza figcaption b {
 body.nosotros .ver-todo-wrap { width: min(100%, 1120px); margin: 18px auto 0; }
 body.nosotros .ver-todo-wrap .ver-todo { margin: 0; }
 
+/* Cuatro capacidades, explicadas en una frase cada una. */
+body.nosotros .n-pilares {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+body.nosotros .n-pilar { min-width: 0; padding: 22px 20px 24px; border-right: 1px solid #292929; }
+body.nosotros .n-pilar:last-child { border-right: 0; }
+body.nosotros .n-pilar > span { color: #7ee8ff; font: 400 11px/1 var(--mono); letter-spacing: 1px; }
+body.nosotros .n-pilar h3 { margin: 16px 0 9px; font: 700 clamp(13px, 1.5vw, 17px)/1.2 var(--display); text-transform: uppercase; }
+body.nosotros .n-pilar p { max-width: 230px; color: #aaa; font-size: 13px; line-height: 1.55; }
+
 /* Contacto */
 body.nosotros .ejes {
   display: flex;
@@ -109,8 +125,18 @@ body.nosotros .ejes i { color: #b9a7ff; font-style: normal; }
 
 @media (max-width: 900px) {
   body.nosotros .n-hero { min-height: calc(100svh - var(--hh, 60px)); }
+  body.nosotros header .nav { width: 100%; display: flex; flex-wrap: wrap; column-gap: 12px; row-gap: 8px; }
+  body.nosotros header .nav a { font-size: clamp(10px, 2.7vw, 11px); white-space: nowrap; }
   body.nosotros .n-hero__txt { padding: 0 20px 56px; }
+  body.nosotros .n-hero h1 { max-width: 13ch; font-size: clamp(30px, 8.2vw, 46px); line-height: 1.08; letter-spacing: -1px; }
+  body.nosotros .n-hero p { max-width: 34ch; font-size: 15px; line-height: 1.55; }
   body.nosotros .n-hero__velo { background: linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.08)), linear-gradient(0deg, rgba(0,0,0,.72), transparent 55%); }
+  body.nosotros .n-pilares { width: 100%; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  body.nosotros .n-pilar { min-height: 130px; padding: 15px 12px 16px; }
+  body.nosotros .n-pilar:nth-child(2) { border-right: 0; }
+  body.nosotros .n-pilar:nth-child(-n+2) { border-bottom: 1px solid #292929; }
+  body.nosotros .n-pilar h3 { margin: 10px 0 6px; font-size: 12px; }
+  body.nosotros .n-pilar p { font-size: 11px; line-height: 1.45; }
   body.nosotros #piezas { padding-inline: 20px; }
   body.nosotros .piezas { width: 100%; grid-template-columns: 1fr; gap: 9px; }
   body.nosotros .pieza { display: grid; grid-template-columns: 82px minmax(0,1fr); align-items: center; gap: 0 14px; }

@@ -224,10 +224,10 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
   body.home .archivo-poster > .seccion { scroll-snap-align: none; scroll-snap-stop: normal; }
 }
 @media (max-width: 900px) {
-  html.js { scroll-padding-top: 0; }
-  body.home .y2k-hero { min-height: calc(100svh - var(--hh, 60px)); scroll-margin-top: var(--hh, 60px); }
-  body.home .seccion, body.home .cierre-home { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 36px; padding-bottom: 36px; }
-  body.home .archivo-poster { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-block: 28px; }
+  html.js { scroll-padding-top: var(--hh, 60px); }
+  body.home .y2k-hero { min-height: calc(100svh - var(--hh, 60px)); scroll-margin-top: 0; }
+  body.home .seccion, body.home .cierre-home { min-height: calc(100svh - var(--hh, 60px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 30px; padding-bottom: 30px; }
+  body.home .archivo-poster { min-height: calc(100svh - var(--hh, 60px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-block: 24px; }
   body.home .archivo-poster > .seccion { min-height: 0; padding-block: 0 12px; }
   body.home .pie-home { margin-top: 24px; }
 }

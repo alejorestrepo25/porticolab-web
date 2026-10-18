@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="y2k.css?v=5">
-<link rel="stylesheet" href="home.css?v=12">
-<link rel="stylesheet" href="nosotros.css?v=3">
+<link rel="stylesheet" href="home.css?v=17">
+<link rel="stylesheet" href="nosotros.css?v=4">
 <script>document.documentElement.classList.add('js')</script>
   <style>
     * {
@@ -104,7 +104,8 @@
 <div class="progreso" aria-hidden="true"><i></i></div>
 <nav class="rail" aria-label="Secciones de la página">
   <a href="#inicio" data-s="inicio"><span>Inicio</span></a>
-  <a href="#piezas" data-s="piezas"><span>Piezas</span></a>
+  <a href="#enfoque" data-s="enfoque"><span>Enfoque</span></a>
+  <a href="#proyectos" data-s="proyectos"><span>Proyectos</span></a>
   <a href="#contacto" data-s="contacto"><span>Contacto</span></a>
 </nav>
 <header>
@@ -130,15 +131,29 @@
   <div class="n-hero__velo"></div>
   <div class="n-hero__txt">
     <span class="hud"><b>[ TALLER ]</b> Medellín // 2026</span>
-    <h1>Hacemos<br>lo imposible</h1>
-    <p>Taller de producción digital. De la idea a la pieza.</p>
+    <h1>Ideas complejas.<br>Arquitectura real.</h1>
+    <p>Diseño arquitectónico que integra matemática, programación, IA y construcción.</p>
   </div>
-  <a class="hero-explora" href="#piezas">Mira lo que sale de aquí <b>↓</b></a>
+  <a class="hero-explora" href="#enfoque">Conoce nuestro enfoque <b>↓</b></a>
 </section>
 
-<section class="seccion" id="piezas" data-pantalla>
+<section class="seccion n-enfoque" id="enfoque" data-pantalla>
   <div class="seccion__cab rev">
-    <span class="hud">[ 01 / 02 ] Nuestro trabajo</span>
+    <span class="hud">[ 01 / 03 ] Cómo pensamos</span>
+    <h2>Una visión que <em>conecta disciplinas</em></h2>
+    <p>La tecnología amplía la mirada; el criterio arquitectónico decide qué merece llegar a la realidad.</p>
+  </div>
+  <div class="n-pilares">
+    <article class="n-pilar rev" style="--d:.04s"><span>01</span><h3>Arquitectura</h3><p>Espacio, uso y materia desde una idea clara.</p></article>
+    <article class="n-pilar rev" style="--d:.09s"><span>02</span><h3>Matemática</h3><p>Geometría y lógica para resolver lo complejo.</p></article>
+    <article class="n-pilar rev" style="--d:.14s"><span>03</span><h3>Programación + IA</h3><p>Herramientas para explorar, comparar y diseñar.</p></article>
+    <article class="n-pilar rev" style="--d:.19s"><span>04</span><h3>BIM + construcción</h3><p>Diseño y ejecución conectados en cada decisión.</p></article>
+  </div>
+</section>
+
+<section class="seccion" id="proyectos" data-pantalla>
+  <div class="seccion__cab rev">
+    <span class="hud">[ 02 / 03 ] Proyectos seleccionados</span>
     <h2>Del pensamiento <em>a la materia</em></h2>
     <p>Diseñamos, probamos y elaboramos piezas y espacios. Cada proyecto encuentra su forma en el material adecuado.</p>
   </div>
@@ -151,7 +166,7 @@
 </section>
 
 <section class="cierre-home" id="contacto" data-pantalla>
-  <span class="hud">[ 02 / 02 ] Contacto</span>
+  <span class="hud">[ 03 / 03 ] Contacto</span>
   <div class="ejes rev"><span>Diseñar</span><i>◆</i><span>Construir</span><i>◆</i><span>Habitar</span></div>
   <h2 class="rev" style="--d:.1s">Hablemos de <em>tu proyecto</em></h2>
   <div class="cierre-acciones rev" style="--d:.2s">
@@ -165,8 +180,9 @@
   </footer>
 </section>
 
-<script src="home.js?v=7" defer></script>
+<script src="home.js?v=10" defer></script>
 <script src="y2k.js?v=4" defer></script>
 <script src="mascota.js?v=20"></script>
+<script src="navegacion-teclado.js?v=1" defer></script>
 </body>
 </html>
