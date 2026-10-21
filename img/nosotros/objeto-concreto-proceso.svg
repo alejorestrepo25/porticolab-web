@@ -1,55 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" role="img" aria-labelledby="title desc">
-  <title id="title">Desmolde de una ménsula arquitectónica en concreto</title>
-  <desc id="desc">Las mitades de un molde flexible se abren para revelar una ménsula de concreto con perfiles y detalles moldeados.</desc>
+  <title id="title">Desmolde de una ménsula escalonada en concreto</title>
+  <desc id="desc">Se vierte concreto en un molde de silicona translúcido, se vibra y cura, y las dos mitades del molde se abren para revelar una ménsula escalonada con textura de áridos.</desc>
   <defs>
-    <clipPath id="pclip"><path d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z"/></clipPath>
-    <linearGradient id="sheen" x2="1"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#777" stroke-opacity=".15"/></pattern>
-    <linearGradient id="cast" x2="1" y2="1"><stop stop-color="#e4e0d8"/><stop offset="1" stop-color="#777a84"/></linearGradient>
-    <linearGradient id="mold" x2="0" y2="1"><stop stop-color="#393942"/><stop offset="1" stop-color="#17171c"/></linearGradient>
+    <pattern id="aridos" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="0" cy="0" r="0.60" fill="rgb(110,110,114)" fill-opacity=".7"/><circle cx="9" cy="25" r="1.04" fill="rgb(139,139,143)" fill-opacity=".7"/><circle cx="18" cy="22" r="1.48" fill="rgb(168,168,172)" fill-opacity=".7"/><circle cx="27" cy="19" r="0.82" fill="rgb(197,197,201)" fill-opacity=".7"/><circle cx="8" cy="16" r="1.26" fill="rgb(136,136,140)" fill-opacity=".7"/><circle cx="17" cy="13" r="0.60" fill="rgb(165,165,169)" fill-opacity=".7"/><circle cx="26" cy="10" r="1.04" fill="rgb(194,194,198)" fill-opacity=".7"/><circle cx="7" cy="7" r="1.48" fill="rgb(133,133,137)" fill-opacity=".7"/><circle cx="16" cy="4" r="0.82" fill="rgb(162,162,166)" fill-opacity=".7"/><circle cx="25" cy="1" r="1.26" fill="rgb(191,191,195)" fill-opacity=".7"/><circle cx="6" cy="26" r="0.60" fill="rgb(130,130,134)" fill-opacity=".7"/><circle cx="15" cy="23" r="1.04" fill="rgb(159,159,163)" fill-opacity=".7"/><circle cx="24" cy="20" r="1.48" fill="rgb(188,188,192)" fill-opacity=".7"/><circle cx="5" cy="17" r="0.82" fill="rgb(127,127,131)" fill-opacity=".7"/><circle cx="14" cy="14" r="1.26" fill="rgb(156,156,160)" fill-opacity=".7"/><circle cx="23" cy="11" r="0.60" fill="rgb(185,185,189)" fill-opacity=".7"/><circle cx="4" cy="8" r="1.04" fill="rgb(124,124,128)" fill-opacity=".7"/><circle cx="13" cy="5" r="1.48" fill="rgb(153,153,157)" fill-opacity=".7"/><circle cx="22" cy="2" r="0.82" fill="rgb(182,182,186)" fill-opacity=".7"/><circle cx="3" cy="27" r="1.26" fill="rgb(121,121,125)" fill-opacity=".7"/><circle cx="12" cy="24" r="0.60" fill="rgb(150,150,154)" fill-opacity=".7"/><circle cx="21" cy="21" r="1.04" fill="rgb(179,179,183)" fill-opacity=".7"/><circle cx="2" cy="18" r="1.48" fill="rgb(118,118,122)" fill-opacity=".7"/><circle cx="11" cy="15" r="0.82" fill="rgb(147,147,151)" fill-opacity=".7"/><circle cx="20" cy="12" r="1.26" fill="rgb(176,176,180)" fill-opacity=".7"/><circle cx="1" cy="9" r="0.60" fill="rgb(115,115,119)" fill-opacity=".7"/></pattern>
+    <radialGradient id="luz" cx=".5" cy=".5" r=".6"><stop stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="brillo" x2="1"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="clipPieza"><path d="M269.8 321.0L321.7 351.0L321.7 335.0L332.1 329.0L332.1 313.0L342.5 307.0L342.5 291.0L352.9 285.0L352.9 269.0L300.9 239.0L290.6 261.0L290.6 277.0L280.2 299.0L269.8 305.0L269.8 321.0Z"/><polygon points="309.6 234.0 361.6 264.0 321.7 287.0 269.8 257.0"/></clipPath>
   </defs>
-  <rect width="640" height="500" fill="#09090c"/><rect width="640" height="500" fill="url(#grid)"/>
-  <path d="M174 396h292m-254 16h216" stroke="#777" stroke-opacity=".5" stroke-width="3"/>
-  <path class="piece" d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z" fill="url(#cast)" stroke="#eeece8" stroke-width="3" stroke-linejoin="round"/>
-  <path class="wet" d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z" fill="#4a4c57" stroke="#8d8f9c" stroke-width="3" stroke-linejoin="round"/>
-  <g clip-path="url(#pclip)"><rect class="brillo" x="205" y="205" width="46" height="180" fill="url(#sheen)"/></g>
-  <path class="piece-detail" pathLength="100" d="M269 335v-31q0-10 10-10h35v-50m20 1v51h42v-43m-84 83h56" fill="none" stroke="#4a4b52" stroke-opacity=".7" stroke-width="4"/>
-    <g class="steps" aria-hidden="true">
+  <rect width="640" height="500" fill="#0a0a0c"/>
+  <rect width="640" height="500" fill="url(#grid)"/>
+  <g transform="translate(0 6)"><g transform="translate(320 330) scale(1.2) translate(-320 -330)">
+  <ellipse cx="342.0" cy="406.0" rx="170" ry="56" fill="#000" fill-opacity=".45"/>
+  <polygon points="133.8 336.5 333.0 451.5 333.0 437.5 133.8 322.5" fill="#7d5733" stroke="#2f1f10" stroke-width="0.8" stroke-linejoin="round"/><polygon points="506.2 351.5 333.0 451.5 333.0 437.5 506.2 337.5" fill="#5f4125" stroke="#2f1f10" stroke-width="0.8" stroke-linejoin="round"/><polygon points="307.0 222.5 506.2 337.5 333.0 437.5 133.8 322.5" fill="#a97a4c" stroke="#2f1f10" stroke-width="0.8" stroke-linejoin="round"/><path d="M298.4 227.5L497.5 342.5M289.7 232.5L488.9 347.5M281.0 237.5L480.2 352.5M272.4 242.5L471.6 357.5M263.7 247.5L462.9 362.5M255.1 252.5L454.2 367.5M246.4 257.5L445.6 372.5M237.7 262.5L436.9 377.5M229.1 267.5L428.3 382.5M220.4 272.5L419.6 387.5M211.8 277.5L410.9 392.5M203.1 282.5L402.3 397.5M194.4 287.5L393.6 402.5M185.8 292.5L384.9 407.5M177.1 297.5L376.3 412.5M168.4 302.5L367.6 417.5M159.8 307.5L359.0 422.5M151.1 312.5L350.3 427.5M142.5 317.5L341.6 432.5" stroke="#3b2713" stroke-opacity=".28" stroke-width=".9" fill="none"/><polygon points="307.0 222.5 506.2 337.5 333.0 437.5 133.8 322.5" fill="url(#luz)"/>
+  <g class="vibra">
+    <g class="moldeA"><polygon points="281.9 308.0 358.1 352.0 358.1 270.0 281.9 226.0" fill="rgba(86,184,204,.34)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/><polygon points="389.3 334.0 358.1 352.0 358.1 270.0 389.3 252.0" fill="rgba(58,142,166,.40)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/><polygon points="313.1 208.0 389.3 252.0 358.1 270.0 281.9 226.0" fill="rgba(122,222,238,.30)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/></g>
+    <g class="piezas">
+      <g class="piezahumeda"><polygon points="269.8 321.0 321.7 351.0 321.7 335.0 269.8 305.0" fill="#464954" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 328.0 321.7 351.0 321.7 335.0 361.6 312.0" fill="#363842" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 282.0 361.6 312.0 321.7 335.0 269.8 305.0" fill="#5b5e69" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="280.2 299.0 332.1 329.0 332.1 313.0 280.2 283.0" fill="#464954" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 312.0 332.1 329.0 332.1 313.0 361.6 296.0" fill="#363842" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 266.0 361.6 296.0 332.1 313.0 280.2 283.0" fill="#5b5e69" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="290.6 277.0 342.5 307.0 342.5 291.0 290.6 261.0" fill="#464954" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 296.0 342.5 307.0 342.5 291.0 361.6 280.0" fill="#363842" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 250.0 361.6 280.0 342.5 291.0 290.6 261.0" fill="#5b5e69" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="300.9 255.0 352.9 285.0 352.9 269.0 300.9 239.0" fill="#464954" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 280.0 352.9 285.0 352.9 269.0 361.6 264.0" fill="#363842" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 234.0 361.6 264.0 352.9 269.0 300.9 239.0" fill="#5b5e69" stroke="#23242a" stroke-width="0.8" stroke-linejoin="round"/></g>
+      <g class="piezaseca"><polygon points="269.8 321.0 321.7 351.0 321.7 335.0 269.8 305.0" fill="#8a8d96" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 328.0 321.7 351.0 321.7 335.0 361.6 312.0" fill="#676a73" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 282.0 361.6 312.0 321.7 335.0 269.8 305.0" fill="#b3b6be" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="269.8 321.0 321.7 351.0 321.7 335.0 269.8 305.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="361.6 328.0 321.7 351.0 321.7 335.0 361.6 312.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round" fill-opacity=".8"/><polygon points="309.6 282.0 361.6 312.0 321.7 335.0 269.8 305.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="280.2 299.0 332.1 329.0 332.1 313.0 280.2 283.0" fill="#8a8d96" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 312.0 332.1 329.0 332.1 313.0 361.6 296.0" fill="#676a73" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 266.0 361.6 296.0 332.1 313.0 280.2 283.0" fill="#b3b6be" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="280.2 299.0 332.1 329.0 332.1 313.0 280.2 283.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="361.6 312.0 332.1 329.0 332.1 313.0 361.6 296.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round" fill-opacity=".8"/><polygon points="309.6 266.0 361.6 296.0 332.1 313.0 280.2 283.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="290.6 277.0 342.5 307.0 342.5 291.0 290.6 261.0" fill="#8a8d96" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 296.0 342.5 307.0 342.5 291.0 361.6 280.0" fill="#676a73" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 250.0 361.6 280.0 342.5 291.0 290.6 261.0" fill="#b3b6be" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="290.6 277.0 342.5 307.0 342.5 291.0 290.6 261.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="361.6 296.0 342.5 307.0 342.5 291.0 361.6 280.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round" fill-opacity=".8"/><polygon points="309.6 250.0 361.6 280.0 342.5 291.0 290.6 261.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="300.9 255.0 352.9 285.0 352.9 269.0 300.9 239.0" fill="#8a8d96" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="361.6 280.0 352.9 285.0 352.9 269.0 361.6 264.0" fill="#676a73" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="309.6 234.0 361.6 264.0 352.9 269.0 300.9 239.0" fill="#b3b6be" stroke="#34363c" stroke-width="0.8" stroke-linejoin="round"/><polygon points="300.9 255.0 352.9 285.0 352.9 269.0 300.9 239.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><polygon points="361.6 280.0 352.9 285.0 352.9 269.0 361.6 264.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round" fill-opacity=".8"/><polygon points="309.6 234.0 361.6 264.0 352.9 269.0 300.9 239.0" fill="url(#aridos)" stroke="none" stroke-width="0" stroke-linejoin="round"/><g clip-path="url(#clipPieza)"><rect class="destello" x="214.0" y="150" width="46" height="240" fill="url(#brillo)" transform="skewX(-14)"/></g></g>
+      <path class="contorno" pathLength="100" d="M269.8 321.0L321.7 351.0L321.7 335.0L332.1 329.0L332.1 313.0L342.5 307.0L342.5 291.0L352.9 285.0L352.9 269.0L300.9 239.0L290.6 261.0L290.6 277.0L280.2 299.0L269.8 305.0L269.8 321.0" fill="none" stroke="#7ee8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g class="moldeB"><polygon points="250.7 326.0 326.9 370.0 326.9 288.0 250.7 244.0" fill="rgba(86,184,204,.34)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/><polygon points="358.1 352.0 326.9 370.0 326.9 288.0 358.1 270.0" fill="rgba(58,142,166,.40)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/><polygon points="281.9 226.0 358.1 270.0 326.9 288.0 250.7 244.0" fill="rgba(122,222,238,.30)" stroke="rgba(170,240,250,.7)" stroke-width="0.8" stroke-linejoin="round"/><path d="M250.7 248.0L250.7 320.0" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/></g>
+  </g>
+  <g class="cubeta"><g transform="translate(320.0 180.0)">
+    <path d="M-24 -26l48 0l-9 40l-30 0z" fill="#4c5160" stroke="#12141a" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M-24 -26l48 0l-1.6 7l-44.8 0z" fill="#6a7184" stroke="#12141a" stroke-width="1"/>
+    <path d="M-17 -14q-12 -16 4 -22" fill="none" stroke="#9aa1b3" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M-12 -8h28" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+    <ellipse cx="0" cy="-26" rx="24" ry="5" fill="#8f939e" stroke="#12141a" stroke-width="1"/>
+  </g></g><path class="chorro" d="M320.0 193.0L320.0 250.0" stroke="#8d909a" stroke-width="7" stroke-linecap="round" stroke-dasharray="6 5"/><path class="chorro" d="M318.4 193.0L318.4 250.0" stroke="#d3d6de" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"/>
+  </g></g>
+  <g class="reloj" transform="translate(540 128)"><circle r="19" fill="#0e0f13" stroke="#2f323b" stroke-width="2"/><circle class="anillo" r="19" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-dasharray="100" pathLength="100" transform="rotate(-90)"/>
+  <path d="M0 -9V0l7 4" stroke="#e8e8ee" stroke-width="1.8" fill="none" stroke-linecap="round"/><text x="0" y="40" text-anchor="middle" fill="#7ee8ff" font-family="monospace" font-size="12" letter-spacing="1.5">CURADO</text></g>
+  <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="16" letter-spacing="2">OBJETO / DESMOLDE EN CONCRETO</text>
+  <text x="475" y="466" fill="#7ee8ff" font-family="monospace" font-size="13" letter-spacing="1.5">MOLDE → PIEZA</text>
+  <g class="steps" aria-hidden="true">
     <rect x="34" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf1" x="34" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
     <rect x="100" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf2" x="100" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
     <rect x="166" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf3" x="166" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
   </g>
-  <g class="mold mold-left" fill="url(#mold)" stroke="#b9a7ff" stroke-width="3" stroke-linejoin="round"><path d="M229 251q-25 17-24 51l4 77q2 18 19 18h38l8-38-2-97q-21-21-43-11z"/><path d="M227 273v101m26-116-2 125" fill="none" stroke="#696873" stroke-width="2"/></g>
-  <g class="mold mold-right" fill="url(#mold)" stroke="#b9a7ff" stroke-width="3" stroke-linejoin="round"><path d="M426 251q25 17 24 51l-4 77q-2 18-19 18h-38l-8-38 2-97q21-21 43-11z"/><path d="M428 273v101m-26-116 2 125" fill="none" stroke="#696873" stroke-width="2"/></g>
-  <path class="arrow arrow-left" pathLength="100" d="m218 222-28 0m0 0 9-8m-9 8 9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="arrow arrow-right" pathLength="100" d="m438 222 28 0m0 0-9-8m9 8-9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="16" letter-spacing="2">OBJETO / DESMOLDE EN CONCRETO</text>
-  <text x="475" y="466" fill="#7ee8ff" font-family="monospace" font-size="13" letter-spacing="1.5">MOLDE → PIEZA</text>
   <style>
     .en-pausa *{animation-play-state:paused!important}
-    .piece-detail,.arrow{stroke-dasharray:100}
-    @media(prefers-reduced-motion:no-preference){
-      .wet{animation:wet 12s cubic-bezier(.4,0,.2,1) infinite}
-      .piece{animation:cured 12s cubic-bezier(.4,0,.2,1) infinite}
-      .mold-left{animation:open-left 12s cubic-bezier(.76,0,.24,1) infinite}
-      .mold-right{animation:open-right 12s cubic-bezier(.76,0,.24,1) infinite}
-      .piece-detail{animation:d-det 12s cubic-bezier(.4,0,.2,1) infinite}
-      .arrow{animation:arrow 12s cubic-bezier(.4,0,.2,1) infinite}
-      .brillo{animation:brillo 12s cubic-bezier(.4,0,.2,1) infinite}
-      .sf1{animation:sf1 12s linear infinite}.sf2{animation:sf2 12s linear infinite}.sf3{animation:sf3 12s linear infinite}
-    }
-    /* vaciado: el concreto húmedo sube dentro de la forma; curado: se aclara; desmolde: las mitades se abren; acabado: brillo y detalles */
-    @keyframes wet{0%,2%{clip-path:inset(100% 0 0 0);opacity:1}18%,46%{clip-path:inset(0 0 0 0);opacity:1}62%,90%{clip-path:inset(0 0 0 0);opacity:0}97%,100%{clip-path:inset(0 0 0 0);opacity:0}}
-    @keyframes cured{0%,30%{opacity:0}62%,90%{opacity:1}97%,100%{opacity:0}}
-    @keyframes open-left{0%,32%{transform:translateX(0)}52%,86%{transform:translateX(-46px)}96%,100%{transform:translateX(0)}}
-    @keyframes open-right{0%,32%{transform:translateX(0)}52%,86%{transform:translateX(46px)}96%,100%{transform:translateX(0)}}
-    @keyframes d-det{0%,60%{stroke-dashoffset:100;opacity:.7}74%,90%{stroke-dashoffset:0;opacity:.7}97%,100%{stroke-dashoffset:0;opacity:0}}
-    @keyframes arrow{0%,36%{stroke-dashoffset:100;opacity:1}50%,76%{stroke-dashoffset:0;opacity:1}86%,100%{stroke-dashoffset:0;opacity:0}}
-    @keyframes brillo{0%,62%{transform:translateX(0);opacity:0}64%{opacity:1}78%{transform:translateX(220px);opacity:1}80%,100%{transform:translateX(220px);opacity:0}}
     .sf{transform-box:fill-box;transform-origin:0 50%}
-    @keyframes sf1{0%,2%{transform:scaleX(0);opacity:1}18%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
-    @keyframes sf2{0%,30%{transform:scaleX(0);opacity:1}52%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
-    @keyframes sf3{0%,56%{transform:scaleX(0);opacity:1}78%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
-    @media(prefers-reduced-motion:reduce){.wet{opacity:0}.piece,.piece-detail,.arrow,.sf{opacity:1;transform:none;stroke-dashoffset:0}.mold-left{transform:translateX(-46px)}.mold-right{transform:translateX(46px)}.brillo{opacity:0}}
+    .piezaseca,.piezahumeda,.contorno,.cubeta,.chorro,.reloj,.moldeA,.moldeB,.destello{opacity:1}
+    .contorno{stroke-dasharray:100}
+    @media(prefers-reduced-motion:no-preference){
+      .moldeA{animation:aA 9s cubic-bezier(.76,0,.24,1) infinite}
+      .moldeB{animation:aB 9s cubic-bezier(.76,0,.24,1) infinite}
+      .vibra{animation:vibra 9s linear infinite}
+      .piezahumeda{transform-box:fill-box;animation:verter 9s cubic-bezier(.4,0,.2,1) infinite}
+      .piezaseca{animation:curar 9s ease-in-out infinite}
+      .cubeta{animation:cubeta 9s cubic-bezier(.16,1,.3,1) infinite}
+      .chorro{animation:chorro 9s linear infinite}
+      .reloj{animation:reloj 9s ease-in-out infinite}
+      .anillo{animation:anillo 9s linear infinite}
+      .contorno{animation:contorno 9s cubic-bezier(.4,0,.2,1) infinite}
+      .destello{animation:destello 9s ease-in-out infinite}
+      .sf1{animation:sf1 9s linear infinite}.sf2{animation:sf2 9s linear infinite}.sf3{animation:sf3 9s linear infinite}
+    }
+    @keyframes aA{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(57.2px,-33.0px)}96%,100%{transform:translate(0,0)}}
+    @keyframes aB{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(-57.2px,33.0px)}96%,100%{transform:translate(0,0)}}
+    @keyframes vibra{0%,18%{transform:translateX(0)}19%{transform:translateX(1.6px)}20%{transform:translateX(-1.6px)}21%{transform:translateX(1.4px)}22%{transform:translateX(-1.4px)}23%{transform:translateX(1px)}24%,100%{transform:translateX(0)}}
+    @keyframes verter{0%,7%{clip-path:inset(100% 0 0 0);opacity:1}21%,40%{clip-path:inset(0 0 0 0);opacity:1}48%,90%{clip-path:inset(0 0 0 0);opacity:0}97%,100%{clip-path:inset(100% 0 0 0);opacity:0}}
+    @keyframes curar{0%,30%{opacity:0}48%,90%{opacity:1}97%,100%{opacity:0}}
+    @keyframes cubeta{0%,3%{opacity:0;transform:translate(120px,-30px) rotate(0)}8%{opacity:1;transform:translate(0,0) rotate(0)}11%,19%{opacity:1;transform:translate(0,0) rotate(-34deg)}24%{opacity:1;transform:translate(0,0) rotate(0)}31%,100%{opacity:0;transform:translate(120px,-30px) rotate(0)}}
+    @keyframes chorro{0%,10%{opacity:0;stroke-dashoffset:0}11%{opacity:1}12%,19%{opacity:1;stroke-dashoffset:-22}20%,100%{opacity:0}}
+    @keyframes reloj{0%,22%{opacity:0}28%,56%{opacity:1}64%,100%{opacity:0}}
+    @keyframes anillo{0%,24%{stroke-dashoffset:100}48%,100%{stroke-dashoffset:0}}
+    @keyframes contorno{0%,58%{stroke-dashoffset:100;opacity:1}72%,88%{stroke-dashoffset:0;opacity:1}95%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes destello{0%,60%{opacity:0;transform:translateX(0)}64%{opacity:1}78%{opacity:1;transform:translateX(150px)}82%,100%{opacity:0;transform:translateX(150px)}}
+    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}24%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf2{0%,22%{transform:scaleX(0);opacity:1}48%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf3{0%,46%{transform:scaleX(0);opacity:1}70%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.piezahumeda{opacity:0}.piezaseca,.contorno,.sf{opacity:1;stroke-dashoffset:0;transform:none}.cubeta,.chorro,.reloj,.destello{opacity:0}.moldeA{transform:translate(57.2px,-33.0px)}.moldeB{transform:translate(-57.2px,33.0px)}}
   </style>
 </svg>
