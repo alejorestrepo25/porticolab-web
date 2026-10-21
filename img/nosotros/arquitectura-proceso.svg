@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" role="img" aria-labelledby="title desc">
+  <title id="title">Montaje de un pabellón modular</title>
+  <desc id="desc">Una secuencia axonométrica ilustra el montaje de una estructura genérica: apoyos, columnas, vigas y cubierta ligera.</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#777" stroke-opacity=".15"/></pattern>
+    <linearGradient id="edge" x2="1" y2="1"><stop stop-color="#d6d1e8"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient>
+    <linearGradient id="roof" x2="1" y2="1"><stop stop-color="#b9a7ff" stop-opacity=".28"/><stop offset="1" stop-color="#7ee8ff" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <rect width="640" height="500" fill="#0a0a0c"/><rect width="640" height="500" fill="url(#grid)"/>
+  <path d="m156 386 164-95 164 95-164 95z" fill="none" stroke="#777" stroke-opacity=".45" stroke-width="2"/>
+  <g class="foundation" fill="#17171c" stroke="#777" stroke-width="2"><path d="m194 376 18-10 18 10-18 11z"/><path d="m284 428 18-10 18 10-18 11z"/><path d="m374 376 18-10 18 10-18 11z"/><path d="m464 428 18-10 18 10-18 11z"/></g>
+  <g fill="none" stroke="url(#edge)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <path class="columns" d="M212 370V232m90 190V284m90 82V232m90 190V284"/>
+    <path class="beams" d="m212 232 90 52 90-52 90 52m-270 0 90 52 90-52 90 52"/>
+    <path class="braces" d="m212 370 90-86 90 82 90-86m-270-48 90 104 90-104 90 104" stroke-width="3" opacity=".8"/>
+  </g>
+  <path class="roof" d="m178 224 134-78 184 106-134 78z" fill="url(#roof)" stroke="url(#edge)" stroke-width="4" stroke-linejoin="round"/>
+  <path class="roof-ribs" d="m212 205 184 106m-150-126 184 106m-150-126 184 106m-210 20 134-78m-106 94 134-78m-106 94 134-78" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
+  <g class="nodes" fill="#0a0a0c" stroke="#7ee8ff" stroke-width="3"><circle cx="212" cy="232" r="6"/><circle cx="302" cy="284" r="6"/><circle cx="392" cy="232" r="6"/><circle cx="482" cy="284" r="6"/></g>
+  <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="13" letter-spacing="2">ARQUITECTURA / MONTAJE MODULAR</text>
+  <text x="464" y="466" fill="#7ee8ff" font-family="monospace" font-size="10" letter-spacing="1.5">BASE → CUBIERTA</text>
+  <style>
+    .en-pausa *{animation-play-state:paused!important}
+    @media(prefers-reduced-motion:no-preference){.columns,.beams,.braces,.roof,.roof-ribs{animation:assemble 12s cubic-bezier(.76,0,.24,1) infinite}.columns{animation-delay:.4s}.beams{animation-delay:1.3s}.braces{animation-delay:2.2s}.roof{animation-delay:3s}.roof-ribs{animation-delay:3.4s}.nodes{animation:node-in 12s ease-in-out infinite}}
+    @keyframes assemble{0%,5%{opacity:.12;transform:translateY(18px)}28%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.12;transform:translateY(18px)}}
+    @keyframes node-in{0%,24%{opacity:.1}36%,78%{opacity:1}90%,100%{opacity:.1}}
+    @media(prefers-reduced-motion:reduce){.columns,.beams,.braces,.roof,.roof-ribs,.nodes{opacity:1;transform:none}}
+  </style>
+</svg>

@@ -1,11 +1,11 @@
 /* Lenguaje compartido de portada: una misma lámina editorial, tres visuales únicos. */
 body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){
-  --hero-gap:clamp(28px,5vw,76px);--hero-radius:22px;
-  width:min(1440px,92%);
+  --hero-gap:clamp(24px,3.5vw,56px);--hero-radius:22px;
+  width:min(1440px,94%);
   min-height:min(720px,calc(100svh - var(--hh,66px) - 48px));
   margin:clamp(22px,4vh,42px) auto;
-  padding:clamp(28px,5vw,76px);
-  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:var(--hero-gap);
+  padding:clamp(24px,3.2vw,52px);
+  display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:center;gap:var(--hero-gap);
   position:relative;overflow:hidden;border:1px solid #292930;border-radius:var(--hero-radius);
   background:radial-gradient(ellipse at 78% 15%,rgba(185,167,255,.09),transparent 38%),linear-gradient(145deg,#0a0a0d,#050506 62%);
   box-shadow:0 30px 90px rgba(0,0,0,.22);
@@ -42,12 +42,13 @@ body.y2k .n-hero__link span{color:#7ee8ff;font-size:17px;transition:transform .2
 body.y2k .n-hero .hero-explora{display:none;}
 body.y2k .pieza__grafica{aspect-ratio:1.28/1;overflow:hidden;background:#0a0a0d;}
 body.y2k .pieza__grafica img{display:block;width:100%;height:100%;padding:0;object-fit:cover;background:#0a0a0d;border-radius:0;}
+body.y2k .pieza__grafica object{display:block;width:100%;height:100%;border:0;background:#0a0a0d;}
 body.y2k .pieza figcaption{border-top:1px solid #1e1e23;}
 @media(max-width:900px){
  body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){width:calc(100% - 28px);min-height:0;height:auto;margin:18px auto 26px;padding:22px;grid-template-columns:1fr;gap:20px;border-radius:18px;}
  body.home.y2k .y2k-hero{min-height:0;height:auto;}
  body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(32px,9vw,52px);}
- body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{height:auto;aspect-ratio:1.12/1;min-height:0;max-height:none;border-radius:14px;}
+ body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{height:auto;aspect-ratio:1.55/1;min-height:0;max-height:none;border-radius:14px;}
  body.y2k .y2k-hero__vis{width:100%;}
  body.y2k .srv-wrap{padding:0 14px 72px;}
  body.y2k .srv-wrap .hero{width:100%;margin:16px auto 26px;padding:22px;}
@@ -59,7 +60,7 @@ body.y2k .pieza figcaption{border-top:1px solid #1e1e23;}
 }
 @media(max-width:560px){
  body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){padding:18px;gap:16px;}
- body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{aspect-ratio:1.08/1;}
+ body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{aspect-ratio:1.42/1;}
  body.y2k .srv-wrap .hero-txt .hero-acciones{display:grid;grid-template-columns:1fr;}
  body.y2k .srv-wrap .hero-txt .hero-acciones .btn{width:100%;}
  body.y2k .srv-hero__visual figcaption{font-size:8px;}
@@ -71,3 +72,8 @@ body.y2k .pieza figcaption{border-top:1px solid #1e1e23;}
 @keyframes pl-light-sweep{0%,72%,100%{transform:translateX(-45%)}86%{transform:translateX(45%)}}
 @keyframes pl-orbit{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){body.y2k .n-hero__link span{transition:none}}
+
+/* En móviles, la foto conserva una presencia amplia sin empujar el texto fuera de la portada. */
+@media(max-width:900px){
+ body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){grid-template-columns:minmax(0,1fr);}
+}

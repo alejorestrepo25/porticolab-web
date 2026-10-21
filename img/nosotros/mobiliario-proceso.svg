@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" role="img" aria-labelledby="title desc">
+  <title id="title">Ensamblaje de una silla de madera moldeada</title>
+  <desc id="desc">Una silla lounge de inspiración moderna se forma al unir respaldo y asiento curvos, soportes y base metálica.</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#777" stroke-opacity=".15"/></pattern>
+    <linearGradient id="wood" x2="1" y2="1"><stop stop-color="#d6d1e8"/><stop offset="1" stop-color="#b9a7ff"/></linearGradient>
+    <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#7ee8ff"/><stop offset="1" stop-color="#777a84"/></linearGradient>
+  </defs>
+  <rect width="640" height="500" fill="#09090c"/><rect width="640" height="500" fill="url(#grid)"/>
+  <path d="M150 406h340" stroke="#777" stroke-opacity=".42" stroke-width="2"/>
+  <g class="base" fill="none" stroke="url(#metal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="m320 353-87 59m87-59 87 59m-87-59V420m-87-8h174"/><circle cx="320" cy="353" r="8" fill="#0a0a0c"/></g>
+  <path class="seat" d="M242 278q78-30 156 0l-13 42q-65 23-130 0z" fill="#19191f" stroke="url(#wood)" stroke-width="4"/>
+  <path class="back" d="M266 256q-28-67 8-132 46-21 92 0 36 65 8 132-54 19-108 0z" fill="#19191f" stroke="url(#wood)" stroke-width="5"/>
+  <path class="back-detail" d="M287 141q-20 55 0 105m58-105q20 55 0 105" fill="none" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
+  <g class="supports" fill="none" stroke="url(#metal)" stroke-width="6" stroke-linecap="round"><path d="m276 289 15 65m73-65-15 65"/><path d="m242 300 78 25 78-25" stroke-width="3" opacity=".8"/></g>
+  <g class="fasteners" fill="#7ee8ff"><circle cx="275" cy="269" r="4"/><circle cx="365" cy="269" r="4"/><circle cx="282" cy="310" r="4"/><circle cx="358" cy="310" r="4"/></g>
+  <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="13" letter-spacing="2">MOBILIARIO / ENSAMBLE DE PIEZAS</text>
+  <text x="467" y="466" fill="#7ee8ff" font-family="monospace" font-size="10" letter-spacing="1.5">FORMA → APOYO</text>
+  <style>
+    .en-pausa *{animation-play-state:paused!important}
+    @media(prefers-reduced-motion:no-preference){.base,.seat,.back,.back-detail,.supports,.fasteners{transform-box:fill-box;transform-origin:center;animation-duration:12s;animation-timing-function:cubic-bezier(.76,0,.24,1);animation-iteration-count:infinite}.base{animation-name:base-in}.seat{animation-name:seat-in;animation-delay:.8s}.back{animation-name:back-in;animation-delay:1.4s}.back-detail{animation-name:back-in;animation-delay:1.7s}.supports{animation-name:support-in;animation-delay:2.3s}.fasteners{animation-name:fast-in;animation-delay:2.8s}}
+    @keyframes base-in{0%,6%{opacity:.1;transform:translateY(22px)}25%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(22px)}}
+    @keyframes seat-in{0%,15%{opacity:.1;transform:translateY(18px)}34%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(18px)}}
+    @keyframes back-in{0%,25%{opacity:.1;transform:translateY(-24px)}45%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(-24px)}}
+    @keyframes support-in{0%,40%{opacity:.1;transform:scale(.9)}58%,78%{opacity:1;transform:scale(1)}90%,100%{opacity:.1;transform:scale(.9)}}
+    @keyframes fast-in{0%,52%{opacity:.1}65%,78%{opacity:1}90%,100%{opacity:.1}}
+    @media(prefers-reduced-motion:reduce){.base,.seat,.back,.back-detail,.supports,.fasteners{opacity:1;transform:none}}
+  </style>
+</svg>

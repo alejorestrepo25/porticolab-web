@@ -139,9 +139,10 @@ body.nosotros .ejes i { color: #b9a7ff; font-style: normal; }
   body.nosotros .n-pilar p { font-size: 11px; line-height: 1.45; }
   body.nosotros #piezas { padding-inline: 20px; }
   body.nosotros .piezas { width: 100%; grid-template-columns: 1fr; gap: 9px; }
-  body.nosotros .pieza { display: grid; grid-template-columns: 82px minmax(0,1fr); align-items: center; gap: 0 14px; }
-  body.nosotros .pieza img { grid-row: 1; width: 82px; height: 82px; aspect-ratio: 1; padding: 5px; border-radius: 12px; }
-  body.nosotros .pieza figcaption { justify-content: space-between; padding: 12px 14px 12px 0; }
+  body.nosotros .pieza { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); align-items: center; gap: 0 14px; }
+  body.nosotros .pieza__grafica { grid-row: 1; aspect-ratio: 1.28 / 1; }
+  body.nosotros .pieza figcaption { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; justify-content: center; padding: 12px 12px 12px 0; }
+  body.nosotros .pieza figcaption b { text-align: left; }
   body.nosotros .ver-todo-wrap { width: 100%; margin-top: 14px; }
 }
 
