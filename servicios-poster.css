@@ -63,9 +63,9 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
 
 /* ===== Celular y tablet: cada vista ocupa la pantalla y cada deslizamiento cae exactamente en una (ajuste nativo obligatorio) ===== */
 @media (max-width: 900px), (pointer: coarse) {
-  html { scroll-snap-type: y mandatory; }
+  html { scroll-snap-type: y proximity; }
   html:has(.cotizador.visible), html:has(.confirmacion.visible) { scroll-snap-type: none; }
-  body.srvposter .srv-wrap > section[data-pantalla] { scroll-snap-align: start; scroll-snap-stop: always; }
+  body.srvposter .srv-wrap > section[data-pantalla] { scroll-snap-align: start; scroll-snap-stop: normal; }
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 0; }
