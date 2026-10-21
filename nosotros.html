@@ -99,6 +99,7 @@
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
+  <link rel="stylesheet" href="motion-graphics.css?v=1">
 </head>
 
 <body class="y2k home nosotros">
@@ -128,13 +129,18 @@
 </div>
 
 <section class="n-hero" id="inicio" data-pantalla aria-label="Inicio">
-  <img class="n-hero__img" src="img/nosotros/taller-panoramica.jpg" alt="El taller de Pórtico Lab: dos torres en elaboración sobre la mesa de trabajo, rodeadas de herramientas" fetchpriority="high">
-  <div class="n-hero__velo"></div>
   <div class="n-hero__txt">
     <span class="hud"><b>[ TALLER ]</b> Medellín // 2026</span>
     <h1>Ideas complejas.<br>Espacios que toman forma.</h1>
     <p>Observamos relaciones, probamos posibilidades y convertimos decisiones de diseño en soluciones construibles.</p>
+    <a class="n-hero__link" href="#enfoque">Conoce nuestro enfoque <span aria-hidden="true">↘</span></a>
   </div>
+  <figure class="n-hero__visual">
+    <img class="n-hero__img" src="img/nosotros/taller-panoramica.jpg" alt="El taller de Pórtico Lab: piezas y modelos en elaboración sobre la mesa de trabajo" fetchpriority="high" width="1600" height="1000">
+    <span class="n-hero__visual-tag">TALLER / MEDELLÍN</span>
+    <span class="n-hero__visual-index">PL—01</span>
+    <svg class="n-hero__reticula" viewBox="0 0 600 600" aria-hidden="true"><path d="M0 150h600M0 300h600M0 450h600M150 0v600M300 0v600M450 0v600"/><circle cx="300" cy="300" r="175"/><path d="m120 420 180-240 180 240z"/></svg>
+  </figure>
   <a class="hero-explora" href="#enfoque">Conoce nuestro enfoque <b>↓</b></a>
 </section>
 
@@ -160,9 +166,9 @@
     <p>Diseñamos, probamos y elaboramos piezas y espacios. Cada proyecto encuentra su forma en el material adecuado.</p>
   </div>
   <div class="piezas">
-    <figure class="pieza rev" style="--d:.05s"><img src="img/nosotros/pieza-maqueta-estructural.jpg?v=5" alt="Atalaya: modelo arquitectónico de una torre mirador" loading="lazy"><figcaption><span>01 / Arquitectura</span><b>Atalaya</b></figcaption></figure>
-    <figure class="pieza rev" style="--d:.12s"><img src="img/nosotros/pieza-mobiliario-exposicion.jpg?v=4" alt="Tángara: mobiliario de exhibición diseñado para presentar un proyecto" loading="lazy"><figcaption><span>02 / Mobiliario</span><b>Tángara</b></figcaption></figure>
-    <figure class="pieza rev" style="--d:.19s"><img src="img/nosotros/pieza-dorica.jpg?v=3" alt="Dórica: colección de macetas de concreto pigmentado" loading="lazy"><figcaption><span>03 / Objeto</span><b>Dórica</b></figcaption></figure>
+    <figure class="pieza rev" style="--d:.05s"><div class="pieza__grafica"><img src="img/nosotros/atalaya-diagrama.svg" alt="Diagrama animado de la estructura irregular de Atalaya" loading="lazy" width="640" height="500"></div><figcaption><span>01 / Arquitectura</span><b>Atalaya</b></figcaption></figure>
+    <figure class="pieza rev" style="--d:.12s"><div class="pieza__grafica"><img src="img/nosotros/tangara-diagrama.svg" alt="Diagrama animado del sistema modular de Tángara" loading="lazy" width="640" height="500"></div><figcaption><span>02 / Mobiliario</span><b>Tángara</b></figcaption></figure>
+    <figure class="pieza rev" style="--d:.19s"><div class="pieza__grafica"><img src="img/nosotros/dorica-diagrama.svg" alt="Diagrama animado de la geometría de la colección Dórica" loading="lazy" width="640" height="500"></div><figcaption><span>03 / Objeto</span><b>Dórica</b></figcaption></figure>
   </div>
   <div class="ver-todo-wrap"><a class="ver-todo" href="laboratorio.html">Ver el laboratorio →</a></div>
 </section>

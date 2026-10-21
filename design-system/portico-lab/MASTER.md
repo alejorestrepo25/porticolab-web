@@ -17,3 +17,8 @@
 
 ## Aplicación de UI/UX Pro Max
 Se adaptan sus pautas verificadas de consistencia, navegación móvil, controles táctiles, contraste, foco y movimiento reducido. Su sugerencia automática de estilo claro gris/naranja y Archivo/Space Grotesk se descartó porque contradice decisiones de marca explícitas.
+
+## Concordancia entre portadas
+- Inicio, Servicios y Nosotros comparten una portada tipo lámina dividida: texto a la izquierda, pieza visual enmarcada a la derecha, márgenes/radios/jerarquías equivalentes y adaptación apilada en móvil.
+- Cada pestaña tiene un recurso visual propio: lámpara estática en Inicio; diagrama BIM animado en Servicios; fotografía del taller en Nosotros. No reutilizar fotos de proyectos entre pestañas; en Nosotros, las fichas seleccionadas pueden usar diagramas vectoriales propios.
+- El movimiento es técnico y discreto, solo decorativo y desactivado con `prefers-reduced-motion`.

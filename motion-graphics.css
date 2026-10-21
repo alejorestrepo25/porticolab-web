@@ -1,0 +1,73 @@
+/* Lenguaje compartido de portada: una misma lámina editorial, tres visuales únicos. */
+body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){
+  --hero-gap:clamp(28px,5vw,76px);--hero-radius:22px;
+  width:min(1440px,92%);
+  min-height:min(720px,calc(100svh - var(--hh,66px) - 48px));
+  margin:clamp(22px,4vh,42px) auto;
+  padding:clamp(28px,5vw,76px);
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:var(--hero-gap);
+  position:relative;overflow:hidden;border:1px solid #292930;border-radius:var(--hero-radius);
+  background:radial-gradient(ellipse at 78% 15%,rgba(185,167,255,.09),transparent 38%),linear-gradient(145deg,#0a0a0d,#050506 62%);
+  box-shadow:0 30px 90px rgba(0,0,0,.22);
+}
+body.home.y2k .y2k-hero{height:auto;min-height:min(720px,calc(100svh - var(--hh,66px) - 48px));padding-block:clamp(28px,5vw,76px);}
+body.y2k :is(.y2k-hero__txt,.srv-wrap .hero-txt,.n-hero__txt){position:relative;z-index:2;max-width:650px;padding:0;}
+body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(32px,4.4vw,60px);line-height:1.04;letter-spacing:-.045em;text-wrap:balance;}
+body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p){max-width:46ch;color:#c2c2ca;font-size:clamp(15px,1.25vw,18px);line-height:1.75;}
+body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{
+  min-width:0;width:100%;height:clamp(340px,61vh,570px);margin:0;position:relative;overflow:hidden;isolation:isolate;
+  border:1px solid #35343c;border-radius:18px;background:#0b0b0e;
+}
+body.y2k .y2k-hero__vis::before,body.y2k .srv-hero__visual::before,body.y2k .n-hero__visual::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border:1px solid rgba(255,255,255,.06);border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 28%);}
+body.home .y2k-hero__vis img{width:100%;height:100%;object-fit:cover;object-position:center;}
+body.home .y2k-hero__vis .hud{z-index:2;}
+body.home .y2k-hero__vis .destello{z-index:2;}
+body.y2k .srv-wrap{width:100%;max-width:none;margin:0;padding:0 clamp(16px,4vw,56px) 100px;}
+body.y2k .srv-wrap .hero{background:#07070a;align-items:center;}
+body.y2k .srv-wrap .hero-txt{max-width:none;}
+body.y2k .srv-wrap .hero h1{font-size:clamp(30px,3.7vw,50px);}
+body.y2k .n-hero h1{font-size:clamp(32px,4vw,52px);}
+body.y2k .srv-hero__visual{display:flex;align-items:center;justify-content:center;}
+body.y2k .srv-hero__visual img{display:block;width:100%;height:100%;object-fit:contain;}
+body.y2k .srv-hero__visual figcaption{position:absolute;inset:auto 16px 14px;display:flex;justify-content:space-between;gap:10px;color:#d0d0d6;font:10px/1.4 var(--mono);letter-spacing:.12em;}
+body.y2k .n-hero__visual{height:clamp(340px,61vh,570px);}
+body.y2k .n-hero__visual .n-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;}
+body.y2k .n-hero__visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 48%,rgba(0,0,0,.36));}
+body.y2k .n-hero__visual-tag,body.y2k .n-hero__visual-index{position:absolute;z-index:2;bottom:16px;color:#fff;font:10px/1.2 var(--mono);letter-spacing:.14em;}
+body.y2k .n-hero__visual-tag{left:18px;}body.y2k .n-hero__visual-index{right:18px;color:#bdbdc7;}
+body.y2k .n-hero__reticula{position:absolute;inset:0;width:100%;height:100%;z-index:1;fill:none;stroke:#d4d2e0;stroke-width:1;opacity:.22;mask-image:linear-gradient(135deg,transparent 14%,#000 62%,transparent 98%);}
+body.y2k .n-hero__reticula circle{stroke-dasharray:4 9;transform-origin:center;}
+body.y2k .n-hero__link{display:inline-flex;align-items:center;gap:16px;margin-top:25px;color:#f4f4f7;text-decoration:none;font:11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;}
+body.y2k .n-hero__link span{color:#7ee8ff;font-size:17px;transition:transform .25s ease;}body.y2k .n-hero__link:hover span{transform:translate(3px,3px);}
+body.y2k .n-hero .hero-explora{display:none;}
+body.y2k .pieza__grafica{aspect-ratio:1.28/1;overflow:hidden;background:#0a0a0d;}
+body.y2k .pieza__grafica img{display:block;width:100%;height:100%;padding:0;object-fit:cover;background:#0a0a0d;border-radius:0;}
+body.y2k .pieza figcaption{border-top:1px solid #1e1e23;}
+@media(max-width:900px){
+ body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){width:calc(100% - 28px);min-height:0;height:auto;margin:18px auto 26px;padding:22px;grid-template-columns:1fr;gap:20px;border-radius:18px;}
+ body.home.y2k .y2k-hero{min-height:0;height:auto;}
+ body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(32px,9vw,52px);}
+ body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{height:auto;aspect-ratio:1.12/1;min-height:0;max-height:none;border-radius:14px;}
+ body.y2k .y2k-hero__vis{width:100%;}
+ body.y2k .srv-wrap{padding:0 14px 72px;}
+ body.y2k .srv-wrap .hero{width:100%;margin:16px auto 26px;padding:22px;}
+ body.y2k .n-hero__txt{padding:0;}
+ body.y2k .n-hero__visual .n-hero__img{object-position:center 54%;}
+ body.y2k .n-hero{scroll-margin-top:var(--hh,100px);}
+ body.y2k .pieza__grafica{aspect-ratio:1.45/1;}
+ body.y2k .n-hero .hero-explora{display:none;}
+}
+@media(max-width:560px){
+ body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){padding:18px;gap:16px;}
+ body.y2k .y2k-hero__vis,body.y2k .srv-hero__visual,body.y2k .n-hero__visual{aspect-ratio:1.08/1;}
+ body.y2k .srv-wrap .hero-txt .hero-acciones{display:grid;grid-template-columns:1fr;}
+ body.y2k .srv-wrap .hero-txt .hero-acciones .btn{width:100%;}
+ body.y2k .srv-hero__visual figcaption{font-size:8px;}
+}
+@media(prefers-reduced-motion:no-preference){
+ body.y2k .y2k-hero__vis::after{content:"";position:absolute;inset:-30% -50%;z-index:1;pointer-events:none;background:linear-gradient(108deg,transparent 43%,rgba(255,255,255,.11) 49%,rgba(126,232,255,.08) 51%,transparent 57%);transform:translateX(-40%);animation:pl-light-sweep 12s ease-in-out infinite;}
+ body.y2k .n-hero__reticula circle{animation:pl-orbit 40s linear infinite;}
+}
+@keyframes pl-light-sweep{0%,72%,100%{transform:translateX(-45%)}86%{transform:translateX(45%)}}
+@keyframes pl-orbit{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){body.y2k .n-hero__link span{transition:none}}
