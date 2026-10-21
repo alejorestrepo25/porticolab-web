@@ -141,10 +141,9 @@
     i = Math.max(0, Math.min(lista.length - 1, i));
     const destino = Math.max(0, Math.min(topDe(lista[i]), document.documentElement.scrollHeight - innerHeight));
     bloqueado = true;
-    scrollTo({ top: destino, behavior: 'smooth' });
-    setTimeout(() => { bloqueado = false; }, 760);
+    scrollTo({ top: destino, behavior: reducir ? 'auto' : 'smooth' });
+    setTimeout(() => { bloqueado = false; }, reducir ? 90 : 760);
   }
-  if (!reducir) {
     addEventListener('wheel', (e) => {
       if (!modoPantallas.matches || e.ctrlKey || Math.abs(e.deltaY) < 6) return;
       e.preventDefault();
@@ -163,7 +162,6 @@
       else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(lista, 0); }
       else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(lista, lista.length - 1); }
     });
-  }
 
   // Ajuste automático: ninguna pantalla se sale por abajo, sin importar el tamaño de la ventana ni del encabezado
   const contenedores = () => [...document.querySelectorAll('.y2k-hero, .seccion, .cierre-home, .archivo-poster')].filter((c) => !c.parentElement.classList.contains('archivo-poster'));

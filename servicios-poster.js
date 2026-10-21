@@ -64,10 +64,9 @@
     i = Math.max(0, Math.min(lista.length - 1, i));
     const destino = Math.max(0, Math.min(topDe(lista[i]), document.documentElement.scrollHeight - innerHeight));
     bloqueado = true;
-    scrollTo({ top: destino, behavior: 'smooth' });
-    setTimeout(() => { bloqueado = false; }, 760);
+    scrollTo({ top: destino, behavior: reducir ? 'auto' : 'smooth' });
+    setTimeout(() => { bloqueado = false; }, reducir ? 90 : 760);
   }
-  if (!reducir) {
     addEventListener('wheel', (e) => {
       if (!modo.matches || e.ctrlKey || Math.abs(e.deltaY) < 6 || formularioAbierto()) return;
       e.preventDefault();
@@ -86,7 +85,6 @@
       else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(lista, 0); }
       else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(lista, lista.length - 1); }
     });
-  }
 
   // Ajuste automático: si el contenido de una pantalla no cabe, se reduce hasta que quepa
   function ajustar() {

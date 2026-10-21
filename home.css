@@ -221,6 +221,7 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
 @media (max-width: 900px), (pointer: coarse) {
   html.js { scroll-snap-type: y mandatory; }
   body.home .y2k-hero, body.home .seccion, body.home .cierre-home, body.home .archivo-poster { scroll-snap-align: start; scroll-snap-stop: always; }
+  body.nosotros .n-hero { scroll-snap-align: start; scroll-snap-stop: always; }
   body.home .archivo-poster > .seccion { scroll-snap-align: none; scroll-snap-stop: always; }
 }
 @media (max-width: 900px) {
@@ -231,7 +232,6 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
   body.home .archivo-poster > .seccion { min-height: 0; padding-block: 0 12px; }
   body.home .pie-home { margin-top: 24px; }
 }
-@media (prefers-reduced-motion: reduce) { html.js { scroll-snap-type: none; } }
 
 /* Celular: tarjetas compactas y ajuste automático para que cada vista quepa completa en la pantalla */
 @media (max-width: 900px) {

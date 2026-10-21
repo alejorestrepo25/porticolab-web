@@ -79,7 +79,6 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
 body.srvposter .accion-pantalla { align-self: flex-start; margin-top: clamp(14px, 2.4vh, 24px); }
 body.srvposter #preguntas .accion-pantalla { align-self: center; }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
 
 /* Celular: tarjetas compactas y ajuste automático para que cada vista quepa completa en la pantalla */
 @media (max-width: 900px) {
