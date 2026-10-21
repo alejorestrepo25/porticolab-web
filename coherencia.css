@@ -1,0 +1,165 @@
+/* Sistema común de interfaz Pórtico Lab.
+   Retícula técnica, contraste oscuro y acentos cromados; adaptable a cada página. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+body.y2k {
+  --pl-fondo: #000;
+  --pl-superficie: #09090b;
+  --pl-superficie-2: #111114;
+  --pl-borde: #2a2a30;
+  --pl-texto: #f5f5f7;
+  --pl-secundario: #b5b5bd;
+  --pl-acento: #7ee8ff;
+  --pl-radio: 16px;
+  --pl-margen: clamp(16px, 4vw, 56px);
+  color: var(--pl-texto);
+  background: var(--pl-fondo);
+}
+
+body.y2k :where(h1, h2, h3) {
+  font-family: var(--display, 'Unbounded', 'Montserrat', sans-serif);
+}
+
+body.y2k header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  min-height: 66px;
+  height: auto;
+  padding: 8px var(--pl-margen);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: rgba(0, 0, 0, .94);
+  border-bottom: 1px solid var(--pl-borde);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+body.y2k header .logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--pl-texto);
+  font: 700 20px/1 var(--display, 'Unbounded', sans-serif);
+  letter-spacing: .035em;
+  text-decoration: none;
+}
+
+body.y2k header .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(8px, 1.5vw, 24px);
+  min-width: 0;
+}
+
+body.y2k header .nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 3px;
+  flex: 0 0 auto;
+  color: var(--pl-secundario);
+  font: 400 12px/1.2 var(--mono, 'Space Mono', monospace);
+  letter-spacing: .09em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+body.y2k header .nav a::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 5px;
+  height: 1px;
+  width: auto;
+  background: var(--cromo, linear-gradient(90deg, #e8e8ee, #b9a7ff, #7ee8ff));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .22s ease;
+}
+
+body.y2k header .nav a:hover,
+body.y2k header .nav a[aria-current="page"],
+body.y2k header .nav a.activo { color: var(--pl-texto); }
+body.y2k header .nav a:hover::after,
+body.y2k header .nav a[aria-current="page"]::after,
+body.y2k header .nav a.activo::after { transform: scaleX(1); }
+
+body.y2k :where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--pl-acento);
+  outline-offset: 3px;
+}
+
+body.y2k :where(.btn-cromo, .btn-fantasma, .btn, .btn-primario, .btn-secundario) {
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+body.y2k :where(.gallery-item, .frente, .srv-card, .paso-card, .pieza) {
+  border-radius: var(--pl-radio);
+}
+
+body.y2k .gallery-item {
+  border: 1px solid var(--pl-borde);
+  background: var(--pl-superficie);
+  overflow: hidden;
+  transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+body.y2k .gallery-item:hover { border-color: #74747e; }
+body.y2k .gallery-item img { border-radius: 0; }
+body.y2k .gallery-item h3 { line-height: 1.35; }
+
+body.y2k :where(.srv-card, .paso-card, .pieza) {
+  border-color: var(--pl-borde);
+  background-color: var(--pl-superficie);
+}
+
+@media (max-width: 768px) {
+  body.y2k header {
+    min-height: 0;
+    padding: 8px 16px 7px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 3px;
+  }
+  body.y2k header .logo {
+    min-height: 34px;
+    font-size: 18px;
+  }
+  body.y2k header .nav {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    padding: 0 10px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 12px;
+  }
+  body.y2k header .nav::-webkit-scrollbar { display: none; }
+  body.y2k header .nav a {
+    min-height: 44px;
+    padding-inline: 5px;
+    font-size: clamp(9px, 2.55vw, 10px);
+    letter-spacing: .025em;
+  }
+  body.y2k header .nav a::after { inset-inline: 10px; inset-block-end: 3px; }
+  body.y2k :where(.gallery-item, .frente, .srv-card, .paso-card, .pieza) { border-radius: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.y2k :where(header .nav a, .gallery-item) { transition: none; }
+}
