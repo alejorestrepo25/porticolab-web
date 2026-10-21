@@ -4,11 +4,20 @@
   const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const conMouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  // Altura real del encabezado: cada sección mide exactamente la pantalla menos el encabezado
-  const medir = () => { const h = document.querySelector("header"); if (h) document.documentElement.style.setProperty("--hh", h.offsetHeight + "px"); };
+  // Medimos navegación y banner para que la portada móvil nunca quede debajo de ellos.
+  const medir = () => {
+    const root = document.documentElement;
+    const h = document.querySelector("header");
+    const banner = document.querySelector(".wip-banner");
+    if (h) root.style.setProperty("--hh", h.offsetHeight + "px");
+    root.style.setProperty("--bh", banner && getComputedStyle(banner).display !== "none" ? banner.offsetHeight + "px" : "0px");
+  };
   medir();
   addEventListener("resize", medir);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+  new MutationObserver(medir).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  const banner = document.querySelector(".wip-banner");
+  if (banner && "ResizeObserver" in window) new ResizeObserver(medir).observe(banner);
 
   // Aparecer al entrar en pantalla
   const aparecer = [...document.querySelectorAll('.rev')];
@@ -73,6 +82,33 @@
       vis.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
       vis.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
     });
+  }
+
+  // En la portada la mascota cede el espacio visual; vuelve cuando empieza la exploración.
+  const portada = document.querySelector('.y2k-hero');
+  const etapasHero = [...document.querySelectorAll('[data-hero-step]')];
+  if (portada) {
+    const revisarMascota = () => {
+      const r = portada.getBoundingClientRect();
+      document.body.classList.toggle('hero-visible', r.bottom > 0 && r.top < innerHeight);
+    };
+    addEventListener('scroll', revisarMascota, { passive: true });
+    addEventListener('resize', revisarMascota);
+    revisarMascota();
+  }
+  if (etapasHero.length > 1 && !reducir) {
+    let etapa = 0;
+    let reloj = 0;
+    const avanzarEtapa = () => {
+      if (document.hidden || !portada || portada.getBoundingClientRect().bottom <= 0 || portada.getBoundingClientRect().top >= innerHeight) return;
+      etapasHero[etapa].classList.remove('is-activa');
+      etapa = (etapa + 1) % etapasHero.length;
+      etapasHero[etapa].classList.add('is-activa');
+    };
+    const iniciar = () => { if (!reloj) reloj = setInterval(avanzarEtapa, 2400); };
+    const pausar = () => { clearInterval(reloj); reloj = 0; };
+    document.addEventListener('visibilitychange', () => document.hidden ? pausar() : iniciar());
+    iniciar();
   }
 
   // Materiales: se pueden tocar, y al principio van cambiando solos hasta que el visitante elige

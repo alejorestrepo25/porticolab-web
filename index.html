@@ -6,13 +6,13 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PORTICO LAB</title>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="y2k.css?v=5">
-  <link rel="stylesheet" href="home.css?v=22">
+  <link rel="stylesheet" href="home.css?v=24">
   <script>document.documentElement.classList.add('js')</script>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
@@ -52,17 +52,29 @@
   <div class="y2k-hero__txt">
     <span class="hud"><b>[ SYS.OK ]</b> Pórtico Lab // Medellín // 2026</span>
     <h1>Hacemos <em>lo imposible</em></h1>
-    <p>Diseño y producción digital. De la idea a la pieza.</p>
+    <p>Coordinamos el proyecto en BIM y llevamos sus decisiones hasta la ejecución.</p>
     <div class="y2k-hero__acciones">
       <a class="btn-cromo" href="servicios.html">Ver servicios →</a>
       <a class="btn-fantasma" href="#proyectos">Ver proyectos</a>
     </div>
   </div>
   <div class="y2k-hero__vis" data-y2k-hero>
-    <img src="img/hero-lampara.jpg" alt="Lámpara curva de concreto diseñada por Pórtico Lab" width="900" height="900" fetchpriority="high">
-    <span class="hud hud--tl">FIG. 01 // Lámpara curva</span>
-    <span class="hud hud--br">Microconcreto<br>// 2026</span>
-    <span class="destello" aria-hidden="true"></span>
+    <div class="hero-foto">
+      <img src="img/hero-lampara.jpg" alt="Lámpara curva de microconcreto diseñada por Pórtico Lab" width="900" height="900" fetchpriority="high">
+      <span class="hud hud--tl">Lámpara curva · Microconcreto</span>
+      <span class="destello" aria-hidden="true"></span>
+    </div>
+    <ol class="hero-secuencia" aria-label="Del modelo a la ejecución">
+      <li class="hero-etapa is-activa" data-hero-step>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 8 8-4 8 4v9l-8 4-8-4zM4 8l8 4 8-4M12 12v9"/></svg><span>Modelo</span>
+      </li>
+      <li class="hero-etapa" data-hero-step>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 8 8-4 8 4v9l-8 4-8-4zM4 8l8 4 8-4M12 12v9M7 9l5 2.5L17 9"/><circle cx="7" cy="9" r="1"/><circle cx="17" cy="9" r="1"/></svg><span>Coordinación</span>
+      </li>
+      <li class="hero-etapa" data-hero-step>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V8l7-4 7 4v12M5 8h14M9 20v-6h6v6M3 20h18"/></svg><span>Ejecución</span>
+      </li>
+    </ol>
   </div>
   <a class="hero-explora" href="#frentes">Explora todo <b>↓</b></a>
 </section>
@@ -218,7 +230,7 @@
   });
 </script>
 
-<script src="home.js?v=20" defer></script>
+<script src="home.js?v=22" defer></script>
 <script src="y2k.js?v=4" defer></script>
 <script src="mascota.js?v=20"></script>
 <script src="navegacion-teclado.js?v=1" defer></script>

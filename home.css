@@ -260,7 +260,7 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
     bottom: calc(10px + env(safe-area-inset-bottom));
     transform: none;
     flex-direction: row;
-    gap: 3px;
+    gap: 2px;
     width: auto;
     max-width: none;
     padding: 5px;
@@ -280,16 +280,23 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
     flex: 0 0 auto;
     align-items: center;
     gap: 7px;
-    width: auto; height: 36px;
-    padding: 0 11px;
+    width: 44px; min-width: 44px; height: 44px; min-height: 44px;
+    justify-content: center;
+    padding: 0 9px;
     border: 0;
     border-radius: 999px;
     color: #aaa;
     text-decoration: none;
   }
+  body.home .rail a.activo { width: auto; }
   body.home .rail a::before { content: ''; width: 6px; height: 6px; flex: 0 0 6px; border: 1px solid #888; border-radius: 50%; }
   body.home .rail a span {
-    position: static;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
     transform: none;
     padding: 0;
     border: 0;
@@ -297,9 +304,10 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
     color: inherit;
     font-size: 9px;
     letter-spacing: 1px;
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 0;
+    pointer-events: none;
   }
+  body.home .rail a.activo span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; opacity: 1; }
   body.home .rail a.activo { transform: none; background: #1a1821; color: #fff; }
   body.home .rail a.activo::before { background: var(--cromo); border-color: transparent; }
   body.home .rail a:focus-visible { outline: 2px solid #7ee8ff; outline-offset: 1px; }
@@ -309,12 +317,14 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
 /* Celular: portada completa en una pantalla, sin zoom. La altura es exacta: pantalla menos encabezado, marquesina y franja de navegación inferior,
    para que ni la marquesina ni la guía táctil se tapen y no quede un vacío negro. */
 @media (max-width: 900px) {
-  body.home .y2k-hero {
+  body.home.y2k .y2k-hero {
     display: flex; flex-direction: column; justify-content: center; gap: 14px;
     box-sizing: border-box;
-    min-height: calc(100svh - var(--hh, 60px) - 44px - 76px - env(safe-area-inset-bottom));   /* en pantallas muy bajas crece con su contenido en lugar de pisar la marquesina */
+    height: calc(100svh - var(--hh, 60px) - var(--bh, 0px) - 20px - 44px - 76px - env(safe-area-inset-bottom));
+    min-height: calc(100svh - var(--hh, 60px) - var(--bh, 0px) - 20px - 44px - 76px - env(safe-area-inset-bottom));
+    margin: 10px auto;
     padding: 16px 16px 8px;
-    scroll-margin-top: 300px;   /* el encaje de la portada es siempre el tope de la página, sin depender de la altura del encabezado */
+    scroll-margin-top: 0;
   }
   body.home .y2k-hero > * { zoom: 1; }
   body.home .y2k-hero__txt { flex: 0 0 auto; max-width: none; }
@@ -323,4 +333,91 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
   body.home .y2k-hero__acciones { margin-top: 18px; gap: 10px; }
   body.home .y2k-hero__vis { flex: 1 1 0; min-height: 150px; max-height: 360px; width: 100%; aspect-ratio: auto; }
   body.home .marquesina { height: 44px; box-sizing: border-box; padding: 0; display: flex; align-items: center; }
+}
+
+/* Hero: la fotografía ocupa el marco; el flujo BIM queda integrado en la misma lámina. */
+body.home.y2k .y2k-hero { grid-template-columns: minmax(0,.94fr) minmax(0,1.06fr); }
+body.home.y2k .y2k-hero__vis {
+  display: grid;
+  grid-template-rows: minmax(0,1fr) 62px;
+  height: clamp(420px,62vh,560px);
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  border-radius: 18px;
+}
+body.home.y2k .hero-foto { position: relative; min-height: 0; overflow: hidden; background: #0b0b0e; }
+body.home.y2k .hero-foto img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+body.home.y2k .hero-foto .hud--tl { position: absolute; top: 16px; left: 16px; z-index: 2; padding: 6px 8px; border-radius: 4px; background: rgba(8,8,11,.76); color: #fff; font-size: 11px; letter-spacing: .04em; }
+body.home.y2k .hero-secuencia {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 14px;
+  list-style: none;
+  border-top: 1px solid #292930;
+  background: #08080b;
+}
+body.home.y2k .hero-etapa {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #888891;
+  font: 11px/1.2 var(--mono);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  transition: color .3s cubic-bezier(.2,0,0,1);
+}
+body.home.y2k .hero-etapa svg { width: 21px; height: 21px; flex: 0 0 21px; fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s cubic-bezier(.2,0,0,1); }
+body.home.y2k .hero-etapa.is-activa { color: #7ee8ff; }
+body.home.y2k .hero-etapa.is-activa svg { transform: scale(1.08); }
+body.home.y2k .hero-foto .destello { z-index: 1; }
+
+/* El acceso flotante no invade la lámina mientras la portada está a la vista. */
+body.home.hero-visible #mascota-wrapper { visibility: hidden; opacity: 0; pointer-events: none; }
+body.home #mascota-wrapper { transition: opacity .24s cubic-bezier(.2,0,0,1), visibility 0s linear .24s; }
+
+@media (max-width: 900px) {
+  body.home.y2k .y2k-hero__vis { flex: 1 1 0; height: clamp(360px,54svh,500px); min-height: 250px; max-height: none; grid-template-rows: minmax(0,1fr) 62px; }
+}
+@media (max-width: 560px) {
+  body.home.y2k .y2k-hero__vis { height: clamp(250px,32svh,290px); grid-template-rows: minmax(0,1fr) 58px; border-radius: 14px; }
+  body.home.y2k .hero-secuencia { gap: 2px; padding: 7px 8px; }
+  body.home.y2k .hero-etapa { gap: 5px; font-size: 9px; letter-spacing: 0; }
+  body.home.y2k .hero-etapa svg { width: 18px; height: 18px; flex-basis: 18px; }
+  body.home.y2k .hero-foto .hud--tl { top: 12px; left: 12px; padding: 5px 7px; font-size: 10px; }
+  body.home .y2k-hero__acciones { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  body.home .y2k-hero__acciones .btn-cromo, body.home .y2k-hero__acciones .btn-fantasma { justify-content: center; min-width: 0; padding: 14px 6px; font-size: 9px; letter-spacing: .8px; white-space: nowrap; }
+}
+/* En pantallas bajas dejamos que el visitante recorra el contenido sin quedar atrapado en un salto obligatorio. */
+@media (max-width: 900px) and (max-height: 760px) {
+  html.js { scroll-snap-type: y proximity; }
+  body.home.y2k .y2k-hero { height: auto; min-height: 0; justify-content: flex-start; padding-top: 12px; padding-bottom: 12px; }
+  body.home.y2k .y2k-hero__vis { height: clamp(220px,30svh,270px); }
+}
+@media (max-width: 900px) {
+  html.js body.home.y2k #inicio.y2k-hero {
+    height: calc(100svh - var(--hh, 60px) - var(--bh, 0px) - 20px - 44px - 76px - env(safe-area-inset-bottom));
+    min-height: calc(100svh - var(--hh, 60px) - var(--bh, 0px) - 20px - 44px - 76px - env(safe-area-inset-bottom));
+    margin: 10px auto;
+    scroll-margin-top: 0;
+  }
+}
+@media (max-width: 900px) and (max-height: 760px) {
+  html.js body.home.y2k #inicio.y2k-hero { height: auto; min-height: 0; }
 }

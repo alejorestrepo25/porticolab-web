@@ -86,7 +86,7 @@ header {
 header .nav a:focus-visible, header .logo:focus-visible { outline: 2px solid #7ee8ff; outline-offset: 5px; border-radius: 2px; }
 @media (max-width: 768px) {
   header .nav { row-gap: 2px; }
-  header .nav a { min-height: 36px; display: inline-flex; align-items: center; padding: 0 3px; }
+  header .nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 3px; }
 }
 
 /* link base */
@@ -270,9 +270,17 @@ main {
   }
 
   .nav {
-    gap: 16px;
+    gap: 12px;
     width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
   }
+
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; white-space: nowrap; }
 
   .nav a {
     font-size: 11px;
