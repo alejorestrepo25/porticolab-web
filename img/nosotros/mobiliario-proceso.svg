@@ -28,8 +28,8 @@
     <path d="M320.0 284.0V114.0"/><path d="M363.3 225.0l-26 -44"/></g>
   <g class="destornillador"><path d="M0 0l0 -26" stroke="#c8ced8" stroke-width="2.4" stroke-linecap="round"/><rect x="-5.2" y="-58" width="10.4" height="32" rx="4.6" fill="#e85d2c" stroke="#6b2410" stroke-width="1"/><rect x="-5.2" y="-48" width="10.4" height="4" fill="#fff" fill-opacity=".28"/></g>
   </g>
-  <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="16" letter-spacing="2">MOBILIARIO / ENSAMBLE DE PIEZAS</text>
-  <text x="467" y="466" fill="#7ee8ff" font-family="monospace" font-size="13" letter-spacing="1.5">FORMA → APOYO</text>
+  <text x="34" y="48" fill="#aaa" font-family="Montserrat, sans-serif" font-size="16" letter-spacing="2">MOBILIARIO / ENSAMBLE DE PIEZAS</text>
+  <text x="467" y="466" fill="#7ee8ff" font-family="Montserrat, sans-serif" font-size="13" letter-spacing="1.5">FORMA → APOYO</text>
   <g class="steps" aria-hidden="true">
     <rect x="34" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf1" x="34" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
     <rect x="100" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf2" x="100" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
