@@ -1,87 +1,129 @@
-/* Movimiento de Servicios y Nosotros — arquetipo "Premium" (skill motion-design).
-   Curvas suaves y sin rebote; entradas de 350–900 ms con desaceleración; tres capas: principal (entrada),
-   secundaria (insignias, números, subtítulos que llegan después) y ambiente (flotación lenta).
-   Todo vive bajo prefers-reduced-motion: no-preference y los estados ocultos solo existen si motion.js cargó (html.mov-ok). */
+/* Movimiento de Servicios y Nosotros — arquetipo "Premium" (skill motion-design), versión 2: más presencia.
+   Curvas sin rebote; entradas de 650–1200 ms con desaceleración; tres capas: principal (entrada), secundaria
+   (insignias, números, subtítulos, líneas que llegan después) y ambiente (flotación, brillo y deriva lentas).
+   Todo vive bajo prefers-reduced-motion: no-preference. Los estados ocultos solo existen si motion.js cargó (html.mov-ok). */
 
 :root {
-  --mov-ease: cubic-bezier(.4, 0, .2, 1);      /* en pantalla */
-  --mov-in: cubic-bezier(.05, .7, .1, 1);      /* entradas: arrancan rápido y aterrizan suave */
-  --mov-q: 180ms;                              /* micro-respuesta */
-  --mov-s: 450ms;                              /* estándar */
-  --mov-l: 800ms;                              /* revelación */
+  --mov-ease: cubic-bezier(.4, 0, .2, 1);
+  --mov-in: cubic-bezier(.05, .7, .1, 1);
+  --mov-q: 180ms;
+  --mov-s: 650ms;
+  --mov-l: 1100ms;
 }
 
-@keyframes mov-sube { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
-@keyframes mov-asienta { from { opacity: .55; scale: 1.09; } to { opacity: 1; scale: 1; } }
-@keyframes mov-deriva { from { scale: 1; translate: 0 0; } to { scale: 1.045; translate: -1.2% -.8%; } }
-@keyframes mov-velo { from { opacity: 0; } to { opacity: 1; } }
-@keyframes mov-flota { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+@keyframes mov-sube { from { opacity: 0; translate: 0 30px; } to { opacity: 1; translate: 0 0; } }
+@keyframes mov-cortina { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mov-asienta { from { opacity: .35; scale: 1.2; } to { opacity: 1; scale: 1; } }
+@keyframes mov-deriva { from { scale: 1; translate: 0 0; } to { scale: 1.075; translate: -1.6% -1.1%; } }
+@keyframes mov-flota { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+@keyframes mov-brillo { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes mov-pulso { 0% { box-shadow: 0 0 0 0 rgba(126, 232, 255, .35); } 70%, 100% { box-shadow: 0 0 0 16px rgba(126, 232, 255, 0); } }
 
 @media (prefers-reduced-motion: no-preference) {
 
-  /* ---------- Servicios: portada (al cargar) ---------- */
-  body.srvposter .hero-txt > * { animation: mov-sube 560ms var(--mov-in) both; }
-  body.srvposter .hero-txt > :nth-child(1) { animation-delay: 60ms; }
-  body.srvposter .hero-txt > :nth-child(2) { animation-delay: 140ms; }
-  body.srvposter .hero-txt > :nth-child(3) { animation-delay: 220ms; }
-  body.srvposter .hero-txt > :nth-child(4) { animation-delay: 300ms; }
+  /* ============ SERVICIOS ============ */
 
-  /* ---------- Servicios: tarjetas que entran al llegar a la pantalla ---------- */
-  html.mov-ok body.srvposter .paso-card:not(.visto),
-  html.mov-ok body.srvposter .srv-card:not(.visto) { opacity: 0; translate: 0 22px; }
+  /* portada: el texto sube escalonado y la visual se abre como una cortina con la imagen asentándose */
+  body.srvposter .hero-txt > * { animation: mov-sube 800ms var(--mov-in) both; }
+  body.srvposter .hero-txt > :nth-child(1) { animation-delay: 80ms; }
+  body.srvposter .hero-txt > :nth-child(2) { animation-delay: 180ms; }
+  body.srvposter .hero-txt > :nth-child(3) { animation-delay: 280ms; }
+  body.srvposter .hero-txt > :nth-child(4) { animation-delay: 380ms; }
+  body.srvposter .srv-hero__visual { animation: mov-cortina 1300ms var(--mov-in) 200ms both; }
+  body.srvposter .srv-hero__visual img { animation: mov-asienta 1700ms var(--mov-in) 200ms both; }
+  body.srvposter .srv-hero__visual figcaption { animation: mov-sube 800ms var(--mov-in) 1000ms both; }
+  /* ambiente: brillo lento en el degradado del titular */
+  body.srvposter .hero h1 em, body.srvposter h2.seccion em {
+    background-size: 220% 100%; animation: mov-brillo 9s ease-in-out infinite alternate;
+  }
+
+  /* pasos y tarjetas: entran al llegar a su pantalla */
+  html.mov-ok body.srvposter .paso-card:not(.visto) { opacity: 0; translate: 0 44px; scale: .97; }
+  html.mov-ok body.srvposter .srv-card:not(.visto) { opacity: 0; translate: 0 56px; scale: .965; }
   html.mov-ok body.srvposter .paso-card {
-    transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms);
+    transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 110ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 110ms), scale var(--mov-s) var(--mov-in) calc(var(--i, 0) * 110ms),
+      border-color .25s ease, transform .2s ease-out;
   }
   html.mov-ok body.srvposter .srv-card {
-    transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms),
-      border-color .2s ease, transform .2s ease;
+    transition: opacity 800ms var(--mov-in) calc(var(--i, 0) * 160ms), translate 800ms var(--mov-in) calc(var(--i, 0) * 160ms), scale 800ms var(--mov-in) calc(var(--i, 0) * 160ms),
+      border-color .2s ease, transform .2s ease-out;
   }
-  /* secundaria: el número de cada paso llega un instante después */
-  html.mov-ok body.srvposter .paso-card:not(.visto) .n { opacity: 0; translate: -8px 0; }
-  html.mov-ok body.srvposter .paso-card .n { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms + 140ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms + 140ms); }
+  /* secundaria: el número de cada paso */
+  html.mov-ok body.srvposter .paso-card:not(.visto) .n { opacity: 0; translate: -16px 0; }
+  html.mov-ok body.srvposter .paso-card .n { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 110ms + 220ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 110ms + 220ms); }
 
-  /* ---------- Servicios: ilustraciones que se construyen de la base hacia arriba ---------- */
+  /* ilustraciones: se construyen de la base hacia arriba */
   html.mov-ok body.srvposter .srv-card:not(.visto) .srv-img svg { clip-path: inset(100% 0 0 0); }
   html.mov-ok body.srvposter .srv-card .srv-img svg {
     clip-path: inset(0 0 0 0);
-    transition: clip-path 900ms var(--mov-in) calc(var(--i, 0) * 120ms + 160ms), scale var(--mov-s) var(--mov-ease);
+    transition: clip-path 1300ms var(--mov-in) calc(var(--i, 0) * 160ms + 260ms), scale .45s var(--mov-ease);
   }
-  /* secundaria: la insignia aparece cuando la ilustración ya va a la mitad */
-  html.mov-ok body.srvposter .srv-card:not(.visto) .badge { opacity: 0; translate: 0 -6px; }
-  html.mov-ok body.srvposter .srv-card .badge { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms + 480ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms + 480ms); }
-  /* barras de costo del modelo BIM: se dibujan de izquierda a derecha, una tras otra */
+  html.mov-ok body.srvposter .srv-card:not(.visto) .badge { opacity: 0; translate: 0 -10px; }
+  html.mov-ok body.srvposter .srv-card .badge { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 160ms + 700ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 160ms + 700ms); }
+  /* barras de costo del modelo BIM (si la tarjeta las trae) */
   html.mov-ok body.srvposter .mov-barra { transform-box: fill-box; transform-origin: 0 50%; }
   html.mov-ok body.srvposter .srv-card:not(.visto) .mov-barra { transform: scaleX(0); }
-  html.mov-ok body.srvposter .srv-card .mov-barra { transition: transform 520ms var(--mov-in) calc(var(--i, 0) * 120ms + 640ms + var(--b, 0) * 60ms); }
-  /* ambiente: flotación casi imperceptible, solo cuando la tarjeta ya es visible */
-  body.srvposter .srv-card.visto .srv-img svg { animation: mov-flota 7s ease-in-out 1.6s infinite; }
-  /* respuesta al puntero (<250 ms) */
-  body.srvposter .srv-card:hover .srv-img svg { scale: 1.03; }
+  html.mov-ok body.srvposter .srv-card .mov-barra { transition: transform 700ms var(--mov-in) calc(var(--i, 0) * 160ms + 900ms + var(--b, 0) * 70ms); }
+  /* ambiente: flotación visible pero tranquila, solo cuando la tarjeta ya llegó */
+  body.srvposter .srv-card.visto .srv-img svg { animation: mov-flota 6s ease-in-out 2s infinite; }
+  body.srvposter .srv-card:hover .srv-img svg { scale: 1.045; }
 
-  /* ---------- Servicios: preguntas y botones ---------- */
-  body.srvposter .faq details[open] > p { animation: mov-sube 340ms var(--mov-in) both; }
+  /* inclinación 3D suave al pasar el puntero (las variables las pone motion.js) */
+  body.srvposter .srv-card:hover, body.srvposter .paso-card:hover {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  }
+
+  /* preguntas, cierre y botones */
+  body.srvposter .faq details[open] > p { animation: mov-sube 420ms var(--mov-in) both; }
+  body.srvposter .cierre .btn-primario { animation: mov-pulso 3.2s ease-out 1.5s infinite; }
   body.srvposter .btn { transition: background .2s ease, color .2s ease, transform var(--mov-q) var(--mov-ease); }
-  body.srvposter .btn:active { transform: scale(.98); }
+  body.srvposter .btn:hover { transform: translateY(-2px); }
+  body.srvposter .btn:active { transform: scale(.97); }
 
-  /* ---------- Nosotros: portada con revelación dramática y deriva lenta ---------- */
-  body.nosotros .n-hero__img { animation: mov-asienta 1600ms var(--mov-in) both, mov-deriva 30s ease-in-out 1.6s infinite alternate; }
-  body.nosotros .n-hero__velo { animation: mov-velo 1100ms var(--mov-ease) both; }
-  body.nosotros .n-hero__txt > * { animation: mov-sube 640ms var(--mov-in) both; }
-  body.nosotros .n-hero__txt > :nth-child(1) { animation-delay: 380ms; }
-  body.nosotros .n-hero__txt > :nth-child(2) { animation-delay: 470ms; }
-  body.nosotros .n-hero__txt > :nth-child(3) { animation-delay: 560ms; }
-  body.nosotros .n-hero__txt > :nth-child(4) { animation-delay: 650ms; }
+  /* ============ NOSOTROS ============ */
 
-  /* ---------- Nosotros: pilares ---------- */
-  html.mov-ok body.nosotros .n-pilar:not(.visto) span { opacity: 0; translate: -10px 0; }
-  html.mov-ok body.nosotros .n-pilar span { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 180ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 180ms), color var(--mov-q) var(--mov-ease); }
+  /* portada: texto escalonado, visual en cortina, imagen que se asienta y luego deriva muy despacio */
+  body.nosotros .n-hero__txt > * { animation: mov-sube 800ms var(--mov-in) both; }
+  body.nosotros .n-hero__txt > :nth-child(1) { animation-delay: 80ms; }
+  body.nosotros .n-hero__txt > :nth-child(2) { animation-delay: 180ms; }
+  body.nosotros .n-hero__txt > :nth-child(3) { animation-delay: 280ms; }
+  body.nosotros .n-hero__txt > :nth-child(4) { animation-delay: 380ms; }
+  body.nosotros .n-hero__visual { animation: mov-cortina 1300ms var(--mov-in) 200ms both; }
+  body.nosotros .n-hero__img { animation: mov-asienta 1800ms var(--mov-in) 200ms both, mov-deriva 20s ease-in-out 2s infinite alternate; }
+  body.nosotros .n-hero__visual-tag, body.nosotros .n-hero__visual-index { animation: mov-sube 700ms var(--mov-in) 1100ms both; }
+  body.nosotros .seccion__cab h2 em { background-size: 220% 100%; animation: mov-brillo 9s ease-in-out infinite alternate; }
+  body.nosotros .n-hero__link span { animation: mov-flota 2.4s ease-in-out infinite; }
+
+  /* pilares: una línea cromada se dibuja arriba y luego llegan número, título y texto */
+  body.nosotros .n-pilar { position: relative; }
+  body.nosotros .n-pilar::before {
+    content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; transform-origin: 0 50%;
+    background: linear-gradient(90deg, #e8e8ee, #b9a7ff 55%, #7ee8ff);
+  }
+  html.mov-ok body.nosotros .n-pilar:not(.visto)::before { transform: scaleX(0); }
+  html.mov-ok body.nosotros .n-pilar::before { transition: transform 1000ms var(--mov-in) calc(var(--d, 0s) + 120ms); }
+  html.mov-ok body.nosotros .n-pilar:not(.visto) > span { opacity: 0; translate: -14px 0; }
+  html.mov-ok body.nosotros .n-pilar > span { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 260ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 260ms); }
+  html.mov-ok body.nosotros .n-pilar:not(.visto) h3 { opacity: 0; translate: 0 18px; }
+  html.mov-ok body.nosotros .n-pilar h3 { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 340ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 340ms); }
   html.mov-ok body.nosotros .n-pilar:not(.visto) p { opacity: 0; }
-  html.mov-ok body.nosotros .n-pilar p { transition: opacity var(--mov-l) var(--mov-ease) calc(var(--d, 0s) + 260ms); }
+  html.mov-ok body.nosotros .n-pilar p { transition: opacity var(--mov-l) var(--mov-ease) calc(var(--d, 0s) + 480ms); }
+  body.nosotros .n-pilar:hover::before { height: 3px; }
 
-  /* ---------- Nosotros: proyectos — la foto se asienta dentro de su marco ---------- */
-  html.mov-ok body.nosotros .pieza:not(.visto) img { scale: 1.1; }
-  html.mov-ok body.nosotros .pieza img { transition: scale 1000ms var(--mov-in) calc(var(--d, 0s) + 80ms), transform .5s cubic-bezier(.2,.7,.2,1), border-color .25s; }
-  html.mov-ok body.nosotros .pieza:not(.visto) figcaption { opacity: 0; translate: 0 10px; }
-  html.mov-ok body.nosotros .pieza figcaption { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 300ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 300ms); }
-  body.nosotros .pieza.visto:hover img { scale: 1.035; transition-duration: .45s, .5s, .25s; transition-delay: 0s; }
+  /* proyectos: cada secuencia se revela de abajo hacia arriba y su pie llega después */
+  html.mov-ok body.nosotros .pieza:not(.visto) .pieza__grafica { clip-path: inset(100% 0 0 0); }
+  html.mov-ok body.nosotros .pieza .pieza__grafica { clip-path: inset(0 0 0 0); transition: clip-path 1200ms var(--mov-in) calc(var(--d, 0s) + 160ms); }
+  html.mov-ok body.nosotros .pieza:not(.visto) figcaption { opacity: 0; translate: 0 14px; }
+  html.mov-ok body.nosotros .pieza figcaption { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 600ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 600ms); }
+  body.nosotros .pieza:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px); }
+
+  /* contacto: los ejes llegan uno a uno */
+  html.mov-ok body.nosotros .ejes:not(.visto) > * { opacity: 0; translate: 0 18px; }
+  html.mov-ok body.nosotros .ejes > * { transition: opacity var(--mov-s) var(--mov-in), translate var(--mov-s) var(--mov-in); }
+  html.mov-ok body.nosotros .ejes > :nth-child(2) { transition-delay: 90ms; }
+  html.mov-ok body.nosotros .ejes > :nth-child(3) { transition-delay: 180ms; }
+  html.mov-ok body.nosotros .ejes > :nth-child(4) { transition-delay: 270ms; }
+  html.mov-ok body.nosotros .ejes > :nth-child(5) { transition-delay: 360ms; }
+  body.nosotros .ver-todo { transition: transform var(--mov-q) var(--mov-ease), border-color .2s; }
+  body.nosotros .ver-todo:hover { transform: translateX(4px); }
 }
