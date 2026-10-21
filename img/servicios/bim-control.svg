@@ -1,102 +1,127 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-labelledby="title desc">
-  <title id="title">Edificio BIM despiezado por niveles</title>
-  <desc id="desc">Axonometría explotada de un edificio de cuatro niveles: losas, columnas, núcleo y cubierta separados verticalmente, con datos de geometría, costo y cronograma coordinados en BIM.</desc>
+  <title id="title">Modelo BIM coordinado de un edificio complejo</title>
+  <desc id="desc">Vista axonométrica de un edificio abierto para mostrar distribución interior, atrio, escaleras, fachada acristalada y redes coordinadas de climatización, electricidad y datos junto a un panel de control BIM.</desc>
   <defs>
     <pattern id="grid-b" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#8c8c9c" stroke-opacity=".15"/></pattern>
     <linearGradient id="beam-b" x2="1" y2="1"><stop stop-color="#dce0ee"/><stop offset=".48" stop-color="#9d8aff"/><stop offset="1" stop-color="#66e4fa"/></linearGradient>
-    <linearGradient id="slab-b" x2=".9" y2="1"><stop stop-color="#24232d"/><stop offset="1" stop-color="#12131a"/></linearGradient>
+    <linearGradient id="wall-b" x2="1" y2="1"><stop stop-color="#d9dbe0" stop-opacity=".9"/><stop offset="1" stop-color="#777b86" stop-opacity=".82"/></linearGradient>
+    <linearGradient id="glass-b" x2="0" y2="1"><stop stop-color="#b8e5f0" stop-opacity=".48"/><stop offset="1" stop-color="#536a79" stop-opacity=".24"/></linearGradient>
+    <filter id="soft-b"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
   <rect width="900" height="760" fill="#08080b"/><rect width="900" height="760" fill="url(#grid-b)"/>
-  <text x="62" y="70" fill="#bbb" font-family="monospace" font-size="15" letter-spacing="2">PÓRTICO LAB / COORDINACIÓN BIM</text>
+  <text x="38" y="47" fill="#bbb" font-family="monospace" font-size="12" letter-spacing="1.7">PÓRTICO LAB / COORDINACIÓN BIM</text>
 
-  <!-- Ejes guía: muestran que las piezas separadas pertenecen al mismo edificio. -->
-  <g fill="none" stroke="#66e4fa" stroke-opacity=".28" stroke-width="1.5" stroke-dasharray="5 8">
-    <path d="M190 185v396M310 116v397M430 185v396M550 255v396M250 220v396M370 151v396M490 220v396"/>
-  </g>
+  <!-- Base topográfica y huella del edificio. -->
+  <path d="m35 520 250-144 292 168-252 146z" fill="#111319" stroke="#4d505a" stroke-width="1.5"/>
+  <path d="m62 520 223-128 259 149-219 127z" fill="#191a20" stroke="#777b85" stroke-width="2"/>
+  <path d="m62 520 223-128 259 149-219 127z" fill="none" stroke="#7ee8ff" stroke-opacity=".22" stroke-width="14" filter="url(#soft-b)"/>
 
-  <!-- Núcleo vertical por tramos, alineado con las plantas. -->
-  <g class="b-core" fill="none" stroke="url(#beam-b)" stroke-width="3">
-    <path d="m310 375 60 34v46l-60 35-60-35v-46z"/><path d="m250 409 60 35 60-35M310 444v46"/>
-    <path d="m310 293 60 34v46l-60 35-60-35v-46z"/><path d="m250 327 60 35 60-35M310 362v46"/>
-    <path d="m310 211 60 34v46l-60 35-60-35v-46z"/><path d="m250 245 60 35 60-35M310 280v46"/>
-    <path d="m310 129 60 34v46l-60 35-60-35v-46z"/><path d="m250 163 60 35 60-35M310 198v46"/>
-  </g>
-
-  <!-- Nivel 01: losa base y estructura perimetral. -->
-  <g class="b-level b-level-1">
-    <path d="m190 581 180-104 180 104-180 104z" fill="url(#slab-b)" stroke="url(#beam-b)" stroke-width="3"/>
-    <path d="m190 581v13l180 104v-13m180-104v13L370 698v-13" fill="#101116" stroke="#8e85c7" stroke-width="2"/>
-    <path d="M250 546v-88m120 19v-88m120 157v-88M250 458l120-69 120 69m-240 0 120 69 120-69" fill="none" stroke="url(#beam-b)" stroke-width="4"/>
-    <path d="m250 458 120-69 120 69v88m-240-88 120 69 120-69m-180 34v-69m120 103v-69" fill="none" stroke="#c9c3ed" stroke-opacity=".78" stroke-width="2"/>
+  <!-- Nivel inferior legible a través de fachada acristalada. -->
+  <g class="b-lower">
+    <path d="m62 520 223 128v34L62 554zM544 541 325 668v34l219-127z" fill="#22252d" stroke="#9ba2b1" stroke-width="2"/>
+    <path d="m62 520 223 128v34L62 554z" fill="url(#glass-b)" stroke="#c8d6df" stroke-opacity=".8" stroke-width="2"/>
+    <path d="m285 648 259-149v34L285 682z" fill="url(#glass-b)" stroke="#c8d6df" stroke-opacity=".8" stroke-width="2"/>
+    <g fill="none" stroke="#d6dce4" stroke-opacity=".75" stroke-width="2">
+      <path d="m105 545v34m44-9v34m44-9v34m44-9v34m48-1v34m52-64v34m52-64v34m52-64v34m52-64v34m52-64v34"/>
+      <path d="m62 554 223 128 259-149" stroke-width="3"/>
+    </g>
+    <path d="m115 553 101 58v30m-42-73v30m84-1 48 28m36-49 85-49m-43 74 86-50" fill="none" stroke="#b9a7ff" stroke-opacity=".62" stroke-width="2"/>
   </g>
 
-  <!-- Nivel 02: placa de entrepiso separada; fachada ligera y columnas legibles. -->
-  <g class="b-level b-level-2">
-    <path d="m190 499 180-104 180 104-180 104z" fill="url(#slab-b)" stroke="url(#beam-b)" stroke-width="3"/>
-    <path d="m190 499v12l180 104v-12m180-104v12L370 615v-12" fill="#101116" stroke="#8e85c7" stroke-width="2"/>
-    <path d="M250 458v-88m120 19v-88m120 157v-88M250 370l120-69 120 69m-240 0 120 69 120-69" fill="none" stroke="url(#beam-b)" stroke-width="4"/>
-    <path d="m250 370 120-69 120 69v88m-240-88 120 69 120-69m-180 34v-69m120 103v-69" fill="none" stroke="#c9c3ed" stroke-opacity=".78" stroke-width="2"/>
-    <path d="m274 384 96-55 96 55m-192 0v48m96-103v54m96-54v54m-192 0 96 55 96-55" fill="none" stroke="#66e4fa" stroke-opacity=".62" stroke-width="1.5"/>
+  <!-- Losa del nivel principal y cantos estructurales. -->
+  <path d="m62 455 223-129 259 149-219 127z" fill="#c8b89f" stroke="#f1eee7" stroke-width="2.5"/>
+  <path d="m62 455 223 129v15L62 470zM544 475 325 604v-15l219-129z" fill="#626773" stroke="#aeb2bd" stroke-width="1.5"/>
+  <path d="m62 455 223-129 259 149-219 127z" fill="none" stroke="#e6e9f2" stroke-opacity=".55" stroke-width="1"/>
+
+  <!-- Planta interior: espacios, divisiones y núcleo. -->
+  <g class="b-walls" stroke-linejoin="round">
+    <!-- Perímetro posterior y laterales, abierto hacia el observador. -->
+    <path d="m62 455 0-110 223-129v110z" fill="url(#wall-b)" stroke="#e6e8ed" stroke-width="2"/>
+    <path d="m285 326 259 149v-110L285 216z" fill="url(#wall-b)" fill-opacity=".82" stroke="#e6e8ed" stroke-width="2"/>
+    <path d="m62 345 223 129v-8L62 337zM285 474l259-149v-8L285 466z" fill="#f1f2f4" stroke="#c9ccd3" stroke-width="1.5"/>
+    <!-- Divisiones internas elevadas para mostrar habitaciones y circulaciones. -->
+    <path d="m112 427 0-64 88-51v64z" fill="#aeb2bd" stroke="#f0f1f3" stroke-width="1.5"/>
+    <path d="m112 363 88 51v-7l-88-51z" fill="#e2e4e8" stroke="#c7cad2" stroke-width="1"/>
+    <path d="m200 376 0-70 8-5v79z" fill="#d8dae0" stroke="#f0f1f3" stroke-width="1.3"/>
+    <path d="m208 380 59-34v-80l-59 34z" fill="#9196a2" stroke="#eceef2" stroke-width="1.5"/>
+    <path d="m208 300 59 34v-8l-59-34z" fill="#dedfe4" stroke="#c7cad2" stroke-width="1"/>
+    <path d="m368 485 0-83 10-6v95z" fill="#d5d7dd" stroke="#f2f3f5" stroke-width="1.5"/>
+    <path d="m378 491 77-45v-89l-77 45z" fill="#a2a6b1" stroke="#f2f3f5" stroke-width="1.5"/>
+    <path d="m378 402 77 45v-8l-77-45z" fill="#e0e2e7" stroke="#c7cad2" stroke-width="1"/>
+    <path d="m455 446 0-82 9-5v92z" fill="#d3d5dc" stroke="#f2f3f5" stroke-width="1.4"/>
+    <path d="m132 496 0-52 7-4v60m83 48v-71l8-5v81m168-29v-58l8-5v68" fill="#b8bbc4" stroke="#f0f1f3" stroke-width="1.3"/>
+    <!-- Puertas y marcos. -->
+    <g fill="none" stroke="#555b68" stroke-width="2"><path d="m112 397 23 13v28m0-28 20-12m-20 12v28m73-113 21 12v23m0-23 18-11m-18 11v24m160 86 24 14v29m0-29 22-13m-22 13v29m45-76 20 12v25m0-25 17-10m-17 10v25"/></g>
+    <!-- Mesones y mobiliario de referencia a escala humana. -->
+    <g fill="#e7e9ed" stroke="#7d838f" stroke-width="1.2"><path d="m82 419 37-21 29 17-37 22z"/><path d="m82 419v10l29 17v-9m37-22v10l-37 21v-9" fill="#aeb5bf"/><path d="m157 462 31-18 26 15-31 18z"/><path d="m157 462v8l26 15v-8m31-18v8l-31 18v-8" fill="#aeb5bf"/><path d="m466 480 32-18 22 13-32 19z"/><path d="m466 480v8l22 14v-8m32-19v8l-32 19v-8" fill="#aeb5bf"/></g>
   </g>
 
-  <!-- Nivel 03. -->
-  <g class="b-level b-level-3">
-    <path d="m190 417 180-104 180 104-180 104z" fill="url(#slab-b)" stroke="url(#beam-b)" stroke-width="3"/>
-    <path d="m190 417v12l180 104v-12m180-104v12L370 533v-12" fill="#101116" stroke="#8e85c7" stroke-width="2"/>
-    <path d="M250 370v-88m120 19v-88m120 157v-88M250 282l120-69 120 69m-240 0 120 69 120-69" fill="none" stroke="url(#beam-b)" stroke-width="4"/>
-    <path d="m250 282 120-69 120 69v88m-240-88 120 69 120-69m-180 34v-69m120 103v-69" fill="none" stroke="#c9c3ed" stroke-opacity=".78" stroke-width="2"/>
-    <path d="m274 296 96-55 96 55m-192 0v48m96-103v54m96-54v54m-192 0 96 55 96-55" fill="none" stroke="#66e4fa" stroke-opacity=".62" stroke-width="1.5"/>
+  <!-- Atrio central circular con doble anillo y baranda. -->
+  <g class="b-atrium">
+    <ellipse cx="311" cy="422" rx="66" ry="36" fill="#222630" stroke="#6f7784" stroke-width="2"/>
+    <ellipse cx="311" cy="415" rx="66" ry="36" fill="#090b11" stroke="#cfd5df" stroke-width="3"/>
+    <ellipse cx="311" cy="415" rx="58" ry="30" fill="#11141c" stroke="#7ee8ff" stroke-opacity=".64" stroke-width="1.5"/>
+    <path d="M245 415v-34m132 34v-34M260 390v-34m102 34v-34" fill="none" stroke="#aeb5c1" stroke-width="2"/>
+    <ellipse cx="311" cy="381" rx="58" ry="30" fill="none" stroke="#d3d7e0" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <path d="M267 407q44-24 88 0" fill="none" stroke="#b9a7ff" stroke-opacity=".75" stroke-width="2"/>
   </g>
 
-  <!-- Nivel 04. -->
-  <g class="b-level b-level-4">
-    <path d="m190 335 180-104 180 104-180 104z" fill="url(#slab-b)" stroke="url(#beam-b)" stroke-width="3"/>
-    <path d="m190 335v12l180 104v-12m180-104v12L370 451v-12" fill="#101116" stroke="#8e85c7" stroke-width="2"/>
-    <path d="M250 282v-88m120 19v-88m120 157v-88M250 194l120-69 120 69m-240 0 120 69 120-69" fill="none" stroke="url(#beam-b)" stroke-width="4"/>
-    <path d="m250 194 120-69 120 69v88m-240-88 120 69 120-69m-180 34v-69m120 103v-69" fill="none" stroke="#c9c3ed" stroke-opacity=".78" stroke-width="2"/>
-    <path d="m274 208 96-55 96 55m-192 0v48m96-103v54m96-54v54m-192 0 96 55 96-55" fill="none" stroke="#66e4fa" stroke-opacity=".62" stroke-width="1.5"/>
+  <!-- Escaleras y descansos. -->
+  <g fill="none" stroke="#58606e" stroke-width="2">
+    <path d="m70 397 46-27 27 16-46 27zM73 390l46 27m-39-35 46 27m-39-35 46 27m-39-35 46 27m-39-35 46 27"/>
+    <path d="m435 519 48-28 25 15-48 28zM438 511l48 28m-40-33 48 28m-40-33 48 28m-40-33 48 28m-40-33 48 28"/>
   </g>
 
-  <!-- Cubierta desprendida: remate inequívoco del edificio. -->
-  <g class="b-roof">
-    <path d="m190 253 180-104 180 104-180 104z" fill="#171720" stroke="url(#beam-b)" stroke-width="3"/>
-    <path d="m190 253 180 104 180-104M250 218l120 69 120-69" fill="none" stroke="#b7a9ff" stroke-opacity=".75" stroke-width="2"/>
-    <path d="M190 253v10l180 104v-10m180-104v10L370 367v-10" fill="#101116" stroke="#8e85c7" stroke-width="2"/>
+  <!-- Trazados MEP: conductos, bandejas eléctricas, rociadores y ramales. -->
+  <g class="b-mep" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Climatización -->
+    <path d="m82 360 58-34 33 19 53-31 37 21 45-26 30 17 45-26 57 33 62-36" stroke="#fa68bc" stroke-width="7"/>
+    <path d="m141 326v34m65-46v31m99-37v47m92-73v43m86-8v42" stroke="#ffb5e1" stroke-width="2"/>
+    <path d="m169 346 0 28m128-65v22m112-51v22m84 2v29" stroke="#ed5cae" stroke-width="4"/>
+    <!-- Tuberías hidráulicas -->
+    <path d="m95 379 63 37 44-25 43 25 40-23m36 1 51 30 42-24 47 27 52-30" stroke="#77d98c" stroke-width="5"/>
+    <path d="m202 391v-35m84 49v-32m137 18v-37m93 19v-36" stroke="#a1f2ae" stroke-width="2"/>
+    <!-- Bandejas eléctricas y datos -->
+    <path d="m77 383 52-30 43 25 52-30 37 21 48-28 48 28 41-24 48 28 44-25 52 30" stroke="#f4c95d" stroke-width="4"/>
+    <path d="m126 354v-30m126 15v-27m106 37v-29m111 37v-26" stroke="#f4c95d" stroke-width="2" stroke-dasharray="4 5"/>
+    <!-- Drenajes y conexiones -->
+    <path d="m110 445 57-33 45 26 48-28m83 48 52-30 51 29 39-23" stroke="#58b8e9" stroke-width="3" stroke-dasharray="6 5"/>
+    <g fill="#ff8b63" stroke="none"><circle cx="173" cy="379" r="4"/><circle cx="297" cy="343" r="4"/><circle cx="411" cy="324" r="4"/><circle cx="473" cy="370" r="4"/></g>
   </g>
 
-  <!-- Etiquetas de nivel y conectores BIM. -->
-  <g fill="#9b9ba8" font-family="monospace" font-size="10" letter-spacing="1.2">
-    <text x="106" y="590">NIVEL 01</text><text x="106" y="508">NIVEL 02</text><text x="106" y="426">NIVEL 03</text><text x="106" y="344">NIVEL 04</text><text x="106" y="262" fill="#7ee8ff">CUBIERTA</text>
+  <!-- Columnas, cerramiento cortina y montantes de fachada. -->
+  <g fill="none" stroke="#d7dce4" stroke-width="3">
+    <path d="M92 472v41m64-4v41m64-4v41m64-4v41m69-80v40m64-78v40m64-78v40m64-78v40"/>
+    <path d="m62 455 223 129 259-149" stroke="#f1f3f7" stroke-width="3"/>
   </g>
-  <g fill="none" stroke="#66e4fa" stroke-opacity=".58" stroke-width="1.5">
-    <path d="M550 253h18v-26h25M550 417h18v-1h25M550 581h18v27h25"/>
-  </g>
+  <g fill="#7ee8ff" stroke="#08080b" stroke-width="2"><circle cx="285" cy="326" r="5"/><circle cx="544" cy="475" r="5"/><circle cx="325" cy="604" r="5"/></g>
+
+  <!-- Panel de coordinación: información asociada a los elementos visibles. -->
   <g class="b-panel">
-    <rect x="605" y="174" width="232" height="378" rx="12" fill="#0b0b10" stroke="#373642"/>
-    <text x="628" y="210" fill="#d8d5e6" font-family="monospace" font-size="13" letter-spacing="1.5">CONTROL BIM</text>
-    <g class="b-row b-row-1"><rect x="622" y="235" width="198" height="78" rx="7" fill="#111117" stroke="#282733"/><circle cx="645" cy="260" r="6" fill="#7ee8ff"/><text x="662" y="264" fill="#eee" font-family="monospace" font-size="12">GEOMETRÍA</text><text x="644" y="289" fill="#8c8c98" font-family="monospace" font-size="9" letter-spacing="1">NIVELES COORDINADOS</text></g>
-    <g class="b-row b-row-2"><rect x="622" y="326" width="198" height="78" rx="7" fill="#111117" stroke="#282733"/><circle cx="645" cy="351" r="6" fill="#b9a7ff"/><text x="662" y="355" fill="#eee" font-family="monospace" font-size="12">COSTO · 5D</text><text x="644" y="380" fill="#8c8c98" font-family="monospace" font-size="9" letter-spacing="1">CANTIDADES POR NIVEL</text></g>
-    <g class="b-row b-row-3"><rect x="622" y="417" width="198" height="78" rx="7" fill="#111117" stroke="#282733"/><circle cx="645" cy="442" r="6" fill="#7ee8ff"/><text x="662" y="446" fill="#eee" font-family="monospace" font-size="12">CRONOGRAMA</text><text x="644" y="471" fill="#8c8c98" font-family="monospace" font-size="9" letter-spacing="1">SECUENCIA DE OBRA</text></g>
+    <rect x="620" y="111" width="244" height="474" rx="13" fill="#0b0b10" fill-opacity=".96" stroke="#373642"/>
+    <text x="641" y="145" fill="#d8d5e6" font-family="monospace" font-size="12" letter-spacing="1.3">MODELO COORDINADO</text>
+    <text x="641" y="165" fill="#85858f" font-family="monospace" font-size="9" letter-spacing="1">ARQUITECTURA + MEP</text>
+    <g class="b-row b-row-1"><rect x="638" y="188" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="211" r="5" fill="#b9a7ff"/><text x="674" y="215" fill="#eee" font-family="monospace" font-size="11">ARQUITECTURA</text><text x="653" y="242" fill="#8c8c98" font-family="monospace" font-size="9">ESPACIOS · FACHADA · NIVELES</text></g>
+    <g class="b-row b-row-2"><rect x="638" y="276" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="299" r="5" fill="#fa68bc"/><text x="674" y="303" fill="#eee" font-family="monospace" font-size="11">INSTALACIONES</text><text x="653" y="330" fill="#8c8c98" font-family="monospace" font-size="9">HVAC · HIDRÁULICA · ELÉCTRICA</text></g>
+    <g class="b-row b-row-3"><rect x="638" y="364" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="387" r="5" fill="#7ee8ff"/><text x="674" y="391" fill="#eee" font-family="monospace" font-size="11">COSTO · 5D</text><text x="653" y="418" fill="#8c8c98" font-family="monospace" font-size="9">CANTIDADES POR ELEMENTO</text></g>
+    <g class="b-row b-row-4"><rect x="638" y="452" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="475" r="5" fill="#77d98c"/><text x="674" y="479" fill="#eee" font-family="monospace" font-size="11">SECUENCIA</text><text x="653" y="506" fill="#8c8c98" font-family="monospace" font-size="9">PLANIFICACIÓN DE OBRA</text></g>
+    <path d="M638 548h208" stroke="#292933"/>
+    <text x="641" y="568" fill="#7ee8ff" font-family="monospace" font-size="9" letter-spacing="1">COLISIONES / DATOS / DECISIONES</text>
   </g>
-  <text x="62" y="682" fill="#92929d" font-family="monospace" font-size="12" letter-spacing="1.5">EDIFICIO DESPIEZADO · NIVELES COORDINADOS</text>
-  <text x="614" y="598" fill="#85858f" font-family="monospace" font-size="11" letter-spacing="1">DISEÑO / COORDINACIÓN / OBRA</text>
+  <text x="38" y="727" fill="#92929d" font-family="monospace" font-size="11" letter-spacing="1.3">MODELO ABIERTO · ESPACIOS + SISTEMAS + ENVOLVENTE</text>
+
   <style>
-    @media (prefers-reduced-motion: no-preference) {
-      .b-level-1{animation:level-float 8s ease-in-out infinite;animation-delay:.16s}
-      .b-level-2{animation:level-float 8s ease-in-out infinite;animation-delay:.12s}
-      .b-level-3{animation:level-float 8s ease-in-out infinite;animation-delay:.08s}
-      .b-level-4{animation:level-float 8s ease-in-out infinite;animation-delay:.04s}
-      .b-roof{animation:level-float 8s ease-in-out infinite}
-      .b-scan{animation:b-scan 6s ease-in-out infinite}
-      .b-row-1{animation:b-row-one 8s ease-in-out infinite}
-      .b-row-2{animation:b-row-two 8s ease-in-out infinite}
-      .b-row-3{animation:b-row-three 8s ease-in-out infinite}
+    @media(prefers-reduced-motion:no-preference){
+      .b-mep{animation:mep-flow 7s ease-in-out infinite}
+      .b-row-1{animation:row-pulse 8s ease-in-out infinite}
+      .b-row-2{animation:row-pulse 8s ease-in-out infinite 1s}
+      .b-row-3{animation:row-pulse 8s ease-in-out infinite 2s}
+      .b-row-4{animation:row-pulse 8s ease-in-out infinite 3s}
+      .b-atrium ellipse:last-of-type{animation:ring 12s linear infinite;transform-origin:311px 381px}
     }
-    @keyframes level-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-    @keyframes b-scan{0%,100%{opacity:.2}50%{opacity:1}}
-    @keyframes b-row-one{0%,10%,34%,88%,100%{opacity:.55}18%,28%{opacity:1}}
-    @keyframes b-row-two{0%,30%,54%,88%,100%{opacity:.55}38%,48%{opacity:1}}
-    @keyframes b-row-three{0%,50%,74%,88%,100%{opacity:.55}58%,68%{opacity:1}}
-    @media(prefers-reduced-motion:reduce){.b-level,.b-roof,.b-row{animation:none!important;opacity:1}}
+    @keyframes mep-flow{0%,100%{opacity:.8}50%{opacity:1}}
+    @keyframes row-pulse{0%,78%,100%{opacity:.62}18%,38%{opacity:1}}
+    @keyframes ring{to{transform:rotate(360deg)}}
+    @media(prefers-reduced-motion:reduce){.b-mep,.b-row{animation:none!important;opacity:1}}
   </style>
 </svg>
