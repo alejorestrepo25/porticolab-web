@@ -17,7 +17,6 @@
 @keyframes mov-deriva { from { scale: 1; translate: 0 0; } to { scale: 1.075; translate: -1.6% -1.1%; } }
 @keyframes mov-flota { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
 @keyframes mov-brillo { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-@keyframes mov-pulso { 0% { box-shadow: 0 0 0 0 rgba(126, 232, 255, .35); } 70%, 100% { box-shadow: 0 0 0 16px rgba(126, 232, 255, 0); } }
 
 @media (prefers-reduced-motion: no-preference) {
 
@@ -75,7 +74,6 @@
 
   /* preguntas, cierre y botones */
   body.srvposter .faq details[open] > p { animation: mov-sube 420ms var(--mov-in) both; }
-  body.srvposter .cierre .btn-primario { animation: mov-pulso 3.2s ease-out 1.5s infinite; }
   body.srvposter .btn { transition: background .2s ease, color .2s ease, transform var(--mov-q) var(--mov-ease); }
   body.srvposter .btn:hover { transform: translateY(-2px); }
   body.srvposter .btn:active { transform: scale(.97); }

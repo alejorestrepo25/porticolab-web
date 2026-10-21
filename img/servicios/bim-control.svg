@@ -10,7 +10,7 @@
     <filter id="soft-b"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
   <rect width="900" height="760" fill="#08080b"/><rect width="900" height="760" fill="url(#grid-b)"/>
-  <text x="38" y="47" fill="#bbb" font-family="monospace" font-size="12" letter-spacing="1.7">PÓRTICO LAB / COORDINACIÓN BIM</text>
+  <text x="38" y="47" fill="#bbb" font-family="monospace" font-size="14" letter-spacing="1.7">PÓRTICO LAB / COORDINACIÓN BIM</text>
 
   <!-- Base topográfica y huella del edificio. -->
   <path d="m35 520 250-144 292 168-252 146z" fill="#111319" stroke="#4d505a" stroke-width="1.5"/>
@@ -119,16 +119,16 @@
   <!-- Panel de coordinación: información asociada a los elementos visibles. -->
   <g class="b-panel-wrap"><g class="b-panel">
     <rect x="620" y="111" width="244" height="474" rx="13" fill="#0b0b10" fill-opacity=".96" stroke="#373642"/>
-    <text x="641" y="145" fill="#d8d5e6" font-family="monospace" font-size="12" letter-spacing="1.3">MODELO COORDINADO</text>
-    <text x="641" y="165" fill="#85858f" font-family="monospace" font-size="9" letter-spacing="1">ARQUITECTURA + MEP</text>
-    <g class="b-row b-row-1" style="--c:#b9a7ff"><rect x="638" y="188" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="211" r="5" fill="#b9a7ff"/><text x="674" y="215" fill="#eee" font-family="monospace" font-size="11">ARQUITECTURA</text><text x="653" y="242" fill="#8c8c98" font-family="monospace" font-size="9">ESPACIOS · FACHADA · NIVELES</text></g>
-    <g class="b-row b-row-2" style="--c:#fa68bc"><rect x="638" y="276" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="299" r="5" fill="#fa68bc"/><text x="674" y="303" fill="#eee" font-family="monospace" font-size="11">INSTALACIONES</text><text x="653" y="330" fill="#8c8c98" font-family="monospace" font-size="9">HVAC · HIDRÁULICA · ELÉCTRICA</text></g>
-    <g class="b-row b-row-3" style="--c:#7ee8ff"><rect x="638" y="364" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="387" r="5" fill="#7ee8ff"/><text x="674" y="391" fill="#eee" font-family="monospace" font-size="11">COSTO · 5D</text><text x="653" y="418" fill="#8c8c98" font-family="monospace" font-size="9">CANTIDADES POR ELEMENTO</text></g>
-    <g class="b-row b-row-4" style="--c:#77d98c"><rect x="638" y="452" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="475" r="5" fill="#77d98c"/><text x="674" y="479" fill="#eee" font-family="monospace" font-size="11">SECUENCIA</text><text x="653" y="506" fill="#8c8c98" font-family="monospace" font-size="9">PLANIFICACIÓN DE OBRA</text></g>
+    <text x="641" y="145" fill="#d8d5e6" font-family="monospace" font-size="14" letter-spacing="1.3">MODELO COORDINADO</text>
+    <text x="641" y="165" fill="#85858f" font-family="monospace" font-size="11" letter-spacing="1">ARQUITECTURA + MEP</text>
+    <g class="b-row b-row-1" style="--c:#b9a7ff"><rect x="638" y="188" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="211" r="5" fill="#b9a7ff"/><text x="674" y="215" fill="#eee" font-family="monospace" font-size="13">ARQUITECTURA</text><text x="653" y="242" fill="#8c8c98" font-family="monospace" font-size="11">ESPACIOS · FACHADA · NIVELES</text></g>
+    <g class="b-row b-row-2" style="--c:#fa68bc"><rect x="638" y="276" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="299" r="5" fill="#fa68bc"/><text x="674" y="303" fill="#eee" font-family="monospace" font-size="13">INSTALACIONES</text><text x="653" y="330" fill="#8c8c98" font-family="monospace" font-size="11">HVAC · HIDRÁULICA · ELÉCTRICA</text></g>
+    <g class="b-row b-row-3" style="--c:#7ee8ff"><rect x="638" y="364" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="387" r="5" fill="#7ee8ff"/><text x="674" y="391" fill="#eee" font-family="monospace" font-size="13">COSTO · 5D</text><text x="653" y="418" fill="#8c8c98" font-family="monospace" font-size="11">CANTIDADES POR ELEMENTO</text></g>
+    <g class="b-row b-row-4" style="--c:#77d98c"><rect x="638" y="452" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="475" r="5" fill="#77d98c"/><text x="674" y="479" fill="#eee" font-family="monospace" font-size="13">SECUENCIA</text><text x="653" y="506" fill="#8c8c98" font-family="monospace" font-size="11">PLANIFICACIÓN DE OBRA</text></g>
     <path d="M638 548h208" stroke="#292933"/>
-    <text x="641" y="568" fill="#7ee8ff" font-family="monospace" font-size="9" letter-spacing="1">COLISIONES / DATOS / DECISIONES</text>
+    <text x="641" y="568" fill="#7ee8ff" font-family="monospace" font-size="10.5" letter-spacing=".6">COLISIONES / DATOS / DECISIONES</text>
   </g></g>
-  <text x="38" y="727" fill="#92929d" font-family="monospace" font-size="11" letter-spacing="1.3">MODELO ABIERTO · ESPACIOS + SISTEMAS + ENVOLVENTE</text>
+  <text x="38" y="727" fill="#92929d" font-family="monospace" font-size="13" letter-spacing="1.3">MODELO ABIERTO · ESPACIOS + SISTEMAS + ENVOLVENTE</text>
 
   <style>
     /* Coreografía: entrada única (≈3,4 s) y luego un ciclo de 12 s que aísla cada capa del modelo, en sincronía con el panel.
