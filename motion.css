@@ -1,0 +1,87 @@
+/* Movimiento de Servicios y Nosotros — arquetipo "Premium" (skill motion-design).
+   Curvas suaves y sin rebote; entradas de 350–900 ms con desaceleración; tres capas: principal (entrada),
+   secundaria (insignias, números, subtítulos que llegan después) y ambiente (flotación lenta).
+   Todo vive bajo prefers-reduced-motion: no-preference y los estados ocultos solo existen si motion.js cargó (html.mov-ok). */
+
+:root {
+  --mov-ease: cubic-bezier(.4, 0, .2, 1);      /* en pantalla */
+  --mov-in: cubic-bezier(.05, .7, .1, 1);      /* entradas: arrancan rápido y aterrizan suave */
+  --mov-q: 180ms;                              /* micro-respuesta */
+  --mov-s: 450ms;                              /* estándar */
+  --mov-l: 800ms;                              /* revelación */
+}
+
+@keyframes mov-sube { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+@keyframes mov-asienta { from { opacity: .55; scale: 1.09; } to { opacity: 1; scale: 1; } }
+@keyframes mov-deriva { from { scale: 1; translate: 0 0; } to { scale: 1.045; translate: -1.2% -.8%; } }
+@keyframes mov-velo { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mov-flota { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ---------- Servicios: portada (al cargar) ---------- */
+  body.srvposter .hero-txt > * { animation: mov-sube 560ms var(--mov-in) both; }
+  body.srvposter .hero-txt > :nth-child(1) { animation-delay: 60ms; }
+  body.srvposter .hero-txt > :nth-child(2) { animation-delay: 140ms; }
+  body.srvposter .hero-txt > :nth-child(3) { animation-delay: 220ms; }
+  body.srvposter .hero-txt > :nth-child(4) { animation-delay: 300ms; }
+
+  /* ---------- Servicios: tarjetas que entran al llegar a la pantalla ---------- */
+  html.mov-ok body.srvposter .paso-card:not(.visto),
+  html.mov-ok body.srvposter .srv-card:not(.visto) { opacity: 0; translate: 0 22px; }
+  html.mov-ok body.srvposter .paso-card {
+    transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms);
+  }
+  html.mov-ok body.srvposter .srv-card {
+    transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms),
+      border-color .2s ease, transform .2s ease;
+  }
+  /* secundaria: el número de cada paso llega un instante después */
+  html.mov-ok body.srvposter .paso-card:not(.visto) .n { opacity: 0; translate: -8px 0; }
+  html.mov-ok body.srvposter .paso-card .n { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms + 140ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 70ms + 140ms); }
+
+  /* ---------- Servicios: ilustraciones que se construyen de la base hacia arriba ---------- */
+  html.mov-ok body.srvposter .srv-card:not(.visto) .srv-img svg { clip-path: inset(100% 0 0 0); }
+  html.mov-ok body.srvposter .srv-card .srv-img svg {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 900ms var(--mov-in) calc(var(--i, 0) * 120ms + 160ms), scale var(--mov-s) var(--mov-ease);
+  }
+  /* secundaria: la insignia aparece cuando la ilustración ya va a la mitad */
+  html.mov-ok body.srvposter .srv-card:not(.visto) .badge { opacity: 0; translate: 0 -6px; }
+  html.mov-ok body.srvposter .srv-card .badge { transition: opacity var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms + 480ms), translate var(--mov-s) var(--mov-in) calc(var(--i, 0) * 120ms + 480ms); }
+  /* barras de costo del modelo BIM: se dibujan de izquierda a derecha, una tras otra */
+  html.mov-ok body.srvposter .mov-barra { transform-box: fill-box; transform-origin: 0 50%; }
+  html.mov-ok body.srvposter .srv-card:not(.visto) .mov-barra { transform: scaleX(0); }
+  html.mov-ok body.srvposter .srv-card .mov-barra { transition: transform 520ms var(--mov-in) calc(var(--i, 0) * 120ms + 640ms + var(--b, 0) * 60ms); }
+  /* ambiente: flotación casi imperceptible, solo cuando la tarjeta ya es visible */
+  body.srvposter .srv-card.visto .srv-img svg { animation: mov-flota 7s ease-in-out 1.6s infinite; }
+  /* respuesta al puntero (<250 ms) */
+  body.srvposter .srv-card:hover .srv-img svg { scale: 1.03; }
+
+  /* ---------- Servicios: preguntas y botones ---------- */
+  body.srvposter .faq details[open] > p { animation: mov-sube 340ms var(--mov-in) both; }
+  body.srvposter .btn { transition: background .2s ease, color .2s ease, transform var(--mov-q) var(--mov-ease); }
+  body.srvposter .btn:active { transform: scale(.98); }
+
+  /* ---------- Nosotros: portada con revelación dramática y deriva lenta ---------- */
+  body.nosotros .n-hero__img { animation: mov-asienta 1600ms var(--mov-in) both, mov-deriva 30s ease-in-out 1.6s infinite alternate; }
+  body.nosotros .n-hero__velo { animation: mov-velo 1100ms var(--mov-ease) both; }
+  body.nosotros .n-hero__txt > * { animation: mov-sube 640ms var(--mov-in) both; }
+  body.nosotros .n-hero__txt > :nth-child(1) { animation-delay: 380ms; }
+  body.nosotros .n-hero__txt > :nth-child(2) { animation-delay: 470ms; }
+  body.nosotros .n-hero__txt > :nth-child(3) { animation-delay: 560ms; }
+  body.nosotros .n-hero__txt > :nth-child(4) { animation-delay: 650ms; }
+
+  /* ---------- Nosotros: pilares ---------- */
+  html.mov-ok body.nosotros .n-pilar:not(.visto) span { opacity: 0; translate: -10px 0; }
+  html.mov-ok body.nosotros .n-pilar span { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 180ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 180ms), color var(--mov-q) var(--mov-ease); }
+  html.mov-ok body.nosotros .n-pilar:not(.visto) p { opacity: 0; }
+  html.mov-ok body.nosotros .n-pilar p { transition: opacity var(--mov-l) var(--mov-ease) calc(var(--d, 0s) + 260ms); }
+
+  /* ---------- Nosotros: proyectos — la foto se asienta dentro de su marco ---------- */
+  html.mov-ok body.nosotros .pieza:not(.visto) img { scale: 1.1; }
+  html.mov-ok body.nosotros .pieza img { transition: scale 1000ms var(--mov-in) calc(var(--d, 0s) + 80ms), transform .5s cubic-bezier(.2,.7,.2,1), border-color .25s; }
+  html.mov-ok body.nosotros .pieza:not(.visto) figcaption { opacity: 0; translate: 0 10px; }
+  html.mov-ok body.nosotros .pieza figcaption { transition: opacity var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 300ms), translate var(--mov-s) var(--mov-in) calc(var(--d, 0s) + 300ms); }
+  body.nosotros .pieza.visto:hover img { scale: 1.035; transition-duration: .45s, .5s, .25s; transition-delay: 0s; }
+}
