@@ -159,6 +159,7 @@
     contenedores().forEach((c) => {
       c.style.removeProperty('--k');
       if (!conAjuste) return;
+      if (esMovil && c.classList.contains('y2k-hero')) return;   // la portada móvil se resuelve con CSS, sin zoom
       const disponible = total;
       let k = 1;
       for (let i = 0; i < 4; i++) {

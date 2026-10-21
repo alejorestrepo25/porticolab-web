@@ -134,37 +134,51 @@
     return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
   }
 
-  function shuffle(array) {
-    let i = array.length;
-    while (i > 0) { const j = Math.floor(Math.random() * i--); [array[i], array[j]] = [array[j], array[i]]; }
-  }
-
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
     const query = encodeURIComponent(`*[_type == "proyecto" && "inspiracion" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
     const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
-    const res = await fetch(url);
-    const { result = [] } = await res.json();
+    const loading = document.getElementById('gallery-loading');
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Sanity respondió ${res.status}`);
+      const { result = [] } = await res.json();
+      loading.style.display = 'none';
 
-    document.getElementById('gallery-loading').style.display = 'none';
-    shuffle(result);
-
-    result.forEach(p => {
-      const imgUrl = p.portada?.asset?._ref ? sanityImageUrl(p.portada.asset._ref, 800) : '';
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.dataset.tags = (p.tags || []).join(',');
-      item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}">
-          <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
-        </a>
-        <h3>${p.title || 'Proyecto'}</h3>
-        <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
-      `;
-      gallery.appendChild(item);
-    });
+      // Solo publicaciones con título y portada válidos: sin tarjetas vacías ni imágenes rotas
+      const validas = result.filter((p) => p.title && p.title.trim() && p.portada?.asset?._ref);
+      validas.forEach((p, index) => {
+        const ref = p.portada.asset._ref;
+        const dim = (ref.split('-')[2] || '').split('x').map(Number);
+        const [w, h] = dim.length === 2 && dim[0] > 0 && dim[1] > 0 ? dim : [4, 5];
+        const imgUrl = sanityImageUrl(ref, 800);
+        const titulo = p.title.trim();
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.dataset.tags = (p.tags || []).join(',');
+        item.innerHTML = `
+          <a href="publicaciones/post.html?id=${p._id}">
+            <img src="${imgUrl}" alt="${titulo.replace(/"/g, '&quot;')}" width="${w}" height="${h}" loading="${index < 4 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async" style="background:#0b0b0b">
+          </a>
+          <h3></h3>
+          <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
+        `;
+        item.querySelector('h3').textContent = titulo;
+        // si la imagen no carga, la tarjeta se quita en vez de quedar vacía
+        item.querySelector('img').addEventListener('error', () => item.remove());
+        gallery.appendChild(item);
+      });
+      if (!validas.length) {
+        loading.style.display = '';
+        loading.textContent = 'Pronto habrá nuevas piezas de inspiración.';
+      }
+    } catch (error) {
+      loading.textContent = 'No pudimos cargar la inspiración. Intenta de nuevo en un momento.';
+      loading.style.color = '#b9a7ff';
+      console.error('Error cargando Inspiración:', error);
+    }
   });
 </script>
 
