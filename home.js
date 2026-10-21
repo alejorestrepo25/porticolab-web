@@ -12,6 +12,7 @@
     if (h) root.style.setProperty("--hh", h.offsetHeight + "px");
     root.style.setProperty("--bh", banner && getComputedStyle(banner).display !== "none" ? banner.offsetHeight + "px" : "0px");
   };
+  const altoEncabezado = () => (document.querySelector('header') || { offsetHeight: 0 }).offsetHeight;
   medir();
   addEventListener("resize", medir);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
@@ -118,7 +119,51 @@
     });
   }
 
-  // El scroll nativo deja avanzar y leer cada pantalla a ritmo propio.
+  // Transición por pantallas: rueda/flechas avanzan una vista cada vez en escritorio.
+  const modoPantallas = matchMedia('(min-width: 901px) and (min-height: 560px)');
+  const listaPantallas = () => [...new Set([
+    ...document.querySelectorAll('[data-pantalla]'),
+    document.getElementById('inicio'),
+    document.getElementById('frentes'),
+    document.querySelector('.archivo-poster'),
+    document.getElementById('proceso'),
+    document.getElementById('contacto')
+  ].filter(Boolean))].filter((el) => el.offsetParent !== null).sort((a, b) => topDe(a) - topDe(b));
+  const topDe = (el) => el.getBoundingClientRect().top + scrollY - altoEncabezado();
+  let bloqueado = false;
+  function actual(lista) {
+    const y = scrollY + 6;
+    let i = 0;
+    lista.forEach((el, n) => { if (topDe(el) <= y) i = n; });
+    return i;
+  }
+  function irA(lista, i) {
+    i = Math.max(0, Math.min(lista.length - 1, i));
+    const destino = Math.max(0, Math.min(topDe(lista[i]), document.documentElement.scrollHeight - innerHeight));
+    bloqueado = true;
+    scrollTo({ top: destino, behavior: 'smooth' });
+    setTimeout(() => { bloqueado = false; }, 760);
+  }
+  if (!reducir) {
+    addEventListener('wheel', (e) => {
+      if (!modoPantallas.matches || e.ctrlKey || Math.abs(e.deltaY) < 6) return;
+      e.preventDefault();
+      if (bloqueado) return;
+      const lista = listaPantallas();
+      if (lista.length) irA(lista, actual(lista) + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+    addEventListener('keydown', (e) => {
+      if (!modoPantallas.matches || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
+      const lista = listaPantallas();
+      if (!lista.length) return;
+      const k = e.key;
+      if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) + 1); }
+      else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) - 1); }
+      else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(lista, 0); }
+      else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(lista, lista.length - 1); }
+    });
+  }
 
   // Ajuste automático: ninguna pantalla se sale por abajo, sin importar el tamaño de la ventana ni del encabezado
   const contenedores = () => [...document.querySelectorAll('.y2k-hero, .seccion, .cierre-home, .archivo-poster')].filter((c) => !c.parentElement.classList.contains('archivo-poster'));

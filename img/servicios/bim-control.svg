@@ -168,48 +168,48 @@
       .b-walls{animation:grow 1s cubic-bezier(.16,1,.3,1) .8s both}
       .b-atrium{animation:rise .7s cubic-bezier(.16,1,.3,1) 1.35s both}
       .b-cols{animation:fade .8s ease-out 1.5s both}
-      .mep-1{animation:draw 1.1s cubic-bezier(.4,0,.2,1) 1.9s both}
+      .mep-1{animation:draw 1.1s cubic-bezier(.4,0,.2,1) 1.14s both}
       .mep-2{animation:draw 1.1s cubic-bezier(.4,0,.2,1) 2.2s both}
       .mep-3{animation:draw 1.1s cubic-bezier(.4,0,.2,1) 2.5s both}
-      .b-mep path:not(.mep-run){animation:fade .8s ease-out 2.9s both}
+      .b-mep path:not(.mep-run){animation:fade .8s ease-out 2.14s both}
       .b-mep circle{animation:fade .8s ease-out 3s both}
       .b-nodes{animation:fade .6s ease-out 3.1s both}
       .b-panel-wrap{animation:slide .8s cubic-bezier(.16,1,.3,1) 1.2s both}
       .b-row-1{animation:slide .7s cubic-bezier(.16,1,.3,1) 1.6s both}
       .b-row-2{animation:slide .7s cubic-bezier(.16,1,.3,1) 1.75s both}
-      .b-row-3{animation:slide .7s cubic-bezier(.16,1,.3,1) 1.9s both}
+      .b-row-3{animation:slide .7s cubic-bezier(.16,1,.3,1) 1.14s both}
       .b-row-4{animation:slide .7s cubic-bezier(.16,1,.3,1) 2.05s both}
       /* — ciclo de aislamiento por capas — */
-      .dim-arq{animation:dim-arq 9s linear 3.6s infinite,flota 3.4s ease-in-out 3.6s infinite alternate}
-      .dim-mep{animation:dim-mep 9s linear 3.6s infinite,flota 3.4s ease-in-out 3.6s infinite alternate}
-      .ov-cost{animation:ov-cost 9s linear 3.6s infinite,flota 3.4s ease-in-out 3.6s infinite alternate;opacity:0}
+      .dim-arq{animation:dim-arq 14s linear 3.6s 1 both}
+      .dim-mep{animation:dim-mep 14s linear 3.6s 1 both}
+      .ov-cost{animation:ov-cost 14s linear 3.6s 1 both;opacity:0}
       .ov-seq{opacity:1}
-      .scan{animation:scan 9s cubic-bezier(.4,0,.2,1) 3.6s infinite}
-      .ripple{transform-box:fill-box;transform-origin:center;animation:ripple 1.2s ease-out 3.6s infinite}
+      .scan{animation:scan 14s cubic-bezier(.4,0,.2,1) 3.6s 1 both}
+      .ripple{transform-box:fill-box;transform-origin:center;animation:ripple 1.2s ease-out 3.6s 1 both}
       .r2{animation-delay:4s}.r3{animation-delay:4.4s}
       .sq1,.sq2,.sq3{opacity:0}
-      .sq1{animation:seq 9s linear 3.6s infinite;--a:76%;--b:84%}
-      .sq2{animation:seq2 9s linear 3.6s infinite}
-      .sq3{animation:seq3 9s linear 3.6s infinite}
+      .sq1{animation:seq 14s linear 3.6s 1 both;--a:76%;--b:84%}
+      .sq2{animation:seq2 14s linear 3.6s 1 both}
+      .sq3{animation:seq3 14s linear 3.6s 1 both}
       .b-row rect{transition:none}
-      .b-row-1 rect{animation:act 9s linear 3.6s infinite}
-      .b-row-2 rect{animation:act 9s linear 5.85s infinite}
-      .b-row-3 rect{animation:act 9s linear 8.1s infinite}
-      .b-row-4 rect{animation:act 9s linear 10.35s infinite}
-      .mep-flow path{animation:flow 1.1s linear infinite}
-      .reflejo{animation:reflejo 6s cubic-bezier(.4,0,.2,1) 4s infinite}
-      .persona.camina{animation:camina 7s ease-in-out 3.6s infinite alternate}
-      .persona.camina>*{animation:paso .55s ease-in-out infinite alternate}
-      .cota{animation:cota 9s linear 3.6s infinite}
+      .b-row-1 rect{animation:act 14s linear 3.6s 1 both}
+      .b-row-2 rect{animation:act 14s linear 5.85s 1 both}
+      .b-row-3 rect{animation:act 14s linear 8.1s 1 both}
+      .b-row-4 rect{animation:act 14s linear 10.35s 1 both}
+      .mep-flow path{animation:flow 1.1s linear 1 both}
+      .reflejo{animation:reflejo 6s cubic-bezier(.4,0,.2,1) 4s 1 both}
+      .persona.camina{animation:camina 7s ease-in-out 3.6s 1 both alternate}
+      .persona.camina>*{animation:paso .55s ease-in-out 1 both alternate}
+      .cota{animation:cota 14s linear 3.6s 1 both}
       .meter{animation:none}
-      .b-row-1 .meter{animation:meter 9s linear 3.6s infinite}
-      .b-row-2 .meter{animation:meter 9s linear 5.85s infinite}
-      .b-row-3 .meter{animation:meter 9s linear 8.1s infinite}
-      .b-row-4 .meter{animation:meter 9s linear 10.35s infinite}
-      .b-atrium ellipse:last-of-type{animation:ring 6s linear infinite;transform-origin:311px 381px}
+      .b-row-1 .meter{animation:meter 14s linear 3.6s 1 both}
+      .b-row-2 .meter{animation:meter 14s linear 5.85s 1 both}
+      .b-row-3 .meter{animation:meter 14s linear 8.1s 1 both}
+      .b-row-4 .meter{animation:meter 14s linear 10.35s 1 both}
+      .b-atrium ellipse:last-of-type{animation:none;transform-origin:311px 381px}
     }
     @keyframes reflejo{0%,18%{transform:translateX(-30px);opacity:0}24%{opacity:1}60%{transform:translateX(560px);opacity:1}66%,100%{transform:translateX(560px);opacity:0}}
-    @keyframes camina{from{translate:0 0}to{translate:-92px -53px}}
+    @keyframes camina{from{translate:0 0}to{translate:-18px -10px}}
     @keyframes paso{from{transform:translateY(0)}to{transform:translateY(-1.4px)}}
     @keyframes cota{0%,2%{opacity:0}6%,22%{opacity:1}27%,100%{opacity:0}}
     @keyframes flota{from{translate:0 0}to{translate:0 -7px}}

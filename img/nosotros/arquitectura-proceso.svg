@@ -52,44 +52,44 @@
     .sf{transform-box:fill-box;transform-origin:0 50%}
     .columna,.zapata,.viga,.placa,.rio,.largueros,.techo,.aparejo,.cotas,.nodes,.persona,.sombra{opacity:1}
     @media(prefers-reduced-motion:no-preference){
-      .zapata{transform-box:fill-box;transform-origin:50% 100%;animation:zap 9s cubic-bezier(.16,1,.3,1) infinite}
+      .zapata{transform-box:fill-box;transform-origin:50% 100%;animation:zap 12s cubic-bezier(.16,1,.3,1) 1 both}
       .z1{animation-delay:.12s}.z2{animation-delay:.24s}.z3{animation-delay:.36s}
-      .columna{transform-box:fill-box;transform-origin:50% 100%;animation:col 9s cubic-bezier(.4,0,.2,1) infinite}
+      .columna{transform-box:fill-box;transform-origin:50% 100%;animation:col 12s cubic-bezier(.4,0,.2,1) 1 both}
       .c1{animation-delay:.16s}.c2{animation-delay:.32s}.c3{animation-delay:.48s}
-      .viga{animation:viga 9s cubic-bezier(.16,1,.3,1) infinite}
+      .viga{animation:viga 12s cubic-bezier(.16,1,.3,1) 1 both}
       .v1{animation-delay:.14s}.v2{animation-delay:.28s}.v3{animation-delay:.42s}
-      .placa{animation:placa 9s ease-out infinite}
-      .largueros{animation:larg 9s cubic-bezier(.4,0,.2,1) infinite}
-      .rio{animation:rio 9s cubic-bezier(.4,0,.2,1) infinite}.r2{animation-delay:.2s}
-      .techo{animation:techo 9s cubic-bezier(.16,1,.3,1) infinite,bob 2.8s ease-in-out infinite alternate}
-      .aparejo{animation:aparejo 9s cubic-bezier(.16,1,.3,1) infinite}
-      .destello{animation:destello 9s ease-in-out infinite}
-      .cotas{animation:cota 9s linear infinite}
-      .nodes circle{transform-box:fill-box;transform-origin:center;animation:node 9s cubic-bezier(.16,1,.3,1) infinite}
-      .ping{transform-box:fill-box;transform-origin:center;animation:ping 9s ease-out infinite}
-      .persona{animation:persona 9s ease-in-out infinite}
-      .sombra{animation:sombra 9s ease-in-out infinite}
-      .sf1{animation:sf1 9s linear infinite}.sf2{animation:sf2 9s linear infinite}.sf3{animation:sf3 9s linear infinite}
+      .placa{animation:placa 12s ease-out 1 both}
+      .largueros{animation:larg 12s cubic-bezier(.4,0,.2,1) 1 both}
+      .rio{animation:rio 12s cubic-bezier(.4,0,.2,1) 1 both}.r2{animation-delay:.2s}
+      .techo{animation:techo 12s cubic-bezier(.16,1,.3,1) 1 both,bob 2.8s ease-in-out 1 both alternate}
+      .aparejo{animation:aparejo 12s cubic-bezier(.16,1,.3,1) 1 both}
+      .destello{animation:destello 12s ease-in-out 1 both}
+      .cotas{animation:cota 12s linear 1 both}
+      .nodes circle{transform-box:fill-box;transform-origin:center;animation:node 12s cubic-bezier(.16,1,.3,1) 1 both}
+      .ping{transform-box:fill-box;transform-origin:center;animation:ping 12s ease-out 1 both}
+      .persona{animation:persona 12s ease-in-out 1 both}
+      .sombra{animation:sombra 12s ease-in-out 1 both}
+      .sf1{animation:sf1 12s linear 1 both}.sf2{animation:sf2 12s linear 1 both}.sf3{animation:sf3 12s linear 1 both}
     }
-    @keyframes zap{0%,2%{opacity:0;transform:scaleY(.2)}9%,90%{opacity:1;transform:scaleY(1)}97%,100%{opacity:0;transform:scaleY(1)}}
-    @keyframes col{0%,8%{opacity:0;transform:scaleY(.02)}26%,90%{opacity:1;transform:scaleY(1)}97%,100%{opacity:0;transform:scaleY(1)}}
-    @keyframes viga{0%,25%{opacity:0;transform:translateY(-46px)}37%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:0;transform:translateY(0)}}
-    @keyframes placa{0%,34%{opacity:0}40%,90%{opacity:1}97%,100%{opacity:0}}
-    @keyframes larg{0%,36%{opacity:0;transform:translateY(-30px)}46%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:0;transform:translateY(0)}}
-    @keyframes rio{0%,38%{opacity:0;clip-path:inset(0 100% 0 0)}52%,90%{opacity:1;clip-path:inset(0 0 0 0)}97%,100%{opacity:0;clip-path:inset(0 0 0 0)}}
-    @keyframes techo{0%,44%{opacity:0;transform:translateY(-120px)}60%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:0;transform:translateY(0)}}
+    @keyframes zap{0%,2%{opacity:0;transform:scaleY(.2)}9%,90%{opacity:1;transform:scaleY(1)}97%,100%{opacity:1;transform:scaleY(1)}}
+    @keyframes col{0%,8%{opacity:0;transform:scaleY(.02)}26%,90%{opacity:1;transform:scaleY(1)}97%,100%{opacity:1;transform:scaleY(1)}}
+    @keyframes viga{0%,25%{opacity:0;transform:translateY(-46px)}37%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:1;transform:translateY(0)}}
+    @keyframes placa{0%,34%{opacity:0}40%,90%{opacity:1}97%,100%{opacity:1}}
+    @keyframes larg{0%,36%{opacity:0;transform:translateY(-30px)}46%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:1;transform:translateY(0)}}
+    @keyframes rio{0%,38%{opacity:0;clip-path:inset(0 100% 0 0)}52%,90%{opacity:1;clip-path:inset(0 0 0 0)}97%,100%{opacity:1;clip-path:inset(0 0 0 0)}}
+    @keyframes techo{0%,44%{opacity:0;transform:translateY(-120px)}60%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:1;transform:translateY(0)}}
     @keyframes aparejo{0%,44%{opacity:0;transform:translateY(-120px)}46%{opacity:1;transform:translateY(-120px)}60%{opacity:1;transform:translateY(0)}68%{opacity:1;transform:translateY(-40px)}76%,100%{opacity:0;transform:translateY(-300px)}}
     @keyframes bob{from{translate:0 0}to{translate:0 -2px}}
     @keyframes destello{0%,60%{opacity:0;transform:translateX(0)}66%{opacity:1}80%{opacity:1;transform:translateX(120px)}84%,100%{opacity:0;transform:translateX(120px)}}
     @keyframes cota{0%,26%{opacity:0}34%,72%{opacity:1}80%,100%{opacity:0}}
-    @keyframes node{0%,36%{opacity:0;transform:scale(0)}43%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+    @keyframes node{0%,36%{opacity:0;transform:scale(0)}43%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:1;transform:scale(1)}}
     @keyframes ping{0%,37%{opacity:0;transform:scale(1)}40%{opacity:.9}52%{opacity:0;transform:scale(3.8)}58%{opacity:0;transform:scale(1)}60%{opacity:.8}70%{opacity:0;transform:scale(3.4)}100%{opacity:0;transform:scale(1)}}
-    @keyframes persona{0%,4%{opacity:0}10%,90%{opacity:1}97%,100%{opacity:0}}
-    @keyframes sombra{0%,50%{opacity:0}62%,90%{opacity:1}97%,100%{opacity:0}}
+    @keyframes persona{0%,4%{opacity:0}10%,90%{opacity:1}97%,100%{opacity:1}}
+    @keyframes sombra{0%,50%{opacity:0}62%,90%{opacity:1}97%,100%{opacity:1}}
     .sf{transform-box:fill-box;transform-origin:0 50%}
-    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}26%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
-    @keyframes sf2{0%,24%{transform:scaleX(0);opacity:1}52%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
-    @keyframes sf3{0%,50%{transform:scaleX(0);opacity:1}70%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}26%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
+    @keyframes sf2{0%,24%{transform:scaleX(0);opacity:1}52%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
+    @keyframes sf3{0%,50%{transform:scaleX(0);opacity:1}70%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
     @media(prefers-reduced-motion:reduce){.zapata,.columna,.viga,.placa,.rio,.largueros,.techo,.cotas,.nodes circle,.persona,.sombra,.sf{opacity:1;transform:none;clip-path:none}.aparejo,.ping{opacity:0}}
   </style>
 </svg>
