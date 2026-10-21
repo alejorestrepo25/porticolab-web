@@ -388,9 +388,7 @@ body.home.y2k .hero-etapa.is-activa { color: #7ee8ff; }
 body.home.y2k .hero-etapa.is-activa svg { transform: scale(1.08); }
 body.home.y2k .hero-foto .destello { z-index: 1; }
 
-/* El acceso flotante no invade la lámina mientras la portada está a la vista. */
-body.home.hero-visible #mascota-wrapper { visibility: hidden; opacity: 0; pointer-events: none; }
-body.home #mascota-wrapper { transition: opacity .24s cubic-bezier(.2,0,0,1), visibility 0s linear .24s; }
+/* La mascota conserva su ubicación flotante habitual, también sobre la portada. */
 
 @media (max-width: 900px) {
   body.home.y2k .y2k-hero__vis { flex: 1 1 0; height: clamp(360px,54svh,500px); min-height: 250px; max-height: none; grid-template-rows: minmax(0,1fr) 62px; }

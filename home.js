@@ -84,18 +84,12 @@
     });
   }
 
-  // En la portada la mascota cede el espacio visual; vuelve cuando empieza la exploración.
   const portada = document.querySelector('.y2k-hero');
   const etapasHero = [...document.querySelectorAll('[data-hero-step]')];
-  if (portada) {
-    const revisarMascota = () => {
-      const r = portada.getBoundingClientRect();
-      document.body.classList.toggle('hero-visible', r.bottom > 0 && r.top < innerHeight);
-    };
-    addEventListener('scroll', revisarMascota, { passive: true });
-    addEventListener('resize', revisarMascota);
-    revisarMascota();
-  }
+  const ubicarMascota = () => document.body.classList.toggle('hero-visible', scrollY < 40);
+  addEventListener('scroll', ubicarMascota, { passive: true });
+  addEventListener('resize', ubicarMascota);
+  ubicarMascota();
   if (etapasHero.length > 1 && !reducir) {
     let etapa = 0;
     let reloj = 0;

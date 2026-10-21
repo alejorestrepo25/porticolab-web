@@ -73,6 +73,52 @@ body.y2k .pieza figcaption{border-top:1px solid #1e1e23;}
 @keyframes pl-orbit{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){body.y2k .n-hero__link span{transition:none}}
 
+/* Home: lámina más apaisada y foto ampliada hasta un margen perimetral corto. */
+body.home.y2k .y2k-hero{
+  width:min(1600px,96%);
+  height:clamp(560px,78svh,740px);
+  min-height:0;
+  margin:clamp(14px,2vh,22px) auto;
+  padding:clamp(14px,1.7vw,26px);
+  grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);
+  gap:clamp(18px,2.4vw,38px);
+}
+body.home.y2k .y2k-hero__vis{
+  align-self:stretch;
+  width:100%;
+  height:100%;
+  min-height:0;
+  grid-template-rows:minmax(0,1fr) 58px;
+  border-radius:16px;
+}
+body.home.y2k .hero-foto{min-height:0;}
+body.home.y2k .hero-foto img{object-position:center 48%;}
+body.home.y2k .y2k-hero h1{font-size:clamp(32px,4vw,56px);}
+@media(min-width:901px){
+  body.home.hero-visible #mascota-wrapper{bottom:max(18px,calc(100svh - var(--hh,66px) - clamp(14px,2vh,22px) - clamp(560px,78svh,740px) + 18px));}
+}
+
+@media(max-width:900px){
+  body.home.y2k .y2k-hero{
+    width:calc(100% - 28px);
+    height:auto;
+    min-height:0;
+    margin:18px auto 26px;
+    padding:20px;
+    grid-template-columns:minmax(0,1fr);
+    gap:18px;
+  }
+  body.home.y2k .y2k-hero__vis{
+    height:auto;
+    aspect-ratio:1.55/1;
+    grid-template-rows:minmax(0,1fr) 58px;
+  }
+}
+@media(max-width:560px){
+  body.home.y2k .y2k-hero{padding:16px;gap:15px;}
+  body.home.y2k .y2k-hero__vis{aspect-ratio:1.38/1;grid-template-rows:minmax(0,1fr) 56px;border-radius:13px;}
+}
+
 /* En móviles, la foto conserva una presencia amplia sin empujar el texto fuera de la portada. */
 @media(max-width:900px){
  body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){grid-template-columns:minmax(0,1fr);}
