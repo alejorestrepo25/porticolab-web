@@ -15,8 +15,8 @@ body.y2k {
   --cromo-1: #e8e8ee;
   --cromo-2: #b9a7ff;
   --cromo-3: #7ee8ff;
-  --display: 'Unbounded', 'Montserrat', sans-serif;
-  --mono: 'Space Mono', ui-monospace, Consolas, monospace;
+  --display: 'Montserrat', sans-serif;
+  --mono: 'Montserrat', sans-serif;
 }
 
 /* ---------- Tipografía ---------- */
@@ -27,7 +27,7 @@ body.y2k .post-tags span { font-family: var(--mono); }
 
 .hud {
   display: block;
-  font-family: var(--mono, 'Space Mono', monospace);
+  font-family: var(--mono, 'Montserrat', sans-serif);
   font-size: 10px;
   letter-spacing: 1.5px;
   color: var(--concreto, #8a8a85);
@@ -41,7 +41,7 @@ body.y2k .post-tags span { font-family: var(--mono); }
   align-items: center;
   gap: 10px;
   padding: 15px 24px;
-  font-family: var(--mono, 'Space Mono', monospace);
+  font-family: var(--mono, 'Montserrat', sans-serif);
   font-weight: 700;
   font-size: 12px;
   line-height: 1;
@@ -66,7 +66,7 @@ body.y2k .post-tags span { font-family: var(--mono); }
   display: inline-flex;
   align-items: center;
   padding: 15px 24px;
-  font-family: var(--mono, 'Space Mono', monospace);
+  font-family: var(--mono, 'Montserrat', sans-serif);
   font-weight: 700;
   font-size: 12px;
   line-height: 1;
@@ -80,12 +80,6 @@ body.y2k .post-tags span { font-family: var(--mono); }
 }
 .btn-fantasma:hover,
 .btn-fantasma:focus-visible { color: #fff; border-color: #8a8a85; outline: none; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .btn-cromo:hover,
-  .btn-cromo:focus-visible { animation: y2k-giro 2.4s linear infinite; }
-  @keyframes y2k-giro { to { --y2k-ang: 360deg; } }
-}
 
 /* ---------- Hero ---------- */
 .y2k-hero {
@@ -122,7 +116,7 @@ body.y2k .post-tags span { font-family: var(--mono); }
 .y2k-hero__txt { max-width: 560px; }
 .y2k-hero__txt .hud { margin-bottom: 18px; }
 .y2k-hero h1 {
-  font-family: var(--display, 'Unbounded', sans-serif);
+  font-family: var(--display, 'Montserrat', sans-serif);
   font-weight: 700;
   font-size: clamp(30px, 4.6vw, 58px);
   line-height: 1.08;
@@ -183,7 +177,7 @@ body.y2k .post-tags span { font-family: var(--mono); }
 .y2k-seccion { max-width: 1400px; margin: 0 auto; padding: 56px 40px 0; }
 .y2k-seccion h2 {
   margin-top: 8px;
-  font-family: var(--display, 'Unbounded', sans-serif);
+  font-family: var(--display, 'Montserrat', sans-serif);
   font-weight: 500;
   font-size: clamp(20px, 2.4vw, 28px);
   letter-spacing: 0.5px;
@@ -193,16 +187,16 @@ body.y2k .post-tags span { font-family: var(--mono); }
 /* ---------- Páginas internas ---------- */
 body.y2k .about-hero h1,
 body.y2k .about-axes h3 {
-  font-family: var(--display, 'Unbounded', sans-serif);
+  font-family: var(--display, 'Montserrat', sans-serif);
   text-transform: uppercase;
   letter-spacing: 0;
 }
-body.y2k .about-contact-mail { font-family: var(--mono, 'Space Mono', monospace); }
-body.y2k .about-footer p { font-family: var(--mono, 'Space Mono', monospace); }
+body.y2k .about-contact-mail { font-family: var(--mono, 'Montserrat', sans-serif); }
+body.y2k .about-footer p { font-family: var(--mono, 'Montserrat', sans-serif); }
 
 /* ---------- Página de producto ---------- */
 body.y2k .post-content h1 {
-  font-family: var(--display, 'Unbounded', sans-serif);
+  font-family: var(--display, 'Montserrat', sans-serif);
   font-weight: 700;
   font-size: clamp(24px, 3.4vw, 40px);
   letter-spacing: -0.3px;
@@ -211,7 +205,7 @@ body.y2k .post-content h1 {
 body.y2k .post-meta,
 body.y2k .tag,
 body.y2k .lightbox-counter,
-body.y2k .lightbox-btn { font-family: var(--mono, 'Space Mono', monospace); }
+body.y2k .lightbox-btn { font-family: var(--mono, 'Montserrat', sans-serif); }
 body.y2k .post-meta { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
 body.y2k .tag { font-size: 12px; }
 body.y2k .post-image img#main-image:hover { box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.1); }
@@ -221,6 +215,11 @@ body.y2k .gallery-item .hud { margin: 14px 0 6px; padding: 0 2px; }
 body.y2k .gallery-item:hover {
   box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.08);
 }
+
+/* Montserrat es la única familia tipográfica de la marca. */
+body.y2k .hud { letter-spacing: .08em; }
+body.y2k .y2k-hero__vis::after { content: none !important; }
+body.y2k .n-hero__reticula circle { animation: none !important; }
 
 /* ---------- Fotos: al pasar el puntero, el fondo se vuelve un mosaico de píxeles y el objeto queda nítido ---------- */
 .fondo-pixel-wrap { position: relative; }

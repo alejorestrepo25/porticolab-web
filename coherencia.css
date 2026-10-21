@@ -19,7 +19,7 @@ body.y2k {
 }
 
 body.y2k :where(h1, h2, h3) {
-  font-family: var(--display, 'Unbounded', 'Montserrat', sans-serif);
+  font-family: var(--display, 'Montserrat', sans-serif);
 }
 
 body.y2k header {
@@ -45,7 +45,7 @@ body.y2k header .logo {
   align-items: center;
   min-height: 44px;
   color: var(--pl-texto);
-  font: 700 20px/1 var(--display, 'Unbounded', sans-serif);
+  font: 700 20px/1 var(--display, 'Montserrat', sans-serif);
   letter-spacing: .035em;
   text-decoration: none;
 }
@@ -67,7 +67,7 @@ body.y2k header .nav a {
   padding: 0 3px;
   flex: 0 0 auto;
   color: var(--pl-secundario);
-  font: 400 12px/1.2 var(--mono, 'Space Mono', monospace);
+  font: 400 12px/1.2 var(--mono, 'Montserrat', sans-serif);
   letter-spacing: .09em;
   text-decoration: none;
   white-space: nowrap;

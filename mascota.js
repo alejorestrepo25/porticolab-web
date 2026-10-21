@@ -16,7 +16,7 @@
     #mascota-wrapper:focus-visible { outline: 2px solid #fff; outline-offset: 6px; border-radius: 6px; }
 
     #mascota-label {
-      font-family: 'Space Mono', 'Montserrat', monospace;
+      font-family: 'Montserrat', sans-serif;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 2.5px;
