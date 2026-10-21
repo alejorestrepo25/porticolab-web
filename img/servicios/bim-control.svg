@@ -128,7 +128,6 @@
     <path d="M638 548h208" stroke="#292933"/>
     <text x="641" y="568" fill="#7ee8ff" font-family="monospace" font-size="10.5" letter-spacing=".6">COLISIONES / DATOS / DECISIONES</text>
   </g></g>
-  <text x="38" y="727" fill="#92929d" font-family="monospace" font-size="13" letter-spacing="1.3">MODELO ABIERTO · ESPACIOS + SISTEMAS + ENVOLVENTE</text>
 
   <style>
     /* Coreografía: entrada única (≈3,4 s) y luego un ciclo de 12 s que aísla cada capa del modelo, en sincronía con el panel.
