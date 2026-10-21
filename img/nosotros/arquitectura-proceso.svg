@@ -10,20 +10,50 @@
   <path d="m156 386 164-95 164 95-164 95z" fill="none" stroke="#777" stroke-opacity=".45" stroke-width="2"/>
   <g class="foundation" fill="#17171c" stroke="#777" stroke-width="2"><path d="m194 376 18-10 18 10-18 11z"/><path d="m284 428 18-10 18 10-18 11z"/><path d="m374 376 18-10 18 10-18 11z"/><path d="m464 428 18-10 18 10-18 11z"/></g>
   <g fill="none" stroke="url(#edge)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
-    <path class="columns" d="M212 370V232m90 190V284m90 82V232m90 190V284"/>
-    <path class="beams" d="m212 232 90 52 90-52 90 52m-270 0 90 52 90-52 90 52"/>
-    <path class="braces" d="m212 370 90-86 90 82 90-86m-270-48 90 104 90-104 90 104" stroke-width="3" opacity=".8"/>
+    <path class="columns" pathLength="100" d="M212 370V232m90 190V284m90 82V232m90 190V284"/>
+    <path class="beams" pathLength="100" d="m212 232 90 52 90-52 90 52m-270 0 90 52 90-52 90 52"/>
+    <path class="braces" pathLength="100" d="m212 370 90-86 90 82 90-86m-270-48 90 104 90-104 90 104" stroke-width="3" opacity=".8"/>
   </g>
   <path class="roof" d="m178 224 134-78 184 106-134 78z" fill="url(#roof)" stroke="url(#edge)" stroke-width="4" stroke-linejoin="round"/>
-  <path class="roof-ribs" d="m212 205 184 106m-150-126 184 106m-150-126 184 106m-210 20 134-78m-106 94 134-78m-106 94 134-78" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
+  <path class="roof-ribs" pathLength="100" d="m212 205 184 106m-150-126 184 106m-150-126 184 106m-210 20 134-78m-106 94 134-78m-106 94 134-78" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
+    <g class="steps" aria-hidden="true">
+    <rect x="34" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf1" x="34" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="100" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf2" x="100" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="166" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf3" x="166" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+  </g>
+  <g class="pings" fill="none" stroke="#7ee8ff" stroke-width="2"><circle class="ping" cx="212" cy="232" r="6"/><circle class="ping" cx="302" cy="284" r="6"/><circle class="ping" cx="392" cy="232" r="6"/><circle class="ping" cx="482" cy="284" r="6"/></g>
   <g class="nodes" fill="#0a0a0c" stroke="#7ee8ff" stroke-width="3"><circle cx="212" cy="232" r="6"/><circle cx="302" cy="284" r="6"/><circle cx="392" cy="232" r="6"/><circle cx="482" cy="284" r="6"/></g>
   <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="13" letter-spacing="2">ARQUITECTURA / MONTAJE MODULAR</text>
   <text x="464" y="466" fill="#7ee8ff" font-family="monospace" font-size="10" letter-spacing="1.5">BASE → CUBIERTA</text>
   <style>
     .en-pausa *{animation-play-state:paused!important}
-    @media(prefers-reduced-motion:no-preference){.columns,.beams,.braces,.roof,.roof-ribs{animation:assemble 12s cubic-bezier(.76,0,.24,1) infinite}.columns{animation-delay:.4s}.beams{animation-delay:1.3s}.braces{animation-delay:2.2s}.roof{animation-delay:3s}.roof-ribs{animation-delay:3.4s}.nodes{animation:node-in 12s ease-in-out infinite}}
-    @keyframes assemble{0%,5%{opacity:.12;transform:translateY(18px)}28%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.12;transform:translateY(18px)}}
-    @keyframes node-in{0%,24%{opacity:.1}36%,78%{opacity:1}90%,100%{opacity:.1}}
-    @media(prefers-reduced-motion:reduce){.columns,.beams,.braces,.roof,.roof-ribs,.nodes{opacity:1;transform:none}}
+    .columns,.beams,.braces,.roof-ribs{stroke-dasharray:100}
+    @media(prefers-reduced-motion:no-preference){
+      .foundation path{transform-box:fill-box;transform-origin:center;animation:pad 12s cubic-bezier(.16,1,.3,1) infinite}
+      .foundation path:nth-child(2){animation-delay:.12s}.foundation path:nth-child(3){animation-delay:.24s}.foundation path:nth-child(4){animation-delay:.36s}
+      .columns{animation:d-col 12s cubic-bezier(.4,0,.2,1) infinite}
+      .beams{animation:d-beam 12s cubic-bezier(.4,0,.2,1) infinite}
+      .braces{animation:d-brace 12s cubic-bezier(.4,0,.2,1) infinite}
+      .roof{animation:roof 12s cubic-bezier(.16,1,.3,1) infinite}
+      .roof-ribs{animation:d-ribs 12s cubic-bezier(.4,0,.2,1) infinite}
+      .nodes circle{transform-box:fill-box;transform-origin:center;animation:node 12s cubic-bezier(.16,1,.3,1) infinite}
+      .nodes circle:nth-child(2){animation-delay:.14s}.nodes circle:nth-child(3){animation-delay:.28s}.nodes circle:nth-child(4){animation-delay:.42s}
+      .ping{transform-box:fill-box;transform-origin:center;animation:ping 12s ease-out infinite}
+      .ping:nth-child(2){animation-delay:.14s}.ping:nth-child(3){animation-delay:.28s}.ping:nth-child(4){animation-delay:.42s}
+      .sf1{animation:sf1 12s linear infinite}.sf2{animation:sf2 12s linear infinite}.sf3{animation:sf3 12s linear infinite}
+    }
+    @keyframes pad{0%,2%{opacity:0;transform:scale(.4)}9%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+    @keyframes d-col{0%,8%{stroke-dashoffset:100;opacity:1}27%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes d-beam{0%,25%{stroke-dashoffset:100;opacity:1}41%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes d-brace{0%,38%{stroke-dashoffset:100;opacity:.8}54%,90%{stroke-dashoffset:0;opacity:.8}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes roof{0%,52%{opacity:0;transform:translateY(-38px)}68%,90%{opacity:1;transform:translateY(0)}97%,100%{opacity:0;transform:translateY(0)}}
+    @keyframes d-ribs{0%,64%{stroke-dashoffset:100;opacity:1}76%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes node{0%,40%{opacity:0;transform:scale(0)}47%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+    @keyframes ping{0%,41%{opacity:0;transform:scale(1)}44%{opacity:.9}56%{opacity:0;transform:scale(3.4)}70%,100%{opacity:0;transform:scale(1)}}
+    .sf{transform-box:fill-box;transform-origin:0 50%}
+    @keyframes sf1{0%,8%{transform:scaleX(0);opacity:1}27%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf2{0%,25%{transform:scaleX(0);opacity:1}54%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf3{0%,52%{transform:scaleX(0);opacity:1}76%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.foundation path,.columns,.beams,.braces,.roof,.roof-ribs,.nodes circle,.sf{opacity:1;transform:none;stroke-dashoffset:0}.ping{opacity:0}}
   </style>
 </svg>

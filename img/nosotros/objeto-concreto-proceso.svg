@@ -2,6 +2,8 @@
   <title id="title">Desmolde de una ménsula arquitectónica en concreto</title>
   <desc id="desc">Las mitades de un molde flexible se abren para revelar una ménsula de concreto con perfiles y detalles moldeados.</desc>
   <defs>
+    <clipPath id="pclip"><path d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z"/></clipPath>
+    <linearGradient id="sheen" x2="1"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#777" stroke-opacity=".15"/></pattern>
     <linearGradient id="cast" x2="1" y2="1"><stop stop-color="#e4e0d8"/><stop offset="1" stop-color="#777a84"/></linearGradient>
     <linearGradient id="mold" x2="0" y2="1"><stop stop-color="#393942"/><stop offset="1" stop-color="#17171c"/></linearGradient>
@@ -9,21 +11,45 @@
   <rect width="640" height="500" fill="#09090c"/><rect width="640" height="500" fill="url(#grid)"/>
   <path d="M174 396h292m-254 16h216" stroke="#777" stroke-opacity=".5" stroke-width="3"/>
   <path class="piece" d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z" fill="url(#cast)" stroke="#eeece8" stroke-width="3" stroke-linejoin="round"/>
-  <path class="piece-detail" d="M269 335v-31q0-10 10-10h35v-50m20 1v51h42v-43m-84 83h56" fill="none" stroke="#4a4b52" stroke-opacity=".7" stroke-width="4"/>
+  <path class="wet" d="M252 352v-48q0-17 17-17h28v-44q0-18 18-18h78v40h-40v72q0 15-16 15z" fill="#4a4c57" stroke="#8d8f9c" stroke-width="3" stroke-linejoin="round"/>
+  <g clip-path="url(#pclip)"><rect class="brillo" x="205" y="205" width="46" height="180" fill="url(#sheen)"/></g>
+  <path class="piece-detail" pathLength="100" d="M269 335v-31q0-10 10-10h35v-50m20 1v51h42v-43m-84 83h56" fill="none" stroke="#4a4b52" stroke-opacity=".7" stroke-width="4"/>
+    <g class="steps" aria-hidden="true">
+    <rect x="34" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf1" x="34" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="100" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf2" x="100" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="166" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf3" x="166" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+  </g>
   <g class="mold mold-left" fill="url(#mold)" stroke="#b9a7ff" stroke-width="3" stroke-linejoin="round"><path d="M229 251q-25 17-24 51l4 77q2 18 19 18h38l8-38-2-97q-21-21-43-11z"/><path d="M227 273v101m26-116-2 125" fill="none" stroke="#696873" stroke-width="2"/></g>
   <g class="mold mold-right" fill="url(#mold)" stroke="#b9a7ff" stroke-width="3" stroke-linejoin="round"><path d="M426 251q25 17 24 51l-4 77q-2 18-19 18h-38l-8-38 2-97q21-21 43-11z"/><path d="M428 273v101m-26-116 2 125" fill="none" stroke="#696873" stroke-width="2"/></g>
-  <path class="arrow arrow-left" d="m218 222-28 0m0 0 9-8m-9 8 9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="arrow arrow-right" d="m438 222 28 0m0 0-9-8m9 8-9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="arrow arrow-left" pathLength="100" d="m218 222-28 0m0 0 9-8m-9 8 9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="arrow arrow-right" pathLength="100" d="m438 222 28 0m0 0-9-8m9 8-9 8" fill="none" stroke="#7ee8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="13" letter-spacing="2">OBJETO / DESMOLDE EN CONCRETO</text>
   <text x="475" y="466" fill="#7ee8ff" font-family="monospace" font-size="10" letter-spacing="1.5">MOLDE → PIEZA</text>
   <style>
     .en-pausa *{animation-play-state:paused!important}
-    @media(prefers-reduced-motion:no-preference){.mold-left{animation:open-left 11s cubic-bezier(.76,0,.24,1) infinite}.mold-right{animation:open-right 11s cubic-bezier(.76,0,.24,1) infinite}.piece{transform-box:fill-box;transform-origin:center;animation:reveal 11s cubic-bezier(.16,1,.3,1) infinite}.piece-detail{animation:detail 11s ease infinite}.arrow{animation:arrow-show 11s ease-in-out infinite}}
-    @keyframes open-left{0%,20%{transform:translateX(0)}43%,76%{transform:translateX(-42px)}88%,100%{transform:translateX(0)}}
-    @keyframes open-right{0%,20%{transform:translateX(0)}43%,76%{transform:translateX(42px)}88%,100%{transform:translateX(0)}}
-    @keyframes reveal{0%,24%{opacity:.18;transform:scale(.96)}46%,78%{opacity:1;transform:scale(1)}90%,100%{opacity:.18;transform:scale(.96)}}
-    @keyframes detail{0%,42%{opacity:.15}55%,78%{opacity:.7}90%,100%{opacity:.15}}
-    @keyframes arrow-show{0%,32%{opacity:0}45%,70%{opacity:1}82%,100%{opacity:0}}
-    @media(prefers-reduced-motion:reduce){.mold-left{transform:translateX(-42px)}.mold-right{transform:translateX(42px)}.piece,.piece-detail,.arrow{opacity:1;transform:none}}
+    .piece-detail,.arrow{stroke-dasharray:100}
+    @media(prefers-reduced-motion:no-preference){
+      .wet{animation:wet 12s cubic-bezier(.4,0,.2,1) infinite}
+      .piece{animation:cured 12s cubic-bezier(.4,0,.2,1) infinite}
+      .mold-left{animation:open-left 12s cubic-bezier(.76,0,.24,1) infinite}
+      .mold-right{animation:open-right 12s cubic-bezier(.76,0,.24,1) infinite}
+      .piece-detail{animation:d-det 12s cubic-bezier(.4,0,.2,1) infinite}
+      .arrow{animation:arrow 12s cubic-bezier(.4,0,.2,1) infinite}
+      .brillo{animation:brillo 12s cubic-bezier(.4,0,.2,1) infinite}
+      .sf1{animation:sf1 12s linear infinite}.sf2{animation:sf2 12s linear infinite}.sf3{animation:sf3 12s linear infinite}
+    }
+    /* vaciado: el concreto húmedo sube dentro de la forma; curado: se aclara; desmolde: las mitades se abren; acabado: brillo y detalles */
+    @keyframes wet{0%,2%{clip-path:inset(100% 0 0 0);opacity:1}18%,46%{clip-path:inset(0 0 0 0);opacity:1}62%,90%{clip-path:inset(0 0 0 0);opacity:0}97%,100%{clip-path:inset(0 0 0 0);opacity:0}}
+    @keyframes cured{0%,30%{opacity:0}62%,90%{opacity:1}97%,100%{opacity:0}}
+    @keyframes open-left{0%,32%{transform:translateX(0)}52%,86%{transform:translateX(-46px)}96%,100%{transform:translateX(0)}}
+    @keyframes open-right{0%,32%{transform:translateX(0)}52%,86%{transform:translateX(46px)}96%,100%{transform:translateX(0)}}
+    @keyframes d-det{0%,60%{stroke-dashoffset:100;opacity:.7}74%,90%{stroke-dashoffset:0;opacity:.7}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes arrow{0%,36%{stroke-dashoffset:100;opacity:1}50%,76%{stroke-dashoffset:0;opacity:1}86%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes brillo{0%,62%{transform:translateX(0);opacity:0}64%{opacity:1}78%{transform:translateX(220px);opacity:1}80%,100%{transform:translateX(220px);opacity:0}}
+    .sf{transform-box:fill-box;transform-origin:0 50%}
+    @keyframes sf1{0%,2%{transform:scaleX(0);opacity:1}18%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf2{0%,30%{transform:scaleX(0);opacity:1}52%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf3{0%,56%{transform:scaleX(0);opacity:1}78%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.wet{opacity:0}.piece,.piece-detail,.arrow,.sf{opacity:1;transform:none;stroke-dashoffset:0}.mold-left{transform:translateX(-46px)}.mold-right{transform:translateX(46px)}.brillo{opacity:0}}
   </style>
 </svg>

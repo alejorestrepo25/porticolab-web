@@ -8,22 +8,56 @@
   </defs>
   <rect width="640" height="500" fill="#09090c"/><rect width="640" height="500" fill="url(#grid)"/>
   <path d="M150 406h340" stroke="#777" stroke-opacity=".42" stroke-width="2"/>
-  <g class="base" fill="none" stroke="url(#metal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="m320 353-87 59m87-59 87 59m-87-59V420m-87-8h174"/><circle cx="320" cy="353" r="8" fill="#0a0a0c"/></g>
+  <ellipse class="sombra" cx="320" cy="410" rx="104" ry="9" fill="#000" fill-opacity=".55"/>
+  <g class="base" fill="none" stroke="url(#metal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path class="base-draw" pathLength="100" d="m320 353-87 59m87-59 87 59m-87-59V420m-87-8h174"/><circle cx="320" cy="353" r="8" fill="#0a0a0c"/></g>
   <path class="seat" d="M242 278q78-30 156 0l-13 42q-65 23-130 0z" fill="#19191f" stroke="url(#wood)" stroke-width="4"/>
   <path class="back" d="M266 256q-28-67 8-132 46-21 92 0 36 65 8 132-54 19-108 0z" fill="#19191f" stroke="url(#wood)" stroke-width="5"/>
-  <path class="back-detail" d="M287 141q-20 55 0 105m58-105q20 55 0 105" fill="none" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
-  <g class="supports" fill="none" stroke="url(#metal)" stroke-width="6" stroke-linecap="round"><path d="m276 289 15 65m73-65-15 65"/><path d="m242 300 78 25 78-25" stroke-width="3" opacity=".8"/></g>
+  <path class="back-detail" pathLength="100" d="M287 141q-20 55 0 105m58-105q20 55 0 105" fill="none" stroke="#d6d1e8" stroke-opacity=".48" stroke-width="2"/>
+  <g class="guias" fill="none" stroke="#7ee8ff" stroke-width="1.6" stroke-dasharray="4 6" stroke-linecap="round"><path d="M170 296h72"/><path d="M320 78v46"/><path d="M276 289 291 354"/></g>
+  <g class="supports" fill="none" stroke="url(#metal)" stroke-width="6" stroke-linecap="round"><path class="sup-draw" pathLength="100" d="m276 289 15 65m73-65-15 65"/><path d="m242 300 78 25 78-25" stroke-width="3" opacity=".8"/></g>
+    <g class="steps" aria-hidden="true">
+    <rect x="34" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf1" x="34" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="100" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf2" x="100" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+    <rect x="166" y="458" width="58" height="3" rx="1.5" fill="#2b2b33"/><rect class="sf sf3" x="166" y="458" width="58" height="3" rx="1.5" fill="#7ee8ff"/>
+  </g>
+  <g class="clics" fill="none" stroke="#7ee8ff" stroke-width="2"><circle class="clic" cx="275" cy="269" r="4"/><circle class="clic" cx="365" cy="269" r="4"/><circle class="clic" cx="282" cy="310" r="4"/><circle class="clic" cx="358" cy="310" r="4"/></g>
   <g class="fasteners" fill="#7ee8ff"><circle cx="275" cy="269" r="4"/><circle cx="365" cy="269" r="4"/><circle cx="282" cy="310" r="4"/><circle cx="358" cy="310" r="4"/></g>
   <text x="34" y="48" fill="#aaa" font-family="monospace" font-size="13" letter-spacing="2">MOBILIARIO / ENSAMBLE DE PIEZAS</text>
   <text x="467" y="466" fill="#7ee8ff" font-family="monospace" font-size="10" letter-spacing="1.5">FORMA → APOYO</text>
   <style>
     .en-pausa *{animation-play-state:paused!important}
-    @media(prefers-reduced-motion:no-preference){.base,.seat,.back,.back-detail,.supports,.fasteners{transform-box:fill-box;transform-origin:center;animation-duration:12s;animation-timing-function:cubic-bezier(.76,0,.24,1);animation-iteration-count:infinite}.base{animation-name:base-in}.seat{animation-name:seat-in;animation-delay:.8s}.back{animation-name:back-in;animation-delay:1.4s}.back-detail{animation-name:back-in;animation-delay:1.7s}.supports{animation-name:support-in;animation-delay:2.3s}.fasteners{animation-name:fast-in;animation-delay:2.8s}}
-    @keyframes base-in{0%,6%{opacity:.1;transform:translateY(22px)}25%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(22px)}}
-    @keyframes seat-in{0%,15%{opacity:.1;transform:translateY(18px)}34%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(18px)}}
-    @keyframes back-in{0%,25%{opacity:.1;transform:translateY(-24px)}45%,78%{opacity:1;transform:translateY(0)}90%,100%{opacity:.1;transform:translateY(-24px)}}
-    @keyframes support-in{0%,40%{opacity:.1;transform:scale(.9)}58%,78%{opacity:1;transform:scale(1)}90%,100%{opacity:.1;transform:scale(.9)}}
-    @keyframes fast-in{0%,52%{opacity:.1}65%,78%{opacity:1}90%,100%{opacity:.1}}
-    @media(prefers-reduced-motion:reduce){.base,.seat,.back,.back-detail,.supports,.fasteners{opacity:1;transform:none}}
+    .base-draw,.sup-draw,.back-detail{stroke-dasharray:100}
+    @media(prefers-reduced-motion:no-preference){
+      .sombra{transform-box:fill-box;transform-origin:center;animation:sombra 12s cubic-bezier(.16,1,.3,1) infinite}
+      .base circle{transform-box:fill-box;transform-origin:center;animation:hub 12s cubic-bezier(.16,1,.3,1) infinite}
+      .base-draw{animation:d-base 12s cubic-bezier(.4,0,.2,1) infinite}
+      .sup-draw{animation:d-sup 12s cubic-bezier(.4,0,.2,1) infinite}
+      .supports path:nth-child(2){animation:fade-sup 12s ease-out infinite}
+      .seat{transform-box:fill-box;transform-origin:center;animation:seat 12s cubic-bezier(.16,1,.3,1) infinite}
+      .back{transform-box:fill-box;transform-origin:50% 100%;animation:back 12s cubic-bezier(.16,1,.3,1) infinite}
+      .back-detail{animation:d-det 12s cubic-bezier(.4,0,.2,1) infinite}
+      .guias{animation:guias 12s ease-in-out infinite}
+      .fasteners circle{transform-box:fill-box;transform-origin:center;animation:fix 12s cubic-bezier(.16,1,.3,1) infinite}
+      .fasteners circle:nth-child(2){animation-delay:.12s}.fasteners circle:nth-child(3){animation-delay:.24s}.fasteners circle:nth-child(4){animation-delay:.36s}
+      .clic{transform-box:fill-box;transform-origin:center;animation:clic 12s ease-out infinite}
+      .clic:nth-child(2){animation-delay:.12s}.clic:nth-child(3){animation-delay:.24s}.clic:nth-child(4){animation-delay:.36s}
+      .sf1{animation:sf1 12s linear infinite}.sf2{animation:sf2 12s linear infinite}.sf3{animation:sf3 12s linear infinite}
+    }
+    @keyframes sombra{0%,3%{opacity:0;transform:scaleX(.3)}20%,90%{opacity:1;transform:scaleX(1)}97%,100%{opacity:0;transform:scaleX(1)}}
+    @keyframes hub{0%,14%{opacity:0;transform:scale(0)}22%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+    @keyframes d-base{0%,4%{stroke-dashoffset:100;opacity:1}22%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes d-sup{0%,18%{stroke-dashoffset:100;opacity:1}32%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes fade-sup{0%,30%{opacity:0}40%,90%{opacity:.8}97%,100%{opacity:0}}
+    @keyframes seat{0%,30%{opacity:0;transform:translateX(-72px) rotate(-8deg)}46%,90%{opacity:1;transform:translateX(0) rotate(0)}97%,100%{opacity:0;transform:translateX(0) rotate(0)}}
+    @keyframes back{0%,44%{opacity:0;transform:translateY(-72px) rotate(5deg)}60%,90%{opacity:1;transform:translateY(0) rotate(0)}97%,100%{opacity:0;transform:translateY(0) rotate(0)}}
+    @keyframes d-det{0%,58%{stroke-dashoffset:100;opacity:.48}68%,90%{stroke-dashoffset:0;opacity:.48}97%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes guias{0%,24%{opacity:0}30%,52%{opacity:.85}62%,100%{opacity:0}}
+    @keyframes fix{0%,60%{opacity:0;transform:scale(0)}68%,90%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+    @keyframes clic{0%,61%{opacity:0;transform:scale(1)}64%{opacity:.9}74%{opacity:0;transform:scale(3.2)}100%{opacity:0;transform:scale(1)}}
+    .sf{transform-box:fill-box;transform-origin:0 50%}
+    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}32%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf2{0%,30%{transform:scaleX(0);opacity:1}46%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf3{0%,44%{transform:scaleX(0);opacity:1}66%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.sombra,.base circle,.base-draw,.sup-draw,.supports path,.seat,.back,.back-detail,.fasteners circle,.sf{opacity:1;transform:none;stroke-dashoffset:0}.guias,.clic{opacity:0}}
   </style>
 </svg>
