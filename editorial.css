@@ -303,10 +303,15 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:cont
 /* Portadas del Laboratorio: se oculta la franja inferior (especificaciones y pie) y la marca va arriba */
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a{aspect-ratio:1200/1312!important;position:relative}
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:cover!important;object-position:top center!important}
-body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"PORTICO_LAB";position:absolute;z-index:2;left:5.5%;top:4.2%;width:40%;height:4.6%;display:flex;align-items:center;background:#fbfbfb;color:#1d1c20;font:700 clamp(9px,.72vw,12px)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;pointer-events:none}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"PORTICO_LAB";position:absolute;z-index:2;left:5.5%;top:4.2%;width:89%;height:4.6%;display:flex;align-items:center;background:#fbfbfb;color:#1d1c20;font:700 clamp(9px,.72vw,12px)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;pointer-events:none}
 /* Inicio: sin la barra Modelo / Coordinación / Ejecución; la foto ocupa todo el recuadro */
 body.home.y2k .hero-secuencia{display:none!important}
 body.home.y2k .y2k-hero__vis{grid-template-rows:minmax(0,1fr)!important}
 /* Ficha de proyecto: la imagen principal cabe completa en la pantalla */
 body.y2k .post-image img#main-image{width:auto!important;max-width:100%!important;max-height:calc(100svh - var(--hh,66px) - 120px)!important;height:auto;object-fit:contain;display:block;margin-inline:auto}
 @media(max-width:900px){body.y2k .post-image img#main-image{max-height:70svh!important}}
+/* Portadas: la marca lleva el código de proyecto de las carpetas del estudio */
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not([data-codigo=""])::before{content:"PORTICO_LAB  ·  " attr(data-codigo);width:89%;white-space:pre}
+/* Mascota: misma esquina en todas las páginas, sin moverse con la portada */
+html body #mascota-wrapper{bottom:24px!important;right:24px!important;top:auto!important;left:auto!important}
+@media(max-width:768px){html body #mascota-wrapper{bottom:14px!important;right:14px!important}}
