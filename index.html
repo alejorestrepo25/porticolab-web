@@ -6,7 +6,17 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTICO LAB</title>
+  <title>Pórtico Lab | Maquetas de exhibición y auditoría BIM en Medellín</title>
+  <meta name="description" content="Maquetas de exhibición para arquitectura y auditoría BIM con seguimiento de costos de obra. Estudio y laboratorio de materialidad en Medellín.">
+  <link rel="canonical" href="https://porticolab.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pórtico Lab">
+  <meta property="og:url" content="https://porticolab.com/">
+  <meta property="og:title" content="Pórtico Lab | Maquetas de exhibición y auditoría BIM en Medellín">
+  <meta property="og:description" content="Maquetas de exhibición para arquitectura y auditoría BIM con seguimiento de costos de obra. Estudio y laboratorio de materialidad en Medellín.">
+  <meta property="og:image" content="https://porticolab.com/img/hero-lampara.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css?v=5">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -191,7 +201,14 @@
     const gallery = document.querySelector(".gallery");
     if (!gallery) return;
 
-    const proyectos = await fetchProyectos();
+    let proyectos;
+    try {
+      proyectos = await fetchProyectos();
+    } catch (e) {
+      document.getElementById('gallery-loading').style.display = 'none';
+      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#888;font-size:15px;">No pudimos cargar los proyectos. Mira el trabajo reciente en <a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener" style="color:#b9a7ff">Instagram</a> o recarga la página.</div>';
+      return;
+    }
     proyectos.sort((a, b) => ((b.tags || []).includes("laboratorio") ? 1 : 0) - ((a.tags || []).includes("laboratorio") ? 1 : 0));
     proyectos.splice(4);
 
