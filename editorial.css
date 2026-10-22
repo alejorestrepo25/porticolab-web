@@ -300,3 +300,7 @@ body.home .cierre-home .pie-home{width:fit-content!important;max-width:calc(100%
 /* Portadas completas en su proporción original 4:5, sin recorte (Inicio y Laboratorio) */
 body.home .archivo-poster .gallery-item>a{max-height:none!important}
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:contain!important;background:#fff!important}
+/* Portadas del Laboratorio: se oculta la franja inferior (especificaciones y pie) y la marca va arriba */
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a{aspect-ratio:1200/1312!important;position:relative}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:cover!important;object-position:top center!important}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"PORTICO_LAB";position:absolute;z-index:2;left:5.5%;top:4.2%;width:40%;height:4.6%;display:flex;align-items:center;background:#fbfbfb;color:#1d1c20;font:700 clamp(9px,.72vw,12px)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;pointer-events:none}
