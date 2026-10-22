@@ -307,3 +307,6 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"
 /* Inicio: sin la barra Modelo / Coordinación / Ejecución; la foto ocupa todo el recuadro */
 body.home.y2k .hero-secuencia{display:none!important}
 body.home.y2k .y2k-hero__vis{grid-template-rows:minmax(0,1fr)!important}
+/* Ficha de proyecto: la imagen principal cabe completa en la pantalla */
+body.y2k .post-image img#main-image{width:auto!important;max-width:100%!important;max-height:calc(100svh - var(--hh,66px) - 120px)!important;height:auto;object-fit:contain;display:block;margin-inline:auto}
+@media(max-width:900px){body.y2k .post-image img#main-image{max-height:70svh!important}}
