@@ -84,3 +84,15 @@ body.y2k .about-contact-mail{background:transparent!important;color:var(--pl-ink
 @media(prefers-reduced-motion:no-preference){body.y2k :where(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){animation:none!important}body.y2k :where(.gallery-item,.frente,.srv-card,.paso-card,.pieza){transition-duration:.32s!important}}
 @media(max-width:768px){.theme-toggle{min-height:40px;padding-inline:10px}body.y2k header .nav{scroll-snap-type:x proximity}}
 @media(prefers-reduced-motion:reduce){body.y2k,.theme-toggle{transition:none}}
+/* Contraste reforzado en el tema claro */
+:root[data-theme="light"]{--pl-muted:#514d56;--pl-line:#77727b}
+:root[data-theme="light"] body.home .y2k-hero{background:#08080a!important;color:#f5f3f8!important}
+:root[data-theme="light"] body.home .y2k-hero :where(h1,p,.hud,.hero-explora,.btn-fantasma){color:#f5f3f8!important}
+:root[data-theme="light"] body.home .y2k-hero .y2k-hero__txt em{background:var(--pl-gradient)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+:root[data-theme="light"] body.home .y2k-hero .btn-fantasma{border-color:#b6b1bd!important}
+:root[data-theme="light"] body.home .y2k-hero .hero-explora b{color:#c4a8ff!important}
+:root[data-theme="light"] body.home .y2k-hero .hud b{color:#f5f3f8!important}
+:root[data-theme="light"] body.srvposter .srv-entrega{background:#17151b!important;color:#f5f3f8!important;border-color:#77727b!important}
+:root[data-theme="light"] body.srvposter .srv-entrega b{color:#c9b4ff!important}
+:root[data-theme="light"] body.srvposter .srv-entrega p{color:#f0edf4!important}
+:root[data-theme="light"] body.srvposter .srv-card .meta{color:#514d56!important}

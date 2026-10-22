@@ -78,11 +78,6 @@
     .srv-body h3 { font-size: 17px; font-weight: 700; margin-top: 8px; }
     .srv-body .promesa { font-size: 13px; color: #aaa; line-height: 1.6; margin-top: 8px; }
     .srv-entrega { margin-top: 16px; padding: 14px; border: 1px solid #29272f; border-radius: 10px; background: #0b0a0e; }
-    .srv-entrega b, .srv-caso b { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px; color: var(--acento); text-transform: uppercase; }
-    .srv-entrega p, .srv-caso p { margin-top: 6px; color: #ddd; font-size: 12px; line-height: 1.6; }
-    .srv-caso { margin-top: 12px; padding-left: 14px; border-left: 1px solid #51486b; }
-    .srv-caso a { color: #ddd; text-decoration-color: #777; text-underline-offset: 3px; }
-    .srv-caso a:hover { color: #fff; }
     .srv-body .num { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .bim { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: #000; background: var(--cromo); padding: 4px 8px; border-radius: 6px; }
     .incluye { list-style: none; margin-top: 14px; }
@@ -221,7 +216,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=2">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=1">
+  <link rel="stylesheet" href="editorial.css?v=2">
 </head>
 
 <body class="y2k srvposter">
@@ -416,7 +411,6 @@ const SERVICIOS = [
     promesa: 'Hacemos visible tu proyecto con una maqueta de exhibición.',
     incluye: ['Impresión 3D y corte láser', 'Concreto, madera, cartón y piezas impresas', 'Iluminación o electrónica integrada a la maqueta'],
     resultado: 'Una pieza física para presentar el proyecto en ventas, reuniones o exhibiciones.',
-    casoTitulo: 'Exploración relacionada', caso: 'Atalaya · estructura irregular y exploración material', casoUrl: 'laboratorio.html',
     meta: ['Propuesta a la medida', 'Exhibición física'],
     cta: 'Solicitar propuesta',
     campos: [
@@ -444,7 +438,6 @@ const SERVICIOS = [
     promesa: 'Revisamos el modelo BIM y alineamos costos y cronograma para anticipar riesgos.',
     incluye: ['Revisión y coordinación del modelo BIM', 'Control de costos 5D ligado al modelo y cronograma', 'Cómputos métricos automatizados en desarrollo'],
     resultado: 'Riesgos y desviaciones visibles antes de construir.',
-    casoTitulo: 'Experiencia relacionada', caso: 'Proyecto habitacional · modelos de arquitectura y estructura en Revit', casoUrl: '',
     meta: ['Propuesta a la medida', 'Revisión + control de costos'],
     cta: 'Solicitar propuesta',
     campos: [
@@ -505,7 +498,6 @@ function renderGrid() {
         `<p class="promesa">${s.promesa}</p>` +
         `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
         `<div class="srv-entrega"><b>Qué recibes</b><p>${s.resultado}</p></div>` +
-        `<div class="srv-caso"><b>${s.casoTitulo}</b><p>${s.casoUrl ? `<a href="${s.casoUrl}">${s.caso}</a>` : s.caso}</p></div>` +
         `<div class="meta"><span><b>${s.meta[0]}</b></span><span>${s.meta[1]}</span></div>` +
         `<button class="btn btn-primario" type="button">${s.cta} →</button>` +
       `</div>`;
