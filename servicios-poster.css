@@ -42,9 +42,13 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter .srv-grid { margin-top: clamp(12px, 2.4vh, 24px); gap: 18px; }
   body.srvposter .srv-card { flex-direction: row; }
   body.srvposter .srv-img { width: 40%; flex: none; aspect-ratio: auto; }
+  body.srvposter .srv-img svg > g > text:first-child,
+  body.srvposter .srv-img svg > g > text:last-child { display: none; }
+  body.srvposter .srv-card[data-id="maquetas"] .srv-img svg { transform: scale(1.35); }
+  body.srvposter .srv-card[data-id="bim"] .srv-img svg { transform: scale(1.2); }
   body.srvposter .srv-body { padding: clamp(14px, 2.4vh, 22px); }
-  body.srvposter .srv-body h3 { font-size: clamp(14px, 2.4vh, 18px); }
-  body.srvposter .srv-body .promesa { font-size: clamp(12px, 1.9vh, 14px); }
+  body.srvposter .srv-body h3 { font-size: clamp(17px, 2.5vh, 21px); line-height: 1.16; }
+  body.srvposter .srv-body .promesa { font-size: clamp(13px, 1.8vh, 15px); line-height: 1.55; }
   body.srvposter .incluye { margin-top: 10px; }
   body.srvposter .incluye li { font-size: clamp(11px, 1.7vh, 13px); padding-block: 4px; }
   body.srvposter .srv-body .btn { margin-top: 12px; padding-block: 12px; }

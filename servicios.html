@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios - PORTICO LAB</title>
-  <meta name="description" content="Arquitectura de exhibición y diseño arquitectónico con control de costos BIM (5D) para desarrolladores, constructoras e ingenieros. Medellín.">
+  <meta name="description" content="Arquitectura de exhibición y diseño arquitectónico BIM con seguimiento de costos para desarrolladores, constructoras e ingenieros. Medellín.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css?v=3">
@@ -146,7 +146,7 @@
     /* ---------- FAQ ---------- */
     .faq { margin-top: 24px; max-width: 760px; }
     .faq details { border-bottom: 1px solid var(--linea); }
-    .faq summary { cursor: pointer; padding: 18px 28px 18px 0; font-size: 14px; font-weight: 500; list-style: none; position: relative; }
+    .faq summary { cursor: pointer; padding: 18px 28px 18px 0; padding-inline-start: 0; text-indent: 0; font-size: 14px; font-weight: 500; list-style: none; position: relative; }
     .faq summary::-webkit-details-marker { display: none; }
     .faq summary::after { content: '+'; position: absolute; right: 4px; color: var(--acento); font-family: var(--mono); font-size: 18px; }
     .faq details[open] summary::after { content: '–'; }
@@ -213,12 +213,12 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .srv-card { transition: none; } .srv-card:hover { transform: none; } }
   </style>
-  <link rel="stylesheet" href="servicios-poster.css?v=5">
+  <link rel="stylesheet" href="servicios-poster.css?v=6">
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="motion-graphics.css?v=2">
+  <link rel="stylesheet" href="motion-graphics.css?v=3">
 </head>
 
 <body class="y2k srvposter">
@@ -335,8 +335,7 @@
     <div class="faq">
       <details><summary>¿Cuánto cuesta?</summary><p>Cada proyecto es distinto, así que preparamos una propuesta a la medida. En arquitectura de exhibición, el valor depende del tamaño, los materiales y el nivel de detalle; en la consultoría, del tamaño del proyecto y del alcance.</p></details>
       <details><summary>¿Qué es la arquitectura de exhibición?</summary><p>Es una representación física de un proyecto, elaborada a escala con los materiales que mejor lo cuentan: concreto moldeado en silicón, madera, plástico de impresión 3D, cartón y papeles especiales, junto con elementos paramétricos o digitales. Cada pieza se define según el proyecto y está pensada para presentarlo con claridad e impacto.</p></details>
-      <details><summary>¿Qué incluye el diseño arquitectónico con costos BIM?</summary><p>Diseño arquitectónico y control de costos dinámico trabajados en un mismo modelo BIM, desde la fase previa hasta la ejecución. Así el presupuesto no es una foto estática: se actualiza con el modelo y el cronograma.</p></details>
-      <details><summary>¿Qué es el 5D BIM?</summary><p>Es sumar costo y tiempo al modelo: el presupuesto se vincula con el avance del modelo y el cronograma, y se monitorea en tiempo real. Ayuda a ver sobrecostos e interferencias antes de que lleguen a obra.</p></details>
+      <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo, informe de correcciones y seguimiento de costos. La automatización de los cómputos métricos sigue en desarrollo.</p></details>
       <details><summary>¿Los cómputos métricos son automáticos?</summary><p>Estamos trabajando en automatizar la extracción de cantidades desde el modelo BIM. Cuéntanos tu caso y te explicamos qué podemos entregar hoy.</p></details>
       <details><summary>¿Qué necesito para empezar?</summary><p>Basta con contarnos tu proyecto. Si tienes planos, un modelo o referencias, súbelos en el formulario: nos ayudan a darte una propuesta más precisa.</p></details>
       <details><summary>Mi proyecto no encaja en las opciones</summary><p>Escríbenos por WhatsApp y lo hablamos.</p></details>
@@ -376,7 +375,7 @@ const ADJUNTOS = { id: 'adjuntos', label: 'Planos, modelo o referencias (opciona
 
 const FONDO_SVG = `<defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs><rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
 
-// Edificio en alzado con sus niveles + costo por nivel frente al presupuesto (5D)
+// Edificio en alzado con niveles y una lectura visual del presupuesto
 const ILUSTRACION_BIM = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto">
   ${FONDO_SVG}
   <g font-family="Space Mono, monospace" font-size="11" fill="#999">
@@ -446,7 +445,7 @@ const SERVICIOS = [
     badge: 'DISEÑO + COSTOS', ilustracion: ILUSTRACION_BIM,
     bim: true,
     promesa: 'Diseño arquitectónico y lectura de costos conectados al modelo BIM. La información del proyecto puede acompañar las decisiones desde la etapa previa y durante la obra.',
-    incluye: ['Cómputos métricos extraídos del modelo BIM, con menos desviaciones (automatización en desarrollo)', 'Monitoreo de costos en tiempo real con 5D BIM: presupuesto ligado al modelo y al cronograma', 'Sobrecostos e interferencias detectados antes de ejecutar en obra'],
+    incluye: ['Cómputos métricos extraídos del modelo BIM (automatización en desarrollo)', 'Seguimiento de costos asociado al modelo y al avance del proyecto', 'Identificación temprana de posibles sobrecostos e interferencias'],
     resultado: 'Según el alcance: diseño coordinado, cantidades revisables y una base de costos vinculada al modelo y al cronograma. La automatización de cómputos sigue en desarrollo.',
     casoTitulo: 'Experiencia relacionada', caso: 'Proyecto habitacional · modelos de arquitectura y estructura en Revit', casoUrl: '',
     meta: ['Propuesta a la medida', 'Diseño + control de costos'],
@@ -455,7 +454,7 @@ const SERVICIOS = [
       { id: 'fase', label: '¿En qué fase está tu proyecto?', type: 'select', options: [['previa', 'Antes de diseñar', 'Idea, lote o estudio de viabilidad'], ['diseno', 'Diseño en desarrollo'], ['contratar', 'Listo para licencia o contratación'], ['obra', 'En obra']] },
       { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda'], ['multifamiliar', 'Edificio multifamiliar o desarrollo'], ['comercial', 'Comercial u oficinas'], ['remodelacion', 'Remodelación']] },
       { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'number', min: 20, max: 200000, value: 500, presets: [200, 500, 2000, 8000], ayuda: 'Un estimado basta; lo afinamos en la propuesta.' },
-      { id: 'necesidad', label: '¿Qué necesitas? (opcional)', type: 'multi', options: [['diseno', 'Diseño arquitectónico en BIM'], ['computos', 'Cómputos métricos del modelo', 'Automatización en desarrollo'], ['costos', 'Control de costos en tiempo real', '5D BIM'], ['riesgos', 'Sobrecostos e interferencias', 'Detección antes de obra']] },
+      { id: 'necesidad', label: '¿Qué necesitas? (opcional)', type: 'multi', options: [['diseno', 'Diseño arquitectónico en BIM'], ['computos', 'Cómputos métricos del modelo', 'Automatización en desarrollo'], ['costos', 'Seguimiento de costos del proyecto'], ['riesgos', 'Revisión de posibles sobrecostos e interferencias']] },
       { id: 'insumo', label: '¿Con qué cuentas hoy?', type: 'select', options: [['modelo', 'Un modelo BIM', 'Revit, IFC u otro'], ['planos', 'Planos 2D', 'CAD o PDF'], ['idea', 'Solo la idea o el lote']] },
       { id: 'descripcion', label: 'Cuéntanos del proyecto (opcional)', type: 'texto', placeholder: 'Ubicación, etapa, qué te preocupa del costo...' },
       ADJUNTOS
@@ -936,7 +935,7 @@ if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 
 <script src="y2k.js?v=4" defer></script>
 <script src="servicios-poster.js?v=3" defer></script>
-<script src="mascota.js?v=20"></script>
+<script src="mascota.js?v=21"></script>
 <script src="navegacion-teclado.js?v=1" defer></script>
   <script src="coherencia.js?v=1" defer></script>
 </body>

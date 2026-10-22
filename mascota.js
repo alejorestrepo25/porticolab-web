@@ -16,13 +16,19 @@
     #mascota-wrapper:focus-visible { outline: 2px solid #fff; outline-offset: 6px; border-radius: 6px; }
 
     #mascota-label {
-      font-family: 'Space Mono', 'Montserrat', monospace;
-      font-size: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.4px;
       color: #fff;
-      opacity: 0.55;
+      opacity: 1;
       text-transform: uppercase;
+      white-space: nowrap;
+      padding: 4px 7px;
+      border: 1px solid rgba(185, 167, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(12, 12, 14, 0.9);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       transition: opacity 0.3s;
     }
     #mascota-wrapper:hover #mascota-label,

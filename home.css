@@ -23,6 +23,10 @@ body.home .rail a.activo { background: var(--cromo); border-color: transparent; 
 
 /* Aviso de exploración en el hero */
 body.home .hero-explora { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font: 700 11px/1 var(--mono); letter-spacing: 3px; text-transform: uppercase; color: #bbb; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+/* Mantiene la guía de scroll en el flujo del hero: nunca queda pegada al borde de la imagen. */
+@media (min-width: 901px) {
+  body.home.y2k .hero-explora { position: relative; left: auto; bottom: auto; transform: none; grid-column: 2; justify-self: center; }
+}
 body.home .hero-explora b { display: inline-block; animation: hm-baja 1.6s ease-in-out infinite; color: #7ee8ff; }
 @keyframes hm-baja { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 @media (prefers-reduced-motion: reduce) { body.home .hero-explora b { animation: none; } }
@@ -35,8 +39,9 @@ body.home .y2k-hero__vis:hover .destello { opacity: 1; }
 body.home .marquesina { overflow: hidden; border-block: 1px solid #1c1c1c; background: #050505; padding: 14px 0; }
 body.home .marquesina__pista { display: flex; width: max-content; animation: hm-marquesina 38s linear infinite; }
 body.home .marquesina:hover .marquesina__pista { animation-play-state: paused; }
-body.home .marquesina span { font: 700 13px/1 var(--mono); letter-spacing: 4px; text-transform: uppercase; color: #8a8a85; padding-right: 36px; white-space: nowrap; }
-body.home .marquesina span i { font-style: normal; color: #b9a7ff; margin-left: 36px; }
+body.home .marquesina__grupo { display: flex; align-items: center; gap: clamp(20px, 2.2vw, 36px); padding-right: clamp(20px, 2.2vw, 36px); }
+body.home .marquesina__grupo span { font: 700 13px/1 var(--mono); letter-spacing: 4px; text-transform: uppercase; color: #8a8a85; white-space: nowrap; }
+body.home .marquesina__grupo i { flex: 0 0 auto; font-style: normal; color: #b9a7ff; line-height: 1; }
 @keyframes hm-marquesina { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { body.home .marquesina__pista { animation: none; } }
 
