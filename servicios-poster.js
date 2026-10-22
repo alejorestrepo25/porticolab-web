@@ -52,62 +52,53 @@
   addEventListener('load', pedirMarca);
   marcar();
 
-  // Salto de pantalla en pantalla
+  // Transición por pantallas: rueda/flechas avanzan una vista cada vez en escritorio.
   let bloqueado = false;
   function actual(lista) {
     const y = scrollY + 6;
-    let k = 0;
-    lista.forEach((p, i) => { if (topDe(p) <= y) k = i; });
-    return k;
+    let i = 0;
+    lista.forEach((el, n) => { if (topDe(el) <= y) i = n; });
+    return i;
   }
   function irA(lista, i) {
     i = Math.max(0, Math.min(lista.length - 1, i));
     const destino = Math.max(0, Math.min(topDe(lista[i]), document.documentElement.scrollHeight - innerHeight));
     bloqueado = true;
-    scrollTo({ top: destino, behavior: 'smooth' });
-    setTimeout(() => { bloqueado = false; }, 760);
+    scrollTo({ top: destino, behavior: reducir ? 'auto' : 'smooth' });
+    setTimeout(() => { bloqueado = false; }, reducir ? 90 : 760);
   }
-  if (!reducir) {
     addEventListener('wheel', (e) => {
       if (!modo.matches || e.ctrlKey || Math.abs(e.deltaY) < 6 || formularioAbierto()) return;
       e.preventDefault();
       if (bloqueado) return;
-      const l = pantallas();
-      if (l.length) irA(l, actual(l) + (e.deltaY > 0 ? 1 : -1));
+      const lista = pantallas();
+      if (lista.length) irA(lista, actual(lista) + (e.deltaY > 0 ? 1 : -1));
     }, { passive: false });
     addEventListener('keydown', (e) => {
       if (!modo.matches || e.altKey || e.ctrlKey || e.metaKey || formularioAbierto()) return;
-      const ae = document.activeElement || {};
-      if (/input|textarea|select/i.test(ae.tagName || '')) return;
-      const l = pantallas();
-      if (!l.length) return;
+      if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
+      const lista = pantallas();
+      if (!lista.length) return;
       const k = e.key;
-      const libre = !ae.tagName || /body|html/i.test(ae.tagName);
-      if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && libre && !e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(l, actual(l) + 1); }
-      else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && libre && e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(l, actual(l) - 1); }
-      else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(l, 0); }
-      else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(l, l.length - 1); }
+      if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) + 1); }
+      else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) - 1); }
+      else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(lista, 0); }
+      else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(lista, lista.length - 1); }
     });
-  }
 
   // Ajuste automático: si el contenido de una pantalla no cabe, se reduce hasta que quepa
-  const movil = matchMedia('(max-width: 900px)');
-  const sonda = document.createElement('div');   // mide 100svh real (la pantalla con la barra del navegador visible)
-  sonda.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';
-  document.body.appendChild(sonda);
   function ajustar() {
-    const esMovil = movil.matches;
     pantallas().forEach((c) => {
       c.style.removeProperty('--k');
-      if (!modo.matches && !esMovil) return;
+      if (!modo.matches) return;
       const cs = getComputedStyle(c);
       const extra = (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0);
-      const disponible = esMovil ? sonda.offsetHeight - (extra > 0 ? alto() : 0) : innerHeight - alto();
+      const disponible = innerHeight - alto();
       let k = 1;
       for (let i = 0; i < 4; i++) {
         const h = c.getBoundingClientRect().height + extra;
         if (h <= disponible + 1) break;
-        k = Math.max(esMovil ? 0.62 : 0.5, k * (disponible / h) * 0.985);
+        k = Math.max(0.5, k * (disponible / h) * 0.985);
         c.style.setProperty('--k', k.toFixed(3));
       }
     });

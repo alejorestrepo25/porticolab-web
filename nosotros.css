@@ -6,6 +6,8 @@ body.nosotros .n-hero {
   align-items: flex-end;
   overflow: hidden;
   min-height: calc(100svh - var(--hh, 66px));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   border-bottom: 1px solid #161616;
 }
 body.nosotros .n-hero__img {
