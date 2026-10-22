@@ -105,8 +105,8 @@
     <path d="m141 326v34m65-46v31m99-37v47m92-73v43m86-8v42" stroke="#ffb5e1" stroke-width="2"/>
     <path d="m169 346 0 28m128-65v22m112-51v22m84 2v29" stroke="#ed5cae" stroke-width="4"/>
     <!-- Tuberías hidráulicas -->
-    <path class="mep-run mep-2" pathLength="100" d="m95 379 63 37 44-25 43 25 40-23m36 1 51 30 42-24 47 27 52-30" stroke="#77d98c" stroke-width="5"/>
-    <path d="m202 391v-35m84 49v-32m137 18v-37m93 19v-36" stroke="#a1f2ae" stroke-width="2"/>
+    <path class="mep-run mep-2" pathLength="100" d="m95 379 63 37 44-25 43 25 40-23m36 1 51 30 42-24 47 27 52-30" stroke="#8fb4ff" stroke-width="5"/>
+    <path d="m202 391v-35m84 49v-32m137 18v-37m93 19v-36" stroke="#bcd0ff" stroke-width="2"/>
     <!-- Bandejas eléctricas y datos -->
     <path class="mep-run mep-3" pathLength="100" d="m77 383 52-30 43 25 52-30 37 21 48-28 48 28 41-24 48 28 44-25 52 30" stroke="#f4c95d" stroke-width="4"/>
     <path d="m126 354v-30m126 15v-27m106 37v-29m111 37v-26" stroke="#f4c95d" stroke-width="2" stroke-dasharray="4 5"/>
@@ -117,7 +117,7 @@
 
   <g class="mep-flow" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 26">
     <path pathLength="100" d="m82 360 58-34 33 19 53-31 37 21 45-26 30 17 45-26 57 33 62-36" stroke="#ffd0ec"/>
-    <path pathLength="100" d="m95 379 63 37 44-25 43 25 40-23m36 1 51 30 42-24 47 27 52-30" stroke="#c8ffd4"/>
+    <path pathLength="100" d="m95 379 63 37 44-25 43 25 40-23m36 1 51 30 42-24 47 27 52-30" stroke="#dce6ff"/>
     <path pathLength="100" d="m77 383 52-30 43 25 52-30 37 21 48-28 48 28 41-24 48 28 44-25 52 30" stroke="#fff3c4"/>
   </g>
   </g>
@@ -137,7 +137,7 @@
     </g>
   </g>
   <!-- Superposición SECUENCIA: niveles de abajo hacia arriba. -->
-  <g class="ov-seq" fill="none" stroke="#77d98c" stroke-width="3.5" stroke-linejoin="round">
+  <g class="ov-seq" fill="none" stroke="#8fb4ff" stroke-width="3.5" stroke-linejoin="round">
     <path class="sq1" d="m62 520 223 128 259-149" />
     <path class="sq2" d="m62 455 223 129 259-149-221-127z"/>
     <path class="sq3" d="m62 345 223-129 259 149"/>
@@ -150,7 +150,7 @@
     <g class="b-row b-row-1" style="--c:#b9a7ff"><rect x="638" y="188" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="211" r="5" fill="#b9a7ff"/><text x="674" y="215" fill="#eee" font-family="Montserrat, sans-serif" font-size="13">ARQUITECTURA</text><text x="653" y="242" fill="#8c8c98" font-family="Montserrat, sans-serif" font-size="11">ESPACIOS · FACHADA · NIVELES</text><rect class="meter m1" x="653" y="250" width="178" height="3" rx="1.5"/></g>
     <g class="b-row b-row-2" style="--c:#fa68bc"><rect x="638" y="276" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="299" r="5" fill="#fa68bc"/><text x="674" y="303" fill="#eee" font-family="Montserrat, sans-serif" font-size="13">INSTALACIONES</text><text x="653" y="330" fill="#8c8c98" font-family="Montserrat, sans-serif" font-size="11">HVAC · HIDRÁULICA · ELÉCTRICA</text><rect class="meter m2" x="653" y="338" width="178" height="3" rx="1.5"/></g>
     <g class="b-row b-row-3" style="--c:#7ee8ff"><rect x="638" y="364" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="387" r="5" fill="#7ee8ff"/><text x="674" y="391" fill="#eee" font-family="Montserrat, sans-serif" font-size="13">COSTO · 5D</text><text x="653" y="418" fill="#8c8c98" font-family="Montserrat, sans-serif" font-size="11">CANTIDADES POR ELEMENTO</text><rect class="meter m3" x="653" y="426" width="178" height="3" rx="1.5"/></g>
-    <g class="b-row b-row-4" style="--c:#77d98c"><rect x="638" y="452" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="475" r="5" fill="#77d98c"/><text x="674" y="479" fill="#eee" font-family="Montserrat, sans-serif" font-size="13">SECUENCIA</text><text x="653" y="506" fill="#8c8c98" font-family="Montserrat, sans-serif" font-size="11">PLANIFICACIÓN DE OBRA</text><rect class="meter m4" x="653" y="514" width="178" height="3" rx="1.5"/></g>
+    <g class="b-row b-row-4" style="--c:#8fb4ff"><rect x="638" y="452" width="208" height="76" rx="7" fill="#111117" stroke="#282733"/><circle cx="658" cy="475" r="5" fill="#8fb4ff"/><text x="674" y="479" fill="#eee" font-family="Montserrat, sans-serif" font-size="13">SECUENCIA</text><text x="653" y="506" fill="#8c8c98" font-family="Montserrat, sans-serif" font-size="11">PLANIFICACIÓN DE OBRA</text><rect class="meter m4" x="653" y="514" width="178" height="3" rx="1.5"/></g>
     <path d="M638 548h208" stroke="#292933"/>
     <text x="641" y="568" fill="#7ee8ff" font-family="Montserrat, sans-serif" font-size="10.5" letter-spacing=".6">COLISIONES / DATOS / DECISIONES</text>
   </g></g>
