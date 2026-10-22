@@ -45,33 +45,33 @@
     .piezaseca,.piezahumeda,.contorno,.cubeta,.chorro,.reloj,.moldeA,.moldeB,.destello{opacity:1}
     .contorno{stroke-dasharray:100}
     @media(prefers-reduced-motion:no-preference){
-      .moldeA{animation:aA 12s cubic-bezier(.76,0,.24,1) 1 both}
-      .moldeB{animation:aB 12s cubic-bezier(.76,0,.24,1) 1 both}
-      .vibra{animation:none}
-      .piezahumeda{transform-box:fill-box;animation:verter 12s cubic-bezier(.4,0,.2,1) 1 both}
-      .piezaseca{animation:curar 12s ease-in-out 1 both}
-      .cubeta{animation:cubeta 12s cubic-bezier(.16,1,.3,1) 1 both}
-      .chorro{animation:chorro 12s linear 1 both}
-      .reloj{animation:reloj 12s ease-in-out 1 both}
-      .anillo{animation:anillo 12s linear 1 both}
-      .contorno{animation:contorno 12s cubic-bezier(.4,0,.2,1) 1 both}
-      .destello{animation:destello 12s ease-in-out 1 both}
-      .sf1{animation:sf1 12s linear 1 both}.sf2{animation:sf2 12s linear 1 both}.sf3{animation:sf3 12s linear 1 both}
+      .moldeA{animation:aA 9s cubic-bezier(.76,0,.24,1) infinite}
+      .moldeB{animation:aB 9s cubic-bezier(.76,0,.24,1) infinite}
+      .vibra{animation:vibra 9s linear infinite}
+      .piezahumeda{transform-box:fill-box;animation:verter 9s cubic-bezier(.4,0,.2,1) infinite}
+      .piezaseca{animation:curar 9s ease-in-out infinite}
+      .cubeta{animation:cubeta 9s cubic-bezier(.16,1,.3,1) infinite}
+      .chorro{animation:chorro 9s linear infinite}
+      .reloj{animation:reloj 9s ease-in-out infinite}
+      .anillo{animation:anillo 9s linear infinite}
+      .contorno{animation:contorno 9s cubic-bezier(.4,0,.2,1) infinite}
+      .destello{animation:destello 9s ease-in-out infinite}
+      .sf1{animation:sf1 9s linear infinite}.sf2{animation:sf2 9s linear infinite}.sf3{animation:sf3 9s linear infinite}
     }
-    @keyframes aA{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(57.2px,-33.0px)}96%,100%{transform:translate(57.2px,-33.0px)}}
-    @keyframes aB{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(-57.2px,33.0px)}96%,100%{transform:translate(57.2px,-33.0px)}}
+    @keyframes aA{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(57.2px,-33.0px)}96%,100%{transform:translate(0,0)}}
+    @keyframes aB{0%,46%{transform:translate(0,0)}60%,86%{transform:translate(-57.2px,33.0px)}96%,100%{transform:translate(0,0)}}
     @keyframes vibra{0%,18%{transform:translateX(0)}19%{transform:translateX(1.6px)}20%{transform:translateX(-1.6px)}21%{transform:translateX(1.4px)}22%{transform:translateX(-1.4px)}23%{transform:translateX(1px)}24%,100%{transform:translateX(0)}}
     @keyframes verter{0%,7%{clip-path:inset(100% 0 0 0);opacity:1}21%,40%{clip-path:inset(0 0 0 0);opacity:1}48%,90%{clip-path:inset(0 0 0 0);opacity:0}97%,100%{clip-path:inset(100% 0 0 0);opacity:0}}
-    @keyframes curar{0%,30%{opacity:0}48%,90%{opacity:1}97%,100%{opacity:1}}
+    @keyframes curar{0%,30%{opacity:0}48%,90%{opacity:1}97%,100%{opacity:0}}
     @keyframes cubeta{0%,3%{opacity:0;transform:translate(120px,-30px) rotate(0)}8%{opacity:1;transform:translate(0,0) rotate(0)}11%,19%{opacity:1;transform:translate(0,0) rotate(-34deg)}24%{opacity:1;transform:translate(0,0) rotate(0)}31%,100%{opacity:0;transform:translate(120px,-30px) rotate(0)}}
     @keyframes chorro{0%,10%{opacity:0;stroke-dashoffset:0}11%{opacity:1}12%,19%{opacity:1;stroke-dashoffset:-22}20%,100%{opacity:0}}
     @keyframes reloj{0%,22%{opacity:0}28%,56%{opacity:1}64%,100%{opacity:0}}
     @keyframes anillo{0%,24%{stroke-dashoffset:100}48%,100%{stroke-dashoffset:0}}
-    @keyframes contorno{0%,58%{stroke-dashoffset:100;opacity:1}72%,88%{stroke-dashoffset:0;opacity:1}95%,100%{stroke-dashoffset:0;opacity:1}}
+    @keyframes contorno{0%,58%{stroke-dashoffset:100;opacity:1}72%,88%{stroke-dashoffset:0;opacity:1}95%,100%{stroke-dashoffset:0;opacity:0}}
     @keyframes destello{0%,60%{opacity:0;transform:translateX(0)}64%{opacity:1}78%{opacity:1;transform:translateX(150px)}82%,100%{opacity:0;transform:translateX(150px)}}
-    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}24%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
-    @keyframes sf2{0%,22%{transform:scaleX(0);opacity:1}48%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
-    @keyframes sf3{0%,46%{transform:scaleX(0);opacity:1}70%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:1}}
+    @keyframes sf1{0%,4%{transform:scaleX(0);opacity:1}24%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf2{0%,22%{transform:scaleX(0);opacity:1}48%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
+    @keyframes sf3{0%,46%{transform:scaleX(0);opacity:1}70%,90%{transform:scaleX(1);opacity:1}97%,100%{transform:scaleX(1);opacity:0}}
     @media(prefers-reduced-motion:reduce){.piezahumeda{opacity:0}.piezaseca,.contorno,.sf{opacity:1;stroke-dashoffset:0;transform:none}.cubeta,.chorro,.reloj,.destello{opacity:0}.moldeA{transform:translate(57.2px,-33.0px)}.moldeB{transform:translate(-57.2px,33.0px)}}
   </style>
 </svg>
