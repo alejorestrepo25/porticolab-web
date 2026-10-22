@@ -240,3 +240,19 @@ body.home .frente__img{background:#0b0b0b!important}
  body.srvposter .srv-wrap{margin-inline:auto!important;width:100%}
  body.y2k .srv-wrap .hero{max-width:none!important}
 }
+/* Ritmo: más aire entre secciones y dentro de los pasos, sin volver a las pantallas a medio llenar */
+body.home :is(.seccion,.archivo-poster){padding-block:clamp(44px,6.5vh,76px)!important}
+body.home .archivo-poster>.seccion{padding-block:0 28px!important}
+body.home .seccion__cab{margin-bottom:clamp(28px,4vh,48px)!important}
+body.home .ver-todo-wrap{margin-top:clamp(32px,5vh,56px)!important}
+body.home .cierre-home{padding-block:clamp(80px,12vh,144px) 40px!important}
+body.home .cierre-home>p{margin-block:18px 32px!important}
+@media(min-width:901px){
+ body.home .proceso{gap:clamp(28px,3vw,48px)!important}
+ body.home .paso{padding-top:76px!important}
+ body.home .paso h3{margin-bottom:14px!important}
+ body.home .paso p{max-width:34ch;line-height:1.75!important}
+}
+@media(max-width:900px){body.home .proceso{gap:36px!important}body.home .paso h3{margin-bottom:10px!important}}
+body.srvposter .srv-wrap>section[data-pantalla]:not(.hero){padding-block:clamp(44px,6.5vh,76px)!important}
+body.nosotros section[data-pantalla]:not(.n-hero){padding-block:clamp(44px,6.5vh,76px)!important}
