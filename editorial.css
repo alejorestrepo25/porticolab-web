@@ -253,7 +253,6 @@ body.nosotros section[data-pantalla]:not(.n-hero){padding-block:clamp(44px,6.5vh
 body.home :is(.seccion,.archivo-poster,.cierre-home),body.srvposter .srv-wrap>section[data-pantalla]:not(.hero),body.nosotros section[data-pantalla]:not(.n-hero){min-height:calc(100svh - var(--hh,66px))!important;display:flex!important;flex-direction:column!important;justify-content:center!important;box-sizing:border-box}
 body.home:not(.nosotros) #proyectos{min-height:0!important}
 body.home .cierre-home{padding-bottom:24px!important}
-body.home .cierre-home .pie-home{margin-top:auto}
 /* Portadas de Servicios y Nosotros también ocupan una pantalla completa */
 body.srvposter .srv-wrap>section.hero,body.nosotros.y2k section.n-hero{min-height:calc(100svh - var(--hh,66px))!important;margin-block:0!important;box-sizing:border-box}
 /* Las ilustraciones de tarjetas se ven siempre al 100 % (antes quedaban lavadas al 35 % hasta "verse") */
@@ -263,12 +262,13 @@ html.mov-ok body.srvposter .srv-card .srv-img svg,html.mov-ok body.nosotros .pie
 /* Nosotros: collage de piezas en la portada (reemplaza la foto del taller) */
 body.nosotros .n-hero__visual{background:transparent!important}
 body.nosotros .n-hero__visual .n-hero__reticula,body.nosotros .n-hero__visual .n-hero__visual-index{display:none!important}
-body.nosotros .n-collage{position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr 1.05fr;grid-template-rows:1fr 1fr;gap:10px}
+body.nosotros .n-collage{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.15fr 1fr;grid-template-rows:1fr 1fr .78fr;gap:10px}
 body.nosotros .n-collage img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;background:var(--pl-surface-2)}
 body.nosotros .n-collage img:nth-child(1){grid-column:1;grid-row:1/3}
 body.nosotros .n-collage img:nth-child(2){grid-column:2;grid-row:1}
 body.nosotros .n-collage img:nth-child(3){grid-column:2;grid-row:2}
 body.nosotros .n-collage img:nth-child(4){grid-column:3;grid-row:1/3}
+body.nosotros .n-collage img:nth-child(5){grid-column:1/4;grid-row:3;object-position:50% 45%}
 body.nosotros .n-hero__visual-tag{z-index:3}
 @media(prefers-reduced-motion:no-preference){body.nosotros .n-collage img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}body.nosotros .n-collage img:hover{transform:scale(1.02)}}
 @media(min-width:901px){body.nosotros.y2k .n-hero__visual{height:calc(100svh - var(--hh,66px) - 64px)!important;max-height:820px}}
@@ -291,3 +291,12 @@ body.srvposter .srv-hero__visual{background:#08080b!important}
 :root[data-theme="light"] body.srvposter .srv-entrega b{color:#59449e!important}
 :root[data-theme="light"] body.srvposter .srv-entrega p{color:#302e35!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img svg path[stroke-dasharray]{stroke:#59449e!important;stroke-width:2!important}
+/* Contacto: el bloque queda centrado en la pantalla y el pie abajo */
+body.home .cierre-home{position:relative!important;justify-content:center!important;padding-bottom:72px!important}
+body.home .cierre-home .pie-home{position:absolute!important;left:0;right:0;bottom:24px;margin:0 auto!important}
+/* Servicios: la ilustración nunca se recorta; Contacto: pie centrado */
+body.y2k .srv-hero__visual img{object-fit:contain!important}
+body.home .cierre-home .pie-home{width:fit-content!important;max-width:calc(100% - 32px);justify-content:center!important;gap:16px}
+/* Portadas completas en su proporción original 4:5, sin recorte (Inicio y Laboratorio) */
+body.home .archivo-poster .gallery-item>a{max-height:none!important}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:contain!important;background:#fff!important}
