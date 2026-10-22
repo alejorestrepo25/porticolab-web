@@ -154,3 +154,60 @@ body.y2k .hud:not(.hud--tl){display:none!important}
  body.nosotros .piezas,body.nosotros .ver-todo-wrap,body.nosotros .n-pilares,body.nosotros .ejes{width:min(100%,1380px)}
 }
 @media(min-width:901px) and (min-height:560px){body.home .frente__img{width:min(56%,54vh)}}
+
+/* Galerías de Inicio y Laboratorio: marco 4:5 igual para todas las fotos, recortadas sin bandas ni huecos */
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery{align-items:stretch}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item{display:flex;flex-direction:column}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a{aspect-ratio:4/5;overflow:hidden;background:var(--pl-surface-2)}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img,body.home .archivo-poster .gallery-item img{width:100%;height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover!important;background:none!important}
+@media(min-width:901px) and (min-height:560px){body.home .archivo-poster .gallery-item>a{max-height:46vh;width:100%}}
+@media(max-width:900px){body.home .archivo-poster .gallery-item>a{max-height:30svh;width:100%}}
+body.y2k .gallery-item h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-bottom:0!important;margin-bottom:8px}
+body.y2k .gallery-item .post-tags{gap:0!important;margin-top:auto}
+body.y2k .gallery-item .post-tags:empty{display:none}
+body.y2k .gallery-item .post-tags span{background:none!important;padding:0!important;border-radius:0;font-size:12px;letter-spacing:.03em;color:var(--pl-muted)!important}
+body.y2k .gallery-item .post-tags span+span::before{content:"·";margin:0 .5em}
+/* Nosotros: bajadas de sección en un solo renglón cuando cabe */
+body.nosotros .seccion__cab{max-width:none}
+body.nosotros .seccion__cab p{max-width:none}
+/* Inicio: barra Modelo / Coordinación / Ejecución más compacta para darle más área a la foto */
+body.home.y2k .y2k-hero__vis{grid-template-rows:minmax(0,1fr) 44px!important}
+body.home.y2k .hero-secuencia{padding:4px 12px!important}
+body.home.y2k .hero-etapa{font-size:11px!important;gap:6px!important}
+body.home.y2k .hero-etapa svg{width:16px!important;height:16px!important;flex-basis:16px!important}
+/* Servicios: ilustración principal más grande, ocupando su columna completa */
+@media(min-width:901px){
+ body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
+ body.y2k .srv-hero__visual{width:100%!important;height:auto!important;max-height:min(80vh,760px);aspect-ratio:900/760;justify-self:stretch!important}
+}
+body.y2k .srv-hero__visual figcaption{display:none}
+@media(max-width:900px){body.y2k .srv-hero__visual{aspect-ratio:900/760!important}}
+
+/* Legibilidad: textos un poco más grandes en todo el sitio */
+body.y2k :is(.frente__txt p,.paso p,.srv-body .promesa,.srv-body li,.srv-entrega p,.seccion-sub,.seccion__cab p,.pieza figcaption b){font-size:max(15px,1em)}
+body.y2k .faq summary{font-size:16px!important}
+body.y2k .faq details p{font-size:15px!important}
+body.y2k .cierre p{font-size:16px!important}
+body.nosotros .n-pilar p{font-size:15px;max-width:none}
+body.nosotros .n-pilar > span,body.y2k .srv-body .num,body.nosotros .pieza figcaption span{font-size:12px!important}
+body.y2k :is(.btn-cromo,.btn-fantasma,.btn,.ver-todo,.hero-explora,.n-hero__link){font-size:12px!important}
+body.y2k :is(.pie-home,.about-footer) :is(span,a){font-size:12px}
+body.y2k .srv-img .badge,body.y2k .srv-body .bim,body.y2k .kicker{font-size:11px!important}
+@media(max-width:900px){body.nosotros .n-pilar p{font-size:13px}}
+
+/* Contraste: números, acentos y textos secundarios con color del tema */
+body.nosotros .n-pilar > span{color:#7ee8ff}
+body.nosotros .n-pilar p{color:var(--pl-muted)!important}
+body.y2k .srv-body .num{color:var(--pl-muted)!important}
+body.y2k #gallery-loading,body.y2k .gallery>div[style]{color:var(--pl-muted)!important}
+body.y2k .gallery>div[style] a{color:var(--pl-ink)!important;text-decoration:underline;text-underline-offset:3px}
+:root[data-theme="light"] body.nosotros .n-pilar > span,
+:root[data-theme="light"] body.y2k :is(.kicker,.meta b,.hud b,.ver-todo b,.hero-explora b){color:#5b3fd0!important}
+:root[data-theme="light"] body.nosotros .pieza figcaption span{color:var(--pl-muted)!important}
+:root[data-theme="light"] body.nosotros .ejes span{color:var(--pl-ink)!important}
+:root[data-theme="light"] body.nosotros .ejes i{color:#5b3fd0!important}
+:root[data-theme="light"] body.y2k .cierre{background:var(--pl-surface)!important;border-color:var(--pl-line)!important}
+:root[data-theme="light"] body.y2k .cierre h2{color:var(--pl-ink)!important}
+:root[data-theme="light"] body.y2k .cierre p{color:var(--pl-muted)!important}
+:root[data-theme="light"] body.y2k .cierre .btn{color:var(--pl-ink)!important;border-color:var(--pl-ink)!important;background:transparent!important}
+body.srvposter .kicker{display:none!important}
