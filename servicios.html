@@ -218,14 +218,14 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .srv-card { transition: none; } .srv-card:hover { transform: none; } }
   </style>
-  <link rel="stylesheet" href="servicios-poster.css?v=8">
+  <link rel="stylesheet" href="servicios-poster.css?v=9">
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=7">
+  <link rel="stylesheet" href="editorial.css?v=8">
 </head>
 
 <body class="y2k srvposter">
@@ -376,28 +376,24 @@ const ADJUNTOS = { id: 'adjuntos', label: 'Planos, modelo o referencias (opciona
 
 const FONDO_SVG = `<defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs><rect y="-50" width="400" height="400" fill="#0b0b0b"/><g stroke="#161616" stroke-width="1">${Array.from({length: 13}, (_, i) => `<path d="M${i * 32} -50V350"/>`).join('')}${Array.from({length: 13}, (_, i) => `<path d="M0 ${i * 32 - 64}H400"/>`).join('')}</g>`;
 
-// Edificio en alzado con niveles y una lectura visual del presupuesto
-const ILUSTRACION_BIM = `<svg viewBox="0 -50 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto">
-  ${FONDO_SVG}
-  <g font-family="Montserrat, sans-serif" font-size="11" fill="#999">
-    <text x="32" y="48" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO + COSTOS · BIM</text>
-    <g fill="none" stroke="#8a8a85" stroke-width="1.2">
-      <rect x="56" y="76" width="112" height="132"/>
-      ${Array.from({length: 5}, (_, i) => `<path d="M56 ${(76 + (i + 1) * 22).toFixed(0)}H168"/>`).join('')}
-      <path d="M52 76H172" stroke="#b9a7ff" stroke-width="2"/>
-      ${Array.from({length: 6}, (_, f) => [0, 1, 2].map(b => `<rect x="${66 + b * 34}" y="${(82 + f * 22).toFixed(0)}" width="22" height="10" stroke="${f === 2 ? '#7ee8ff' : '#555'}"/>`).join('')).join('')}
-      <rect x="56" y="142" width="112" height="22" stroke="#7ee8ff" stroke-width="1.6" fill="rgba(126,232,255,0.08)"/>
+// Edificio en alzado con niveles y una lectura visual del presupuesto, composición vertical
+const ILUSTRACION_BIM = `<svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto">
+  <defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs>
+  <rect width="300" height="400" fill="#0b0b0b"/>
+  <g font-family="Montserrat, sans-serif" fill="#999">
+    <text x="24" y="34" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO + COSTOS · BIM</text>
+    <path d="M30 334H160" stroke="#555" stroke-width="2"/>
+    <path d="M40 66l55-22 55 22" fill="none" stroke="#b9a7ff" stroke-width="2"/>
+    <g fill="none" stroke="#8a8a85" stroke-width="1.3">
+      <rect x="40" y="66" width="110" height="268"/>
+      ${Array.from({length: 5}, (_, i) => `<path d="M40 ${66 + (i + 1) * 44.7}H150"/>`).join('')}
+      ${Array.from({length: 6}, (_, f) => [0, 1, 2].map(c => `<rect x="${50 + c * 32}" y="${(78 + f * 44.7).toFixed(0)}" width="24" height="20" stroke="${f === 3 ? '#7ee8ff' : '#555'}"/>`).join('')).join('')}
+      <rect x="40" y="200" width="110" height="44.7" stroke="#7ee8ff" stroke-width="1.8" fill="rgba(126,232,255,0.08)"/>
     </g>
-    <g stroke="#555" stroke-width="1" fill="none"><path d="M176 153H204M200 149l4 4-4 4"/></g>
-    <text x="184" y="143" font-size="8" fill="#7ee8ff">NIVEL 3</text>
-    <!-- costo por nivel -->
-    <g>
-      ${[['N6', 58], ['N5', 66], ['N4', 62], ['N3', 96], ['N2', 60], ['N1', 64]].map(([n, w], i) => `<text x="212" y="${(90 + i * 22).toFixed(0)}" font-size="8" fill="#777">${n}</text><rect x="234" y="${(80 + i * 22).toFixed(0)}" width="${w}" height="10" rx="2" fill="${n === 'N3' ? '#ff8f8f' : 'url(#cromo)'}" opacity="${n === 'N3' ? 1 : 0.85}"/>`).join('')}
-      <path d="M312 72V210" stroke="#b9a7ff" stroke-width="1.2" stroke-dasharray="3 3"/>
-      <text x="312" y="224" font-size="8" text-anchor="middle" fill="#b9a7ff">PRESUPUESTO</text>
-    </g>
-    <path d="M32 240H368" stroke="#b9a7ff" stroke-width="1.5"/>
-    <text x="32" y="262" font-size="9" fill="#bbb">MODELO  →  CANTIDADES  →  COSTO  →  CRONOGRAMA</text>
+    ${[['N6', 52], ['N5', 60], ['N4', 56], ['N3', 92], ['N2', 54], ['N1', 58]].map(([n, w], i) => `<text x="166" y="${(93 + i * 44.7).toFixed(0)}" font-size="9" fill="${n === 'N3' ? '#7ee8ff' : '#777'}">${n}</text><rect x="186" y="${(84 + i * 44.7).toFixed(0)}" width="${w}" height="12" rx="3" fill="${n === 'N3' ? '#ff8f8f' : 'url(#cromo)'}" opacity="${n === 'N3' ? 1 : 0.85}"/>`).join('')}
+    <path d="M258 60V334" stroke="#b9a7ff" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="258" y="352" font-size="8" text-anchor="middle" fill="#b9a7ff">PRESUPUESTO</text>
+    <text x="24" y="380" font-size="9" fill="#bbb">MODELO → CANTIDADES → COSTO → CRONOGRAMA</text>
   </g>
 </svg>`;
 

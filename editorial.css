@@ -211,3 +211,32 @@ body.y2k .gallery>div[style] a{color:var(--pl-ink)!important;text-decoration:und
 :root[data-theme="light"] body.y2k .cierre p{color:var(--pl-muted)!important}
 :root[data-theme="light"] body.y2k .cierre .btn{color:var(--pl-ink)!important;border-color:var(--pl-ink)!important;background:transparent!important}
 body.srvposter .kicker{display:none!important}
+
+/* Sin vacíos: la portada llena la pantalla con la foto y cada sección mide lo que mide su contenido */
+html,html.js{scroll-snap-type:none!important}
+body.y2k :is(.seccion,.cierre-home,.archivo-poster,.cierre,#preguntas,#servicios,#como-funciona),body.nosotros section[data-pantalla]:not(.n-hero){min-height:0!important;scroll-snap-align:none!important;scroll-snap-stop:normal!important}
+body.home :is(.seccion,.archivo-poster){padding-block:clamp(40px,6vh,72px)!important;justify-content:flex-start!important}
+body.home .archivo-poster>.seccion{padding-block:0 20px!important}
+body.home .cierre-home{padding-block:clamp(56px,9vh,104px) 32px!important;justify-content:flex-start!important}
+body.srvposter .srv-wrap>section[data-pantalla]:not(.hero){padding-block:clamp(40px,6vh,72px)!important;justify-content:flex-start!important}
+body.srvposter .cierre{padding-block:clamp(48px,8vh,96px)!important;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:901px){
+ body.home.y2k .y2k-hero{height:calc(100svh - var(--hh,66px) - 44px)!important;min-height:560px!important;max-height:980px;margin-block:0!important;padding-block:clamp(14px,2.2vh,26px)!important;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)!important;align-items:stretch!important;width:min(1760px,94%)!important}
+ body.home.y2k .y2k-hero__txt{align-self:center}
+ body.home.y2k .y2k-hero__vis{height:100%!important;max-height:none!important;min-height:0!important;aspect-ratio:auto!important}
+ body.home .hero-explora{display:none!important}
+}
+/* Tarjetas de Inicio: el fondo del recuadro coincide con el de la ilustración, sin bandas */
+body.home .frente__img{background:#0b0b0b!important}
+/* Mismo ancho que la portada para que no sobren márgenes en pantallas grandes */
+@media(min-width:1100px){
+ body.home :is(.seccion,.cierre-home,.pie-home,main .gallery,.ver-todo-wrap){max-width:min(1760px,94vw)!important;padding-inline:0!important;margin-inline:auto!important}
+ body.srvposter .srv-wrap{max-width:min(1760px,94vw)!important}
+ body.nosotros #piezas{max-width:min(1760px,94vw)!important}
+ body.nosotros :is(.piezas,.ver-todo-wrap,.n-pilares,.ejes){width:min(100%,1760px)!important}
+ body.nosotros.y2k .n-hero{width:min(1760px,94%)!important}
+}
+@media(min-width:1100px){
+ body.srvposter .srv-wrap{margin-inline:auto!important;width:100%}
+ body.y2k .srv-wrap .hero{max-width:none!important}
+}
