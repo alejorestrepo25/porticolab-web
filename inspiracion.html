@@ -6,7 +6,17 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTICO LAB</title>
+  <title>Inspiración | Pórtico Lab</title>
+  <meta name="description" content="Referencias de arquitectura, materiales y objetos que alimentan el trabajo de Pórtico Lab.">
+  <link rel="canonical" href="https://porticolab.com/inspiracion.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pórtico Lab">
+  <meta property="og:url" content="https://porticolab.com/inspiracion.html">
+  <meta property="og:title" content="Inspiración | Pórtico Lab">
+  <meta property="og:description" content="Referencias de arquitectura, materiales y objetos que alimentan el trabajo de Pórtico Lab.">
+  <meta property="og:image" content="https://porticolab.com/img/hero-lampara.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css?v=5">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +106,7 @@
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="editorial.css?v=5">
+  <link rel="stylesheet" href="editorial.css?v=7">
 </head>
 
 <body class="y2k" data-filter="inspiración">
@@ -166,7 +176,7 @@
             <img src="${imgUrl}" alt="${titulo.replace(/"/g, '&quot;')}" width="${w}" height="${h}" loading="${index < 4 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async" style="background:#0b0b0b">
           </a>
           <h3></h3>
-          <div class="post-tags">${(p.tags || []).map(t => `<span>#${t}</span>`).join('')}</div>
+          <div class="post-tags">${(p.tags || []).filter(t => !['laboratorio', 'inspiracion'].includes(t)).slice(0, 2).map(t => `<span>${t.replace(/-/g, ' ')}</span>`).join('')}</div>
         `;
         item.querySelector('h3').textContent = titulo;
         // si la imagen no carga, la tarjeta se quita en vez de quedar vacía

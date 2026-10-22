@@ -6,7 +6,17 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTICO LAB</title>
+  <title>Pórtico Lab | Maquetas de exhibición y auditoría BIM en Medellín</title>
+  <meta name="description" content="Maquetas de exhibición para arquitectura y auditoría BIM con seguimiento de costos de obra. Estudio y laboratorio de materialidad en Medellín.">
+  <link rel="canonical" href="https://porticolab.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pórtico Lab">
+  <meta property="og:url" content="https://porticolab.com/">
+  <meta property="og:title" content="Pórtico Lab | Maquetas de exhibición y auditoría BIM en Medellín">
+  <meta property="og:description" content="Maquetas de exhibición para arquitectura y auditoría BIM con seguimiento de costos de obra. Estudio y laboratorio de materialidad en Medellín.">
+  <meta property="og:image" content="https://porticolab.com/img/hero-lampara.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css?v=5">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +30,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=5">
+  <link rel="stylesheet" href="editorial.css?v=7">
 </head>
 
 <body class="y2k home">
@@ -95,7 +105,7 @@
   </div>
   <div class="frentes">
     <a class="frente rev" href="servicios.html?servicio=maquetas" style="--d:.05s">
-      <div class="frente__img"><img src="img/home/servicio-maquetas.svg" alt="Representación arquitectónica de exhibición: complejo de cuatro torres sobre una base de madera" loading="lazy" width="400" height="300"></div>
+      <div class="frente__img"><img src="img/home/servicio-maquetas.svg?v=2" alt="Maqueta de exhibición: conjunto de torres residenciales sobre una base de madera" loading="lazy" width="400" height="300"></div>
       <div class="frente__txt">
         <span class="hud">Maquetas de exhibición</span>
         <h3>Maquetas de exhibición</h3>
@@ -151,7 +161,7 @@
   <div class="cierre-acciones rev" style="--d:.2s">
     <a class="btn-cromo" href="servicios.html">Pedir una propuesta →</a>
     <button class="btn-fantasma copiar" type="button" data-copiar="contacto@porticolab.com">contacto@porticolab.com</button>
-    <a class="btn-fantasma" href="https://wa.me/573147924600?text=Hola%20Portico%20Lab%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn-fantasma" href="https://wa.me/573147924600?text=Buen%20d%C3%ADa%2C%20equipo%20de%20P%C3%B3rtico%20Lab.%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20servicios%20para%20un%20proyecto.%20Quedo%20pendiente%20de%20su%20respuesta." target="_blank" rel="noopener">WhatsApp</a>
   </div>
   <footer class="pie-home">
   <span>Pórtico Lab · Medellín · 2026</span>
@@ -191,7 +201,14 @@
     const gallery = document.querySelector(".gallery");
     if (!gallery) return;
 
-    const proyectos = await fetchProyectos();
+    let proyectos;
+    try {
+      proyectos = await fetchProyectos();
+    } catch (e) {
+      document.getElementById('gallery-loading').style.display = 'none';
+      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#888;font-size:15px;">No pudimos cargar los proyectos. Mira el trabajo reciente en <a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener" style="color:#b9a7ff">Instagram</a> o recarga la página.</div>';
+      return;
+    }
     proyectos.sort((a, b) => ((b.tags || []).includes("laboratorio") ? 1 : 0) - ((a.tags || []).includes("laboratorio") ? 1 : 0));
     proyectos.splice(4);
 
@@ -223,7 +240,7 @@
         </a>
         <h3>${p.title || 'Proyecto'}</h3>
         <div class="post-tags">
-          ${(p.tags || []).map(t => `<span>#${t}</span>`).join("")}
+          ${(p.tags || []).filter(t => !['laboratorio', 'inspiracion'].includes(t)).slice(0, 2).map(t => `<span>${t.replace(/-/g, ' ')}</span>`).join('')}
         </div>
       `;
 

@@ -44,7 +44,6 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter .srv-img { width: 40%; flex: none; aspect-ratio: auto; }
   body.srvposter .srv-img svg > g > text:first-child,
   body.srvposter .srv-img svg > g > text:last-child { display: none; }
-  body.srvposter .srv-card[data-id="maquetas"] .srv-img svg { transform: scale(1.35); }
   body.srvposter .srv-card[data-id="bim"] .srv-img svg { transform: scale(1.2); }
   body.srvposter .srv-body { padding: clamp(14px, 2.4vh, 22px); }
   body.srvposter .srv-body h3 { font-size: clamp(17px, 2.5vh, 21px); line-height: 1.16; }
