@@ -178,10 +178,10 @@ body.home.y2k .hero-etapa svg{width:16px!important;height:16px!important;flex-ba
 /* Servicios: ilustración principal más grande, ocupando su columna completa */
 @media(min-width:901px){
  body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
- body.y2k .srv-hero__visual{width:100%!important;height:auto!important;max-height:min(80vh,760px);aspect-ratio:900/760;justify-self:stretch!important}
+ body.y2k .srv-hero__visual{width:100%!important;height:auto!important;max-height:min(80vh,760px);aspect-ratio:1220/760;justify-self:stretch!important}
 }
 body.y2k .srv-hero__visual figcaption{display:none}
-@media(max-width:900px){body.y2k .srv-hero__visual{aspect-ratio:900/760!important}}
+@media(max-width:900px){body.y2k .srv-hero__visual{aspect-ratio:1220/760!important}}
 
 /* Legibilidad: textos un poco más grandes en todo el sitio */
 body.y2k :is(.frente__txt p,.paso p,.srv-body .promesa,.srv-body li,.srv-entrega p,.seccion-sub,.seccion__cab p,.pieza figcaption b){font-size:max(15px,1em)}
@@ -212,14 +212,7 @@ body.y2k .gallery>div[style] a{color:var(--pl-ink)!important;text-decoration:und
 :root[data-theme="light"] body.y2k .cierre .btn{color:var(--pl-ink)!important;border-color:var(--pl-ink)!important;background:transparent!important}
 body.srvposter .kicker{display:none!important}
 
-/* Sin vacíos: la portada llena la pantalla con la foto y cada sección mide lo que mide su contenido */
-html,html.js{scroll-snap-type:none!important}
-body.y2k :is(.seccion,.cierre-home,.archivo-poster,.cierre,#preguntas,#servicios,#como-funciona),body.nosotros section[data-pantalla]:not(.n-hero){min-height:0!important;scroll-snap-align:none!important;scroll-snap-stop:normal!important}
-body.home :is(.seccion,.archivo-poster){padding-block:clamp(40px,6vh,72px)!important;justify-content:flex-start!important}
-body.home .archivo-poster>.seccion{padding-block:0 20px!important}
-body.home .cierre-home{padding-block:clamp(56px,9vh,104px) 32px!important;justify-content:flex-start!important}
-body.srvposter .srv-wrap>section[data-pantalla]:not(.hero){padding-block:clamp(40px,6vh,72px)!important;justify-content:flex-start!important}
-body.srvposter .cierre{padding-block:clamp(48px,8vh,96px)!important;display:flex;flex-direction:column;justify-content:center}
+/* Portada: la foto llena la pantalla */
 @media(min-width:901px){
  body.home.y2k .y2k-hero{height:calc(100svh - var(--hh,66px) - 44px)!important;min-height:560px!important;max-height:980px;margin-block:0!important;padding-block:clamp(14px,2.2vh,26px)!important;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)!important;align-items:stretch!important;width:min(1760px,94%)!important}
  body.home.y2k .y2k-hero__txt{align-self:center}
@@ -256,10 +249,34 @@ body.home .cierre-home>p{margin-block:18px 32px!important}
 @media(max-width:900px){body.home .proceso{gap:36px!important}body.home .paso h3{margin-bottom:10px!important}}
 body.srvposter .srv-wrap>section[data-pantalla]:not(.hero){padding-block:clamp(44px,6.5vh,76px)!important}
 body.nosotros section[data-pantalla]:not(.n-hero){padding-block:clamp(44px,6.5vh,76px)!important}
-/* Inicio: Proceso y Contacto vuelven a ocupar cada uno su pantalla, con el contenido centrado */
-body.home #proceso,body.home .cierre-home{min-height:calc(100svh - var(--hh,66px))!important;display:flex!important;flex-direction:column!important;justify-content:center!important;box-sizing:border-box}
+/* Una pantalla completa por sección en todo el sitio; el contenido va centrado para que no quede un hueco abajo */
+body.home :is(.seccion,.archivo-poster,.cierre-home),body.srvposter .srv-wrap>section[data-pantalla]:not(.hero),body.nosotros section[data-pantalla]:not(.n-hero){min-height:calc(100svh - var(--hh,66px))!important;display:flex!important;flex-direction:column!important;justify-content:center!important;box-sizing:border-box}
+body.home:not(.nosotros) #proyectos{min-height:0!important}
 body.home .cierre-home{padding-bottom:24px!important}
 body.home .cierre-home .pie-home{margin-top:auto}
+/* Portadas de Servicios y Nosotros también ocupan una pantalla completa */
+body.srvposter .srv-wrap>section.hero,body.nosotros.y2k section.n-hero{min-height:calc(100svh - var(--hh,66px))!important;margin-block:0!important;box-sizing:border-box}
+/* Las ilustraciones de tarjetas se ven siempre al 100 % (antes quedaban lavadas al 35 % hasta "verse") */
+html.mov-ok body.srvposter .srv-card .srv-img svg,html.mov-ok body.nosotros .pieza .pieza__grafica{opacity:1!important}
+/* Servicios: más protagonismo para el edificio animado */
+@media(min-width:901px){body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr)!important}body.y2k .srv-hero__visual{max-height:calc(100svh - var(--hh,66px) - 48px)!important}}
+/* Nosotros: collage de piezas en la portada (reemplaza la foto del taller) */
+body.nosotros .n-hero__visual{background:transparent!important}
+body.nosotros .n-hero__visual .n-hero__reticula,body.nosotros .n-hero__visual .n-hero__visual-index{display:none!important}
+body.nosotros .n-collage{position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr 1.05fr;grid-template-rows:1fr 1fr;gap:10px}
+body.nosotros .n-collage img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;background:var(--pl-surface-2)}
+body.nosotros .n-collage img:nth-child(1){grid-column:1;grid-row:1/3}
+body.nosotros .n-collage img:nth-child(2){grid-column:2;grid-row:1}
+body.nosotros .n-collage img:nth-child(3){grid-column:2;grid-row:2}
+body.nosotros .n-collage img:nth-child(4){grid-column:3;grid-row:1/3}
+body.nosotros .n-hero__visual-tag{z-index:3}
+@media(prefers-reduced-motion:no-preference){body.nosotros .n-collage img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}body.nosotros .n-collage img:hover{transform:scale(1.02)}}
+@media(min-width:901px){body.nosotros.y2k .n-hero__visual{height:calc(100svh - var(--hh,66px) - 64px)!important;max-height:820px}}
+@media(max-width:900px){body.nosotros.y2k .n-hero__visual{aspect-ratio:1/1!important}}
+body.nosotros .n-collage img{filter:grayscale(1) contrast(1.05)}
+@media(prefers-reduced-motion:no-preference){body.nosotros .n-collage img{transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease}body.nosotros .n-collage img:hover{filter:grayscale(0)}}
+body.nosotros .n-hero__visual .n-hero__visual-tag{background:rgba(8,8,11,.78)!important;color:#fff!important;padding:6px 9px;border-radius:6px;left:14px!important;bottom:14px!important;font-size:11px!important}
+body.srvposter .srv-hero__visual{background:#08080b!important}
 
 /* Servicios: retícula fina y superficies grises coordinadas en tema claro. */
 :root[data-theme="light"] body.srvposter .srv-card,
@@ -273,3 +290,4 @@ body.home .cierre-home .pie-home{margin-top:auto}
 :root[data-theme="light"] body.srvposter .srv-entrega{background:#d8d6dc!important;color:#27252c!important;border-color:#bebbc4!important}
 :root[data-theme="light"] body.srvposter .srv-entrega b{color:#59449e!important}
 :root[data-theme="light"] body.srvposter .srv-entrega p{color:#302e35!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg path[stroke-dasharray]{stroke:#59449e!important;stroke-width:2!important}
