@@ -178,10 +178,10 @@ body.home.y2k .hero-etapa svg{width:16px!important;height:16px!important;flex-ba
 /* Servicios: ilustración principal más grande, ocupando su columna completa */
 @media(min-width:901px){
  body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important}
- body.y2k .srv-hero__visual{width:100%!important;height:auto!important;max-height:min(80vh,760px);aspect-ratio:900/760;justify-self:stretch!important}
+ body.y2k .srv-hero__visual{width:100%!important;height:auto!important;max-height:min(80vh,760px);aspect-ratio:1220/760;justify-self:stretch!important}
 }
 body.y2k .srv-hero__visual figcaption{display:none}
-@media(max-width:900px){body.y2k .srv-hero__visual{aspect-ratio:900/760!important}}
+@media(max-width:900px){body.y2k .srv-hero__visual{aspect-ratio:1220/760!important}}
 
 /* Legibilidad: textos un poco más grandes en todo el sitio */
 body.y2k :is(.frente__txt p,.paso p,.srv-body .promesa,.srv-body li,.srv-entrega p,.seccion-sub,.seccion__cab p,.pieza figcaption b){font-size:max(15px,1em)}
@@ -277,3 +277,17 @@ body.nosotros .n-collage img{filter:grayscale(1) contrast(1.05)}
 @media(prefers-reduced-motion:no-preference){body.nosotros .n-collage img{transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease}body.nosotros .n-collage img:hover{filter:grayscale(0)}}
 body.nosotros .n-hero__visual .n-hero__visual-tag{background:rgba(8,8,11,.78)!important;color:#fff!important;padding:6px 9px;border-radius:6px;left:14px!important;bottom:14px!important;font-size:11px!important}
 body.srvposter .srv-hero__visual{background:#08080b!important}
+
+/* Servicios: retícula fina y superficies grises coordinadas en tema claro. */
+:root[data-theme="light"] body.srvposter .srv-card,
+:root[data-theme="light"] body.srvposter .srv-card .srv-body{background:#e8e7ea!important;color:#26252a!important}
+:root[data-theme="light"] body.srvposter .srv-card{border-color:#c6c3ca!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img{background:#dedde2!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-fondo{fill:#dedde2!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg g[font-family] > text:first-of-type{fill:#59449e!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg text:not(:first-of-type){fill:#45434b!important}
+:root[data-theme="light"] body.srvposter .srv-entrega{background:#d8d6dc!important;color:#27252c!important;border-color:#bebbc4!important}
+:root[data-theme="light"] body.srvposter .srv-entrega b{color:#59449e!important}
+:root[data-theme="light"] body.srvposter .srv-entrega p{color:#302e35!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg path[stroke-dasharray]{stroke:#59449e!important;stroke-width:2!important}
