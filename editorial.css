@@ -260,3 +260,16 @@ body.nosotros section[data-pantalla]:not(.n-hero){padding-block:clamp(44px,6.5vh
 body.home #proceso,body.home .cierre-home{min-height:calc(100svh - var(--hh,66px))!important;display:flex!important;flex-direction:column!important;justify-content:center!important;box-sizing:border-box}
 body.home .cierre-home{padding-bottom:24px!important}
 body.home .cierre-home .pie-home{margin-top:auto}
+
+/* Servicios: retícula fina y superficies grises coordinadas en tema claro. */
+:root[data-theme="light"] body.srvposter .srv-card,
+:root[data-theme="light"] body.srvposter .srv-card .srv-body{background:#e8e7ea!important;color:#26252a!important}
+:root[data-theme="light"] body.srvposter .srv-card{border-color:#c6c3ca!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img{background:#dedde2!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-fondo{fill:#dedde2!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg g[font-family] > text:first-of-type{fill:#59449e!important}
+:root[data-theme="light"] body.srvposter .srv-card .srv-img svg text:not(:first-of-type){fill:#45434b!important}
+:root[data-theme="light"] body.srvposter .srv-entrega{background:#d8d6dc!important;color:#27252c!important;border-color:#bebbc4!important}
+:root[data-theme="light"] body.srvposter .srv-entrega b{color:#59449e!important}
+:root[data-theme="light"] body.srvposter .srv-entrega p{color:#302e35!important}
