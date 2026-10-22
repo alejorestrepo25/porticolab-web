@@ -143,3 +143,14 @@ body.home .proceso::before{background:var(--pl-line-soft)!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual figcaption{color:var(--pl-muted)!important}
 :root[data-theme="light"] body.y2k :where(.btn-fantasma,.btn-secundario,.btn){border-color:var(--pl-line)!important;color:var(--pl-ink)!important}
 :root[data-theme="light"] body.home .marquesina span i,:root[data-theme="light"] body.y2k .filters button.active{color:#5b3fd0!important;text-decoration-color:#5b3fd0!important}
+
+/* Tercera pasada: menos líneas y rótulos, más superficie para las imágenes. */
+body.home .marquesina{border:0!important;background:transparent!important}
+body.y2k .hud:not(.hud--tl){display:none!important}
+@media(min-width:1100px){
+ body.home .seccion,body.home .cierre-home,body.home .pie-home,body.home main .gallery,body.home .ver-todo-wrap{max-width:min(1440px,94vw)}
+ body.srvposter .srv-wrap{max-width:min(1440px,94vw)}
+ body.nosotros #piezas{max-width:min(1480px,96vw)}
+ body.nosotros .piezas,body.nosotros .ver-todo-wrap,body.nosotros .n-pilares,body.nosotros .ejes{width:min(100%,1380px)}
+}
+@media(min-width:901px) and (min-height:560px){body.home .frente__img{width:min(56%,54vh)}}

@@ -11,7 +11,7 @@
     <clipPath id="slab-clip-b"><path d="m62 455 223-129 259 149-219 127z"/></clipPath>
     <filter id="soft-b"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
-  <rect width="900" height="760" fill="#08080b"/><rect width="900" height="760" fill="url(#grid-b)"/>
+  <rect width="900" height="760" fill="#08080b"/>
   <text x="38" y="47" fill="#bbb" font-family="Montserrat, sans-serif" font-size="14" letter-spacing="1.7">PÓRTICO LAB / COORDINACIÓN BIM</text>
 
   <!-- Base topográfica y huella del edificio. -->
