@@ -410,7 +410,7 @@ main {
   flex-shrink: 0;
 }
 
-.disponible-dot { background: #4caf50; }
+.disponible-dot { background: #b59aff; }
 .no-disponible-dot { background: #666; }
 
 .card-add-btn {

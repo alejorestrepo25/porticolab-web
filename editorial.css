@@ -86,13 +86,60 @@ body.y2k .about-contact-mail{background:transparent!important;color:var(--pl-ink
 @media(prefers-reduced-motion:reduce){body.y2k,.theme-toggle{transition:none}}
 /* Contraste reforzado en el tema claro */
 :root[data-theme="light"]{--pl-muted:#514d56;--pl-line:#77727b}
-:root[data-theme="light"] body.home .y2k-hero{background:#08080a!important;color:#f5f3f8!important}
-:root[data-theme="light"] body.home .y2k-hero :where(h1,p,.hud,.hero-explora,.btn-fantasma){color:#f5f3f8!important}
-:root[data-theme="light"] body.home .y2k-hero .y2k-hero__txt em{background:var(--pl-gradient)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
-:root[data-theme="light"] body.home .y2k-hero .btn-fantasma{border-color:#b6b1bd!important}
-:root[data-theme="light"] body.home .y2k-hero .hero-explora b{color:#c4a8ff!important}
-:root[data-theme="light"] body.home .y2k-hero .hud b{color:#f5f3f8!important}
 :root[data-theme="light"] body.srvposter .srv-entrega{background:#17151b!important;color:#f5f3f8!important;border-color:#77727b!important}
 :root[data-theme="light"] body.srvposter .srv-entrega b{color:#c9b4ff!important}
 :root[data-theme="light"] body.srvposter .srv-entrega p{color:#f0edf4!important}
 :root[data-theme="light"] body.srvposter .srv-card .meta{color:#514d56!important}
+
+/* Segunda pasada: lámina editorial sin marco, menos interfaz y una sola escala para las cinco páginas. */
+:root{--pl-radius:14px;--pl-radius-sm:10px;--pl-line-soft:#232327;--pl-text-gradient:var(--pl-gradient);--pl-hero-w:min(1440px,92%);--pl-h1:clamp(34px,3.9vw,56px);--pl-lead:clamp(15px,1.15vw,17px)}
+:root[data-theme="light"]{--pl-line-soft:#cfccd3;--pl-text-gradient:linear-gradient(105deg,#4b2fb8 0%,#7a55e8 56%,#3d6fa8 100%)}
+
+/* Portadas: texto + imagen sobre el fondo de la página, sin tarjeta, retícula ni destellos. */
+body.y2k :is(.y2k-hero,.srv-wrap .hero,.n-hero){border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding-inline:0!important;color:var(--pl-ink)}
+body.y2k .y2k-hero::before,body.y2k :is(.y2k-hero__vis,.srv-hero__visual,.n-hero__visual)::before{display:none!important}
+body.y2k :is(.y2k-hero__vis,.srv-hero__visual,.n-hero__visual){border:0!important;border-radius:var(--pl-radius)!important}
+body.y2k :is(.y2k-hero__txt,.srv-wrap .hero-txt,.n-hero__txt){padding-inline:0!important}
+body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){color:var(--pl-ink);font-weight:700;line-height:1.04;letter-spacing:-.04em!important}
+body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p){color:var(--pl-muted)!important;line-height:1.65}
+body.y2k :where(.y2k-hero h1 em,.seccion__cab h2 em,.cierre-home h2 em,.srv-wrap .hero h1 em,.n-hero h1 em){background:var(--pl-text-gradient)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+@media(min-width:901px){
+ body.home.y2k .y2k-hero,body.nosotros.y2k .n-hero{width:var(--pl-hero-w);gap:clamp(32px,4vw,72px)}
+ body.y2k .srv-wrap .hero{width:100%;max-width:1440px;margin-inline:auto!important;gap:clamp(32px,4vw,72px)}
+ body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:var(--pl-h1)}
+ body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p){font-size:var(--pl-lead)}
+ body.y2k :is(.y2k-hero__acciones,.srv-wrap .hero-acciones) :is(.btn-cromo,.btn-fantasma,.btn-primario,.btn-secundario,.btn){min-height:46px;padding:0 24px;font-size:11px;font-weight:600;letter-spacing:.07em!important}
+}
+
+/* Ruido tipo HUD/código: fuera de portadas y cabeceras; quedan títulos, textos y acciones. */
+body.y2k :is(.y2k-hero__txt,.srv-wrap .hero-txt,.n-hero__txt,.seccion__cab,.y2k-seccion) :is(.hud,.kicker),
+body.y2k :is(.y2k-hero__vis,.hero-foto,.n-hero__visual) .hud,
+body.y2k .n-hero__visual-index{display:none!important}
+body.y2k .seccion__cab h2{margin-top:0}
+
+/* Flujo BIM de la portada: misma superficie que el sistema, sin cian. */
+body.home.y2k .hero-secuencia{background:var(--pl-surface)!important;border-top:1px solid var(--pl-line-soft)!important}
+body.home.y2k .hero-etapa{color:var(--pl-muted)!important;font-size:11px;letter-spacing:.04em!important}
+body.home.y2k .hero-etapa.is-activa{color:var(--pl-ink)!important}
+body.home.y2k .hero-etapa.is-activa svg{stroke:#b59aff}
+:root[data-theme="light"] body.home.y2k .hero-etapa.is-activa svg{stroke:#6a46dc}
+body.home .hero-explora b{color:var(--pl-muted)!important}
+
+/* Piezas completas; las fotos ambientales siguen recortadas. */
+body.y2k .pieza__grafica img{object-fit:contain;padding:10px;background:var(--pl-surface-2)}
+body.y2k .pieza__grafica,body.y2k .pieza__grafica object{background:var(--pl-surface-2)}
+body.y2k .pieza figcaption{border-top-color:var(--pl-line-soft)!important}
+
+/* Tarjetas: línea suave, radio moderado, sin brillos ni saltos al pasar. */
+body.y2k :where(.frente,.gallery-item,.srv-card,.paso-card,.pieza,.mat-panel,.about-contact,.cotizador),body.srvposter .faq details{border-color:var(--pl-line-soft)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
+body.y2k :is(.frente,.gallery-item,.srv-card,.pieza):hover{border-color:var(--pl-muted)!important;transform:none!important;box-shadow:none!important}
+body.y2k :where(.gallery-item img,.pieza img){border-radius:var(--pl-radius-sm)}
+body.y2k .post-image img#main-image:hover{box-shadow:none!important}
+body.home .paso::before{border-color:var(--pl-line-soft)!important}
+body.home .proceso::before{background:var(--pl-line-soft)!important}
+
+/* Tema claro: texto y líneas sobre fondo claro; texto claro solo sobre superficies oscuras. */
+:root[data-theme="light"] body.nosotros .n-hero__visual-tag{color:#fff!important}
+:root[data-theme="light"] body.srvposter .srv-hero__visual figcaption{color:var(--pl-muted)!important}
+:root[data-theme="light"] body.y2k :where(.btn-fantasma,.btn-secundario,.btn){border-color:var(--pl-line)!important;color:var(--pl-ink)!important}
+:root[data-theme="light"] body.home .marquesina span i,:root[data-theme="light"] body.y2k .filters button.active{color:#5b3fd0!important;text-decoration-color:#5b3fd0!important}
