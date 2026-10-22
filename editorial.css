@@ -341,3 +341,5 @@ body.srvposter .oferta .btn{color:var(--pl-ink)!important;border:1px solid var(-
 body.srvposter .oferta .btn.btn-primario{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
 body.srvposter .oferta .btn:disabled{opacity:.45!important}
 body.srvposter .cotizador .link-volver{color:var(--pl-ink)!important}
+/* Cotizador: mismo fondo de página que el resto del sitio */
+body.srvposter .cotizador{background:transparent!important;border-color:transparent!important;box-shadow:none!important}

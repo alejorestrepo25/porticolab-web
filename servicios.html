@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=25">
+  <link rel="stylesheet" href="editorial.css?v=26">
 </head>
 
 <body class="y2k srvposter">
@@ -416,19 +416,19 @@ const SERVICIOS = [
     cta: 'Solicitar propuesta',
     campos: [
       { id: 'descripcion', label: 'Cuéntanos sobre el proyecto', type: 'texto', placeholder: 'Qué se va a vender o presentar, dónde está, a quién va dirigida, referencias que te gusten...' },
-      { id: 'uso', label: '¿Para qué la necesitas?', type: 'select', options: [['ventas', 'Sala de ventas', 'Para mostrar y vender el proyecto'], ['inversion', 'Inversionistas y juntas', 'Presentaciones de alto nivel'], ['feria', 'Feria o exhibición'], ['otro', 'Otro uso']] },
-      { id: 'proyecto', label: '¿Qué vamos a representar?', type: 'select', options: [['edificio', 'Edificio o torre'], ['conjunto', 'Conjunto o urbanismo'], ['vivienda', 'Vivienda o casa modelo'], ['interior', 'Espacio interior o comercial'], ['otro', 'Otro']] },
-      { id: 'escala', label: '¿De qué tamaño?', type: 'select', options: [['mesa', 'De mesa', 'Hasta unos 60 cm'], ['sala', 'Sala de ventas', 'Hasta 1 m'], ['grande', 'Gran formato', 'Más de 1 m'], ['definir', 'Aún no lo sé', 'Lo definimos juntos']] },
-      { id: 'elementos', label: '¿Qué materiales y procesos te interesan? (opcional)', type: 'multi', ayuda: 'Puedes combinarlos. Si no estás seguro, te proponemos la mejor mezcla para tu proyecto.', options: [['concreto', 'Concreto', 'Moldeado en silicón'], ['madera', 'Madera', 'Carpintería fina'], ['plastico', 'Plástico de impresión', 'Piezas impresas en 3D'], ['laser', 'Corte láser', 'Piezas planas y detalles precisos'], ['carton', 'Cartón'], ['electronica', 'Iluminación y electrónica', 'Integradas a la maqueta'], ['digital', 'Elementos paramétricos / digitales', 'Piezas diseñadas con algoritmos']] },
+      { id: 'uso', label: '¿Para qué la necesitas?', type: 'linea', placeholder: 'Sala de ventas, inversionistas, feria o exhibición...' },
+      { id: 'proyecto', label: '¿Qué vamos a representar?', type: 'linea', placeholder: 'Edificio, conjunto, vivienda, espacio interior...' },
+      { id: 'escala', label: '¿De qué tamaño la imaginas?', type: 'linea', placeholder: 'De mesa, hasta 1 m, gran formato... o aún no lo sabes' },
+      { id: 'fecha', label: '¿Para cuándo la necesitas?', type: 'linea', placeholder: 'Fecha de lanzamiento, feria o entrega' },
       ADJUNTOS
     ],
     resumen(v) {
       return [
         v.descripcion ? ['Descripción', v.descripcion] : null,
-        ['Uso', txt(this, 'uso', v.uso)],
-        ['Representa', txt(this, 'proyecto', v.proyecto)],
-        ['Tamaño', txt(this, 'escala', v.escala)],
-        v.elementos ? ['Materiales', etiquetas(this, 'elementos', v.elementos)] : null
+        v.uso ? ['Uso', v.uso] : null,
+        v.proyecto ? ['Representa', v.proyecto] : null,
+        v.escala ? ['Tamaño', v.escala] : null,
+        v.fecha ? ['Para cuándo', v.fecha] : null
       ];
     }
   },
@@ -443,21 +443,21 @@ const SERVICIOS = [
     cta: 'Solicitar propuesta',
     campos: [
       { id: 'descripcion', label: 'Cuéntanos sobre el proyecto', type: 'texto', placeholder: 'Ubicación, etapa, tamaño y qué te preocupa del costo o del modelo...' },
-      { id: 'fase', label: '¿En qué fase está tu proyecto?', type: 'select', options: [['previa', 'Antes de diseñar', 'Idea, lote o estudio de viabilidad'], ['diseno', 'Diseño en desarrollo'], ['contratar', 'Listo para licencia o contratación'], ['obra', 'En obra']] },
-      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'select', options: [['vivienda', 'Vivienda'], ['multifamiliar', 'Edificio multifamiliar o desarrollo'], ['comercial', 'Comercial u oficinas'], ['remodelacion', 'Remodelación']] },
-      { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'number', min: 20, max: 200000, value: 500, presets: [200, 500, 2000, 8000], ayuda: 'Un estimado basta; lo afinamos en la propuesta.' },
-      { id: 'necesidad', label: '¿Qué necesitas? (opcional)', type: 'multi', options: [['auditoria', 'Auditoría y coordinación del modelo BIM'], ['computos', 'Cómputos métricos del modelo', 'Automatización en desarrollo'], ['costos', 'Seguimiento de costos del proyecto'], ['riesgos', 'Sobrecostos e interferencias', 'Detección antes de obra']] },
-      { id: 'insumo', label: '¿Con qué cuentas hoy?', type: 'select', options: [['modelo', 'Un modelo BIM', 'Revit, IFC u otro'], ['planos', 'Planos 2D', 'CAD o PDF'], ['idea', 'Solo la idea o el lote']] },
+      { id: 'fase', label: '¿En qué fase está?', type: 'linea', placeholder: 'Idea o lote, diseño, licencia, en obra...' },
+      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'linea', placeholder: 'Vivienda, multifamiliar, comercial, remodelación...' },
+      { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'linea', placeholder: 'Ej. 500 m²' },
+      { id: 'necesidad', label: '¿Qué necesitas?', type: 'linea', placeholder: 'Auditoría del modelo, cómputos, control de costos, interferencias...' },
+      { id: 'insumo', label: '¿Con qué cuentas hoy?', type: 'linea', placeholder: 'Modelo BIM (Revit, IFC), planos 2D o solo la idea' },
       ADJUNTOS
     ],
     resumen(v) {
       return [
         v.descripcion ? ['Descripción', v.descripcion] : null,
-        ['Fase', txt(this, 'fase', v.fase)],
-        ['Proyecto', txt(this, 'tipo', v.tipo)],
-        ['Área', `${fmtNum(v.area)} m² construidos`],
-        v.necesidad ? ['Necesita', etiquetas(this, 'necesidad', v.necesidad)] : null,
-        ['Cuenta con', txt(this, 'insumo', v.insumo)]
+        v.fase ? ['Fase', v.fase] : null,
+        v.tipo ? ['Proyecto', v.tipo] : null,
+        v.area ? ['Área', v.area] : null,
+        v.necesidad ? ['Necesita', v.necesidad] : null,
+        v.insumo ? ['Cuenta con', v.insumo] : null
       ];
     }
   }
