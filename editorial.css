@@ -345,3 +345,18 @@ body.srvposter .cotizador .link-volver{color:var(--pl-ink)!important}
 /* Cotizador: mismo fondo de página que el resto del sitio */
 body.srvposter .cotizador{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
 body.nosotros .n-collage img{min-width:0;min-height:0}
+/* Barra superior con el mismo grosor que la marquesina de servicios (44 px) */
+@media(min-width:769px){
+ html{--hh:44px}
+ body.y2k header{height:44px!important;min-height:44px!important;padding-block:0!important;box-sizing:border-box}
+ body.y2k header .logo{font-size:17px!important}
+ body.y2k header .nav{gap:26px!important;align-items:center}
+ body.y2k header .nav a{min-height:0!important;padding-block:0!important}
+ body.y2k header .theme-toggle{min-height:30px!important;height:30px;padding-inline:10px!important}
+}
+/* Inicio: tarjetas de los dos servicios un poco más pequeñas */
+@media(min-width:901px) and (min-height:560px){
+ body.home .frente__img{width:min(50%,48vh)!important}
+ body.home .frente__txt h3{font-size:clamp(18px,1.35vw,23px)!important}
+ body.home .frente__txt p{font-size:15px!important}
+}
