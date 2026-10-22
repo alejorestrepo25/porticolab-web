@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=10">
+  <link rel="stylesheet" href="editorial.css?v=14">
 </head>
 
 <body class="y2k srvposter">
@@ -259,7 +259,7 @@
       </div>
     </div>
     <figure class="srv-hero__visual" aria-label="Visualización animada de coordinación BIM">
-      <img src="img/servicios/bim-control.svg?v=12" alt="Edificio de oficinas en vista isométrica con estructura, instalaciones de cubierta y el nivel 3 resaltados para revisión de costo y avance" width="900" height="760" fetchpriority="high">
+      <img src="img/servicios/bim-control.svg?v=13" alt="Edificio de oficinas en vista isométrica que se descompone por niveles y deja ver su estructura, núcleo e instalaciones; el nivel 3 queda resaltado para revisión de costo y avance" width="900" height="760" fetchpriority="high">
       <figcaption><span>MODELO COORDINADO</span><span>GEOMETRÍA / COSTO / TIEMPO</span></figcaption>
     </figure>
   </section>
@@ -379,20 +379,20 @@ const FONDO_SVG = `<defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="
 // Edificio en alzado con niveles y una lectura visual del presupuesto, composición vertical
 const ILUSTRACION_BIM = `<svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto">
   <defs><linearGradient id="cromo" x1="0" x2="1"><stop offset="0" stop-color="#e8e8ee"/><stop offset="0.5" stop-color="#b9a7ff"/><stop offset="1" stop-color="#7ee8ff"/></linearGradient></defs>
-  <rect width="300" height="400" fill="#0b0b0b"/>
+  <rect width="300" height="400" fill="#101014"/>
   <g font-family="Montserrat, sans-serif" fill="#999">
     <text x="24" y="34" fill="url(#cromo)" font-size="12" font-weight="600">DISEÑO + COSTOS · BIM</text>
     <path d="M30 334H160" stroke="#555" stroke-width="2"/>
     <path d="M40 66l55-22 55 22" fill="none" stroke="#b9a7ff" stroke-width="2"/>
-    <g fill="none" stroke="#8a8a85" stroke-width="1.3">
+    <g fill="none" stroke="#a9a9b4" stroke-width="1.5">
       <rect x="40" y="66" width="110" height="268"/>
       ${Array.from({length: 5}, (_, i) => `<path d="M40 ${66 + (i + 1) * 44.7}H150"/>`).join('')}
-      ${Array.from({length: 6}, (_, f) => [0, 1, 2].map(c => `<rect x="${50 + c * 32}" y="${(78 + f * 44.7).toFixed(0)}" width="24" height="20" stroke="${f === 3 ? '#7ee8ff' : '#555'}"/>`).join('')).join('')}
-      <rect x="40" y="200" width="110" height="44.7" stroke="#7ee8ff" stroke-width="1.8" fill="rgba(126,232,255,0.08)"/>
+      ${Array.from({length: 6}, (_, f) => [0, 1, 2].map(c => `<rect x="${50 + c * 32}" y="${(78 + f * 44.7).toFixed(0)}" width="24" height="20" stroke="${f === 3 ? '#22c3e6' : '#8a8a95'}"/>`).join('')).join('')}
+      <rect x="40" y="200" width="110" height="44.7" stroke="#22c3e6" stroke-width="2.4" fill="rgba(34,195,230,0.18)"/>
     </g>
-    ${[['N6', 52], ['N5', 60], ['N4', 56], ['N3', 92], ['N2', 54], ['N1', 58]].map(([n, w], i) => `<text x="166" y="${(93 + i * 44.7).toFixed(0)}" font-size="9" fill="${n === 'N3' ? '#7ee8ff' : '#777'}">${n}</text><rect x="186" y="${(84 + i * 44.7).toFixed(0)}" width="${w}" height="12" rx="3" fill="${n === 'N3' ? '#ff8f8f' : 'url(#cromo)'}" opacity="${n === 'N3' ? 1 : 0.85}"/>`).join('')}
-    <path d="M258 60V334" stroke="#b9a7ff" stroke-width="1.2" stroke-dasharray="3 3"/>
-    <text x="258" y="352" font-size="8" text-anchor="middle" fill="#b9a7ff">PRESUPUESTO</text>
+    ${[['N6', 52], ['N5', 60], ['N4', 56], ['N3', 92], ['N2', 54], ['N1', 58]].map(([n, w], i) => `<text x="166" y="${(93 + i * 44.7).toFixed(0)}" font-size="9" fill="${n === 'N3' ? '#22c3e6' : '#b0b0ba'}" font-weight="600">${n}</text><rect x="186" y="${(84 + i * 44.7).toFixed(0)}" width="${w}" height="14" rx="3" fill="${n === 'N3' ? '#f0575d' : '#8b6cff'}"/>`).join('')}
+    <path d="M258 60V334" stroke="#c9b8ff" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="258" y="352" font-size="9" font-weight="600" text-anchor="middle" fill="#c9b8ff">PRESUPUESTO</text>
     <text x="24" y="380" font-size="9" fill="#bbb">MODELO → CANTIDADES → COSTO → CRONOGRAMA</text>
   </g>
 </svg>`;
