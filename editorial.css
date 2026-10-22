@@ -315,3 +315,29 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not(
 /* Mascota: misma esquina en todas las páginas, sin moverse con la portada */
 html body #mascota-wrapper{bottom:24px!important;right:24px!important;top:auto!important;left:auto!important}
 @media(max-width:768px){html body #mascota-wrapper{bottom:14px!important;right:14px!important}}
+
+/* Cotizador: mismo lenguaje del sitio en ambos temas (superficies, chips, campos y resumen) */
+body.srvposter .cotizador .campo-label,body.srvposter .cotizador .campo label{color:var(--pl-ink)!important;font-size:14px!important;font-weight:600!important}
+body.srvposter .cotizador .campo .ayuda{color:var(--pl-muted)!important;font-size:12px!important}
+body.srvposter .cotizador .paso-titulo{color:var(--pl-ink)!important;font-size:16px!important;letter-spacing:.02em!important}
+body.srvposter .cotizador .paso-titulo .pn{background:var(--pl-gradient)!important;color:#17151b!important}
+body.srvposter .cotizador :is(.chip,.tabs button){background:var(--pl-surface-2)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;box-shadow:none!important}
+body.srvposter .cotizador :is(.chip,.tabs button):hover{border-color:var(--pl-muted)!important}
+body.srvposter .cotizador .chip small{color:var(--pl-muted)!important}
+body.srvposter .cotizador :is(.chip,.tabs button)[aria-checked=true],body.srvposter .cotizador .tabs button[aria-selected=true]{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
+body.srvposter .cotizador .chip[aria-checked=true] small{color:#3a3640!important}
+body.srvposter .cotizador .campo :is(input[type=text],input[type=tel],input[type=email],input[type=number],textarea){background:var(--pl-surface)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;font-size:15px!important}
+body.srvposter .cotizador .campo :is(input,textarea)::placeholder{color:var(--pl-muted)!important;opacity:1}
+body.srvposter .cotizador .campo :is(input,textarea):focus{border-color:#8b6cff!important}
+body.srvposter .cotizador .campo input[type=file]{background:var(--pl-surface)!important;color:var(--pl-muted)!important;border-color:var(--pl-line)!important}
+body.srvposter .cotizador .campo:first-child textarea{min-height:120px}
+body.srvposter .oferta{background:var(--pl-surface)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;box-shadow:none!important}
+body.srvposter .oferta :is(.oferta-tit,.paso-titulo){color:var(--pl-ink)!important}
+body.srvposter .oferta .servicio-nombre{color:var(--pl-muted)!important}
+body.srvposter .oferta .linea{color:var(--pl-muted)!important;border-bottom-color:var(--pl-line)!important;font-size:13px!important}
+body.srvposter .oferta .linea b{color:var(--pl-ink)!important}
+body.srvposter .oferta :is(.nota,.acepto,.privacidad,small,p){color:var(--pl-muted)!important}
+body.srvposter .oferta .btn{color:var(--pl-ink)!important;border:1px solid var(--pl-ink)!important;background:transparent!important}
+body.srvposter .oferta .btn.btn-primario{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
+body.srvposter .oferta .btn:disabled{opacity:.45!important}
+body.srvposter .cotizador .link-volver{color:var(--pl-ink)!important}
