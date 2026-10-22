@@ -30,7 +30,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=22">
+  <link rel="stylesheet" href="editorial.css?v=24">
 </head>
 
 <body class="y2k home">
@@ -189,6 +189,14 @@
     return json.result || [];
   }
 
+  // Código de proyecto según las carpetas del estudio
+  const CODIGOS = { atalaya: 'A0000000013', tangara: 'M0000000006', dorica: 'P0000000004' };
+  function codigoProyecto(titulo) {
+    const t = (titulo || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const k = Object.keys(CODIGOS).find(c => t.startsWith(c));
+    return k ? CODIGOS[k] : '';
+  }
+
   function shuffle(array) {
     let i = array.length;
     while (i > 0) {
@@ -229,7 +237,7 @@
       item.dataset.tags = (p.tags || []).join(",");
 
       item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}">
+        <a href="publicaciones/post.html?id=${p._id}" data-codigo="${codigoProyecto(p.title)}">
           <img
             src="${imgUrl}"
             alt="${p.title || 'Proyecto'}"
