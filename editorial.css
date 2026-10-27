@@ -304,7 +304,7 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:cont
 /* Portadas del Laboratorio: se oculta la franja inferior (especificaciones y pie) y la marca va arriba */
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a{aspect-ratio:1200/1312!important;position:relative}
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{object-fit:cover!important;object-position:top center!important}
-body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"PORTICO_LAB";position:absolute;z-index:2;left:5.5%;top:4.2%;width:89%;height:4.6%;display:flex;align-items:center;background:#fbfbfb;color:#1d1c20;font:700 clamp(9px,.72vw,12px)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;pointer-events:none}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"PORTICO_LAB";position:absolute;z-index:2;left:5.5%;top:4.2%;width:89%;height:4.6%;display:flex;align-items:center;background:#fff;color:#1d1c20;font:700 clamp(9px,.72vw,12px)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;pointer-events:none}
 /* Inicio: sin la barra Modelo / Coordinación / Ejecución; la foto ocupa todo el recuadro */
 body.home.y2k .hero-secuencia{display:none!important}
 body.home.y2k .y2k-hero__vis{grid-template-rows:minmax(0,1fr)!important}
@@ -366,3 +366,5 @@ body.nosotros .n-collage img{min-width:0;min-height:0}
  body.y2k header .nav a::after{right:0!important;width:auto!important}
  body.y2k header .nav a,body.y2k header .logo{position:relative;height:44px;display:inline-flex!important;align-items:center}
 }
+/* Portadas: el filtro aclara a blanco la cuadrícula gris muy clara del fondo sin tocar la foto ni los textos */
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{filter:url(#sin-reticula)}
