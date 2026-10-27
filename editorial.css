@@ -407,3 +407,56 @@ body.nosotros .n-hero__link .n-hero__flecha{color:#17151b!important}body.nosotro
 /* Textos de carga y 404 con contraste suficiente */
 body.y2k #loading,body.y2k #gallery-loading{color:var(--pl-muted)!important}
 body.y2k .code{color:var(--pl-muted)!important}
+
+/* ===== Móvil: lectura natural. Sin pantallas forzadas ni zoom, cabecera compacta y tipografía a escala de celular ===== */
+@media(max-width:900px){
+ html:root body.home :is(.seccion,.archivo-poster,.cierre-home),html:root body.srvposter .srv-wrap>section:is([data-pantalla],.hero,.cierre),html:root body.nosotros section:is([data-pantalla],.n-hero),html:root body.srvposter :is(#como-funciona,#servicios,#preguntas){min-height:0!important;height:auto!important;justify-content:flex-start!important;margin-block:0!important}
+ html:root body.y2k .pie-home{position:static!important;margin:32px 0 0!important;padding:20px 0 64px!important}
+ body.srvposter [data-pantalla]>*{zoom:1!important}
+ body.y2k .rail{display:none!important}
+}
+@media(max-width:768px){
+ body.y2k header{display:grid!important;grid-template-columns:1fr auto;align-items:center;row-gap:2px;padding:10px 16px 4px!important;min-height:0!important}
+ body.y2k header .logo{font-size:18px!important;letter-spacing:2px!important}
+ body.y2k header .nav{grid-column:1/-1;display:flex!important;justify-content:space-between!important;gap:0!important;overflow:visible!important;width:100%;margin:0!important;padding:0!important}
+ body.y2k header .nav>a{font-size:10.5px!important;letter-spacing:.07em!important;padding:9px 0!important;white-space:nowrap}
+ body.y2k header .theme-toggle{position:absolute!important;top:7px;right:12px;min-height:34px!important;padding:0 10px!important;gap:6px!important}
+ body.y2k header .theme-toggle__label{display:none!important}
+ /* Tipografía */
+ body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(28px,8.4vw,34px)!important;line-height:1.08!important;letter-spacing:-.03em!important}
+ body.y2k :is(.seccion__cab h2,h2.seccion,.cierre-home h2,.srv-wrap .cierre h2,.nosotros section h2){font-size:clamp(22px,6.6vw,27px)!important;line-height:1.12!important;letter-spacing:-.02em!important}
+ body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p,.seccion-sub,.cierre-home p,.srv-wrap .cierre p){font-size:15px!important;line-height:1.6!important}
+ body.home :is(.seccion,.archivo-poster .seccion,#proceso,.cierre-home),body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),body.nosotros section[data-pantalla]:not(.n-hero){padding-top:52px!important;padding-bottom:52px!important}
+ body.y2k .hud{font-size:10px!important}
+ /* Inicio: los dos servicios apilados, imagen arriba y texto completo abajo */
+ body.home .frentes{grid-template-columns:1fr!important;gap:16px!important}
+ body.home .frente{flex-direction:column!important}
+ body.home .frente__img{width:100%!important;height:210px!important;aspect-ratio:auto!important}
+ body.home .frente__img img{width:100%!important;height:100%!important;object-fit:contain!important}
+ body.home .frente__txt{padding:18px 20px 20px!important}
+ body.home .frente__txt h3{font-size:18px!important}
+ body.home .frente__txt p{font-size:14px!important;line-height:1.55!important}
+ body.home .proceso{gap:22px!important}
+ html:root body.home .archivo-poster{padding-block:0 40px!important}
+ html:root body.home .archivo-poster #proyectos{padding-bottom:18px!important}
+ /* Servicios: tarjetas completas, una debajo de otra, con lo que incluye cada servicio */
+ body.srvposter .srv-grid{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
+ body.srvposter .srv-card{flex-direction:column!important}
+ body.srvposter .srv-img{width:100%!important;height:220px!important;aspect-ratio:auto!important}
+ body.srvposter .srv-img svg{object-fit:contain!important}
+ body.srvposter .srv-img .badge{left:auto!important;right:10px!important;top:10px!important}
+ body.srvposter .srv-body{padding:18px 20px 20px!important}
+ body.srvposter .srv-body h3{font-size:18px!important}
+ body.srvposter .srv-body .promesa{font-size:14px!important;line-height:1.55!important}
+ body.srvposter .srv-body .incluye{display:block!important;margin:12px 0 0!important;padding-left:18px!important;font-size:13.5px!important;line-height:1.6!important;color:var(--pl-muted)!important}
+ body.srvposter .srv-body .btn{padding:14px 16px!important;font-size:12px!important;margin-top:16px!important}
+ body.srvposter .pasos-row{grid-template-columns:1fr!important;gap:10px!important}
+ body.srvposter .paso-card{display:grid!important;grid-template-columns:34px 1fr;column-gap:12px;padding:16px 18px!important}
+ body.srvposter .paso-card .n{grid-row:span 2;font-size:13px!important;padding-top:2px}
+ body.srvposter .paso-card h3{font-size:15px!important;margin:0!important}
+ body.srvposter .paso-card p{font-size:13.5px!important;margin-top:4px!important}
+ body.srvposter .faq summary{font-size:15px!important}
+ body.srvposter :is(.oferta .nota,.acepto){font-size:13px!important;line-height:1.55!important}
+ /* Galerías: etiqueta superior legible en dos columnas */
+ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not([data-codigo=""])::before{font-size:7px!important;letter-spacing:.04em!important}
+}
