@@ -113,7 +113,7 @@
   </style>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="editorial.css?v=34">
+  <link rel="stylesheet" href="editorial.css?v=35">
 </head>
 
 
@@ -139,24 +139,14 @@
 <!-- BARRA SUPERIOR -->
 
 <main>
+  <h1 class="solo-lector">Laboratorio de Pórtico Lab: proyectos y piezas</h1>
   <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="sin-reticula" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncG type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncB type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/></feComponentTransfer></filter></svg>
   <section class="gallery"></section>
 </main>
 
+<script src="sanity.js?v=1"></script>
 <script>
-  const SANITY_PROJECT_ID = '32sykluw';
-  const SANITY_DATASET = 'production';
-  const SANITY_API_VERSION = '2024-01-01';
-
-  function sanityImageUrl(ref, width = 800) {
-    const parts = ref.split('-');
-    const id = parts[1];
-    const dimensions = parts[2];
-    const format = parts[3];
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
-  }
-
   // Código de proyecto según las carpetas del estudio
   const CODIGOS = { atalaya: 'A0000000013', tangara: 'M0000000006', dorica: 'P0000000004' };
   function codigoProyecto(titulo) {
@@ -173,36 +163,22 @@
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-
-    const query = encodeURIComponent(`*[_type == "proyecto" && "laboratorio" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
-    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
-    let result = [];
+    const S = window.PL_SANITY;
+    const cargando = document.getElementById('gallery-loading');
+    let result;
     try {
-      const res = await fetch(url);
-      ({ result = [] } = await res.json());
+      result = await S.consultar('*[_type == "proyecto" && "laboratorio" in tags && defined(portada.asset)] | order(_createdAt desc)[0...60]{ _id, title, tags, portada }');
     } catch (e) {
-      document.getElementById('gallery-loading').style.display = 'none';
-      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#888;font-size:15px;">No pudimos cargar los proyectos. Mira el trabajo reciente en <a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener" style="color:#b9a7ff">Instagram</a> o recarga la página.</div>';
+      cargando.style.display = 'none';
+      S.aviso(gallery, 'No pudimos cargar los proyectos.', true);
       return;
     }
-
-    document.getElementById('gallery-loading').style.display = 'none';
-    shuffle(result);
-
-    result.forEach(p => {
-      const imgUrl = p.portada?.asset?._ref ? sanityImageUrl(p.portada.asset._ref, 800) : '';
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.dataset.tags = (p.tags || []).join(',');
-      item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}" data-codigo="${codigoProyecto(p.title)}">
-          <img src="${imgUrl}" alt="${p.title || 'Proyecto'}" loading="lazy" decoding="async">
-        </a>
-        <h3>${p.title || 'Proyecto'}</h3>
-        <div class="post-tags">${(p.tags || []).filter(t => !['laboratorio', 'inspiracion'].includes(t)).slice(0, 2).map(t => `<span>${t.replace(/-/g, ' ')}</span>`).join('')}</div>
-      `;
-      gallery.appendChild(item);
-    });
+    cargando.style.display = 'none';
+    const lista = Array.isArray(result) ? result : [];
+    shuffle(lista);
+    let n = 0;
+    lista.forEach(p => { const t = S.tarjeta(p, { codigo: codigoProyecto(p.title) }); if (t) { gallery.appendChild(t); n++; } });
+    if (!n) S.aviso(gallery, 'Pronto publicaremos nuevos proyectos.', true);
   });
 </script>
 

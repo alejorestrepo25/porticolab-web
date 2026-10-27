@@ -106,7 +106,7 @@
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="editorial.css?v=34">
+  <link rel="stylesheet" href="editorial.css?v=35">
 </head>
 
 <body class="y2k" data-filter="inspiración">
@@ -129,68 +129,40 @@
 </div>
 
 <main>
+  <h1 class="solo-lector">Inspiración: referencias de arquitectura, materiales y objetos</h1>
   <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
   <section class="gallery"></section>
 </main>
 
 
+<script src="sanity.js?v=1"></script>
 <script>
-  const SANITY_PROJECT_ID = '32sykluw';
-  const SANITY_DATASET = 'production';
-  const SANITY_API_VERSION = '2024-01-01';
-
-  function sanityImageUrl(ref, width = 800) {
-    const parts = ref.split('-');
-    const id = parts[1];
-    const dimensions = parts[2];
-    const format = parts[3];
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
-  }
-
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-
-    const query = encodeURIComponent(`*[_type == "proyecto" && "inspiracion" in tags] | order(_createdAt desc) { _id, title, tags, portada }`);
-    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+    const S = window.PL_SANITY;
     const loading = document.getElementById('gallery-loading');
     try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Sanity respondió ${res.status}`);
-      const { result = [] } = await res.json();
+      const result = await S.consultar('*[_type == "proyecto" && "inspiracion" in tags && defined(portada.asset)] | order(_createdAt desc)[0...80]{ _id, title, tags, portada }');
       loading.style.display = 'none';
-
-      // Solo publicaciones con título y portada válidos: sin tarjetas vacías ni imágenes rotas
-      const validas = result.filter((p) => p.title && p.title.trim() && p.portada?.asset?._ref);
-      validas.forEach((p, index) => {
-        const ref = p.portada.asset._ref;
-        const dim = (ref.split('-')[2] || '').split('x').map(Number);
-        const [w, h] = dim.length === 2 && dim[0] > 0 && dim[1] > 0 ? dim : [4, 5];
-        const imgUrl = sanityImageUrl(ref, 800);
-        const titulo = p.title.trim();
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.dataset.tags = (p.tags || []).join(',');
-        item.innerHTML = `
-          <a href="publicaciones/post.html?id=${p._id}">
-            <img src="${imgUrl}" alt="${titulo.replace(/"/g, '&quot;')}" width="${w}" height="${h}" loading="${index < 4 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async" style="background:#0b0b0b">
-          </a>
-          <h3></h3>
-          <div class="post-tags">${(p.tags || []).filter(t => !['laboratorio', 'inspiracion'].includes(t)).slice(0, 2).map(t => `<span>${t.replace(/-/g, ' ')}</span>`).join('')}</div>
-        `;
-        item.querySelector('h3').textContent = titulo;
-        // si la imagen no carga, la tarjeta se quita en vez de quedar vacía
-        item.querySelector('img').addEventListener('error', () => item.remove());
-        gallery.appendChild(item);
+      let n = 0;
+      (Array.isArray(result) ? result : []).forEach(p => {
+        const t = S.tarjeta(p);
+        if (!t) return;
+        const img = t.querySelector('img');
+        img.loading = n < 4 ? 'eager' : 'lazy';
+        if (n === 0) img.fetchPriority = 'high';
+        img.style.background = '#0b0b0b';
+        gallery.appendChild(t);
+        n++;
       });
-      if (!validas.length) {
+      if (!n) {
         loading.style.display = '';
         loading.textContent = 'Pronto habrá nuevas piezas de inspiración.';
       }
     } catch (error) {
       loading.textContent = 'No pudimos cargar la inspiración. Intenta de nuevo en un momento.';
       loading.style.color = '#b9a7ff';
-      console.error('Error cargando Inspiración:', error);
     }
   });
 </script>
