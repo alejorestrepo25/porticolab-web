@@ -10,11 +10,11 @@
   <meta property="og:site_name" content="Pórtico Lab">
   <meta property="og:url" content="https://porticolab.com/servicios.html">
   <meta property="og:title" content="Servicios | Pórtico Lab">
-  <meta property="og:description" content="Maquetas de exhibición y auditoría BIM con seguimiento de costos de obra para desarrolladores, constructoras e ingenieros. Medellín.">
+  <meta property="og:description" content="Maquetas de exhibición y auditoría BIM con seguimiento de costos de obra para promotores inmobiliarios, gerentes de proyecto y estudios de diseño. Medellín.">
   <meta property="og:image" content="https://porticolab.com/img/hero-lampara.jpg">
   <meta property="og:locale" content="es_CO">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="description" content="Maquetas de exhibición y auditoría BIM con seguimiento de costos de obra para desarrolladores, constructoras e ingenieros. Medellín.">
+  <meta name="description" content="Maquetas de exhibición y auditoría BIM con seguimiento de costos de obra para promotores inmobiliarios, gerentes de proyecto y estudios de diseño. Medellín.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css?v=5">
@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=36">
+  <link rel="stylesheet" href="editorial.css?v=37">
 </head>
 
 <body class="y2k srvposter">
@@ -252,7 +252,7 @@
     <div class="hero-txt">
       <div class="kicker">&gt; SERVICIOS_</div>
       <h1>Maquetas que inspiran. <em>Proyectos bajo control</em></h1>
-      <p>Maquetas de exhibición con impresión 3D y corte láser. Auditoría BIM y seguimiento de costos de obra.</p>
+      <p>Para promotores, gerentes de proyecto y estudios de diseño: maquetas que ayudan a vender y auditoría BIM que protege el presupuesto.</p>
       <div class="hero-acciones">
         <a class="btn btn-primario" href="#servicios">Ver servicios</a>
         <a class="btn btn-secundario" id="hero-wa" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
@@ -266,7 +266,7 @@
 
   <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">Dos servicios, dos objetivos</h2>
-    <p class="seccion-sub">Maquetas de exhibición con impresión 3D, corte láser y electrónica aplicada. Auditoría BIM y seguimiento de costos de obra.</p>
+    <p class="seccion-sub">Uno para vender el proyecto. Otro para protegerlo.</p>
     <div class="srv-grid" id="srv-grid"></div>
   </section>
 
@@ -336,6 +336,7 @@
   <section id="preguntas" data-pantalla data-nombre="Preguntas">
     <h2 class="seccion">Preguntas frecuentes</h2>
     <div class="faq">
+      <details><summary>¿Por qué no publican precios?</summary><p>Porque cada encargo es distinto. Te enviamos una propuesta con alcance, valor y fechas por escrito, para que sepas exactamente qué recibes antes de empezar.</p></details>
       <details><summary>¿Cómo se cotiza?</summary><p>El valor depende del alcance, la escala y los materiales. En BIM, también del área construida y los entregables.</p></details>
       <details><summary>¿Qué materiales podemos usar?</summary><p>Concreto, madera, plástico de impresión 3D y cartón. Elegimos la combinación según el propósito de la pieza.</p></details>
       <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo con informes de correcciones y control de costos. La automatización de cómputos métricos sigue en desarrollo.</p></details>
@@ -416,8 +417,8 @@ const SERVICIOS = [
   {
     id: 'maquetas', nombre: 'Maquetas de exhibición',
     badge: 'PREMIUM', ilustracion: ILUSTRACION_MAQUETA,
-    promesa: 'Hacemos visible tu proyecto con una maqueta de exhibición.',
-    incluye: ['Impresión 3D y corte láser', 'Concreto, madera, cartón y piezas impresas', 'Iluminación o electrónica integrada a la maqueta'],
+    promesa: 'Una maqueta que el comprador entiende en segundos y que sostiene la conversación de venta.',
+    incluye: ['Diseño de la pieza según su público: sala de ventas, inversionistas o concurso', 'Impresión 3D, corte láser y acabado a mano en concreto, madera o cartón', 'Iluminación o electrónica integrada a la maqueta'],
     resultado: 'Una pieza física para presentar el proyecto en ventas, reuniones o exhibiciones.',
     meta: ['Propuesta a la medida', 'Exhibición física'],
     cta: 'Solicitar propuesta',
@@ -443,7 +444,7 @@ const SERVICIOS = [
     id: 'bim', nombre: 'Auditoría BIM + costos de obra',
     badge: 'AUDITORÍA + COSTOS', ilustracion: ILUSTRACION_BIM,
     bim: true,
-    promesa: 'Revisamos el modelo BIM y alineamos costos y cronograma para anticipar riesgos.',
+    promesa: 'Encontramos interferencias y desviaciones de costo antes de que lleguen a obra.',
     incluye: ['Revisión y coordinación del modelo BIM', 'Seguimiento de costos del proyecto', 'Cómputos métricos automatizados en desarrollo'],
     resultado: 'Riesgos y desviaciones visibles antes de construir.',
     meta: ['Propuesta a la medida', 'Revisión + control de costos'],
