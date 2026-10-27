@@ -8,8 +8,8 @@
   try { if (localStorage.getItem(CLAVE) === '1') raiz.classList.add('barra-activa'); } catch (e) { /* sin almacenamiento */ }
 
   const consulta = encodeURIComponent('*[_type == "proyecto" && slug.current == "barra-sitio"][0].disponible');
-  fetch('https://32sykluw.api.sanity.io/v2024-01-01/data/query/production?query=' + consulta)
-    .then(r => r.json())
+  fetch('https://32sykluw.apicdn.sanity.io/v2024-01-01/data/query/production?query=' + consulta)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(({ result }) => {
       const activa = result === true;
       raiz.classList.toggle('barra-activa', activa);

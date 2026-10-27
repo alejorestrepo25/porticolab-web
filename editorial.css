@@ -399,3 +399,11 @@ body.nosotros .n-hero__link:focus-visible{outline:2px solid #8b6cff;outline-offs
 @media(prefers-reduced-motion:no-preference){body.nosotros .n-hero__flecha svg{animation:pl-flecha 2.4s ease-in-out infinite}}
 @keyframes pl-flecha{0%,100%{transform:translateY(-1px)}50%{transform:translateY(2px)}}
 body.nosotros .n-hero__link .n-hero__flecha{color:#17151b!important}body.nosotros .n-hero__link .n-hero__flecha svg path{stroke:#17151b!important;stroke-width:2.4}
+
+/* Auditoría: accesibilidad y legibilidad */
+.solo-lector{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+/* Puntos de navegación lateral: zona de clic de 28 px sin cambiar su tamaño visual */
+@media(min-width:901px){body.home .rail a::after{content:"";position:absolute;inset:-9px;border-radius:50%}}
+/* Textos de carga y 404 con contraste suficiente */
+body.y2k #loading,body.y2k #gallery-loading{color:var(--pl-muted)!important}
+body.y2k .code{color:var(--pl-muted)!important}

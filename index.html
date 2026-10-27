@@ -30,7 +30,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=34">
+  <link rel="stylesheet" href="editorial.css?v=35">
 </head>
 
 <body class="y2k home">
@@ -172,24 +172,8 @@
 
 
 
+<script src="sanity.js?v=1"></script>
 <script>
-  const SANITY_PROJECT_ID = '32sykluw';
-  const SANITY_DATASET = 'production';
-  const SANITY_API_VERSION = '2024-01-01';
-
-  function sanityImageUrl(ref, width = 800) {
-    const [, id, dimensions, format] = ref.split('-');
-    return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}-${dimensions}.${format}?w=${width}&auto=format`;
-  }
-
-  async function fetchProyectos() {
-    const query = encodeURIComponent(`*[_type == "proyecto" && slug.current != "barra-sitio"] | order(_createdAt desc) { _id, title, slug, tags, portada }`);
-    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
-    const res = await fetch(url);
-    const json = await res.json();
-    return json.result || [];
-  }
-
   // Código de proyecto según las carpetas del estudio
   const CODIGOS = { atalaya: 'A0000000013', tangara: 'M0000000006', dorica: 'P0000000004' };
   function codigoProyecto(titulo) {
@@ -198,63 +182,29 @@
     return k ? CODIGOS[k] : '';
   }
 
-  function shuffle(array) {
-    let i = array.length;
-    while (i > 0) {
-      const j = Math.floor(Math.random() * i--);
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", async () => {
-    const gallery = document.querySelector(".gallery");
+  document.addEventListener('DOMContentLoaded', async () => {
+    const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-
+    const S = window.PL_SANITY;
+    const cargando = document.getElementById('gallery-loading');
     let proyectos;
     try {
-      proyectos = await fetchProyectos();
+      proyectos = await S.consultar('*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset)] | order(_createdAt desc)[0...24]{ _id, title, tags, portada }');
     } catch (e) {
-      document.getElementById('gallery-loading').style.display = 'none';
-      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#888;font-size:15px;">No pudimos cargar los proyectos. Mira el trabajo reciente en <a href="https://www.instagram.com/portico_lab/" target="_blank" rel="noopener" style="color:#b9a7ff">Instagram</a> o recarga la página.</div>';
+      cargando.style.display = 'none';
+      S.aviso(gallery, 'No pudimos cargar los proyectos.', true);
       return;
     }
-    proyectos.sort((a, b) => ((b.tags || []).includes("laboratorio") ? 1 : 0) - ((a.tags || []).includes("laboratorio") ? 1 : 0));
-    proyectos.splice(4);
-
-    document.getElementById('gallery-loading').style.display = 'none';
-
-    if (proyectos.length === 0) {
-      gallery.innerHTML = '<div style="text-align:center;padding:60px;color:#666;font-size:18px;">No se encontraron publicaciones.</div>';
-      return;
+    cargando.style.display = 'none';
+    const lista = (Array.isArray(proyectos) ? proyectos : [])
+      .sort((a, b) => S.lista(b.tags).includes('laboratorio') - S.lista(a.tags).includes('laboratorio'));
+    let n = 0;
+    for (const p of lista) {
+      if (n === 4) break;
+      const t = S.tarjeta(p, { codigo: codigoProyecto(p.title) });
+      if (t) { gallery.appendChild(t); n++; }
     }
-
-    proyectos.forEach((p, i) => {
-      const imgUrl = p.portada?.asset?._ref
-        ? sanityImageUrl(p.portada.asset._ref, 800)
-        : '';
-
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-      item.dataset.tags = (p.tags || []).join(",");
-
-      item.innerHTML = `
-        <a href="publicaciones/post.html?id=${p._id}" data-codigo="${codigoProyecto(p.title)}">
-          <img
-            src="${imgUrl}"
-            alt="${p.title || 'Proyecto'}"
-            loading="lazy"
-            decoding="async"
-            onload="this.classList.toggle('apaisada', this.naturalWidth / this.naturalHeight > 0.9)"
-            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'250\'%3E%3Crect fill=\'%23222\' width=\'300\' height=\'250\'/%3E%3C/svg%3E'">
-        </a>
-        <h3>${p.title || 'Proyecto'}</h3>
-        <div class="post-tags">
-          ${(p.tags || []).filter(t => !['laboratorio', 'inspiracion'].includes(t)).slice(0, 2).map(t => `<span>${t.replace(/-/g, ' ')}</span>`).join('')}
-        </div>
-      `;
-
-      gallery.appendChild(item);
-    });
+    if (!n) S.aviso(gallery, 'Pronto publicaremos nuevos proyectos.', true);
   });
 </script>
 

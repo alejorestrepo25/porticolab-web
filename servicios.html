@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=34">
+  <link rel="stylesheet" href="editorial.css?v=35">
 </head>
 
 <body class="y2k srvposter">
@@ -874,6 +874,15 @@ async function enviarSolicitud() {
   const problema = validar(c);
   if (problema) { err.textContent = problema; return; }
   if (!$('of-acepto').checked) { err.textContent = 'Marca la casilla para continuar.'; return; }
+
+  // Bots: el campo trampa invisible viene lleno. Se muestra la confirmación sin enviar nada.
+  if ($('cli-web').value) { mostrarConfirmacion('SOLICITUD RECIBIDA', '—', 'Recibimos tu solicitud.'); return; }
+  // Evita reenvíos repetidos de la misma persona en menos de un minuto
+  try {
+    const ultimo = Number(localStorage.getItem('pl_ultima_solicitud') || 0);
+    if (Date.now() - ultimo < 60000) { err.textContent = 'Ya recibimos tu solicitud. Si necesitas agregar algo, escríbenos por WhatsApp.'; return; }
+    localStorage.setItem('pl_ultima_solicitud', String(Date.now()));
+  } catch (e) { /* sin almacenamiento: se permite el envío */ }
 
   const pedido = armarPedido(c, 'Solicitud de propuesta');
   registrarPedido(pedido);

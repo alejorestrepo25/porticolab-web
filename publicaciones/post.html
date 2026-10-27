@@ -133,7 +133,7 @@ main{
 </style>
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=1">
-  <link rel="stylesheet" href="../editorial.css?v=34">
+  <link rel="stylesheet" href="../editorial.css?v=35">
 </head>
 
 <body class="y2k">
@@ -159,7 +159,7 @@ main{
 
 <main id="main-content" style="display:none;">
   <div class="post-image">
-    <img id="main-image" src="" alt="">
+    <img id="main-image" alt="">
     <div class="mini-gallery" id="mini-gallery"></div>
   </div>
 
@@ -177,7 +177,7 @@ main{
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="close-btn">&times;</button>
-  <img id="lightbox-img">
+  <img id="lightbox-img" alt="">
   <div class="lightbox-controls">
     <button class="lightbox-btn" id="prev">← Anterior</button>
     <span class="lightbox-counter" id="lightbox-counter">1 / 1</span>
@@ -185,15 +185,9 @@ main{
   </div>
 </div>
 
+<script src="../sanity.js?v=1"></script>
 <script>
-const PROJECT_ID = '32sykluw';
-const DATASET    = 'production';
-const API_VER    = '2024-01-01';
-
-function imgUrl(ref, w = 1200) {
-  const [, id, dim, fmt] = ref.split('-');
-  return `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dim}.${fmt}?w=${w}&auto=format`;
-}
+const S = window.PL_SANITY;
 
 /* Lightbox */
 let images = [], currentIndex = 0;
@@ -231,55 +225,53 @@ document.addEventListener('keydown', e => {
 
 /* Cargar datos desde Sanity */
 async function loadPost() {
+  const aviso = document.getElementById('loading');
   const id = new URLSearchParams(window.location.search).get('id');
-  if (!id) { document.getElementById('loading').textContent = 'Proyecto no encontrado.'; return; }
+  if (!id || id.length > 120) { aviso.textContent = 'Proyecto no encontrado.'; return; }
 
-  const query = encodeURIComponent(`*[_type == "proyecto" && _id == $id][0]{ title, location, year, description, features, tags, portada, galeria }`);
   let result;
   try {
-    const res = await fetch(`https://${PROJECT_ID}.api.sanity.io/v${API_VER}/data/query/${DATASET}?query=${query}&$id=${encodeURIComponent(JSON.stringify(id))}`);
-    ({ result } = await res.json());
+    result = await S.consultar('*[_type == "proyecto" && _id == $id][0]{ title, location, year, description, features, tags, portada, galeria }', { id });
   } catch (e) {
-    document.getElementById('loading').textContent = 'No pudimos cargar el proyecto. Recarga la página en un momento.';
+    aviso.textContent = 'No pudimos cargar el proyecto. Recarga la página en un momento.';
     return;
   }
+  if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
 
-  if (!result) { document.getElementById('loading').textContent = 'Proyecto no encontrado.'; return; }
+  const titulo = S.texto(result.title);
+  document.title = `${titulo} | Pórtico Lab`;
+  document.getElementById('post-title').textContent       = titulo;
+  document.getElementById('post-location').textContent    = S.texto(result.location);
+  document.getElementById('post-year').textContent        = result.year ? String(result.year) : '';
+  document.getElementById('post-description').textContent = S.texto(result.description);
 
-  document.title = `${result.title} | Pórtico Lab`;
+  const ul = document.getElementById('post-features');
+  ul.textContent = '';
+  S.lista(result.features).forEach(f => { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
 
-  document.getElementById('post-title').textContent       = result.title || '';
-  document.getElementById('post-location').textContent    = result.location || '';
-  document.getElementById('post-year').textContent        = result.year || '';
-  document.getElementById('post-description').textContent = result.description || '';
+  const tags = document.getElementById('post-tags');
+  tags.textContent = '';
+  S.lista(result.tags).forEach(t => { const sp = document.createElement('span'); sp.className = 'tag'; sp.textContent = '#' + t; tags.appendChild(sp); });
 
-  if (result.features?.length) {
-    document.getElementById('post-features').innerHTML =
-      result.features.map(f => `<li>${f}</li>`).join('');
-  }
-
-  if (result.tags?.length) {
-    document.getElementById('post-tags').innerHTML =
-      result.tags.map(t => `<span class="tag">#${t}</span>`).join('');
-  }
-
-  // Imágenes
-  const allImages = [];
-  if (result.portada?.asset?._ref) allImages.push(result.portada.asset._ref);
-  (result.galeria || []).forEach(img => { if (img.asset?._ref) allImages.push(img.asset._ref); });
-
-  images = allImages.map(ref => imgUrl(ref, 1200));
+  // Imágenes: solo referencias válidas; portada primero
+  const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
+    .filter((r, i, arr) => S.imagen(r) && arr.indexOf(r) === i);
+  images = refs.map(r => S.imagen(r, 1600).url);
 
   const mainImg = document.getElementById('main-image');
+  mainImg.alt = titulo;
   if (images.length > 0) {
     mainImg.src = images[0];
     mainImg.onclick = () => openLightbox(0);
+  } else {
+    mainImg.hidden = true;
   }
 
   const miniGallery = document.getElementById('mini-gallery');
-  allImages.forEach((ref, i) => {
+  if (refs.length > 1) refs.forEach((ref, i) => {
     const thumb = document.createElement('img');
-    thumb.src = imgUrl(ref, 200);
+    thumb.src = S.imagen(ref, 200).url;
+    thumb.alt = `${titulo}, imagen ${i + 1}`;
     thumb.loading = 'lazy';
     if (i === 0) thumb.classList.add('active');
     thumb.onclick = () => {
@@ -291,7 +283,7 @@ async function loadPost() {
     miniGallery.appendChild(thumb);
   });
 
-  document.getElementById('loading').style.display = 'none';
+  aviso.style.display = 'none';
   document.getElementById('main-content').style.display = 'grid';
 }
 
