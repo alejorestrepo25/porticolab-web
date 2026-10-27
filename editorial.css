@@ -360,3 +360,9 @@ body.nosotros .n-collage img{min-width:0;min-height:0}
  body.home .frente__txt h3{font-size:clamp(18px,1.35vw,23px)!important}
  body.home .frente__txt p{font-size:15px!important}
 }
+/* Barra de 44 px: la línea de la pestaña activa va debajo del texto, no encima */
+@media(min-width:769px){
+ body.y2k header :is(.nav a,.logo)::after{inset-block-end:auto!important;bottom:auto!important;top:calc(50% + 11px)!important;height:2px!important;left:0!important;background:var(--pl-gradient)!important}
+ body.y2k header .nav a::after{right:0!important;width:auto!important}
+ body.y2k header .nav a,body.y2k header .logo{position:relative;height:44px;display:inline-flex!important;align-items:center}
+}
