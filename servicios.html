@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=31">
+  <link rel="stylesheet" href="editorial.css?v=34">
 </head>
 
 <body class="y2k srvposter">
@@ -345,9 +345,16 @@
   </section>
 
   <section class="cierre" id="cierre" data-pantalla data-nombre="Contacto">
-    <h2>¿Hablamos de tu proyecto?</h2>
+    <h2>¿Hablamos de <em>tu proyecto?</em></h2>
     <p>Cuéntanos qué tienes en mente y te orientamos sin compromiso.</p>
-    <a class="btn btn-primario" id="cierre-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+    <div class="cierre-servicios">
+      <button type="button" class="cierre-servicio" data-servicio="maquetas"><b>Maquetas de exhibición</b><span>Solicitar propuesta →</span></button>
+      <button type="button" class="cierre-servicio" data-servicio="bim"><b>Auditoría BIM + costos de obra</b><span>Solicitar propuesta →</span></button>
+    </div>
+    <div class="cierre-contacto">
+      <a class="btn btn-primario" id="cierre-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      <a class="btn btn-secundario" href="mailto:contacto@porticolab.com">contacto@porticolab.com</a>
+    </div>
   </section>
 </main>
 
@@ -917,6 +924,7 @@ $('btn-dudas').addEventListener('click', prefieroWhatsApp);
 $('btn-volver').addEventListener('click', volverAServicios);
 $('bm-ver').addEventListener('click', () => $('oferta').scrollIntoView({ behavior: 'smooth', block: 'center' }));
 $('hero-wa').href = urlWhatsApp('Buen día, equipo de Pórtico Lab. Consulté sus servicios en porticolab.com y me gustaría recibir más información para un proyecto. Quedo pendiente de su respuesta.');
+document.querySelectorAll('.cierre-servicio').forEach(b => b.addEventListener('click', () => seleccionar(b.dataset.servicio)));
 $('cierre-wa').href = urlWhatsApp('Buen día, equipo de Pórtico Lab. Me gustaría agendar una conversación para revisar un proyecto con ustedes. Quedo pendiente de su disponibilidad.');
 renderGrid();
 const pre = new URLSearchParams(location.search).get('servicio');
