@@ -75,7 +75,7 @@ main.carrito h1{font-size:32px;font-weight:700;letter-spacing:1px;margin-bottom:
 </div>
 
 <main class="carrito">
-  <h1>Tu carrito</h1>
+  <h1>Su carrito</h1>
   <div id="carrito-contenido"></div>
 </main>
 
@@ -109,7 +109,7 @@ function renderCarrito() {
   const items = getCarrito();
 
   if (items.length === 0) {
-    cont.innerHTML = `<div class="carrito-vacio">Tu carrito está vacío.<br><a href="index.html">Ver productos</a></div>`;
+    cont.innerHTML = `<div class="carrito-vacio">Su carrito está vacío.<br><a href="index.html">Ver productos</a></div>`;
     return;
   }
 
@@ -185,9 +185,9 @@ function revisarRegresoDePago() {
   if (aprobado) {
     alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega.');
   } else if (boldStatus) {
-    alert('Tu pago quedó en estado "' + boldStatus + '".');
+    alert('Su pago quedó en estado "' + boldStatus + '".');
   } else {
-    alert('Volviste del proceso de pago. Si fue exitoso, nos pondremos en contacto pronto.');
+    alert('Regresó del proceso de pago. Si fue exitoso, nos pondremos en contacto pronto.');
   }
 }
 
@@ -201,7 +201,7 @@ async function iniciarPago() {
   const ciudad = document.getElementById('envio-ciudad').value.trim();
 
   if (!nombre || !telefono || !direccion || !ciudad) {
-    alert('Completa tus datos de envío antes de pagar.');
+    alert('Complete sus datos de envío antes de pagar.');
     return;
   }
 
@@ -219,7 +219,7 @@ async function iniciarPago() {
 
 async function iniciarPagoBold(total, referencia, pedido) {
   if (typeof BoldCheckout === 'undefined') {
-    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
+    alert('No se pudo cargar el método de pago. Revise su conexión e intente de nuevo.');
     return;
   }
 
@@ -238,11 +238,11 @@ async function iniciarPagoBold(total, referencia, pedido) {
   if (!hash && (data.error === 'monto' || data.error === 'producto') && data.precios) {
     actualizarPreciosCarrito(data.precios);
     renderCarrito();
-    alert('Actualizamos los precios de tu carrito. Revisa el total y vuelve a pagar.');
+    alert('Actualizamos los precios de su carrito. Revise el total y vuelva a pagar.');
     return;
   }
   if (!hash) {
-    alert('No se pudo preparar el pago en este momento. Intenta de nuevo o contáctanos por WhatsApp.');
+    alert('No se pudo preparar el pago en este momento. Intente de nuevo o contáctenos por WhatsApp.');
     return;
   }
 
@@ -263,7 +263,7 @@ async function iniciarPagoBold(total, referencia, pedido) {
 
 function iniciarPagoWompi(total, referencia, pedido) {
   if (typeof WidgetCheckout === 'undefined') {
-    alert('No se pudo cargar el método de pago. Revisa tu conexión e intenta de nuevo.');
+    alert('No se pudo cargar el método de pago. Revise su conexión e intente de nuevo.');
     return;
   }
 
@@ -291,9 +291,9 @@ function iniciarPagoWompi(total, referencia, pedido) {
     if (tx.status === 'APPROVED') {
       alert('¡Pago aprobado! Nos pondremos en contacto pronto para coordinar la entrega.');
     } else if (tx.status === 'PENDING') {
-      alert('Tu pago está en proceso. Te avisaremos cuando se confirme.');
+      alert('Su pago está en proceso. Le avisaremos cuando se confirme.');
     } else {
-      alert('El pago no se completó (estado: ' + tx.status + '). Puedes intentarlo de nuevo.');
+      alert('El pago no se completó (estado: ' + tx.status + '). Puede intentarlo de nuevo.');
     }
     renderCarrito();
   });

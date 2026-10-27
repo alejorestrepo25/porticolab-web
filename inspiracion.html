@@ -135,7 +135,7 @@
 </main>
 
 
-<script src="sanity.js?v=1"></script>
+<script src="sanity.js?v=2"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
@@ -161,7 +161,7 @@
         loading.textContent = 'Pronto habrá nuevas piezas de inspiración.';
       }
     } catch (error) {
-      loading.textContent = 'No pudimos cargar la inspiración. Intenta de nuevo en un momento.';
+      loading.textContent = 'No pudimos cargar la inspiración. Intente de nuevo en un momento.';
       loading.style.color = '#b9a7ff';
     }
   });

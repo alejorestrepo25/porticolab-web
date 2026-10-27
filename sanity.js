@@ -89,7 +89,7 @@
     div.style.cssText = 'grid-column:1/-1;column-span:all;text-align:center;padding:60px 16px;font-size:15px';
     div.append(mensaje);
     if (conInstagram) {
-      div.append(' Mira el trabajo reciente en ');
+      div.append(' Vea el trabajo reciente en ');
       const a = document.createElement('a');
       a.href = 'https://www.instagram.com/portico_lab/';
       a.target = '_blank';
