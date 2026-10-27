@@ -460,3 +460,18 @@ body.y2k .code{color:var(--pl-muted)!important}
  /* Galerías: etiqueta superior legible en dos columnas */
  body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not([data-codigo=""])::before{font-size:7px!important;letter-spacing:.04em!important}
 }
+
+/* Inicio · Para quién: tres perfiles de cliente con su problema y lo que reciben */
+body.home .perfiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%}
+body.home .perfil{display:flex;flex-direction:column;gap:12px;padding:28px 26px 26px;background:var(--pl-surface);border:1px solid var(--pl-line-soft);border-radius:var(--pl-radius);color:var(--pl-ink);text-decoration:none;transition:border-color .25s ease}
+body.home .perfil:hover,body.home .perfil:focus-visible{border-color:var(--pl-muted)}
+body.home .perfil__quien{font:600 11px/1.3 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.home .perfil__reto{font:700 clamp(18px,1.5vw,22px)/1.25 'Montserrat',system-ui,sans-serif;letter-spacing:-.02em;color:var(--pl-ink)}
+body.home .perfil__res{font-size:15px;line-height:1.6;color:var(--pl-muted);flex:1}
+body.home .perfil__cta{margin-top:6px;font:700 12px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.045em;text-transform:uppercase;color:var(--pl-ink)}
+body.home .perfil__cta::after{content:' →';display:inline-block;transition:transform .25s}
+body.home .perfil:hover .perfil__cta::after{transform:translateX(6px)}
+@media(prefers-reduced-motion:reduce){body.home .perfil__cta::after{transition:none}}
+@media(max-width:900px){body.home .perfiles{grid-template-columns:1fr;gap:12px}body.home .perfil{padding:20px 20px 20px;gap:8px}body.home .perfil__reto{font-size:18px}body.home .perfil__res{font-size:14px}}
+@media(max-width:768px){html:root body.home #para-quien{padding-top:52px!important;padding-bottom:52px!important}}
+@media(min-width:901px){body.home .perfiles{gap:22px}body.home .perfil{padding:clamp(28px,2.6vw,44px);min-height:min(46vh,440px);gap:18px}body.home .perfil__quien{font-size:12px}body.home .perfil__reto{font-size:clamp(21px,1.9vw,30px);line-height:1.2}body.home .perfil__res{font-size:clamp(15px,1.15vw,18px)}body.home .perfil__cta{font-size:13px}}
