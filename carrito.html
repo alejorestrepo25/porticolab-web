@@ -79,7 +79,7 @@ main.carrito h1{font-size:32px;font-weight:700;letter-spacing:1px;margin-bottom:
   <div id="carrito-contenido"></div>
 </main>
 
-<script src="carrito.js"></script>
+<script src="carrito.js?v=2"></script>
 <script>
 // --- Pasarela de pago activa: 'bold' o 'wompi'. Cambia esta linea si una falla. ---
 const PAYMENT_PROVIDER = 'bold';
@@ -116,7 +116,7 @@ function renderCarrito() {
   const filas = items.map(it => `
     <div class="carrito-item" data-id="${it.id}">
       <div class="carrito-item-info">
-        <h3>${it.title}</h3>
+        <h3>${escaparHTML(it.title)}</h3>
         <div class="precio-unit">$ ${it.precio.toLocaleString('es-CO')} COP c/u</div>
       </div>
       <div class="carrito-item-qty">
@@ -224,13 +224,22 @@ async function iniciarPagoBold(total, referencia, pedido) {
   }
 
   const amount = String(Math.round(total));
+  // El Apps Script recalcula el total con los precios de Sanity y solo firma si coincide.
+  const lista = getCarrito().map(it => `${it.id}:${it.cantidad}`).join(',');
   let hash;
+  let data = {};
   try {
-    const res = await fetch(`${SHEET_WEBHOOK_URL}?action=bold-hash&orderId=${encodeURIComponent(referencia)}&amount=${amount}&currency=COP`);
-    const data = await res.json();
+    const res = await fetch(`${SHEET_WEBHOOK_URL}?action=bold-hash&orderId=${encodeURIComponent(referencia)}&amount=${amount}&currency=COP&items=${encodeURIComponent(lista)}`);
+    data = await res.json();
     hash = data.hash;
   } catch (e) {
     hash = null;
+  }
+  if (!hash && (data.error === 'monto' || data.error === 'producto') && data.precios) {
+    actualizarPreciosCarrito(data.precios);
+    renderCarrito();
+    alert('Actualizamos los precios de tu carrito. Revisa el total y vuelve a pagar.');
+    return;
   }
   if (!hash) {
     alert('No se pudo preparar el pago en este momento. Intenta de nuevo o contáctanos por WhatsApp.');
