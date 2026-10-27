@@ -475,3 +475,51 @@ body.home .perfil:hover .perfil__cta::after{transform:translateX(6px)}
 @media(max-width:900px){body.home .perfiles{grid-template-columns:1fr;gap:12px}body.home .perfil{padding:20px 20px 20px;gap:8px}body.home .perfil__reto{font-size:18px}body.home .perfil__res{font-size:14px}}
 @media(max-width:768px){html:root body.home #para-quien{padding-top:52px!important;padding-bottom:52px!important}}
 @media(min-width:901px){body.home .perfiles{gap:22px}body.home .perfil{padding:clamp(28px,2.6vw,44px);min-height:min(46vh,440px);gap:18px}body.home .perfil__quien{font-size:12px}body.home .perfil__reto{font-size:clamp(21px,1.9vw,30px);line-height:1.2}body.home .perfil__res{font-size:clamp(15px,1.15vw,18px)}body.home .perfil__cta{font-size:13px}}
+
+/* Flechas "siguiente sección": invitan a seguir explorando */
+body.y2k .siguiente{display:flex;flex-direction:column;align-items:center;gap:8px;width:max-content;max-width:100%;margin:clamp(22px,3vh,36px) auto 0;color:var(--pl-muted);text-decoration:none;font:600 10.5px/1.2 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:color .2s ease}
+body.y2k .siguiente i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--pl-gradient);color:#141318}
+body.y2k .siguiente svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+body.y2k .siguiente:hover,body.y2k .siguiente:focus-visible{color:var(--pl-ink)}
+@keyframes pl-siguiente{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(prefers-reduced-motion:no-preference){body.y2k .siguiente i{animation:pl-siguiente 2.2s ease-in-out infinite}}
+body.y2k .srv-wrap .hero>.siguiente,body.y2k .n-hero>.siguiente{grid-column:1/-1}
+body.home .siguiente--hero{display:none!important}
+body.home .archivo-poster>.siguiente{margin-top:18px}
+
+/* Celular: todo más compacto para que la primera vista enganche y se lea de un vistazo */
+@media(max-width:768px){
+ body.home .siguiente--hero{display:flex!important;grid-column:1/-1;margin-top:18px}
+ body.y2k .siguiente{margin-top:26px}
+ /* Inicio: la primera pantalla cabe completa */
+ html:root body.home.y2k .y2k-hero{padding-top:22px!important;padding-bottom:20px!important;gap:16px!important}
+ body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(25px,7.2vw,29px)!important}
+ body.y2k :is(.seccion__cab h2,h2.seccion,.cierre-home h2,.srv-wrap .cierre h2,.nosotros section h2){font-size:clamp(20px,5.8vw,23px)!important}
+ body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p,.seccion-sub,.cierre-home p,.srv-wrap .cierre p){font-size:14px!important;line-height:1.55!important}
+ body.home .y2k-hero__vis,body.home .hero-foto{height:30svh!important;min-height:200px;max-height:300px!important;aspect-ratio:auto!important}
+ body.home .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important}
+ /* Botones más contenidos */
+ body.y2k :is(.btn-cromo,.btn-fantasma,.btn,.n-hero__link){padding:10px 16px!important;min-height:38px!important;font-size:10.5px!important;letter-spacing:.06em!important}
+ body.y2k :is(.y2k-hero__acciones,.hero-acciones,.cierre-acciones,.cierre-contacto){gap:8px!important}
+ body.srvposter .hero-acciones{display:flex!important;flex-wrap:wrap}
+ body.srvposter .hero-acciones .btn{flex:1 1 0;width:auto!important;margin:0!important}
+ body.srvposter .srv-hero__visual{max-height:34svh}
+ /* Imágenes de tarjetas más bajas */
+ body.home .frente__img{height:150px!important}
+ body.srvposter .srv-img{height:160px!important}
+ body.home .frente__txt,body.srvposter .srv-body{padding:14px 16px 16px!important}
+ body.home .frente__txt h3,body.srvposter .srv-body h3{font-size:16px!important}
+ body.home .frente__txt p,body.srvposter .srv-body .promesa{font-size:13.5px!important}
+ body.srvposter .srv-body .incluye,body.srvposter .srv-body .incluye li{font-size:13px!important;line-height:1.5!important}
+ body.srvposter .srv-body .incluye{margin-top:8px!important}
+ body.srvposter .srv-body .incluye li{padding-block:5px!important}
+ html:root body.srvposter .srv-wrap>section.hero{padding-bottom:8px!important}
+ body.srvposter .srv-body .btn{margin-top:12px!important}
+ /* Perfiles y pasos */
+ body.home .perfil{padding:16px!important;gap:6px!important}
+ body.home .perfil__reto{font-size:16px!important}
+ body.home .perfil__res{font-size:13.5px!important}
+ body.home .paso h3{font-size:16px!important}
+ body.home .paso p{font-size:13.5px!important}
+ html:root body.home :is(.seccion,#proceso,.cierre-home),html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),html:root body.nosotros section[data-pantalla]:not(.n-hero),html:root body.home #para-quien{padding-top:40px!important;padding-bottom:40px!important}
+}
