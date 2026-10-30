@@ -14,22 +14,17 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter .srv-wrap > section { margin-top: 0; }
 
   /* Pantallas con caja (portada y cierre): ocupan la pantalla menos un margen */
-  body.srvposter .hero,
-  body.srvposter .cierre { margin: 20px 0; min-height: calc(100svh - var(--hh, 66px) - 40px); box-sizing: border-box; }
+  body.srvposter .hero { margin: 20px 0; min-height: calc(100svh - var(--hh, 66px) - 40px); box-sizing: border-box; }
   body.srvposter .hero { align-items: center; }
   body.srvposter .hero-txt { padding: 28px 48px; }
   body.srvposter .hero h1 { font-size: clamp(30px, 7.4vh, 60px); }
   body.srvposter .hero p { font-size: clamp(14px, 2.2vh, 17px); }
-  body.srvposter .cierre { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  body.srvposter .cierre h2 { font-size: clamp(30px, 8vh, 72px); line-height: 1.05; }
-  body.srvposter .cierre p { font-size: clamp(14px, 2.3vh, 17px); }
 
   /* Pantallas de contenido */
   body.srvposter #como-funciona,
   body.srvposter #servicios,
   body.srvposter #preguntas { min-height: calc(100svh - var(--hh, 66px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; }
   body.srvposter h2.seccion { font-size: clamp(26px, 6vh, 56px); line-height: 1.04; margin: 10px 0 0; letter-spacing: -.5px; }
-  body.srvposter .seccion-sub { max-width: none; font-size: clamp(13px, 2vh, 16px); margin-top: 10px; }
 
   /* Cómo funciona */
   body.srvposter .pasos-row { margin-top: clamp(18px, 4vh, 40px); gap: 18px; }
@@ -42,8 +37,6 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
   body.srvposter .srv-grid { margin-top: clamp(12px, 2.4vh, 24px); gap: 18px; }
   body.srvposter .srv-card { flex-direction: row; }
   body.srvposter .srv-img { width: 40%; flex: none; aspect-ratio: auto; }
-  body.srvposter .srv-img svg > g > text:first-child,
-  body.srvposter .srv-img svg > g > text:last-child { display: none; }
   body.srvposter .srv-body { padding: clamp(14px, 2.4vh, 22px); }
   body.srvposter .srv-body h3 { font-size: clamp(17px, 2.5vh, 21px); line-height: 1.16; }
   body.srvposter .srv-body .promesa { font-size: clamp(13px, 1.8vh, 15px); line-height: 1.55; }
@@ -72,14 +65,12 @@ body.srvposter .rail a.activo { background: var(--cromo); border-color: transpar
 @media (max-width: 900px) {
   html { scroll-padding-top: 0; }
   body.srvposter .srv-wrap > section[data-pantalla] { margin-top: 0; padding-bottom: calc(58px + env(safe-area-inset-bottom)); scroll-margin-bottom: calc(58px + env(safe-area-inset-bottom)); }
-  body.srvposter .hero, body.srvposter .cierre { margin: 14px 0; min-height: calc(100svh - var(--hh, 60px) - 28px); box-sizing: border-box; }
+  body.srvposter .hero { margin: 14px 0; min-height: calc(100svh - var(--hh, 60px) - 28px); box-sizing: border-box; }
   body.srvposter .hero { scroll-margin-top: calc(var(--hh, 60px) + 14px); }
-  body.srvposter .cierre { display: flex; flex-direction: column; align-items: center; justify-content: center; }
   body.srvposter #como-funciona, body.srvposter #servicios, body.srvposter #preguntas { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 28px 0; }
   body.srvposter h2.seccion { font-size: clamp(24px, 7vw, 40px); line-height: 1.06; margin-top: 8px; }
 }
 body.srvposter .accion-pantalla { align-self: flex-start; margin-top: clamp(14px, 2.4vh, 24px); }
-body.srvposter #preguntas .accion-pantalla { align-self: center; }
 
 
 /* Celular: tarjetas compactas y ajuste automático para que cada vista quepa completa en la pantalla */
@@ -94,7 +85,6 @@ body.srvposter #preguntas .accion-pantalla { align-self: center; }
   body.srvposter .srv-body .btn { margin-top: 10px; padding: 10px 12px; font-size: 11px; }
   body.srvposter .badge { top: 8px; left: 8px; font-size: 9px; padding: 4px 6px; }
   body.srvposter .incluye, body.srvposter .meta, body.srvposter .ruta-row { display: none; }
-  body.srvposter .seccion-sub { font-size: 13px; line-height: 1.55; }
 }
 
 /* El índice de pantallas se vuelve una guía táctil horizontal en móvil y tablet. */
