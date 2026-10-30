@@ -578,3 +578,5 @@ body.y2k .pasos3 dd{margin:0;font:500 14px/1.45 'Montserrat',system-ui,sans-seri
 body.y2k .pasos3>div:last-child dd{font-weight:700}
 body.y2k .pasos3>div:last-child dt{background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
 @media(max-width:768px){body.y2k .pasos3>div{grid-template-columns:1fr;gap:2px;padding:8px 0}body.y2k .pasos3 dd{font-size:13.5px}}
+/* Resaltado en degradado también en la bajada del inicio */
+body.y2k .y2k-hero p mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316;-webkit-text-fill-color:#141316;padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
