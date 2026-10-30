@@ -201,55 +201,51 @@ main.poster{display:block;max-width:none;margin:0;padding:clamp(18px,2.6vw,40px)
 }
 @media(prefers-reduced-motion:reduce){.celda img{transition:none}.celda:hover img{transform:none}}
 
-/* ===== Publicación: una sola pantalla, título + descripción + collage ===== */
-main.pub{display:grid;grid-template-columns:none;grid-template-rows:auto minmax(0,1fr);gap:clamp(14px,2vh,24px);max-width:none;width:min(1440px,calc(100vw - 2*clamp(16px,3vw,48px)));margin:0 auto;padding:clamp(16px,2.4vh,28px) 0 clamp(16px,2.4vh,28px);height:calc(100svh - var(--hh,66px));align-items:stretch;background:#fff;color:#141316}
-.pub__cab{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:end;gap:clamp(16px,3vw,56px)}
-.pub__cab h1{font:700 clamp(32px,3.9vw,64px)/1.02 'Montserrat',sans-serif!important;letter-spacing:-.045em!important;color:#141316!important;-webkit-text-fill-color:#141316!important;background:none!important;margin:0;text-transform:none!important}
-.pub__desc{font-size:16px!important;line-height:1.55!important;color:#4a474f!important;max-width:70ch;margin:0}
-.pub__collage{display:grid;gap:10px;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,1.05fr)}
-.pub__pieza{display:block;position:relative;border:0;padding:0;margin:0;background:#f1f0f3;border-radius:12px;overflow:hidden;cursor:zoom-in;min-width:0;min-height:0}
-.pub__pieza img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.pub__pieza:hover img{transform:scale(1.02)}
-.pub__pieza:focus-visible{outline:2px solid #141316;outline-offset:2px}
-/* 6 piezas: igual que el collage de Nosotros */
-.pub__collage[data-n="6"]{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr)}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(5){grid-column:4;grid-row:1/3}
-.pub__collage[data-n="6"] .pub__pieza:nth-child(6){grid-column:1/5;grid-row:3}
-/* 5 piezas: sin la franja inferior */
-.pub__collage[data-n="5"]{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
-.pub__collage[data-n="5"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
-.pub__collage[data-n="5"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
-.pub__collage[data-n="5"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
-.pub__collage[data-n="5"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
-.pub__collage[data-n="5"] .pub__pieza:nth-child(5){grid-column:4;grid-row:1/3}
-/* 4 piezas */
-.pub__collage[data-n="4"]{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
-.pub__collage[data-n="4"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
-.pub__collage[data-n="4"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
-.pub__collage[data-n="4"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
-.pub__collage[data-n="4"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
-/* 3 piezas */
-.pub__collage[data-n="3"]{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
-.pub__collage[data-n="3"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
-/* 1 y 2 piezas */
-.pub__collage[data-n="2"]{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr)}
-.pub__collage[data-n="1"]{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
-.pub__collage[data-n="1"] .pub__pieza img{object-fit:contain}
+/* ===== Ficha de proyecto: una pantalla. Imagen completa a la izquierda, ficha técnica a la derecha ===== */
+main.ficha{--g:var(--pl-guia,clamp(16px,3.9vw,56px));display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.8fr);gap:clamp(28px,4vw,72px);max-width:none;margin:0;padding:24px var(--g);height:calc(100svh - var(--hh,66px));align-items:stretch;background:#fff;color:#141316}
+.ficha__media{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:12px;min-height:0;min-width:0}
+.ficha__escenario{position:relative;margin:0;min-height:0;border:1px solid #e6e4ea;border-radius:8px;background:#fff;overflow:hidden}
+.ficha__principal{position:absolute;inset:0;border:0;padding:clamp(12px,2vw,28px);background:none;cursor:zoom-in;display:block;width:100%;height:100%}
+.ficha__principal img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .25s ease}
+.ficha__principal img.limpia{filter:url(#sin-reticula)}
+.ficha__principal:focus-visible{outline:2px solid #141316;outline-offset:-4px}
+.ficha__contador{position:absolute;left:14px;bottom:12px;font:700 11px/1 var(--pl-tecnica);letter-spacing:.2em;color:#6a6770;background:#fff;padding:4px 6px;border-radius:4px}
+.ficha__miniaturas{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.ficha__miniaturas:empty{display:none}
+.ficha__mini{flex:0 0 auto;width:64px;height:80px;border:1px solid #e6e4ea;border-radius:6px;padding:0;background:#fff;cursor:pointer;overflow:hidden;opacity:.55;transition:opacity .2s,border-color .2s}
+.ficha__mini img{width:100%;height:100%;object-fit:cover;display:block}
+.ficha__mini:hover,.ficha__mini[aria-current="true"]{opacity:1;border-color:#141316}
+.ficha__mini:focus-visible{outline:2px solid #9d7bff;outline-offset:2px}
+.ficha__info{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:0;overflow-y:auto;padding:8px 0}
+.ficha__codigo{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.24em!important;text-transform:uppercase;color:#6a6770!important;margin:0 0 16px!important;padding-bottom:16px;border-bottom:1px solid #e6e4ea}
+.ficha__info h1{font:700 clamp(34px,3.6vw,54px)/1.02 'Montserrat',sans-serif!important;letter-spacing:-.045em!important;color:#141316!important;-webkit-text-fill-color:#141316!important;background:none!important;text-transform:none!important;margin:0;overflow-wrap:anywhere}
+.ficha__meta{margin:16px 0 0!important;font:700 11px/1.6 var(--pl-tecnica)!important;letter-spacing:.16em!important;text-transform:uppercase;color:#5b3fd0!important}
+.ficha__meta:empty{display:none}
+.ficha__desc{margin:24px 0 0!important;font-size:16px!important;line-height:1.6!important;color:#3a383f!important;max-width:52ch}
+.ficha__rasgos{list-style:none;margin:24px 0 0;padding:0;border-top:1.5px solid #141316;counter-reset:r}
+.ficha__rasgos:empty{display:none}
+.ficha__rasgos li{counter-increment:r;display:grid;grid-template-columns:3.2ch 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #e6e4ea;font-size:15px!important;line-height:1.45;color:#2b2a2e!important}
+.ficha__rasgos li::before{content:counter(r,decimal-leading-zero);font:700 11px/1.9 var(--pl-tecnica);letter-spacing:.1em;color:#9d7bff}
+.ficha__pie{display:flex;flex-direction:column;gap:20px}
+.ficha__cta{margin-top:32px;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border-radius:999px;background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316!important;text-decoration:none;font:700 11px/1 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.ficha__cta:hover{filter:saturate(1.2)}
+.ficha__nav{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid #e6e4ea}
+.ficha__nav a{font:700 11px/1.4 var(--pl-tecnica);letter-spacing:.16em;text-transform:uppercase;color:#141316;text-decoration:none;max-width:48%}
+.ficha__nav a small{display:block;font:500 13px/1.3 'Montserrat',sans-serif;letter-spacing:0;text-transform:none;color:#6a6770;margin-top:4px}
+.ficha__nav a:hover small{color:#5b3fd0}
+.ficha__nav a[hidden]{display:none}
+.ficha__nav a.sig{text-align:right;margin-left:auto}
 @media(max-width:900px){
-  main.pub{height:auto;grid-template-rows:auto auto;padding:18px 0 28px}
-  .pub__cab{grid-template-columns:1fr;gap:10px}
-  .pub__cab h1{font-size:clamp(28px,9vw,40px)!important}
-  .pub__desc{font-size:14px!important}
-  .pub__collage,.pub__collage[data-n]{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:42vw;gap:8px}
-  .pub__collage[data-n] .pub__pieza{grid-column:auto!important;grid-row:auto!important}
-  .pub__collage[data-n] .pub__pieza:first-child{grid-column:1/-1!important;grid-row:span 2!important}
-  .pub__collage[data-n="2"] .pub__pieza:last-child,.pub__collage[data-n="4"] .pub__pieza:last-child,.pub__collage[data-n="6"] .pub__pieza:last-child{grid-column:1/-1!important}
+  main.ficha{grid-template-columns:1fr;height:auto;padding:16px var(--g) 32px;gap:24px}
+  .ficha__escenario{height:min(72vh,120vw)}
+  .ficha__info{overflow:visible;padding:0}
+  .ficha__info h1{font-size:clamp(30px,9vw,40px)!important}
+  .ficha__desc{font-size:15px!important}
+  .ficha__mini{width:52px;height:64px}
 }
-@media(prefers-reduced-motion:reduce){.pub__pieza img{transition:none}.pub__pieza:hover img{transform:none}}
+body.ficha-proyecto #mascota-wrapper{display:none!important}
+.ficha__pie:not(:has(a:not([hidden]))){display:none}
+@media(prefers-reduced-motion:reduce){.ficha__principal img{transition:none}}
 </style>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
@@ -281,13 +277,33 @@ main.pub{display:grid;grid-template-columns:none;grid-template-rows:auto minmax(
 
 <div class="loading" id="loading">CARGANDO...</div>
 
-<main id="main-content" class="pub" hidden>
-  <div class="pub__cab">
-    <h1 id="post-title">Percheros</h1>
-    <p class="pub__desc" id="post-desc"></p>
-  </div>
-  <div class="pub__collage" id="pub-collage"></div>
+<main id="main-content" class="ficha" hidden>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="sin-reticula" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncG type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncB type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/></feComponentTransfer></filter></svg>
+  <section class="ficha__media" aria-label="Imágenes del proyecto">
+    <figure class="ficha__escenario">
+      <button type="button" class="ficha__principal" id="ficha-principal" aria-label="Ampliar imagen"><img id="ficha-img" alt="" decoding="async"></button>
+      <span class="ficha__contador" id="ficha-contador" aria-hidden="true"></span>
+    </figure>
+    <div class="ficha__miniaturas" id="ficha-miniaturas" role="group" aria-label="Elegir imagen"></div>
+  </section>
+  <article class="ficha__info">
+    <div>
+      <p class="ficha__codigo" id="ficha-codigo">PORTICO_LAB</p>
+      <h1 id="post-title">Percheros</h1>
+      <p class="ficha__meta" id="ficha-meta"></p>
+      <p class="ficha__desc" id="post-desc"></p>
+      <ol class="ficha__rasgos" id="ficha-rasgos"></ol>
+      <a class="ficha__cta" id="ficha-cta" href="https://wa.me/573147924600" target="_blank" rel="noopener">Cotizar un proyecto así →</a>
+    </div>
+    <div class="ficha__pie">
+      <nav class="ficha__nav" aria-label="Más proyectos">
+        <a id="ficha-ant" hidden>← Anterior<small></small></a>
+        <a id="ficha-sig" class="sig" hidden>Siguiente →<small></small></a>
+      </nav>
+    </div>
+  </article>
 </main>
+
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="close-btn">&times;</button>
@@ -354,36 +370,90 @@ async function loadPost() {
   const titulo = S.texto(result.title);
   document.title = `${titulo} | Pórtico Lab`;
   document.getElementById('post-title').textContent = titulo;
+  const cod = S.codigo(titulo);
+  document.getElementById('ficha-codigo').textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';
+
+  // Categoría · lugar · año (se omiten los datos de relleno)
+  const lugar = S.texto(result.location);
+  const anio = Number(result.year);
+  document.getElementById('ficha-meta').textContent = [S.categoria(result.tags), /[a-záéíóúñ]/i.test(lugar) ? lugar : '', anio >= 2000 && anio <= 2100 ? String(anio) : ''].filter(Boolean).join(' · ');
+
   const desc = S.texto(result.description);
   const pDesc = document.getElementById('post-desc');
   if (desc) pDesc.textContent = desc; else pDesc.remove();
+  const ol = document.getElementById('ficha-rasgos');
+  S.lista(result.features).slice(0, 6).forEach(f => { const li = document.createElement('li'); li.textContent = f; ol.appendChild(li); });
 
-  // Imágenes: solo referencias válidas; portada primero
+  document.getElementById('ficha-cta').href = 'https://wa.me/573147924600?text=' +
+    encodeURIComponent(`Buen día, equipo de Pórtico Lab. Vi el proyecto ${titulo} en su página y quisiera cotizar algo similar para mi proyecto.`);
+
+  // Imágenes completas, sin recortar: una principal y miniaturas para cambiar
   const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
     .filter((r, i, arr) => S.imagen(r) && arr.indexOf(r) === i);
   images = refs.map(r => S.imagen(r, 1600).url);
-
-  // Collage de una sola pantalla: hasta 6 piezas; la composición cambia según cuántas haya
-  const collage = document.getElementById('pub-collage');
-  const visibles = refs.slice(0, 6);
-  collage.dataset.n = visibles.length;
-  visibles.forEach((r, i) => {
+  const img = document.getElementById('ficha-img');
+  const contador = document.getElementById('ficha-contador');
+  const minis = document.getElementById('ficha-miniaturas');
+  let actual = 0;
+  const dos = n => String(n).padStart(2, '0');
+  function mostrar(i) {
+    actual = (i + refs.length) % refs.length;
+    const r = refs[actual];
+    img.src = S.imagen(r, 1400).url;
+    const juego = S.srcset(r);
+    if (juego) { img.srcset = juego; img.sizes = '(max-width: 900px) 100vw, 60vw'; } else img.removeAttribute('srcset');
+    img.alt = actual === 0 ? titulo : `${titulo}, imagen ${actual + 1}`;
+    img.classList.toggle('limpia', /-png$/.test(r));   // pósters del laboratorio: la cuadrícula gris del fondo queda blanca
+    contador.textContent = refs.length > 1 ? `${dos(actual + 1)} / ${dos(refs.length)}` : '';
+    contador.hidden = refs.length < 2;
+    minis.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-current', k === actual ? 'true' : 'false'));
+  }
+  if (refs.length > 1) refs.forEach((r, i) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'pub__pieza';
-    b.setAttribute('aria-label', `Ampliar imagen ${i + 1} de ${titulo}`);
-    const im = document.createElement('img');
-    im.src = S.imagen(r, i === 0 ? 1400 : 1000).url;
-    const juego = S.srcset(r);
-    if (juego) { im.srcset = juego; im.sizes = i === 0 ? '(max-width: 900px) 100vw, 45vw' : '(max-width: 900px) 50vw, 30vw'; }
-    im.alt = i === 0 ? titulo : `${titulo}, imagen ${i + 1}`;
-    im.loading = i < 2 ? 'eager' : 'lazy';
-    im.decoding = 'async';
-    b.appendChild(im);
-    b.addEventListener('click', () => openLightbox(i));
-    collage.appendChild(b);
+    b.className = 'ficha__mini';
+    b.setAttribute('aria-label', `Ver imagen ${i + 1}`);
+    const m = document.createElement('img');
+    m.src = S.imagen(r, 160).url; m.alt = ''; m.loading = 'lazy'; m.decoding = 'async';
+    b.appendChild(m);
+    b.addEventListener('click', () => mostrar(i));
+    minis.appendChild(b);
   });
-  if (!visibles.length) collage.remove();
+  if (refs.length) mostrar(0); else document.querySelector('.ficha__media').remove();
+  document.getElementById('ficha-principal').addEventListener('click', () => openLightbox(actual));
+  let x0 = null;
+  const escenario = document.querySelector('.ficha__escenario');
+  if (escenario && refs.length > 1) {
+    escenario.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    escenario.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) mostrar(actual + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+  }
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display === 'flex' || refs.length < 2 || /input|textarea/i.test(e.target.tagName)) return;
+    if (e.key === 'ArrowRight') mostrar(actual + 1);
+    if (e.key === 'ArrowLeft') mostrar(actual - 1);
+  });
+
+  // Anterior / siguiente dentro de la misma colección (laboratorio o inspiración)
+  const coleccion = S.lista(result.tags).includes('laboratorio') ? 'laboratorio' : 'inspiracion';
+  S.consultar('*[_type == "proyecto" && $t in tags && defined(portada.asset) && defined(title)] | order(_createdAt desc){ _id, title }', { t: coleccion })
+    .then(lista => {
+      if (!Array.isArray(lista) || lista.length < 2) return;
+      const k = lista.findIndex(x => x._id === id);
+      if (k < 0) return;
+      const enlazar = (el, p) => {
+        const n = S.nombreFicha(p.title);
+        el.href = n && n !== 'post' ? `${n}.html` : `post.html?id=${encodeURIComponent(p._id)}`;
+        el.querySelector('small').textContent = S.texto(p.title);
+        el.hidden = false;
+      };
+      enlazar(document.getElementById('ficha-ant'), lista[(k - 1 + lista.length) % lista.length]);
+      enlazar(document.getElementById('ficha-sig'), lista[(k + 1) % lista.length]);
+    })
+    .catch(() => {});
 
   aviso.style.display = 'none';
   document.getElementById('main-content').hidden = false;
