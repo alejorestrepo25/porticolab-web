@@ -345,21 +345,8 @@
       <details><summary>¿Qué necesito para empezar?</summary><p>Cuéntenos el proyecto. Si tiene planos, un modelo o referencias, adjúntelos en el formulario.</p></details>
     </div>
     <a class="btn btn-secundario accion-pantalla" href="https://wa.me/573147924600?text=Buen%20d%C3%ADa%2C%20equipo%20de%20P%C3%B3rtico%20Lab.%20Tengo%20una%20consulta%20sobre%20sus%20servicios%3A" target="_blank" rel="noopener">Resolver una duda por WhatsApp →</a>
-    <a class="siguiente" href="#cierre" aria-label="Siguiente: Hablemos"><span>Hablemos</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
   </section>
 
-  <section class="cierre" id="cierre" data-pantalla data-nombre="Contacto">
-    <h2 class="guerrilla-h">Sé que no tiene mucho tiempo y quiere cuidar <mark>hasta el último peso</mark> de su proyecto.</h2>
-    <p>Cuéntenos qué tiene en mente y lo orientamos sin compromiso.</p>
-    <div class="cierre-servicios">
-      <button type="button" class="cierre-servicio" data-servicio="maquetas"><b>Modelos a escala</b><span>Solicitar propuesta →</span></button>
-      <button type="button" class="cierre-servicio" data-servicio="bim"><b>Auditoría BIM + Costos de Obra</b><span>Solicitar propuesta →</span></button>
-    </div>
-    <div class="cierre-contacto">
-      <a class="btn btn-primario" id="cierre-wa" href="#" target="_blank" rel="noopener">Escríbanos por WhatsApp</a>
-      <a class="btn btn-secundario" href="mailto:contacto@porticolab.com">contacto@porticolab.com</a>
-    </div>
-  </section>
 </main>
 
 <div class="barra-movil" id="barra-movil">
@@ -922,8 +909,6 @@ $('btn-dudas').addEventListener('click', prefieroWhatsApp);
 $('btn-volver').addEventListener('click', volverAServicios);
 $('bm-ver').addEventListener('click', () => $('oferta').scrollIntoView({ behavior: 'smooth', block: 'center' }));
 $('hero-wa').href = urlWhatsApp('Buen día, equipo de Pórtico Lab. Consulté sus servicios en porticolab.com y me gustaría recibir más información para un proyecto. Quedo pendiente de su respuesta.');
-document.querySelectorAll('.cierre-servicio').forEach(b => b.addEventListener('click', () => seleccionar(b.dataset.servicio)));
-$('cierre-wa').href = urlWhatsApp('Buen día, equipo de Pórtico Lab. Me gustaría agendar una conversación para revisar un proyecto con ustedes. Quedo pendiente de su disponibilidad.');
 renderGrid();
 const pre = new URLSearchParams(location.search).get('servicio');
 if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
