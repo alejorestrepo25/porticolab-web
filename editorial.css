@@ -722,3 +722,20 @@ html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform
  html:root body.y2k :is(#frentes,.archivo-poster,#proceso,#servicios,#como-funciona,#enfoque,#proyectos) .siguiente{margin-top:40px!important}
 }
 @media(min-width:901px) and (min-height:560px){html:root body.home #proceso .pasos-row{margin-top:0!important}}
+
+/* ===== Guía horizontal única (escritorio) =====
+   Todo el contenido arranca en la línea del logo: 56 px; en pantallas muy anchas el bloque se centra en 1808 px. */
+@media(min-width:901px){
+ :root{--pl-guia:max(56px,calc((100vw - 1808px) / 2))}
+ html:root body.home :is(.seccion,.cierre-home,main .gallery,.ver-todo-wrap),
+ html:root body.srvposter .srv-wrap,
+ html:root body.nosotros :is(section.seccion,#piezas,.cierre-home),
+ html:root body.y2k[data-filter] main .gallery,
+ html:root body.home.y2k #inicio.y2k-hero,
+ html:root body.nosotros.y2k section.n-hero{width:auto!important;max-width:none!important;margin-inline:0!important;padding-inline:var(--pl-guia)!important;box-sizing:border-box!important}
+ html:root body.nosotros #piezas{padding-inline:0!important}
+ html:root body.y2k .cierre-combo .combo{max-width:none!important;width:100%!important;margin:0!important}
+ html:root body.home.y2k #inicio .y2k-hero__vis{left:calc(var(--pl-guia) + min(470px,33vw) + 32px)!important}
+}
+@media(min-width:901px){html:root body.y2k:is(.home,.nosotros,[data-filter]) main{padding-inline:0!important}}
+@media(min-width:901px){html:root body.nosotros :is(.n-pilares,.piezas){max-width:none!important;width:auto!important;margin-inline:0!important}}
