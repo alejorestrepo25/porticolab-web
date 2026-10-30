@@ -341,7 +341,7 @@
       <details><summary>¿Por qué no publican precios?</summary><p>Porque cada encargo es distinto. Le enviamos una propuesta con alcance, valor y fechas por escrito, para que sepa exactamente qué recibe antes de empezar.</p></details>
       <details><summary>¿Cómo se cotiza?</summary><p>El valor depende del alcance, la escala y los materiales. En BIM, también del área construida y los entregables.</p></details>
       <details><summary>¿Qué materiales podemos usar?</summary><p>Concreto, madera, plástico de impresión 3D y cartón. Elegimos la combinación según el propósito de la pieza.</p></details>
-      <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo con informes de correcciones y control de costos. La automatización de cómputos métricos sigue en desarrollo.</p></details>
+      <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo con informes de correcciones y control de costos. Incluye cómputos métricos automatizados en tiempo real.</p></details>
       <details><summary>¿Qué necesito para empezar?</summary><p>Cuéntenos el proyecto. Si tiene planos, un modelo o referencias, adjúntelos en el formulario.</p></details>
     </div>
     <a class="btn btn-secundario accion-pantalla" href="https://wa.me/573147924600?text=Buen%20d%C3%ADa%2C%20equipo%20de%20P%C3%B3rtico%20Lab.%20Tengo%20una%20consulta%20sobre%20sus%20servicios%3A" target="_blank" rel="noopener">Resolver una duda por WhatsApp →</a>
@@ -477,7 +477,7 @@ function renderGrid() {
     card.innerHTML =
       `<div class="srv-img">${media}</div>` +
       `<div class="srv-body">` +
-        `<div class="num">[0${i + 1}]${s.bim ? '<span class="bim">METODOLOGÍA BIM</span>' : ''}</div>` +
+        `<div class="num">[0${i + 1}]</div>` +
         `<h3>${s.nombre}</h3>` +
         `<p class="promesa">${s.promesa}</p>` +
         `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
