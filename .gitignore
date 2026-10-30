@@ -4,3 +4,4 @@ package-lock.json
 *.mjs
 .env
 .DS_Store
+!scripts/*.mjs
