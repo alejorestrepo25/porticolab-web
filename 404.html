@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<base href="/">
   <script src="tema.js?v=2"></script>
 <meta charset="UTF-8">
+<script>
+// Proyecto recién publicado cuya ficha fija aún no se generó: se busca en Sanity y se abre por su id.
+(function () {
+  var m = location.pathname.match(/\/publicaciones\/([a-z0-9-]{1,80})\.html$/);
+  if (!m) return;
+  document.documentElement.style.visibility = 'hidden';
+  var q = encodeURIComponent('*[_type == "proyecto" && defined(title)]{_id, title}');
+  var mostrar = function () { document.documentElement.style.visibility = ''; };
+  fetch('https://32sykluw.apicdn.sanity.io/v2024-01-01/data/query/production?query=' + q)
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var nombre = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80); };
+      var p = (d.result || []).filter(function (x) { return nombre(x.title) === m[1]; })[0];
+      if (p) location.replace('/publicaciones/post.html?id=' + encodeURIComponent(p._id)); else mostrar();
+    })
+    .catch(mostrar);
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Página no encontrada | Pórtico Lab</title>
 <meta name="robots" content="noindex">
@@ -12,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
-<link rel="stylesheet" href="y2k.css?v=6">
+<link rel="stylesheet" href="y2k.css?v=7">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#000;color:#fff;font-family:'Montserrat',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
@@ -51,7 +70,7 @@ html.barra-activa .wip-banner{display:flex;}
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
-  <link rel="stylesheet" href="coherencia.css?v=1">
+  <link rel="stylesheet" href="coherencia.css?v=2">
   <link rel="stylesheet" href="editorial.css?v=63">
 </head>
 <body class="y2k">
