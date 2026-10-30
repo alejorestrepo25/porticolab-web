@@ -705,3 +705,20 @@ html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform
  html:root body.y2k .cierre-combo .cierre-acciones :is(.btn-cromo,.btn-fantasma),html:root body.srvposter .srv-wrap .hero .btn,html:root body.home .frente__cta{font-size:11px!important;letter-spacing:.1em!important}
  html:root body.nosotros .n-pilar h3,html:root body.nosotros section h3{font-size:18px!important}
 }
+
+/* ===== Ritmo vertical de pantallas de contenido (escritorio) =====
+   Título siempre a 120 px bajo el menú · título → contenido 32 px · contenido → flecha 40 px.
+   Portadas y cierres siguen centrados: son pantallas de impacto. */
+@media(min-width:901px) and (min-height:560px){
+ html:root body.home :is(#frentes,.archivo-poster,#proceso),
+ html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona),
+ html:root body.nosotros section:is(#enfoque,#proyectos){justify-content:flex-start!important;padding-top:120px!important;padding-bottom:40px!important}
+ html:root body.home .archivo-poster>#proyectos{min-height:0!important;padding:0!important;margin:0!important}
+ html:root body.y2k :is(#frentes,#proyectos,#proceso,#enfoque) .seccion__cab{margin:0 0 32px!important;padding:0!important}
+ html:root body.y2k :is(#frentes,#proyectos,#proceso,#enfoque) .seccion__cab h2{margin:0!important}
+ html:root body.y2k :is(#frentes,#proyectos,#proceso,#enfoque) .seccion__cab>p{margin:16px 0 0!important}
+ html:root body.srvposter :is(#servicios,#como-funciona)>h2.seccion{margin:0 0 32px!important}
+ html:root body.srvposter :is(#srv-grid,#como-funciona .pasos-row){margin-top:0!important}
+ html:root body.y2k :is(#frentes,.archivo-poster,#proceso,#servicios,#como-funciona,#enfoque,#proyectos) .siguiente{margin-top:40px!important}
+}
+@media(min-width:901px) and (min-height:560px){html:root body.home #proceso .pasos-row{margin-top:0!important}}
