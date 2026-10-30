@@ -22,7 +22,7 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --mono: 'Montserrat', sans-serif; --acento: #b9a7ff; --linea: #222; --radio: 14px; }
@@ -258,7 +258,7 @@
       </div>
     </div>
     <figure class="srv-hero__visual" aria-label="Visualización animada de coordinación BIM">
-      <img class="bim-oscuro" src="img/servicios/bim-control.svg?v=21" alt="Edificio de oficinas en vista isométrica que se descompone por niveles y deja ver su estructura, núcleo e instalaciones; el nivel 3 queda resaltado para revisión de costo y avance" width="1220" height="760" fetchpriority="high">
+      <img class="bim-oscuro" loading="lazy" src="img/servicios/bim-control.svg?v=21" alt="Edificio de oficinas en vista isométrica que se descompone por niveles y deja ver su estructura, núcleo e instalaciones; el nivel 3 queda resaltado para revisión de costo y avance" width="1220" height="760" fetchpriority="high">
       <img class="bim-claro" src="img/servicios/bim-control-claro.svg?v=6" alt="Edificio de oficinas en vista isométrica que se descompone por niveles y deja ver su estructura, núcleo e instalaciones; el nivel 3 queda resaltado para revisión de costo y avance" width="1220" height="760" fetchpriority="high">
       <figcaption><span>MODELO COORDINADO</span><span>GEOMETRÍA / COSTO / TIEMPO</span></figcaption>
     </figure>
@@ -919,9 +919,9 @@ if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 
 <script src="y2k.js?v=4" defer></script>
 <script src="servicios-poster.js?v=5" defer></script>
-<script src="mascota.js?v=21"></script>
+<script src="mascota.js?v=21" defer></script>
 <script src="navegacion-teclado.js?v=1" defer></script>
   <script src="coherencia.js?v=2" defer></script>
-<script src="motion.js?v=3"></script>
+<script src="motion.js?v=3" defer></script>
 </body>
 </html>
