@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=48">
+  <link rel="stylesheet" href="editorial.css?v=50">
 </head>
 
 <body class="y2k srvposter">
@@ -267,7 +267,6 @@
 
   <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">Dos vías para blindar su proyecto</h2>
-    <p class="seccion-sub">Uno para vender el proyecto. Otro para protegerlo.</p>
     <div class="srv-grid" id="srv-grid"></div>
     <a class="siguiente" href="#como-funciona" aria-label="Siguiente: Metodología"><span>Metodología</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
   </section>
@@ -489,7 +488,7 @@ function renderGrid() {
     card.dataset.id = s.id;
     const media = s.ilustracion || `<img src="${s.imagen}" alt="${s.alt}" loading="lazy" data-dither>`;
     card.innerHTML =
-      `<div class="srv-img">${media}<span class="badge">${s.badge}</span></div>` +
+      `<div class="srv-img">${media}</div>` +
       `<div class="srv-body">` +
         `<div class="num">[0${i + 1}]${s.bim ? '<span class="bim">METODOLOGÍA BIM</span>' : ''}</div>` +
         `<h3>${s.nombre}</h3>` +
