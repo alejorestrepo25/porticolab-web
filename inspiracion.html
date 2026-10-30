@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="tema.js?v=1"></script>
+  <script src="tema.js?v=2"></script>
   <meta charset="UTF-8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
@@ -21,7 +21,7 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="y2k.css?v=6">
   <style>
     * {
@@ -106,7 +106,7 @@
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="editorial.css?v=38">
+  <link rel="stylesheet" href="editorial.css?v=41">
 </head>
 
 <body class="y2k" data-filter="inspiración">
@@ -135,7 +135,7 @@
 </main>
 
 
-<script src="sanity.js?v=2"></script>
+<script src="sanity.js?v=3"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
@@ -143,7 +143,7 @@
     const S = window.PL_SANITY;
     const loading = document.getElementById('gallery-loading');
     try {
-      const result = await S.consultar('*[_type == "proyecto" && "inspiracion" in tags && defined(portada.asset)] | order(_createdAt desc)[0...80]{ _id, title, tags, portada }');
+      const result = await S.consultar('*[_type == "proyecto" && "inspiracion" in tags && defined(portada.asset)] | order(_createdAt desc)[0...80]{ _id, title, tags, portada, "features": features[0...1] }');
       loading.style.display = 'none';
       let n = 0;
       (Array.isArray(result) ? result : []).forEach(p => {

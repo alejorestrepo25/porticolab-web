@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="tema.js?v=1"></script>
+  <script src="tema.js?v=2"></script>
   <meta charset="UTF-8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
@@ -21,7 +21,7 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="y2k.css?v=6">
   <style>
     * {
@@ -113,7 +113,7 @@
   </style>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
-  <link rel="stylesheet" href="editorial.css?v=38">
+  <link rel="stylesheet" href="editorial.css?v=41">
 </head>
 
 
@@ -145,16 +145,8 @@
   <section class="gallery"></section>
 </main>
 
-<script src="sanity.js?v=2"></script>
+<script src="sanity.js?v=3"></script>
 <script>
-  // Código de proyecto según las carpetas del estudio
-  const CODIGOS = { atalaya: 'A0000000013', tangara: 'M0000000006', dorica: 'P0000000004' };
-  function codigoProyecto(titulo) {
-    const t = (titulo || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    const k = Object.keys(CODIGOS).find(c => t.startsWith(c));
-    return k ? CODIGOS[k] : '';
-  }
-
   function shuffle(array) {
     let i = array.length;
     while (i > 0) { const j = Math.floor(Math.random() * i--); [array[i], array[j]] = [array[j], array[i]]; }
@@ -167,7 +159,7 @@
     const cargando = document.getElementById('gallery-loading');
     let result;
     try {
-      result = await S.consultar('*[_type == "proyecto" && "laboratorio" in tags && defined(portada.asset)] | order(_createdAt desc)[0...60]{ _id, title, tags, portada }');
+      result = await S.consultar('*[_type == "proyecto" && "laboratorio" in tags && defined(portada.asset)] | order(_createdAt desc)[0...60]{ _id, title, tags, portada, "features": features[0...1] }');
     } catch (e) {
       cargando.style.display = 'none';
       S.aviso(gallery, 'No pudimos cargar los proyectos.', true);
@@ -177,7 +169,7 @@
     const lista = Array.isArray(result) ? result : [];
     shuffle(lista);
     let n = 0;
-    lista.forEach(p => { const t = S.tarjeta(p, { codigo: codigoProyecto(p.title) }); if (t) { gallery.appendChild(t); n++; } });
+    lista.forEach(p => { const t = S.tarjeta(p); if (t) { gallery.appendChild(t); n++; } });
     if (!n) S.aviso(gallery, 'Pronto publicaremos nuevos proyectos.', true);
   });
 </script>

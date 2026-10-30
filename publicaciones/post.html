@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="../tema.js?v=1"></script>
+  <script src="../tema.js?v=2"></script>
 <meta charset="UTF-8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
@@ -19,7 +19,7 @@
 <link rel="icon" href="../iconos/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../y2k.css?v=6">
 
 <style>
@@ -130,15 +130,80 @@ main{
   .post-content h1{font-size:28px;}
   .mini-gallery img{width:50px;height:50px;}
 }
+
+/* ===== Ficha de proyecto como póster: cuadrícula blanca, sobria ===== */
+body.ficha-proyecto{background:#fff!important}
+body.ficha-proyecto :is(main.poster,.guerrilla){--pl-ink:#141316;--pl-muted:#5f5c63;--pl-line:#e3e2df;--pl-line-soft:#e3e2df;--pl-surface:#fff;--pl-surface-2:#f4f3f1;--pl-text-gradient:none;color:#141316}
+body.ficha-proyecto .ficha h1,body.ficha-proyecto .guerrilla h2{color:#141316!important;-webkit-text-fill-color:#141316!important;background:none!important}
+body.ficha-proyecto .ficha__desc,body.ficha-proyecto .ficha__rasgos li,body.ficha-proyecto .guerrilla__lista li{color:#2b2a2e!important}
+body.ficha-proyecto .ficha__tipo,body.ficha-proyecto .ficha__kicker,body.ficha-proyecto .guerrilla__txt,body.ficha-proyecto .guerrilla__lista :is(b,i){color:#6a6770!important}
+body.ficha-proyecto .guerrilla__kicker{color:#141316!important}
+body.ficha-proyecto .guerrilla mark{-webkit-text-fill-color:#141316!important;color:#141316!important}
+main.poster{display:block;max-width:none;margin:0;padding:clamp(18px,2.6vw,40px) 0 clamp(36px,5vw,72px);background:#fff;color:#141316;gap:0}
+.poster__volver,.poster__grid{width:min(1440px,calc(100vw - 2*clamp(16px,3vw,48px)));margin-inline:auto}
+.poster__volver{margin-bottom:14px}
+.poster__volver a{font:600 11px/1 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5f5c63;text-decoration:none}
+.poster__volver a:hover{color:#141316}
+.poster__grid{--celda:calc((min(1440px,100vw - 2*clamp(16px,3vw,48px)) - 3px)/4);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(var(--celda),auto);gap:1px;background:#e3e2df;border:1px solid #e3e2df}
+.celda{--p:clamp(10px,1.6vw,26px);display:block;position:relative;background:#fff;border:0;padding:0;cursor:zoom-in;min-width:0;min-height:0;overflow:hidden}
+.celda img{position:absolute;top:var(--p);left:var(--p);width:calc(100% - 2*var(--p));height:calc(100% - 2*var(--p));object-fit:contain;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.celda:hover img{transform:scale(1.025)}
+.celda:focus-visible{outline:2px solid #141316;outline-offset:-4px}
+.celda--principal{grid-column:span 2;grid-row:span 2;--p:clamp(14px,2.4vw,40px)}
+.celda--ancha2{grid-column:span 2}
+.celda--ancha4{grid-column:span 4}
+.ficha{grid-column:span 2;grid-row:span 2;background:#fff;padding:clamp(22px,3vw,52px);display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-width:0}
+.ficha__kicker{font:500 11px/1.4 ui-monospace,'SFMono-Regular',Menlo,monospace;letter-spacing:.08em;color:#6a6770;text-transform:uppercase}
+.ficha h1{font:700 clamp(38px,5vw,84px)/.95 'Montserrat',sans-serif;letter-spacing:-.045em;color:#141316;margin:0;overflow-wrap:anywhere}
+.ficha__tipo{margin-top:14px;font-size:15px;font-style:italic;color:#6a6770}
+.ficha__desc{font-size:clamp(15px,1.15vw,18px);line-height:1.6;color:#2b2a2e;max-width:58ch}
+.ficha__rasgos{list-style:none;margin:18px 0 0;padding:0;border-top:1.5px solid #141316}
+.ficha__rasgos li{padding:9px 0;border-bottom:1px solid #e3e2df;font-size:14px;line-height:1.45;color:#2b2a2e}
+/* Cierre directo al cliente: máquina de escribir, mayúsculas espaciadas, fondo blanco */
+.guerrilla{background:#fff;color:#141316;border-top:1px solid #e3e2df;position:relative;overflow:hidden;font-family:'Space Mono',ui-monospace,monospace}
+.guerrilla__in{position:relative;width:min(1440px,calc(100vw - 2*clamp(16px,3vw,48px)));margin:0 auto;padding:clamp(56px,8vw,120px) 0}
+.guerrilla__kicker{font:700 11px/1 'Space Mono',monospace;letter-spacing:.3em;text-transform:uppercase;color:#141316;margin-bottom:clamp(28px,4vw,48px)}
+.guerrilla h2{font:700 clamp(18px,2.1vw,30px)/1.45 'Space Mono',monospace;letter-spacing:.32em;text-transform:uppercase;max-width:34ch;margin:0;color:#141316}
+.guerrilla mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.guerrilla__cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,96px);margin-top:clamp(36px,5vw,64px)}
+.guerrilla__txt{max-width:46ch;font-size:clamp(13px,1vw,15px);line-height:1.75;color:#77737c}
+.guerrilla__lista{list-style:none;margin:0;padding:0;font-size:clamp(13px,1vw,15px)}
+.guerrilla__lista li{display:grid;grid-template-columns:3ch auto;column-gap:14px;padding:11px 0;border-bottom:1px dotted #bdbac1;color:#141316}
+.guerrilla__lista b{font-weight:400;color:#77737c}
+.guerrilla__lista i{grid-column:2;color:#77737c;font-size:.9em}
+.guerrilla__acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(36px,5vw,56px)}
+.g-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border:1.5px solid #141316;color:#141316;text-decoration:none;font:700 12px/1 'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;transition:background .2s,color .2s}
+.g-btn:hover,.g-btn:focus-visible{background:#141316;color:#fff}
+.g-btn--pri{background:#141316;color:#fff}
+.g-btn--pri:hover,.g-btn--pri:focus-visible{background:#5b3fd0;border-color:#5b3fd0}
+.guerrilla__sello{position:absolute;right:0;top:clamp(48px,7vw,110px);display:grid;place-items:center;width:clamp(96px,10vw,140px);aspect-ratio:1;border-radius:50%;border:1.5px dashed #5b3fd0;color:#5b3fd0;font:700 clamp(10px,.85vw,12px)/1.3 'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;text-align:center;transform:rotate(-12deg)}
+.ficha__kicker{font-family:'Space Mono',ui-monospace,monospace!important;letter-spacing:.2em!important}
+@media(max-width:760px){
+  .poster__grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}
+  .celda{aspect-ratio:1/1;--p:10px}
+  .celda--principal{grid-column:span 2;grid-row:auto}
+  .celda--ancha2,.celda--ancha4{grid-column:auto}
+  .celda.m-ancha{grid-column:span 2;aspect-ratio:2/1}
+  .ficha{grid-column:span 2;grid-row:auto;padding:22px 18px 24px;gap:18px}
+  .ficha h1{font-size:clamp(32px,10vw,44px)}
+  .ficha__tipo{font-size:13.5px;margin-top:10px}
+  .ficha__desc{font-size:14.5px}
+  .ficha__rasgos li{font-size:13px;padding:8px 0}
+  .guerrilla__sello{position:static;margin-top:30px;width:92px;transform:rotate(-8deg)}
+  .guerrilla h2{letter-spacing:.2em;font-size:16px}
+  .guerrilla__cols{grid-template-columns:1fr}
+  .g-btn{min-height:42px;padding:0 16px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.celda img{transition:none}.celda:hover img{transform:none}}
 </style>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=1">
-  <link rel="stylesheet" href="../editorial.css?v=38">
+  <link rel="stylesheet" href="../editorial.css?v=41">
 </head>
 
-<body class="y2k">
+<body class="y2k ficha-proyecto">
 
 <header>
   <a href="../index.html" class="logo">PORTICO_LAB</a>
@@ -159,23 +224,31 @@ main{
 
 <div class="loading" id="loading">CARGANDO...</div>
 
-<main id="main-content" style="display:none;">
-  <div class="post-image">
-    <img id="main-image" alt="">
-    <div class="mini-gallery" id="mini-gallery"></div>
-  </div>
-
-  <div class="post-content">
-    <h1 id="post-title"></h1>
-    <div class="post-meta">
-      <span id="post-location"></span>
-      <span id="post-year"></span>
-    </div>
-    <p id="post-description"></p>
-    <ul id="post-features"></ul>
-    <div class="tags" id="post-tags"></div>
-  </div>
+<main id="main-content" class="poster" hidden>
+  <nav class="poster__volver" aria-label="Volver"><a href="../laboratorio.html">← Laboratorio</a></nav>
+  <div class="poster__grid" id="poster-grid"></div>
 </main>
+
+<section class="guerrilla" id="guerrilla" hidden aria-labelledby="g-titulo">
+  <div class="guerrilla__in">
+    <p class="guerrilla__kicker">Para quien decide el proyecto</p>
+    <h2 id="g-titulo">Sé que no tiene mucho tiempo y quiere cuidar <mark>hasta el último peso</mark> de su proyecto.</h2>
+    <div class="guerrilla__cols">
+      <p class="guerrilla__txt">Le invito a contarnos qué tiene entre manos. Le respondemos con una propuesta de alcance cerrado: alcance, valor y fechas por escrito, antes de empezar.</p>
+      <ol class="guerrilla__lista">
+        <li><b>01</b> Diagnóstico <i>vender, presentar o controlar el costo</i></li>
+        <li><b>02</b> Propuesta cerrada <i>alcance, valor y fechas por escrito</i></li>
+        <li><b>03</b> Avances a la vista <i>en cada etapa, no solo al final</i></li>
+        <li><b>04</b> Entrega <i>pieza lista para exhibir o informe para decidir</i></li>
+      </ol>
+    </div>
+    <div class="guerrilla__acciones">
+      <a class="g-btn g-btn--pri" href="../servicios.html">Pedir una propuesta →</a>
+      <a class="g-btn" id="g-wa" href="https://wa.me/573147924600" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+    <span class="guerrilla__sello" aria-hidden="true">Sin<br>compromiso</span>
+  </div>
+</section>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="close-btn">&times;</button>
@@ -187,7 +260,7 @@ main{
   </div>
 </div>
 
-<script src="../sanity.js?v=2"></script>
+<script src="../sanity.js?v=3"></script>
 <script>
 const S = window.PL_SANITY;
 
@@ -210,8 +283,6 @@ function closeLightbox() {
 function updateLightbox() {
   lightboxImg.src = images[currentIndex];
   counter.textContent = `${currentIndex + 1} / ${images.length}`;
-  document.querySelectorAll('.mini-gallery img').forEach((img, i) =>
-    img.classList.toggle('active', i === currentIndex));
 }
 
 document.getElementById('close-btn').onclick = closeLightbox;
@@ -242,51 +313,76 @@ async function loadPost() {
 
   const titulo = S.texto(result.title);
   document.title = `${titulo} | Pórtico Lab`;
-  document.getElementById('post-title').textContent       = titulo;
-  document.getElementById('post-location').textContent    = S.texto(result.location);
-  document.getElementById('post-year').textContent        = result.year ? String(result.year) : '';
-  document.getElementById('post-description').textContent = S.texto(result.description);
-
-  const ul = document.getElementById('post-features');
-  ul.textContent = '';
-  S.lista(result.features).forEach(f => { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
-
-  const tags = document.getElementById('post-tags');
-  tags.textContent = '';
-  S.lista(result.tags).forEach(t => { const sp = document.createElement('span'); sp.className = 'tag'; sp.textContent = '#' + t; tags.appendChild(sp); });
+  const grid = document.getElementById('poster-grid');
+  grid.textContent = '';
 
   // Imágenes: solo referencias válidas; portada primero
   const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
     .filter((r, i, arr) => S.imagen(r) && arr.indexOf(r) === i);
   images = refs.map(r => S.imagen(r, 1600).url);
+  const celda = (i, clase) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'celda' + (clase ? ' ' + clase : '');
+    b.setAttribute('aria-label', `Ampliar imagen ${i + 1} de ${titulo}`);
+    const im = document.createElement('img');
+    im.src = S.imagen(refs[i], i === 0 ? 1600 : 900).url;
+    im.alt = i === 0 ? titulo : `${titulo}, imagen ${i + 1}`;
+    im.loading = i === 0 ? 'eager' : 'lazy';
+    im.decoding = 'async';
+    b.appendChild(im);
+    b.addEventListener('click', () => openLightbox(i));
+    return b;
+  };
 
-  const mainImg = document.getElementById('main-image');
-  mainImg.alt = titulo;
-  if (images.length > 0) {
-    mainImg.src = images[0];
-    mainImg.onclick = () => openLightbox(0);
-  } else {
-    mainImg.hidden = true;
+  // Celda de texto: título, categoría y descripción breve
+  const ficha = document.createElement('article');
+  ficha.className = 'ficha';
+  const arriba = document.createElement('div');
+  const cod = S.codigo(titulo);
+  const kicker = document.createElement('p');
+  kicker.className = 'ficha__kicker';
+  kicker.textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';
+  const h1 = document.createElement('h1');
+  h1.id = 'post-title';
+  h1.textContent = titulo;
+  arriba.append(kicker, h1);
+  const tipo = [S.categoria(result.tags), S.texto(result.location), result.year ? String(result.year) : ''].filter(Boolean).join(' · ');
+  if (tipo) { const t = document.createElement('p'); t.className = 'ficha__tipo'; t.textContent = tipo; arriba.appendChild(t); }
+  const abajo = document.createElement('div');
+  const desc = S.texto(result.description);
+  if (desc) { const d = document.createElement('p'); d.className = 'ficha__desc'; d.textContent = desc; abajo.appendChild(d); }
+  const rasgos = S.lista(result.features);
+  if (rasgos.length) {
+    const ul = document.createElement('ul');
+    ul.className = 'ficha__rasgos';
+    rasgos.forEach(f => { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
+    abajo.appendChild(ul);
   }
+  ficha.append(arriba, abajo);
 
-  const miniGallery = document.getElementById('mini-gallery');
-  if (refs.length > 1) refs.forEach((ref, i) => {
-    const thumb = document.createElement('img');
-    thumb.src = S.imagen(ref, 200).url;
-    thumb.alt = `${titulo}, imagen ${i + 1}`;
-    thumb.loading = 'lazy';
-    if (i === 0) thumb.classList.add('active');
-    thumb.onclick = () => {
-      mainImg.src = images[i];
-      currentIndex = i;
-      document.querySelectorAll('.mini-gallery img').forEach((el, j) =>
-        el.classList.toggle('active', j === i));
-    };
-    miniGallery.appendChild(thumb);
+  // Cuadrícula: portada 2×2, ficha 2×2 y el resto en filas de 4 que cierran el rectángulo
+  if (refs.length) grid.appendChild(celda(0, 'celda--principal'));
+  grid.appendChild(ficha);
+  const resto = refs.slice(1).map((_, n) => n + 1);
+  const k = resto.length % 4;
+  resto.forEach((i, n) => {
+    const ultimos = n >= resto.length - k;
+    let clase = '';
+    if (k && ultimos) {
+      const pos = n - (resto.length - k);
+      clase = k === 1 ? 'celda--ancha4' : (k === 2 || pos === 0) ? 'celda--ancha2' : '';
+    }
+    if (resto.length % 2 === 1 && n === resto.length - 1) clase += ' m-ancha';
+    grid.appendChild(celda(i, clase.trim()));
   });
+  if (!refs.length) ficha.style.gridColumn = '1 / -1';
 
+  document.getElementById('g-wa').href = 'https://wa.me/573147924600?text=' +
+    encodeURIComponent(`Buen día, equipo de Pórtico Lab. Vi el proyecto ${titulo} en su página y quisiera conversar sobre el mío.`);
   aviso.style.display = 'none';
-  document.getElementById('main-content').style.display = 'grid';
+  document.getElementById('main-content').hidden = false;
+  document.getElementById('guerrilla').hidden = false;
 }
 
 loadPost();
