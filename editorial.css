@@ -583,3 +583,48 @@ body.y2k :is(.y2k-hero,.srv-wrap .hero) p mark{background:linear-gradient(105deg
 /* Servicios: la ilustración BIM gana espacio (encuadre más alto y columna más ancha) */
 body.y2k .srv-hero__visual{aspect-ratio:1205/850!important}
 @media(min-width:901px){body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.56fr) minmax(0,1.44fr)!important;gap:clamp(28px,3vw,56px)!important}body.y2k .srv-wrap .hero h1{font-size:clamp(34px,3.4vw,58px)!important}}
+
+/* Servicios · dibujo técnico de la tarjeta BIM (oscuro por defecto, claro abajo) */
+body.srvposter .srv-img svg{--bt-l:#a9a9b4;--bt-t:#5d5f6b;--bt-x:#c9c8d2;--bt-x2:#8e8c99;--bt-ac:#b9a7ff;--bt-cy:#22c3e6;--bt-al:#ff6b8a;--bt-losa:#2a2b33}
+:root[data-theme="light"] body.srvposter .srv-img svg{--bt-l:#55525c;--bt-t:#a7a4ae;--bt-x:#2b2a2e;--bt-x2:#5f5c66;--bt-ac:#5b3fd0;--bt-cy:#0f8fb0;--bt-al:#d6335a;--bt-losa:#c9c7cf}
+body.srvposter .srv-img svg .bt .bt-linea{stroke:var(--bt-l);fill:none}
+body.srvposter .srv-img svg .bt-losa{fill:var(--bt-losa)}
+body.srvposter .srv-img svg .bt-trama{stroke:var(--bt-t);stroke-width:1}
+body.srvposter .srv-img svg .bt-tenue{stroke:var(--bt-t);stroke-width:1}
+body.srvposter .srv-img svg .bt-tenue-l{stroke:var(--bt-t);stroke-width:1;fill:none}
+body.srvposter .srv-img svg .bt-borde{stroke:var(--bt-l);stroke-width:.8}
+body.srvposter .srv-img svg .bt-eje{stroke:var(--bt-t);stroke-width:.8;stroke-dasharray:10 3 2 3}
+body.srvposter .srv-img svg .bt-burbuja{fill:none;stroke:var(--bt-l);stroke-width:1}
+body.srvposter .srv-img svg .bt-col{fill:var(--bt-l);opacity:.85}
+body.srvposter .srv-img svg .bt-viga{fill:var(--bt-l);opacity:.45}
+body.srvposter .srv-img svg .bt-n3{fill:var(--bt-cy);fill-opacity:.16;stroke:var(--bt-cy);stroke-width:1.4}
+body.srvposter .srv-img svg .bt-red{stroke:#ff7ac8;stroke-width:1.6;stroke-dasharray:4 3}
+body.srvposter .srv-img svg .bt-choque{fill:var(--bt-al);fill-opacity:.18;stroke:var(--bt-al);stroke-width:1.4}
+body.srvposter .srv-img svg .bt-choque-x{stroke:var(--bt-al);stroke-width:1.6}
+body.srvposter .srv-img svg .bt-alerta-l{stroke:var(--bt-al);stroke-width:1}
+body.srvposter .srv-img svg .bt-nivel{fill:var(--bt-l)}
+body.srvposter .srv-img svg .bt-cota{stroke:var(--bt-l);stroke-width:.8}
+body.srvposter .srv-img svg .bt-pista{fill:var(--bt-t);opacity:.35}
+body.srvposter .srv-img svg .bt-barra{fill:var(--bt-ac)}
+body.srvposter .srv-img svg .bt-barra-n3{fill:var(--bt-al)}
+body.srvposter .srv-img svg .bt-ppto{stroke:var(--bt-ac);stroke-width:1.2;stroke-dasharray:3 3}
+body.srvposter .srv-img svg .bt-rotulo{fill:none;stroke:var(--bt-l);stroke-width:1}
+body.srvposter .srv-img svg .bt-etiqueta{fill:var(--bt-losa);stroke:var(--bt-al);stroke-width:.8}
+html:root body.srvposter .srv-card .srv-img svg .bt .bt-txt{fill:var(--bt-x)!important}
+html:root body.srvposter .srv-card .srv-img svg .bt .bt-txt2{fill:var(--bt-x2)!important}
+html:root body.srvposter .srv-card .srv-img svg .bt .bt-acento-t{fill:var(--bt-ac)!important}
+html:root body.srvposter .srv-card .srv-img svg .bt .bt-alerta-t{fill:var(--bt-al)!important}
+html:root body.srvposter .srv-card .srv-img svg .bt>text{display:inline!important}
+
+/* Servicios · hero: texto a la izquierda y la ilustración ocupa todo el resto hasta el borde de la pantalla */
+@media(min-width:901px){
+ body.srvposter{overflow-x:clip}
+ html:root body.srvposter .srv-wrap,html:root body.srvposter .srv-wrap>section.hero{overflow:visible!important}
+ html:root body.srvposter .srv-wrap>section.hero{position:relative;display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;min-height:calc(100svh - var(--hh,66px))!important;padding-block:0!important}
+ body.srvposter .srv-wrap>section.hero>.hero-txt{position:relative;z-index:2;max-width:min(430px,31vw);padding-block:40px}
+ body.srvposter .srv-wrap>section.hero>.siguiente{position:absolute;left:min(215px,15.5vw);bottom:22px;transform:translateX(-50%);z-index:2;margin:0!important}
+ html:root body.y2k.srvposter .srv-hero__visual{position:absolute!important;top:12px;bottom:12px;left:calc(min(430px,31vw) + 28px);right:calc(50% - 50vw);width:auto!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;border:0!important;border-radius:0!important;margin:0!important;z-index:0;background:transparent!important}
+ body.srvposter .srv-hero__visual img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%);mask-image:linear-gradient(90deg,transparent 0,#000 9%)}
+}
+/* Celular: la ilustración se recorta sobre el edificio */
+@media(max-width:900px){html:root body.y2k.srvposter .srv-hero__visual{aspect-ratio:1/1!important;max-height:none!important}body.srvposter .srv-hero__visual img{object-fit:cover!important;object-position:30% center!important}}
