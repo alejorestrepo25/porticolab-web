@@ -284,8 +284,8 @@ body.srvposter .srv-hero__visual{background:#08080b!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-body{background:#e8e7ea!important;color:#26252a!important}
 :root[data-theme="light"] body.srvposter .srv-card{border-color:#c6c3ca!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img{background:#dedde2!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-fondo{fill:#dedde2!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-fondo{fill:#dedde2!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img svg g[font-family] > text:first-of-type{fill:#59449e!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img svg text:not(:first-of-type){fill:#45434b!important}
 :root[data-theme="light"] body.srvposter .srv-entrega{background:#d8d6dc!important;color:#27252c!important;border-color:#bebbc4!important}
@@ -443,7 +443,7 @@ body.y2k .code{color:var(--pl-muted)!important}
  body.srvposter .srv-grid{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
  body.srvposter .srv-card{flex-direction:column!important}
  body.srvposter .srv-img{width:100%!important;height:220px!important;aspect-ratio:auto!important}
- body.srvposter .srv-img svg{object-fit:contain!important}
+ :is(body.srvposter .srv-img,body.home .frente__img) svg{object-fit:contain!important}
  body.srvposter .srv-img .badge{left:auto!important;right:10px!important;top:10px!important}
  body.srvposter .srv-body{padding:18px 20px 20px!important}
  body.srvposter .srv-body h3{font-size:18px!important}
@@ -585,36 +585,36 @@ body.y2k .srv-hero__visual{aspect-ratio:1205/850!important}
 @media(min-width:901px){body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.56fr) minmax(0,1.44fr)!important;gap:clamp(28px,3vw,56px)!important}body.y2k .srv-wrap .hero h1{font-size:clamp(34px,3.4vw,58px)!important}}
 
 /* Servicios · dibujo técnico de la tarjeta BIM (oscuro por defecto, claro abajo) */
-body.srvposter .srv-img svg{--bt-l:#a9a9b4;--bt-t:#5d5f6b;--bt-x:#c9c8d2;--bt-x2:#8e8c99;--bt-ac:#b9a7ff;--bt-cy:#22c3e6;--bt-al:#ff6b8a;--bt-losa:#2a2b33}
-:root[data-theme="light"] body.srvposter .srv-img svg{--bt-l:#55525c;--bt-t:#a7a4ae;--bt-x:#2b2a2e;--bt-x2:#5f5c66;--bt-ac:#5b3fd0;--bt-cy:#0f8fb0;--bt-al:#d6335a;--bt-losa:#c9c7cf}
-body.srvposter .srv-img svg .bt .bt-linea{stroke:var(--bt-l);fill:none}
-body.srvposter .srv-img svg .bt-losa{fill:var(--bt-losa)}
-body.srvposter .srv-img svg .bt-trama{stroke:var(--bt-t);stroke-width:1}
-body.srvposter .srv-img svg .bt-tenue{stroke:var(--bt-t);stroke-width:1}
-body.srvposter .srv-img svg .bt-tenue-l{stroke:var(--bt-t);stroke-width:1;fill:none}
-body.srvposter .srv-img svg .bt-borde{stroke:var(--bt-l);stroke-width:.8}
-body.srvposter .srv-img svg .bt-eje{stroke:var(--bt-t);stroke-width:.8;stroke-dasharray:10 3 2 3}
-body.srvposter .srv-img svg .bt-burbuja{fill:none;stroke:var(--bt-l);stroke-width:1}
-body.srvposter .srv-img svg .bt-col{fill:var(--bt-l);opacity:.85}
-body.srvposter .srv-img svg .bt-viga{fill:var(--bt-l);opacity:.45}
-body.srvposter .srv-img svg .bt-n3{fill:var(--bt-cy);fill-opacity:.16;stroke:var(--bt-cy);stroke-width:1.4}
-body.srvposter .srv-img svg .bt-red{stroke:#ff7ac8;stroke-width:1.6;stroke-dasharray:4 3}
-body.srvposter .srv-img svg .bt-choque{fill:var(--bt-al);fill-opacity:.18;stroke:var(--bt-al);stroke-width:1.4}
-body.srvposter .srv-img svg .bt-choque-x{stroke:var(--bt-al);stroke-width:1.6}
-body.srvposter .srv-img svg .bt-alerta-l{stroke:var(--bt-al);stroke-width:1}
-body.srvposter .srv-img svg .bt-nivel{fill:var(--bt-l)}
-body.srvposter .srv-img svg .bt-cota{stroke:var(--bt-l);stroke-width:.8}
-body.srvposter .srv-img svg .bt-pista{fill:var(--bt-t);opacity:.35}
-body.srvposter .srv-img svg .bt-barra{fill:var(--bt-ac)}
-body.srvposter .srv-img svg .bt-barra-n3{fill:var(--bt-al)}
-body.srvposter .srv-img svg .bt-ppto{stroke:var(--bt-ac);stroke-width:1.2;stroke-dasharray:3 3}
-body.srvposter .srv-img svg .bt-rotulo{fill:none;stroke:var(--bt-l);stroke-width:1}
-body.srvposter .srv-img svg .bt-etiqueta{fill:var(--bt-losa);stroke:var(--bt-al);stroke-width:.8}
-html:root body.srvposter .srv-card .srv-img svg .bt .bt-txt{fill:var(--bt-x)!important}
-html:root body.srvposter .srv-card .srv-img svg .bt .bt-txt2{fill:var(--bt-x2)!important}
-html:root body.srvposter .srv-card .srv-img svg .bt .bt-acento-t{fill:var(--bt-ac)!important}
-html:root body.srvposter .srv-card .srv-img svg .bt .bt-alerta-t{fill:var(--bt-al)!important}
-html:root body.srvposter .srv-card .srv-img svg .bt>text{display:inline!important}
+:is(body.srvposter .srv-img,body.home .frente__img) svg{--bt-l:#a9a9b4;--bt-t:#5d5f6b;--bt-x:#c9c8d2;--bt-x2:#8e8c99;--bt-ac:#b9a7ff;--bt-cy:#22c3e6;--bt-al:#ff6b8a;--bt-losa:#2a2b33}
+:root[data-theme="light"] :is(body.srvposter .srv-img,body.home .frente__img) svg{--bt-l:#55525c;--bt-t:#a7a4ae;--bt-x:#2b2a2e;--bt-x2:#5f5c66;--bt-ac:#5b3fd0;--bt-cy:#0f8fb0;--bt-al:#d6335a;--bt-losa:#c9c7cf}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt .bt-linea{stroke:var(--bt-l);fill:none}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-losa{fill:var(--bt-losa)}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-trama{stroke:var(--bt-t);stroke-width:1}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-tenue{stroke:var(--bt-t);stroke-width:1}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-tenue-l{stroke:var(--bt-t);stroke-width:1;fill:none}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-borde{stroke:var(--bt-l);stroke-width:.8}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-eje{stroke:var(--bt-t);stroke-width:.8;stroke-dasharray:10 3 2 3}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-burbuja{fill:none;stroke:var(--bt-l);stroke-width:1}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-col{fill:var(--bt-l);opacity:.85}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-viga{fill:var(--bt-l);opacity:.45}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-n3{fill:var(--bt-cy);fill-opacity:.16;stroke:var(--bt-cy);stroke-width:1.4}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-red{stroke:#ff7ac8;stroke-width:1.6;stroke-dasharray:4 3}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-choque{fill:var(--bt-al);fill-opacity:.18;stroke:var(--bt-al);stroke-width:1.4}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-choque-x{stroke:var(--bt-al);stroke-width:1.6}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-alerta-l{stroke:var(--bt-al);stroke-width:1}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-nivel{fill:var(--bt-l)}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-cota{stroke:var(--bt-l);stroke-width:.8}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-pista{fill:var(--bt-t);opacity:.35}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-barra{fill:var(--bt-ac)}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-barra-n3{fill:var(--bt-al)}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-ppto{stroke:var(--bt-ac);stroke-width:1.2;stroke-dasharray:3 3}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-rotulo{fill:none;stroke:var(--bt-l);stroke-width:1}
+:is(body.srvposter .srv-img,body.home .frente__img) svg .bt-etiqueta{fill:var(--bt-losa);stroke:var(--bt-al);stroke-width:.8}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt .bt-txt{fill:var(--bt-x)!important}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt .bt-txt2{fill:var(--bt-x2)!important}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt .bt-acento-t{fill:var(--bt-ac)!important}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt .bt-alerta-t{fill:var(--bt-al)!important}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt>text{display:inline!important}
 
 /* Servicios · hero: texto a la izquierda y la ilustración ocupa todo el resto hasta el borde de la pantalla */
 @media(min-width:901px){
@@ -685,3 +685,31 @@ body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .
  body.srvposter .srv-wrap .hero .btn{font-size:12px!important;padding:14px 22px!important}
  html:root body.y2k.srvposter .srv-hero__visual{left:calc(min(400px,29vw) + 12px)!important;top:0!important;bottom:0!important}
 }
+
+/* Servicios · el dibujo toca el borde derecho y su lado izquierdo se funde con el fondo */
+@media(min-width:901px){
+ html:root body.y2k.srvposter .srv-hero__visual{display:flex!important;justify-content:flex-end!important;align-items:stretch!important;overflow:hidden!important}
+ html:root body.srvposter .srv-hero__visual img{flex:0 1 auto;width:auto!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:right center!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 22%)!important;mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 22%)!important}
+}
+
+/* Inicio · "Dos vías" y "Metodología" iguales a Servicios */
+body.home .frente__img svg{width:100%;height:100%;display:block;object-fit:cover}
+:root[data-theme="light"] body.home .frente__img{background:#dedde2!important}
+:root[data-theme="light"] body.home .frentes--srv .frente,:root[data-theme="light"] body.home .frentes--srv .frente__txt{background:#e8e7ea!important;color:#26252a!important}
+:root[data-theme="light"] body.home .frentes--srv .frente{border-color:#c6c3ca!important}
+body.home .frente__num{font:500 12px/1 var(--pl-tecnica);letter-spacing:.12em;color:var(--pl-muted)}
+body.home .frentes--srv .frente__txt h3{margin-top:8px!important}
+body.home .frentes--srv .frente__promesa{font-size:15px!important;line-height:1.55!important;margin-top:8px;color:var(--pl-muted)!important}
+body.home .frentes--srv .incluye{list-style:none;margin:14px 0 0;padding:0}
+body.home .frentes--srv .incluye li{position:relative;padding:7px 0 7px 20px;border-top:1px solid var(--pl-line-soft,#d6d4da);font-size:14px;line-height:1.5;color:var(--pl-ink)}
+body.home .frentes--srv .incluye li::before{content:'+';position:absolute;left:0;color:#9d7bff;font-family:var(--pl-tecnica);font-weight:600}
+body.home .frentes--srv .frente__cta{margin-top:16px}
+body.home .pasos-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+body.home .paso-card{padding:22px!important}
+body.home .paso-card .n{font:500 12px/1 var(--pl-tecnica);letter-spacing:.12em;color:var(--pl-muted)}
+body.home .paso-card h3{font-size:clamp(17px,1.2vw,20px)!important;margin-top:12px;font-weight:600}
+body.home .paso-card p{font-size:15px!important;line-height:1.6;margin-top:8px}
+@media(max-width:900px){body.home .pasos-row{grid-template-columns:1fr;gap:10px}body.home .paso-card{display:grid!important;grid-template-columns:34px 1fr;column-gap:12px;padding:16px 18px!important}body.home .paso-card .n{grid-row:span 2;padding-top:3px}body.home .paso-card h3{margin:0!important;font-size:15px!important}body.home .paso-card p{font-size:13.5px!important;margin-top:4px}body.home .frentes--srv .incluye li{font-size:13px;padding-block:5px}body.home .frentes--srv .frente__promesa{font-size:13.5px!important}}
+
+/* Galerías del Inicio y del Laboratorio: imagen completa a su tamaño, sin zoom y con la cuadrícula del fondo aclarada a blanco */
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{position:absolute!important;inset:0!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:url(#sin-reticula)!important}
