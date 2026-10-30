@@ -713,3 +713,10 @@ body.home .paso-card p{font-size:15px!important;line-height:1.6;margin-top:8px}
 
 /* Galerías del Inicio y del Laboratorio: imagen completa a su tamaño, sin zoom y con la cuadrícula del fondo aclarada a blanco */
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{position:absolute!important;inset:0!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:url(#sin-reticula)!important}
+
+/* Tarjetas de servicios (Inicio y Servicios): gris más claro y sin cuadrícula */
+:is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-reticula{display:none!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card,body.srvposter .srv-card .srv-body,body.srvposter .srv-card .srv-img,body.home .frentes--srv .frente,body.home .frentes--srv .frente__txt,body.home .frentes--srv .frente__img){background:#f1f0f3!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-fondo{fill:#f1f0f3!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card,body.home .frentes--srv .frente){border-color:#dcdae0!important}
+:root[data-theme="light"] body.home .frentes--srv .incluye li,:root[data-theme="light"] body.srvposter .srv-body .incluye li{border-top-color:#dcdae0!important}
