@@ -225,7 +225,7 @@
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=6">
   <link rel="stylesheet" href="motion.css?v=4">
-  <link rel="stylesheet" href="editorial.css?v=41">
+  <link rel="stylesheet" href="editorial.css?v=42">
 </head>
 
 <body class="y2k srvposter">
@@ -250,7 +250,7 @@
 
   <section class="hero" id="inicio" data-pantalla data-nombre="Inicio">
     <div class="hero-txt">
-      <p class="nota-maquina">Sé que no tiene mucho tiempo. Vamos al grano.</p>
+      <p class="nota-maquina">Entendemos su tiempo. Vamos al grano:</p>
       <h1>Maquetas que inspiran. <em>Proyectos bajo control</em></h1>
       <p>Maquetas que ayudan a vender y auditoría BIM que protege el presupuesto.</p>
       <div class="hero-acciones">
@@ -423,6 +423,7 @@ const SERVICIOS = [
     id: 'maquetas', nombre: 'Maquetas de exhibición',
     badge: 'PREMIUM', ilustracion: ILUSTRACION_MAQUETA,
     promesa: 'Una maqueta que el comprador entiende en segundos y que sostiene la conversación de venta.',
+    pasos: ['Planos y renders que el comprador no entiende.', 'Maqueta de exhibición diseñada para su público: impresión 3D, corte láser y acabado a mano.', 'Una pieza que se entiende en segundos y ayuda a vender.'],
     incluye: ['Diseño de la pieza según su público: sala de ventas, inversionistas o concurso', 'Impresión 3D, corte láser y acabado a mano en concreto, madera o cartón', 'Iluminación o electrónica integrada a la maqueta'],
     resultado: 'Una pieza física para presentar el proyecto en ventas, reuniones o exhibiciones.',
     meta: ['Propuesta a la medida', 'Exhibición física'],
@@ -450,6 +451,7 @@ const SERVICIOS = [
     badge: 'AUDITORÍA + COSTOS', ilustracion: ILUSTRACION_BIM,
     bim: true,
     promesa: 'Encontramos interferencias y desviaciones de costo antes de que lleguen a obra.',
+    pasos: ['Sobrecostos ocultos y errores que aparecen en obra.', 'Auditoría BIM preventiva: revisión del modelo con costos y cronograma vinculados.', 'Presupuesto blindado antes de construir.'],
     incluye: ['Revisión y coordinación del modelo BIM', 'Seguimiento de costos del proyecto', 'Cómputos métricos automatizados en desarrollo'],
     resultado: 'Riesgos y desviaciones visibles antes de construir.',
     meta: ['Propuesta a la medida', 'Revisión + control de costos'],
@@ -509,8 +511,7 @@ function renderGrid() {
       `<div class="srv-body">` +
         `<div class="num">[0${i + 1}]${s.bim ? '<span class="bim">METODOLOGÍA BIM</span>' : ''}</div>` +
         `<h3>${s.nombre}</h3>` +
-        `<p class="promesa">${s.promesa}</p>` +
-        `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
+        `<dl class="pasos3">${['Problema', 'Solución', 'Resultado'].map((n, k) => `<div><dt>${n}</dt><dd>${s.pasos[k]}</dd></div>`).join('')}</dl>` +
         `<div class="meta"><span><b>${s.meta[0]}</b></span><span>${s.meta[1]}</span></div>` +
         `<button class="btn btn-primario" type="button">${s.cta} →</button>` +
       `</div>`;
@@ -950,7 +951,7 @@ if (pre && SERVICIOS.some(s => s.id === pre)) seleccionar(pre);
 <script src="servicios-poster.js?v=5" defer></script>
 <script src="mascota.js?v=21"></script>
 <script src="navegacion-teclado.js?v=1" defer></script>
-  <script src="coherencia.js?v=1" defer></script>
+  <script src="coherencia.js?v=2" defer></script>
 <script src="motion.js?v=3"></script>
 </body>
 </html>
