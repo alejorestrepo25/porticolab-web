@@ -30,17 +30,16 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=55">
+  <link rel="stylesheet" href="editorial.css?v=56">
 </head>
 
 <body class="y2k home">
 <div class="progreso" aria-hidden="true"><i></i></div>
 <nav class="rail" aria-label="Secciones de la página">
   <a href="#inicio" data-s="inicio"><span>Inicio</span></a>
-  <a href="#frentes" data-s="frentes"><span>Dos frentes</span></a>
-  <a href="#para-quien" data-s="para-quien"><span>Para quién</span></a>
+  <a href="#frentes" data-s="frentes"><span>Servicios</span></a>
   <a href="#proyectos" data-s="proyectos"><span>Archivo</span></a>
-  <a href="#proceso" data-s="proceso"><span>Proceso</span></a>
+  <a href="#proceso" data-s="proceso"><span>Metodología</span></a>
   <a href="#contacto" data-s="contacto"><span>Contacto</span></a>
 </nav>
 <header>
@@ -101,55 +100,29 @@
 
 <section class="seccion" id="frentes">
   <div class="seccion__cab rev">
-    <span class="hud">[ 01 / 05 ] Dos frentes</span>
-    <h2>Mostrar el proyecto. <em>Controlarlo</em></h2>
+    <span class="hud">[ 01 / 04 ] Servicios</span>
+    <h2>Dos vías para <em>cuidar su proyecto</em></h2>
   </div>
-  <div class="frentes">
+  <div class="frentes frentes--srv">
     <a class="frente rev" href="servicios.html?servicio=maquetas" style="--d:.05s">
-      <div class="frente__img"><img src="img/home/servicio-maquetas.svg?v=2" alt="Maqueta de exhibición: conjunto de torres residenciales sobre una base de madera" loading="lazy" width="300" height="400"></div>
+      <div class="frente__img" data-ilustracion="maquetas"><img src="img/home/servicio-maquetas.svg?v=2" alt="Maqueta de exhibición: conjunto de torres residenciales sobre una base de madera" loading="lazy" width="300" height="400"></div>
       <div class="frente__txt">
-        <span class="hud">Modelos a escala</span>
+        <span class="frente__num">[01]</span>
         <h3>Modelos a escala</h3>
-        <dl class="pasos3"><div><dt>Problema</dt><dd>Planos y renders que el comprador no entiende.</dd></div><div><dt>Solución</dt><dd>Maqueta de exhibición diseñada para su público.</dd></div><div><dt>Resultado</dt><dd>Una pieza que se entiende en segundos y ayuda a vender.</dd></div></dl>
+        <p class="frente__promesa">Una maqueta que el comprador entiende en segundos y que sostiene la conversación de venta.</p>
+        <ul class="incluye"><li>Diseño estratégico</li><li>Fabricación con impresión 3D, corte láser y acabados a mano</li><li>Electrónica e iluminación integrada</li></ul>
         <span class="frente__cta">Solicitar propuesta</span>
       </div>
     </a>
     <a class="frente rev" href="servicios.html?servicio=bim" style="--d:.15s">
-      <div class="frente__img"><img src="img/home/servicio-bim.svg?v=2" alt="Ilustración de un edificio en modelo BIM con el costo de cada nivel frente al presupuesto" loading="lazy" width="300" height="400"></div>
+      <div class="frente__img" data-ilustracion="bim"><img src="img/home/servicio-bim.svg?v=2" alt="Sección técnica de un edificio en BIM con el costo de cada nivel frente al presupuesto" loading="lazy" width="300" height="400"></div>
       <div class="frente__txt">
-        <span class="hud">Auditoría BIM + costos de obra</span>
-        <h3>Auditoría BIM + costos de obra</h3>
-        <dl class="pasos3"><div><dt>Problema</dt><dd>Sobrecostos ocultos que aparecen en obra.</dd></div><div><dt>Solución</dt><dd>Auditoría BIM preventiva con costos y cronograma vinculados.</dd></div><div><dt>Resultado</dt><dd>Presupuesto blindado antes de construir.</dd></div></dl>
+        <span class="frente__num">[02]</span>
+        <h3>Auditoría BIM + Costos de Obra</h3>
+        <p class="frente__promesa">Detectamos imprecisiones antes de que se conviertan en sobrecostos en obra.</p>
+        <ul class="incluye"><li>Coordinación del modelo BIM</li><li>Seguimiento de costos del proyecto</li><li>Cómputos métricos automatizados (en desarrollo)</li></ul>
         <span class="frente__cta">Solicitar propuesta</span>
       </div>
-    </a>
-  </div>
-  <a class="siguiente" href="#para-quien" aria-label="Siguiente: Para quién trabajamos"><span>Para quién trabajamos</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
-</section>
-
-<section class="seccion" id="para-quien" data-pantalla>
-  <div class="seccion__cab rev">
-    <span class="hud">[ 02 / 05 ] Para quién</span>
-    <h2>Para quien <em>decide el proyecto</em></h2>
-  </div>
-  <div class="perfiles">
-    <a class="perfil rev" href="servicios.html?servicio=maquetas" style="--d:.05s">
-      <span class="perfil__quien">Promotores inmobiliarios</span>
-      <p class="perfil__reto">Su sala de ventas compite por la atención del comprador.</p>
-      <p class="perfil__res">Una maqueta que se entiende en segundos y sostiene la conversación de venta.</p>
-      <span class="perfil__cta">Maqueta para sala de ventas</span>
-    </a>
-    <a class="perfil rev" href="servicios.html?servicio=bim" style="--d:.15s">
-      <span class="perfil__quien">Gerentes de proyecto</span>
-      <p class="perfil__reto">Un error de coordinación cuesta más en obra que en pantalla.</p>
-      <p class="perfil__res">Auditoría del modelo con costos y cronograma vinculados, antes de construir.</p>
-      <span class="perfil__cta">Auditoría BIM</span>
-    </a>
-    <a class="perfil rev" href="servicios.html" style="--d:.25s">
-      <span class="perfil__quien">Arquitectos y diseñadores</span>
-      <p class="perfil__reto">Su idea merece verse como la imaginó.</p>
-      <p class="perfil__res">Maquetas de concurso y presentación, y modelos coordinados para entregar con confianza.</p>
-      <span class="perfil__cta">Ver servicios</span>
     </a>
   </div>
   <a class="siguiente" href="#proyectos" aria-label="Siguiente: Proyectos realizados"><span>Proyectos realizados</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
@@ -158,7 +131,7 @@
 <div class="archivo-poster">
 <section class="seccion" id="proyectos">
   <div class="seccion__cab rev">
-    <span class="hud">[ 03 / 05 ] Archivo</span>
+    <span class="hud">[ 02 / 04 ] Archivo</span>
     <h2>Lo que ya <em>construimos</em></h2>
   </div>
 </section>
@@ -174,21 +147,21 @@
 
 <section class="seccion" id="proceso">
   <div class="seccion__cab rev">
-    <span class="hud">[ 04 / 05 ] Proceso</span>
-    <h2>De la idea <em>a la pieza</em></h2>
+    <span class="hud">[ 03 / 04 ] Proceso de trabajo</span>
+    <h2>Metodología</h2>
   </div>
-  <ol class="proceso">
-    <li class="paso rev" style="--d:.05s"><h3>Diagnóstico</h3><p>Entendemos el objetivo: vender, presentar o controlar el costo.</p></li>
-    <li class="paso rev" style="--d:.15s"><h3>Propuesta cerrada</h3><p>Alcance, valor y fechas por escrito antes de empezar.</p></li>
-    <li class="paso rev" style="--d:.25s"><h3>Avances a la vista</h3><p>Usted ve el modelo y la pieza en cada etapa, no solo al final.</p></li>
-    <li class="paso rev" style="--d:.35s"><h3>Entrega</h3><p>Una pieza lista para exhibir o un informe listo para decidir.</p></li>
-  </ol>
+  <div class="pasos-row">
+    <div class="paso-card rev" style="--d:.05s"><div class="n">01</div><h3>Diagnóstico y alcance</h3><p>Analizamos los requerimientos técnicos, planos y objetivos comerciales de su proyecto.</p></div>
+    <div class="paso-card rev" style="--d:.15s"><div class="n">02</div><h3>Propuesta estratégica</h3><p>Definimos la estimación de costos, cronograma y entregables a la medida.</p></div>
+    <div class="paso-card rev" style="--d:.25s"><div class="n">03</div><h3>Validación técnica</h3><p>Afinamos los parámetros de diseño, maquetación o modelo BIM previo a la ejecución.</p></div>
+    <div class="paso-card rev" style="--d:.35s"><div class="n">04</div><h3>Desarrollo y entrega</h3><p>Ejecución de alta precisión con trazabilidad y reportes de avance continuos.</p></div>
+  </div>
   <div class="ver-todo-wrap"><a class="ver-todo" href="servicios.html">Explorar servicios →</a></div>
   <a class="siguiente" href="#contacto" aria-label="Siguiente: Hablemos"><span>Hablemos</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
 </section>
 
 <section class="cierre-home" id="contacto">
-  <span class="hud">[ 05 / 05 ] Contacto</span>
+  <span class="hud">[ 04 / 04 ] Contacto</span>
   <h2 class="rev guerrilla-h">Sé que no tiene mucho tiempo y quiere cuidar <mark>hasta el último peso</mark> de su proyecto.</h2>
   <p class="rev" style="--d:.1s">Cuéntenos su proyecto y le respondemos con una propuesta de alcance cerrado.</p>
   <div class="cierre-acciones rev" style="--d:.2s">
@@ -205,6 +178,14 @@
 
 
 <script src="sanity.js?v=4"></script>
+<script src="ilustraciones-servicios.js?v=1"></script>
+<script>
+// Las tarjetas de servicios usan las mismas ilustraciones de la página de Servicios
+document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
+  const svg = { maquetas: ILUSTRACION_MAQUETA, bim: ILUSTRACION_BIM }[el.dataset.ilustracion];
+  if (svg) el.innerHTML = svg;
+});
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
