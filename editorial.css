@@ -648,7 +648,7 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{posi
 body.y2k[data-filter="inspiracion"] .gallery .gallery-item>a img,body.y2k[data-filter="inspiración"] .gallery .gallery-item>a img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 body.y2k .gallery .gallery-item>a .cat__cod{position:absolute;left:12px;bottom:10px;z-index:2;font:500 11px/1 var(--pl-tecnica);letter-spacing:.12em;color:#5f5c66!important;background:#fff;padding:3px 0}
 body.y2k .gallery .cat{border-top:0!important;position:relative;margin-top:0!important;padding-top:12px!important}
-body.y2k .gallery .cat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--pl-gradient)}
+body.y2k .gallery .cat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#9d7bff,#b59aff 55%,#7ee8ff)}
 body.y2k .gallery .cat h3{font-size:15px!important;color:var(--pl-muted)!important}
 body.y2k .gallery .cat h3 b{color:var(--pl-ink)}
 body.y2k .gallery .cat h3 i{font-style:normal;color:#b59aff;margin:0 .15em}
