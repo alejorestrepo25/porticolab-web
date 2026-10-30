@@ -757,3 +757,15 @@ body.y2k .cierre-combo .combo__faq a.ver-todo{margin:18px 0 0!important;padding:
  body.y2k .cierre-combo .combo__faq a.ver-todo{margin-top:24px!important;font-size:10px!important}
 }
 @media(min-width:901px){body.y2k .cierre-combo .cierre-acciones{flex-wrap:nowrap!important;gap:8px!important}body.y2k .cierre-combo .cierre-acciones :is(.btn-cromo,.btn-fantasma){padding:0 16px!important;white-space:nowrap}}
+
+/* Cierre + preguntas: dos columnas con la misma guía superior, escala 8/16/24/32 */
+body.y2k .cierre-combo .combo{align-items:start!important}
+body.y2k .cierre-combo .combo__kicker,body.y2k .cierre-combo .combo__faq h3.combo__kicker{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.24em!important;text-transform:uppercase!important;color:var(--pl-muted)!important;margin:0 0 24px!important;padding-bottom:16px!important;border-bottom:1px solid var(--pl-line-soft,#dcdae0)!important;text-align:left!important}
+body.y2k .cierre-combo .combo__cta>p:not(.combo__kicker){margin:24px 0 32px!important}
+body.y2k .cierre-combo .faq{gap:8px!important}
+body.y2k .cierre-combo .combo__faq a.ver-todo{margin-top:24px!important}
+@media(max-width:900px){body.y2k .cierre-combo .combo__kicker,body.y2k .cierre-combo .combo__faq h3.combo__kicker{font-size:10px!important;margin-bottom:16px!important;padding-bottom:12px!important}}
+html:root body.y2k .cierre-combo .combo .combo__kicker{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.24em!important;margin:0 0 24px!important;padding:0 0 16px!important;max-width:none!important;width:100%;color:var(--pl-muted)!important}
+@media(max-width:900px){html:root body.y2k .cierre-combo .combo .combo__kicker{font-size:10px!important;margin-bottom:16px!important;padding-bottom:12px!important}}
+html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform:translateY(-50%)!important;line-height:1!important}
+@media(max-width:900px){html:root body.y2k .cierre-combo .faq summary{font-size:14px!important;padding:13px 40px 13px 16px!important}html:root body.y2k .cierre-combo .combo__cta h2.guerrilla-h{font-size:14px!important;letter-spacing:.14em!important;line-height:1.75!important}}
