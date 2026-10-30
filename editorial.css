@@ -677,3 +677,11 @@ body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .
 body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat::before{content:none!important;display:none!important}
 body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat{padding-top:10px!important}
 body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat h3 i{color:var(--pl-muted)!important}
+/* Servicios · hero: texto más grande y la ilustración gana más ancho */
+@media(min-width:901px){
+ body.srvposter .srv-wrap>section.hero>.hero-txt{max-width:min(400px,29vw)!important}
+ body.y2k.srvposter .srv-wrap .hero h1{font-size:clamp(38px,3.6vw,64px)!important}
+ body.y2k.srvposter .srv-wrap .hero p{font-size:clamp(16px,1.25vw,20px)!important;line-height:1.55!important}
+ body.srvposter .srv-wrap .hero .btn{font-size:12px!important;padding:14px 22px!important}
+ html:root body.y2k.srvposter .srv-hero__visual{left:calc(min(400px,29vw) + 12px)!important;top:0!important;bottom:0!important}
+}
