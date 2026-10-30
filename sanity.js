@@ -41,8 +41,31 @@
   const texto = v => (typeof v === 'string' ? v.trim() : '');
   const lista = v => (Array.isArray(v) ? v.filter(x => typeof x === 'string' && x.trim()).map(x => x.trim()) : []);
 
-  // Tarjeta de proyecto para las galerías, construida con nodos (sin innerHTML)
-  function tarjeta(p, { codigo = '', prefijo = '', ancho = 800 } = {}) {
+  // Códigos de proyecto: los mismos de las carpetas locales
+  const CODIGOS = [
+    ['atalaya', 'A0000000013'], ['tangara', 'M0000000006'], ['dorica', 'P0000000004'],
+    ['jersey', 'P0000000003'], ['bridge box', 'E0000000001'], ['coltejer', 'P0000000002'],
+    ['skull', 'P0000000007'], ['moai', 'M0000000005'], ['san german', 'A0000000009'], ['zarcillo', 'P0000000006']
+  ];
+  const normal = v => texto(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  function codigo(titulo) {
+    const t = normal(titulo);
+    const par = CODIGOS.find(([k]) => t.startsWith(k) || t.includes(k));
+    return par ? par[1] : '';
+  }
+
+  // Categoría legible a partir de las etiquetas: "Concreto / Diseño"
+  const NOMBRES = { diseno: 'Diseño', arquitectura: 'Arquitectura', moderno: 'Moderno', concreto: 'Concreto', bambu: 'Bambú' };
+  function categoria(tags) {
+    return lista(tags)
+      .filter(t => t !== 'laboratorio' && t !== 'inspiracion')
+      .slice(0, 2)
+      .map(t => NOMBRES[normal(t)] || (t.charAt(0).toUpperCase() + t.slice(1)).replace(/-/g, ' '))
+      .join(' / ');
+  }
+
+  // Tarjeta de proyecto para las galerías, estilo catálogo, construida con nodos (sin innerHTML)
+  function tarjeta(p, { prefijo = '', ancho = 800 } = {}) {
     const img = imagen(p?.portada?.asset?._ref, ancho);
     const titulo = texto(p?.title);
     if (!img || !titulo || typeof p._id !== 'string') return null;
@@ -54,7 +77,7 @@
 
     const a = document.createElement('a');
     a.href = `${prefijo}publicaciones/post.html?id=${encodeURIComponent(p._id)}`;
-    if (codigo) a.dataset.codigo = codigo;
+    a.setAttribute('aria-label', titulo);
 
     const im = document.createElement('img');
     im.src = img.url;
@@ -66,18 +89,35 @@
     im.addEventListener('error', () => item.remove());
     a.appendChild(im);
 
+    const pie = document.createElement('div');
+    pie.className = 'cat';
     const h3 = document.createElement('h3');
-    h3.textContent = titulo;
+    const b = document.createElement('b');
+    b.textContent = titulo;
+    h3.appendChild(b);
+    const tipo = categoria(etiquetas);
+    if (tipo) {
+      const sp = document.createElement('span');
+      sp.textContent = tipo;
+      h3.append(' ', sp);
+    }
+    pie.appendChild(h3);
+    const rasgo = lista(p.features)[0];
+    if (rasgo) {
+      const linea = document.createElement('p');
+      linea.className = 'cat__linea';
+      linea.textContent = rasgo;
+      pie.appendChild(linea);
+    }
+    const cod = codigo(titulo);
+    if (cod) {
+      const c = document.createElement('p');
+      c.className = 'cat__cod';
+      c.textContent = cod;
+      pie.appendChild(c);
+    }
 
-    const tags = document.createElement('div');
-    tags.className = 'post-tags';
-    etiquetas.filter(t => t !== 'laboratorio' && t !== 'inspiracion').slice(0, 2).forEach(t => {
-      const s = document.createElement('span');
-      s.textContent = t.replace(/-/g, ' ');
-      tags.appendChild(s);
-    });
-
-    item.append(a, h3, tags);
+    item.append(a, pie);
     return item;
   }
 
@@ -100,5 +140,5 @@
     contenedor.appendChild(div);
   }
 
-  window.PL_SANITY = { consultar, imagen, texto, lista, tarjeta, aviso };
+  window.PL_SANITY = { consultar, imagen, texto, lista, tarjeta, aviso, codigo, categoria };
 })();

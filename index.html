@@ -30,7 +30,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=1">
   <link rel="stylesheet" href="motion-graphics.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=38">
+  <link rel="stylesheet" href="editorial.css?v=39">
 </head>
 
 <body class="y2k home">
@@ -204,16 +204,8 @@
 
 
 
-<script src="sanity.js?v=2"></script>
+<script src="sanity.js?v=3"></script>
 <script>
-  // Código de proyecto según las carpetas del estudio
-  const CODIGOS = { atalaya: 'A0000000013', tangara: 'M0000000006', dorica: 'P0000000004' };
-  function codigoProyecto(titulo) {
-    const t = (titulo || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    const k = Object.keys(CODIGOS).find(c => t.startsWith(c));
-    return k ? CODIGOS[k] : '';
-  }
-
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
@@ -221,7 +213,7 @@
     const cargando = document.getElementById('gallery-loading');
     let proyectos;
     try {
-      proyectos = await S.consultar('*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset)] | order(_createdAt desc)[0...24]{ _id, title, tags, portada }');
+      proyectos = await S.consultar('*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset)] | order(_createdAt desc)[0...24]{ _id, title, tags, portada, "features": features[0...1] }');
     } catch (e) {
       cargando.style.display = 'none';
       S.aviso(gallery, 'No pudimos cargar los proyectos.', true);
@@ -233,7 +225,7 @@
     let n = 0;
     for (const p of lista) {
       if (n === 4) break;
-      const t = S.tarjeta(p, { codigo: codigoProyecto(p.title) });
+      const t = S.tarjeta(p);
       if (t) { gallery.appendChild(t); n++; }
     }
     if (!n) S.aviso(gallery, 'Pronto publicaremos nuevos proyectos.', true);

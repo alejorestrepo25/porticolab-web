@@ -523,3 +523,18 @@ body.home .archivo-poster>.siguiente{margin-top:18px}
  body.home .paso p{font-size:13.5px!important}
  html:root body.home :is(.seccion,#proceso,.cierre-home),html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),html:root body.nosotros section[data-pantalla]:not(.n-hero),html:root body.home #para-quien{padding-top:40px!important;padding-bottom:40px!important}
 }
+
+/* Galerías · etiquetas estilo catálogo: foto sobre blanco, línea fina y tres datos simples */
+body.y2k .gallery .gallery-item{background:none!important;border:0!important;border-radius:0!important;padding:0!important;box-shadow:none!important;transform:none!important}
+body.y2k .gallery .gallery-item>a{display:block;background:#fff!important;border-radius:0!important;overflow:hidden}
+body.y2k .gallery .gallery-item img{border-radius:0!important}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a::before{content:""!important}
+body.y2k .gallery .cat{border-top:1.5px solid var(--pl-ink);margin-top:12px;padding-top:9px;display:flex;flex-direction:column;gap:3px}
+body.y2k .gallery .cat h3{margin:0!important;padding:0!important;font:400 15px/1.3 'Montserrat',system-ui,sans-serif!important;letter-spacing:-.01em!important;color:var(--pl-muted)!important;display:block!important;-webkit-line-clamp:unset!important}
+body.y2k .gallery .cat h3 b{font-weight:700;color:var(--pl-ink)}
+body.y2k .gallery .cat h3 span{font-style:italic}
+body.y2k .gallery .cat :is(.cat__linea,.cat__cod){display:block!important}
+body.y2k .gallery .cat__linea{margin:0;font-size:13.5px;line-height:1.4;color:var(--pl-ink)!important;opacity:.82}
+body.y2k .gallery .cat__cod{margin:0;font:500 11px/1.4 ui-monospace,'SFMono-Regular',Menlo,monospace;letter-spacing:.06em;color:var(--pl-muted)!important}
+body.y2k .gallery .gallery-item:hover .cat h3 b{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+@media(max-width:768px){body.y2k .gallery .cat{margin-top:8px;padding-top:7px}body.y2k .gallery .cat h3{font-size:13.5px!important}body.y2k .gallery .cat__linea{font-size:12px}body.y2k .gallery .cat__cod{font-size:10px}}
