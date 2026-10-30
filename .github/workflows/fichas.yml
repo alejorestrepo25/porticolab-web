@@ -1,0 +1,47 @@
+# Regenera las fichas fijas de proyectos (publicaciones/<nombre>.html) y el sitemap desde Sanity.
+# Corre cada 6 horas, a mano desde la pestaña Actions, o cuando cambia la plantilla o el generador.
+name: Fichas de proyectos
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - publicaciones/post.html
+      - scripts/generar-fichas.mjs
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: fichas
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generar fichas desde Sanity
+        run: node scripts/generar-fichas.mjs
+      - name: Publicar si hubo cambios
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A publicaciones sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fichas de proyectos actualizadas desde Sanity"
+          git push
+          # Los envíos hechos con el token de Actions no siempre disparan GitHub Pages: se pide la publicación explícitamente
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "No se pudo pedir la publicación; se hará con el próximo cambio"

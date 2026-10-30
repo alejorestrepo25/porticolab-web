@@ -45,6 +45,12 @@
     return anchos.filter(a => a <= base.ancho * 1.2).map(a => `${imagen(ref, a).url} ${a}w`).join(', ');
   }
 
+  // Nombre de la ficha fija de un proyecto: el mismo criterio que scripts/generar-fichas.mjs
+  function nombreFicha(titulo) {
+    return String(titulo || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+  }
+
   const texto = v => (typeof v === 'string' ? v.trim() : '');
   const lista = v => (Array.isArray(v) ? v.filter(x => typeof x === 'string' && x.trim()).map(x => x.trim()) : []);
 
@@ -83,7 +89,8 @@
     item.dataset.tags = etiquetas.join(',');
 
     const a = document.createElement('a');
-    a.href = `${prefijo}publicaciones/post.html?id=${encodeURIComponent(p._id)}`;
+    const ficha = nombreFicha(titulo);
+    a.href = ficha && ficha !== 'post' ? `${prefijo}publicaciones/${ficha}.html` : `${prefijo}publicaciones/post.html?id=${encodeURIComponent(p._id)}`;
     a.setAttribute('aria-label', titulo);
 
     const im = document.createElement('img');
@@ -148,5 +155,5 @@
     contenedor.appendChild(div);
   }
 
-  window.PL_SANITY = { consultar, imagen, srcset, texto, lista, tarjeta, aviso, codigo, categoria };
+  window.PL_SANITY = { consultar, imagen, srcset, nombreFicha, texto, lista, tarjeta, aviso, codigo, categoria };
 })();
