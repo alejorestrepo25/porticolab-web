@@ -195,6 +195,56 @@ main.poster{display:block;max-width:none;margin:0;padding:clamp(18px,2.6vw,40px)
   .g-btn{min-height:42px;padding:0 16px;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.celda img{transition:none}.celda:hover img{transform:none}}
+
+/* ===== Publicación: una sola pantalla, título + descripción + collage ===== */
+main.pub{display:grid;grid-template-columns:none;grid-template-rows:auto minmax(0,1fr);gap:clamp(14px,2vh,24px);max-width:none;width:min(1440px,calc(100vw - 2*clamp(16px,3vw,48px)));margin:0 auto;padding:clamp(16px,2.4vh,28px) 0 clamp(16px,2.4vh,28px);height:calc(100svh - var(--hh,66px));align-items:stretch;background:#fff;color:#141316}
+.pub__cab{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:end;gap:clamp(16px,3vw,56px)}
+.pub__cab h1{font:700 clamp(32px,3.6vw,60px)/.95 'Montserrat',sans-serif!important;letter-spacing:-.045em!important;color:#141316!important;-webkit-text-fill-color:#141316!important;background:none!important;margin:0;text-transform:none!important}
+.pub__desc{font-size:clamp(14px,1.05vw,17px)!important;line-height:1.55!important;color:#4a474f!important;max-width:70ch;margin:0}
+.pub__collage{display:grid;gap:10px;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,1.05fr)}
+.pub__pieza{display:block;position:relative;border:0;padding:0;margin:0;background:#f1f0f3;border-radius:12px;overflow:hidden;cursor:zoom-in;min-width:0;min-height:0}
+.pub__pieza img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pub__pieza:hover img{transform:scale(1.02)}
+.pub__pieza:focus-visible{outline:2px solid #141316;outline-offset:2px}
+/* 6 piezas: igual que el collage de Nosotros */
+.pub__collage[data-n="6"]{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr)}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(5){grid-column:4;grid-row:1/3}
+.pub__collage[data-n="6"] .pub__pieza:nth-child(6){grid-column:1/5;grid-row:3}
+/* 5 piezas: sin la franja inferior */
+.pub__collage[data-n="5"]{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+.pub__collage[data-n="5"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
+.pub__collage[data-n="5"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
+.pub__collage[data-n="5"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
+.pub__collage[data-n="5"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
+.pub__collage[data-n="5"] .pub__pieza:nth-child(5){grid-column:4;grid-row:1/3}
+/* 4 piezas */
+.pub__collage[data-n="4"]{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+.pub__collage[data-n="4"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
+.pub__collage[data-n="4"] .pub__pieza:nth-child(2){grid-column:2;grid-row:1}
+.pub__collage[data-n="4"] .pub__pieza:nth-child(3){grid-column:2;grid-row:2}
+.pub__collage[data-n="4"] .pub__pieza:nth-child(4){grid-column:3;grid-row:1/3}
+/* 3 piezas */
+.pub__collage[data-n="3"]{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+.pub__collage[data-n="3"] .pub__pieza:nth-child(1){grid-column:1;grid-row:1/3}
+/* 1 y 2 piezas */
+.pub__collage[data-n="2"]{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr)}
+.pub__collage[data-n="1"]{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+.pub__collage[data-n="1"] .pub__pieza img{object-fit:contain}
+@media(max-width:900px){
+  main.pub{height:auto;grid-template-rows:auto auto;padding:18px 0 28px}
+  .pub__cab{grid-template-columns:1fr;gap:10px}
+  .pub__cab h1{font-size:clamp(28px,9vw,40px)!important}
+  .pub__desc{font-size:14px!important}
+  .pub__collage,.pub__collage[data-n]{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:42vw;gap:8px}
+  .pub__collage[data-n] .pub__pieza{grid-column:auto!important;grid-row:auto!important}
+  .pub__collage[data-n] .pub__pieza:first-child{grid-column:1/-1!important;grid-row:span 2!important}
+  .pub__collage[data-n="2"] .pub__pieza:last-child,.pub__collage[data-n="4"] .pub__pieza:last-child,.pub__collage[data-n="6"] .pub__pieza:last-child{grid-column:1/-1!important}
+}
+@media(prefers-reduced-motion:reduce){.pub__pieza img{transition:none}.pub__pieza:hover img{transform:none}}
 </style>
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
@@ -224,31 +274,13 @@ main.poster{display:block;max-width:none;margin:0;padding:clamp(18px,2.6vw,40px)
 
 <div class="loading" id="loading">CARGANDO...</div>
 
-<main id="main-content" class="poster" hidden>
-  <nav class="poster__volver" aria-label="Volver"><a href="../laboratorio.html">← Laboratorio</a></nav>
-  <div class="poster__grid" id="poster-grid"></div>
-</main>
-
-<section class="guerrilla" id="guerrilla" hidden aria-labelledby="g-titulo">
-  <div class="guerrilla__in">
-    <p class="guerrilla__kicker">Para quien decide el proyecto</p>
-    <h2 id="g-titulo">Sé que no tiene mucho tiempo y quiere cuidar <mark>hasta el último peso</mark> de su proyecto.</h2>
-    <div class="guerrilla__cols">
-      <p class="guerrilla__txt">Le invito a contarnos qué tiene entre manos. Le respondemos con una propuesta de alcance cerrado: alcance, valor y fechas por escrito, antes de empezar.</p>
-      <ol class="guerrilla__lista">
-        <li><b>01</b> Diagnóstico <i>vender, presentar o controlar el costo</i></li>
-        <li><b>02</b> Propuesta cerrada <i>alcance, valor y fechas por escrito</i></li>
-        <li><b>03</b> Avances a la vista <i>en cada etapa, no solo al final</i></li>
-        <li><b>04</b> Entrega <i>pieza lista para exhibir o informe para decidir</i></li>
-      </ol>
-    </div>
-    <div class="guerrilla__acciones">
-      <a class="g-btn g-btn--pri" href="../servicios.html">Pedir una propuesta →</a>
-      <a class="g-btn" id="g-wa" href="https://wa.me/573147924600" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-    </div>
-    <span class="guerrilla__sello" aria-hidden="true">Sin<br>compromiso</span>
+<main id="main-content" class="pub" hidden>
+  <div class="pub__cab">
+    <h1 id="post-title"></h1>
+    <p class="pub__desc" id="post-desc"></p>
   </div>
-</section>
+  <div class="pub__collage" id="pub-collage"></div>
+</main>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="close-btn">&times;</button>
@@ -313,76 +345,38 @@ async function loadPost() {
 
   const titulo = S.texto(result.title);
   document.title = `${titulo} | Pórtico Lab`;
-  const grid = document.getElementById('poster-grid');
-  grid.textContent = '';
+  document.getElementById('post-title').textContent = titulo;
+  const desc = S.texto(result.description);
+  const pDesc = document.getElementById('post-desc');
+  if (desc) pDesc.textContent = desc; else pDesc.remove();
 
   // Imágenes: solo referencias válidas; portada primero
   const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
     .filter((r, i, arr) => S.imagen(r) && arr.indexOf(r) === i);
   images = refs.map(r => S.imagen(r, 1600).url);
-  const celda = (i, clase) => {
+
+  // Collage de una sola pantalla: hasta 6 piezas; la composición cambia según cuántas haya
+  const collage = document.getElementById('pub-collage');
+  const visibles = refs.slice(0, 6);
+  collage.dataset.n = visibles.length;
+  visibles.forEach((r, i) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'celda' + (clase ? ' ' + clase : '');
+    b.className = 'pub__pieza';
     b.setAttribute('aria-label', `Ampliar imagen ${i + 1} de ${titulo}`);
     const im = document.createElement('img');
-    im.src = S.imagen(refs[i], i === 0 ? 1600 : 900).url;
+    im.src = S.imagen(r, i === 0 ? 1600 : 1000).url;
     im.alt = i === 0 ? titulo : `${titulo}, imagen ${i + 1}`;
-    im.loading = i === 0 ? 'eager' : 'lazy';
+    im.loading = i < 2 ? 'eager' : 'lazy';
     im.decoding = 'async';
     b.appendChild(im);
     b.addEventListener('click', () => openLightbox(i));
-    return b;
-  };
-
-  // Celda de texto: título, categoría y descripción breve
-  const ficha = document.createElement('article');
-  ficha.className = 'ficha';
-  const arriba = document.createElement('div');
-  const cod = S.codigo(titulo);
-  const kicker = document.createElement('p');
-  kicker.className = 'ficha__kicker';
-  kicker.textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';
-  const h1 = document.createElement('h1');
-  h1.id = 'post-title';
-  h1.textContent = titulo;
-  arriba.append(kicker, h1);
-  const tipo = [S.categoria(result.tags), S.texto(result.location), result.year ? String(result.year) : ''].filter(Boolean).join(' · ');
-  if (tipo) { const t = document.createElement('p'); t.className = 'ficha__tipo'; t.textContent = tipo; arriba.appendChild(t); }
-  const abajo = document.createElement('div');
-  const desc = S.texto(result.description);
-  if (desc) { const d = document.createElement('p'); d.className = 'ficha__desc'; d.textContent = desc; abajo.appendChild(d); }
-  const rasgos = S.lista(result.features);
-  if (rasgos.length) {
-    const ul = document.createElement('ul');
-    ul.className = 'ficha__rasgos';
-    rasgos.forEach(f => { const li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
-    abajo.appendChild(ul);
-  }
-  ficha.append(arriba, abajo);
-
-  // Cuadrícula: portada 2×2, ficha 2×2 y el resto en filas de 4 que cierran el rectángulo
-  if (refs.length) grid.appendChild(celda(0, 'celda--principal'));
-  grid.appendChild(ficha);
-  const resto = refs.slice(1).map((_, n) => n + 1);
-  const k = resto.length % 4;
-  resto.forEach((i, n) => {
-    const ultimos = n >= resto.length - k;
-    let clase = '';
-    if (k && ultimos) {
-      const pos = n - (resto.length - k);
-      clase = k === 1 ? 'celda--ancha4' : (k === 2 || pos === 0) ? 'celda--ancha2' : '';
-    }
-    if (resto.length % 2 === 1 && n === resto.length - 1) clase += ' m-ancha';
-    grid.appendChild(celda(i, clase.trim()));
+    collage.appendChild(b);
   });
-  if (!refs.length) ficha.style.gridColumn = '1 / -1';
+  if (!visibles.length) collage.remove();
 
-  document.getElementById('g-wa').href = 'https://wa.me/573147924600?text=' +
-    encodeURIComponent(`Buen día, equipo de Pórtico Lab. Vi el proyecto ${titulo} en su página y quisiera conversar sobre el mío.`);
   aviso.style.display = 'none';
   document.getElementById('main-content').hidden = false;
-  document.getElementById('guerrilla').hidden = false;
 }
 
 loadPost();
