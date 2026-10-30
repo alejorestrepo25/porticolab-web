@@ -1,7 +1,7 @@
 (() => {
   const key = 'portico-theme';
-  let theme = 'dark';
-  try { theme = localStorage.getItem(key) === 'light' ? 'light' : 'dark'; } catch (_) {}
+  let theme = 'light';
+  try { theme = localStorage.getItem(key) === 'dark' ? 'dark' : 'light'; } catch (_) {}
   document.documentElement.dataset.theme = theme;
   const sync = () => document.querySelectorAll('.theme-toggle').forEach((button) => {
     const next = theme === 'dark' ? 'light' : 'dark';

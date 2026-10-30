@@ -538,3 +538,12 @@ body.y2k .gallery .cat__linea{margin:0;font-size:13.5px;line-height:1.4;color:va
 body.y2k .gallery .cat__cod{margin:0;font:500 11px/1.4 ui-monospace,'SFMono-Regular',Menlo,monospace;letter-spacing:.06em;color:var(--pl-muted)!important}
 body.y2k .gallery .gallery-item:hover .cat h3 b{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 @media(max-width:768px){body.y2k .gallery .cat{margin-top:8px;padding-top:7px}body.y2k .gallery .cat h3{font-size:13.5px!important}body.y2k .gallery .cat__linea{font-size:12px}body.y2k .gallery .cat__cod{font-size:10px}}
+
+/* Lenguaje de máquina de escribir: fondo blanco, mayúsculas espaciadas y frase directa al cliente */
+:root[data-theme="light"]{--pl-bg:#fff;--pl-surface:#f7f6f4;--pl-surface-2:#efeeeb}
+body.y2k .nota-maquina{font:700 11.5px/1.7 'Space Mono',ui-monospace,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--pl-ink);margin:0 0 18px;max-width:40ch}
+body.y2k :is(.siguiente span,.perfil__quien,.ver-todo,.kicker){font-family:'Space Mono',ui-monospace,monospace!important;letter-spacing:.16em!important}
+body.y2k .perfil__quien{background:none!important;-webkit-text-fill-color:var(--pl-muted)!important;color:var(--pl-muted)!important}
+body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 'Space Mono',ui-monospace,monospace!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
+body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;color:#141316!important;-webkit-text-fill-color:#141316!important;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media(max-width:768px){body.y2k .nota-maquina{font-size:10px;letter-spacing:.16em;margin-bottom:12px}body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
