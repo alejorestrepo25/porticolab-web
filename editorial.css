@@ -654,3 +654,18 @@ body.y2k .gallery .cat h3 b{color:var(--pl-ink)}
 body.y2k .gallery .cat h3 i{font-style:normal;color:#b59aff;margin:0 .15em}
 body.y2k .gallery .cat h3 span{font-style:normal}
 @media(max-width:768px){body.y2k .gallery .gallery-item>a .cat__cod{font-size:9px;left:8px;bottom:7px}body.y2k .gallery .cat h3{font-size:13px!important}}
+
+/* Imágenes · mismo lenguaje en todo el sitio: redondeo breve de 8 px */
+:root{--pl-radio-img:8px}
+body.y2k .gallery .gallery-item>a,
+body.y2k .frente__img,
+body.srvposter .srv-card .srv-img,
+body.nosotros .n-collage img,
+body.nosotros .n-hero__visual,
+body.y2k .pieza img,
+body.y2k .pieza__grafica,
+body.ficha-proyecto .poster__grid,
+body.y2k #lightbox-img{border-radius:var(--pl-radio-img)!important;overflow:hidden}
+body.y2k .frente__img img,body.srvposter .srv-card .srv-img svg,body.y2k .gallery .gallery-item>a img{border-radius:0!important}
+body.nosotros .n-hero__visual{border-radius:0!important;overflow:visible!important}
+@media(max-width:900px){body.home .y2k-hero__vis,body.home .hero-foto,body.home .hero-foto img,html:root body.y2k.srvposter .srv-hero__visual{border-radius:var(--pl-radio-img)!important;overflow:hidden}}
