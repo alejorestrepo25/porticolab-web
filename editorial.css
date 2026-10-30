@@ -547,3 +547,8 @@ body.y2k .perfil__quien{background:none!important;-webkit-text-fill-color:var(--
 body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 'Space Mono',ui-monospace,monospace!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
 body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;color:#141316!important;-webkit-text-fill-color:#141316!important;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 @media(max-width:768px){body.y2k .nota-maquina{font-size:10px;letter-spacing:.16em;margin-bottom:12px}body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
+/* Servicios: ilustración BIM en versión clara u oscura según el tema */
+body.srvposter .srv-hero__visual .bim-claro{display:none!important}
+:root[data-theme="light"] body.srvposter .srv-hero__visual{background:#fff!important}
+:root[data-theme="light"] body.srvposter .srv-hero__visual .bim-oscuro{display:none!important}
+:root[data-theme="light"] body.srvposter .srv-hero__visual .bim-claro{display:block!important}
