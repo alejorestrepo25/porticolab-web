@@ -541,10 +541,10 @@ body.y2k .gallery .gallery-item:hover .cat h3 b{text-decoration:underline;text-u
 
 /* Lenguaje de máquina de escribir: fondo blanco, mayúsculas espaciadas y frase directa al cliente */
 :root[data-theme="light"]{--pl-bg:#fff;--pl-surface:#f7f6f4;--pl-surface-2:#efeeeb}
-body.y2k .nota-maquina{font:700 11.5px/1.7 'Space Mono',ui-monospace,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--pl-ink);margin:0 0 18px;max-width:40ch}
-body.y2k :is(.siguiente span,.perfil__quien,.ver-todo,.kicker){font-family:'Space Mono',ui-monospace,monospace!important;letter-spacing:.16em!important}
+body.y2k .nota-maquina{font:700 11.5px/1.7 var(--pl-tecnica);letter-spacing:.24em;text-transform:uppercase;color:var(--pl-ink);margin:0 0 18px;max-width:40ch}
+body.y2k :is(.siguiente span,.perfil__quien,.ver-todo,.kicker){font-family:var(--pl-tecnica)!important;letter-spacing:.16em!important}
 body.y2k .perfil__quien{background:none!important;-webkit-text-fill-color:var(--pl-muted)!important;color:var(--pl-muted)!important}
-body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 'Space Mono',ui-monospace,monospace!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
+body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 var(--pl-tecnica)!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
 body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;color:#141316!important;-webkit-text-fill-color:#141316!important;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 @media(max-width:768px){body.y2k .nota-maquina{font-size:10px;letter-spacing:.16em;margin-bottom:12px}body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
 /* Servicios: ilustración BIM en versión clara u oscura según el tema */
@@ -552,3 +552,31 @@ body.srvposter .srv-hero__visual .bim-claro{display:none!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual{background:#fff!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual .bim-oscuro{display:none!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual .bim-claro{display:block!important}
+
+/* ===== Guía sutil: tipografía técnica, puntos con brillo, cinta de accesos y flechas que avanzan ===== */
+:root{--pl-tecnica:'Technic','Space Mono',ui-monospace,monospace}
+/* Puntos laterales: el activo se ilumina con el degradado */
+body.y2k .rail a{transition:background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s ease!important}
+body.y2k .rail a.activo{background:var(--pl-gradient)!important;border-color:transparent!important;box-shadow:0 0 0 4px rgba(181,154,255,.16),0 0 14px rgba(181,154,255,.55)!important;transform:scale(1.3)!important}
+body.y2k .rail a:hover{border-color:#b59aff!important}
+body.y2k .rail a span{font-family:var(--pl-tecnica)!important;letter-spacing:.14em!important}
+/* Cinta de palabras clave como menú rápido */
+body.home .marquesina{background:var(--pl-bg)!important;border-color:var(--pl-line-soft)!important}
+body.home .marquesina__grupo a{font:700 12px/1 var(--pl-tecnica);letter-spacing:.2em;text-transform:uppercase;color:var(--pl-muted);text-decoration:none;white-space:nowrap;padding:6px 0;transition:color .2s ease}
+body.home .marquesina__grupo a:hover,body.home .marquesina__grupo a:focus-visible{background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.home .marquesina:focus-within .marquesina__pista{animation-play-state:paused}
+/* Flechas que avanzan 4 px */
+body.y2k .flecha-accion{display:inline-block;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+body.y2k :is(a,button):is(:hover,:focus-visible) .flecha-accion{transform:translateX(4px)}
+body.home :is(.frente,.perfil):hover :is(.frente__cta,.perfil__cta)::after{transform:translateX(4px)!important}
+@media(prefers-reduced-motion:reduce){body.y2k .flecha-accion{transition:none}}
+/* Tarjetas en tres pasos: rótulo técnico + mensaje limpio */
+body.y2k .pasos3{margin:4px 0 0;display:flex;flex-direction:column;border-top:1px solid var(--pl-line-soft)}
+body.y2k .pasos3>div{display:grid;grid-template-columns:minmax(84px,max-content) 1fr;gap:4px 14px;padding:10px 0;border-bottom:1px solid var(--pl-line-soft)}
+body.y2k .pasos3 dt{font:700 10.5px/1.5 var(--pl-tecnica);letter-spacing:.16em;text-transform:uppercase;color:var(--pl-muted);padding-top:2px}
+body.y2k .pasos3 dd{margin:0;font:500 14px/1.45 'Montserrat',system-ui,sans-serif;color:var(--pl-ink)}
+body.y2k .pasos3>div:last-child dd{font-weight:700}
+body.y2k .pasos3>div:last-child dt{background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:768px){body.y2k .pasos3>div{grid-template-columns:1fr;gap:2px;padding:8px 0}body.y2k .pasos3 dd{font-size:13.5px}}
+/* Resaltado en degradado también en la bajada del inicio */
+body.y2k .y2k-hero p mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316;-webkit-text-fill-color:#141316;padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}

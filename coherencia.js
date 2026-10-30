@@ -25,3 +25,22 @@
     nav.scrollLeft = Math.max(0, left);
   }
 })();
+
+// Flechas de acción: la "→" final de enlaces y botones se envuelve para animarla al pasar el cursor
+(() => {
+  const marcar = (raiz) => raiz.querySelectorAll('a, button').forEach((el) => {
+    if (el.querySelector('.flecha-accion')) return;
+    const nodos = [...el.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim());
+    const ultimo = nodos[nodos.length - 1];
+    if (!ultimo || !/→\s*$/.test(ultimo.textContent)) return;
+    const txt = ultimo.textContent.replace(/\s*→\s*$/, '');
+    const flecha = document.createElement('span');
+    flecha.className = 'flecha-accion';
+    flecha.setAttribute('aria-hidden', 'true');
+    flecha.textContent = '→';
+    ultimo.textContent = txt + ' ';
+    ultimo.after(flecha);
+  });
+  marcar(document);
+  new MutationObserver((cambios) => cambios.forEach((c) => c.addedNodes.forEach((n) => { if (n.nodeType === 1) marcar(n.parentNode || n); }))).observe(document.body, { childList: true, subtree: true });
+})();
