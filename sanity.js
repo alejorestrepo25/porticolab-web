@@ -89,33 +89,32 @@
     im.addEventListener('error', () => item.remove());
     a.appendChild(im);
 
+    // Código de carpeta en la parte inferior de la imagen
+    const cod = codigo(titulo);
+    if (cod) {
+      const c = document.createElement('span');
+      c.className = 'cat__cod';
+      c.textContent = cod;
+      a.appendChild(c);
+    }
+
+    // Línea morada y debajo "Título | descripción"
     const pie = document.createElement('div');
     pie.className = 'cat';
     const h3 = document.createElement('h3');
     const b = document.createElement('b');
     b.textContent = titulo;
     h3.appendChild(b);
-    const tipo = categoria(etiquetas);
-    if (tipo) {
-      const sp = document.createElement('span');
-      sp.textContent = tipo;
-      h3.append(' ', sp);
-    }
-    pie.appendChild(h3);
     const rasgo = lista(p.features)[0];
     if (rasgo) {
-      const linea = document.createElement('p');
-      linea.className = 'cat__linea';
-      linea.textContent = rasgo;
-      pie.appendChild(linea);
+      const sep = document.createElement('i');
+      sep.setAttribute('aria-hidden', 'true');
+      sep.textContent = '|';
+      const d = document.createElement('span');
+      d.textContent = rasgo;
+      h3.append(' ', sep, ' ', d);
     }
-    const cod = codigo(titulo);
-    if (cod) {
-      const c = document.createElement('p');
-      c.className = 'cat__cod';
-      c.textContent = cod;
-      pie.appendChild(c);
-    }
+    pie.appendChild(h3);
 
     item.append(a, pie);
     return item;

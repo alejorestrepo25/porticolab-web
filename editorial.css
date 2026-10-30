@@ -640,3 +640,17 @@ html:root body.srvposter .srv-card .srv-img svg .bt>text{display:inline!importan
  html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
  body.home .y2k-hero__vis .hud--tl{left:calc(12% + 14px)!important}
 }
+
+/* Galerías · solo la imagen sobre blanco, código abajo, línea morada y "Título | descripción" */
+body.y2k .gallery .gallery-item>a{position:relative!important;display:block;aspect-ratio:1/1!important;max-height:none!important;overflow:hidden;background:#fff!important}
+body.y2k .gallery .gallery-item>a::before{content:none!important;display:none!important}
+body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{position:absolute!important;left:-19.5%!important;top:-18.2%!important;width:139%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;filter:none!important}
+body.y2k[data-filter="inspiracion"] .gallery .gallery-item>a img,body.y2k[data-filter="inspiración"] .gallery .gallery-item>a img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+body.y2k .gallery .gallery-item>a .cat__cod{position:absolute;left:12px;bottom:10px;z-index:2;font:500 11px/1 var(--pl-tecnica);letter-spacing:.12em;color:#5f5c66!important;background:#fff;padding:3px 0}
+body.y2k .gallery .cat{border-top:0!important;position:relative;margin-top:0!important;padding-top:12px!important}
+body.y2k .gallery .cat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#9d7bff,#b59aff 55%,#7ee8ff)}
+body.y2k .gallery .cat h3{font-size:15px!important;color:var(--pl-muted)!important}
+body.y2k .gallery .cat h3 b{color:var(--pl-ink)}
+body.y2k .gallery .cat h3 i{font-style:normal;color:#b59aff;margin:0 .15em}
+body.y2k .gallery .cat h3 span{font-style:normal}
+@media(max-width:768px){body.y2k .gallery .gallery-item>a .cat__cod{font-size:9px;left:8px;bottom:7px}body.y2k .gallery .cat h3{font-size:13px!important}}
