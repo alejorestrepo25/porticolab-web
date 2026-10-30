@@ -19,7 +19,7 @@
 <link rel="icon" href="../iconos/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="../y2k.css?v=6">
 
 <style>
@@ -292,7 +292,7 @@ main.pub{display:grid;grid-template-columns:none;grid-template-rows:auto minmax(
   </div>
 </div>
 
-<script src="../sanity.js?v=4"></script>
+<script src="../sanity.js?v=5"></script>
 <script>
 const S = window.PL_SANITY;
 
@@ -365,7 +365,9 @@ async function loadPost() {
     b.className = 'pub__pieza';
     b.setAttribute('aria-label', `Ampliar imagen ${i + 1} de ${titulo}`);
     const im = document.createElement('img');
-    im.src = S.imagen(r, i === 0 ? 1600 : 1000).url;
+    im.src = S.imagen(r, i === 0 ? 1400 : 1000).url;
+    const juego = S.srcset(r);
+    if (juego) { im.srcset = juego; im.sizes = i === 0 ? '(max-width: 900px) 100vw, 45vw' : '(max-width: 900px) 50vw, 30vw'; }
     im.alt = i === 0 ? titulo : `${titulo}, imagen ${i + 1}`;
     im.loading = i < 2 ? 'eager' : 'lazy';
     im.decoding = 'async';
@@ -383,7 +385,7 @@ loadPost();
 </script>
 
 <script src="../y2k.js?v=4" defer></script>
-<script src="../mascota.js?v=21"></script>
+<script src="../mascota.js?v=21" defer></script>
 <script src="../navegacion-teclado.js?v=1" defer></script>
   <script src="../coherencia.js?v=2" defer></script>
 </body>

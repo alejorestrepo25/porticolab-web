@@ -38,6 +38,13 @@
     };
   }
 
+  // Varias resoluciones de la misma imagen: el navegador baja solo la que necesita su pantalla
+  function srcset(ref, anchos = [400, 700, 1000, 1400]) {
+    const base = imagen(ref);
+    if (!base) return '';
+    return anchos.filter(a => a <= base.ancho * 1.2).map(a => `${imagen(ref, a).url} ${a}w`).join(', ');
+  }
+
   const texto = v => (typeof v === 'string' ? v.trim() : '');
   const lista = v => (Array.isArray(v) ? v.filter(x => typeof x === 'string' && x.trim()).map(x => x.trim()) : []);
 
@@ -81,6 +88,8 @@
 
     const im = document.createElement('img');
     im.src = img.url;
+    const juego = srcset(p.portada.asset._ref);
+    if (juego) { im.srcset = juego; im.sizes = '(max-width: 900px) 50vw, 25vw'; }
     im.alt = titulo;
     im.width = img.ancho;
     im.height = img.alto;
@@ -139,5 +148,5 @@
     contenedor.appendChild(div);
   }
 
-  window.PL_SANITY = { consultar, imagen, texto, lista, tarjeta, aviso, codigo, categoria };
+  window.PL_SANITY = { consultar, imagen, srcset, texto, lista, tarjeta, aviso, codigo, categoria };
 })();
