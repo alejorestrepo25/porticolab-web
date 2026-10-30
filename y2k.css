@@ -23,7 +23,6 @@ body.y2k {
 body.y2k .logo { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 1px; }
 body.y2k .nav a { font-family: var(--mono); font-size: 13px; letter-spacing: 1.5px; }
 body.y2k .gallery-item h3 { font-family: var(--display); font-weight: 500; font-size: 14px; letter-spacing: 0.3px; }
-body.y2k .post-tags span { font-family: var(--mono); }
 
 .hud {
   display: block;
@@ -147,15 +146,6 @@ body.y2k .post-tags span { font-family: var(--mono); }
   max-height: 580px;
   justify-self: center;
 }
-.y2k-hero__vis canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
 .y2k-hero__vis img {
   position: absolute;
   inset: 0;
@@ -171,47 +161,16 @@ body.y2k .post-tags span { font-family: var(--mono); }
 .y2k-hero__vis.is-live img { opacity: 0; }
 .y2k-hero__vis .hud { position: absolute; z-index: 1; }
 .y2k-hero__vis .hud--tl { top: 8px; left: 4px; }
-.y2k-hero__vis .hud--br { bottom: 8px; left: 4px; }
 
 /* ---------- Encabezado de sección ---------- */
-.y2k-seccion { max-width: 1400px; margin: 0 auto; padding: 56px 40px 0; }
-.y2k-seccion h2 {
-  margin-top: 8px;
-  font-family: var(--display, 'Montserrat', sans-serif);
-  font-weight: 500;
-  font-size: clamp(20px, 2.4vw, 28px);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
 
 /* ---------- Páginas internas ---------- */
-body.y2k .about-hero h1,
-body.y2k .about-axes h3 {
-  font-family: var(--display, 'Montserrat', sans-serif);
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-body.y2k .about-contact-mail { font-family: var(--mono, 'Montserrat', sans-serif); }
-body.y2k .about-footer p { font-family: var(--mono, 'Montserrat', sans-serif); }
 
 /* ---------- Página de producto ---------- */
-body.y2k .post-content h1 {
-  font-family: var(--display, 'Montserrat', sans-serif);
-  font-weight: 700;
-  font-size: clamp(24px, 3.4vw, 40px);
-  letter-spacing: -0.3px;
-  text-transform: uppercase;
-}
-body.y2k .post-meta,
-body.y2k .tag,
 body.y2k .lightbox-counter,
 body.y2k .lightbox-btn { font-family: var(--mono, 'Montserrat', sans-serif); }
-body.y2k .post-meta { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
-body.y2k .tag { font-size: 12px; }
-body.y2k .post-image img#main-image:hover { box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.1); }
 
 /* ---------- Tarjetas de la galería ---------- */
-body.y2k .gallery-item .hud { margin: 14px 0 6px; padding: 0 2px; }
 body.y2k .gallery-item:hover {
   box-shadow: 0 0 0 1px rgba(185, 167, 255, 0.6), 0 12px 32px rgba(126, 232, 255, 0.08);
 }
@@ -300,7 +259,6 @@ body.y2k .n-hero__reticula circle { animation: none !important; }
 @media (max-width: 900px) {
   .y2k-hero { grid-template-columns: 1fr; padding: 32px 16px 12px; min-height: 0; gap: 8px; }
   .y2k-hero__vis { max-height: 380px; }
-  .y2k-seccion { padding: 40px 16px 0; }
 }
 @media (max-width: 768px) {
   body.y2k .logo { font-size: 17px; }

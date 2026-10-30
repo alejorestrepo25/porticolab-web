@@ -28,7 +28,7 @@ body.y2k :where(.frente__txt h3,.gallery-item h3,.srv-card h2,.srv-card h3,.paso
 body.y2k :where(.frente__txt p,.gallery-item p,.srv-card p,.paso-card p,.pieza p,.mat-panel p){color:var(--pl-muted)!important}
 body.y2k .frente:hover,body.y2k .gallery-item:hover,body.y2k .srv-card:hover{border-color:#8173a0!important;transform:translateY(-2px)}
 body.y2k .frente__cta,body.y2k .ver-todo,body.y2k .n-hero__link{color:var(--pl-ink)!important;font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:.045em!important}
-body.y2k .gallery-item .post-tags span,body.y2k .tags .tag{color:var(--pl-muted)!important;background:var(--pl-surface-2)!important;border:0!important}
+body.y2k .tags .tag{color:var(--pl-muted)!important;background:var(--pl-surface-2)!important;border:0!important}
 body.y2k :where(.y2k-hero__vis img,.srv-hero__visual img,.n-hero__img,.gallery-item img,.pieza img){border-radius:12px}
 body.home .progreso i{background:var(--pl-gradient)!important;box-shadow:none!important}
 body.home .rail a{border-color:var(--pl-muted)!important}
@@ -38,15 +38,11 @@ body.home .hero-explora{color:var(--pl-muted)!important;font-family:'Montserrat'
 body.home .hero-explora b{color:#b59aff!important}
 body.home .destello{display:none!important}
 body.home .marquesina{background:transparent!important;border-color:var(--pl-line)!important}
-body.home .marquesina span{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important;font-size:11px!important;letter-spacing:.12em!important}
-body.home .marquesina span i{color:#b59aff!important}
 body.home .seccion__cab h2,body.home .cierre-home h2{text-transform:none!important;letter-spacing:-.04em!important}
-body.home .seccion__cab p,body.home .frente__txt p,body.home .paso p,body.home .cierre-home p{color:var(--pl-muted)!important}
+body.home .seccion__cab p,body.home .frente__txt p,body.home .cierre-home p{color:var(--pl-muted)!important}
 body.home .frente{background:var(--pl-surface)!important}
 body.home .frente__img{background:var(--pl-surface-2)!important}
 body.home .proceso::before{background:var(--pl-line)!important;opacity:1!important}
-body.home .paso::before{background:var(--pl-surface-2)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line);box-shadow:0 0 0 6px var(--pl-bg)!important}
-body.home .paso small{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
 body.home .mat-lista button{background:var(--pl-surface)!important;color:var(--pl-ink)!important;border-color:var(--pl-line)!important;text-transform:none!important}
 body.home .mat-lista button small{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
 body.home .mat-lista button[aria-selected="true"]{background:var(--pl-surface-2)!important;border-color:#8173a0!important}
@@ -54,7 +50,7 @@ body.home .pie-home{border-color:var(--pl-line)!important;color:var(--pl-muted)!
 body.home .pie-home a{color:var(--pl-muted)!important}
 body.srvposter .srv-wrap .hero{background:var(--pl-bg)!important}
 body.srvposter .srv-wrap .hero h1{text-transform:none!important;letter-spacing:-.04em!important}
-body.srvposter .srv-wrap .hero p,body.srvposter .seccion-sub,body.srvposter .cotizador p,body.srvposter .faq p{color:var(--pl-muted)!important}
+body.srvposter .srv-wrap .hero p,body.srvposter .cotizador p,body.srvposter .faq p{color:var(--pl-muted)!important}
 body.srvposter .srv-hero__visual{background:var(--pl-surface)!important}
 body.srvposter .srv-hero__visual::before{display:none!important}
 body.srvposter .srv-hero__visual figcaption{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
@@ -71,24 +67,14 @@ body.nosotros .n-hero__reticula{display:none!important}
 body.y2k[data-filter] main,body.y2k[data-filter] .gallery{background:transparent!important}
 body.y2k[data-filter] .gallery-item{background:var(--pl-surface)!important}
 body.y2k[data-filter] .gallery-item h3{color:var(--pl-ink)!important;text-transform:none!important;font-size:clamp(15px,1.2vw,18px)}
-body.y2k[data-filter] .gallery-item .location,body.y2k[data-filter] .post-tags span{color:var(--pl-muted)!important}
-body.y2k .filters button{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
+body.y2k[data-filter] .gallery-item .location{color:var(--pl-muted)!important}
 body.y2k .filters button.active{color:var(--pl-ink)!important;text-decoration-color:#b59aff!important}
 body.y2k main:not(.srv-wrap){color:var(--pl-ink)}
-body.y2k .post-content :where(h1,h2,h3){color:var(--pl-ink)!important;text-transform:none!important;letter-spacing:-.035em!important}
-body.y2k .post-content :where(p,li),body.y2k .post-meta{color:var(--pl-muted)!important}
-body.y2k .post-meta{border-color:var(--pl-line)!important}
-body.y2k .post-image img#main-image{border-radius:var(--pl-radius)!important;box-shadow:none!important}
-body.y2k .about-contact{background:var(--pl-surface)!important;border-color:var(--pl-line)!important}
-body.y2k .about-contact-mail{background:transparent!important;color:var(--pl-ink)!important;border-color:var(--pl-line)!important}
 @media(prefers-reduced-motion:no-preference){body.y2k :where(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){animation:none!important}body.y2k :where(.gallery-item,.frente,.srv-card,.paso-card,.pieza){transition-duration:.32s!important}}
 @media(max-width:768px){.theme-toggle{min-height:40px;padding-inline:10px}body.y2k header .nav{scroll-snap-type:x proximity}}
 @media(prefers-reduced-motion:reduce){body.y2k,.theme-toggle{transition:none}}
 /* Contraste reforzado en el tema claro */
 :root[data-theme="light"]{--pl-muted:#514d56;--pl-line:#77727b}
-:root[data-theme="light"] body.srvposter .srv-entrega{background:#17151b!important;color:#f5f3f8!important;border-color:#77727b!important}
-:root[data-theme="light"] body.srvposter .srv-entrega b{color:#c9b4ff!important}
-:root[data-theme="light"] body.srvposter .srv-entrega p{color:#f0edf4!important}
 :root[data-theme="light"] body.srvposter .srv-card .meta{color:#514d56!important}
 
 /* Segunda pasada: lámina editorial sin marco, menos interfaz y una sola escala para las cinco páginas. */
@@ -126,7 +112,6 @@ body.home.y2k .hero-etapa.is-activa svg{stroke:#b59aff}
 body.home .hero-explora b{color:var(--pl-muted)!important}
 
 /* Piezas completas; las fotos ambientales siguen recortadas. */
-body.y2k .pieza__grafica img{object-fit:contain;padding:10px;background:var(--pl-surface-2)}
 body.y2k .pieza__grafica,body.y2k .pieza__grafica object{background:var(--pl-surface-2)}
 body.y2k .pieza figcaption{border-top-color:var(--pl-line-soft)!important}
 
@@ -134,15 +119,13 @@ body.y2k .pieza figcaption{border-top-color:var(--pl-line-soft)!important}
 body.y2k :where(.frente,.gallery-item,.srv-card,.paso-card,.pieza,.mat-panel,.about-contact,.cotizador),body.srvposter .faq details{border-color:var(--pl-line-soft)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
 body.y2k :is(.frente,.gallery-item,.srv-card,.pieza):hover{border-color:var(--pl-muted)!important;transform:none!important;box-shadow:none!important}
 body.y2k :where(.gallery-item img,.pieza img){border-radius:var(--pl-radius-sm)}
-body.y2k .post-image img#main-image:hover{box-shadow:none!important}
-body.home .paso::before{border-color:var(--pl-line-soft)!important}
 body.home .proceso::before{background:var(--pl-line-soft)!important}
 
 /* Tema claro: texto y líneas sobre fondo claro; texto claro solo sobre superficies oscuras. */
 :root[data-theme="light"] body.nosotros .n-hero__visual-tag{color:#fff!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual figcaption{color:var(--pl-muted)!important}
 :root[data-theme="light"] body.y2k :where(.btn-fantasma,.btn-secundario,.btn){border-color:var(--pl-line)!important;color:var(--pl-ink)!important}
-:root[data-theme="light"] body.home .marquesina span i,:root[data-theme="light"] body.y2k .filters button.active{color:#5b3fd0!important;text-decoration-color:#5b3fd0!important}
+:root[data-theme="light"] body.y2k .filters button.active{color:#5b3fd0!important;text-decoration-color:#5b3fd0!important}
 
 /* Tercera pasada: menos líneas y rótulos, más superficie para las imágenes. */
 body.home .marquesina{border:0!important;background:transparent!important}
@@ -163,10 +146,6 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img,body.home .arch
 @media(min-width:901px) and (min-height:560px){body.home .archivo-poster .gallery-item>a{max-height:46vh;width:100%}}
 @media(max-width:900px){body.home .archivo-poster .gallery-item>a{max-height:30svh;width:100%}}
 body.y2k .gallery-item h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-bottom:0!important;margin-bottom:8px}
-body.y2k .gallery-item .post-tags{gap:0!important;margin-top:auto}
-body.y2k .gallery-item .post-tags:empty{display:none}
-body.y2k .gallery-item .post-tags span{background:none!important;padding:0!important;border-radius:0;font-size:12px;letter-spacing:.03em;color:var(--pl-muted)!important}
-body.y2k .gallery-item .post-tags span+span::before{content:"·";margin:0 .5em}
 /* Nosotros: bajadas de sección en un solo renglón cuando cabe */
 body.nosotros .seccion__cab{max-width:none}
 body.nosotros .seccion__cab p{max-width:none}
@@ -187,7 +166,6 @@ body.y2k .srv-hero__visual figcaption{display:none}
 body.y2k :is(.frente__txt p,.paso p,.srv-body .promesa,.srv-body li,.srv-entrega p,.seccion-sub,.seccion__cab p,.pieza figcaption b){font-size:max(15px,1em)}
 body.y2k .faq summary{font-size:16px!important}
 body.y2k .faq details p{font-size:15px!important}
-body.y2k .cierre p{font-size:16px!important}
 body.nosotros .n-pilar p{font-size:15px;max-width:none}
 body.nosotros .n-pilar > span,body.y2k .srv-body .num,body.nosotros .pieza figcaption span{font-size:12px!important}
 body.y2k :is(.btn-cromo,.btn-fantasma,.btn,.ver-todo,.hero-explora,.n-hero__link){font-size:12px!important}
@@ -206,10 +184,6 @@ body.y2k .gallery>div[style] a{color:var(--pl-ink)!important;text-decoration:und
 :root[data-theme="light"] body.nosotros .pieza figcaption span{color:var(--pl-muted)!important}
 :root[data-theme="light"] body.nosotros .ejes span{color:var(--pl-ink)!important}
 :root[data-theme="light"] body.nosotros .ejes i{color:#5b3fd0!important}
-:root[data-theme="light"] body.y2k .cierre{background:var(--pl-surface)!important;border-color:var(--pl-line)!important}
-:root[data-theme="light"] body.y2k .cierre h2{color:var(--pl-ink)!important}
-:root[data-theme="light"] body.y2k .cierre p{color:var(--pl-muted)!important}
-:root[data-theme="light"] body.y2k .cierre .btn{color:var(--pl-ink)!important;border-color:var(--pl-ink)!important;background:transparent!important}
 body.srvposter .kicker{display:none!important}
 
 /* Portada: la foto llena la pantalla */
@@ -239,14 +213,10 @@ body.home .archivo-poster>.seccion{padding-block:0 28px!important}
 body.home .seccion__cab{margin-bottom:clamp(28px,4vh,48px)!important}
 body.home .ver-todo-wrap{margin-top:clamp(32px,5vh,56px)!important}
 body.home .cierre-home{padding-block:clamp(80px,12vh,144px) 40px!important}
-body.home .cierre-home>p{margin-block:18px 32px!important}
 @media(min-width:901px){
  body.home .proceso{gap:clamp(28px,3vw,48px)!important}
- body.home .paso{padding-top:76px!important}
- body.home .paso h3{margin-bottom:14px!important}
- body.home .paso p{max-width:34ch;line-height:1.75!important}
 }
-@media(max-width:900px){body.home .proceso{gap:36px!important}body.home .paso h3{margin-bottom:10px!important}}
+@media(max-width:900px){body.home .proceso{gap:36px!important}}
 body.srvposter .srv-wrap>section[data-pantalla]:not(.hero){padding-block:clamp(44px,6.5vh,76px)!important}
 body.nosotros section[data-pantalla]:not(.n-hero){padding-block:clamp(44px,6.5vh,76px)!important}
 /* Una pantalla completa por sección en todo el sitio; el contenido va centrado para que no quede un hueco abajo */
@@ -288,10 +258,6 @@ body.srvposter .srv-hero__visual{background:#08080b!important}
 :root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img svg g[font-family] > text:first-of-type{fill:#59449e!important}
 :root[data-theme="light"] body.srvposter .srv-card .srv-img svg text:not(:first-of-type){fill:#45434b!important}
-:root[data-theme="light"] body.srvposter .srv-entrega{background:#d8d6dc!important;color:#27252c!important;border-color:#bebbc4!important}
-:root[data-theme="light"] body.srvposter .srv-entrega b{color:#59449e!important}
-:root[data-theme="light"] body.srvposter .srv-entrega p{color:#302e35!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img svg path[stroke-dasharray]{stroke:#59449e!important;stroke-width:2!important}
 /* Contacto: el bloque queda centrado en la pantalla y el pie abajo */
 body.home .cierre-home{position:relative!important;justify-content:center!important;padding-bottom:72px!important}
 body.home .cierre-home .pie-home{position:absolute!important;left:0;right:0;bottom:24px;margin:0 auto!important}
@@ -309,10 +275,7 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a::before{content:"
 body.home.y2k .hero-secuencia{display:none!important}
 body.home.y2k .y2k-hero__vis{grid-template-rows:minmax(0,1fr)!important}
 /* Ficha de proyecto: la imagen principal cabe completa en la pantalla */
-body.y2k .post-image img#main-image{width:auto!important;max-width:100%!important;max-height:calc(100svh - var(--hh,66px) - 120px)!important;height:auto;object-fit:contain;display:block;margin-inline:auto}
-@media(max-width:900px){body.y2k .post-image img#main-image{max-height:70svh!important}}
 /* Portadas: la marca lleva el código de proyecto de las carpetas del estudio */
-body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not([data-codigo=""])::before{content:"PORTICO_LAB  ·  " attr(data-codigo);width:89%;white-space:pre}
 /* Mascota: misma esquina en todas las páginas, sin moverse con la portada */
 html body #mascota-wrapper{bottom:24px!important;right:24px!important;top:auto!important;left:auto!important}
 @media(max-width:768px){html body #mascota-wrapper{bottom:14px!important;right:14px!important}}
@@ -370,25 +333,6 @@ body.nosotros .n-collage img{min-width:0;min-height:0}
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item img{filter:url(#sin-reticula)}
 
 /* Servicios — cierre: mismo peso visual que el cierre del Inicio, sin recuadro, con accesos directos a cada servicio */
-body.srvposter .cierre{background:transparent!important;border:0!important;box-shadow:none!important;text-align:center;padding-inline:0!important}
-body.srvposter .cierre h2{font-size:clamp(40px,5.6vw,92px)!important;line-height:1.02!important;letter-spacing:-.045em!important;color:var(--pl-ink)!important;text-wrap:balance}
-body.srvposter .cierre h2 em{font-style:normal;background:var(--pl-text-gradient)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
-body.srvposter .cierre>p{margin:20px auto 44px!important;max-width:46ch;font-size:clamp(16px,1.2vw,19px)!important;color:var(--pl-muted)!important}
-body.srvposter .cierre-servicios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:min(980px,100%);margin:0 auto}
-body.srvposter .cierre-servicio{display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding:28px 30px;text-align:left;cursor:pointer;font:inherit;background:var(--pl-surface)!important;color:var(--pl-ink);border:1px solid var(--pl-line);border-radius:var(--pl-radius);transition:border-color .25s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
-body.srvposter .cierre-servicio b{font-size:clamp(20px,1.6vw,26px);font-weight:700;letter-spacing:-.025em;line-height:1.15}
-body.srvposter .cierre-servicio span{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pl-muted);transition:color .25s ease}
-body.srvposter .cierre-servicio:hover{border-color:#8b6cff;transform:translateY(-2px)}
-body.srvposter .cierre-servicio:hover span{color:var(--pl-ink)}
-body.srvposter .cierre-servicio:focus-visible{outline:2px solid #8b6cff;outline-offset:3px}
-body.srvposter .cierre-contacto{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
-body.srvposter .cierre-contacto .btn{min-height:48px;display:inline-flex;align-items:center;padding:0 24px}
-:root[data-theme="light"] body.srvposter .cierre-contacto .btn.btn-primario{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
-@media(max-width:700px){body.srvposter .cierre-servicios{grid-template-columns:1fr}body.srvposter .cierre-servicio{gap:14px;padding:20px 22px}}
-@media(prefers-reduced-motion:reduce){body.srvposter .cierre-servicio{transition:none}body.srvposter .cierre-servicio:hover{transform:none}}
-:root body.srvposter .cierre,:root[data-theme="light"] body.y2k.srvposter .cierre{background:transparent!important;border-color:transparent!important}
-:root body.srvposter .cierre-contacto .btn.btn-primario{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
-:root[data-theme="light"] body.y2k.srvposter .cierre .cierre-servicio{background:var(--pl-surface)!important}
 /* Nosotros: "Conoce nuestro enfoque" como botón con flecha en círculo degradado */
 body.nosotros .n-hero__link{display:inline-flex!important;align-items:center;gap:16px;min-height:52px;padding:6px 6px 6px 24px!important;border:1px solid var(--pl-line);border-radius:999px;color:var(--pl-ink)!important;font-size:12px!important;font-weight:600!important;letter-spacing:.09em!important;text-transform:uppercase;text-decoration:none!important;transition:border-color .25s ease,background-color .25s ease}
 body.nosotros .n-hero__link::after{display:none!important}
@@ -458,23 +402,14 @@ body.y2k .code{color:var(--pl-muted)!important}
  body.srvposter .faq summary{font-size:15px!important}
  body.srvposter :is(.oferta .nota,.acepto){font-size:13px!important;line-height:1.55!important}
  /* Galerías: etiqueta superior legible en dos columnas */
- body.y2k:is(.home,[data-filter="laboratorio"]) .gallery-item>a[data-codigo]:not([data-codigo=""])::before{font-size:7px!important;letter-spacing:.04em!important}
 }
 
 /* Inicio · Para quién: tres perfiles de cliente con su problema y lo que reciben */
-body.home .perfiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%}
 body.home .perfil{display:flex;flex-direction:column;gap:12px;padding:28px 26px 26px;background:var(--pl-surface);border:1px solid var(--pl-line-soft);border-radius:var(--pl-radius);color:var(--pl-ink);text-decoration:none;transition:border-color .25s ease}
 body.home .perfil:hover,body.home .perfil:focus-visible{border-color:var(--pl-muted)}
-body.home .perfil__quien{font:600 11px/1.3 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
-body.home .perfil__reto{font:700 clamp(18px,1.5vw,22px)/1.25 'Montserrat',system-ui,sans-serif;letter-spacing:-.02em;color:var(--pl-ink)}
-body.home .perfil__res{font-size:15px;line-height:1.6;color:var(--pl-muted);flex:1}
-body.home .perfil__cta{margin-top:6px;font:700 12px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.045em;text-transform:uppercase;color:var(--pl-ink)}
-body.home .perfil__cta::after{content:' →';display:inline-block;transition:transform .25s}
 body.home .perfil:hover .perfil__cta::after{transform:translateX(6px)}
-@media(prefers-reduced-motion:reduce){body.home .perfil__cta::after{transition:none}}
-@media(max-width:900px){body.home .perfiles{grid-template-columns:1fr;gap:12px}body.home .perfil{padding:20px 20px 20px;gap:8px}body.home .perfil__reto{font-size:18px}body.home .perfil__res{font-size:14px}}
-@media(max-width:768px){html:root body.home #para-quien{padding-top:52px!important;padding-bottom:52px!important}}
-@media(min-width:901px){body.home .perfiles{gap:22px}body.home .perfil{padding:clamp(28px,2.6vw,44px);min-height:min(46vh,440px);gap:18px}body.home .perfil__quien{font-size:12px}body.home .perfil__reto{font-size:clamp(21px,1.9vw,30px);line-height:1.2}body.home .perfil__res{font-size:clamp(15px,1.15vw,18px)}body.home .perfil__cta{font-size:13px}}
+@media(max-width:900px){body.home .perfil{padding:20px 20px 20px;gap:8px}}
+@media(min-width:901px){body.home .perfil{padding:clamp(28px,2.6vw,44px);min-height:min(46vh,440px);gap:18px}}
 
 /* Flechas "siguiente sección": invitan a seguir explorando */
 body.y2k .siguiente{display:flex;flex-direction:column;align-items:center;gap:8px;width:max-content;max-width:100%;margin:clamp(22px,3vh,36px) auto 0;color:var(--pl-muted);text-decoration:none;font:600 10.5px/1.2 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:color .2s ease}
@@ -483,7 +418,7 @@ body.y2k .siguiente svg{width:17px;height:17px;fill:none;stroke:currentColor;str
 body.y2k .siguiente:hover,body.y2k .siguiente:focus-visible{color:var(--pl-ink)}
 @keyframes pl-siguiente{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media(prefers-reduced-motion:no-preference){body.y2k .siguiente i{animation:pl-siguiente 2.2s ease-in-out infinite}}
-body.y2k .srv-wrap .hero>.siguiente,body.y2k .n-hero>.siguiente{grid-column:1/-1}
+body.y2k .srv-wrap .hero>.siguiente{grid-column:1/-1}
 body.home .siguiente--hero{display:none!important}
 body.home .archivo-poster>.siguiente{margin-top:18px}
 
@@ -517,11 +452,7 @@ body.home .archivo-poster>.siguiente{margin-top:18px}
  body.srvposter .srv-body .btn{margin-top:12px!important}
  /* Perfiles y pasos */
  body.home .perfil{padding:16px!important;gap:6px!important}
- body.home .perfil__reto{font-size:16px!important}
- body.home .perfil__res{font-size:13.5px!important}
- body.home .paso h3{font-size:16px!important}
- body.home .paso p{font-size:13.5px!important}
- html:root body.home :is(.seccion,#proceso,.cierre-home),html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),html:root body.nosotros section[data-pantalla]:not(.n-hero),html:root body.home #para-quien{padding-top:40px!important;padding-bottom:40px!important}
+ html:root body.home :is(.seccion,#proceso,.cierre-home),html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),html:root body.nosotros section[data-pantalla]:not(.n-hero){padding-top:40px!important;padding-bottom:40px!important}
 }
 
 /* Galerías · etiquetas estilo catálogo: foto sobre blanco, línea fina y tres datos simples */
@@ -533,20 +464,16 @@ body.y2k .gallery .cat{border-top:1.5px solid var(--pl-ink);margin-top:12px;padd
 body.y2k .gallery .cat h3{margin:0!important;padding:0!important;font:400 15px/1.3 'Montserrat',system-ui,sans-serif!important;letter-spacing:-.01em!important;color:var(--pl-muted)!important;display:block!important;-webkit-line-clamp:unset!important}
 body.y2k .gallery .cat h3 b{font-weight:700;color:var(--pl-ink)}
 body.y2k .gallery .cat h3 span{font-style:italic}
-body.y2k .gallery .cat :is(.cat__linea,.cat__cod){display:block!important}
-body.y2k .gallery .cat__linea{margin:0;font-size:13.5px;line-height:1.4;color:var(--pl-ink)!important;opacity:.82}
 body.y2k .gallery .cat__cod{margin:0;font:500 11px/1.4 ui-monospace,'SFMono-Regular',Menlo,monospace;letter-spacing:.06em;color:var(--pl-muted)!important}
 body.y2k .gallery .gallery-item:hover .cat h3 b{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-@media(max-width:768px){body.y2k .gallery .cat{margin-top:8px;padding-top:7px}body.y2k .gallery .cat h3{font-size:13.5px!important}body.y2k .gallery .cat__linea{font-size:12px}body.y2k .gallery .cat__cod{font-size:10px}}
+@media(max-width:768px){body.y2k .gallery .cat{margin-top:8px;padding-top:7px}body.y2k .gallery .cat h3{font-size:13.5px!important}body.y2k .gallery .cat__cod{font-size:10px}}
 
 /* Lenguaje de máquina de escribir: fondo blanco, mayúsculas espaciadas y frase directa al cliente */
 :root[data-theme="light"]{--pl-bg:#fff;--pl-surface:#f7f6f4;--pl-surface-2:#efeeeb}
-body.y2k .nota-maquina{font:700 11.5px/1.7 var(--pl-tecnica);letter-spacing:.24em;text-transform:uppercase;color:var(--pl-ink);margin:0 0 18px;max-width:40ch}
 body.y2k :is(.siguiente span,.perfil__quien,.ver-todo,.kicker){font-family:var(--pl-tecnica)!important;letter-spacing:.16em!important}
-body.y2k .perfil__quien{background:none!important;-webkit-text-fill-color:var(--pl-muted)!important;color:var(--pl-muted)!important}
 body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 var(--pl-tecnica)!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
 body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;color:#141316!important;-webkit-text-fill-color:#141316!important;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-@media(max-width:768px){body.y2k .nota-maquina{font-size:10px;letter-spacing:.16em;margin-bottom:12px}body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
+@media(max-width:768px){body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
 /* Servicios: ilustración BIM en versión clara u oscura según el tema */
 body.srvposter .srv-hero__visual .bim-claro{display:none!important}
 :root[data-theme="light"] body.srvposter .srv-hero__visual{background:#fff!important}
@@ -571,13 +498,6 @@ body.y2k :is(a,button):is(:hover,:focus-visible) .flecha-accion{transform:transl
 body.home :is(.frente,.perfil):hover :is(.frente__cta,.perfil__cta)::after{transform:translateX(4px)!important}
 @media(prefers-reduced-motion:reduce){body.y2k .flecha-accion{transition:none}}
 /* Tarjetas en tres pasos: rótulo técnico + mensaje limpio */
-body.y2k .pasos3{margin:4px 0 0;display:flex;flex-direction:column;border-top:1px solid var(--pl-line-soft)}
-body.y2k .pasos3>div{display:grid;grid-template-columns:minmax(84px,max-content) 1fr;gap:4px 14px;padding:10px 0;border-bottom:1px solid var(--pl-line-soft)}
-body.y2k .pasos3 dt{font:700 10.5px/1.5 var(--pl-tecnica);letter-spacing:.16em;text-transform:uppercase;color:var(--pl-muted);padding-top:2px}
-body.y2k .pasos3 dd{margin:0;font:500 14px/1.45 'Montserrat',system-ui,sans-serif;color:var(--pl-ink)}
-body.y2k .pasos3>div:last-child dd{font-weight:700}
-body.y2k .pasos3>div:last-child dt{background:var(--pl-text-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
-@media(max-width:768px){body.y2k .pasos3>div{grid-template-columns:1fr;gap:2px;padding:8px 0}body.y2k .pasos3 dd{font-size:13.5px}}
 /* Resaltado en degradado también en la bajada del inicio */
 body.y2k :is(.y2k-hero,.srv-wrap .hero) p mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316;-webkit-text-fill-color:#141316;padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* Servicios: la ilustración BIM gana espacio (encuadre más alto y columna más ancha) */
@@ -662,9 +582,7 @@ body.y2k .frente__img,
 body.srvposter .srv-card .srv-img,
 body.nosotros .n-collage img,
 body.nosotros .n-hero__visual,
-body.y2k .pieza img,
 body.y2k .pieza__grafica,
-body.ficha-proyecto .poster__grid,
 body.y2k #lightbox-img{border-radius:var(--pl-radio-img)!important;overflow:hidden}
 body.y2k .frente__img img,body.srvposter .srv-card .srv-img svg,body.y2k .gallery .gallery-item>a img{border-radius:0!important}
 body.nosotros .n-hero__visual{border-radius:0!important;overflow:visible!important}
@@ -769,3 +687,21 @@ html:root body.y2k .cierre-combo .combo .combo__kicker{font:700 11px/1 var(--pl-
 @media(max-width:900px){html:root body.y2k .cierre-combo .combo .combo__kicker{font-size:10px!important;margin-bottom:16px!important;padding-bottom:12px!important}}
 html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform:translateY(-50%)!important;line-height:1!important}
 @media(max-width:900px){html:root body.y2k .cierre-combo .faq summary{font-size:14px!important;padding:13px 40px 13px 16px!important}html:root body.y2k .cierre-combo .combo__cta h2.guerrilla-h{font-size:14px!important;letter-spacing:.14em!important;line-height:1.75!important}}
+
+/* ===== Escala tipográfica única del sitio =====
+   Etiqueta 11 · Botón 11 · Texto chico 15 · Texto 16 · Entrada 18 · Tarjeta 20 · Sección 54 · Portada 56 (a 1440 px) */
+@media(min-width:901px){
+ html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(40px,3.9vw,64px)!important;line-height:1.02!important}
+ html:root body.y2k :is(.seccion__cab h2,h2.seccion,section h2):not(.guerrilla-h){font-size:clamp(32px,3.75vw,60px)!important;line-height:1.05!important}
+ html:root body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p){font-size:18px!important;line-height:1.55!important}
+ html:root body.y2k :is(.frente__txt h3,.srv-body h3){font-size:20px!important;line-height:1.2!important}
+ html:root body.y2k .paso-card h3{font-size:18px!important;line-height:1.25!important}
+ html:root body.y2k :is(.frente__promesa,.srv-body .promesa){font-size:16px!important;line-height:1.55!important}
+ html:root body.y2k :is(.frentes--srv .incluye li,.srv-body .incluye li,.paso-card p,.faq summary,.faq details p){font-size:15px!important}
+ html:root body.y2k :is(.btn,.btn-cromo,.btn-fantasma,.btn-primario,.btn-secundario){font-size:11px!important;letter-spacing:.1em!important}
+ html:root body.y2k :is(.siguiente span,.ver-todo,.cat__cod,.frente__num,.srv-body .num,.paso-card .n,.combo__kicker,.hud){font-size:11px!important}
+}
+@media(min-width:901px){
+ html:root body.y2k .cierre-combo .cierre-acciones :is(.btn-cromo,.btn-fantasma),html:root body.srvposter .srv-wrap .hero .btn,html:root body.home .frente__cta{font-size:11px!important;letter-spacing:.1em!important}
+ html:root body.nosotros .n-pilar h3,html:root body.nosotros section h3{font-size:18px!important}
+}

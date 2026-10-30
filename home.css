@@ -40,7 +40,6 @@ body.home .marquesina { overflow: hidden; border-block: 1px solid #1c1c1c; backg
 body.home .marquesina__pista { display: flex; width: max-content; animation: hm-marquesina 56s linear infinite; }
 body.home .marquesina:hover .marquesina__pista { animation-play-state: paused; }
 body.home .marquesina__grupo { display: flex; align-items: center; gap: clamp(20px, 2.2vw, 36px); padding-right: clamp(20px, 2.2vw, 36px); }
-body.home .marquesina__grupo span { font: 700 13px/1 var(--mono); letter-spacing: 4px; text-transform: uppercase; color: #8a8a85; white-space: nowrap; }
 body.home .marquesina__grupo i { flex: 0 0 auto; font-style: normal; color: #b9a7ff; line-height: 1; }
 @keyframes hm-marquesina { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { body.home .marquesina__pista { animation: none; } }
@@ -75,11 +74,6 @@ body.home .ver-todo-wrap { max-width: 1240px; margin: 0 auto; }
 /* Proceso */
 body.home .proceso { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative; counter-reset: paso; }
 body.home .proceso::before { content: ''; position: absolute; left: 0; right: 0; top: 22px; height: 2px; background: linear-gradient(90deg, #e8e8ee, #b9a7ff, #7ee8ff); opacity: .35; }
-body.home .paso { position: relative; padding-top: 52px; counter-increment: paso; }
-body.home .paso::before { content: counter(paso, decimal-leading-zero); position: absolute; top: 0; left: 0; width: 46px; height: 46px; display: grid; place-items: center; font: 700 13px/1 var(--mono); color: #000; background: var(--cromo); border-radius: 50%; box-shadow: 0 0 0 6px #000; }
-body.home .paso h3 { font: 700 17px/1.2 var(--display); text-transform: uppercase; margin-bottom: 10px; }
-body.home .paso p { color: #a9a9a4; font-size: 14px; line-height: 1.7; }
-body.home .paso small { display: block; margin-top: 12px; font: 400 11px/1.5 var(--mono); letter-spacing: 1px; color: #7ee8ff; text-transform: uppercase; }
 
 /* Materiales */
 body.home .materiales { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: stretch; }
@@ -93,12 +87,6 @@ body.home .mat-panel { position: relative; border-radius: 18px; border: 1px soli
 body.home .mat-panel .muestra { position: absolute; inset: 0; transition: opacity .5s; opacity: 0; }
 body.home .mat-panel .muestra.on { opacity: 1; }
 body.home .mat-panel .muestra::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.82)); }
-body.home .m-concreto { background: radial-gradient(circle at 25% 20%, #c5c5ce, transparent 55%), linear-gradient(135deg, #a3a3ad, #6a6a74); }
-body.home .m-concreto::before { content: ''; position: absolute; inset: 0; opacity: .5; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='.55'/></svg>"); }
-body.home .m-madera { background: repeating-linear-gradient(92deg, rgba(0,0,0,.0) 0 7px, rgba(60,30,10,.22) 7px 9px, rgba(0,0,0,0) 9px 21px), linear-gradient(110deg, #c89363, #94653a 55%, #b57e4d); }
-body.home .m-plastico { background: repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 2px, rgba(0,0,0,0) 2px 7px), linear-gradient(135deg, #b9a7ff, #5b4fb8 60%, #7ee8ff); }
-body.home .m-carton { background: repeating-linear-gradient(90deg, rgba(110,75,40,.28) 0 3px, rgba(0,0,0,0) 3px 9px), linear-gradient(180deg, #d8b88a, #b8905c); }
-body.home .m-papel { background: radial-gradient(circle at 70% 25%, #fff, transparent 55%), repeating-linear-gradient(45deg, rgba(0,0,0,.05) 0 1px, rgba(0,0,0,0) 1px 6px), linear-gradient(135deg, #f1ece1, #cfc7b6); }
 body.home .mat-panel .mat-info { position: relative; z-index: 1; padding: 28px; }
 body.home .mat-panel h3 { font: 700 26px/1.1 var(--display); text-transform: uppercase; }
 body.home .mat-panel p { margin-top: 10px; color: #e4e4e0; font-size: 15px; line-height: 1.6; max-width: 440px; }
@@ -119,7 +107,6 @@ body.home .pie-home a:hover { color: #fff; }
   body.home .frentes { grid-template-columns: 1fr; }
   body.home .proceso { grid-template-columns: 1fr; gap: 28px; }
   body.home .proceso::before { left: 22px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
-  body.home .paso { padding: 0 0 0 66px; min-height: 46px; }
   body.home .materiales { grid-template-columns: 1fr; }
   body.home .mat-panel { min-height: 260px; }
   body.home main .gallery { padding: 0 20px; }
@@ -157,14 +144,11 @@ body.home .copiar:hover { border-color: #b9a7ff; }
   body.home .archivo-poster .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; column-count: auto; }
   body.home .archivo-poster .gallery-item { margin: 0; background: #070707; }
   body.home .archivo-poster .gallery-item img { height: clamp(180px, 46vh, 520px); object-fit: cover; width: 100%; }
-  body.home .archivo-poster .gallery-item .post-tags { display: flex; padding: 0 14px 14px; gap: 6px; flex-wrap: wrap; }
   body.home .archivo-poster .gallery-item h3 { padding: 12px 14px 14px; font-size: 14px; }
   body.home .archivo-poster .ver-todo-wrap { margin-top: 6px; }
   body.home .archivo-poster #gallery-loading { min-height: 30vh !important; }
 
   /* Proceso, materiales y contacto */
-  body.home .paso h3 { font-size: clamp(16px, 2.8vh, 24px); }
-  body.home .paso p { font-size: clamp(14px, 2.2vh, 17px); }
   body.home .mat-panel { min-height: clamp(260px, 46vh, 520px); }
   body.home .mat-lista button { padding: clamp(10px, 2vh, 18px) 20px; }
   body.home .cierre-home h2 { font-size: clamp(32px, 9vh, 84px); }
@@ -177,7 +161,6 @@ body.home .copiar:hover { border-color: #b9a7ff; }
   body.home .frente__img { height: clamp(130px, 31vh, 380px); }
   body.home .frente__txt { padding: 14px 20px 18px; gap: 6px; }
   body.home .archivo-poster .gallery-item img { height: clamp(150px, 37vh, 440px); }
-  body.home .paso { padding-top: 48px; }
   body.home .mat-panel { min-height: clamp(240px, 44vh, 480px); }
   body.home .mat-lista button { padding: clamp(8px, 1.8vh, 16px) 18px; font-size: clamp(12px, 2vh, 15px); }
 }
@@ -213,7 +196,6 @@ body.home .frente__img img { object-fit: contain; width: 100%; height: 100%; pos
 
 @media (min-width: 901px) and (min-height: 560px) {
   /* Fotos horizontales (no portadas 4:5): llenan el marco */
-  body.home .archivo-poster .gallery-item img.apaisada { object-fit: cover; }
 }
 
 /* Ajuste automático: si una pantalla no cabe, sus bloques se reducen proporcionalmente (variable --k calculada en home.js) */

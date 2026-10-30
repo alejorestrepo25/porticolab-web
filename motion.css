@@ -19,7 +19,6 @@
   body.nosotros .n-hero__txt > :nth-child(2) { animation-delay: 50ms; }
   body.srvposter .hero-txt > :nth-child(3),
   body.nosotros .n-hero__txt > :nth-child(3) { animation-delay: 100ms; }
-  body.srvposter .hero-txt > :nth-child(4),
   body.nosotros .n-hero__txt > :nth-child(4) { animation-delay: 150ms; }
 
   body.srvposter .srv-hero__visual,
