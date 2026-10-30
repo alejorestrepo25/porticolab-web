@@ -628,3 +628,15 @@ html:root body.srvposter .srv-card .srv-img svg .bt>text{display:inline!importan
 }
 /* Celular: la ilustración se recorta sobre el edificio */
 @media(max-width:900px){html:root body.y2k.srvposter .srv-hero__visual{aspect-ratio:1/1!important;max-height:none!important}body.srvposter .srv-hero__visual img{object-fit:cover!important;object-position:30% center!important}}
+
+/* Inicio · la foto principal llega al borde derecho y se funde con el fondo a la izquierda (igual que Servicios) */
+@media(min-width:901px){
+ body.home{overflow-x:clip}
+ html:root body.home.y2k .y2k-hero{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;overflow:visible!important}
+ body.home .y2k-hero>.y2k-hero__txt{position:relative;z-index:2;max-width:min(470px,33vw)}
+ html:root body.home.y2k .y2k-hero__vis{position:absolute!important;grid-column:auto!important;grid-row:auto!important;justify-self:stretch!important;align-self:stretch!important;top:0;bottom:0;left:calc(min(470px,33vw) + 32px);right:calc(50% - 50vw);width:auto!important;height:auto!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;z-index:0;overflow:hidden}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;margin:0!important;background:transparent!important;box-shadow:none!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto::before,html:root body.home.y2k .y2k-hero__vis .hero-foto::after,html:root body.home.y2k .y2k-hero__vis .destello{display:none!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
+ body.home .y2k-hero__vis .hud--tl{left:calc(12% + 14px)!important}
+}
