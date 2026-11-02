@@ -216,7 +216,7 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
     const cargando = document.getElementById('gallery-loading');
     let proyectos;
     try {
-      proyectos = await S.consultar('*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset)] | order(_createdAt desc)[0...24]{ _id, title, tags, portada, "features": features[0...1] }');
+      proyectos = await S.consultar('*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset) && !(portada.asset->originalFilename match "vacia_*")] | order(_createdAt desc)[0...24]{ _id, title, tags, portada, "features": features[0...1] }');
     } catch (e) {
       cargando.style.display = 'none';
       S.aviso(gallery, 'No pudimos cargar los proyectos.', true);
