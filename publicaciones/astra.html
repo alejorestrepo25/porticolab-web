@@ -8,11 +8,11 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Astra | Pórtico Lab</title>
-  <meta name="description" content="Estación de servicio y carga concebida como un sistema de marca. Una cubierta liviana con perímetro de luz roja descansa sobre columnas en V que liberan el…">
+  <meta name="description" content="Astra es un sistema arquitectónico modular e integral para estaciones de servicio y electromovilidad, diseñado con una identidad visual moderna y un fuerte…">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Pórtico Lab">
   <meta property="og:title" content="Astra | Pórtico Lab">
-  <meta property="og:description" content="Estación de servicio y carga concebida como un sistema de marca. Una cubierta liviana con perímetro de luz roja descansa sobre columnas en V que liberan el…">
+  <meta property="og:description" content="Astra es un sistema arquitectónico modular e integral para estaciones de servicio y electromovilidad, diseñado con una identidad visual moderna y un fuerte…">
   <meta property="og:image" content="https://cdn.sanity.io/images/32sykluw/production/ddda72742bc2ac0a8bf57f8519956eb858bdd5d3-1500x1049.jpg?w=1200&amp;h=630&amp;fit=fill&amp;bg=ffffff&amp;fm=jpg&amp;q=85">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -232,6 +232,7 @@ main.ficha{--g:var(--pl-guia,clamp(16px,3.9vw,56px));display:grid;grid-template-
 .ficha__rasgos{list-style:none;margin:24px 0 0;padding:0;border-top:1.5px solid #141316;counter-reset:r}
 .ficha__rasgos:empty{display:none}
 .ficha__rasgos li{counter-increment:r;display:grid;grid-template-columns:3.2ch 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #e6e4ea;font-size:15px!important;line-height:1.45;color:#2b2a2e!important}
+.ficha__rasgo-tit{display:block;font-weight:600;color:inherit}
 .ficha__rasgos li::before{content:counter(r,decimal-leading-zero);font:700 11px/1.9 var(--pl-tecnica);letter-spacing:.1em;color:#9d7bff}
 .ficha__pie{display:flex;flex-direction:column;gap:20px}
 .ficha__cta{margin-top:32px;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border-radius:999px;background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%);color:#141316!important;text-decoration:none;font:700 11px/1 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase}
@@ -259,7 +260,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=2">
   <link rel="stylesheet" href="../editorial.css?v=74">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Astra","description":"Estación de servicio y carga concebida como un sistema de marca. Una cubierta liviana con perímetro de luz roja descansa sobre columnas en V que liberan el…","image":"https://cdn.sanity.io/images/32sykluw/production/ddda72742bc2ac0a8bf57f8519956eb858bdd5d3-1500x1049.jpg?w=1200&h=630&fit=fill&bg=ffffff&fm=jpg&q=85","url":"https://porticolab.com/publicaciones/astra.html","creator":{"@type":"Organization","name":"Pórtico Lab","url":"https://porticolab.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Astra","description":"Astra es un sistema arquitectónico modular e integral para estaciones de servicio y electromovilidad, diseñado con una identidad visual moderna y un fuerte…","image":"https://cdn.sanity.io/images/32sykluw/production/ddda72742bc2ac0a8bf57f8519956eb858bdd5d3-1500x1049.jpg?w=1200&h=630&fit=fill&bg=ffffff&fm=jpg&q=85","url":"https://porticolab.com/publicaciones/astra.html","creator":{"@type":"Organization","name":"Pórtico Lab","url":"https://porticolab.com"}}</script>
 <script>window.PL_FICHA = {"id":"321974bd-3206-41ba-9d48-7ef0d282fe85"};</script>
 </head>
 
@@ -392,7 +393,14 @@ async function loadPost() {
   const pDesc = document.getElementById('post-desc');
   if (desc) pDesc.textContent = desc; else pDesc.remove();
   const ol = document.getElementById('ficha-rasgos');
-  S.lista(result.features).slice(0, 6).forEach(f => { const li = document.createElement('li'); li.textContent = f; ol.appendChild(li); });
+  S.lista(result.features).slice(0, 6).forEach(f => {
+    const li = document.createElement('li'); const cuerpo = document.createElement('span');
+    // "Etiqueta: texto" → la etiqueta va resaltada
+    const m = /^([^:]{2,28}):\s*(.+)$/.exec(String(f).trim());
+    if (m) { const b = document.createElement('strong'); b.className = 'ficha__rasgo-tit'; b.textContent = m[1]; cuerpo.append(b, ' ' + m[2].charAt(0).toUpperCase() + m[2].slice(1)); }
+    else cuerpo.textContent = f;
+    li.appendChild(cuerpo); ol.appendChild(li);
+  });
 
   // Mosaico proporcional en una sola vista: cada celda conserva la proporción de su imagen
   const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
