@@ -745,14 +745,14 @@ html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform
 /* Laboratorio e Inspiración: dos muros editoriales independientes, con scroll natural. */
 html:root body.y2k[data-filter]:not(.home) main .gallery{
  display:block!important;
- column-count:4;
- column-gap:clamp(12px,1.4vw,20px);
+ column-count:5;
+ column-gap:8px;
  width:100%;
 }
 html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{
  display:inline-block!important;
  width:100%!important;
- margin:0 0 clamp(14px,1.6vw,22px)!important;
+ margin:0 0 8px!important;
  break-inside:avoid;
  vertical-align:top;
 }
@@ -774,8 +774,7 @@ html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item>a img{
  background:transparent!important;
 }
 @media(max-width:1100px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-count:3}}
-@media(max-width:900px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-count:2;column-gap:10px}}
-@media(max-width:420px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-gap:8px}html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{margin-bottom:12px!important}}
+@media(max-width:900px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-count:2;column-gap:8px}}
 
 /* Fichas de proyecto: cada imagen ocupa una celda del collage y la ficha vive dentro de otra. */
 html:root body.ficha-proyecto main.ficha{
