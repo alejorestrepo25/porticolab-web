@@ -458,9 +458,11 @@ async function loadPost() {
   const escritorio = matchMedia('(min-width: 901px)');
   const fijar = (el, x, y, w, h) => { if (!el) return; el.style.setProperty('--x', x + 'px'); el.style.setProperty('--y', y + 'px'); el.style.setProperty('--w', w + 'px'); el.style.setProperty('--h', typeof h === 'number' ? h + 'px' : h); };
   const cacheTexto = new Map();
+  const ANCHA = 760;                             // desde este ancho la ficha reparte el texto en dos columnas
+  const anchar = w => info.classList.toggle('ficha__info--ancha', w >= ANCHA);
   function altoTexto(w) {                       // alto que necesita la ficha con ese ancho
-    w = Math.round(w);
-    if (!cacheTexto.has(w)) { fijar(info, 0, 0, w, 'auto'); cacheTexto.set(w, info.scrollHeight + 2); }
+    w = Math.round(w); anchar(w);
+    if (!cacheTexto.has(w)) { fijar(info, 0, 0, w, 'auto'); cacheTexto.set(w, info.scrollHeight + 4); }
     return cacheTexto.get(w);
   }
   // Particiones contiguas de las imágenes en 1..3 filas
@@ -505,41 +507,40 @@ async function loadPost() {
       candidatos.push({ piezas, ancho: ancho1, imgs, texto: wT * Math.min(h1, necesita), corte: Math.max(0, necesita - h1), principal: h1 * h1 * aP, minima: a2.length ? h2 : h1, anchoTexto: wT, tipo: 'filas' });
     }
 
-    // Columna: se busca el ancho de la columna derecha para que ficha + imágenes llenen justo la altura
+    // Columna: la principal ocupa exactamente su proporción a toda la altura; la columna derecha toma el resto.
+    // Arriba la ficha (a dos columnas si es ancha) y debajo las imágenes en filas, ampliadas hasta llenar el espacio.
     {
+      const R = Math.round(Math.max(TMIN, Math.min(W * 0.7, W - G - H * aP)));
+      const wP = W - R - G, hP = Math.min(H, wP / aP);
+      const necesita = altoTexto(R);
       const opciones = aC.length ? particiones(aC.length) : [[]];
-      const RMAX = W * 0.7;
       for (const filas of opciones) {
-        const medir = R => {
-          R = Math.round(R / 8) * 8;
-          const alturas = filas.map(([i, k]) => (R - G * (k - i - 1)) / suma(aC.slice(i, k)));
-          const total = alturas.length ? suma(alturas) + G * (alturas.length - 1) : 0;
-          return { R, alturas, total, necesita: altoTexto(R), cabe: altoTexto(R) + total + (total ? G : 0) <= H };
-        };
-        // La principal conserva toda la altura: la columna derecha no puede robarle ancho por debajo de H × proporción
-        let lo = TMIN, hi = Math.max(TMIN, Math.min(RMAX, W - G - H * aP)), m = medir(lo);
-        if (m.cabe) {
-          for (let it = 0; it < 14; it++) { const mid = (lo + hi) / 2, t = medir(mid); if (t.cabe) { lo = mid; m = t; } else hi = mid; }
-        }
-        const { R, alturas, total, necesita } = m;
-        let f = 1, hT = H - total - (total ? G : 0);
-        if (hT < necesita) { f = Math.max(0.3, (H - necesita - G) / (total || 1)); hT = H - total * f - (total ? G : 0); }
-        const wP = W - R - G, hP = Math.min(H, wP / aP), wPr = hP * aP;
-        const piezas = [{ el: escenario, x: 0, y: 0, w: wP, h: H }, { el: info, x: wP + G, y: 0, w: R, h: hT }];
+        const alturas = filas.map(([i, k]) => (R - G * (k - i - 1)) / suma(aC.slice(i, k)));
+        const libre = H - necesita - G - G * Math.max(0, filas.length - 1);
+        const f = alturas.length ? Math.max(0.15, Math.min(1, libre / suma(alturas))) : 1;
+        const total = alturas.length ? suma(alturas) * f + G * (filas.length - 1) : 0;
+        const hT = H - total - (total ? G : 0);
+        const piezas = [{ el: escenario, x: 0, y: (H - hP) / 2, w: wP, h: hP }, { el: info, x: wP + G, y: 0, w: R, h: hT }];
         let y = hT + G, imgs = 0, minima = Infinity;
         filas.forEach(([i, k], r) => {
           const h = alturas[r] * f; let x = wP + G; minima = Math.min(minima, h);
           for (let n = i; n < k; n++) { piezas.push({ el: botones[n], x, y, w: h * aC[n], h }); x += h * aC[n] + G; imgs += h * h * aC[n]; }
           y += h + G;
         });
-        candidatos.push({ piezas, ancho: W, imgs: imgs + hP * wPr, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * wPr, minima, anchoTexto: R, tipo: 'columna' });
+        candidatos.push({ piezas, ancho: W, imgs: imgs + hP * hP * aP, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * hP * aP, minima, anchoTexto: R >= ANCHA ? R / 2 : R, ancho2: R, tipo: 'columna' });
       }
     }
 
     // Puntaje: espacio desperdiciado + texto cortado + imagen principal pequeña
     // Pantallas anchas: siempre la distribución en filas (fila de imágenes abajo), salvo que corte el texto
+    // (solo si llena la pantalla casi tan bien como la mejor columna)
+    const lleno = c => (c.imgs + c.texto) / (W * H);
     let lista = candidatos;
-    if (innerWidth >= 1700) { const filas = candidatos.filter(c => c.tipo === 'filas' && c.corte === 0); if (filas.length) lista = filas; }
+    if (innerWidth >= 1700) {
+      const tope = Math.max(0, ...candidatos.map(lleno));
+      const filas = candidatos.filter(c => c.tipo === 'filas' && c.corte === 0 && lleno(c) >= tope - 0.12);
+      if (filas.length) lista = filas;
+    }
     let mejor = null;
     for (const c of lista) {
       const desperdicio = (W * H - c.imgs - c.texto) / W;
@@ -549,6 +550,7 @@ async function loadPost() {
     }
     const dx = pl + (W - mejor.ancho) / 2;
     for (const p of mejor.piezas) fijar(p.el, dx + p.x, pt + p.y, p.w, p.h);
+    anchar(mejor.piezas.find(p => p.el === info).w);
     main.classList.add('listo');
   }
   window.PL_RECALCULAR = () => { cacheTexto.clear(); maquetar(); };
