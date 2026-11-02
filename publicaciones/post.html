@@ -453,7 +453,7 @@ async function loadPost() {
     const pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
     const W = main.clientWidth - pl - parseFloat(cs.paddingRight);
     const H = main.clientHeight - pt - parseFloat(cs.paddingBottom);
-    const G = 12, TMIN = 320;
+    const G = 8, TMIN = 320, TIDEAL = 440;
     const aP = proporcion(refs[0]);
     const aC = celdas.map(proporcion);
     const suma = arr => arr.reduce((x, y) => x + y, 0);
@@ -476,7 +476,7 @@ async function loadPost() {
       let x2 = 0;
       a2.forEach((a, n) => { piezas.push({ el: botones[j + n], x: x2, y: h1 + G, w: h2 * a, h: h2 }); x2 += h2 * a + G; });
       const imgs = h1 * h1 * suma(a1) + h2 * h2 * suma(a2);
-      candidatos.push({ piezas, ancho: ancho1, imgs, texto: wT * Math.min(h1, necesita), corte: Math.max(0, necesita - h1), principal: h1 * h1 * aP, minima: a2.length ? h2 : h1 });
+      candidatos.push({ piezas, ancho: ancho1, imgs, texto: wT * Math.min(h1, necesita), corte: Math.max(0, necesita - h1), principal: h1 * h1 * aP, minima: a2.length ? h2 : h1, anchoTexto: wT });
     }
 
     // Columna: se busca el ancho de la columna derecha para que ficha + imágenes llenen justo la altura
@@ -506,7 +506,7 @@ async function loadPost() {
           for (let n = i; n < k; n++) { piezas.push({ el: botones[n], x, y, w: h * aC[n], h }); x += h * aC[n] + G; imgs += h * h * aC[n]; }
           y += h + G;
         });
-        candidatos.push({ piezas, ancho: W, imgs: imgs + hP * wPr, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * wPr, minima });
+        candidatos.push({ piezas, ancho: W, imgs: imgs + hP * wPr, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * wPr, minima, anchoTexto: R });
       }
     }
 
@@ -514,7 +514,8 @@ async function loadPost() {
     let mejor = null;
     for (const c of candidatos) {
       const desperdicio = (W * H - c.imgs - c.texto) / W;
-      const puntos = desperdicio + c.corte * 6 + Math.max(0, 0.3 * W * H - c.principal) / W + Math.max(0, 150 - (c.minima ?? Infinity)) * 4;
+      // Texto: el bloque no debe pasar mucho de ~440 px; el ancho extra es mejor para las imágenes
+      const puntos = desperdicio + c.corte * 6 + Math.max(0, 0.3 * W * H - c.principal) / W + Math.max(0, 150 - (c.minima ?? Infinity)) * 4 + Math.max(0, c.anchoTexto - TIDEAL) * 0.5;
       if (!mejor || puntos < mejor.puntos) mejor = { ...c, puntos };
     }
     const dx = pl + (W - mejor.ancho) / 2;
@@ -523,6 +524,7 @@ async function loadPost() {
   }
   window.PL_RECALCULAR = () => { cacheTexto.clear(); maquetar(); };
   maquetar();
+  if (document.fonts) { document.fonts.ready.then(window.PL_RECALCULAR); document.fonts.addEventListener('loadingdone', window.PL_RECALCULAR); }
   addEventListener('resize', window.PL_RECALCULAR);
   escritorio.addEventListener('change', maquetar);
 
