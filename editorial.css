@@ -975,3 +975,6 @@ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__mini:hover{border-c
  html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__miniaturas{display:block!important;grid-column:1/-1!important;columns:2;column-gap:9px}
  html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__mini{position:relative!important;width:100%!important;height:auto!important;aspect-ratio:var(--ar,1)!important;margin:0 0 9px!important;break-inside:avoid;grid-column:auto!important}
 }
+/* Ficha: ninguna imagen se recorta; si la celda no calza exacto, la imagen se ajusta adentro sobre el panel */
+html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__principal,.ficha__mini) img{object-fit:contain!important}
+@media(max-width:900px){html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__escenario{width:100%!important;height:auto!important;grid-row:auto!important;align-self:start!important;justify-self:stretch!important}}
