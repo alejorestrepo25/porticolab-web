@@ -945,14 +945,33 @@ html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1,h2,h1.e404__ti
 :root[data-theme="dark"] body.y2k .gallery .gallery-item>a .cat__cod{background:var(--pl-bg)!important;color:var(--pl-muted)!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__meta,:root[data-theme="dark"] body.home .frentes--srv .meta b{color:#b59aff!important}
 
-/* Ficha de proyecto en una sola vista (escritorio): imagen + miniaturas a la izquierda, ficha técnica a la derecha a toda la altura */
+/* ===== Ficha de proyecto: mosaico proporcional en una sola vista =====
+   Cada celda toma la proporción real de su imagen (sin recortes). El script reparte las imágenes en dos filas
+   para llenar la pantalla; la ficha técnica absorbe el ancho que sobra. */
 @media(min-width:901px){
- html:root body.ficha-proyecto main.ficha{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr)!important;grid-auto-rows:0!important;height:calc(100svh - var(--hh,66px))!important;min-height:520px!important;padding:20px var(--pl-guia,56px)!important;gap:12px!important;overflow:hidden!important;width:auto!important;margin:0!important}
- html:root body.ficha-proyecto .ficha__escenario{grid-column:1/3!important;grid-row:1/3!important;aspect-ratio:auto!important;height:auto!important;width:auto!important}
- html:root body.ficha-proyecto .ficha__miniaturas{display:grid!important;grid-column:1/3!important;grid-row:3!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;gap:12px!important;min-height:0!important;overflow:hidden!important}
- html:root body.ficha-proyecto .ficha__mini{display:block!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;grid-column:auto!important;opacity:.6!important;cursor:pointer!important}
- html:root body.ficha-proyecto .ficha__mini:hover,html:root body.ficha-proyecto .ficha__mini[aria-current="true"]{display:block!important;opacity:1!important;border-color:var(--pl-ink)!important}
- html:root body.ficha-proyecto .ficha__info{grid-column:3/5!important;grid-row:1/4!important;height:auto!important;overflow-y:auto!important;padding:clamp(20px,2.4vw,40px)!important}
- html:root body.ficha-proyecto main.ficha:not(:has(.ficha__mini)) .ficha__escenario{grid-row:1/4!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop{display:block!important;position:relative!important;height:calc(100svh - var(--hh,66px))!important;min-height:540px!important;padding:16px var(--pl-guia,56px)!important;overflow:hidden!important;width:auto!important;margin:0!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__media,.ficha__miniaturas){display:contents!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__escenario,.ficha__info,.ficha__mini){position:absolute!important;left:var(--x,0)!important;top:var(--y,0)!important;width:var(--w,0)!important;height:var(--h,0)!important;margin:0!important;aspect-ratio:auto!important;grid-column:auto!important;grid-row:auto!important;min-height:0!important;transition:none}
+ html:root body.ficha-proyecto main.ficha.ficha--prop:not(.listo) :is(.ficha__escenario,.ficha__info,.ficha__mini){visibility:hidden}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__info{overflow-y:auto!important;padding:clamp(18px,1.6vw,28px)!important;gap:12px!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__info h1{font-size:clamp(26px,2.4vw,40px)!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__desc{font-size:14px!important;margin-top:12px!important;line-height:1.5!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__rasgos{margin-top:12px!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__rasgos li{font-size:13px!important;padding:6px 0!important;line-height:1.4!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__cta{margin-top:14px!important;min-height:42px!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__nav a small{display:none!important}
 }
-@media(min-width:901px){html:root body.ficha-proyecto .ficha__mini img{padding:6px!important}}
+/* Imágenes llenando su celda exacta (la celda ya tiene la proporción de la imagen) */
+html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__principal{padding:0!important}
+html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__principal,.ficha__mini) img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;padding:0!important;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__escenario,.ficha__mini){overflow:hidden!important;padding:0!important;opacity:1!important;cursor:zoom-in!important;display:block!important}
+html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__escenario,.ficha__mini):hover img{transform:scale(1.03)}
+html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__mini:hover{border-color:var(--pl-ink)!important}
+/* "+N" cuando hay más imágenes de las que caben */
+.ficha__mas{position:absolute;inset:0;display:grid;place-items:center;background:rgba(20,19,22,.55);color:#fff;font:700 28px/1 'Montserrat',system-ui,sans-serif;letter-spacing:-.02em;border-radius:inherit}
+/* Celular: principal y luego dos columnas, cada imagen con su proporción */
+@media(max-width:900px){
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__escenario{position:relative!important;aspect-ratio:var(--ar,1)!important;height:auto!important;width:auto!important}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__miniaturas{display:block!important;grid-column:1/-1!important;columns:2;column-gap:9px}
+ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__mini{position:relative!important;width:100%!important;height:auto!important;aspect-ratio:var(--ar,1)!important;margin:0 0 9px!important;break-inside:avoid;grid-column:auto!important}
+}
