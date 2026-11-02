@@ -557,7 +557,7 @@ html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt>
  html:root body.home.y2k .y2k-hero__vis{position:absolute!important;grid-column:auto!important;grid-row:auto!important;justify-self:stretch!important;align-self:stretch!important;top:0;bottom:0;left:calc(min(470px,33vw) + 32px);right:calc(50% - 50vw);width:auto!important;height:auto!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;z-index:0;overflow:hidden}
  html:root body.home.y2k .y2k-hero__vis .hero-foto{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;margin:0!important;background:transparent!important;box-shadow:none!important}
  html:root body.home.y2k .y2k-hero__vis .hero-foto::before,html:root body.home.y2k .y2k-hero__vis .hero-foto::after,html:root body.home.y2k .y2k-hero__vis .destello{display:none!important}
- html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:left 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:112%!important;max-width:none!important;height:100%!important;margin-left:-12%!important;object-fit:cover!important;object-position:left 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
  body.home .y2k-hero__vis .hud--tl{left:calc(12% + 14px)!important}
 }
 
@@ -566,7 +566,7 @@ body.y2k .gallery .gallery-item>a{position:relative!important;display:block;aspe
 body.y2k .gallery .gallery-item>a::before{content:none!important;display:none!important}
 body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{position:absolute!important;left:-19.5%!important;top:-18.2%!important;width:139%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;filter:none!important}
 
-body.y2k .gallery .gallery-item>a .cat__cod{position:absolute;left:12px;bottom:10px;z-index:2;font:500 11px/1 var(--pl-tecnica);letter-spacing:.12em;color:#5f5c66!important;background:#fff;padding:3px 0}
+body.y2k .gallery .gallery-item>a .cat__cod{position:absolute;left:12px;bottom:10px;z-index:2;font:500 11px/1 var(--pl-tecnica);letter-spacing:.12em;color:#5f5c66!important;background:transparent!important;padding:3px 0}
 body.y2k .gallery .cat{border-top:0!important;position:relative;margin-top:0!important;padding-top:12px!important}
 body.y2k .gallery .cat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#9d7bff,#b59aff 55%,#7ee8ff)}
 body.y2k .gallery .cat h3{font-size:15px!important;color:var(--pl-muted)!important}
@@ -946,7 +946,7 @@ html:root body.ficha-proyecto .ficha__info :is(.ficha__codigo,.ficha__meta,.fich
 :root[data-theme="dark"] body.ficha-proyecto .ficha__nav a{color:var(--pl-ink)!important}
 :root[data-theme="dark"] body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-mode:normal!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__contador{background:var(--pl-panel)!important;color:var(--pl-muted)!important}
-:root[data-theme="dark"] body.y2k .gallery .gallery-item>a .cat__cod{background:var(--pl-bg)!important;color:var(--pl-muted)!important}
+:root[data-theme="dark"] body.y2k .gallery .gallery-item>a .cat__cod{background:transparent!important;color:var(--pl-muted)!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__meta,:root[data-theme="dark"] body.home .frentes--srv .meta b{color:#b59aff!important}
 
 /* ===== Ficha de proyecto: mosaico proporcional en una sola vista =====
