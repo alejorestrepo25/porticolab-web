@@ -980,3 +980,7 @@ html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__mini:hover{border-c
 /* Ficha: ninguna imagen se recorta; si la celda no calza exacto, la imagen se ajusta adentro sobre el panel */
 html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__principal,.ficha__mini) img{object-fit:contain!important}
 @media(max-width:900px){html:root body.ficha-proyecto main.ficha.ficha--prop .ficha__escenario{width:100%!important;height:auto!important;grid-row:auto!important;align-self:start!important;justify-self:stretch!important}}
+/* Ficha ancha: descripción a la izquierda y rasgos a la derecha */
+html:root body.ficha-proyecto .ficha__info.ficha__info--ancha>div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(28px,2.6vw,48px);align-content:start}
+html:root body.ficha-proyecto .ficha__info.ficha__info--ancha>div:first-child>*{grid-column:1}
+html:root body.ficha-proyecto .ficha__info.ficha__info--ancha .ficha__rasgos{grid-column:2!important;grid-row:1/span 5;align-self:start;margin-top:0!important}
