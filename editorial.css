@@ -634,8 +634,8 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{posi
 
 /* Tarjetas de servicios (Inicio y Servicios): gris más claro y sin cuadrícula */
 :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-reticula{display:none!important}
-:root[data-theme="light"] :is(body.srvposter .srv-card,body.srvposter .srv-card .srv-body,body.srvposter .srv-card .srv-img,body.home .frentes--srv .frente,body.home .frentes--srv .frente__txt,body.home .frentes--srv .frente__img){background:#f1f0f3!important}
-:root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-fondo{fill:#f1f0f3!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card,body.srvposter .srv-card .srv-body,body.srvposter .srv-card .srv-img,body.home .frentes--srv .frente,body.home .frentes--srv .frente__txt,body.home .frentes--srv .frente__img){background:var(--pl-panel)!important}
+:root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-fondo{fill:var(--pl-panel)!important}
 :root[data-theme="light"] :is(body.srvposter .srv-card,body.home .frentes--srv .frente){border-color:#dcdae0!important}
 :root[data-theme="light"] body.home .frentes--srv .incluye li,:root[data-theme="light"] body.srvposter .srv-body .incluye li{border-top-color:#dcdae0!important}
 
@@ -883,3 +883,76 @@ html:root body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-
 @media(min-width:901px){html:root body.srvposter .srv-card .srv-img{flex:0 0 46%!important;width:46%!important;max-width:none!important}}
 /* Laboratorio e Inspiración: las tarjetas como bloque para que el muro reparta en todas sus columnas (con inline-block llenaba solo dos) */
 html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{display:block!important;-webkit-column-break-inside:avoid;page-break-inside:avoid}
+
+/* ===================================================================
+   SISTEMA VISUAL ÚNICO — todas las páginas hablan el mismo idioma
+   Panel #f2f1f4 · borde #dcdae0 · radio 14 px (paneles) / 8 px (imágenes)
+   Números y rótulos en Technic · enlaces en Technic subrayados en violeta
+   Botones de 44 px, Montserrat 700 · títulos con degradado en la palabra clave
+   =================================================================== */
+:root{--pl-panel:#f2f1f4;--pl-panel-borde:#dcdae0;--pl-radio-panel:14px}
+:root[data-theme="dark"]{--pl-panel:#141318;--pl-panel-borde:#2a2830}
+
+/* Paneles: un solo gris, un solo borde, un solo radio */
+html:root body.y2k :is(.frente,.srv-card,.paso-card,.cierre-combo .faq details,.pieza,.ficha__info,.ficha__escenario,.ficha__mini,.cotizador){background:var(--pl-panel)!important;border:1px solid var(--pl-panel-borde)!important;border-radius:var(--pl-radio-panel)!important}
+html:root body.y2k :is(.frente__txt,.srv-card .srv-body,.srv-card .srv-img,.frente__img,.pieza figcaption){background:var(--pl-panel)!important}
+html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) .srv-ilustracion-fondo{fill:var(--pl-panel)!important}
+/* Imágenes de galería sobre el mismo blanco del Inicio (sin caja gris detrás de los pósters) */
+html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item>a{background:transparent!important}
+
+/* Títulos: mismo espaciado en todas las páginas; el de la ficha usa la tinta del sitio */
+html:root body.y2k :is(h2.seccion,.seccion__cab h2){letter-spacing:-.04em!important}
+html:root body.ficha-proyecto .ficha__info h1{color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important}
+
+/* Números y códigos: Technic 11 px gris */
+html:root body.y2k :is(.srv-body .num,.paso-card .n,.frente__num,.cat__cod,.n-pilar>span,.pieza figcaption span){font-family:var(--pl-tecnica)!important;font-size:11px!important;font-weight:500!important;letter-spacing:.12em!important;text-transform:uppercase!important;color:var(--pl-muted)!important}
+/* Rótulos de sección: Technic 11 px negrita espaciada */
+html:root body.y2k :is(.combo__kicker,.ficha__codigo){font-family:var(--pl-tecnica)!important;font-size:11px!important;font-weight:700!important;letter-spacing:.24em!important;text-transform:uppercase!important;color:var(--pl-muted)!important}
+
+/* Enlaces de texto: Technic 11 px, subrayado violeta */
+html:root body.y2k :is(.ver-todo,.siguiente span,.ficha__nav a){font-family:var(--pl-tecnica)!important;font-size:11px!important;font-weight:700!important;letter-spacing:.2em!important;text-transform:uppercase!important}
+html:root body.y2k a.ver-todo{border-bottom:1px solid #9d7bff!important;padding-bottom:4px!important;text-decoration:none!important}
+
+/* Botones: misma altura, peso y espaciado en todo el sitio */
+@media(min-width:901px){html:root body.y2k :is(.btn,.btn-cromo,.btn-fantasma,.btn-primario,.btn-secundario,.ficha__cta){min-height:44px!important;font-weight:700!important;letter-spacing:.1em!important;text-transform:uppercase!important}}
+
+/* Inicio: la tarjeta de servicio termina igual que en Servicios (línea de propuesta + botón) */
+html:root body.home .frentes--srv .frente__txt{display:flex!important;flex-direction:column!important}
+html:root body.home .frentes--srv .meta{display:flex;justify-content:space-between;gap:12px;margin-top:auto;padding-top:20px;font-size:11px;color:var(--pl-muted)}
+html:root body.home .frentes--srv .meta b{color:#5b3fd0;font-weight:600}
+html:root body.home .frentes--srv .frente__cta{display:flex!important;align-items:center;justify-content:center;width:100%;min-height:44px;margin-top:12px!important;padding:0 20px;border:1px solid var(--pl-line)!important;border-radius:999px;font:700 11px/1 'Montserrat',system-ui,sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase;color:var(--pl-ink)!important;background:transparent}
+html:root body.home .frentes--srv .frente:hover .frente__cta{border-color:var(--pl-ink)!important}
+
+/* 404 con el mismo lenguaje */
+body.y2k .e404__codigo{font:700 11px/1 var(--pl-tecnica);letter-spacing:.24em;text-transform:uppercase;color:var(--pl-muted);margin:0 0 20px}
+body.y2k h1.e404__titulo{font:700 clamp(40px,5vw,64px)/1.02 'Montserrat',system-ui,sans-serif!important;letter-spacing:-.045em!important;text-transform:none!important;color:var(--pl-ink)!important;margin:0 0 16px!important}
+body.y2k .e404__texto{font-size:16px!important;color:var(--pl-muted)!important;margin:0 0 32px!important}
+/* Degradado de la palabra clave también en Servicios y en la 404 */
+html:root body.y2k :is(h2.seccion,h1.e404__titulo) em{font-style:normal;background:var(--pl-text-gradient)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent!important}
+/* Botones del hero con el mismo espaciado que el resto */
+@media(min-width:901px){html:root body.y2k :is(.y2k-hero__acciones,.srv-wrap .hero-acciones,.n-hero) :is(.btn-cromo,.btn-fantasma,.btn-primario,.btn-secundario,.btn){letter-spacing:.1em!important;font-weight:700!important;min-height:44px!important}}
+html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1,h2,h1.e404__titulo) em{font-style:normal!important}
+/* Modo oscuro: la ficha de proyecto sigue el tema como el resto del sitio */
+:root[data-theme="dark"] body.ficha-proyecto{background:var(--pl-bg)!important}
+:root[data-theme="dark"] body.ficha-proyecto main.ficha{background:transparent!important;color:var(--pl-ink)!important}
+:root[data-theme="dark"] body.ficha-proyecto .ficha__info{color:var(--pl-ink)!important}
+:root[data-theme="dark"] body.ficha-proyecto :is(.ficha__desc,.ficha__rasgos li){color:var(--pl-muted)!important}
+:root[data-theme="dark"] body.ficha-proyecto .ficha__rasgos{border-top-color:var(--pl-ink)!important}
+:root[data-theme="dark"] body.ficha-proyecto :is(.ficha__codigo,.ficha__rasgos li,.ficha__nav){border-color:var(--pl-panel-borde)!important}
+:root[data-theme="dark"] body.ficha-proyecto .ficha__nav a{color:var(--pl-ink)!important}
+:root[data-theme="dark"] body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-mode:normal!important}
+:root[data-theme="dark"] body.ficha-proyecto .ficha__contador{background:var(--pl-panel)!important;color:var(--pl-muted)!important}
+:root[data-theme="dark"] body.y2k .gallery .gallery-item>a .cat__cod{background:var(--pl-bg)!important;color:var(--pl-muted)!important}
+:root[data-theme="dark"] body.ficha-proyecto .ficha__meta,:root[data-theme="dark"] body.home .frentes--srv .meta b{color:#b59aff!important}
+
+/* Ficha de proyecto en una sola vista (escritorio): imagen + miniaturas a la izquierda, ficha técnica a la derecha a toda la altura */
+@media(min-width:901px){
+ html:root body.ficha-proyecto main.ficha{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr)!important;grid-auto-rows:0!important;height:calc(100svh - var(--hh,66px))!important;min-height:520px!important;padding:20px var(--pl-guia,56px)!important;gap:12px!important;overflow:hidden!important;width:auto!important;margin:0!important}
+ html:root body.ficha-proyecto .ficha__escenario{grid-column:1/3!important;grid-row:1/3!important;aspect-ratio:auto!important;height:auto!important;width:auto!important}
+ html:root body.ficha-proyecto .ficha__miniaturas{display:grid!important;grid-column:1/3!important;grid-row:3!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;gap:12px!important;min-height:0!important;overflow:hidden!important}
+ html:root body.ficha-proyecto .ficha__mini{display:block!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;grid-column:auto!important;opacity:.6!important;cursor:pointer!important}
+ html:root body.ficha-proyecto .ficha__mini:hover,html:root body.ficha-proyecto .ficha__mini[aria-current="true"]{display:block!important;opacity:1!important;border-color:var(--pl-ink)!important}
+ html:root body.ficha-proyecto .ficha__info{grid-column:3/5!important;grid-row:1/4!important;height:auto!important;overflow-y:auto!important;padding:clamp(20px,2.4vw,40px)!important}
+ html:root body.ficha-proyecto main.ficha:not(:has(.ficha__mini)) .ficha__escenario{grid-row:1/4!important}
+}
+@media(min-width:901px){html:root body.ficha-proyecto .ficha__mini img{padding:6px!important}}
