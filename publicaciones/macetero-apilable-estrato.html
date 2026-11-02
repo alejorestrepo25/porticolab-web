@@ -253,7 +253,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=2">
-  <link rel="stylesheet" href="../editorial.css?v=73">
+  <link rel="stylesheet" href="../editorial.css?v=74">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Macetero Apilable Estrato","description":"Tres cuerpos cilíndricos de concreto en distintos tonos de gris, apilados para formar un solo macetero de tres niveles. Cada cuerpo puede usarse también de…","image":"https://cdn.sanity.io/images/32sykluw/production/dc3fe88bbec62b4d06909cc55ac3772c2b9a79b5-666x1000.jpg?w=1200&h=630&fit=crop&fm=jpg&q=85","url":"https://porticolab.com/publicaciones/macetero-apilable-estrato.html","creator":{"@type":"Organization","name":"Pórtico Lab","url":"https://porticolab.com"}}</script>
 <script>window.PL_FICHA = {"id":"Wtcr2nH3Htrdaa73nwUnEv"};</script>
 </head>
@@ -295,7 +295,6 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
       <p class="ficha__meta" id="ficha-meta"></p>
       <p class="ficha__desc" id="post-desc"></p>
       <ol class="ficha__rasgos" id="ficha-rasgos"></ol>
-      <a class="ficha__cta" id="ficha-cta" href="https://wa.me/573147924600" target="_blank" rel="noopener">Cotizar un proyecto así →</a>
     </div>
     <div class="ficha__pie">
       <nav class="ficha__nav" aria-label="Más proyectos">
@@ -386,9 +385,6 @@ async function loadPost() {
   const ol = document.getElementById('ficha-rasgos');
   S.lista(result.features).slice(0, 6).forEach(f => { const li = document.createElement('li'); li.textContent = f; ol.appendChild(li); });
 
-  document.getElementById('ficha-cta').href = 'https://wa.me/573147924600?text=' +
-    encodeURIComponent(`Buen día, equipo de Pórtico Lab. Vi el proyecto ${titulo} en su página y quisiera cotizar algo similar para mi proyecto.`);
-
   // Mosaico proporcional en una sola vista: cada celda conserva la proporción de su imagen
   const refs = [result.portada?.asset?._ref, ...(Array.isArray(result.galeria) ? result.galeria.map(g => g?.asset?._ref) : [])]
     .filter((r, i, arr) => S.imagen(r) && arr.indexOf(r) === i);
@@ -464,7 +460,7 @@ async function loadPost() {
     const pl = parseFloat(cs.paddingLeft), pt = parseFloat(cs.paddingTop);
     const W = main.clientWidth - pl - parseFloat(cs.paddingRight);
     const H = main.clientHeight - pt - parseFloat(cs.paddingBottom);
-    const G = 12, TMIN = 320, TMAX = 560;
+    const G = 12, TMIN = 320;
     const aP = proporcion(refs[0]);
     const aC = celdas.map(proporcion);
     const suma = arr => arr.reduce((x, y) => x + y, 0);
@@ -478,8 +474,7 @@ async function loadPost() {
       if (h1 < 200) continue;
       let wT = W - G * a1.length - h1 * suma(a1);
       if (wT < TMIN) { wT = TMIN; h1 = (W - G * a1.length - TMIN) / suma(a1); }
-      wT = Math.min(wT, TMAX);
-      const ancho1 = h1 * suma(a1) + G * a1.length + wT;
+      const ancho1 = W;
       const necesita = altoTexto(wT);
       const piezas = [{ el: escenario, x: 0, y: 0, w: h1 * aP, h: h1 }];
       let x = h1 * aP + G;
@@ -511,14 +506,14 @@ async function loadPost() {
         let f = 1, hT = H - total - (total ? G : 0);
         if (hT < necesita) { f = Math.max(0.3, (H - necesita - G) / (total || 1)); hT = H - total * f - (total ? G : 0); }
         const wP = W - R - G, hP = Math.min(H, wP / aP), wPr = hP * aP;
-        const piezas = [{ el: escenario, x: 0, y: 0, w: wPr, h: hP }, { el: info, x: wPr + G, y: 0, w: R, h: hT }];
+        const piezas = [{ el: escenario, x: 0, y: 0, w: wP, h: H }, { el: info, x: wP + G, y: 0, w: R, h: hT }];
         let y = hT + G, imgs = 0, minima = Infinity;
         filas.forEach(([i, k], r) => {
-          const h = alturas[r] * f; let x = wPr + G; minima = Math.min(minima, h);
+          const h = alturas[r] * f; let x = wP + G; minima = Math.min(minima, h);
           for (let n = i; n < k; n++) { piezas.push({ el: botones[n], x, y, w: h * aC[n], h }); x += h * aC[n] + G; imgs += h * h * aC[n]; }
           y += h + G;
         });
-        candidatos.push({ piezas, ancho: wPr + G + R, imgs: imgs + hP * wPr, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * wPr, minima });
+        candidatos.push({ piezas, ancho: W, imgs: imgs + hP * wPr, texto: R * Math.min(hT, necesita), corte: Math.max(0, necesita - hT), principal: hP * wPr, minima });
       }
     }
 
