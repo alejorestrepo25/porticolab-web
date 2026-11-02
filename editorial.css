@@ -936,9 +936,9 @@ html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1,h2,h1.e404__ti
 /* Modo oscuro: la ficha de proyecto sigue el tema como el resto del sitio */
 :root[data-theme="dark"] body.ficha-proyecto{background:var(--pl-bg)!important}
 :root[data-theme="dark"] body.ficha-proyecto main.ficha{background:transparent!important;color:var(--pl-ink)!important}
-html:root body.ficha-proyecto .ficha__info{background:transparent!important;color:#1a1a1a!important}
-html:root body.ficha-proyecto .ficha__info :is(h1,h2,h3,.ficha__desc,.ficha__rasgos li,.ficha__codigo,.ficha__meta){color:#1a1a1a!important}
-html:root body.ficha-proyecto .ficha__info :is(.ficha__codigo,.ficha__meta,.ficha__desc){color:#555!important}
+html:root body.ficha-proyecto .ficha__info{background:transparent!important;color:var(--pl-ink)!important}
+html:root body.ficha-proyecto .ficha__info :is(h1,h2,h3,.ficha__desc,.ficha__rasgos li){color:var(--pl-ink)!important}
+html:root body.ficha-proyecto .ficha__info :is(.ficha__codigo,.ficha__meta){color:var(--pl-muted)!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__info{color:var(--pl-ink)!important}
 :root[data-theme="dark"] body.ficha-proyecto :is(.ficha__desc,.ficha__rasgos li){color:var(--pl-muted)!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__rasgos{border-top-color:var(--pl-ink)!important}
