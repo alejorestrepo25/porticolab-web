@@ -557,7 +557,7 @@ html:root :is(body.srvposter .srv-card .srv-img,body.home .frente__img) svg .bt>
  html:root body.home.y2k .y2k-hero__vis{position:absolute!important;grid-column:auto!important;grid-row:auto!important;justify-self:stretch!important;align-self:stretch!important;top:0;bottom:0;left:calc(min(470px,33vw) + 32px);right:calc(50% - 50vw);width:auto!important;height:auto!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;z-index:0;overflow:hidden}
  html:root body.home.y2k .y2k-hero__vis .hero-foto{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;margin:0!important;background:transparent!important;box-shadow:none!important}
  html:root body.home.y2k .y2k-hero__vis .hero-foto::before,html:root body.home.y2k .y2k-hero__vis .hero-foto::after,html:root body.home.y2k .y2k-hero__vis .destello{display:none!important}
- html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:left 45%!important;border-radius:0!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 9%,#000 24%)}
  body.home .y2k-hero__vis .hud--tl{left:calc(12% + 14px)!important}
 }
 
@@ -936,6 +936,9 @@ html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1,h2,h1.e404__ti
 /* Modo oscuro: la ficha de proyecto sigue el tema como el resto del sitio */
 :root[data-theme="dark"] body.ficha-proyecto{background:var(--pl-bg)!important}
 :root[data-theme="dark"] body.ficha-proyecto main.ficha{background:transparent!important;color:var(--pl-ink)!important}
+html:root body.ficha-proyecto .ficha__info{background:transparent!important;color:#1a1a1a!important}
+html:root body.ficha-proyecto .ficha__info :is(h1,h2,h3,.ficha__desc,.ficha__rasgos li,.ficha__codigo,.ficha__meta){color:#1a1a1a!important}
+html:root body.ficha-proyecto .ficha__info :is(.ficha__codigo,.ficha__meta,.ficha__desc){color:#555!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__info{color:var(--pl-ink)!important}
 :root[data-theme="dark"] body.ficha-proyecto :is(.ficha__desc,.ficha__rasgos li){color:var(--pl-muted)!important}
 :root[data-theme="dark"] body.ficha-proyecto .ficha__rasgos{border-top-color:var(--pl-ink)!important}
