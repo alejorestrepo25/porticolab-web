@@ -588,13 +588,15 @@ body.y2k .frente__img img,body.srvposter .srv-card .srv-img svg,body.y2k .galler
 body.nosotros .n-hero__visual{border-radius:0!important;overflow:visible!important}
 @media(max-width:900px){body.home .y2k-hero__vis,body.home .hero-foto,body.home .hero-foto img,html:root body.y2k.srvposter .srv-hero__visual{border-radius:var(--pl-radio-img)!important;overflow:hidden}}
 
-/* Inspiración · cada imagen en su tamaño original: sin recorte, sin franjas */
-body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .gallery-item>a{aspect-ratio:auto!important;height:auto!important;background:transparent!important}
-body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .gallery-item>a img{position:static!important;display:block;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:initial!important;background:none!important;filter:none!important}
-/* Inspiración · sin líneas moradas bajo las imágenes */
-body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat::before{content:none!important;display:none!important}
-body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat{padding-top:10px!important}
-body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"]) .gallery .cat h3 i{color:var(--pl-muted)!important}
+/* Inspiración y Laboratorio · cada imagen en su tamaño original: sin recorte, sin franjas */
+body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"],[data-filter="laboratorio"]) .gallery .gallery-item>a{aspect-ratio:auto!important;height:auto!important;background:transparent!important}
+body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"],[data-filter="laboratorio"]) .gallery .gallery-item>a img{position:static!important;display:block;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:initial!important;background:none!important;filter:none!important}
+/* Inspiración y Laboratorio · sin líneas moradas bajo las imágenes */
+body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"],[data-filter="laboratorio"]) .gallery .cat::before{content:none!important;display:none!important}
+body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"],[data-filter="laboratorio"]) .gallery .cat{padding-top:10px!important}
+body.y2k:is([data-filter="inspiracion"],[data-filter="inspiración"],[data-filter="laboratorio"]) .gallery .cat h3 i{color:var(--pl-muted)!important}
+/* Laboratorio conserva el filtro que borra la cuadrícula de fondo */
+body.y2k[data-filter="laboratorio"] .gallery .gallery-item>a img{filter:url(#sin-reticula)!important}
 /* Servicios · hero: texto más grande y la ilustración gana más ancho */
 @media(min-width:901px){
  body.srvposter .srv-wrap>section.hero>.hero-txt{max-width:min(400px,29vw)!important}
