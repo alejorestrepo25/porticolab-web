@@ -790,7 +790,8 @@ html:root body.ficha-proyecto main.ficha{
  padding:clamp(14px,2.5vw,36px) clamp(14px,3vw,48px) clamp(36px,5vw,72px)!important;
  overflow:visible!important;
 }
-html:root body.ficha-proyecto main.ficha>svg{display:none!important}
+/* El filtro anticuadrícula debe seguir en el documento (con display:none deja de aplicarse); fuera del flujo no ocupa celda */
+html:root body.ficha-proyecto main.ficha>svg{display:block!important;position:absolute!important;width:0!important;height:0!important;overflow:hidden}
 html:root body.ficha-proyecto #loading{min-height:18svh!important;height:auto!important;padding:22px 12px!important;color:#777!important;font-size:11px!important;letter-spacing:.12em!important}
 html:root body.ficha-proyecto .ficha__media{display:contents!important}
 html:root body.ficha-proyecto .ficha__escenario{
@@ -860,6 +861,10 @@ html:root body.ficha-proyecto .ficha__nav a small{font-size:12px!important}
  html:root body.home .y2k-hero p,html:root body.srvposter .srv-wrap .hero p,html:root body.nosotros .n-hero p{font-size:15px!important;line-height:1.55!important}
 }
 
+/* Fichas: el fondo blanco de los pósters se funde con el panel (sin caja blanca dentro del gris); en celular la imagen principal no se desborda */
+html:root body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-mode:multiply}
+@media(max-width:900px){html:root body.ficha-proyecto .ficha__escenario{height:auto!important;width:auto!important}}
+
 /* ===== Auditoría de gráficos ===== */
 /* Celular: las ilustraciones de servicio se recortan al centro a escala completa (antes se encogían enteras y el texto quedaba en 2–3 px) */
 @media(max-width:900px){
@@ -876,3 +881,5 @@ html:root body.ficha-proyecto .ficha__nav a small{font-size:12px!important}
 @media(min-width:901px){html:root body.nosotros #proyectos .ver-todo-wrap{padding-inline:0!important;margin-inline:0!important;max-width:none!important;text-align:left!important;justify-content:flex-start!important}}
 /* Servicios (escritorio): la columna de la ilustración gana ancho para que el dibujo técnico se lea */
 @media(min-width:901px){html:root body.srvposter .srv-card .srv-img{flex:0 0 46%!important;width:46%!important;max-width:none!important}}
+/* Laboratorio e Inspiración: las tarjetas como bloque para que el muro reparta en todas sus columnas (con inline-block llenaba solo dos) */
+html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{display:block!important;-webkit-column-break-inside:avoid;page-break-inside:avoid}

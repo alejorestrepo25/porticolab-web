@@ -248,7 +248,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=2">
-  <link rel="stylesheet" href="../editorial.css?v=65">
+  <link rel="stylesheet" href="../editorial.css?v=67">
 </head>
 
 <body class="y2k ficha-proyecto">
@@ -402,7 +402,21 @@ async function loadPost() {
     contador.textContent = refs.length > 1 ? `${dos(actual + 1)} / ${dos(refs.length)}` : '';
     contador.hidden = refs.length < 2;
     minis.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-current', k === actual ? 'true' : 'false'));
+    rellenarFila();
   }
+  // La última miniatura visible ocupa el resto de su fila, para que el collage no termine con huecos
+  function rellenarFila() {
+    const visibles = [...minis.children].filter(b => b.getAttribute('aria-current') !== 'true');
+    visibles.forEach(b => { b.style.removeProperty('grid-column'); b.style.removeProperty('aspect-ratio'); });
+    const columnas = getComputedStyle(document.getElementById('main-content')).gridTemplateColumns.split(' ').length;
+    const resto = visibles.length % columnas;
+    if (columnas < 4 || !resto) return;
+    const ultima = visibles[visibles.length - 1];
+    const span = columnas - resto + 1;
+    ultima.style.setProperty('grid-column', `span ${span}`, 'important');
+    ultima.style.setProperty('aspect-ratio', `${span} / 1`, 'important');   // misma altura que una celda
+  }
+  window.addEventListener('resize', rellenarFila);
   if (refs.length > 1) refs.forEach((r, i) => {
     const b = document.createElement('button');
     b.type = 'button';
