@@ -7,21 +7,59 @@
   const DATASET = 'production';
   const VERSION = '2024-01-01';
   const TIEMPO_LIMITE = 9000;
+  const CACHE_RECIENTE_MS = 2 * 60 * 1000;
+  const CACHE_MAX_MS = 7 * 24 * 60 * 60 * 1000;
+  const consultasEnCurso = new Map();
+
+  function claveConsulta(groq, params) {
+    const entrada = JSON.stringify([groq, Object.keys(params).sort().map(k => [k, params[k]])]);
+    let hash = 2166136261;
+    for (let i = 0; i < entrada.length; i++) hash = Math.imul(hash ^ entrada.charCodeAt(i), 16777619);
+    return `pl:sanity:v1:${(hash >>> 0).toString(36)}`;
+  }
+
+  function leerCache(clave) {
+    try {
+      const dato = JSON.parse(localStorage.getItem(clave) || 'null');
+      return dato && Date.now() - dato.fecha < CACHE_MAX_MS ? dato : null;
+    } catch { return null; }
+  }
+
+  function guardarCache(clave, resultado) {
+    try { localStorage.setItem(clave, JSON.stringify({ fecha: Date.now(), resultado })); } catch { /* El sitio sigue funcionando sin almacenamiento local. */ }
+  }
+
+  function consultarRed(groq, params, clave) {
+    if (consultasEnCurso.has(clave)) return consultasEnCurso.get(clave);
+    const peticion = (async () => {
+      const qs = new URLSearchParams({ query: groq });
+      Object.entries(params).forEach(([k, v]) => qs.set('$' + k, JSON.stringify(v)));
+      const url = `https://${PROYECTO}.apicdn.sanity.io/v${VERSION}/data/query/${DATASET}?${qs}`;
+      const control = new AbortController();
+      const reloj = setTimeout(() => control.abort(), TIEMPO_LIMITE);
+      try {
+        const res = await fetch(url, { signal: control.signal });
+        if (!res.ok) throw new Error(`Sanity respondió ${res.status}`);
+        const json = await res.json();
+        guardarCache(clave, json.result);
+        return json.result;
+      } finally {
+        clearTimeout(reloj);
+        consultasEnCurso.delete(clave);
+      }
+    })();
+    consultasEnCurso.set(clave, peticion);
+    return peticion;
+  }
 
   async function consultar(groq, params = {}) {
-    const qs = new URLSearchParams({ query: groq });
-    Object.entries(params).forEach(([k, v]) => qs.set('$' + k, JSON.stringify(v)));
-    const url = `https://${PROYECTO}.apicdn.sanity.io/v${VERSION}/data/query/${DATASET}?${qs}`;
-    const control = new AbortController();
-    const reloj = setTimeout(() => control.abort(), TIEMPO_LIMITE);
-    try {
-      const res = await fetch(url, { signal: control.signal });
-      if (!res.ok) throw new Error(`Sanity respondió ${res.status}`);
-      const json = await res.json();
-      return json.result;
-    } finally {
-      clearTimeout(reloj);
+    const clave = claveConsulta(groq, params);
+    const cache = leerCache(clave);
+    if (cache) {
+      if (Date.now() - cache.fecha >= CACHE_RECIENTE_MS) consultarRed(groq, params, clave).catch(() => {});
+      return cache.resultado;
     }
+    return consultarRed(groq, params, clave);
   }
 
   // Referencia de imagen de Sanity: image-<id>-<ancho>x<alto>-<formato>

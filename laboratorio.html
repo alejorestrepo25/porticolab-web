@@ -23,6 +23,8 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://32sykluw.apicdn.sanity.io" crossorigin>
+  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="y2k.css?v=7">
   <style>
@@ -107,15 +109,11 @@
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
   <style>
-    /* Galería del Laboratorio: 4 columnas, una fila de tarjetas de izquierda a derecha */
-    .gallery { column-count: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
-    .gallery .gallery-item { margin-bottom: 0; }
-    @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+    /* La colección baja como muro editorial, no como una fila cerrada. */
   </style>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=2">
-  <link rel="stylesheet" href="editorial.css?v=64">
+  <link rel="stylesheet" href="editorial.css?v=65">
 </head>
 
 
@@ -142,12 +140,12 @@
 
 <main>
   <h1 class="solo-lector">Laboratorio de Pórtico Lab: proyectos y piezas</h1>
-  <div id="gallery-loading" style="display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:13px;letter-spacing:2px;color:#444;">CARGANDO...</div>
+  <div id="gallery-loading" role="status" aria-live="polite" style="display:flex;align-items:center;justify-content:center;min-height:22svh;font-size:11px;letter-spacing:1.5px;color:#777;">Cargando proyectos…</div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="sin-reticula" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncG type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/><feFuncB type="table" tableValues="0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.9 1 1 1"/></feComponentTransfer></filter></svg>
   <section class="gallery"></section>
 </main>
 
-<script src="sanity.js?v=6"></script>
+<script src="sanity.js?v=7"></script>
 <script>
   function shuffle(array) {
     let i = array.length;
@@ -171,7 +169,15 @@
     const lista = Array.isArray(result) ? result : [];
     shuffle(lista);
     let n = 0;
-    lista.forEach(p => { const t = S.tarjeta(p); if (t) { gallery.appendChild(t); n++; } });
+    lista.forEach(p => {
+      const t = S.tarjeta(p);
+      if (!t) return;
+      const img = t.querySelector('img');
+      if (n < 4) img.loading = 'eager';
+      if (n === 0) img.fetchPriority = 'high';
+      gallery.appendChild(t);
+      n++;
+    });
     if (!n) S.aviso(gallery, 'Pronto publicaremos nuevos proyectos.', true);
   });
 </script>

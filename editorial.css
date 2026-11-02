@@ -740,6 +740,126 @@ html:root body.y2k .cierre-combo .faq summary::after{top:50%!important;transform
 @media(min-width:901px){html:root body.y2k:is(.home,.nosotros,[data-filter]) main{padding-inline:0!important}}
 @media(min-width:901px){html:root body.nosotros :is(.n-pilares,.piezas){max-width:none!important;width:auto!important;margin-inline:0!important}}
 
+/* Laboratorio e Inspiración: dos muros editoriales independientes, con scroll natural. */
+html:root body.y2k[data-filter]:not(.home) main .gallery{
+ display:block!important;
+ column-count:4;
+ column-gap:clamp(12px,1.4vw,20px);
+ width:100%;
+}
+html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{
+ display:inline-block!important;
+ width:100%!important;
+ margin:0 0 clamp(14px,1.6vw,22px)!important;
+ break-inside:avoid;
+ vertical-align:top;
+}
+html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item>a{
+ display:block!important;
+ aspect-ratio:auto!important;
+ height:auto!important;
+ overflow:hidden;
+ background:var(--pl-surface-2)!important;
+}
+html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item>a img{
+ position:static!important;
+ display:block!important;
+ width:100%!important;
+ height:auto!important;
+ max-height:none!important;
+ aspect-ratio:auto!important;
+ object-fit:contain!important;
+ background:transparent!important;
+}
+@media(max-width:1100px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-count:3}}
+@media(max-width:900px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-count:2;column-gap:10px}}
+@media(max-width:420px){html:root body.y2k[data-filter]:not(.home) main .gallery{column-gap:8px}html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{margin-bottom:12px!important}}
+
+/* Fichas de proyecto: cada imagen ocupa una celda del collage y la ficha vive dentro de otra. */
+html:root body.ficha-proyecto main.ficha{
+ display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(clamp(170px,20vw,300px),auto)!important;
+ align-items:stretch!important;
+ gap:clamp(8px,1vw,16px)!important;
+ width:min(1480px,100%)!important;
+ max-width:none!important;
+ height:auto!important;
+ min-height:0!important;
+ margin:0 auto!important;
+ padding:clamp(14px,2.5vw,36px) clamp(14px,3vw,48px) clamp(36px,5vw,72px)!important;
+ overflow:visible!important;
+}
+html:root body.ficha-proyecto main.ficha>svg{display:none!important}
+html:root body.ficha-proyecto #loading{min-height:18svh!important;height:auto!important;padding:22px 12px!important;color:#777!important;font-size:11px!important;letter-spacing:.12em!important}
+html:root body.ficha-proyecto .ficha__media{display:contents!important}
+html:root body.ficha-proyecto .ficha__escenario{
+ grid-column:span 2;
+ grid-row:span 2;
+ min-height:0!important;
+ aspect-ratio:1;
+ border:1px solid #dedde2!important;
+ border-radius:10px!important;
+ background:#f3f2f0!important;
+}
+html:root body.ficha-proyecto .ficha__principal img{object-fit:contain!important;padding:clamp(12px,2vw,28px)}
+html:root body.ficha-proyecto .ficha__miniaturas{display:contents!important;overflow:visible!important}
+html:root body.ficha-proyecto .ficha__mini{
+ width:100%!important;
+ height:auto!important;
+ min-width:0;
+ min-height:0;
+ aspect-ratio:1/1;
+ border:1px solid #dedde2!important;
+ border-radius:10px!important;
+ background:#f3f2f0!important;
+ opacity:1!important;
+ cursor:zoom-in;
+}
+html:root body.ficha-proyecto .ficha__mini img{object-fit:contain!important;padding:clamp(8px,1.3vw,20px)}
+html:root body.ficha-proyecto .ficha__mini[aria-current="true"]{display:none!important}
+html:root body.ficha-proyecto .ficha__mini:focus-visible{outline:2px solid #7b62d8!important;outline-offset:2px}
+html:root body.ficha-proyecto .ficha__info{
+ grid-column:3/span 2;
+ grid-row:1/span 2;
+ min-height:0!important;
+ height:100%;
+ overflow:visible!important;
+ justify-content:space-between!important;
+ gap:clamp(18px,2.2vw,32px)!important;
+ padding:clamp(20px,3vw,46px)!important;
+ border:1px solid #dedde2;
+ border-radius:10px;
+ background:#f3f2f0!important;
+ color:#19181c!important;
+}
+html:root body.ficha-proyecto .ficha__codigo{margin-bottom:clamp(12px,1.5vw,20px)!important;padding-bottom:12px!important}
+html:root body.ficha-proyecto .ficha__info h1{font-size:clamp(30px,3.4vw,48px)!important;line-height:1.04!important;letter-spacing:-.04em!important}
+html:root body.ficha-proyecto .ficha__meta{margin-top:12px!important;font-size:11px!important;letter-spacing:.12em!important}
+html:root body.ficha-proyecto .ficha__desc{margin-top:18px!important;font-size:15px!important;line-height:1.55!important;max-width:42ch}
+html:root body.ficha-proyecto .ficha__rasgos{margin-top:18px!important}
+html:root body.ficha-proyecto .ficha__rasgos li{font-size:14px!important;padding:8px 0!important}
+html:root body.ficha-proyecto .ficha__cta{margin-top:20px!important;min-height:44px;padding:0 16px!important;font-size:11px!important}
+html:root body.ficha-proyecto .ficha__pie{margin-top:auto}
+html:root body.ficha-proyecto .ficha__nav{gap:10px!important;padding-top:14px!important}
+html:root body.ficha-proyecto .ficha__nav a{font-size:11px!important;letter-spacing:.1em!important}
+html:root body.ficha-proyecto .ficha__nav a small{font-size:12px!important}
+@media(max-width:900px){
+ html:root body.ficha-proyecto main.ficha{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(160px,auto)!important;gap:9px!important;padding:12px 12px 48px!important}
+ html:root body.ficha-proyecto .ficha__escenario{grid-column:1/-1;grid-row:span 2;aspect-ratio:1/1}
+ html:root body.ficha-proyecto .ficha__info{grid-column:1/-1;grid-row:3;padding:20px 18px!important;gap:18px!important}
+ html:root body.ficha-proyecto .ficha__info h1{font-size:clamp(26px,7vw,32px)!important;line-height:1.08!important}
+ html:root body.ficha-proyecto .ficha__desc{font-size:14px!important;line-height:1.55!important;margin-top:14px!important}
+ html:root body.ficha-proyecto .ficha__rasgos li{font-size:13px!important;line-height:1.45!important}
+ html:root body.ficha-proyecto .ficha__mini{aspect-ratio:1/1}
+ html:root body.ficha-proyecto .ficha__mini:nth-of-type(4n+2){grid-column:span 2;aspect-ratio:2/1}
+}
+@media(max-width:768px){
+ html:root body.y2k :is(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){font-size:clamp(28px,7.2vw,32px)!important;line-height:1.08!important;letter-spacing:-.035em!important}
+ html:root body.y2k :is(.seccion__cab h2,h2.seccion,.cierre-home h2,.srv-wrap .cierre h2,.nosotros section h2):not(.guerrilla-h){font-size:clamp(22px,5.6vw,26px)!important;line-height:1.14!important}
+ html:root body.home .y2k-hero p,html:root body.srvposter .srv-wrap .hero p,html:root body.nosotros .n-hero p{font-size:15px!important;line-height:1.55!important}
+}
+
 /* ===== Auditoría de gráficos ===== */
 /* Celular: las ilustraciones de servicio se recortan al centro a escala completa (antes se encogían enteras y el texto quedaba en 2–3 px) */
 @media(max-width:900px){
