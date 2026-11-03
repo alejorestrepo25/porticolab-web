@@ -21,7 +21,7 @@
 
   const anchor = document.createElement('a');
   anchor.dataset.pinDo = 'embedBoard';
-  anchor.dataset.pinBoardWidth = '900';
+  anchor.dataset.pinBoardWidth = String(Math.max(320, Math.floor(section.getBoundingClientRect().width)));
   anchor.dataset.pinScaleHeight = '520';
   anchor.dataset.pinScaleWidth = '100';
   anchor.href = boardUrl.href;
