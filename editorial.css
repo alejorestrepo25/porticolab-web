@@ -988,3 +988,13 @@ html:root body.ficha-proyecto .ficha__info.ficha__info--ancha>div:first-child>*{
 html:root body.ficha-proyecto .ficha__info.ficha__info--ancha .ficha__rasgos{grid-column:2!important;grid-row:1/span 5;align-self:start;margin-top:0!important}
 /* Portadas sin código de carpeta */
 body.y2k .gallery .gallery-item>a .cat__cod{display:none!important}
+/* Inicio · hero: difuminado suave sobre la zona visible (sin corte duro a la izquierda) y fundido inferior */
+@media(min-width:901px){
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{width:100%!important;margin-left:0!important;object-position:82% 45%!important;-webkit-mask-image:none!important;mask-image:none!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.04) 6%,rgba(0,0,0,.16) 13%,rgba(0,0,0,.36) 20%,rgba(0,0,0,.6) 28%,rgba(0,0,0,.82) 36%,#000 46%),linear-gradient(0deg,transparent 0,rgba(0,0,0,.5) 7%,#000 16%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.04) 6%,rgba(0,0,0,.16) 13%,rgba(0,0,0,.36) 20%,rgba(0,0,0,.6) 28%,rgba(0,0,0,.82) 36%,#000 46%),linear-gradient(0deg,transparent 0,rgba(0,0,0,.5) 7%,#000 16%);
+  mask-composite:intersect}
+ html:root body.home.y2k .y2k-hero__vis .hud--tl{left:calc(46% + 14px)!important}
+}
