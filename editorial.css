@@ -1002,3 +1002,13 @@ body.y2k .gallery .gallery-item>a .cat__cod{display:none!important}
   mask-composite:intersect}
  html:root body.home.y2k .y2k-hero__vis .hud--tl{left:calc(46% + 14px)!important}
 }
+
+/* Tablero público de Pinterest dentro de Inspiración */
+body[data-filter="inspiración"] .pinterest-board:not([hidden]){width:min(1760px,94vw);margin:clamp(28px,5vw,72px) auto clamp(42px,6vw,88px);color:var(--pl-ink)}
+body[data-filter="inspiración"] .pinterest-board__heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--pl-line)}
+body[data-filter="inspiración"] .pinterest-board__heading h2{margin:0;font:600 clamp(17px,2vw,24px)/1.2 'Montserrat',system-ui,sans-serif;letter-spacing:-.025em}
+body[data-filter="inspiración"] .pinterest-board__link{color:var(--pl-ink);font-size:12px;text-underline-offset:4px}
+body[data-filter="inspiración"] .pinterest-board__embed{width:100%;min-height:260px;overflow:hidden}
+body[data-filter="inspiración"] .pinterest-board__embed iframe{display:block;width:100%!important;max-width:100%!important;margin-inline:auto}
+@media(max-width:600px){body[data-filter="inspiración"] .pinterest-board__heading{align-items:flex-start;flex-direction:column;gap:8px}body[data-filter="inspiración"] .pinterest-board__embed{min-height:180px}}
+@media(prefers-reduced-motion:reduce){body[data-filter="inspiración"] .pinterest-board *{scroll-behavior:auto!important}}
