@@ -986,3 +986,5 @@ html:root body.ficha-proyecto main.ficha.ficha--prop :is(.ficha__principal,.fich
 html:root body.ficha-proyecto .ficha__info.ficha__info--ancha>div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(28px,2.6vw,48px);align-content:start}
 html:root body.ficha-proyecto .ficha__info.ficha__info--ancha>div:first-child>*{grid-column:1}
 html:root body.ficha-proyecto .ficha__info.ficha__info--ancha .ficha__rasgos{grid-column:2!important;grid-row:1/span 5;align-self:start;margin-top:0!important}
+/* Portadas sin código de carpeta */
+body.y2k .gallery .gallery-item>a .cat__cod{display:none!important}
