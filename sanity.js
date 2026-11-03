@@ -143,15 +143,6 @@
     im.addEventListener('error', () => item.remove());
     a.appendChild(im);
 
-    // Código de carpeta en la parte inferior de la imagen
-    const cod = codigo(titulo);
-    if (cod) {
-      const c = document.createElement('span');
-      c.className = 'cat__cod';
-      c.textContent = cod;
-      a.appendChild(c);
-    }
-
     // Línea morada y debajo "Título | descripción"
     const pie = document.createElement('div');
     pie.className = 'cat';
