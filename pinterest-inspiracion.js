@@ -21,6 +21,7 @@
 
   const anchor = document.createElement('a');
   anchor.dataset.pinDo = 'embedBoard';
+  section.hidden = false;
   anchor.dataset.pinBoardWidth = String(Math.max(320, Math.floor(section.getBoundingClientRect().width)));
   anchor.dataset.pinScaleHeight = '520';
   anchor.dataset.pinScaleWidth = '100';
@@ -28,7 +29,6 @@
   anchor.textContent = 'Ver tablero en Pinterest';
   section.querySelector('.pinterest-board__embed').appendChild(anchor);
   section.querySelector('.pinterest-board__link').href = boardUrl.href;
-  section.hidden = false;
 
   let loaded = false;
   const loadPinterest = () => {
