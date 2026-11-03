@@ -748,6 +748,10 @@ html:root body.y2k[data-filter]:not(.home) main .gallery{
  column-count:5;
  column-gap:8px;
  width:100%;
+ max-width:none!important;
+ margin-inline:0!important;
+ padding-inline:8px!important;
+ box-sizing:border-box;
 }
 html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{
  display:inline-block!important;
