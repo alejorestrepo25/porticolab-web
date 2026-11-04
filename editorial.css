@@ -1281,3 +1281,11 @@ html:root body.home.y2k #preguntas .combo__faq>.ver-todo{display:table!important
  html:root body.nosotros.y2k section#enfoque[data-pantalla]{justify-content:center!important;padding-top:40px!important;padding-bottom:40px!important;position:relative!important}
  html:root body.nosotros.y2k section#enfoque[data-pantalla]>.siguiente{position:absolute!important;left:50%!important;bottom:28px!important;transform:translateX(-50%)!important;margin:0!important}
 }
+@media(max-width:900px){
+ /* Celular: los campos del formulario a 16 px, el mínimo con el que el navegador no amplía al tocarlos */
+ html:root body.y2k #contacto .consulta :is(input,textarea){font-size:16px!important}
+}
+/* Celulares de 320–360 px (iPhone SE): el menú no se pega */
+@media(max-width:360px){
+ html:root body.y2k header .nav a,html:root body header nav.nav a{font-size:9.5px!important;letter-spacing:.04em!important}
+}
