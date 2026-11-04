@@ -1322,3 +1322,16 @@ html:root body.home.y2k #proceso>.ver-todo-wrap{display:flex!important;justify-c
  html:root body.home.y2k section#proceso[data-pantalla],html:root body.srvposter.y2k .srv-wrap>section#como-funciona[data-pantalla]{position:relative!important}
  html:root body.home.y2k section#proceso[data-pantalla]>.siguiente,html:root body.srvposter.y2k .srv-wrap>section#como-funciona[data-pantalla]>.siguiente{position:absolute!important;left:50%!important;bottom:28px!important;transform:translateX(-50%)!important;margin:0!important}
 }
+/* Inicio · Preguntas frecuentes: título grande con degradado (como las demás hojas), bloque centrado */
+html:root body.home.y2k #preguntas>.seccion__cab{text-align:center!important;margin:0 auto 28px!important;width:100%!important}
+html:root body.home.y2k #preguntas>.seccion__cab h2{text-align:center!important;margin:0 auto!important}
+html:root body.home.y2k #preguntas>.combo--preguntas{width:100%!important;max-width:760px!important;margin-left:auto!important;margin-right:auto!important;display:block!important}
+html:root body.home.y2k #preguntas .combo__faq{width:100%!important;max-width:none!important}
+html:root body.home.y2k #preguntas .combo__faq>.ver-todo{display:table!important;margin:18px auto 0!important}
+@media(min-width:901px){
+ html:root body.home.y2k section#preguntas[data-pantalla]{justify-content:center!important;align-items:stretch!important;padding-top:40px!important;padding-bottom:90px!important;position:relative!important}
+ html:root body.home.y2k section#preguntas[data-pantalla]>.pie-home{position:absolute!important;left:50%!important;right:auto!important;bottom:20px!important;transform:translateX(-50%)!important;width:max-content!important;max-width:calc(100% - 32px)!important;margin:0!important;text-align:center!important}
+}
+@media(max-width:900px){
+ html:root body.home.y2k #preguntas>.seccion__cab{margin-bottom:14px!important}
+}
