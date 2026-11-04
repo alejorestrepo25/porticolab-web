@@ -15,7 +15,7 @@
     const entrada = JSON.stringify([groq, Object.keys(params).sort().map(k => [k, params[k]])]);
     let hash = 2166136261;
     for (let i = 0; i < entrada.length; i++) hash = Math.imul(hash ^ entrada.charCodeAt(i), 16777619);
-    return `pl:sanity:v1:${(hash >>> 0).toString(36)}`;
+    return `pl:sanity:v2:${(hash >>> 0).toString(36)}`;
   }
 
   function leerCache(clave) {
@@ -55,11 +55,15 @@
   async function consultar(groq, params = {}) {
     const clave = claveConsulta(groq, params);
     const cache = leerCache(clave);
-    if (cache) {
-      if (Date.now() - cache.fecha >= CACHE_RECIENTE_MS) consultarRed(groq, params, clave).catch(() => {});
-      return cache.resultado;
+    // Copia reciente (2 min): se usa tal cual. Si es más vieja se pide el contenido actual,
+    // así una imagen cambiada en Sanity se ve de inmediato; la copia guardada solo cubre fallas de red.
+    if (cache && Date.now() - cache.fecha < CACHE_RECIENTE_MS) return cache.resultado;
+    try {
+      return await consultarRed(groq, params, clave);
+    } catch (e) {
+      if (cache) return cache.resultado;
+      throw e;
     }
-    return consultarRed(groq, params, clave);
   }
 
   // Referencia de imagen de Sanity: image-<id>-<ancho>x<alto>-<formato>
