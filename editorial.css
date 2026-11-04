@@ -1108,3 +1108,22 @@ html:root body.y2k .siguiente{gap:8px!important}
 html:root body.y2k .siguiente span{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.2em!important;text-transform:uppercase!important}
 html:root body.y2k .siguiente i{width:36px!important;height:36px!important;min-width:36px}
 html:root body.y2k .siguiente i svg{width:16px!important;height:16px!important}
+/* ===== Coherencia entre páginas: misma separación entre tarjetas y mismos tamaños de texto ===== */
+html:root body.y2k :is(.frentes,.pasos-row,.srv-grid,.n-pilares,.piezas){gap:20px!important;column-gap:20px!important;row-gap:20px!important}
+/* Nosotros · pilares con el mismo panel que las tarjetas de Metodología */
+html:root body.nosotros .n-pilares{border:0!important}
+html:root body.nosotros .n-pilar{background:var(--pl-panel)!important;border:1px solid var(--pl-panel-borde)!important;border-radius:var(--pl-radio-panel)!important;padding:22px!important}
+html:root body.y2k :is(.n-pilar h3,.paso-card h3){font-size:18px!important;line-height:1.3!important}
+html:root body.y2k :is(.n-pilar p,.paso-card p){font-size:16px!important;line-height:1.55!important}
+/* Nosotros · los dos párrafos del inicio con el mismo tamaño que el resto de portadas */
+html:root body.nosotros .n-hero p.n-hero__quien{font-size:18px!important;line-height:1.55!important}
+/* Inicio · «Explorar servicios» alineado con el contenido de su sección */
+html:root body.home .seccion>.ver-todo-wrap{max-width:none!important;width:100%!important;margin-inline:0!important;padding-inline:0!important;text-align:left!important}
+@media(max-width:900px){
+ html:root body.y2k :is(.frentes,.pasos-row,.srv-grid,.n-pilares,.piezas){gap:12px!important;column-gap:12px!important;row-gap:12px!important}
+ html:root body.nosotros .n-pilar{padding:16px 18px!important}
+ html:root body.y2k :is(.n-pilar h3,.paso-card h3){font-size:15px!important}
+ html:root body.y2k :is(.n-pilar p,.paso-card p){font-size:14px!important}
+ html:root body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p,.n-hero p.n-hero__quien){font-size:15px!important}
+}
+html:root body.home .seccion>.ver-todo-wrap .ver-todo{margin-left:0!important;margin-right:0!important}

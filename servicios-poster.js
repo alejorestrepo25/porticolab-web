@@ -52,40 +52,6 @@
   addEventListener('load', pedirMarca);
   marcar();
 
-  // Transición por pantallas: rueda/flechas avanzan una vista cada vez en escritorio.
-  let bloqueado = false;
-  function actual(lista) {
-    const y = scrollY + 6;
-    let i = 0;
-    lista.forEach((el, n) => { if (topDe(el) <= y) i = n; });
-    return i;
-  }
-  function irA(lista, i) {
-    i = Math.max(0, Math.min(lista.length - 1, i));
-    const destino = Math.max(0, Math.min(topDe(lista[i]), document.documentElement.scrollHeight - innerHeight));
-    bloqueado = true;
-    scrollTo({ top: destino, behavior: reducir ? 'auto' : 'smooth' });
-    setTimeout(() => { bloqueado = false; }, reducir ? 90 : 760);
-  }
-    addEventListener('wheel', (e) => {
-      if (!modo.matches || e.ctrlKey || Math.abs(e.deltaY) < 6 || formularioAbierto()) return;
-      e.preventDefault();
-      if (bloqueado) return;
-      const lista = pantallas();
-      if (lista.length) irA(lista, actual(lista) + (e.deltaY > 0 ? 1 : -1));
-    }, { passive: false });
-    addEventListener('keydown', (e) => {
-      if (!modo.matches || e.altKey || e.ctrlKey || e.metaKey || formularioAbierto()) return;
-      if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
-      const lista = pantallas();
-      if (!lista.length) return;
-      const k = e.key;
-      if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) + 1); }
-      else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) { e.preventDefault(); if (!bloqueado) irA(lista, actual(lista) - 1); }
-      else if (k === 'Home') { e.preventDefault(); if (!bloqueado) irA(lista, 0); }
-      else if (k === 'End') { e.preventDefault(); if (!bloqueado) irA(lista, lista.length - 1); }
-    });
-
   // Ajuste automático: si el contenido de una pantalla no cabe, se reduce hasta que quepa
   function ajustar() {
     pantallas().forEach((c) => {
