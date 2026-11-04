@@ -99,7 +99,7 @@
   // Códigos de proyecto: los mismos de las carpetas locales
   // Códigos de las publicaciones (Excel «publicaciones-portico-lab»). Se aceptan títulos actuales y anteriores.
   const CODIGOS = [
-    ['piel tejida', 'A-013'], ['edificio san german', 'A-013'], ['edif san german', 'A-013'], ['atalaya', 'A-013'],
+    ['piel tejida', 'A-013'], ['edificio san german', 'A-009'], ['edif san german', 'A-009'], ['atalaya', 'A-013'],
     ['astra', 'A-001'], ['girder box', 'E-001'], ['bridge box', 'E-001'],
     ['cenit', 'M-004'], ['moai', 'M-005'], ['tangara', 'M-006'],
     ['coltejer', 'P-002'], ['jersey', 'P-003'], ['dorica', 'P-004'], ['zarcillo', 'P-006'], ['skull', 'P-007']

@@ -1,0 +1,104 @@
+// Paso entre pantallas en escritorio (Inicio, Nosotros, Servicios): un gesto de rueda o trackpad = una pantalla.
+// - Espera a que termine el desplazamiento y a que el gesto se detenga (la inercia del trackpad no salta dos pantallas).
+// - Si una pantalla es más alta que la ventana, primero se recorre normal hasta su borde y luego se pasa a la siguiente.
+// - Se apaga en pantallas pequeñas, con Ctrl (zoom), dentro de campos de texto y mientras haya un formulario abierto.
+(() => {
+  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const modo = matchMedia('(min-width: 901px) and (min-height: 560px)');
+  const cab = () => document.querySelector('header');
+  const alto = () => (cab() ? cab().getBoundingClientRect().height : 0);
+  const pausa = () => !!document.querySelector('.cotizador.visible, .confirmacion.visible');
+  const margen = (el) => parseFloat(getComputedStyle(el).marginTop) || 0;
+  const topDe = (el) => el.getBoundingClientRect().top + scrollY - alto() - margen(el);
+  const lista = () => [...document.querySelectorAll('[data-pantalla]')]
+    .filter((el) => el.offsetParent !== null)
+    .sort((a, b) => topDe(a) - topDe(b));
+  const actual = (l) => { const y = scrollY + 8; let i = 0; l.forEach((el, n) => { if (topDe(el) <= y) i = n; }); return i; };
+  // En escritorio el ajuste nativo (scroll-snap) compite con este paso y desvía el destino: se apaga
+  const snap = () => { document.documentElement.style.scrollSnapType = modo.matches ? 'none' : ''; };
+  snap();
+  modo.addEventListener('change', snap);
+  const HOLGURA = 24;   // px que puede sobresalir una pantalla sin que cuente como "más alta que la ventana"
+
+  let bloqueado = false, ultimoGesto = 0, acumulado = 0, reloj = 0;
+  function liberarCuandoTermine(destino, el) {
+    const inicio = performance.now();
+    let previo = -1, quieto = 0, corregido = false;
+    clearInterval(reloj);
+    reloj = setInterval(() => {
+      const y = scrollY, ahora = performance.now();
+      quieto = Math.abs(y - previo) < 1 ? quieto + 1 : 0;
+      previo = y;
+      const llego = Math.abs(y - destino) < 2 || quieto >= 3;
+      // Si algo cambió de tamaño durante el viaje (imágenes que cargan), se corrige una vez al llegar
+      if (llego && el && !corregido) {
+        corregido = true;
+        const real = Math.round(Math.max(0, Math.min(topDe(el), document.documentElement.scrollHeight - innerHeight)));
+        if (Math.abs(real - y) > 2) { destino = real; quieto = 0; scrollTo({ top: real, behavior: 'auto' }); return; }
+      }
+      const gestoTerminado = ahora - ultimoGesto > 180;
+      if ((llego && gestoTerminado) || ahora - inicio > 1600) { clearInterval(reloj); bloqueado = false; acumulado = 0; }
+    }, 40);
+  }
+  function irA(l, i) {
+    i = Math.max(0, Math.min(l.length - 1, i));
+    const destino = Math.round(Math.max(0, Math.min(topDe(l[i]), document.documentElement.scrollHeight - innerHeight)));
+    if (Math.abs(destino - scrollY) < 2) return false;
+    bloqueado = true;
+    scrollTo({ top: destino, behavior: reducir ? 'auto' : 'smooth' });
+    liberarCuandoTermine(destino, l[i]);
+    return true;
+  }
+  // ¿La pantalla actual todavía tiene contenido por recorrer en esa dirección?
+  function quedaPorRecorrer(el, dir) {
+    const r = el.getBoundingClientRect();
+    return dir > 0 ? r.bottom - innerHeight > HOLGURA : alto() - r.top > HOLGURA;
+  }
+
+  addEventListener('wheel', (e) => {
+    if (!modo.matches || e.ctrlKey || pausa() || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    const ahora = performance.now();
+    const pausaEntreGestos = ahora - ultimoGesto;
+    ultimoGesto = ahora;
+    if (bloqueado) { e.preventDefault(); return; }
+    const l = lista();
+    if (!l.length) return;
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const i = actual(l);
+    if (quedaPorRecorrer(l[i], dir)) {
+      // Desplazamiento normal dentro de una pantalla alta, sin pasarse de su borde
+      const r = l[i].getBoundingClientRect();
+      const resto = dir > 0 ? r.bottom - innerHeight : alto() - r.top;
+      const paso = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+      if (paso < resto) return;
+      e.preventDefault();
+      bloqueado = true;
+      const destino = Math.round(scrollY + dir * resto);
+      scrollTo({ top: destino, behavior: 'auto' });
+      liberarCuandoTermine(destino, null);
+      return;
+    }
+    e.preventDefault();
+    if (pausaEntreGestos > 220) acumulado = 0;
+    acumulado += e.deltaY;
+    if (Math.abs(acumulado) < 28) return;      // toques mínimos del trackpad no cambian de pantalla
+    acumulado = 0;
+    irA(l, i + dir);
+  }, { passive: false });
+
+  addEventListener('keydown', (e) => {
+    if (!modo.matches || e.altKey || e.ctrlKey || e.metaKey || pausa()) return;
+    if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
+    const k = e.key;
+    const dir = (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) ? 1
+      : (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) ? -1 : 0;
+    const l = lista();
+    if (!l.length) return;
+    if (k === 'Home' || k === 'End') { e.preventDefault(); if (!bloqueado) irA(l, k === 'Home' ? 0 : l.length - 1); return; }
+    if (!dir) return;
+    const i = actual(l);
+    if (quedaPorRecorrer(l[i], dir)) return;
+    e.preventDefault();
+    if (!bloqueado) irA(l, i + dir);
+  });
+})();
