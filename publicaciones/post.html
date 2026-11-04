@@ -318,7 +318,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
   <button class="lightbox-flecha lightbox-flecha--next" id="next" aria-label="Imagen siguiente"><svg viewBox="0 0 24 48" aria-hidden="true"><path d="M6 4l12 20L6 44"/></svg></button>
 </div>
 
-<script src="../sanity.js?v=14"></script>
+<script src="../sanity.js?v=15"></script>
 <script>
 const S = window.PL_SANITY;
 
@@ -372,7 +372,7 @@ async function loadPost() {
   try {
     result = await S.consultar('*[_type == "proyecto" && _id == $id][0]{ title, location, year, description, features, tags, portada, galeria }', { id });
   } catch (e) {
-    aviso.textContent = 'No pudimos cargar el proyecto. Recarga la página en un momento.';
+    aviso.textContent = 'No pudimos cargar el proyecto. Recargue la página en un momento.';
     return;
   }
   if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
