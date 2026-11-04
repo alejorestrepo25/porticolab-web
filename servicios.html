@@ -21,7 +21,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <link rel="stylesheet" href="styles.css?v=6">
-  <link rel="stylesheet" href="y2k.css?v=7">
+  <link rel="stylesheet" href="y2k.css?v=8">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,8 +62,7 @@
     .hero h1 { font-size: 40px; line-height: 1.15; font-weight: 700; margin-top: 14px; }
     .hero h1 { font-family: var(--display); text-transform: uppercase; font-size: clamp(26px, 4vw, 44px); }
     .hero h1 em { font-style: normal; color: var(--acento); background: var(--cromo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .srv-body h3, .seccion { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3px; }
-    .srv-body h3 { font-size: 15px; }
+    .seccion { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3px; }
     .hero p { color: #ccc; font-size: 15px; line-height: 1.7; margin-top: 16px; }
     .hero-acciones { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
 
@@ -74,82 +73,7 @@
     .paso-card h3 { font-size: 14px; margin-top: 10px; font-weight: 600; }
     .paso-card p { font-size: 12px; color: #888; line-height: 1.6; margin-top: 6px; }
 
-    /* ---------- TARJETAS DE SERVICIO ---------- */
-    .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
-    .srv-card { display: flex; flex-direction: column; border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; background: #070707; transition: border-color 0.2s ease, transform 0.2s ease; }
-    .srv-card:hover { border-color: #555; transform: translateY(-3px); }
-    .srv-card.sel { border-color: var(--acento); }
-    .ruta-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
-    .badge { z-index: 1; }
-    .archivo-chip { font-family: var(--mono); font-size: 11px; color: #ccc; border: 1px solid #333; border-radius: 8px; padding: 6px 10px; }
-    .srv-img { position: relative; aspect-ratio: 4 / 3; background: #0b0b0b; overflow: hidden; }
-    .srv-img img, .srv-img svg { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .badge { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; background: var(--acento); color: #000; padding: 6px 10px; border-radius: 6px; }
-    .srv-body { display: flex; flex-direction: column; flex: 1; padding: 22px; }
-    .srv-body .num { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: #666; }
-    .srv-body h3 { font-size: 17px; font-weight: 700; margin-top: 8px; }
-    .srv-body .promesa { font-size: 13px; color: #aaa; line-height: 1.6; margin-top: 8px; }
-    .srv-entrega { margin-top: 16px; padding: 14px; border: 1px solid #29272f; border-radius: 10px; background: #0b0a0e; }
-    .srv-body .num { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .bim { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: #000; background: var(--cromo); padding: 4px 8px; border-radius: 6px; }
-    .srv-body .incluye { list-style: none; margin-top: 14px; }
-    .srv-body .incluye li { font-size: 12px; color: #ccc; line-height: 1.5; padding: 6px 0 6px 20px; position: relative; border-top: 1px solid #151515; }
-    .srv-body .incluye li::before { content: '+'; position: absolute; left: 0; color: var(--acento); font-family: var(--mono); font-weight: 600; }
-    .srv-body .meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 16px; font-family: var(--mono); font-size: 11px; color: #888; }
-    .srv-body .meta b { color: var(--acento); font-weight: 600; }
-    .srv-body .btn { margin-top: 16px; width: 100%; }
-
-    /* ---------- COTIZADOR ---------- */
-    .cotizador { display: none; grid-template-columns: 1.15fr 1fr; gap: 36px; scroll-margin-top: 90px; }
-    .cotizador.visible { display: grid; }
-    .cot-cabecera { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--linea); padding-bottom: 14px; }
-    .cot-cabecera h2 { font-size: 20px; }
-    .link-volver { background: none; border: 0; color: #888; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; cursor: pointer; text-decoration: underline; }
-    .link-volver:hover { color: #fff; }
-    .paso-titulo { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; letter-spacing: 1px; margin: 4px 0 20px; }
-    .paso-titulo .pn { width: 26px; height: 26px; border-radius: 50%; background: var(--acento); color: #000; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; font-weight: 600; flex-shrink: 0; }
-    .bloque-datos { margin-top: 36px; }
-
-    .campo { margin-bottom: 22px; }
-    .campo-label, .campo label { display: block; font-size: 13px; color: #ddd; margin-bottom: 10px; font-weight: 500; }
-    .campo .ayuda { font-size: 11px; color: #777; margin-top: 8px; line-height: 1.5; }
-    .campo input[type=text], .campo input[type=tel], .campo input[type=email], .campo input[type=number], .campo textarea { width: 100%; background: #0b0b0b; color: #fff; border: 1px solid #333; padding: 13px 14px; font-family: inherit; font-size: 14px; border-radius: 10px; }
-    .campo input:focus, .campo textarea:focus { outline: none; border-color: var(--acento); }
-    .campo textarea { min-height: 84px; resize: vertical; }
-    .fila-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip { background: #0b0b0b; color: #ddd; border: 1px solid #333; border-radius: 10px; padding: 11px 14px; font-family: inherit; font-size: 13px; cursor: pointer; text-align: left; line-height: 1.3; transition: border-color 0.15s ease, background 0.15s ease; }
-    .chip small { display: block; font-family: var(--mono); font-size: 10px; color: #777; margin-top: 3px; letter-spacing: 0.3px; }
-    .chip:hover { border-color: #777; }
-    .chip[aria-checked=true] { background: var(--cromo); border-color: transparent; color: #000; font-weight: 600; }
-    .chip[aria-checked=true] small { color: #333; }
-    .chip:focus-visible, .btn:focus-visible, .link-volver:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-    .presets { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .presets .chip { padding: 7px 12px; font-family: var(--mono); font-size: 11px; }
-
-    .oferta { border: 1px solid var(--acento); border-radius: var(--radio); padding: 28px; position: sticky; top: 88px; align-self: start; background: #050505; box-shadow: 6px 6px 0 #1a1a1a; font-family: var(--mono); }
-    .oferta .oferta-tit { display: flex; align-items: center; gap: 12px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; }
-    .oferta .servicio-nombre { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-top: 16px; }
-    .oferta .etiqueta-precio { font-size: 11px; letter-spacing: 2px; color: #777; margin-top: 18px; text-transform: uppercase; }
-    .oferta .precio { font-size: 28px; font-weight: 700; margin-top: 6px; color: var(--acento); line-height: 1.2; background: var(--cromo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-variant-numeric: tabular-nums; }
-    .oferta .precio small { font-size: 12px; font-weight: 500; color: #888; -webkit-text-fill-color: #888; margin-left: 6px; }
-    .oferta .linea { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; padding: 10px 0; border-bottom: 1px solid #1c1c1c; color: #ccc; }
-    .oferta .linea b { color: #fff; font-weight: 600; text-align: right; }
-    .oferta .desglose { margin-top: 14px; font-size: 11px; color: #777; line-height: 1.7; }
-    .oferta .nota { font-size: 11px; color: #666; line-height: 1.6; margin-top: 16px; }
-    .acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 11px; color: #999; line-height: 1.6; margin-top: 18px; cursor: pointer; }
-    .acepto input { margin-top: 3px; accent-color: var(--acento); width: 16px; height: 16px; flex-shrink: 0; }
-    .error { color: #ff6b6b; font-size: 12px; margin-top: 10px; min-height: 16px; }
-
-    .confirmacion { display: none; border: 1px solid #333; border-radius: var(--radio); padding: 40px; }
-    .confirmacion.visible { display: block; }
-    .confirmacion h2 { font-size: 20px; letter-spacing: 2px; }
-    .confirmacion p { color: #aaa; font-size: 14px; line-height: 1.8; margin-top: 14px; }
-    .confirmacion .ref { color: var(--acento); font-family: var(--mono); font-weight: 600; letter-spacing: 1px; }
-    .confirmacion .btn { margin-top: 24px; }
-
-    /* ---------- TALLER ---------- */
+    .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
     /* ---------- FAQ ---------- */
     .faq { margin-top: 24px; max-width: 760px; }
@@ -165,37 +89,8 @@
     .cierre h2 { font-size: 22px; }
     .cierre p { color: #999; font-size: 14px; margin: 10px auto 22px; max-width: 480px; line-height: 1.7; }
 
-    .tabs { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; }
-    .tabs[hidden] { display: none; }
-    .tabs button { flex: 1; min-width: 150px; background: #0b0b0b; color: #bbb; border: 1px solid #333; border-radius: 10px; padding: 13px 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
-    .tabs button:hover { border-color: #777; }
-    .tabs button[aria-selected=true] { background: var(--cromo); border-color: transparent; color: #000; font-weight: 600; }
-    .tabs button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-    .campo input[type=file] { width: 100%; background: #0b0b0b; color: #bbb; border: 1px dashed #555; border-radius: 10px; padding: 12px; font-family: var(--mono); font-size: 12px; cursor: pointer; }
-    .campo input[type=file]::file-selector-button { background: #fff; color: #000; border: 0; border-radius: 6px; padding: 8px 12px; margin-right: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; cursor: pointer; }
-    .unidades { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; color: #888; }
-    .unidades[hidden] { display: none; }
-    .unidades .chip { padding: 6px 12px; font-family: var(--mono); font-size: 11px; }
-    .estado-archivo { font-family: var(--mono); font-size: 11px; color: var(--acento); margin-top: 10px; line-height: 1.6; min-height: 16px; }
-    .estado-archivo.aviso { color: #ff9f6b; }
-    .miniaturas { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .miniaturas img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid #333; }
-    .campo textarea.grande { min-height: 110px; }
-
-    .barra-movil { display: none; }
-
     @media (max-width: 900px) {
       .pasos-row { grid-template-columns: repeat(2, 1fr); }
-      .ruta-row { grid-template-columns: 1fr; }
-      .srv-grid { grid-template-columns: 1fr; }
-      .srv-img { aspect-ratio: 16 / 10; }
-      .cotizador.visible { grid-template-columns: 1fr; }
-      .oferta { position: static; }
-      .barra-movil { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 96px 12px 16px; background: #000; border-top: 1px solid var(--acento); font-family: var(--mono); }
-      .barra-movil.visible { display: flex; }
-      .barra-movil small { display: block; font-size: 10px; color: #777; letter-spacing: 1.5px; }
-      .barra-movil b { font-size: 15px; color: var(--acento); }
-      .barra-movil .btn { padding: 11px 14px; }
     }
     @media (max-width: 768px) {
       header { height: auto; flex-direction: column; align-items: flex-start; padding: 12px 16px; gap: 8px; }
@@ -207,10 +102,6 @@
       .hero { min-height: 360px; background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.3) 100%), url('img/servicios/hero.jpg') center / cover no-repeat; }
       .hero-txt { padding: 24px 20px; }
       .hero h1 { font-size: 28px; }
-      .fila-2 { grid-template-columns: 1fr; }
-      .oferta { padding: 22px; }
-      .oferta .precio { font-size: 24px; }
-      .confirmacion { padding: 24px 18px; }
       .hero-acciones .btn { flex: 1; }
     }
     @media (min-width: 769px) and (max-width: 1100px) {
@@ -219,17 +110,17 @@
       body > header .nav { gap: 18px; }
       body > header .nav a { font-size: 13px; letter-spacing: 0.5px; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .srv-card { transition: none; } .srv-card:hover { transform: none; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
   <link rel="stylesheet" href="frentes-servicios.css?v=1">
-  <link rel="stylesheet" href="servicios-poster.css?v=11">
+  <link rel="stylesheet" href="servicios-poster.css?v=12">
   <!-- Metricool -->
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
-  <link rel="stylesheet" href="coherencia.css?v=2">
+  <link rel="stylesheet" href="coherencia.css?v=3">
   <link rel="stylesheet" href="motion-graphics.css?v=7">
-  <link rel="stylesheet" href="motion.css?v=5">
-  <link rel="stylesheet" href="editorial.css?v=105">
+  <link rel="stylesheet" href="motion.css?v=6">
+  <link rel="stylesheet" href="editorial.css?v=106">
 </head>
 
 <body class="y2k srvposter">
@@ -258,7 +149,7 @@
       <p>Herramientas de venta, control BIM que cuida <mark>cada peso</mark>.</p>
       <div class="hero-acciones">
         <a class="btn btn-primario" href="#servicios">Ver servicios</a>
-        <a class="btn btn-secundario" id="hero-wa" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        <a class="btn btn-secundario" id="hero-wa" href="https://wa.me/573147924600?text=Buen%20d%C3%ADa%2C%20equipo%20de%20P%C3%B3rtico%20Lab.%20Consult%C3%A9%20sus%20servicios%20en%20porticolab.com%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20para%20un%20proyecto.%20Quedo%20pendiente%20de%20su%20respuesta." target="_blank" rel="noopener">Hablar por WhatsApp</a>
       </div>
     </div>
     <figure class="srv-hero__visual" aria-label="Visualización animada de coordinación BIM">
@@ -311,57 +202,6 @@
     <a class="siguiente" href="#preguntas" aria-label="Siguiente: Hablemos"><span>Hablemos</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
   </section>
 
-  <section class="cotizador" id="cotizador" aria-label="Cotizador">
-    <div class="cot-cabecera">
-      <h2 id="cot-titulo"></h2>
-      <button type="button" class="link-volver" id="btn-volver">← Cambiar de servicio</button>
-    </div>
-
-    <div>
-      <div class="tabs" id="tabs-variante" role="tablist" aria-label="Cómo quiere pedirlo" hidden></div>
-      <div class="paso-titulo"><span class="pn">1</span>Su proyecto</div>
-      <form id="form-servicio" onsubmit="return false"></form>
-
-      <div class="bloque-datos">
-        <div class="paso-titulo"><span class="pn">2</span>Sus datos de contacto</div>
-        <form id="form-cliente" onsubmit="return false">
-          <div class="fila-2">
-            <div class="campo"><label for="cli-nombre">Nombre completo</label><input id="cli-nombre" type="text" autocomplete="name"></div>
-            <div class="campo"><label for="cli-telefono">Teléfono / WhatsApp</label><input id="cli-telefono" type="tel" autocomplete="tel"></div>
-          </div>
-          <div class="fila-2">
-            <div class="campo"><label for="cli-correo">Correo</label><input id="cli-correo" type="email" autocomplete="email"></div>
-            <div class="campo"><label for="cli-ciudad">Ciudad</label><input id="cli-ciudad" type="text" autocomplete="address-level2"></div>
-          </div>
-          <input type="text" id="cli-web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <div class="campo"><label for="cli-empresa">Empresa (si aplica)</label><input id="cli-empresa" type="text" autocomplete="organization"></div>
-        <div class="campo"><label for="cli-notas">Algo más que debamos saber (opcional)</label><textarea id="cli-notas" maxlength="800" placeholder="Ubicación, etapa del proyecto, lo que tenga en mente..."></textarea></div>
-        </form>
-      </div>
-    </div>
-
-    <aside class="oferta" id="oferta" aria-live="polite">
-      <span class="hud" style="margin-bottom:14px"><b>[ SYS.OK ]</b> Solicitud // en vivo</span>
-      <div class="oferta-tit"><span class="paso-titulo" style="margin:0"><span class="pn">3</span>Su solicitud</span></div>
-      <div class="servicio-nombre" id="of-servicio"></div>
-      <div class="desglose" id="of-desglose" style="margin-top:12px"></div>
-      <div class="nota">Revisamos su proyecto y le enviamos una propuesta a la medida: alcance y valor.</div>
-      <label class="acepto"><input type="checkbox" id="of-acepto"><span id="of-acepto-texto">Acepto que Pórtico Lab me contacte para enviarme una propuesta. No tiene costo ni compromiso.</span></label>
-      <button class="btn btn-primario btn-block" id="btn-aceptar" type="button">Solicitar propuesta</button>
-      <button class="btn btn-secundario btn-block" id="btn-dudas" type="button">Prefiero hablar por WhatsApp</button>
-      <div class="error" id="of-error" role="alert"></div>
-      <div class="nota">Sus datos solo se usan para responder esta solicitud.</div>
-    </aside>
-  </section>
-
-  <section class="confirmacion" id="confirmacion" aria-live="polite">
-    <h2 id="conf-titulo">SOLICITUD RECIBIDA</h2>
-    <p>Su referencia es <span class="ref" id="conf-ref"></span>.</p>
-    <p id="conf-texto"></p>
-    <a class="btn btn-primario" id="conf-wa" href="#" target="_blank" rel="noopener" hidden style="margin-right:10px">Escribir por WhatsApp</a>
-    <a class="btn btn-secundario" href="servicios.html">Volver a servicios</a>
-  </section>
-
   <section id="preguntas" class="cierre-combo" data-pantalla data-nombre="Contacto">
   <div class="combo">
     <div class="combo__cta">
@@ -389,11 +229,6 @@
 
 </main>
 
-<div class="barra-movil" id="barra-movil">
-  <div><small>SU SOLICITUD</small><b id="bm-servicio"></b></div>
-  <button class="btn btn-primario" id="bm-ver" type="button">Ver solicitud</button>
-</div>
-
 <script src="ilustraciones-servicios.js?v=2"></script>
 <script>
 // Las tarjetas de servicios usan las mismas ilustraciones que en el Inicio
@@ -403,561 +238,19 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
 });
 </script>
 <script>
-// =====================================================================
-//  CONFIGURACIÓN — todo lo que se ajusta está aquí.
-// =====================================================================
-const CONFIG = {
-  whatsapp: '573147924600',
-  // URL del Apps Script "Cotizaciones" que envía el correo con los archivos adjuntos (vacía = solo Sheet + WhatsApp)
-  cotizacionesUrl: 'https://script.google.com/macros/s/AKfycbx5AFeonGnjrg5KrHvgm4TL-LnOXdi9VVuyaYMwtCWSHVPKm8SYSera69wVQDWodCaRVA/exec',
-  sheetWebhook: 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec'
-};
-
-// =====================================================================
-//  SERVICIOS
-//  Cada servicio se cotiza a la medida: la página recoge el encargo y llega a Pórtico Lab como solicitud de propuesta.
-// =====================================================================
-// Opciones: [valor, etiqueta, pista opcional]
-const ADJUNTOS = { id: 'adjuntos', label: 'Planos, modelo o referencias (opcional)', type: 'adjuntos' };
-
-// FONDO_SVG, ILUSTRACION_BIM e ILUSTRACION_MAQUETA vienen de ilustraciones-servicios.js
-
-const SERVICIOS = [
-  {
-    id: 'maquetas', nombre: 'Modelos a escala',
-    badge: 'PARA VENDER', ilustracion: ILUSTRACION_MAQUETA,
-    promesa: 'Una maqueta que el comprador entiende en segundos y que sostiene la conversación de venta.',
-    pasos: ['Planos y renders que el comprador no entiende.', 'Maqueta de exhibición diseñada para su público: impresión 3D, corte láser y acabado a mano.', 'Una pieza que se entiende en segundos y ayuda a vender.'],
-    incluye: ['Diseño estratégico', 'Fabricación con impresión 3D, corte láser y acabados a mano', 'Electrónica e iluminación integrada'],
-    resultado: 'Una pieza física para presentar el proyecto en ventas, reuniones o exhibiciones.',
-    meta: ['Propuesta a la medida', 'Exhibición física'],
-    cta: 'Solicitar propuesta',
-    campos: [
-      { id: 'descripcion', label: 'Cuéntenos sobre el proyecto', type: 'texto', placeholder: 'Qué se va a vender o presentar, dónde está, a quién va dirigida, referencias que le gusten...' },
-      { id: 'uso', label: '¿Para qué la necesita?', type: 'linea', placeholder: 'Sala de ventas, inversionistas, feria o exhibición...' },
-      { id: 'proyecto', label: '¿Qué vamos a representar?', type: 'linea', placeholder: 'Edificio, conjunto, vivienda, espacio interior...' },
-      { id: 'escala', label: '¿De qué tamaño la imagina?', type: 'linea', placeholder: 'De mesa, hasta 1 m, gran formato... o aún no lo sabe' },
-      { id: 'fecha', label: '¿Para cuándo la necesita?', type: 'linea', placeholder: 'Fecha de lanzamiento, feria o entrega' },
-      ADJUNTOS
-    ],
-    resumen(v) {
-      return [
-        v.descripcion ? ['Descripción', v.descripcion] : null,
-        v.uso ? ['Uso', v.uso] : null,
-        v.proyecto ? ['Representa', v.proyecto] : null,
-        v.escala ? ['Tamaño', v.escala] : null,
-        v.fecha ? ['Para cuándo', v.fecha] : null
-      ];
-    }
-  },
-  {
-    id: 'bim', nombre: 'Auditoría BIM + Costos de Obra',
-    badge: 'AUDITORÍA + COSTOS', ilustracion: ILUSTRACION_BIM,
-    bim: true,
-    promesa: 'Detectamos imprecisiones antes de que se conviertan en sobrecostos en obra.',
-    pasos: ['Sobrecostos ocultos y errores que aparecen en obra.', 'Auditoría BIM preventiva: revisión del modelo con costos y cronograma vinculados.', 'Presupuesto blindado antes de construir.'],
-    incluye: ['Coordinación del modelo BIM', 'Seguimiento de costos del proyecto', 'Cómputos métricos automatizados (en desarrollo)'],
-    resultado: 'Riesgos y desviaciones visibles antes de construir.',
-    meta: ['Propuesta a la medida', 'Revisión + control de costos'],
-    cta: 'Solicitar propuesta',
-    campos: [
-      { id: 'descripcion', label: 'Cuéntenos sobre el proyecto', type: 'texto', placeholder: 'Ubicación, etapa, tamaño y qué le preocupa del costo o del modelo...' },
-      { id: 'fase', label: '¿En qué fase está?', type: 'linea', placeholder: 'Idea o lote, diseño, licencia, en obra...' },
-      { id: 'tipo', label: '¿Qué tipo de proyecto es?', type: 'linea', placeholder: 'Vivienda, multifamiliar, comercial, remodelación...' },
-      { id: 'area', label: '¿Cuántos m² construidos, aproximadamente?', type: 'linea', placeholder: 'Ej. 500 m²' },
-      { id: 'necesidad', label: '¿Qué necesita?', type: 'linea', placeholder: 'Auditoría del modelo, cómputos, control de costos, interferencias...' },
-      { id: 'insumo', label: '¿Con qué cuenta hoy?', type: 'linea', placeholder: 'Modelo BIM (Revit, IFC), planos 2D o solo la idea' },
-      ADJUNTOS
-    ],
-    resumen(v) {
-      return [
-        v.descripcion ? ['Descripción', v.descripcion] : null,
-        v.fase ? ['Fase', v.fase] : null,
-        v.tipo ? ['Proyecto', v.tipo] : null,
-        v.area ? ['Área', v.area] : null,
-        v.necesidad ? ['Necesita', v.necesidad] : null,
-        v.insumo ? ['Cuenta con', v.insumo] : null
-      ];
-    }
-  }
-];
-
-// =====================================================================
-//  LÓGICA
-// =====================================================================
-let servicioActual = null;
-let solicitudActual = null;
-let adjuntosElegidos = [];    // archivos elegidos (se leen en el navegador y viajan adjuntos al correo)
-
-const fmtNum = n => Number(n).toLocaleString('es-CO');
-const $ = id => document.getElementById(id);
-function txt(servicio, campoId, valor) {
-  const c = servicio.campos.find(x => x.id === campoId);
-  const o = c && c.options.find(x => x[0] === valor);
-  return o ? o[1] : valor;
-}
-function etiquetas(servicio, campoId, csv) {
-  return csv.split(',').filter(Boolean).map(v => txt(servicio, campoId, v)).join(', ');
-}
-
-function urlWhatsApp(texto) { return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`; }
-function dispararInput(el) { el.dispatchEvent(new Event('input', { bubbles: true })); }
-
-function renderGrid() {
-  const grid = $('srv-grid');
-  if (!grid) return; // las tarjetas son las mismas del Inicio, escritas en el HTML
-  SERVICIOS.forEach((s, i) => {
-    const card = document.createElement('article');
-    card.className = 'srv-card';
-    card.dataset.id = s.id;
-    const media = s.ilustracion || `<img src="${s.imagen}" alt="${s.alt}" loading="lazy" data-dither>`;
-    card.innerHTML =
-      `<div class="srv-img">${media}</div>` +
-      `<div class="srv-body">` +
-        `<div class="num">[0${i + 1}]</div>` +
-        `<h3>${s.nombre}</h3>` +
-        `<p class="promesa">${s.promesa}</p>` +
-        `<ul class="incluye">${s.incluye.map(t => `<li>${t}</li>`).join('')}</ul>` +
-        `<div class="meta"><span><b>${s.meta[0]}</b></span><span>${s.meta[1]}</span></div>` +
-        `<button class="btn btn-primario" type="button">${s.cta} →</button>` +
-      `</div>`;
-    // Cotizar lleva directo al formulario único del Inicio
-    card.querySelector('button').addEventListener('click', () => { location.href = `index.html?servicio=${s.id}#contacto`; });
-    grid.appendChild(card);
-  });
-}
-
-function crearCampo(c) {
-  const div = document.createElement('div');
-  div.className = 'campo';
-  const lbl = document.createElement('div');
-  lbl.className = 'campo-label';
-  lbl.id = `lbl-${c.id}`;
-  lbl.textContent = c.label;
-  div.appendChild(lbl);
-
-  if (c.type === 'select') {
-    const oculto = document.createElement('input');
-    oculto.type = 'hidden';
-    oculto.id = `f-${c.id}`;
-    oculto.value = c.options[0][0];
-    const grupo = document.createElement('div');
-    grupo.className = 'chips';
-    grupo.setAttribute('role', 'radiogroup');
-    grupo.setAttribute('aria-labelledby', lbl.id);
-    c.options.forEach((o, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip';
-      b.setAttribute('role', 'radio');
-      b.setAttribute('aria-checked', i === 0 ? 'true' : 'false');
-      b.textContent = o[1];
-      if (o[2]) { const s = document.createElement('small'); s.textContent = o[2]; b.appendChild(s); }
-      b.addEventListener('click', () => {
-        grupo.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-checked', 'false'));
-        b.setAttribute('aria-checked', 'true');
-        oculto.value = o[0];
-        dispararInput(oculto);
-      });
-      grupo.appendChild(b);
-    });
-    div.appendChild(grupo);
-    div.appendChild(oculto);
-  } else if (c.type === 'multi') {
-    const oculto = document.createElement('input');
-    oculto.type = 'hidden';
-    oculto.id = `f-${c.id}`;
-    oculto.value = '';
-    const grupo = document.createElement('div');
-    grupo.className = 'chips';
-    grupo.setAttribute('role', 'group');
-    grupo.setAttribute('aria-labelledby', lbl.id);
-    c.options.forEach(o => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip';
-      b.setAttribute('role', 'checkbox');
-      b.setAttribute('aria-checked', 'false');
-      b.dataset.valor = o[0];
-      b.textContent = o[1];
-      if (o[2]) { const s = document.createElement('small'); s.textContent = o[2]; b.appendChild(s); }
-      b.addEventListener('click', () => {
-        b.setAttribute('aria-checked', b.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
-        oculto.value = [...grupo.querySelectorAll('.chip[aria-checked=true]')].map(x => x.dataset.valor).join(',');
-        dispararInput(oculto);
-      });
-      grupo.appendChild(b);
-    });
-    div.appendChild(grupo);
-    div.appendChild(oculto);
-  } else if (c.type === 'adjuntos') {
-    const file = document.createElement('input');
-    file.type = 'file';
-    file.accept = 'image/*,.pdf,.obj,.stl,.ifc,.dwg,.dxf,.rvt,.skp,.3dm';
-    file.multiple = true;
-    file.id = 'f-adjuntos';
-    file.setAttribute('aria-labelledby', lbl.id);
-    const mini = document.createElement('div');
-    mini.className = 'miniaturas';
-    file.addEventListener('change', () => {
-      mini.querySelectorAll('img').forEach(i => URL.revokeObjectURL(i.src));
-      mini.innerHTML = '';
-      adjuntosElegidos = Array.from(file.files).slice(0, 6);
-      adjuntosElegidos.forEach(f => {
-        if (f.type.startsWith('image/')) {
-          const im = document.createElement('img');
-          im.src = URL.createObjectURL(f);
-          im.alt = f.name;
-          mini.appendChild(im);
-        } else {
-          const t = document.createElement('span');
-          t.className = 'archivo-chip';
-          t.textContent = f.name;
-          mini.appendChild(t);
-        }
-      });
-      dispararInput(file);
-    });
-    div.appendChild(file);
-    div.appendChild(mini);
-    const nota = document.createElement('div');
-    nota.className = 'ayuda';
-    nota.textContent = CONFIG.cotizacionesUrl
-      ? 'Hasta 6 archivos y 12 MB en total: imágenes, PDF o modelos OBJ, STL, IFC, DWG o RVT. Se adjuntan a la solicitud y llegan al correo del equipo Pórtico Lab; no se publican en la web. Si algún archivo excede el límite, se lo pediremos por WhatsApp.'
-      : 'Hasta 6 archivos. No se suben a la web: nos los envía por WhatsApp al enviar la solicitud.';
-    div.appendChild(nota);
-  } else if (c.type === 'texto') {
-    const ta = document.createElement('textarea');
-    ta.id = `f-${c.id}`;
-    ta.className = 'grande';
-    ta.maxLength = 800;
-    ta.placeholder = c.placeholder || '';
-    ta.setAttribute('aria-labelledby', lbl.id);
-    div.appendChild(ta);
-  } else if (c.type === 'linea') {
-    const inp = document.createElement('input');
-    inp.type = 'text';
-    inp.id = `f-${c.id}`;
-    inp.maxLength = 120;
-    inp.placeholder = c.placeholder || '';
-    inp.setAttribute('aria-labelledby', lbl.id);
-    div.appendChild(inp);
-  } else {
-    const inp = document.createElement('input');
-    inp.type = 'number';
-    inp.id = `f-${c.id}`;
-    inp.inputMode = 'numeric';
-    inp.min = c.min; inp.max = c.max; inp.value = c.value;
-    inp.setAttribute('aria-labelledby', lbl.id);
-    div.appendChild(inp);
-    if (c.presets) {
-      const p = document.createElement('div');
-      p.className = 'presets';
-      c.presets.forEach(n => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'chip';
-        b.textContent = `${fmtNum(n)} m²`;
-        b.addEventListener('click', () => { inp.value = n; dispararInput(inp); });
-        p.appendChild(b);
-      });
-      div.appendChild(p);
-    }
-  }
-  if (c.ayuda) { const a = document.createElement('div'); a.className = 'ayuda'; a.textContent = c.ayuda; div.appendChild(a); }
-  return div;
-}
-
-function seleccionar(id) {
-  servicioActual = SERVICIOS.find(s => s.id === id);
-  adjuntosElegidos = [];
-  document.querySelectorAll('.srv-card').forEach(c => c.classList.toggle('sel', c.dataset.id === id));
-  $('cot-titulo').textContent = servicioActual.nombre;
-  $('cotizador').classList.add('visible');
-  $('of-acepto').checked = false;
-  $('of-error').textContent = '';
-  const form = $('form-servicio');
-  form.innerHTML = '';
-  servicioActual.campos.forEach(c => form.appendChild(crearCampo(c)));
-  form.oninput = actualizarResumen;
-  actualizarResumen();
-  $('cotizador').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  observarPanel();
-}
-
-function volverAServicios() {
-  $('cotizador').classList.remove('visible');
-  $('barra-movil').classList.remove('visible');
-  document.querySelectorAll('.srv-card').forEach(c => c.classList.remove('sel'));
-  $('servicios').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function leerValores() {
-  const v = {};
-  servicioActual.campos.forEach(c => {
-    if (c.type === 'adjuntos') return;
-    const el = $(`f-${c.id}`);
-    if (c.type === 'number') {
-      let n = parseFloat(el.value);
-      if (!isFinite(n)) n = c.min;
-      v[c.id] = Math.min(c.max, Math.max(c.min, n));
-    } else {
-      v[c.id] = el.value.trim();
-    }
-  });
-  return v;
-}
-
-function actualizarResumen() {
-  const v = leerValores();
-  const lineas = servicioActual.resumen(v).filter(Boolean);
-  if (adjuntosElegidos.length) lineas.push(['Archivos', adjuntosElegidos.map(f => f.name).join(', ')]);
-  const detalle = lineas.map(([k, val]) => `${k}: ${val}`).join(' · ');
-  solicitudActual = { servicio: servicioActual.nombre, detalle };
-  $('of-servicio').textContent = servicioActual.nombre;
-  const caja = $('of-desglose');
-  caja.innerHTML = '';
-  lineas.forEach(([k, val]) => {
-    const fila = document.createElement('div');
-    fila.className = 'linea';
-    const a = document.createElement('span'); a.textContent = k;
-    const b = document.createElement('b'); b.textContent = val.length > 90 ? val.slice(0, 87) + '…' : val;
-    fila.appendChild(a); fila.appendChild(b);
-    caja.appendChild(fila);
-  });
-  $('bm-servicio').textContent = servicioActual.nombre;
-}
-
-function datosCliente() {
-  const val = id => $(id).value.trim();
-  const empresa = val('cli-empresa');
-  const notas = [empresa ? 'Empresa: ' + empresa : '', val('cli-notas')].filter(Boolean).join('\n');
-  return { nombre: val('cli-nombre'), telefono: val('cli-telefono'), correo: val('cli-correo'), ciudad: val('cli-ciudad'), empresa, notas };
-}
-
-function validar(c) {
-  if (!c.nombre || !c.telefono || !c.correo || !c.ciudad) return 'Complete sus datos para enviar la solicitud.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.correo)) return 'Revise el correo.';
-  if (c.telefono.replace(/\D/g, '').length < 7) return 'Revise el teléfono.';
-  return '';
-}
-
-function extrasPedido() {
-  const p = [];
-  if (adjuntosElegidos.length) {
-    const via = CONFIG.cotizacionesUrl ? 'adjuntos en el correo' : 'se envían por WhatsApp';
-    p.push(`Archivos: ${adjuntosElegidos.map(f => f.name).join(', ')} (${via})`);
-  }
-  return p;
-}
-const pideAdjuntos = () => adjuntosElegidos.length > 0;
-const AVISO_ADJUNTOS = ' Para avanzar, envíenos por WhatsApp los archivos que eligió.';
-
-function armarPedido(c, estado) {
-  const q = solicitudActual;
-  return {
-    referencia: `PL-SRV-${Date.now()}`,
-    producto: `SERVICIO ${q.servicio}: ${q.detalle} | Solicitud de propuesta | Correo ${c.correo}${extrasPedido().map(x => ' | ' + x).join('')}${c.notas ? ' | Notas: ' + c.notas.replace(/\n/g, ' / ') : ''}`,
-    precio: 0,
-    nombre: c.nombre,
-    telefono: c.telefono,
-    direccion: c.correo,
-    ciudad: c.ciudad,
-    estadoPago: estado
-  };
-}
-
-function registrarPedido(data) {
-  if (!CONFIG.sheetWebhook.startsWith('http')) return;
-  fetch(CONFIG.sheetWebhook, { method: 'POST', body: JSON.stringify(data) }).catch(() => {});
-}
-
-function mensajeWhatsApp(c, ref, intro) {
-  const q = solicitudActual;
-  return `${intro}\n` +
-    `Servicio: ${q.servicio}\n` +
-    `Detalle: ${q.detalle}\n` +
-    (ref ? `Referencia: ${ref}\n` : '') +
-    extrasPedido().map(x => x + '\n').join('') +
-    (c.nombre ? `\nDatos de contacto:\n${c.nombre} · ${c.telefono}\n${c.correo} · ${c.ciudad}\n` : '') +
-    (c.notas ? `\nObservaciones: ${c.notas}\n` : '') +
-    `\nQuedo pendiente de su respuesta. Gracias.`;
-}
-
-function abrirWhatsApp(texto) { window.open(urlWhatsApp(texto), '_blank'); }
-
-function mostrarConfirmacion(titulo, ref, texto, waTexto) {
-  ['cotizador', 'servicios', 'como-funciona'].forEach(id => { const e = $(id); e.classList.remove('visible'); if (id !== 'cotizador') e.style.display = 'none'; });
-  $('barra-movil').classList.remove('visible');
-  $('conf-titulo').textContent = titulo;
-  $('conf-ref').textContent = ref;
-  $('conf-texto').textContent = texto;
-  const wa = $('conf-wa');
-  wa.hidden = !waTexto;
-  if (waTexto) wa.href = urlWhatsApp(waTexto);
-  $('confirmacion').classList.add('visible');
-  $('confirmacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ---- Envío de la solicitud por correo, con los archivos adjuntos (Apps Script "Cotizaciones") ----
-const LIMITE_ADJUNTOS = 12 * 1024 * 1024; // bytes ya comprimidos (con la codificación base64 el envío crece ~33 %)
-
-function bufferABase64(buf) {
-  const bytes = new Uint8Array(buf);
-  let bin = '';
-  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
-  return btoa(bin);
-}
-
-async function comprimirArchivo(file) {
-  if (!('CompressionStream' in window)) return { gzip: false, buf: await file.arrayBuffer() };
-  const flujo = file.stream().pipeThrough(new CompressionStream('gzip'));
-  return { gzip: true, buf: await new Response(flujo).arrayBuffer() };
-}
-
-async function reducirImagen(file) {
-  try {
-    const bmp = await createImageBitmap(file);
-    const esc = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
-    const lienzo = document.createElement('canvas');
-    lienzo.width = Math.max(1, Math.round(bmp.width * esc));
-    lienzo.height = Math.max(1, Math.round(bmp.height * esc));
-    lienzo.getContext('2d').drawImage(bmp, 0, 0, lienzo.width, lienzo.height);
-    const blob = await new Promise(r => lienzo.toBlob(r, 'image/jpeg', 0.82));
-    return { nombre: file.name.replace(/\.[^.]+$/, '') + '.jpg', mime: 'image/jpeg', buf: await blob.arrayBuffer() };
-  } catch (e) {
-    return { nombre: file.name, mime: file.type || 'application/octet-stream', buf: await file.arrayBuffer() };
-  }
-}
-
-async function armarAdjuntos() {
-  const res = { archivos: [], imagenes: [], omitidos: [] };
-  let usado = 0;
-  for (const f of adjuntosElegidos) {
-    if (f.type.startsWith('image/')) {
-      const im = await reducirImagen(f);
-      if (usado + im.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
-      usado += im.buf.byteLength;
-      res.imagenes.push({ nombre: im.nombre, mime: im.mime, b64: bufferABase64(im.buf) });
-    } else {
-      const z = await comprimirArchivo(f);
-      if (usado + z.buf.byteLength > LIMITE_ADJUNTOS) { res.omitidos.push(f.name); continue; }
-      usado += z.buf.byteLength;
-      res.archivos.push({ nombre: f.name, gzip: z.gzip, b64: bufferABase64(z.buf) });
-    }
-  }
-  return res;
-}
-
-async function enviarCotizacion(pedido, c) {
-  const q = solicitudActual;
-  try {
-    const adj = await armarAdjuntos();
-    const carga = {
-      tipo: 'cotizacion',
-      web: $('cli-web').value,
-      referencia: pedido.referencia,
-      servicio: q.servicio,
-      detalle: q.detalle,
-      valor: 'Propuesta a la medida',
-      plazo: 'A convenir',
-      anticipo: '',
-      oferta: 'Solicitud de propuesta',
-      extras: extrasPedido().filter(x => !/^Archivos/.test(x)),
-      cliente: c,
-      archivo: null,
-      archivos: adj.archivos,
-      imagenes: adj.imagenes,
-      omitidos: adj.omitidos
-    };
-    const control = new AbortController();
-    const corte = setTimeout(() => control.abort(), 90000);
-    const r = await fetch(CONFIG.cotizacionesUrl, { method: 'POST', body: JSON.stringify(carga), signal: control.signal });
-    clearTimeout(corte);
-    const j = await r.json();
-    return { ok: !!j.ok, omitidos: adj.omitidos };
-  } catch (e) {
-    return { ok: false, omitidos: [] };
-  }
-}
-
-async function enviarSolicitud() {
-  const err = $('of-error');
-  err.textContent = '';
-  const c = datosCliente();
-  const problema = validar(c);
-  if (problema) { err.textContent = problema; return; }
-  if (!$('of-acepto').checked) { err.textContent = 'Marque la casilla para continuar.'; return; }
-
-  // Bots: el campo trampa invisible viene lleno. Se muestra la confirmación sin enviar nada.
-  if ($('cli-web').value) { mostrarConfirmacion('SOLICITUD RECIBIDA', '—', 'Recibimos su solicitud.'); return; }
-  // Evita reenvíos repetidos de la misma persona en menos de un minuto
-  try {
-    const ultimo = Number(localStorage.getItem('pl_ultima_solicitud') || 0);
-    if (Date.now() - ultimo < 60000) { err.textContent = 'Ya recibimos su solicitud. Si necesita agregar algo, escríbanos por WhatsApp.'; return; }
-    localStorage.setItem('pl_ultima_solicitud', String(Date.now()));
-  } catch (e) { /* sin almacenamiento: se permite el envío */ }
-
-  const pedido = armarPedido(c, 'Solicitud de propuesta');
-  registrarPedido(pedido);
-  const waTexto = mensajeWhatsApp(c, pedido.referencia, 'Buen día, equipo de Pórtico Lab. Solicito una propuesta para el siguiente proyecto:');
-  const base = 'Revisamos su proyecto y le escribimos con una propuesta a la medida: alcance y valor. Sin costo ni compromiso.';
-
-  if (!CONFIG.cotizacionesUrl) {
-    abrirWhatsApp(waTexto);
-    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''));
-    return;
-  }
-
-  const boton = $('btn-aceptar');
-  const textoBoton = boton.textContent;
-  boton.disabled = true;
-  boton.textContent = 'Enviando…';
-  const envio = await enviarCotizacion(pedido, c);
-  boton.disabled = false;
-  boton.textContent = textoBoton;
-
-  if (envio.ok) {
-    const aviso = envio.omitidos.length ? ` Algunos archivos eran muy pesados para enviarlos aquí (${envio.omitidos.join(', ')}): envíelos por WhatsApp.` : '';
-    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, (pideAdjuntos() ? 'Recibimos su solicitud con sus archivos. ' : 'Recibimos su solicitud. ') + base + aviso, waTexto);
-  } else {
-    mostrarConfirmacion('SOLICITUD RECIBIDA', pedido.referencia, 'Registramos su solicitud, pero no pudimos enviar los archivos automáticamente. ' + base + (pideAdjuntos() ? AVISO_ADJUNTOS : ''), waTexto);
-  }
-}
-
-function prefieroWhatsApp() {
-  const c = datosCliente();
-  if (c.nombre && c.telefono) registrarPedido(armarPedido(c, 'Solicitud - prefiere WhatsApp'));
-  abrirWhatsApp(mensajeWhatsApp(c, null, 'Buen día, equipo de Pórtico Lab. Me interesa este servicio y quisiera revisar mi proyecto con ustedes:'));
-}
-
-// Barra fija en móvil mientras el panel de la solicitud no está a la vista
-let observadorPanel = null;
-function observarPanel() {
-  if (!('IntersectionObserver' in window)) return;
-  if (observadorPanel) observadorPanel.disconnect();
-  observadorPanel = new IntersectionObserver(([e]) => {
-    $('barra-movil').classList.toggle('visible', $('cotizador').classList.contains('visible') && !e.isIntersecting);
-  }, { threshold: 0.15 });
-  observadorPanel.observe($('oferta'));
-}
-
-$('btn-aceptar').addEventListener('click', enviarSolicitud);
-$('btn-dudas').addEventListener('click', prefieroWhatsApp);
-$('btn-volver').addEventListener('click', volverAServicios);
-$('bm-ver').addEventListener('click', () => $('oferta').scrollIntoView({ behavior: 'smooth', block: 'center' }));
-$('hero-wa').href = urlWhatsApp('Buen día, equipo de Pórtico Lab. Consulté sus servicios en porticolab.com y me gustaría recibir más información para un proyecto. Quedo pendiente de su respuesta.');
-renderGrid();
-const pre = new URLSearchParams(location.search).get('servicio');
-if (pre && SERVICIOS.some(s => s.id === pre)) document.querySelector(`[data-id="${pre}"]`)?.scrollIntoView({ block: 'center' });
+// Si llega con ?servicio=maquetas|bim, se muestra esa tarjeta
+(() => {
+  const id = new URLSearchParams(location.search).get('servicio');
+  if (id && /^[a-z]+$/.test(id)) document.querySelector(`.frente[data-servicio="${id}"]`)?.scrollIntoView({ block: 'center' });
+})();
 </script>
 
 <script src="y2k.js?v=4" defer></script>
-<script src="servicios-poster.js?v=6" defer></script>
-<script src="pantallas.js?v=6" defer></script>
+<script src="servicios-poster.js?v=7" defer></script>
+<script src="pantallas.js?v=7" defer></script>
 <script src="mascota.js?v=21" defer></script>
 <script src="navegacion-teclado.js?v=1" defer></script>
   <script src="coherencia.js?v=2" defer></script>
-<script src="motion.js?v=3" defer></script>
+<script src="motion.js?v=4" defer></script>
 </body>
 </html>

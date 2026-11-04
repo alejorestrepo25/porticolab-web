@@ -22,11 +22,11 @@ body.y2k :where(.y2k-hero h1 em,.seccion__cab h2 em,.cierre-home h2 em,.srv-wrap
 body.y2k :where(.btn-cromo,.btn-primario,.btn-primary){background:var(--pl-gradient)!important;color:#17151b!important;border:0!important;box-shadow:none!important;border-radius:999px!important;font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:.045em!important}
 body.y2k :where(.btn-fantasma,.btn-secundario,.btn){background:transparent!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;box-shadow:none!important;border-radius:999px!important;font-family:'Montserrat',system-ui,sans-serif!important}
 body.y2k :where(.btn-fantasma,.btn-secundario,.btn):hover{border-color:var(--pl-muted)!important}
-body.y2k :where(.y2k-hero__vis,.srv-hero__visual,.n-hero__visual,.frente,.gallery-item,.srv-card,.paso-card,.pieza,.mat-panel,.about-contact){border:1px solid var(--pl-line)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
-body.y2k :where(.frente,.gallery-item,.srv-card,.paso-card,.pieza,.mat-panel,.about-contact){background:var(--pl-surface)!important;color:var(--pl-ink)!important}
-body.y2k :where(.frente__txt h3,.gallery-item h3,.srv-card h2,.srv-card h3,.paso-card h3,.pieza h3,.mat-panel h3){color:var(--pl-ink)!important;font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:-.025em!important;text-transform:none!important}
-body.y2k :where(.frente__txt p,.gallery-item p,.srv-card p,.paso-card p,.pieza p,.mat-panel p){color:var(--pl-muted)!important}
-body.y2k .frente:hover,body.y2k .gallery-item:hover,body.y2k .srv-card:hover{border-color:#8173a0!important;transform:translateY(-2px)}
+body.y2k :where(.y2k-hero__vis,.srv-hero__visual,.n-hero__visual,.frente,.gallery-item,.paso-card,.pieza,.mat-panel,.about-contact){border:1px solid var(--pl-line)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
+body.y2k :where(.frente,.gallery-item,.paso-card,.pieza,.mat-panel,.about-contact){background:var(--pl-surface)!important;color:var(--pl-ink)!important}
+body.y2k :where(.frente__txt h3,.gallery-item h3,.paso-card h3,.pieza h3,.mat-panel h3){color:var(--pl-ink)!important;font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:-.025em!important;text-transform:none!important}
+body.y2k :where(.frente__txt p,.gallery-item p,.paso-card p,.pieza p,.mat-panel p){color:var(--pl-muted)!important}
+body.y2k .frente:hover,body.y2k .gallery-item:hover{border-color:#8173a0!important;transform:translateY(-2px)}
 body.y2k .frente__cta,body.y2k .ver-todo,body.y2k .n-hero__link{color:var(--pl-ink)!important;font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:.045em!important}
 body.y2k .tags .tag{color:var(--pl-muted)!important;background:var(--pl-surface-2)!important;border:0!important}
 body.y2k :where(.y2k-hero__vis img,.srv-hero__visual img,.n-hero__img,.gallery-item img,.pieza img){border-radius:12px}
@@ -50,15 +50,13 @@ body.home .pie-home{border-color:var(--pl-line)!important;color:var(--pl-muted)!
 body.home .pie-home a{color:var(--pl-muted)!important}
 body.srvposter .srv-wrap .hero{background:var(--pl-bg)!important}
 body.srvposter .srv-wrap .hero h1{text-transform:none!important;letter-spacing:-.04em!important}
-body.srvposter .srv-wrap .hero p,body.srvposter .cotizador p,body.srvposter .faq p{color:var(--pl-muted)!important}
+body.srvposter .srv-wrap .hero p,body.srvposter .faq p{color:var(--pl-muted)!important}
 body.srvposter .srv-hero__visual{background:var(--pl-surface)!important}
 body.srvposter .srv-hero__visual::before{display:none!important}
 body.srvposter .srv-hero__visual figcaption{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
-body.srvposter .paso-card,body.srvposter .srv-card,body.srvposter .cotizador,body.srvposter .faq details{background:var(--pl-surface)!important;border-color:var(--pl-line)!important;color:var(--pl-ink)!important;box-shadow:none!important}
+body.srvposter .paso-card,body.srvposter .faq details{background:var(--pl-surface)!important;border-color:var(--pl-line)!important;color:var(--pl-ink)!important;box-shadow:none!important}
 body.srvposter .paso-card .n{color:var(--pl-muted)!important;font-family:'Montserrat',system-ui,sans-serif!important}
-body.srvposter .srv-card :where(h2,h3){text-transform:none!important}
 body.srvposter .faq summary{color:var(--pl-ink)!important;font-family:'Montserrat',system-ui,sans-serif!important}
-body.srvposter .cotizador :where(input,select,textarea){background:var(--pl-bg)!important;color:var(--pl-ink)!important;border-color:var(--pl-line)!important}
 body.nosotros .n-hero,body.nosotros :where([data-pantalla],.n-seccion){background-color:var(--pl-bg)!important;color:var(--pl-ink)!important}
 body.nosotros .n-hero h1{text-transform:none!important;letter-spacing:-.04em!important}
 body.nosotros .n-hero p,body.nosotros .n-hero__visual-index{color:var(--pl-muted)!important}
@@ -70,12 +68,11 @@ body.y2k[data-filter] .gallery-item h3{color:var(--pl-ink)!important;text-transf
 body.y2k[data-filter] .gallery-item .location{color:var(--pl-muted)!important}
 body.y2k .filters button.active{color:var(--pl-ink)!important;text-decoration-color:#b59aff!important}
 body.y2k main:not(.srv-wrap){color:var(--pl-ink)}
-@media(prefers-reduced-motion:no-preference){body.y2k :where(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){animation:none!important}body.y2k :where(.gallery-item,.frente,.srv-card,.paso-card,.pieza){transition-duration:.32s!important}}
+@media(prefers-reduced-motion:no-preference){body.y2k :where(.y2k-hero h1,.srv-wrap .hero h1,.n-hero h1){animation:none!important}body.y2k :where(.gallery-item,.frente,.paso-card,.pieza){transition-duration:.32s!important}}
 @media(max-width:768px){.theme-toggle{min-height:40px;padding-inline:10px}body.y2k header .nav{scroll-snap-type:x proximity}}
 @media(prefers-reduced-motion:reduce){body.y2k,.theme-toggle{transition:none}}
 /* Contraste reforzado en el tema claro */
 :root[data-theme="light"]{--pl-muted:#514d56;--pl-line:#77727b}
-:root[data-theme="light"] body.srvposter .srv-card .meta{color:#514d56!important}
 
 /* Segunda pasada: lámina editorial sin marco, menos interfaz y una sola escala para las cinco páginas. */
 :root{--pl-radius:14px;--pl-radius-sm:10px;--pl-line-soft:#232327;--pl-text-gradient:var(--pl-gradient);--pl-hero-w:min(1440px,92%);--pl-h1:clamp(34px,3.9vw,56px);--pl-lead:clamp(15px,1.15vw,17px)}
@@ -116,7 +113,7 @@ body.y2k .pieza__grafica,body.y2k .pieza__grafica object{background:var(--pl-sur
 body.y2k .pieza figcaption{border-top-color:var(--pl-line-soft)!important}
 
 /* Tarjetas: línea suave, radio moderado, sin brillos ni saltos al pasar. */
-body.y2k :where(.frente,.gallery-item,.srv-card,.paso-card,.pieza,.mat-panel,.about-contact,.cotizador),body.srvposter .faq details{border-color:var(--pl-line-soft)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
+body.y2k :where(.frente,.gallery-item,.paso-card,.pieza,.mat-panel,.about-contact),body.srvposter .faq details{border-color:var(--pl-line-soft)!important;border-radius:var(--pl-radius)!important;box-shadow:none!important}
 body.y2k :is(.frente,.gallery-item,.srv-card,.pieza):hover{border-color:var(--pl-muted)!important;transform:none!important;box-shadow:none!important}
 body.y2k :where(.gallery-item img,.pieza img){border-radius:var(--pl-radius-sm)}
 body.home .proceso::before{background:var(--pl-line-soft)!important}
@@ -167,16 +164,15 @@ body.y2k :is(.frente__txt p,.paso p,.srv-body .promesa,.srv-body li,.srv-entrega
 body.y2k .faq summary{font-size:16px!important}
 body.y2k .faq details p{font-size:15px!important}
 body.nosotros .n-pilar p{font-size:15px;max-width:none}
-body.nosotros .n-pilar > span,body.y2k .srv-body .num,body.nosotros .pieza figcaption span{font-size:12px!important}
+body.nosotros .n-pilar > span,body.nosotros .pieza figcaption span{font-size:12px!important}
 body.y2k :is(.btn-cromo,.btn-fantasma,.btn,.ver-todo,.hero-explora,.n-hero__link){font-size:12px!important}
 body.y2k :is(.pie-home,.about-footer) :is(span,a){font-size:12px}
-body.y2k .srv-img .badge,body.y2k .srv-body .bim,body.y2k .kicker{font-size:11px!important}
+body.y2k .kicker{font-size:11px!important}
 @media(max-width:900px){body.nosotros .n-pilar p{font-size:13px}}
 
 /* Contraste: números, acentos y textos secundarios con color del tema */
 body.nosotros .n-pilar > span{color:#7ee8ff}
 body.nosotros .n-pilar p{color:var(--pl-muted)!important}
-body.y2k .srv-body .num{color:var(--pl-muted)!important}
 body.y2k #gallery-loading,body.y2k .gallery>div[style]{color:var(--pl-muted)!important}
 body.y2k .gallery>div[style] a{color:var(--pl-ink)!important;text-decoration:underline;text-underline-offset:3px}
 :root[data-theme="light"] body.nosotros .n-pilar > span,
@@ -226,7 +222,7 @@ body.home .cierre-home{padding-bottom:24px!important}
 /* Portadas de Servicios y Nosotros también ocupan una pantalla completa */
 body.srvposter .srv-wrap>section.hero,body.nosotros.y2k section.n-hero{min-height:calc(100svh - var(--hh,66px))!important;margin-block:0!important;box-sizing:border-box}
 /* Las ilustraciones de tarjetas se ven siempre al 100 % (antes quedaban lavadas al 35 % hasta "verse") */
-html.mov-ok body.srvposter .srv-card .srv-img svg,html.mov-ok body.nosotros .pieza .pieza__grafica{opacity:1!important}
+html.mov-ok body.nosotros .pieza .pieza__grafica{opacity:1!important}
 /* Servicios: más protagonismo para el edificio animado */
 @media(min-width:901px){body.y2k .srv-wrap .hero{grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr)!important}body.y2k .srv-hero__visual{max-height:calc(100svh - var(--hh,66px) - 48px)!important}}
 /* Nosotros: collage de piezas en la portada (reemplaza la foto del taller) */
@@ -250,14 +246,9 @@ body.nosotros .n-hero__visual .n-hero__visual-tag{background:rgba(8,8,11,.78)!im
 body.srvposter .srv-hero__visual{background:#08080b!important}
 
 /* Servicios: retícula fina y superficies grises coordinadas en tema claro. */
-:root[data-theme="light"] body.srvposter .srv-card,
-:root[data-theme="light"] body.srvposter .srv-card .srv-body{background:#e8e7ea!important;color:#26252a!important}
-:root[data-theme="light"] body.srvposter .srv-card{border-color:#c6c3ca!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img{background:#dedde2!important}
+
 :root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,:is(body.home,body.srvposter) .frente__img) .srv-ilustracion-fondo{fill:#dedde2!important}
 :root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,:is(body.home,body.srvposter) .frente__img) .srv-ilustracion-reticula{stroke:#aaa7b0!important;stroke-opacity:.52!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img svg g[font-family] > text:first-of-type{fill:#59449e!important}
-:root[data-theme="light"] body.srvposter .srv-card .srv-img svg text:not(:first-of-type){fill:#45434b!important}
 /* Contacto: el bloque queda centrado en la pantalla y el pie abajo */
 body.home .cierre-home{position:relative!important;justify-content:center!important;padding-bottom:72px!important}
 body.home .cierre-home .pie-home{position:absolute!important;left:0;right:0;bottom:24px;margin:0 auto!important}
@@ -281,32 +272,9 @@ html body #mascota-wrapper{bottom:24px!important;right:24px!important;top:auto!i
 @media(max-width:768px){html body #mascota-wrapper{bottom:14px!important;right:14px!important}}
 
 /* Cotizador: mismo lenguaje del sitio en ambos temas (superficies, chips, campos y resumen) */
-body.srvposter .cotizador .campo-label,body.srvposter .cotizador .campo label{color:var(--pl-ink)!important;font-size:14px!important;font-weight:600!important}
-body.srvposter .cotizador .campo .ayuda{color:var(--pl-muted)!important;font-size:12px!important}
-body.srvposter .cotizador .paso-titulo{color:var(--pl-ink)!important;font-size:16px!important;letter-spacing:.02em!important}
-body.srvposter .cotizador .paso-titulo .pn{background:var(--pl-gradient)!important;color:#17151b!important}
-body.srvposter .cotizador :is(.chip,.tabs button){background:var(--pl-surface-2)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;box-shadow:none!important}
-body.srvposter .cotizador :is(.chip,.tabs button):hover{border-color:var(--pl-muted)!important}
-body.srvposter .cotizador .chip small{color:var(--pl-muted)!important}
-body.srvposter .cotizador :is(.chip,.tabs button)[aria-checked=true],body.srvposter .cotizador .tabs button[aria-selected=true]{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
-body.srvposter .cotizador .chip[aria-checked=true] small{color:#3a3640!important}
-body.srvposter .cotizador .campo :is(input[type=text],input[type=tel],input[type=email],input[type=number],textarea){background:var(--pl-surface)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;font-size:15px!important}
-body.srvposter .cotizador .campo :is(input,textarea)::placeholder{color:var(--pl-muted)!important;opacity:1}
-body.srvposter .cotizador .campo :is(input,textarea):focus{border-color:#8b6cff!important}
-body.srvposter .cotizador .campo input[type=file]{background:var(--pl-surface)!important;color:var(--pl-muted)!important;border-color:var(--pl-line)!important}
-body.srvposter .cotizador .campo:first-child textarea{min-height:120px}
-body.srvposter .oferta{background:var(--pl-surface)!important;color:var(--pl-ink)!important;border:1px solid var(--pl-line)!important;box-shadow:none!important}
-body.srvposter .oferta :is(.oferta-tit,.paso-titulo){color:var(--pl-ink)!important}
-body.srvposter .oferta .servicio-nombre{color:var(--pl-muted)!important}
-body.srvposter .oferta .linea{color:var(--pl-muted)!important;border-bottom-color:var(--pl-line)!important;font-size:13px!important}
-body.srvposter .oferta .linea b{color:var(--pl-ink)!important}
-body.srvposter .oferta :is(.nota,.acepto,.privacidad,small,p){color:var(--pl-muted)!important}
-body.srvposter .oferta .btn{color:var(--pl-ink)!important;border:1px solid var(--pl-ink)!important;background:transparent!important}
-body.srvposter .oferta .btn.btn-primario{background:var(--pl-gradient)!important;color:#17151b!important;border-color:transparent!important}
-body.srvposter .oferta .btn:disabled{opacity:.45!important}
-body.srvposter .cotizador .link-volver{color:var(--pl-ink)!important}
+
 /* Cotizador: mismo fondo de página que el resto del sitio */
-body.srvposter .cotizador{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+
 body.nosotros .n-collage img{min-width:0;min-height:0}
 /* Barra superior con el mismo grosor que la marquesina de servicios (44 px) */
 @media(min-width:769px){
@@ -384,23 +352,14 @@ body.y2k .code{color:var(--pl-muted)!important}
  html:root body.home .archivo-poster{padding-block:0 40px!important}
  html:root body.home .archivo-poster #proyectos{padding-bottom:18px!important}
  /* Servicios: tarjetas completas, una debajo de otra, con lo que incluye cada servicio */
- body.srvposter .srv-grid{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
- body.srvposter .srv-card{flex-direction:column!important}
- body.srvposter .srv-img{width:100%!important;height:220px!important;aspect-ratio:auto!important}
+
  :is(body.srvposter .srv-img,:is(body.home,body.srvposter) .frente__img) svg{object-fit:contain!important}
- body.srvposter .srv-img .badge{left:auto!important;right:10px!important;top:10px!important}
- body.srvposter .srv-body{padding:18px 20px 20px!important}
- body.srvposter .srv-body h3{font-size:18px!important}
- body.srvposter .srv-body .promesa{font-size:14px!important;line-height:1.55!important}
- body.srvposter .srv-body .incluye{display:block!important;margin:12px 0 0!important;padding-left:18px!important;font-size:13.5px!important;line-height:1.6!important;color:var(--pl-muted)!important}
- body.srvposter .srv-body .btn{padding:14px 16px!important;font-size:12px!important;margin-top:16px!important}
  body.srvposter .pasos-row{grid-template-columns:1fr!important;gap:10px!important}
  body.srvposter .paso-card{display:grid!important;grid-template-columns:34px 1fr;column-gap:12px;padding:16px 18px!important}
  body.srvposter .paso-card .n{grid-row:span 2;font-size:13px!important;padding-top:2px}
  body.srvposter .paso-card h3{font-size:15px!important;margin:0!important}
  body.srvposter .paso-card p{font-size:13.5px!important;margin-top:4px!important}
  body.srvposter .faq summary{font-size:15px!important}
- body.srvposter :is(.oferta .nota,.acepto){font-size:13px!important;line-height:1.55!important}
  /* Galerías: etiqueta superior legible en dos columnas */
 }
 
@@ -441,15 +400,10 @@ body.home .archivo-poster>.siguiente{margin-top:18px}
  body.srvposter .srv-hero__visual{max-height:34svh}
  /* Imágenes de tarjetas más bajas */
  :is(body.home,body.srvposter) .frente__img{height:150px!important}
- body.srvposter .srv-img{height:160px!important}
- :is(body.home,body.srvposter) .frente__txt,body.srvposter .srv-body{padding:14px 16px 16px!important}
- :is(body.home,body.srvposter) .frente__txt h3,body.srvposter .srv-body h3{font-size:16px!important}
- :is(body.home,body.srvposter) .frente__txt p,body.srvposter .srv-body .promesa{font-size:13.5px!important}
- body.srvposter .srv-body .incluye,body.srvposter .srv-body .incluye li{font-size:13px!important;line-height:1.5!important}
- body.srvposter .srv-body .incluye{margin-top:8px!important}
- body.srvposter .srv-body .incluye li{padding-block:5px!important}
+ :is(body.home,body.srvposter) .frente__txt{padding:14px 16px 16px!important}
+ :is(body.home,body.srvposter) .frente__txt h3{font-size:16px!important}
+ :is(body.home,body.srvposter) .frente__txt p{font-size:13.5px!important}
  html:root body.srvposter .srv-wrap>section.hero{padding-bottom:8px!important}
- body.srvposter .srv-body .btn{margin-top:12px!important}
  /* Perfiles y pasos */
  body.home .perfil{padding:16px!important;gap:6px!important}
  html:root body.home :is(.seccion,#proceso,.cierre-home),html:root body.srvposter .srv-wrap>section:is(#servicios,#como-funciona,#preguntas,.cierre),html:root body.nosotros section[data-pantalla]:not(.n-hero){padding-top:40px!important;padding-bottom:40px!important}
@@ -579,12 +533,11 @@ body.y2k .gallery .cat h3 span{font-style:normal}
 :root{--pl-radio-img:8px}
 body.y2k .gallery .gallery-item>a,
 body.y2k .frente__img,
-body.srvposter .srv-card .srv-img,
 body.nosotros .n-collage img,
 body.nosotros .n-hero__visual,
 body.y2k .pieza__grafica,
 body.y2k #lightbox-img{border-radius:var(--pl-radio-img)!important;overflow:hidden}
-body.y2k .frente__img img,body.srvposter .srv-card .srv-img svg,body.y2k .gallery .gallery-item>a img{border-radius:0!important}
+body.y2k .frente__img img,body.y2k .gallery .gallery-item>a img{border-radius:0!important}
 body.nosotros .n-hero__visual{border-radius:0!important;overflow:visible!important}
 @media(max-width:900px){body.home .y2k-hero__vis,body.home .hero-foto,body.home .hero-foto img,html:root body.y2k.srvposter .srv-hero__visual{border-radius:var(--pl-radio-img)!important;overflow:hidden}}
 
@@ -639,7 +592,7 @@ body.y2k:is(.home,[data-filter="laboratorio"]) .gallery .gallery-item>a img{posi
 :root[data-theme="light"] :is(body.srvposter .srv-card,body.srvposter .srv-card .srv-body,body.srvposter .srv-card .srv-img,:is(body.home,body.srvposter) .frentes--srv .frente,:is(body.home,body.srvposter) .frentes--srv .frente__txt,:is(body.home,body.srvposter) .frentes--srv .frente__img){background:var(--pl-panel)!important}
 :root[data-theme="light"] :is(body.srvposter .srv-card .srv-img,:is(body.home,body.srvposter) .frente__img) .srv-ilustracion-fondo{fill:var(--pl-panel)!important}
 :root[data-theme="light"] :is(body.srvposter .srv-card,:is(body.home,body.srvposter) .frentes--srv .frente){border-color:#dcdae0!important}
-:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .incluye li,:root[data-theme="light"] body.srvposter .srv-body .incluye li{border-top-color:#dcdae0!important}
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .incluye li{border-top-color:#dcdae0!important}
 
 /* Cierre + preguntas frecuentes en una sola vista (Inicio y Servicios) */
 body.y2k .cierre-combo .combo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:center;width:100%;max-width:min(1440px,94vw);margin:0 auto;text-align:left}
@@ -873,7 +826,7 @@ html:root body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-
 /* ===== Auditoría de gráficos ===== */
 /* Celular: las ilustraciones de servicio se recortan al centro a escala completa (antes se encogían enteras y el texto quedaba en 2–3 px) */
 @media(max-width:900px){
- html:root :is(body.home,body.srvposter) .frente__img,html:root body.srvposter .srv-card .srv-img{height:280px!important;overflow:hidden!important;position:relative!important}
+ html:root :is(body.home,body.srvposter) .frente__img{height:280px!important;overflow:hidden!important;position:relative!important}
  html:root :is(:is(body.home,body.srvposter) .frente__img,body.srvposter .srv-card .srv-img) svg:has(.bt){position:absolute!important;left:0;top:50%;width:100%!important;height:auto!important;transform:translateY(-50%)}
  html:root :is(:is(body.home,body.srvposter) .frente__img,body.srvposter .srv-card .srv-img) svg:not(:has(.bt)){width:100%!important;height:100%!important}
  /* Portada de Servicios: el encuadre muestra el edificio completo y las tablas se desvanecen a la derecha */
@@ -885,7 +838,7 @@ html:root body.ficha-proyecto :is(.ficha__principal,.ficha__mini) img{mix-blend-
 /* Nosotros: el enlace al laboratorio arranca en la misma guía que el resto del contenido */
 @media(min-width:901px){html:root body.nosotros #proyectos .ver-todo-wrap{padding-inline:0!important;margin-inline:0!important;max-width:none!important;text-align:left!important;justify-content:flex-start!important}}
 /* Servicios (escritorio): la columna de la ilustración gana ancho para que el dibujo técnico se lea */
-@media(min-width:901px){html:root body.srvposter .srv-card .srv-img{flex:0 0 46%!important;width:46%!important;max-width:none!important}}
+
 /* Laboratorio e Inspiración: las tarjetas como bloque para que el muro reparta en todas sus columnas (con inline-block llenaba solo dos) */
 html:root body.y2k[data-filter]:not(.home) main .gallery .gallery-item{display:block!important;-webkit-column-break-inside:avoid;page-break-inside:avoid}
 
@@ -1128,20 +1081,8 @@ html:root body.home .seccion>.ver-todo-wrap{max-width:none!important;width:100%!
 }
 html:root body.home .seccion>.ver-todo-wrap .ver-todo{margin-left:0!important;margin-right:0!important}
 /* Servicios · tarjetas de «Dos vías» con el mismo estilo que en el Inicio */
-html:root body.srvposter .srv-body h3{margin-top:8px!important}
-html:root body.srvposter .srv-body .promesa{font-size:16px!important;line-height:1.55!important;margin-top:8px!important}
-html:root body.srvposter .srv-body .incluye{list-style:none!important;margin:14px 0 0!important;padding:0!important}
-html:root body.srvposter .srv-body .incluye li{position:relative!important;padding:7px 0 7px 20px!important;margin:0!important;border-top:1px solid var(--pl-line-soft,#d6d4da)!important;font-size:15px!important;line-height:1.5!important;color:var(--pl-ink)!important}
-html:root body.srvposter .srv-body .incluye li::before{content:'+'!important;position:absolute!important;left:0!important;top:7px;color:#9d7bff!important;font-family:var(--pl-tecnica)!important;font-weight:600!important}
-html:root body.srvposter .srv-body{display:flex!important;flex-direction:column!important}
-html:root body.srvposter .srv-body .meta{display:flex!important;justify-content:space-between!important;gap:12px!important;margin-top:auto!important;padding-top:20px!important;font-size:11px!important;color:var(--pl-muted)!important}
-html:root body.srvposter .srv-body .btn-primario{display:flex!important;align-items:center;justify-content:center;width:100%!important;min-height:44px!important;margin-top:12px!important;padding:0 20px!important;background:transparent!important;border:1px solid var(--pl-line)!important;border-radius:999px!important;color:var(--pl-ink)!important;font:700 11px/1 'Montserrat',system-ui,sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase!important;box-shadow:none!important}
-html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink)!important}
-:root[data-theme="dark"] body.srvposter .srv-body .incluye li{border-top-color:#2a2830!important}
-@media(min-width:901px){
- html:root body.srvposter .srv-card .srv-img{flex:0 0 50%!important;width:50%!important;max-width:50%!important;aspect-ratio:1/1!important;height:auto!important;align-self:flex-start}
- html:root body.srvposter .srv-card .srv-body{flex:1 1 50%!important;padding:18px 22px!important}
-}
+
+
 /* ===== Celular: cada hoja ocupa exactamente una pantalla (Inicio, Servicios, Nosotros) ===== */
 @media(max-width:900px){
  html:has(body.home),html:has(body.nosotros),html:has(body.srvposter){scroll-snap-type:y mandatory!important;scroll-padding-top:var(--hh,95px)!important}

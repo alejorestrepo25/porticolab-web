@@ -198,8 +198,6 @@ body.y2k .n-hero__reticula circle { animation: none !important; }
 .fondo-pixel-wrap figcaption { z-index: 1; }
 :is(.gallery-item, figure, .dither-scope, .srv-card):is(:hover, :focus-within, .revelado) .fondo-pixel { opacity: 1; }
 .gallery-item:hover .fondo-pixel { transform: scale(1.05); }
-.dither-scope { position: relative; border-radius: 12px; overflow: hidden; }
-.dither-scope img { border-radius: inherit; }
 @media (prefers-reduced-motion: reduce) { .fondo-pixel { transition: none; } }
 
 /* ---------- Cursor personalizado ---------- */

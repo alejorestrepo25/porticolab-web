@@ -104,7 +104,7 @@ body.y2k :where(.btn-cromo, .btn-fantasma, .btn, .btn-primario, .btn-secundario)
   border-radius: 10px;
 }
 
-body.y2k :where(.gallery-item, .frente, .srv-card, .paso-card, .pieza) {
+body.y2k :where(.gallery-item, .frente, .paso-card, .pieza) {
   border-radius: var(--pl-radio);
 }
 
@@ -118,7 +118,7 @@ body.y2k .gallery-item:hover { border-color: #74747e; }
 body.y2k .gallery-item img { border-radius: 0; }
 body.y2k .gallery-item h3 { line-height: 1.35; }
 
-body.y2k :where(.srv-card, .paso-card, .pieza) {
+body.y2k :where( .paso-card, .pieza) {
   border-color: var(--pl-borde);
   background-color: var(--pl-superficie);
 }
@@ -157,7 +157,7 @@ body.y2k :where(.srv-card, .paso-card, .pieza) {
     letter-spacing: .025em;
   }
   body.y2k header .nav a::after { inset-inline: 10px; inset-block-end: 3px; }
-  body.y2k :where(.gallery-item, .frente, .srv-card, .paso-card, .pieza) { border-radius: 14px; }
+  body.y2k :where(.gallery-item, .frente, .paso-card, .pieza) { border-radius: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
