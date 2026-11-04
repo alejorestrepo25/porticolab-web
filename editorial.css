@@ -1102,3 +1102,9 @@ html:root body.nosotros .pieza__grafica{aspect-ratio:560/520!important;height:au
 @media(min-width:901px){html:root body.nosotros #proyectos .piezas{width:min(1320px,90vw)!important;max-width:none!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}}
 html:root body.nosotros .pieza__grafica{background:#0d0d10!important}
 @media(max-width:900px){html:root body.nosotros .pieza figcaption{align-items:center!important;justify-content:center!important;padding:14px!important}html:root body.nosotros .pieza figcaption b{text-align:center!important}}
+/* Flechas «siguiente sección»: mismo diseño y tamaño en todo el sitio (no se encogen con el ajuste automático del Inicio) */
+html:root body.y2k :is(.seccion,.cierre-home,.archivo-poster,.y2k-hero,.n-hero,section)>.siguiente{zoom:1!important}
+html:root body.y2k .siguiente{gap:8px!important}
+html:root body.y2k .siguiente span{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.2em!important;text-transform:uppercase!important}
+html:root body.y2k .siguiente i{width:36px!important;height:36px!important;min-width:36px}
+html:root body.y2k .siguiente i svg{width:16px!important;height:16px!important}
