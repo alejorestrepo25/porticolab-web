@@ -509,7 +509,8 @@ async function loadPost() {
     // Columna: la principal ocupa exactamente su proporción a toda la altura; la columna derecha toma el resto.
     // Arriba la ficha (a dos columnas si es ancha) y debajo las imágenes en filas, ampliadas hasta llenar el espacio.
     {
-      const R = Math.round(Math.max(TMIN, Math.min(W * 0.7, W - G - H * aP)));
+      // La principal siempre con la proporción exacta de su imagen: la columna derecha toma todo lo que sobra
+      const R = Math.round(Math.max(TMIN, W - G - H * aP));
       const wP = W - R - G, hP = Math.min(H, wP / aP);
       const necesita = altoTexto(R);
       const opciones = aC.length ? particiones(aC.length) : [[]];
@@ -548,7 +549,16 @@ async function loadPost() {
       if (!mejor || puntos < mejor.puntos) mejor = { ...c, puntos };
     }
     const dx = pl + (W - mejor.ancho) / 2;
-    for (const p of mejor.piezas) fijar(p.el, dx + p.x, pt + p.y, p.w, p.h);
+    // Ningún recuadro de imagen queda con márgenes: se ajusta a la proporción exacta de su foto, centrado en su espacio
+    const prop = new Map([[escenario, aP], ...botones.map((bt, n) => [bt, aC[n]])]);
+    for (const p of mejor.piezas) {
+      const ar = prop.get(p.el);
+      if (ar && p.w > 0 && p.h > 0) {
+        if (p.w / p.h > ar + .005) { const w = p.h * ar; p.x += (p.w - w) / 2; p.w = w; }
+        else if (p.w / p.h < ar - .005) { const h = p.w / ar; p.y += (p.h - h) / 2; p.h = h; }
+      }
+      fijar(p.el, dx + p.x, pt + p.y, p.w, p.h);
+    }
     anchar(mejor.piezas.find(p => p.el === info).w);
     main.classList.add('listo');
   }
