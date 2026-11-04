@@ -1335,3 +1335,8 @@ html:root body.home.y2k #preguntas .combo__faq>.ver-todo{display:table!important
 @media(max-width:900px){
  html:root body.home.y2k #preguntas>.seccion__cab{margin-bottom:14px!important}
 }
+/* Nosotros · Enfoque: centrado también verticalmente en escritorio, igual que Metodología */
+@media(min-width:901px){
+ html:root body.nosotros.y2k section#enfoque[data-pantalla]{justify-content:center!important;padding-top:40px!important;padding-bottom:40px!important;position:relative!important}
+ html:root body.nosotros.y2k section#enfoque[data-pantalla]>.siguiente{position:absolute!important;left:50%!important;bottom:28px!important;transform:translateX(-50%)!important;margin:0!important}
+}
