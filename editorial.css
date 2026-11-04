@@ -1236,3 +1236,17 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  /* Celular · portada: la foto llega a los bordes laterales de la pantalla */
  html:root body.home.y2k .y2k-hero__vis{margin-inline:-16px!important;width:auto!important;align-self:stretch!important}
 }
+/* Celular · carruseles de tarjetas: cada tarjeta se ve completa, con puntos de posición */
+.carrusel-puntos{display:none}
+@media(max-width:900px){
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas){-webkit-mask-image:none!important;mask-image:none!important;gap:16px!important;scroll-padding-inline:16px}
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas)>*{flex:0 0 100%!important;width:100%!important;scroll-snap-align:center!important;scroll-snap-stop:always!important}
+ html:root body.y2k .carrusel-puntos{display:flex;justify-content:center;gap:7px;margin:10px 0 0;flex:0 0 auto}
+ html:root body.y2k .carrusel-puntos i{width:6px;height:6px;border-radius:50%;background:var(--pl-line);transition:width .25s ease,background .25s ease}
+ html:root body.y2k .carrusel-puntos i.activo{width:18px;border-radius:3px;background:var(--pl-gradient)}
+}
+@media(max-width:900px){
+ /* Las hojas ocupan todo el ancho: el margen lo pone cada hoja (16px), no el contenedor */
+ html:root body.srvposter.y2k .srv-wrap,html:root body.nosotros.y2k main#contenido{padding-inline:0!important;margin-inline:0!important;width:100%!important;max-width:none!important}
+ html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid,.piezas){margin-left:-16px!important;margin-right:-16px!important;width:auto!important}
+}
