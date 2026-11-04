@@ -1297,3 +1297,6 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  /* Servicios: misma separación título → tarjetas que en el Inicio */
  html:root body.srvposter.y2k #servicios>h2.seccion{margin:0 0 14px!important}
 }
+/* Servicio 2 (BIM): ilustración un poco más pequeña dentro de su recuadro, en Inicio y Servicios */
+html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg{transform:scale(.84);transform-origin:50% 50%}
+@media(max-width:900px){html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg:has(.bt){transform:translateY(-50%) scale(.84)}}

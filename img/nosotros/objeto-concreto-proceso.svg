@@ -14,16 +14,16 @@
 @keyframes pieza{0%,18%{opacity:.25}40%,92%{opacity:1}97%,100%{opacity:.25}}
 @keyframes flecha{0%,30%{opacity:0}38%,70%{opacity:1}80%,100%{opacity:0}}
 @keyframes entra{0%{opacity:0}6%,100%{opacity:1}}
-.moldeA{animation:moldeA 8s cubic-bezier(.5,0,.2,1) infinite}
-.moldeB{animation:moldeB 8s cubic-bezier(.5,0,.2,1) infinite}
-.pieza{animation:pieza 8s ease-in-out infinite}
-.flecha{animation:flecha 8s ease-in-out infinite}
+.moldeA{animation:moldeA 9s cubic-bezier(.5,0,.2,1) infinite}
+.moldeB{animation:moldeB 9s cubic-bezier(.5,0,.2,1) infinite}
+.pieza{animation:pieza 9s ease-in-out infinite}
+.flecha{animation:flecha 9s ease-in-out infinite}
 @keyframes paso1{0%,5%{opacity:.38}9%,28%{opacity:1}32%,100%{opacity:.38}}
-.paso1{animation:paso1 8s ease-in-out infinite;opacity:.38}
+.paso1{animation:paso1 9s ease-in-out infinite;opacity:.38}
 @keyframes paso2{0%,29%{opacity:.38}33%,54%{opacity:1}58%,100%{opacity:.38}}
-.paso2{animation:paso2 8s ease-in-out infinite;opacity:.38}
+.paso2{animation:paso2 9s ease-in-out infinite;opacity:.38}
 @keyframes paso3{0%,55%{opacity:.38}59%,90%{opacity:1}94%,100%{opacity:.38}}
-.paso3{animation:paso3 8s ease-in-out infinite;opacity:.38}
+.paso3{animation:paso3 9s ease-in-out infinite;opacity:.38}
 .en-pausa *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>

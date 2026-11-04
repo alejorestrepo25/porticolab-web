@@ -12,15 +12,15 @@
 @keyframes marco{0%{opacity:0;transform:translateY(24px)}8%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
 @keyframes concha{0%,24%{opacity:0;transform:translateY(-110px)}32%{opacity:1;transform:translateY(-110px)}52%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
 @keyframes tornillo{0%,56%{opacity:0}62%,90%{opacity:1}97%,100%{opacity:0}}
-.marco{animation:marco 8s cubic-bezier(.2,.8,.2,1) infinite}
-.concha{animation:concha 8s cubic-bezier(.3,.7,.2,1) infinite}
-.concha .tornillo{animation:tornillo 8s ease-out infinite}
+.marco{animation:marco 9s cubic-bezier(.2,.8,.2,1) infinite}
+.concha{animation:concha 9s cubic-bezier(.3,.7,.2,1) infinite}
+.concha .tornillo{animation:tornillo 9s ease-out infinite}
 @keyframes paso1{0%,5%{opacity:.38}9%,28%{opacity:1}32%,100%{opacity:.38}}
-.paso1{animation:paso1 8s ease-in-out infinite;opacity:.38}
+.paso1{animation:paso1 9s ease-in-out infinite;opacity:.38}
 @keyframes paso2{0%,29%{opacity:.38}33%,54%{opacity:1}58%,100%{opacity:.38}}
-.paso2{animation:paso2 8s ease-in-out infinite;opacity:.38}
+.paso2{animation:paso2 9s ease-in-out infinite;opacity:.38}
 @keyframes paso3{0%,55%{opacity:.38}59%,90%{opacity:1}94%,100%{opacity:.38}}
-.paso3{animation:paso3 8s ease-in-out infinite;opacity:.38}
+.paso3{animation:paso3 9s ease-in-out infinite;opacity:.38}
 .en-pausa *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
