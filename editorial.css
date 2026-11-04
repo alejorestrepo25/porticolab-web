@@ -1270,3 +1270,12 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid){grid-auto-rows:1fr!important}
  html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid)>*{overflow:visible!important}
 }
+@media(max-width:900px){
+ /* Tarjetas apiladas: columna de imagen más ancha (texto corrido a la derecha) y letra algo menor */
+ html:root body.y2k [data-pantalla] :is(.frente__img,.srv-card .srv-img){flex:0 0 41%!important;width:41%!important}
+ html:root body.y2k [data-pantalla] :is(.frente__txt,.srv-card .srv-body){padding:10px 12px 10px 2px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv h3,.srv-body h3){font-size:14.5px!important;margin-bottom:5px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__promesa,.srv-body .promesa){font-size:12px!important;line-height:1.4!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .incluye li,.srv-body .incluye li){font-size:11px!important;padding:3px 0 3px 13px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__cta,.srv-body .btn-primario){font-size:10px!important;min-height:34px!important}
+}
