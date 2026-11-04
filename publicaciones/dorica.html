@@ -670,9 +670,11 @@ loadPost();
     e.preventDefault();
     const ahora = performance.now();
     const fuerza = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 16 : 1);
-    // Gesto nuevo: tras una pausa, o cuando el movimiento vuelve a crecer (la inercia solo decrece)
-    const nuevo = ahora - ultimo > 200 || (fuerza > previo * 1.6 + 6 && ahora - ultimo < 200 && fuerza > 12);
-    if (nuevo) { acum = 0; gestoValido = ahora - cargado > 350; }
+    // Rueda de mouse: pulsos enteros y grandes (100, 120…), sin inercia. Cada vuelta de rueda es un gesto.
+    const rueda = e.deltaMode === 1 || (fuerza >= 50 && Number.isInteger(e.deltaY) && (previo === 0 || fuerza === previo || ahora - ultimo > 120));
+    // Trackpad: gesto nuevo tras una pausa corta, o cuando el movimiento vuelve a crecer (la inercia solo decrece)
+    const nuevo = rueda ? ahora - ultimo > 120 : (ahora - ultimo > 160 || (fuerza > previo * 1.6 + 6 && fuerza > 12));
+    if (nuevo) { acum = 0; gestoValido = ahora - cargado > (rueda ? 250 : 350); }
     ultimo = ahora; previo = fuerza;
     if (!gestoValido || yendo) return;
     acum += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
