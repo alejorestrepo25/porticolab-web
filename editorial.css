@@ -1127,3 +1127,18 @@ html:root body.home .seccion>.ver-todo-wrap{max-width:none!important;width:100%!
  html:root body.y2k :is(.y2k-hero p,.srv-wrap .hero p,.n-hero p,.n-hero p.n-hero__quien){font-size:15px!important}
 }
 html:root body.home .seccion>.ver-todo-wrap .ver-todo{margin-left:0!important;margin-right:0!important}
+/* Servicios · tarjetas de «Dos vías» con el mismo estilo que en el Inicio */
+html:root body.srvposter .srv-body h3{margin-top:8px!important}
+html:root body.srvposter .srv-body .promesa{font-size:16px!important;line-height:1.55!important;margin-top:8px!important}
+html:root body.srvposter .srv-body .incluye{list-style:none!important;margin:14px 0 0!important;padding:0!important}
+html:root body.srvposter .srv-body .incluye li{position:relative!important;padding:7px 0 7px 20px!important;margin:0!important;border-top:1px solid var(--pl-line-soft,#d6d4da)!important;font-size:15px!important;line-height:1.5!important;color:var(--pl-ink)!important}
+html:root body.srvposter .srv-body .incluye li::before{content:'+'!important;position:absolute!important;left:0!important;top:7px;color:#9d7bff!important;font-family:var(--pl-tecnica)!important;font-weight:600!important}
+html:root body.srvposter .srv-body{display:flex!important;flex-direction:column!important}
+html:root body.srvposter .srv-body .meta{display:flex!important;justify-content:space-between!important;gap:12px!important;margin-top:auto!important;padding-top:20px!important;font-size:11px!important;color:var(--pl-muted)!important}
+html:root body.srvposter .srv-body .btn-primario{display:flex!important;align-items:center;justify-content:center;width:100%!important;min-height:44px!important;margin-top:12px!important;padding:0 20px!important;background:transparent!important;border:1px solid var(--pl-line)!important;border-radius:999px!important;color:var(--pl-ink)!important;font:700 11px/1 'Montserrat',system-ui,sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase!important;box-shadow:none!important}
+html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink)!important}
+:root[data-theme="dark"] body.srvposter .srv-body .incluye li{border-top-color:#2a2830!important}
+@media(min-width:901px){
+ html:root body.srvposter .srv-card .srv-img{flex:0 0 50%!important;width:50%!important;max-width:50%!important;aspect-ratio:1/1!important;height:auto!important;align-self:flex-start}
+ html:root body.srvposter .srv-card .srv-body{flex:1 1 50%!important;padding:18px 22px!important}
+}

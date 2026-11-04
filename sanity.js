@@ -113,6 +113,29 @@
     ['tangara', 'Mueble expositivo'], ['coltejer', 'Arquitectura icónica'], ['jersey', 'Portalápices en microconcreto'],
     ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento']
   ];
+  // Hashtags de cada publicación (Excel «publicaciones-portico-lab»)
+  const HASHTAGS = [
+    ['piel tejida', '#Laboratorio #Arquitectura #Diseño #fachada #bambu #piel'],
+    ['cenit', '#Laboratorio #Concreto #Diseño #mobiliario #iluminacion #interior'],
+    ['edificio san german', '#Laboratorio #arquitectura #Diseño #estructurametalica #ladrillo #jardineras #fachadaverde'],
+    ['edif san german', '#Laboratorio #arquitectura #Diseño #estructurametalica #ladrillo #jardineras #fachadaverde'],
+    ['skull', '#Laboratorio #Concreto #escultura #calavera #yeso #cemento #pigmentado #silicona'],
+    ['astra', '#Laboratorio #Arquitectura #Diseño #concurso #estaciondeservicio #gasolinera'],
+    ['girder box', '#Laboratorio #puentes #girderbox #vigacajon #concreto'],
+    ['bridge box', '#Laboratorio #puentes #girderbox #vigacajon #concreto'],
+    ['zarcillo', '#Laboratorio #tutor #plantas #jardineria #ensambles #estructuratubular'],
+    ['dorica', '#Laboratorio #Concreto #Diseño #maceta #concreto #pigmentado'],
+    ['jersey', '#Laboratorio #Concreto #Diseño #jersey #separadorvial #concreto #pigmentado'],
+    ['tangara', '#Laboratorio #Diseño #Moderno #mobiliario #madera #cnc #ferias'],
+    ['coltejer', '#Laboratorio #coltejer #concretoblanco #emblematico'],
+    ['atalaya', '#Laboratorio #Arquitectura #Diseño #hiperboloide #bambu #ligera'],
+    ['moai', '#Laboratorio #Concreto #escultura #moai #yeso #cemento #pigmentado #silicona']
+  ];
+  function hashtags(titulo) {
+    const t = normal(titulo);
+    const par = HASHTAGS.find(([k]) => t === k) || HASHTAGS.find(([k]) => t.includes(k));
+    return par ? par[1] : '';
+  }
   function subtitulo(titulo) {
     const t = normal(titulo);
     const par = SUBTITULOS.find(([k]) => t === k) || SUBTITULOS.find(([k]) => t.includes(k));
@@ -203,5 +226,5 @@
     contenedor.appendChild(div);
   }
 
-  window.PL_SANITY = { consultar, imagen, srcset, nombreFicha, texto, lista, tarjeta, aviso, codigo, categoria, subtitulo };
+  window.PL_SANITY = { consultar, imagen, srcset, nombreFicha, texto, lista, tarjeta, aviso, codigo, categoria, subtitulo, hashtags };
 })();
