@@ -206,7 +206,7 @@
           <label><input type="radio" name="plazo" value="En más de 3 meses"><span>Más de 3 meses</span></label>
           <label><input type="radio" name="plazo" value="Estoy explorando"><span>Estoy explorando</span></label>
         </fieldset>
-        <input class="consulta__trampa" name="web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="consulta__trampa" name="pl_confirmacion_humana" type="text" tabindex="-1" autocomplete="new-password" aria-hidden="true">
         <p class="consulta__error" role="alert" aria-live="polite"></p>
         <button class="btn-cromo" type="submit">Enviar consulta →</button>
       </form>
@@ -282,9 +282,11 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
 </script>
 
 <script>
-// Consulta corta del Inicio: llega a la misma hoja que el cotizador de Servicios y se mide en Analytics
+// Consulta corta del Inicio: llega por correo a Pórtico Lab, se registra en la hoja de pedidos y se mide en Analytics
 (() => {
   const HOJA = 'https://script.google.com/macros/s/AKfycbxay1JlnVJJqppZntMVLw469stgyNExPGnfcAeaM-BYtVaDtpzrHPJhmZ1Z_VQ4XUeZ-A/exec';
+  // Script «Cotizaciones»: envía cada consulta al correo de Pórtico Lab (sin respuesta automática al cliente)
+  const CORREO = 'https://script.google.com/macros/s/AKfycbx5AFeonGnjrg5KrHvgm4TL-LnOXdi9VVuyaYMwtCWSHVPKm8SYSera69wVQDWodCaRVA/exec';
   const medir = (evento, datos) => { try { window.gtag && gtag('event', evento, datos || {}); } catch (e) {} };
   document.addEventListener('click', e => {
     const a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
@@ -309,21 +311,49 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
     if (!limpio('plazo')) { error.textContent = 'Indique para cuándo lo necesita.'; return; }
     if (limpio('telefono').replace(/\D/g, '').length < 7) { error.textContent = 'Revise el número de teléfono.'; return; }
     const listo = () => { f.innerHTML = '<p class="consulta__gracias"><b>Recibimos su consulta.</b> Le escribimos pronto por WhatsApp o correo.</p>'; };
-    if (limpio('web')) { listo(); return; }   // campo trampa: bots
+    if (limpio('pl_confirmacion_humana')) { listo(); return; }   // campo trampa: solo lo llenan los bots
     try {
       const ultimo = Number(localStorage.getItem('pl_ultima_consulta') || 0);
       if (Date.now() - ultimo < 60000) { error.textContent = 'Ya recibimos su consulta. Si necesita agregar algo, escríbanos por WhatsApp.'; return; }
-      localStorage.setItem('pl_ultima_consulta', String(Date.now()));
     } catch (e) {}
     const ref = 'PL-WEB-' + Date.now();
-    const carga = {
+    const detalle = `Presupuesto: ${limpio('presupuesto')} · Para cuándo: ${limpio('plazo')} · ${limpio('mensaje')}`;
+    // 1) Correo a Pórtico Lab (script «Cotizaciones»): es la vía principal y confirma la recepción
+    const correo = {
+      tipo: 'cotizacion', web: '', referencia: ref,
+      servicio: 'Consulta desde el Inicio', detalle,
+      valor: 'Propuesta a la medida', plazo: limpio('plazo'), anticipo: '', oferta: 'Consulta del formulario',
+      extras: [`Presupuesto disponible: ${limpio('presupuesto')}`],
+      cliente: { nombre: limpio('nombre'), telefono: limpio('telefono'), correo: limpio('correo'), ciudad: '', notas: limpio('mensaje') },
+      archivo: null, archivos: [], imagenes: [], omitidos: []
+    };
+    // 2) Registro en la hoja de pedidos (respaldo)
+    const fila = {
       referencia: ref,
       producto: `CONSULTA INICIO | Presupuesto: ${limpio('presupuesto')} | Plazo: ${limpio('plazo')} | Correo ${limpio('correo')} | ${limpio('mensaje').replace(/\n/g, ' / ')}`,
       precio: 0, nombre: limpio('nombre'), telefono: limpio('telefono'), direccion: limpio('correo'), ciudad: '', estadoPago: 'Consulta desde el Inicio'
     };
-    fetch(HOJA, { method: 'POST', body: JSON.stringify(carga) }).catch(() => {});
-    medir('generate_lead', { formulario: 'consulta_inicio', presupuesto: limpio('presupuesto'), plazo: limpio('plazo') });
-    listo();
+    fetch(HOJA, { method: 'POST', body: JSON.stringify(fila), keepalive: true }).catch(() => {});
+    const boton = f.querySelector('[type=submit]');
+    const textoBoton = boton.textContent;
+    boton.disabled = true; boton.textContent = 'Enviando…';
+    const control = new AbortController();
+    const corte = setTimeout(() => control.abort(), 25000);
+    fetch(CORREO, { method: 'POST', body: JSON.stringify(correo), signal: control.signal })
+      .then(r => r.json())
+      .then(j => {
+        if (!j || !j.ok) throw new Error(j && j.error || 'sin confirmación');
+        try { localStorage.setItem('pl_ultima_consulta', String(Date.now())); } catch (e) {}
+        medir('generate_lead', { formulario: 'consulta_inicio', presupuesto: limpio('presupuesto'), plazo: limpio('plazo') });
+        listo();
+      })
+      .catch(() => {
+        // Si el envío no se confirma, la consulta no se pierde: sale lista para WhatsApp
+        const texto = `Buen día, equipo de Pórtico Lab. Soy ${limpio('nombre')} (${limpio('telefono')}, ${limpio('correo')}). ${detalle}`;
+        error.innerHTML = 'No pudimos confirmar el envío. <a href="https://wa.me/573147924600?text=' + encodeURIComponent(texto) + '" target="_blank" rel="noopener">Envíela por WhatsApp con un toque →</a>';
+        medir('consulta_error', { formulario: 'consulta_inicio' });
+      })
+      .finally(() => { clearTimeout(corte); if (document.body.contains(boton)) { boton.disabled = false; boton.textContent = textoBoton; } });
   });
 })();
 </script>
