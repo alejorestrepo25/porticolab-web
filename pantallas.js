@@ -156,4 +156,32 @@
     e.preventDefault();
     if (!bloqueado) irA(l, i + dir);
   });
+
+  // Celular: puntos bajo cada carrusel de tarjetas (una tarjeta completa por vista)
+  function puntos(car) {
+    let fila = car.nextElementSibling;
+    if (!fila || !fila.classList.contains('carrusel-puntos')) {
+      fila = document.createElement('div');
+      fila.className = 'carrusel-puntos';
+      fila.setAttribute('aria-hidden', 'true');
+      car.after(fila);
+      car.addEventListener('scroll', () => marcar(car, fila), { passive: true });
+    }
+    const n = car.children.length;
+    if (fila.children.length !== n) fila.replaceChildren(...Array.from({ length: n }, () => document.createElement('i')));
+    marcar(car, fila);
+  }
+  function marcar(car, fila) {
+    const paso = car.children[1] ? car.children[1].offsetLeft - car.children[0].offsetLeft : car.clientWidth;
+    const i = Math.round(car.scrollLeft / Math.max(1, paso));
+    [...fila.children].forEach((p, j) => p.classList.toggle('activo', j === i));
+  }
+  function carruseles() {
+    document.querySelectorAll('.frentes, .srv-grid, .piezas').forEach((car) => {
+      if (car.children.length > 1) puntos(car);
+      if (!car.dataset.puntosObs) { car.dataset.puntosObs = '1'; new MutationObserver(() => puntos(car)).observe(car, { childList: true }); }
+    });
+  }
+  carruseles();
+  addEventListener('load', carruseles);
 })();
