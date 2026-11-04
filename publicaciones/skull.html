@@ -379,7 +379,7 @@ async function loadPost() {
   try {
     result = await S.consultar('*[_type == "proyecto" && _id == $id][0]{ title, location, year, description, features, tags, portada, galeria }', { id });
   } catch (e) {
-    aviso.textContent = 'No pudimos cargar el proyecto. Recarga la página en un momento.';
+    aviso.textContent = 'No pudimos cargar el proyecto. Recargue la página en un momento.';
     return;
   }
   if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
