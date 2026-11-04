@@ -92,7 +92,8 @@
     if (!movil.matches) return;
     const disponible = innerHeight - alto();
     // la pantalla tiene alto fijo: lo que sobra (también dentro de las tarjetas apiladas) queda como desborde medible
-    const sobra = (c) => c.scrollHeight - disponible
+    // se mide contra el alto real de la hoja (100svh: con la barra del navegador visible), no contra innerHeight
+    const sobra = (c) => c.scrollHeight - Math.min(disponible, c.clientHeight)
       + [...c.querySelectorAll('.frente, .srv-card')].reduce((m, t) => m + Math.max(0, t.scrollHeight - t.clientHeight), 0);
     secciones.forEach((c) => {
       if (sobra(c) <= 1) return;
