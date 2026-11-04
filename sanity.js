@@ -115,21 +115,21 @@
   ];
   // Hashtags de cada publicación (Excel «publicaciones-portico-lab»)
   const HASHTAGS = [
-    ['piel tejida', '#Laboratorio #Arquitectura #Diseño #fachada #bambu #piel'],
-    ['cenit', '#Laboratorio #Concreto #Diseño #mobiliario #iluminacion #interior'],
-    ['edificio san german', '#Laboratorio #arquitectura #Diseño #estructurametalica #ladrillo #jardineras #fachadaverde'],
-    ['edif san german', '#Laboratorio #arquitectura #Diseño #estructurametalica #ladrillo #jardineras #fachadaverde'],
-    ['skull', '#Laboratorio #Concreto #escultura #calavera #yeso #cemento #pigmentado #silicona'],
-    ['astra', '#Laboratorio #Arquitectura #Diseño #concurso #estaciondeservicio #gasolinera'],
-    ['girder box', '#Laboratorio #puentes #girderbox #vigacajon #concreto'],
-    ['bridge box', '#Laboratorio #puentes #girderbox #vigacajon #concreto'],
-    ['zarcillo', '#Laboratorio #tutor #plantas #jardineria #ensambles #estructuratubular'],
-    ['dorica', '#Laboratorio #Concreto #Diseño #maceta #concreto #pigmentado'],
-    ['jersey', '#Laboratorio #Concreto #Diseño #jersey #separadorvial #concreto #pigmentado'],
-    ['tangara', '#Laboratorio #Diseño #Moderno #mobiliario #madera #cnc #ferias'],
-    ['coltejer', '#Laboratorio #coltejer #concretoblanco #emblematico'],
-    ['atalaya', '#Laboratorio #Arquitectura #Diseño #hiperboloide #bambu #ligera'],
-    ['moai', '#Laboratorio #Concreto #escultura #moai #yeso #cemento #pigmentado #silicona']
+    ['piel tejida', '#Laboratorio #Arquitectura #Diseño #Fachada #Bambu #Piel'],
+    ['cenit', '#Laboratorio #Concreto #Diseño #Mobiliario #Iluminacion #Interior'],
+    ['edificio san german', '#Laboratorio #Arquitectura #Diseño #Estructurametalica #Ladrillo #Jardineras #Fachadaverde'],
+    ['edif san german', '#Laboratorio #Arquitectura #Diseño #Estructurametalica #Ladrillo #Jardineras #Fachadaverde'],
+    ['skull', '#Laboratorio #Concreto #Escultura #Calavera #Yeso #Cemento #Pigmentado #Silicona'],
+    ['astra', '#Laboratorio #Arquitectura #Diseño #Concurso #Estaciondeservicio #Gasolinera'],
+    ['girder box', '#Laboratorio #Puentes #Girderbox #Vigacajon #Concreto'],
+    ['bridge box', '#Laboratorio #Puentes #Girderbox #Vigacajon #Concreto'],
+    ['zarcillo', '#Laboratorio #Tutor #Plantas #Jardineria #Ensambles #Estructuratubular'],
+    ['dorica', '#Laboratorio #Concreto #Diseño #Maceta #Concreto #Pigmentado'],
+    ['jersey', '#Laboratorio #Concreto #Diseño #Jersey #Separadorvial #Concreto #Pigmentado'],
+    ['tangara', '#Laboratorio #Diseño #Moderno #Mobiliario #Madera #Cnc #Ferias'],
+    ['coltejer', '#Laboratorio #Coltejer #Concretoblanco #Emblematico'],
+    ['atalaya', '#Laboratorio #Arquitectura #Diseño #Hiperboloide #Bambu #Ligera'],
+    ['moai', '#Laboratorio #Concreto #Escultura #Moai #Yeso #Cemento #Pigmentado #Silicona']
   ];
   function hashtags(titulo) {
     const t = normal(titulo);
