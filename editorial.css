@@ -1300,3 +1300,6 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
 /* Servicio 2 (BIM): ilustración un poco más pequeña dentro de su recuadro, en Inicio y Servicios */
 html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg{transform:scale(.84);transform-origin:50% 50%}
 @media(max-width:900px){html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg:has(.bt){transform:translateY(-50%) scale(.84)}}
+/* Servicios · Metodología: título y botón centrados horizontalmente */
+html:root body.srvposter.y2k #como-funciona>h2.seccion{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+html:root body.srvposter.y2k #como-funciona>.accion-pantalla{align-self:center!important;margin-left:auto!important;margin-right:auto!important}
