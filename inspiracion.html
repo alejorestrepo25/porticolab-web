@@ -24,8 +24,6 @@
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://32sykluw.apicdn.sanity.io" crossorigin>
-  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="y2k.css?v=7">
   <style>
@@ -138,42 +136,11 @@
   <section class="pinterest-board" id="pinterest-board" data-board-url="https://co.pinterest.com/portico_lab/inspiraci%C3%B3n/" aria-labelledby="pinterest-board-title" hidden>
     <div class="pinterest-board__embed"></div>
   </section>
-  <div id="gallery-loading" role="status" aria-live="polite" style="display:flex;align-items:center;justify-content:center;min-height:22svh;font-size:11px;letter-spacing:1.5px;color:#777;">Cargando referencias…</div>
-  <section class="gallery"></section>
 </main>
 
 
-<script src="pinterest-inspiracion.js?v=1" defer></script>
-<script src="sanity.js?v=14"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-    const S = window.PL_SANITY;
-    const loading = document.getElementById('gallery-loading');
-    try {
-      const result = await S.consultar('*[_type == "proyecto" && "inspiracion" in tags && defined(portada.asset)] | order(_createdAt desc)[0...80]{ _id, title, tags, portada, "features": features[0...1] }');
-      loading.style.display = 'none';
-      let n = 0;
-      (Array.isArray(result) ? result : []).forEach(p => {
-        const t = S.tarjeta(p);
-        if (!t) return;
-        const img = t.querySelector('img');
-        img.loading = n < 4 ? 'eager' : 'lazy';
-        if (n === 0) img.fetchPriority = 'high';
-        gallery.appendChild(t);
-        n++;
-      });
-      if (!n) {
-        loading.style.display = '';
-        loading.textContent = 'Pronto habrá nuevas piezas de inspiración.';
-      }
-    } catch (error) {
-      loading.textContent = 'No pudimos cargar la inspiración. Intente de nuevo en un momento.';
-      loading.style.color = '#b9a7ff';
-    }
-  });
-</script>
+<script src="pinterest-inspiracion.js?v=2" defer></script>
+
 
 
 

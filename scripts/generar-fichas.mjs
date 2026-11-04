@@ -13,7 +13,8 @@ const SITIO = 'https://porticolab.com';
 const PROYECTO = '32sykluw';
 const DATASET = 'production';
 const MARCA = '<!-- ficha generada por scripts/generar-fichas.mjs: no editar a mano -->';
-const CONSULTA = '*[_type == "proyecto" && slug.current != "barra-sitio" && defined(portada.asset) && defined(title)] | order(_createdAt asc){ _id, title, description, tags, "portada": portada.asset._ref, _updatedAt }';
+// Solo las publicaciones del Laboratorio: la inspiración vive en el tablero de Pinterest
+const CONSULTA = '*[_type == "proyecto" && "laboratorio" in tags && slug.current != "barra-sitio" && defined(portada.asset) && defined(title)] | order(_createdAt asc){ _id, title, description, tags, "portada": portada.asset._ref, _updatedAt }';
 
 // Mismo criterio que nombreFicha() en sanity.js: si cambia uno, cambia el otro.
 export function nombreFicha(titulo) {

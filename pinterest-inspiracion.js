@@ -38,7 +38,7 @@
     script.async = true;
     script.src = 'https://assets.pinterest.com/js/pinit.js';
     script.onerror = () => {
-      anchor.textContent = 'No se pudo cargar Pinterest. Abre el tablero en una pestaña nueva.';
+      anchor.textContent = 'No se pudo cargar Pinterest. Abra el tablero en una pestaña nueva.';
     };
     document.body.appendChild(script);
   };
