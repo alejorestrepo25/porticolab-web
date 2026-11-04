@@ -1223,3 +1223,12 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  html:root body.home.y2k .y2k-hero__vis .hero-foto{flex:1 1 0!important;height:auto!important;max-height:none!important;min-height:0!important;position:relative}
  html:root body.home.y2k .y2k-hero__vis .hero-foto img{position:absolute!important;inset:0!important;object-position:72% 50%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important}
 }
+/* Celular · portada: la foto se funde hacia arriba con el texto (mismo lenguaje que el difuminado de escritorio) */
+@media(max-width:900px){
+ html:root body.home.y2k .y2k-hero__vis{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+ html:root body.home.y2k .y2k-hero__vis::after,html:root body.home.y2k .y2k-hero__vis .hero-foto::before,html:root body.home.y2k .y2k-hero__vis .hero-foto::after,html:root body.home.y2k .y2k-hero__vis .destello{display:none!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto{border:0!important;border-radius:0!important;background:transparent!important;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.08) 6%,rgba(0,0,0,.3) 14%,rgba(0,0,0,.62) 23%,rgba(0,0,0,.88) 32%,#000 40%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.08) 6%,rgba(0,0,0,.3) 14%,rgba(0,0,0,.62) 23%,rgba(0,0,0,.88) 32%,#000 40%,#000 88%,transparent 100%)}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{border-radius:0!important}
+}
