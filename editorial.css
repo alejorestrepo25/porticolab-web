@@ -1142,3 +1142,84 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  html:root body.srvposter .srv-card .srv-img{flex:0 0 50%!important;width:50%!important;max-width:50%!important;aspect-ratio:1/1!important;height:auto!important;align-self:flex-start}
  html:root body.srvposter .srv-card .srv-body{flex:1 1 50%!important;padding:18px 22px!important}
 }
+/* ===== Celular: cada hoja ocupa exactamente una pantalla (Inicio, Servicios, Nosotros) ===== */
+@media(max-width:900px){
+ html:has(body.home),html:has(body.nosotros),html:has(body.srvposter){scroll-snap-type:y mandatory!important;scroll-padding-top:var(--hh,95px)!important}
+ html:root body.y2k:is(.home,.nosotros,.srvposter) [data-pantalla][data-pantalla]:is(#inicio,#frentes,#proceso,#contacto,#preguntas,#servicios,#como-funciona,#enfoque,#proyectos,[data-pantalla]){height:calc(100svh - var(--hh,95px))!important;min-height:0!important;max-height:none!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;justify-content:safe center!important;align-items:stretch!important;overflow:hidden!important;position:relative!important;margin:0!important;padding:14px 16px 46px!important;border:0!important;scroll-snap-align:start!important;scroll-snap-stop:always!important}
+ html:root body.y2k:is(.home,.nosotros,.srvposter) [data-pantalla][data-pantalla]>*:not(.siguiente):not(.rail):not(.hero-explora){zoom:var(--km,1)!important}
+ /* Flecha «siguiente»: pequeña, abajo al centro */
+ html:root body.y2k:is(.home,.nosotros,.srvposter) [data-pantalla][data-pantalla]>.siguiente{position:absolute!important;left:50%!important;bottom:8px!important;transform:translateX(-50%)!important;margin:0!important;flex-direction:row!important;gap:8px!important;zoom:1!important}
+ html:root body.y2k [data-pantalla]>.siguiente i{width:28px!important;height:28px!important;min-width:28px}
+ html:root body.y2k [data-pantalla]>.siguiente span{font-size:10px!important}
+ html:root body.y2k [data-pantalla] .hero-explora{display:none!important}
+ /* Títulos de sección compactos */
+ html:root body.y2k [data-pantalla] .seccion__cab{margin:0 0 14px!important;padding:0!important}
+ html:root body.y2k [data-pantalla] :is(.seccion__cab h2,h2.seccion){font-size:clamp(24px,7.4vw,30px)!important;line-height:1.08!important;margin:4px 0 0!important}
+ html:root body.y2k [data-pantalla] .seccion__cab p{font-size:14px!important;margin-top:8px!important}
+ /* Tarjetas grandes (servicios y procesos): carrusel horizontal, una tarjeta por vista */
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas){display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;gap:12px!important;margin:0 -16px!important;padding:0 16px 4px!important;width:auto!important;max-width:none!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas)::-webkit-scrollbar{display:none}
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas)>*{flex:0 0 86%!important;width:86%!important;max-width:none!important;scroll-snap-align:center!important;margin:0!important}
+ html:root body.y2k :is(.frente,.srv-card){flex-direction:column!important}
+ html:root body.y2k :is(.frente__img,.srv-card .srv-img){width:100%!important;max-width:none!important;flex:0 0 auto!important;height:clamp(140px,26svh,230px)!important;aspect-ratio:auto!important}
+ html:root body.y2k :is(.frente__txt,.srv-card .srv-body){padding:14px 16px 16px!important}
+ html:root body.y2k :is(.frentes--srv .frente__promesa,.srv-body .promesa){font-size:14px!important}
+ html:root body.y2k :is(.frentes--srv .incluye li,.srv-body .incluye li){font-size:13.5px!important;padding:5px 0 5px 18px!important}
+ /* Pasos y pilares: cuadrícula de 2 × 2 */
+ html:root body.y2k :is(.pasos-row,.n-pilares){display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+ html:root body.y2k :is(.paso-card,.n-pilar){display:block!important;padding:14px!important}
+ html:root body.y2k :is(.paso-card h3,.n-pilar h3){font-size:15px!important;margin:6px 0 4px!important}
+ html:root body.y2k :is(.paso-card p,.n-pilar p){font-size:13px!important;line-height:1.45!important}
+ /* Indicador de carrusel */
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas){mask-image:linear-gradient(90deg,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent)}
+}
+@media(max-width:900px){
+ /* El carrusel ocupa el alto que queda y cada tarjeta lo llena: la imagen se encoge para que el texto y el botón siempre se vean */
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid,.piezas){flex:1 1 auto!important;min-height:0!important;align-items:stretch!important}
+ html:root body.y2k :is(.frentes,.srv-grid,#srv-grid)>*{height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+ html:root body.y2k :is(.frente__img,.srv-card .srv-img){flex:1 1 0!important;min-height:70px!important;height:auto!important}
+ html:root body.y2k :is(.frente__img,.srv-card .srv-img) :is(img,svg){width:100%!important;height:100%!important;object-fit:contain!important}
+ html:root body.y2k :is(.frente__txt,.srv-card .srv-body){flex:0 0 auto!important}
+ html:root body.y2k :is(.frentes--srv .meta,.srv-body .meta){padding-top:10px!important}
+ html:root body.y2k :is(.frentes--srv .frente__cta,.srv-body .btn-primario){margin-top:8px!important;min-height:40px!important}
+ html:root body.y2k .piezas{align-items:center!important}
+ html:root body.y2k .piezas>*{height:auto!important}
+ html:root body.y2k .piezas .pieza__grafica,html:root body.y2k .piezas .pieza__grafica object{aspect-ratio:560/520!important;height:auto!important;width:100%!important;background:#0d0d10!important}
+ /* El robot de contacto se queda en su píldora para no tapar botones ni tarjetas */
+ html:root body.y2k #mascota-wrapper .mascota-sprite{display:none!important}
+ /* Contacto (Inicio y Servicios): solo lo esencial para que el formulario se lea a buen tamaño */
+ html:root body.y2k #contacto .combo,html:root body.y2k #preguntas.cierre-combo .combo{display:flex!important;flex-direction:column!important;gap:12px!important;width:100%!important;max-width:none!important}
+ html:root body.y2k #contacto .combo__cta>p:not(.combo__kicker),html:root body.y2k #contacto .cierre-acciones,html:root body.y2k #contacto .combo__kicker{display:none!important}
+ html:root body.y2k:is(.home,.srvposter) :is(#contacto,#preguntas) .combo__cta h2.guerrilla-h{font-size:clamp(20px,6vw,24px)!important;max-width:none!important}
+ html:root body.y2k #contacto .consulta{gap:10px!important}
+ html:root body.y2k #contacto .consulta__fila{grid-template-columns:1fr 1fr!important;gap:10px!important}
+ html:root body.y2k #contacto .consulta__fila+.consulta__fila,html:root body.y2k #contacto .consulta>.consulta__campo:first-child{grid-column:auto}
+ html:root body.y2k #contacto .consulta :is(input,textarea){min-height:40px!important;padding:8px 12px!important;font-size:15px!important}
+ html:root body.y2k #contacto .consulta textarea{min-height:58px!important;height:58px}
+ html:root body.y2k #contacto .consulta__campo{gap:4px!important}
+ html:root body.y2k #contacto .consulta__opciones{gap:6px!important}
+ html:root body.y2k #contacto .consulta__opciones legend{margin-bottom:6px!important}
+ html:root body.y2k #contacto .consulta__opciones span{min-height:34px!important;padding:0 11px!important;font-size:13px!important}
+ html:root body.y2k #contacto .consulta .btn-cromo{width:100%!important;justify-self:stretch!important;justify-content:center!important;margin-top:2px!important}
+ /* Servicios · cierre: título, botón y preguntas */
+ html:root body.y2k.srvposter #preguntas .combo__cta>p:not(.combo__kicker),html:root body.y2k.srvposter #preguntas .cierre-acciones>:not(.btn-cromo),html:root body.y2k.srvposter #preguntas .combo__kicker{display:none!important}
+ html:root body.y2k.srvposter #preguntas .faq summary{padding:12px 40px 12px 14px!important;font-size:14px!important}
+}
+@media(max-width:900px){
+ html:root body.y2k .piezas{flex:0 0 auto!important}
+ html:root body.y2k .piezas>.pieza{height:auto!important;min-height:0!important;align-self:center!important}
+ html:root body.home.y2k .y2k-hero__vis{height:clamp(200px,34svh,320px)!important;min-height:0!important;max-height:none!important;background:transparent!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto{height:100%!important;min-height:0!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{height:100%!important;width:100%!important;object-fit:cover!important}
+}
+@media(max-width:900px){
+ /* Flecha sola (sin texto) para no chocar con el botón CONTACTO */
+ html:root body.y2k [data-pantalla]>.siguiente span{display:none!important}
+ /* Las imágenes del inicio ocupan todo el alto que deja el texto */
+ html:root body.home.y2k .y2k-hero__vis,html:root body.nosotros.y2k .n-hero__visual{flex:1 1 0!important;height:auto!important;min-height:180px!important;max-height:none!important;aspect-ratio:auto!important;margin:0!important;position:relative}
+}
+@media(max-width:900px){
+ html:root body.home.y2k .y2k-hero__vis{display:flex!important;flex-direction:column!important}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto{flex:1 1 0!important;height:auto!important;max-height:none!important;min-height:0!important;position:relative}
+ html:root body.home.y2k .y2k-hero__vis .hero-foto img{position:absolute!important;inset:0!important;object-position:72% 50%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important}
+}

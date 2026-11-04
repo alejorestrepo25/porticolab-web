@@ -81,6 +81,35 @@
     liberarCuandoTermine(Math.round(Math.max(0, Math.min(topDe(el), document.documentElement.scrollHeight - innerHeight))), el);
   });
 
+  // Celular: cada pantalla mide exactamente lo que queda bajo el encabezado. Si su contenido no cabe,
+  // se reduce lo justo (variable --km) para que se vea completo; el desplazamiento se ancla de pantalla en pantalla.
+  const movil = matchMedia('(max-width: 900px)');
+  function ajustarMovil() {
+    const raiz = document.documentElement;
+    raiz.style.setProperty('--hh', Math.round(alto()) + 'px');
+    const secciones = [...document.querySelectorAll('[data-pantalla]')];
+    secciones.forEach((c) => c.style.removeProperty('--km'));
+    if (!movil.matches) return;
+    const disponible = innerHeight - alto();
+    secciones.forEach((c) => {
+      let k = 1;
+      for (let i = 0; i < 4; i++) {
+        const h = c.scrollHeight;   // la pantalla tiene alto fijo: lo que sobra queda como desborde medible
+        if (h <= disponible + 1) break;
+        k = Math.max(0.6, k * (disponible / h) * 0.98);
+        c.style.setProperty('--km', k.toFixed(3));
+      }
+    });
+  }
+  let reloj2 = 0;
+  const pedirMovil = () => { clearTimeout(reloj2); reloj2 = setTimeout(ajustarMovil, 120); };
+  addEventListener('resize', pedirMovil);
+  addEventListener('load', pedirMovil);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedirMovil);
+  document.addEventListener('load', pedirMovil, true);
+  movil.addEventListener('change', pedirMovil);
+  pedirMovil();
+
   addEventListener('wheel', (e) => {
     if (!modo.matches || e.ctrlKey || pausa() || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
     const ahora = performance.now();
