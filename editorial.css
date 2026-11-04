@@ -1038,3 +1038,32 @@ body.y2k .consulta__opciones span{display:inline-flex;align-items:center;min-hei
 body.y2k .consulta__opciones label:hover span{border-color:#9d7bff}
 body.y2k .consulta__opciones input:checked+span{border-color:#9d7bff;background:linear-gradient(90deg,#e9e0ff,#d7f6ff);color:#141316;font-weight:600}
 body.y2k .consulta__opciones input:focus-visible+span{outline:2px solid #9d7bff;outline-offset:2px}
+/* Cierre (Inicio y Servicios) · mismo lenguaje que el resto del sitio:
+   título Montserrat como las secciones, texto de 18 px, campos de 48 px, botones de 44 px con la misma separación */
+html:root body.y2k .cierre-combo .combo__cta h2.guerrilla-h{font:700 clamp(30px,2.5vw,46px)/1.08 'Montserrat',system-ui,sans-serif!important;letter-spacing:-.035em!important;text-transform:none!important;max-width:20ch!important;margin:0!important}
+html:root body.y2k .cierre-combo .combo__cta h2.guerrilla-h mark{padding:0 .12em;border-radius:4px}
+html:root body.y2k .cierre-combo .combo__cta>p:not(.combo__kicker){font-size:18px!important;line-height:1.6!important;max-width:44ch!important;margin:24px 0 32px!important}
+html:root body.y2k .cierre-combo .consulta{gap:18px;margin:0 0 0;max-width:620px}
+html:root body.y2k .cierre-combo .consulta__fila{gap:16px}
+html:root body.y2k .cierre-combo .consulta__campo{gap:8px}
+html:root body.y2k .cierre-combo .consulta :is(input,select,textarea){min-height:48px;padding:12px 16px;font-size:16px!important;border-radius:12px}
+html:root body.y2k .cierre-combo .consulta textarea{min-height:104px}
+html:root body.y2k .cierre-combo .consulta__opciones{gap:10px}
+html:root body.y2k .cierre-combo .consulta__opciones legend{margin-bottom:10px}
+html:root body.y2k .cierre-combo .consulta__opciones span{min-height:44px;padding:0 18px;font-size:15px}
+html:root body.y2k .cierre-combo :is(.consulta .btn-cromo,.cierre-acciones .btn-cromo,.cierre-acciones .btn-fantasma){min-height:44px!important;height:44px;padding:0 24px!important;font:700 11px/1 'Montserrat',system-ui,sans-serif!important;letter-spacing:.1em!important;white-space:nowrap}
+html:root body.y2k .cierre-combo .consulta .btn-cromo{margin-top:6px}
+html:root body.y2k .cierre-combo .consulta+.cierre-acciones{margin-top:32px!important;padding-top:24px;border-top:1px solid var(--pl-panel-borde)}
+html:root body.y2k .cierre-combo .cierre-acciones{gap:12px!important;flex-wrap:wrap!important}
+html:root body.y2k .cierre-combo .faq{gap:10px!important}
+html:root body.y2k .cierre-combo .faq summary{padding:18px 56px 18px 24px!important;font:500 17px/1.4 'Montserrat',system-ui,sans-serif!important}
+html:root body.y2k .cierre-combo .faq summary::after{right:24px;font-size:20px}
+html:root body.y2k .cierre-combo .faq details p{padding:0 24px 20px!important;font-size:15px!important;line-height:1.65!important}
+html:root body.y2k .cierre-combo .combo__faq a.ver-todo{margin-top:28px!important;font-size:11px!important}
+@media(max-width:900px){
+ html:root body.y2k .cierre-combo .combo__cta h2.guerrilla-h{font-size:clamp(26px,7vw,32px)!important}
+ html:root body.y2k .cierre-combo .combo__cta>p:not(.combo__kicker){font-size:16px!important;margin:18px 0 24px!important}
+ html:root body.y2k .cierre-combo .faq summary{font-size:16px!important;padding:16px 48px 16px 18px!important}
+ html:root body.y2k .cierre-combo .faq details p{font-size:15px!important;padding:0 18px 16px!important}
+ html:root body.y2k .cierre-combo .cierre-acciones{gap:10px!important}
+}

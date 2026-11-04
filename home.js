@@ -169,7 +169,8 @@
     const conAjuste = matchMedia('(min-width: 901px) and (min-height: 560px)').matches;
     contenedores().forEach((c) => {
       c.style.removeProperty('--k');
-      if (!conAjuste) return;
+      // El cierre (formulario + preguntas) va siempre a tamaño real: es la última vista y puede desplazarse
+      if (!conAjuste || c.classList.contains('cierre-home')) return;
       const disponible = innerHeight - altoEncabezado();
       let k = 1;
       for (let i = 0; i < 4; i++) {
