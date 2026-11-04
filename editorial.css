@@ -1300,3 +1300,12 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
 /* Servicio 2 (BIM): ilustración un poco más pequeña dentro de su recuadro, en Inicio y Servicios */
 html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg{transform:scale(.84);transform-origin:50% 50%}
 @media(max-width:900px){html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion="bim"] svg:has(.bt){transform:translateY(-50%) scale(.84)}}
+/* Servicios · Metodología: título y botón centrados horizontalmente */
+html:root body.srvposter.y2k #como-funciona>h2.seccion{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+html:root body.srvposter.y2k #como-funciona>.accion-pantalla{align-self:center!important;margin-left:auto!important;margin-right:auto!important}
+/* Nosotros · Enfoque: título y párrafo centrados horizontalmente */
+html:root body.nosotros.y2k #enfoque>.seccion__cab{text-align:center!important;margin-left:auto!important;margin-right:auto!important;align-self:center!important;align-items:center!important}
+html:root body.nosotros.y2k #enfoque>.seccion__cab :is(h2,p){text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+/* Metodología y Enfoque: todo el contenido centrado horizontalmente (también el texto de las tarjetas) */
+html:root body.srvposter.y2k #como-funciona .paso-card,html:root body.nosotros.y2k #enfoque .n-pilar{text-align:center!important;align-items:center!important}
+html:root body.srvposter.y2k #como-funciona .paso-card>*,html:root body.nosotros.y2k #enfoque .n-pilar>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
