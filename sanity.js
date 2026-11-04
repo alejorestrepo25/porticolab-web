@@ -105,6 +105,19 @@
     ['coltejer', 'P-002'], ['jersey', 'P-003'], ['dorica', 'P-004'], ['zarcillo', 'P-006'], ['skull', 'P-007']
   ];
   const normal = v => texto(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  // Subtítulo corto de cada publicación (Excel «publicaciones-portico-lab», columna junto al nombre)
+  const SUBTITULOS = [
+    ['piel tejida', 'Recubrimiento en bambú'], ['edificio san german', 'Vivienda multifamiliar'], ['edif san german', 'Vivienda multifamiliar'],
+    ['atalaya', 'Mirador en bambú'], ['astra', 'Estación de servicio'], ['girder box', 'Elemento estructural de concreto'],
+    ['bridge box', 'Elemento estructural de concreto'], ['cenit', 'Luminaria en concreto'], ['moai', 'Estatua en cemento'],
+    ['tangara', 'Mueble expositivo'], ['coltejer', 'Arquitectura icónica'], ['jersey', 'Portalápices en microconcreto'],
+    ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento']
+  ];
+  function subtitulo(titulo) {
+    const t = normal(titulo);
+    const par = SUBTITULOS.find(([k]) => t === k) || SUBTITULOS.find(([k]) => t.includes(k));
+    return par ? par[1] : '';
+  }
   function codigo(titulo) {
     const t = normal(titulo);
     const par = CODIGOS.find(([k]) => t === k) || CODIGOS.find(([k]) => t.includes(k));
@@ -156,7 +169,7 @@
     const b = document.createElement('b');
     b.textContent = titulo;
     h3.appendChild(b);
-    const rasgo = lista(p.features)[0];
+    const rasgo = subtitulo(titulo) || lista(p.features)[0];
     if (rasgo) {
       const sep = document.createElement('i');
       sep.setAttribute('aria-hidden', 'true');
@@ -190,5 +203,5 @@
     contenedor.appendChild(div);
   }
 
-  window.PL_SANITY = { consultar, imagen, srcset, nombreFicha, texto, lista, tarjeta, aviso, codigo, categoria };
+  window.PL_SANITY = { consultar, imagen, srcset, nombreFicha, texto, lista, tarjeta, aviso, codigo, categoria, subtitulo };
 })();
