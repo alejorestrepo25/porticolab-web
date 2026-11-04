@@ -1067,3 +1067,14 @@ html:root body.y2k .cierre-combo .combo__faq a.ver-todo{margin-top:28px!importan
  html:root body.y2k .cierre-combo .faq details p{font-size:15px!important;padding:0 18px 16px!important}
  html:root body.y2k .cierre-combo .cierre-acciones{gap:10px!important}
 }
+/* Inicio · cierre en dos vistas: formulario (texto a la izquierda, formulario a la derecha) y preguntas al final */
+html:root body.home.y2k #contacto .combo{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)!important;align-items:center!important}
+html:root body.home.y2k #contacto .combo__form{width:100%}
+html:root body.home.y2k #contacto .consulta{max-width:none;margin:0}
+html:root body.home.y2k #contacto .cierre-acciones{margin-top:0!important}
+html:root body.home.y2k #preguntas .combo--preguntas{display:block!important;max-width:min(980px,94vw)!important}
+html:root body.home.y2k #preguntas .combo__faq{width:100%}
+html:root body.home.y2k #preguntas .faq summary{font-size:18px!important}
+@media(max-width:900px){html:root body.home.y2k #contacto .combo{grid-template-columns:1fr!important;gap:28px!important}}
+/* Fotos originales: sin el filtro anticuadrícula (alteraba color y contraste de las portadas nuevas) */
+html:root body.y2k .gallery .gallery-item img,html:root body.y2k .gallery .gallery-item>a img,html:root body.ficha-proyecto .ficha__principal img{filter:none!important}
