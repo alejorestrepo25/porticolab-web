@@ -1279,3 +1279,17 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  html:root body.y2k [data-pantalla] :is(.frentes--srv .incluye li,.srv-body .incluye li){font-size:11px!important;padding:3px 0 3px 13px!important}
  html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__cta,.srv-body .btn-primario){font-size:10px!important;min-height:34px!important}
 }
+@media(max-width:900px){
+ /* Formulario compacto: cabe en una hoja sin tener que encogerse tanto */
+ html:root body.y2k:is(.home,.srvposter) #contacto .combo__cta h2.guerrilla-h{font-size:clamp(18px,5.2vw,22px)!important;line-height:1.18!important;margin-bottom:0!important}
+ html:root body.y2k #contacto .combo{gap:10px!important}
+ html:root body.y2k #contacto .consulta{gap:8px!important}
+ html:root body.y2k #contacto .consulta__fila{gap:8px!important}
+ html:root body.y2k #contacto .consulta :is(input,textarea){min-height:38px!important;height:38px;padding:7px 12px!important}
+ html:root body.y2k #contacto .consulta textarea{min-height:50px!important;height:50px!important;resize:none}
+ html:root body.y2k #contacto .consulta__campo{gap:3px!important}
+ html:root body.y2k #contacto .consulta__opciones{gap:5px!important}
+ html:root body.y2k #contacto .consulta__opciones legend{margin-bottom:5px!important}
+ html:root body.y2k #contacto .consulta__opciones span{min-height:30px!important;padding:0 10px!important;font-size:12px!important}
+ html:root body.y2k #contacto .consulta .btn-cromo{min-height:42px!important}
+}
