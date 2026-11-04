@@ -91,14 +91,19 @@
     secciones.forEach((c) => c.style.removeProperty('--km'));
     if (!movil.matches) return;
     const disponible = innerHeight - alto();
+    // la pantalla tiene alto fijo: lo que sobra (también dentro de las tarjetas apiladas) queda como desborde medible
+    const sobra = (c) => c.scrollHeight - disponible
+      + [...c.querySelectorAll('.frente, .srv-card')].reduce((m, t) => m + Math.max(0, t.scrollHeight - t.clientHeight), 0);
     secciones.forEach((c) => {
-      let k = 1;
-      for (let i = 0; i < 4; i++) {
-        const h = c.scrollHeight;   // la pantalla tiene alto fijo: lo que sobra queda como desborde medible
-        if (h <= disponible + 1) break;
-        k = Math.max(0.6, k * (disponible / h) * 0.98);
+      if (sobra(c) <= 1) return;
+      // búsqueda binaria de la mayor escala que cabe completa
+      let lo = 0.6, hi = 1;
+      for (let i = 0; i < 7; i++) {
+        const k = (lo + hi) / 2;
         c.style.setProperty('--km', k.toFixed(3));
+        if (sobra(c) <= 1) lo = k; else hi = k;
       }
+      c.style.setProperty('--km', lo.toFixed(3));
     });
   }
   let reloj2 = 0;

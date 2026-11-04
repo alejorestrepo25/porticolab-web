@@ -1250,3 +1250,23 @@ html:root body.srvposter .srv-card:hover .btn-primario{border-color:var(--pl-ink
  html:root body.srvposter.y2k .srv-wrap,html:root body.nosotros.y2k main#contenido{padding-inline:0!important;margin-inline:0!important;width:100%!important;max-width:none!important}
  html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid,.piezas){margin-left:-16px!important;margin-right:-16px!important;width:auto!important}
 }
+/* Celular · servicios: las dos tarjetas juntas en una sola hoja (imagen a la izquierda, texto a la derecha) */
+@media(max-width:900px){
+ html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid){display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:minmax(0,1fr)!important;overflow:visible!important;scroll-snap-type:none!important;margin:0!important;padding:0!important;gap:12px!important;width:100%!important}
+ html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid)>*{flex:none!important;width:auto!important;height:auto!important;min-height:0!important;flex-direction:row!important;align-items:stretch!important;scroll-snap-align:none!important}
+ html:root body.y2k [data-pantalla] :is(.frentes,.srv-grid,#srv-grid)+.carrusel-puntos{display:none!important}
+ html:root body.y2k [data-pantalla] :is(.frente__img,.srv-card .srv-img){flex:0 0 34%!important;width:34%!important;height:auto!important;min-height:0!important;padding:8px!important;border-radius:0!important}
+ html:root body.y2k [data-pantalla] :is(.frente__txt,.srv-card .srv-body){flex:1 1 0!important;min-width:0!important;padding:12px 14px 12px 4px!important;display:flex!important;flex-direction:column!important;justify-content:safe center!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__num,.srv-body .num,.srv-body .srv-num){font-size:10px!important;margin:0 0 2px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv h3,.srv-body h3){font-size:16px!important;line-height:1.2!important;margin:0 0 6px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__promesa,.srv-body .promesa){font-size:13px!important;line-height:1.4!important;margin:0 0 6px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .incluye,.srv-body .incluye){margin:0 0 4px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .incluye li,.srv-body .incluye li){font-size:12px!important;line-height:1.3!important;padding:3px 0 3px 14px!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .meta,.srv-body .meta){display:none!important}
+ html:root body.y2k [data-pantalla] :is(.frentes--srv .frente__cta,.srv-body .btn-primario){margin-top:6px!important;min-height:36px!important;font-size:10.5px!important;padding:0 10px!important}
+}
+@media(max-width:900px){
+ /* Filas iguales pero nunca más bajas que su contenido: si no cabe, el ajuste de escala de la hoja lo detecta */
+ html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid){grid-auto-rows:1fr!important}
+ html:root body.y2k [data-pantalla][data-pantalla] :is(.frentes,.srv-grid,#srv-grid)>*{overflow:visible!important}
+}
