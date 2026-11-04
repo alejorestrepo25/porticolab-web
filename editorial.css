@@ -1314,3 +1314,11 @@ html:root body.home.y2k #proceso>.seccion__cab,html:root body.home.y2k #proceso>
 html:root body.home.y2k #proceso .paso-card{text-align:center!important;align-items:center!important}
 html:root body.home.y2k #proceso .paso-card>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
 html:root body.home.y2k #proceso>.ver-todo-wrap{display:flex!important;justify-content:center!important;text-align:center!important}
+/* Metodología (Inicio y Servicios): contenido centrado también verticalmente en escritorio */
+@media(min-width:901px){
+ html:root body.home.y2k section#proceso[data-pantalla],html:root body.srvposter.y2k .srv-wrap>section#como-funciona[data-pantalla]{justify-content:center!important;padding-top:40px!important;padding-bottom:40px!important}
+}
+@media(min-width:901px){
+ html:root body.home.y2k section#proceso[data-pantalla],html:root body.srvposter.y2k .srv-wrap>section#como-funciona[data-pantalla]{position:relative!important}
+ html:root body.home.y2k section#proceso[data-pantalla]>.siguiente,html:root body.srvposter.y2k .srv-wrap>section#como-funciona[data-pantalla]>.siguiente{position:absolute!important;left:50%!important;bottom:28px!important;transform:translateX(-50%)!important;margin:0!important}
+}
