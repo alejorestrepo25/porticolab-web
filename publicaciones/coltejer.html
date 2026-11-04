@@ -607,6 +607,7 @@ async function loadPost() {
       if (window.PL_RECALCULAR) window.PL_RECALCULAR();
       // La ficha siguiente y la anterior se precargan para que el paso tipo reel sea inmediato
       ['ficha-sig', 'ficha-ant'].forEach(id => { const l = document.createElement('link'); l.rel = 'prefetch'; l.href = document.getElementById(id).href; document.head.appendChild(l); });
+      document.dispatchEvent(new Event('pl-enlaces-listos'));
     })
     .catch(() => {});
 
@@ -627,7 +628,7 @@ loadPost();
   const visorAbierto = () => document.getElementById('lightbox').style.display === 'flex';
   const enlace = dir => document.getElementById(dir > 0 ? 'ficha-sig' : 'ficha-ant');
   const cargado = performance.now();
-  let yendo = false, ultimo = 0, acum = 0, gestoValido = false;
+  let yendo = false, ultimo = 0, acum = 0, gestoValido = false, previo = 0, pendiente = 0;
 
   try {
     const llega = sessionStorage.getItem('pl-reel');
@@ -638,23 +639,27 @@ loadPost();
     }
   } catch (e) {}
 
+  const listo = a => a && !a.hidden && a.getAttribute('href');
   function ir(dir) {
+    if (yendo) return;
     const a = enlace(dir);
-    if (!a || a.hidden || !a.getAttribute('href') || yendo) return;
+    // Si los enlaces todavía cargan, el gesto queda pendiente y se cumple apenas estén listos
+    if (!listo(a)) { pendiente = dir; return; }
     yendo = true;
     try { sessionStorage.setItem('pl-reel', dir > 0 ? 'abajo' : 'arriba'); } catch (e) {}
     document.body.classList.add(dir > 0 ? 'reel-sale-arriba' : 'reel-sale-abajo');
-    setTimeout(() => { location.href = a.href; }, reducir ? 0 : 260);
+    setTimeout(() => { location.href = a.href; }, reducir ? 0 : 240);
   }
+  document.addEventListener('pl-enlaces-listos', () => { if (pendiente) { const d = pendiente; pendiente = 0; ir(d); } });
   const enBorde = dir => {
     const doc = document.documentElement;
-    return dir > 0 ? innerHeight + scrollY >= doc.scrollHeight - 2 : scrollY <= 2;
+    return dir > 0 ? innerHeight + scrollY >= doc.scrollHeight - 4 : scrollY <= 4;
   };
-  // Si el puntero está sobre el bloque de texto y este todavía puede desplazarse, se respeta ese desplazamiento
+  // Si el puntero está sobre el bloque de texto y este todavía tiene contenido real por recorrer, se respeta ese desplazamiento
   const textoPuedeMover = (t, dir) => {
     const info = t && t.closest && t.closest('.ficha__info');
-    if (!info) return false;
-    return dir > 0 ? info.scrollTop + info.clientHeight < info.scrollHeight - 2 : info.scrollTop > 2;
+    if (!info || info.scrollHeight - info.clientHeight < 24) return false;
+    return dir > 0 ? info.scrollTop + info.clientHeight < info.scrollHeight - 6 : info.scrollTop > 6;
   };
 
   addEventListener('wheel', (e) => {
@@ -664,11 +669,14 @@ loadPost();
     if (!escritorio.matches && !enBorde(dir)) return;
     e.preventDefault();
     const ahora = performance.now();
-    if (ahora - ultimo > 250) { acum = 0; gestoValido = ahora - cargado > 450; }   // solo cuentan gestos que empiezan en esta página
-    ultimo = ahora;
+    const fuerza = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 16 : 1);
+    // Gesto nuevo: tras una pausa, o cuando el movimiento vuelve a crecer (la inercia solo decrece)
+    const nuevo = ahora - ultimo > 200 || (fuerza > previo * 1.6 + 6 && ahora - ultimo < 200 && fuerza > 12);
+    if (nuevo) { acum = 0; gestoValido = ahora - cargado > 350; }
+    ultimo = ahora; previo = fuerza;
     if (!gestoValido || yendo) return;
-    acum += e.deltaY;
-    if (Math.abs(acum) >= 60) ir(dir);
+    acum += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
+    if (Math.abs(acum) >= 50) ir(dir);
   }, { passive: false });
 
   let y0 = null, enBordeAlEmpezar = { 1: false, '-1': false };
