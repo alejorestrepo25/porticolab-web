@@ -11,7 +11,7 @@
   var m = location.pathname.match(/\/publicaciones\/([a-z0-9-]{1,80})\.html$/);
   if (!m) return;
   document.documentElement.style.visibility = 'hidden';
-  var q = encodeURIComponent('*[_type == "proyecto" && defined(title)]{_id, title}');
+  var q = encodeURIComponent('*[_type == "proyecto" && "laboratorio" in tags && defined(title)]{_id, title}');
   var mostrar = function () { document.documentElement.style.visibility = ''; };
   fetch('https://32sykluw.apicdn.sanity.io/v2024-01-01/data/query/production?query=' + q)
     .then(function (r) { return r.json(); })
