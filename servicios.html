@@ -271,115 +271,7 @@
   <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">Dos vías para <em>cuidar su proyecto</em></h2>
     <div class="srv-grid" id="srv-grid"></div>
-    <a class="siguiente" href="#modelo-obra" aria-label="Siguiente: Del modelo a la obra"><span>Del modelo a la obra</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
-  </section>
-
-<section id="modelo-obra" data-pantalla data-nombre="Del modelo a la obra">
-    <style>
-  #modelo-obra{padding-block:clamp(40px,6vh,72px)}
-  #modelo-obra .bim-grid-wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
-  #modelo-obra .bim-panel{margin:0;background:#0c0d10;border:1px solid #2a2d34;border-radius:14px;padding:18px 18px 16px;min-width:0}
-  #modelo-obra .bim-panel figcaption{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
-  #modelo-obra .bim-n{font:700 11px/1 'Montserrat',sans-serif;letter-spacing:.2em;color:#7ee8ff}
-  #modelo-obra .bim-panel h3{margin:0;font:700 clamp(15px,1.4vw,19px)/1.2 'Montserrat',sans-serif;letter-spacing:.02em;color:#f1f0f2;text-transform:uppercase}
-  #modelo-obra .bim-desc{margin:0 0 12px;font:400 13px/1.55 'Montserrat',sans-serif;color:#b6b4ba}
-  #modelo-obra .bim-svg{display:block;width:100%;height:auto}
-  #modelo-obra .bim-base{fill:#23262c;stroke:#3a3f47;stroke-width:1}
-  #modelo-obra .bim-roof{fill:#2b2f36;stroke:#cfd6de;stroke-width:1.2}
-  #modelo-obra .bim-faceL{fill:#4d6470;fill-opacity:.55;stroke:#8fb8c8;stroke-opacity:.45;stroke-width:.8}
-  #modelo-obra .bim-faceR{fill:#3e5561;fill-opacity:.6;stroke:#8fb8c8;stroke-opacity:.45;stroke-width:.8}
-  #modelo-obra .bim-col{stroke:#c9d1da;stroke-width:1.2;stroke-dasharray:2 4;opacity:.6}
-  #modelo-obra .bim-grid path{stroke:#2a2d34;stroke-width:1;fill:none}
-  #modelo-obra .bim-ruta{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;animation:bimTrazo 4.6s ease-in-out infinite}
-  #modelo-obra .bim-ruta--c{stroke:#7ee8ff}
-  #modelo-obra .bim-ruta--v{stroke:#b59aff;animation-delay:1.2s}
-  #modelo-obra .bim-nodo{fill:#0c0d10;stroke:#e7e0ff;stroke-width:1.6;animation:bimNodo 2.4s ease-in-out infinite;animation-delay:var(--d);transform-box:fill-box;transform-origin:center}
-  #modelo-obra .bim-piso--e{animation:bimCae 6s ease-in-out infinite;animation-delay:calc(var(--k)*.12s);transform-box:fill-box}
-  #modelo-obra .bim-piso--c{animation:bimLuz 5s ease-in-out infinite;animation-delay:calc(var(--k)*.08s)}
-  #modelo-obra .bim-banda{animation:bimSube 8s ease-in-out infinite}
-  #modelo-obra .bim-banda-f{fill:#7ee8ff;fill-opacity:.35;stroke:#7ee8ff;stroke-width:1}
-  #modelo-obra .bim-card{opacity:0;animation:bimAparece 8s ease-in-out infinite;animation-delay:var(--d)}
-  #modelo-obra .bim-card rect{fill:#141519;stroke:#3a3f47}
-  #modelo-obra .bim-card text{font:700 10px 'Montserrat',sans-serif;letter-spacing:.16em;fill:#cfd6de}
-  #modelo-obra .bim-card-bar{fill:#2a2d34;stroke:none}
-  #modelo-obra .bim-card-fill{fill:#7ee8ff;stroke:none}
-  #modelo-obra .bim-card-fill--b{fill:#b59aff}
-  #modelo-obra .bim-panel:not(.is-on) .bim-svg *,html.bim-oculta #modelo-obra .bim-svg *{animation-play-state:paused}
-  @keyframes bimCae{0%{opacity:0;transform:translateY(-60px)}20%{opacity:1;transform:none}75%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-30px)}}
-  @keyframes bimTrazo{0%{stroke-dashoffset:420}45%{stroke-dashoffset:0}80%{stroke-dashoffset:0}100%{stroke-dashoffset:-420}}
-  @keyframes bimNodo{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.35);opacity:1}}
-  @keyframes bimLuz{0%,100%{opacity:.85}50%{opacity:1}}
-  @keyframes bimSube{0%{transform:translateY(0)}100%{transform:translateY(-132px)}}
-  @keyframes bimAparece{0%,10%{opacity:0}25%,85%{opacity:1}100%{opacity:0}}
-  @media (prefers-reduced-motion: reduce){
-    #modelo-obra .bim-svg *{animation:none!important}
-    #modelo-obra .bim-ruta{stroke-dashoffset:0}
-    #modelo-obra .bim-banda{transform:translateY(-44px)}
-    #modelo-obra .bim-card{opacity:1}
-  }
-  @media (max-width:900px){
-    #modelo-obra .bim-grid-wrap{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:10px;-webkit-overflow-scrolling:touch}
-    #modelo-obra .bim-panel{flex:0 0 84%;scroll-snap-align:center}
-  }
-</style>
-    <div class="kicker">// DEL MODELO A LA OBRA</div>
-    <h2 class="seccion">Del modelo a la <em>obra</em></h2>
-    <div class="bim-grid-wrap">
-      <figure class="bim-panel"><figcaption><span class="bim-n">01</span><h3>Estructura</h3></figcaption><p class="bim-desc">Ensamblamos el edificio desde la cimentación, la estructura y las losas hasta la cubierta.</p><svg class="bim-svg" viewBox="0 0 600 400" role="img" aria-labelledby="bim1-t bim1-d"><title id="bim1-t">Estructura: montaje del edificio</title><desc id="bim1-d">Cimentación, columnas, losas y fachada se ensamblan nivel por nivel hasta la cubierta.</desc><g class="bim-grid"><path d="M40 300 L160 360 M440 300 L560 360 M60 120 L180 180"/></g><g class="bim-body bim-estructura"><polygon class="bim-base" points="300,205 425,280 300,355 175,280"/>
-        <polygon class="bim-roof" points="300,44 404,104 300,164 196,104"/>
-        <g class="bim-piso bim-piso--e" style="--k:0"><polygon class="bim-faceL" points="196,280 300,340 300,322 196,262"/><polygon class="bim-faceR" points="300,340 404,280 404,262 300,322"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:1"><polygon class="bim-faceL" points="196,258 300,318 300,300 196,240"/><polygon class="bim-faceR" points="300,318 404,258 404,240 300,300"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:2"><polygon class="bim-faceL" points="196,236 300,296 300,278 196,218"/><polygon class="bim-faceR" points="300,296 404,236 404,218 300,278"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:3"><polygon class="bim-faceL" points="196,214 300,274 300,256 196,196"/><polygon class="bim-faceR" points="300,274 404,214 404,196 300,256"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:4"><polygon class="bim-faceL" points="196,192 300,252 300,234 196,174"/><polygon class="bim-faceR" points="300,252 404,192 404,174 300,234"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:5"><polygon class="bim-faceL" points="196,170 300,230 300,212 196,152"/><polygon class="bim-faceR" points="300,230 404,170 404,152 300,212"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:6"><polygon class="bim-faceL" points="196,148 300,208 300,190 196,130"/><polygon class="bim-faceR" points="300,208 404,148 404,130 300,190"/></g>
-        <g class="bim-piso bim-piso--e" style="--k:7"><polygon class="bim-faceL" points="196,126 300,186 300,168 196,108"/><polygon class="bim-faceR" points="300,186 404,126 404,108 300,168"/></g>
-        <line class="bim-col" x1="196" y1="280" x2="196" y2="104"/>
-        <line class="bim-col" x1="300" y1="340" x2="300" y2="164"/>
-        <line class="bim-col" x1="404" y1="280" x2="404" y2="104"/>
-        </g></svg></figure>
-      <figure class="bim-panel"><figcaption><span class="bim-n">02</span><h3>Coordinación BIM</h3></figcaption><p class="bim-desc">Recorridos de instalaciones coordinados dentro del edificio, con nodos de revisión.</p><svg class="bim-svg" viewBox="0 0 600 400" role="img" aria-labelledby="bim2-t bim2-d"><title id="bim2-t">Coordinación BIM: recorridos de instalaciones</title><desc id="bim2-d">Recorridos de instalaciones coordinados dentro del edificio, con nodos de revisión.</desc><g class="bim-grid"><path d="M40 300 L160 360 M440 300 L560 360 M60 120 L180 180"/></g><g class="bim-body bim-coord"><polygon class="bim-base" points="300,205 425,280 300,355 175,280"/>
-        <polygon class="bim-roof" points="300,44 404,104 300,164 196,104"/>
-        <g class="bim-piso bim-piso--c" style="--k:0"><polygon class="bim-faceL" points="196,280 300,340 300,322 196,262"/><polygon class="bim-faceR" points="300,340 404,280 404,262 300,322"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:1"><polygon class="bim-faceL" points="196,258 300,318 300,300 196,240"/><polygon class="bim-faceR" points="300,318 404,258 404,240 300,300"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:2"><polygon class="bim-faceL" points="196,236 300,296 300,278 196,218"/><polygon class="bim-faceR" points="300,296 404,236 404,218 300,278"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:3"><polygon class="bim-faceL" points="196,214 300,274 300,256 196,196"/><polygon class="bim-faceR" points="300,274 404,214 404,196 300,256"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:4"><polygon class="bim-faceL" points="196,192 300,252 300,234 196,174"/><polygon class="bim-faceR" points="300,252 404,192 404,174 300,234"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:5"><polygon class="bim-faceL" points="196,170 300,230 300,212 196,152"/><polygon class="bim-faceR" points="300,230 404,170 404,152 300,212"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:6"><polygon class="bim-faceL" points="196,148 300,208 300,190 196,130"/><polygon class="bim-faceR" points="300,208 404,148 404,130 300,190"/></g>
-        <g class="bim-piso bim-piso--c" style="--k:7"><polygon class="bim-faceL" points="196,126 300,186 300,168 196,108"/><polygon class="bim-faceR" points="300,186 404,126 404,108 300,168"/></g>
-        <line class="bim-col" x1="196" y1="280" x2="196" y2="104"/>
-        <line class="bim-col" x1="300" y1="340" x2="300" y2="164"/>
-        <line class="bim-col" x1="404" y1="280" x2="404" y2="104"/>
-        <polyline class="bim-ruta bim-ruta--c" points="318.7,299.2 318.7,209.2 374.9,176.8 374.9,236.8 346.8,253.0"/><polyline class="bim-ruta bim-ruta--v" points="222.0,275.0 222.0,145.0 268.8,172.0"/><circle class="bim-nodo" style="--d:0.00s" cx="318.7" cy="299.2" r="4.5"/><circle class="bim-nodo" style="--d:0.35s" cx="318.7" cy="209.2" r="4.5"/><circle class="bim-nodo" style="--d:0.70s" cx="374.9" cy="176.8" r="4.5"/><circle class="bim-nodo" style="--d:1.05s" cx="374.9" cy="236.8" r="4.5"/><circle class="bim-nodo" style="--d:1.40s" cx="346.8" cy="253.0" r="4.5"/><circle class="bim-nodo" style="--d:1.75s" cx="222.0" cy="275.0" r="4.5"/><circle class="bim-nodo" style="--d:2.10s" cx="222.0" cy="145.0" r="4.5"/><circle class="bim-nodo" style="--d:2.45s" cx="268.8" cy="172.0" r="4.5"/></g></svg></figure>
-      <figure class="bim-panel"><figcaption><span class="bim-n">03</span><h3>Avance y costos</h3></figcaption><p class="bim-desc">Seguimiento visual por nivel del edificio, sin cifras ni resultados inventados.</p><svg class="bim-svg" viewBox="0 0 600 400" role="img" aria-labelledby="bim3-t bim3-d"><title id="bim3-t">Avance y costos: seguimiento por nivel</title><desc id="bim3-d">Un nivel del edificio se resalta y avanza por los pisos mientras se muestran indicadores de seguimiento.</desc><g class="bim-grid"><path d="M40 300 L160 360 M440 300 L560 360 M60 120 L180 180"/></g><g class="bim-body bim-avance"><polygon class="bim-base" points="300,205 425,280 300,355 175,280"/>
-        <polygon class="bim-roof" points="300,44 404,104 300,164 196,104"/>
-        <g class="bim-piso bim-piso--a" style="--k:0"><polygon class="bim-faceL" points="196,280 300,340 300,322 196,262"/><polygon class="bim-faceR" points="300,340 404,280 404,262 300,322"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:1"><polygon class="bim-faceL" points="196,258 300,318 300,300 196,240"/><polygon class="bim-faceR" points="300,318 404,258 404,240 300,300"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:2"><polygon class="bim-faceL" points="196,236 300,296 300,278 196,218"/><polygon class="bim-faceR" points="300,296 404,236 404,218 300,278"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:3"><polygon class="bim-faceL" points="196,214 300,274 300,256 196,196"/><polygon class="bim-faceR" points="300,274 404,214 404,196 300,256"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:4"><polygon class="bim-faceL" points="196,192 300,252 300,234 196,174"/><polygon class="bim-faceR" points="300,252 404,192 404,174 300,234"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:5"><polygon class="bim-faceL" points="196,170 300,230 300,212 196,152"/><polygon class="bim-faceR" points="300,230 404,170 404,152 300,212"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:6"><polygon class="bim-faceL" points="196,148 300,208 300,190 196,130"/><polygon class="bim-faceR" points="300,208 404,148 404,130 300,190"/></g>
-        <g class="bim-piso bim-piso--a" style="--k:7"><polygon class="bim-faceL" points="196,126 300,186 300,168 196,108"/><polygon class="bim-faceR" points="300,186 404,126 404,108 300,168"/></g>
-        <line class="bim-col" x1="196" y1="280" x2="196" y2="104"/>
-        <line class="bim-col" x1="300" y1="340" x2="300" y2="164"/>
-        <line class="bim-col" x1="404" y1="280" x2="404" y2="104"/>
-        <g class="bim-banda"><polygon class="bim-banda-f" points="196,280 300,340 300,322 196,262"/><polygon class="bim-banda-f" points="300,340 404,280 404,262 300,322"/></g></g><g class="bim-card" style="--d:.2s"><rect x="462" y="150" width="112" height="46" rx="8"/><rect class="bim-card-bar" x="472" y="176" width="92" height="6" rx="3"/><rect class="bim-card-fill" x="472" y="176" width="58" height="6" rx="3"/><text x="472" y="166">AVANCE</text></g><g class="bim-card" style="--d:.6s"><rect x="462" y="214" width="112" height="46" rx="8"/><rect class="bim-card-bar" x="472" y="240" width="92" height="6" rx="3"/><rect class="bim-card-fill bim-card-fill--b" x="472" y="240" width="40" height="6" rx="3"/><text x="472" y="230">COSTOS</text></g></svg></figure>
-    </div>
     <a class="siguiente" href="#como-funciona" aria-label="Siguiente: Metodología"><span>Metodología</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></a>
-    <script>
-    (() => {
-      const figs = document.querySelectorAll("#modelo-obra .bim-panel");
-      if ("IntersectionObserver" in window) {
-        const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("is-on", e.isIntersecting)), { threshold: 0.2 });
-        figs.forEach(f => io.observe(f));
-      } else { figs.forEach(f => f.classList.add("is-on")); }
-      const oculta = () => document.documentElement.classList.toggle("bim-oculta", document.hidden);
-      document.addEventListener("visibilitychange", oculta); oculta();
-    })();
-    </script>
   </section>
 
   <section id="como-funciona" data-pantalla data-nombre="Metodología">
@@ -463,7 +355,7 @@
       <div class="faq">
         <details><summary>¿Cómo se cotiza?</summary><p>El valor depende del alcance, la escala y los materiales. En BIM, también del área construida y los entregables.</p></details>
         <details><summary>¿Qué materiales podemos usar?</summary><p>Concreto, madera, plástico de impresión 3D y cartón. Elegimos la combinación según el propósito de la pieza.</p></details>
-        <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo con informes de correcciones y control de costos. La automatización de cómputos métricos sigue en desarrollo.</p></details>
+        <details><summary>¿Qué es la auditoría BIM?</summary><p>Revisión del modelo arquitectónico con informes de correcciones y sugerencias de flujo de trabajo. Generación de tablas de cantidades y ajuste de cómputos métricos listos para exportar y analizar.</p></details>
         <details><summary>¿Qué necesito para empezar?</summary><p>Cuéntenos el proyecto. Si tiene planos, un modelo o referencias, adjúntelos en el formulario.</p></details>
       </div>
       <a class="ver-todo" href="https://wa.me/573147924600?text=Buen%20d%C3%ADa%2C%20equipo%20de%20P%C3%B3rtico%20Lab.%20Tengo%20una%20consulta%20sobre%20sus%20servicios%3A" target="_blank" rel="noopener">Resolver una duda por WhatsApp →</a>

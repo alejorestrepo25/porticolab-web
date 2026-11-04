@@ -1088,3 +1088,8 @@ html:root body.nosotros .n-hero p{font-size:15px!important;line-height:1.6!impor
 
 /* Nosotros · Del espacio al objeto: bloque centrado en la pantalla */
 html:root body.nosotros #proyectos .seccion__cab,html:root body.nosotros #proyectos .piezas,html:root body.nosotros #proyectos .ver-todo-wrap{margin-inline:auto!important}
+
+/* Nosotros · Procesos: gráficos más grandes y tipografía Montserrat en todo el bloque */
+html:root body.nosotros .pieza__grafica{padding:0!important}
+html:root body.nosotros .pieza__grafica object{width:100%!important;height:auto!important;aspect-ratio:540/480;display:block}
+html:root body.nosotros #proyectos .pieza figcaption span,html:root body.nosotros #proyectos .pieza figcaption b,html:root body.nosotros #proyectos .hud,html:root body.nosotros #proyectos .ver-todo{font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:.08em!important}
