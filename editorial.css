@@ -1093,3 +1093,12 @@ html:root body.nosotros #proyectos .seccion__cab,html:root body.nosotros #proyec
 html:root body.nosotros .pieza__grafica{padding:0!important}
 html:root body.nosotros .pieza__grafica object{width:100%!important;height:auto!important;aspect-ratio:540/480;display:block}
 html:root body.nosotros #proyectos .pieza figcaption span,html:root body.nosotros #proyectos .pieza figcaption b,html:root body.nosotros #proyectos .hud,html:root body.nosotros #proyectos .ver-todo{font-family:'Montserrat',system-ui,sans-serif!important;letter-spacing:.08em!important}
+/* Nosotros · procesos: motion graphics isométricos con su etiqueta centrada */
+html:root body.nosotros .pieza__grafica object{aspect-ratio:560/520!important;background:transparent!important}
+html:root body.nosotros .pieza figcaption{display:flex;justify-content:center;padding:16px 14px!important}
+html:root body.nosotros .pieza figcaption b{font:500 13px/1 'Montserrat',system-ui,sans-serif!important;letter-spacing:.24em!important;text-transform:uppercase!important;color:var(--pl-ink)!important}
+html:root body.nosotros .pieza figcaption b{display:block!important}
+html:root body.nosotros .pieza__grafica{aspect-ratio:560/520!important;height:auto!important;max-height:none!important}
+@media(min-width:901px){html:root body.nosotros #proyectos .piezas{width:min(1320px,90vw)!important;max-width:none!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}}
+html:root body.nosotros .pieza__grafica{background:#0d0d10!important}
+@media(max-width:900px){html:root body.nosotros .pieza figcaption{align-items:center!important;justify-content:center!important;padding:14px!important}html:root body.nosotros .pieza figcaption b{text-align:center!important}}
