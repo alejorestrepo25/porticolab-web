@@ -1,0 +1,46 @@
+/* Tarjetas de servicios en la página de Servicios: las mismas reglas del Inicio (home.css), copiadas con body.srvposter.
+   Generado desde home.css: si cambia allá, regenerar. */
+body.srvposter .frentes{display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; perspective: 1200px;}
+body.srvposter .frente{position: relative; display: flex; flex-direction: column; border: 1px solid #262626; border-radius: 18px; overflow: hidden; background: #070707; text-decoration: none; color: #fff; transition: border-color .25s, box-shadow .25s;}
+body.srvposter .frente:hover{border-color: #b9a7ff; box-shadow: 0 24px 60px rgba(185,167,255,.14);}
+body.srvposter .frente__img{aspect-ratio: 4 / 3; background: #0b0b0b; overflow: hidden;}
+body.srvposter .frente__img img{width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1);}
+body.srvposter .frente:hover .frente__img img{transform: scale(1.06);}
+body.srvposter .frente__txt{padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px;}
+body.srvposter .frente__txt h3{font: 700 22px/1.2 var(--display); text-transform: uppercase; letter-spacing: -.3px;}
+body.srvposter .frente__txt p{color: #aaa; font-size: 14px; line-height: 1.7;}
+body.srvposter .frente__cta{margin-top: 6px; font: 700 12px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: #7ee8ff;}
+body.srvposter .frente__cta::after{content: ' →'; display: inline-block; transition: transform .25s;}
+body.srvposter .frente:hover .frente__cta::after{transform: translateX(6px);}
+@media (max-width: 900px){
+ body.srvposter .frentes{grid-template-columns: 1fr;}
+}
+@media (min-width: 901px) and (min-height: 560px){
+ body.srvposter .frente__img{aspect-ratio: auto; height: clamp(150px, 36vh, 420px);}
+ body.srvposter .frente__txt{padding: 18px 22px 22px; gap: 8px;}
+ body.srvposter .frente__txt h3{font-size: clamp(16px, 2.6vh, 22px);}
+ body.srvposter .frente__txt p{font-size: 14px; line-height: 1.5;}
+}
+@media (min-width: 901px) and (min-height: 560px){
+ body.srvposter .frente__img{height: clamp(130px, 31vh, 380px);}
+ body.srvposter .frente__txt{padding: 14px 20px 18px; gap: 6px;}
+}
+body.srvposter .frente__img{display: block; position: relative;}
+body.srvposter .frente__img img{object-fit: contain; width: 100%; height: 100%; position: absolute; inset: 0;}
+@media (min-width: 901px) and (min-height: 560px){
+ body.srvposter .frente__img{height: clamp(120px, 28vh, 320px);}
+}
+@media (min-width: 901px) and (min-height: 560px){
+ body.srvposter .frente{flex-direction: row; align-items: stretch;}
+ body.srvposter .frente__img{width: min(48%, 46vh); height: auto; aspect-ratio: 1 / 1; flex: none;}
+ body.srvposter .frente__txt{flex: 1; justify-content: center; padding: 18px 22px;}
+}
+@media (max-width: 900px){
+ body.srvposter .frentes{gap: 12px;}
+ body.srvposter .frente{flex-direction: row;}
+ body.srvposter .frente__img{width: 36%; flex: none; height: auto; aspect-ratio: 1 / 1;}
+ body.srvposter .frente__txt{padding: 12px 14px; gap: 4px; justify-content: center;}
+ body.srvposter .frente__txt h3{font-size: 15px;}
+ body.srvposter .frente__txt p{font-size: 12.5px; line-height: 1.45;}
+ body.srvposter .frente__cta{margin-top: 2px; font-size: 11px;}
+}

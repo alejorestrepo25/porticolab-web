@@ -84,7 +84,7 @@ body.srvposter .accion-pantalla { align-self: flex-start; margin-top: clamp(14px
   body.srvposter .srv-body .promesa { font-size: 12px; line-height: 1.5; margin-top: 6px; }
   body.srvposter .srv-body .btn { margin-top: 10px; padding: 10px 12px; font-size: 11px; }
   body.srvposter .badge { top: 8px; left: 8px; font-size: 9px; padding: 4px 6px; }
-  body.srvposter .incluye, body.srvposter .meta, body.srvposter .ruta-row { display: none; }
+  body.srvposter .srv-card .incluye, body.srvposter .srv-card .meta, body.srvposter .ruta-row { display: none; }
 }
 
 /* El índice de pantallas se vuelve una guía táctil horizontal en móvil y tablet. */
