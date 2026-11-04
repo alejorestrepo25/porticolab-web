@@ -472,7 +472,7 @@ body.y2k .gallery .gallery-item:hover .cat h3 b{text-decoration:underline;text-u
 :root[data-theme="light"]{--pl-bg:#fff;--pl-surface:#f7f6f4;--pl-surface-2:#efeeeb}
 body.y2k :is(.siguiente span,.perfil__quien,.ver-todo,.kicker){font-family:var(--pl-tecnica)!important;letter-spacing:.16em!important}
 body.y2k h2.guerrilla-h{font:700 clamp(17px,1.9vw,28px)/1.55 var(--pl-tecnica)!important;letter-spacing:.28em!important;text-transform:uppercase!important;max-width:32ch;margin-inline:auto;color:var(--pl-ink)!important;-webkit-text-fill-color:var(--pl-ink)!important;background:none!important}
-body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;color:#141316!important;-webkit-text-fill-color:#141316!important;padding:0 .2em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+body.y2k h2.guerrilla-h mark{background:linear-gradient(105deg,#e7e0ff 0%,#b59aff 56%,#7ee8ff 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;padding:0!important;box-decoration-break:clone}
 @media(max-width:768px){body.y2k h2.guerrilla-h{font-size:15px!important;letter-spacing:.16em!important}}
 /* Servicios: ilustración BIM en versión clara u oscura según el tema */
 body.srvposter .srv-hero__visual .bim-claro{display:none!important}
@@ -1083,5 +1083,8 @@ html:root body.y2k .gallery .gallery-item img,html:root body.y2k .gallery .galle
  html:root body.nosotros.y2k section.n-hero{min-height:0!important;height:calc(100svh - var(--n-arriba,84px))!important;padding-block:clamp(16px,2.4vh,32px)!important;align-items:center!important;align-content:center!important}
  html:root body.nosotros.y2k .n-hero__visual{height:calc(100svh - var(--n-arriba,84px) - 2 * clamp(16px,2.4vh,32px))!important;max-height:860px!important;align-self:center!important}
 }
-html:root body.nosotros .n-hero p.n-hero__quien{margin-top:14px!important;font-size:16px!important;line-height:1.6!important;max-width:44ch;color:var(--pl-ink)!important;opacity:.82}
-@media(max-width:900px){html:root body.nosotros .n-hero p.n-hero__quien{font-size:14px!important}}
+html:root body.nosotros .n-hero p{font-size:15px!important;line-height:1.6!important;max-width:44ch;color:var(--pl-muted)!important;opacity:1!important}
+@media(max-width:900px){html:root body.nosotros .n-hero p{font-size:14px!important}}
+
+/* Nosotros · Del espacio al objeto: bloque centrado en la pantalla */
+html:root body.nosotros #proyectos .seccion__cab,html:root body.nosotros #proyectos .piezas,html:root body.nosotros #proyectos .ver-todo-wrap{margin-inline:auto!important}
