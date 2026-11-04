@@ -36,7 +36,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=2">
   <link rel="stylesheet" href="motion-graphics.css?v=7">
-  <link rel="stylesheet" href="editorial.css?v=79">
+  <link rel="stylesheet" href="editorial.css?v=80">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Pórtico Lab","url":"https://porticolab.com/","image":"https://porticolab.com/img/og/inicio.jpg","description":"Arquitectura BIM en Medellín: auditoría BIM con control de costos de obra y maquetas de exhibición para promotores inmobiliarios, gerentes de proyecto y estudios de diseño.","email":"contacto@porticolab.com","telephone":"+57 314 792 4600","address":{"@type":"PostalAddress","addressLocality":"Medellín","addressRegion":"Antioquia","addressCountry":"CO"},"areaServed":{"@type":"City","name":"Medellín"},"sameAs":["https://www.instagram.com/portico_lab/","https://www.linkedin.com/company/107975627/"]}</script>
 </head>
 
@@ -178,23 +178,27 @@
       <h2 class="rev guerrilla-h">Sé que no tiene mucho tiempo y quiere cuidar <mark>hasta el último peso</mark> de su proyecto.</h2>
       <p class="rev" style="--d:.1s">Cuéntenos su proyecto y le respondemos con una propuesta de alcance cerrado.</p>
       <form class="consulta rev" id="consulta" style="--d:.15s" novalidate>
+        <label class="consulta__campo"><span>Nombre</span><input name="nombre" type="text" autocomplete="name" required></label>
         <div class="consulta__fila">
-          <label class="consulta__campo"><span>Nombre</span><input name="nombre" type="text" autocomplete="name" required></label>
-          <label class="consulta__campo"><span>Empresa</span><input name="empresa" type="text" autocomplete="organization"></label>
+          <label class="consulta__campo"><span>Correo</span><input name="correo" type="email" autocomplete="email" required></label>
+          <label class="consulta__campo"><span>Teléfono / WhatsApp</span><input name="telefono" type="tel" autocomplete="tel" inputmode="tel" required></label>
         </div>
-        <div class="consulta__fila">
-          <label class="consulta__campo"><span>WhatsApp</span><input name="telefono" type="tel" autocomplete="tel" inputmode="tel" required></label>
-          <label class="consulta__campo"><span>Correo</span><input name="correo" type="email" autocomplete="email"></label>
-        </div>
-        <label class="consulta__campo"><span>Tipo de proyecto</span>
-          <select name="tipo" required>
-            <option value="">Elija una opción</option>
-            <option>Auditoría BIM y control de costos</option>
-            <option>Maqueta de exhibición</option>
-            <option>Otro</option>
-          </select>
-        </label>
-        <label class="consulta__campo"><span>Cuéntenos el proyecto</span><textarea name="mensaje" rows="3" required></textarea></label>
+        <label class="consulta__campo"><span>¿Qué necesita?</span><textarea name="mensaje" rows="3" required placeholder="Ej.: maqueta 1:100 para sala de ventas, o revisión BIM de un edificio de 8 pisos"></textarea></label>
+        <fieldset class="consulta__opciones">
+          <legend>Presupuesto disponible</legend>
+          <label><input type="radio" name="presupuesto" value="Menos de $3 millones" required><span>Menos de $3 M</span></label>
+          <label><input type="radio" name="presupuesto" value="$3 a $10 millones"><span>$3 – 10 M</span></label>
+          <label><input type="radio" name="presupuesto" value="$10 a $30 millones"><span>$10 – 30 M</span></label>
+          <label><input type="radio" name="presupuesto" value="Más de $30 millones"><span>Más de $30 M</span></label>
+          <label><input type="radio" name="presupuesto" value="Aún no lo tengo definido"><span>Aún no lo sé</span></label>
+        </fieldset>
+        <fieldset class="consulta__opciones">
+          <legend>¿Para cuándo lo necesita?</legend>
+          <label><input type="radio" name="plazo" value="Este mes" required><span>Este mes</span></label>
+          <label><input type="radio" name="plazo" value="En 1 a 3 meses"><span>1 a 3 meses</span></label>
+          <label><input type="radio" name="plazo" value="En más de 3 meses"><span>Más de 3 meses</span></label>
+          <label><input type="radio" name="plazo" value="Estoy explorando"><span>Estoy explorando</span></label>
+        </fieldset>
         <input class="consulta__trampa" name="web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p class="consulta__error" role="alert" aria-live="polite"></p>
         <button class="btn-cromo" type="submit">Enviar consulta →</button>
@@ -208,7 +212,6 @@
     <div class="combo__faq rev" style="--d:.15s">
       <h3 class="combo__kicker">Preguntas frecuentes</h3>
       <div class="faq">
-        <details><summary>¿Por qué no publican precios?</summary><p>Porque cada encargo es distinto. Le enviamos una propuesta con alcance, valor y fechas por escrito, para que sepa exactamente qué recibe antes de empezar.</p></details>
         <details><summary>¿Cómo se cotiza?</summary><p>El valor depende del alcance, la escala y los materiales. En BIM, también del área construida y los entregables.</p></details>
         <details><summary>¿Qué materiales podemos usar?</summary><p>Concreto, madera, plástico de impresión 3D y cartón. Elegimos la combinación según el propósito de la pieza.</p></details>
         <details><summary>¿Qué incluye la auditoría BIM?</summary><p>Revisión del modelo con informes de correcciones y control de costos. La automatización de cómputos métricos sigue en desarrollo.</p></details>
@@ -284,8 +287,11 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
     error.textContent = '';
     const d = Object.fromEntries(new FormData(f));
     const limpio = k => String(d[k] || '').trim();
-    if (!limpio('nombre') || !limpio('telefono') || !limpio('tipo') || !limpio('mensaje')) { error.textContent = 'Complete nombre, WhatsApp, tipo de proyecto y mensaje.'; return; }
-    if (limpio('telefono').replace(/\D/g, '').length < 7) { error.textContent = 'Revise el número de WhatsApp.'; return; }
+    if (!limpio('nombre') || !limpio('correo') || !limpio('telefono') || !limpio('mensaje')) { error.textContent = 'Complete nombre, correo, teléfono y qué necesita.'; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(limpio('correo'))) { error.textContent = 'Revise el correo.'; return; }
+    if (!limpio('presupuesto')) { error.textContent = 'Elija un presupuesto disponible.'; return; }
+    if (!limpio('plazo')) { error.textContent = 'Indique para cuándo lo necesita.'; return; }
+    if (limpio('telefono').replace(/\D/g, '').length < 7) { error.textContent = 'Revise el número de teléfono.'; return; }
     const listo = () => { f.innerHTML = '<p class="consulta__gracias"><b>Recibimos su consulta.</b> Le escribimos pronto por WhatsApp o correo.</p>'; };
     if (limpio('web')) { listo(); return; }   // campo trampa: bots
     try {
@@ -296,11 +302,11 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
     const ref = 'PL-WEB-' + Date.now();
     const carga = {
       referencia: ref,
-      producto: `CONSULTA INICIO: ${limpio('tipo')}${limpio('empresa') ? ' | Empresa ' + limpio('empresa') : ''}${limpio('correo') ? ' | Correo ' + limpio('correo') : ''} | ${limpio('mensaje').replace(/\n/g, ' / ')}`,
+      producto: `CONSULTA INICIO | Presupuesto: ${limpio('presupuesto')} | Plazo: ${limpio('plazo')} | Correo ${limpio('correo')} | ${limpio('mensaje').replace(/\n/g, ' / ')}`,
       precio: 0, nombre: limpio('nombre'), telefono: limpio('telefono'), direccion: limpio('correo'), ciudad: '', estadoPago: 'Consulta desde el Inicio'
     };
     fetch(HOJA, { method: 'POST', body: JSON.stringify(carga) }).catch(() => {});
-    medir('generate_lead', { formulario: 'consulta_inicio', tipo: limpio('tipo') });
+    medir('generate_lead', { formulario: 'consulta_inicio', presupuesto: limpio('presupuesto'), plazo: limpio('plazo') });
     listo();
   });
 })();

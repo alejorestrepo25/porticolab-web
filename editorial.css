@@ -1029,3 +1029,12 @@ body.y2k .consulta__error:empty{display:none}
 body.y2k .consulta__gracias{margin:0;padding:16px 18px;border:1px solid var(--pl-panel-borde);border-radius:var(--pl-radio-panel);background:var(--pl-panel);color:var(--pl-ink);font-size:16px;line-height:1.5}
 :root[data-theme="dark"] body.y2k .consulta__error{color:#ff8a80}
 @media(max-width:600px){body.y2k .consulta__fila{grid-template-columns:1fr}}
+/* Consulta · opciones en botones */
+body.y2k .consulta__opciones{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+body.y2k .consulta__opciones legend{width:100%;padding:0;margin-bottom:8px;font:700 11px/1.2 var(--pl-tecnica);letter-spacing:.16em;text-transform:uppercase;color:var(--pl-muted)}
+body.y2k .consulta__opciones label{position:relative;cursor:pointer}
+body.y2k .consulta__opciones input{position:absolute;opacity:0;width:1px;height:1px}
+body.y2k .consulta__opciones span{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--pl-panel-borde);border-radius:999px;background:var(--pl-panel);color:var(--pl-ink);font-size:14px;transition:border-color .15s,background .15s}
+body.y2k .consulta__opciones label:hover span{border-color:#9d7bff}
+body.y2k .consulta__opciones input:checked+span{border-color:#9d7bff;background:linear-gradient(90deg,#e9e0ff,#d7f6ff);color:#141316;font-weight:600}
+body.y2k .consulta__opciones input:focus-visible+span{outline:2px solid #9d7bff;outline-offset:2px}
