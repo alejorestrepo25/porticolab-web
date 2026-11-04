@@ -55,6 +55,32 @@
     return dir > 0 ? r.bottom - innerHeight > HOLGURA : alto() - r.top > HOLGURA;
   }
 
+  // Llegada a una pantalla por enlace (#contacto, desde otra página o un botón): queda completa bajo el encabezado.
+  // Se repite cuando terminan de cargar fuentes e imágenes, porque el ajuste de tamaño de las pantallas mueve la posición.
+  const pantallaDe = (id) => { const el = id && document.getElementById(id); return el ? (el.closest('[data-pantalla]') || el) : null; };
+  const alinear = (el, suave) => scrollTo({ top: Math.round(Math.max(0, topDe(el))), behavior: suave && !reducir ? 'smooth' : 'auto' });
+  function llegar() {
+    const el = pantallaDe(decodeURIComponent(location.hash.slice(1)));
+    if (el && Math.abs(scrollY - topDe(el)) < innerHeight) alinear(el, false);
+  }
+  if (location.hash) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    requestAnimationFrame(llegar);
+    addEventListener('load', () => { llegar(); setTimeout(llegar, 300); setTimeout(llegar, 900); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(llegar, 60));
+  }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+    const el = pantallaDe(a.getAttribute('href').slice(1));
+    if (!el) return;
+    e.preventDefault();
+    history.replaceState(null, '', '#' + el.id);
+    bloqueado = true;
+    alinear(el, true);
+    liberarCuandoTermine(Math.round(Math.max(0, Math.min(topDe(el), document.documentElement.scrollHeight - innerHeight))), el);
+  });
+
   addEventListener('wheel', (e) => {
     if (!modo.matches || e.ctrlKey || pausa() || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
     const ahora = performance.now();

@@ -222,6 +222,8 @@ main.ficha{--g:var(--pl-guia,clamp(16px,3.9vw,56px));display:grid;grid-template-
 .ficha__info{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:0;overflow-y:auto;padding:8px 0}
 .ficha__codigo{font:700 11px/1 var(--pl-tecnica)!important;letter-spacing:.24em!important;text-transform:uppercase;color:#6a6770!important;margin:0 0 16px!important;padding-bottom:16px;border-bottom:1px solid #e6e4ea}
 .ficha__info h1{font:700 clamp(34px,3.6vw,54px)/1.02 'Montserrat',sans-serif!important;letter-spacing:-.045em!important;color:#141316!important;-webkit-text-fill-color:#141316!important;background:none!important;text-transform:none!important;margin:0;overflow-wrap:anywhere}
+.ficha__tags{margin:16px 0 0!important;font:500 13px/1.6 'Montserrat',system-ui,sans-serif!important;color:#7c5cf0!important;word-spacing:.15em}
+:root[data-theme="dark"] .ficha__tags{color:#b59aff!important}
 .ficha__sub{margin:8px 0 0!important;font:500 18px/1.35 'Montserrat',system-ui,sans-serif!important;letter-spacing:-.01em;color:var(--pl-muted,#5f5c66)!important}
 .ficha__meta{margin:16px 0 0!important;font:700 11px/1.6 var(--pl-tecnica)!important;letter-spacing:.16em!important;text-transform:uppercase;color:#5b3fd0!important}
 .ficha__meta:empty{display:none}
@@ -256,7 +258,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="../barra.js?v=1"></script>
   <link rel="stylesheet" href="../coherencia.css?v=2">
-  <link rel="stylesheet" href="../editorial.css?v=89">
+  <link rel="stylesheet" href="../editorial.css?v=91">
 </head>
 
 <body class="y2k ficha-proyecto">
@@ -297,6 +299,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
       <p class="ficha__meta" id="ficha-meta"></p>
       <p class="ficha__desc" id="post-desc"></p>
       <ol class="ficha__rasgos" id="ficha-rasgos"></ol>
+      <p class="ficha__tags" id="ficha-tags" hidden></p>
     </div>
     <div class="ficha__pie">
       <nav class="ficha__nav" aria-label="Más proyectos">
@@ -315,7 +318,7 @@ body.ficha-proyecto #mascota-wrapper{display:none!important}
   <button class="lightbox-flecha lightbox-flecha--next" id="next" aria-label="Imagen siguiente"><svg viewBox="0 0 24 48" aria-hidden="true"><path d="M6 4l12 20L6 44"/></svg></button>
 </div>
 
-<script src="../sanity.js?v=12"></script>
+<script src="../sanity.js?v=13"></script>
 <script>
 const S = window.PL_SANITY;
 
@@ -382,6 +385,9 @@ async function loadPost() {
   const sub = S.subtitulo ? S.subtitulo(titulo) : '';
   const subEl = document.getElementById('ficha-sub');
   if (sub) { subEl.textContent = sub; subEl.hidden = false; }
+  const etiquetas = S.hashtags ? S.hashtags(titulo) : '';
+  const tagsEl = document.getElementById('ficha-tags');
+  if (etiquetas) { tagsEl.textContent = etiquetas; tagsEl.hidden = false; }
 
   // Categoría · lugar · año (se omiten los datos de relleno)
   const lugar = S.texto(result.location);
