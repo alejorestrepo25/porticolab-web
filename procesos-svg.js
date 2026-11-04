@@ -6,7 +6,18 @@
   const actualizar = (obj) => {
     const root = obj.contentDocument?.documentElement;
     if (!root) return;
-    root.classList.toggle('en-pausa', document.hidden || obj.dataset.enVista !== 'true');
+    const pausa = document.hidden || obj.dataset.enVista !== 'true';
+    root.classList.toggle('en-pausa', pausa);
+    if (!pausa) requestAnimationFrame(() => sincronizar(obj));
+  };
+
+  // Las tres piezas duran lo mismo (9 s) y van al mismo compás: cada ciclo se alinea con el reloj
+  const CICLO = 9000;
+  const sincronizar = (obj) => {
+    const doc = obj.contentDocument;
+    if (!doc || !doc.getAnimations) return;
+    const t = Date.now() % CICLO;
+    doc.getAnimations().forEach((a) => { try { a.currentTime = t; } catch (e) { /* sin efecto */ } });
   };
 
   const observer = new IntersectionObserver((entradas) => {
