@@ -97,15 +97,17 @@
   const lista = v => (Array.isArray(v) ? v.filter(x => typeof x === 'string' && x.trim()).map(x => x.trim()) : []);
 
   // Códigos de proyecto: los mismos de las carpetas locales
+  // Códigos de las publicaciones (Excel «publicaciones-portico-lab»). Se aceptan títulos actuales y anteriores.
   const CODIGOS = [
-    ['atalaya', 'A0000000013'], ['tangara', 'M0000000006'], ['dorica', 'P0000000004'],
-    ['jersey', 'P0000000003'], ['bridge box', 'E0000000001'], ['coltejer', 'P0000000002'],
-    ['skull', 'P0000000007'], ['moai', 'M0000000005'], ['san german', 'A0000000009'], ['zarcillo', 'P0000000006']
+    ['piel tejida', 'A-013'], ['edificio san german', 'A-013'], ['edif san german', 'A-013'], ['atalaya', 'A-013'],
+    ['astra', 'A-001'], ['girder box', 'E-001'], ['bridge box', 'E-001'],
+    ['cenit', 'M-004'], ['moai', 'M-005'], ['tangara', 'M-006'],
+    ['coltejer', 'P-002'], ['jersey', 'P-003'], ['dorica', 'P-004'], ['zarcillo', 'P-006'], ['skull', 'P-007']
   ];
   const normal = v => texto(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   function codigo(titulo) {
     const t = normal(titulo);
-    const par = CODIGOS.find(([k]) => t.startsWith(k) || t.includes(k));
+    const par = CODIGOS.find(([k]) => t === k) || CODIGOS.find(([k]) => t.includes(k));
     return par ? par[1] : '';
   }
 
