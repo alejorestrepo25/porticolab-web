@@ -1309,3 +1309,8 @@ html:root body.nosotros.y2k #enfoque>.seccion__cab :is(h2,p){text-align:center!i
 /* Metodología y Enfoque: todo el contenido centrado horizontalmente (también el texto de las tarjetas) */
 html:root body.srvposter.y2k #como-funciona .paso-card,html:root body.nosotros.y2k #enfoque .n-pilar{text-align:center!important;align-items:center!important}
 html:root body.srvposter.y2k #como-funciona .paso-card>*,html:root body.nosotros.y2k #enfoque .n-pilar>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+/* Inicio · Metodología: todo el contenido centrado horizontalmente, igual que en Servicios */
+html:root body.home.y2k #proceso>.seccion__cab,html:root body.home.y2k #proceso>.seccion__cab>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+html:root body.home.y2k #proceso .paso-card{text-align:center!important;align-items:center!important}
+html:root body.home.y2k #proceso .paso-card>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+html:root body.home.y2k #proceso>.ver-todo-wrap{display:flex!important;justify-content:center!important;text-align:center!important}
