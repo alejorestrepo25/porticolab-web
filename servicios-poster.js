@@ -10,7 +10,6 @@
   addEventListener('resize', medir);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
 
-  const formularioAbierto = () => ['cotizador', 'confirmacion'].some((id) => { const e = document.getElementById(id); return e && e.classList.contains('visible'); });
   const pantallas = () => [...document.querySelectorAll('[data-pantalla]')].filter((e) => e.offsetParent !== null).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
   const margenArriba = (el) => parseFloat(getComputedStyle(el).marginTop) || 0;
   const topDe = (el) => el.getBoundingClientRect().top + scrollY - alto() - margenArriba(el);
@@ -24,7 +23,7 @@
     a.href = '#' + (el.id || '');
     a.innerHTML = '<span>' + (el.dataset.nombre || '') + '</span>';
     a.addEventListener('click', (e) => {
-      if (!modo.matches || formularioAbierto() || !el.offsetParent) return;
+      if (!modo.matches || !el.offsetParent) return;
       e.preventDefault();
       scrollTo({ top: Math.max(0, topDe(el)), behavior: reducir ? 'auto' : 'smooth' });
     });
@@ -75,7 +74,5 @@
   addEventListener('load', pedirAjuste);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedirAjuste);
   document.addEventListener('load', pedirAjuste, true);
-  const grid = document.getElementById('srv-grid');
-  if (grid) new MutationObserver(pedirAjuste).observe(grid, { childList: true });
   pedirAjuste();
 })();

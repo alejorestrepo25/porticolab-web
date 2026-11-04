@@ -11,19 +11,17 @@
   }), { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
 
   // Servicios: los grupos entran con un escalonado breve.
-  const grupos = ['.pasos-row', '.ruta-row', '#srv-grid'];
+  const grupos = ['.pasos-row'];
   function preparar(el) {
     if (el.dataset.mov) return;
     el.dataset.mov = '1';
     const padre = el.parentElement;
-    if (padre) el.style.setProperty('--i', [...padre.children].filter((c) => c.matches('.paso-card, .srv-card')).indexOf(el));
+    if (padre) el.style.setProperty('--i', [...padre.children].filter((c) => c.matches('.paso-card')).indexOf(el));
     io.observe(el);
   }
-  const buscar = () => document.querySelectorAll(grupos.map((g) => g + ' > .paso-card, ' + g + ' > .srv-card').join(',')).forEach(preparar);
+  const buscar = () => document.querySelectorAll(grupos.map((g) => g + ' > .paso-card').join(',')).forEach(preparar);
 
   buscar();
-  const rejilla = document.getElementById('srv-grid');
-  if (rejilla) new MutationObserver(buscar).observe(rejilla, { childList: true });
 
   // Nosotros: pilares, piezas y ejes. Reutiliza .visto de home.js si ya lo puso; si no, se observan aquí.
   document.querySelectorAll('body.nosotros .n-pilar, body.nosotros .pieza, body.nosotros .ejes').forEach((el) => {

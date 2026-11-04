@@ -25,7 +25,6 @@
   body.nosotros .n-hero__visual { animation: mov-aparece 520ms var(--mov-in) both; }
 
   html.mov-ok body.srvposter .paso-card:not(.visto),
-  html.mov-ok body.srvposter .srv-card:not(.visto),
   html.mov-ok body.nosotros .n-pilar:not(.visto),
   html.mov-ok body.nosotros .pieza:not(.visto),
   html.mov-ok body.nosotros .ejes:not(.visto) {
@@ -34,7 +33,6 @@
   }
 
   html.mov-ok body.srvposter .paso-card,
-  html.mov-ok body.srvposter .srv-card,
   html.mov-ok body.nosotros .n-pilar,
   html.mov-ok body.nosotros .pieza,
   html.mov-ok body.nosotros .ejes {
@@ -43,18 +41,17 @@
                 border-color 180ms ease;
   }
 
-  html.mov-ok body.srvposter .srv-card:not(.visto) .srv-img svg,
+  
   html.mov-ok body.nosotros .pieza:not(.visto) .pieza__grafica { opacity: .35; }
-  html.mov-ok body.srvposter .srv-card .srv-img svg,
+  
   html.mov-ok body.nosotros .pieza .pieza__grafica {
     opacity: 1;
     transition: opacity 520ms var(--mov-in) calc(var(--i, 0) * 60ms);
   }
 
-  body.srvposter .srv-card:hover,
+  
   body.srvposter .paso-card:hover,
   body.nosotros .pieza:hover { transform: none; }
-  body.srvposter .srv-card:hover .srv-img svg { scale: 1.01; }
 
   body.srvposter .faq details[open] > p { animation: mov-aparece 260ms var(--mov-in) both; }
   body.srvposter .btn,
@@ -68,7 +65,7 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  body.srvposter .srv-card,
+  
   body.srvposter .paso-card,
   body.nosotros .pieza { transform: none !important; }
 }

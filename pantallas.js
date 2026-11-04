@@ -7,7 +7,6 @@
   const modo = matchMedia('(min-width: 901px) and (min-height: 560px)');
   const cab = () => document.querySelector('header');
   const alto = () => (cab() ? cab().getBoundingClientRect().height : 0);
-  const pausa = () => !!document.querySelector('.cotizador.visible, .confirmacion.visible');
   const margen = (el) => parseFloat(getComputedStyle(el).marginTop) || 0;
   const topDe = (el) => el.getBoundingClientRect().top + scrollY - alto() - margen(el);
   const lista = () => [...document.querySelectorAll('[data-pantalla]')]
@@ -94,7 +93,7 @@
     // la pantalla tiene alto fijo: lo que sobra (también dentro de las tarjetas apiladas) queda como desborde medible
     // se mide contra el alto real de la hoja (100svh: con la barra del navegador visible), no contra innerHeight
     const sobra = (c) => c.scrollHeight - Math.min(disponible, c.clientHeight)
-      + [...c.querySelectorAll('.frente, .srv-card')].reduce((m, t) => m + Math.max(0, t.scrollHeight - t.clientHeight), 0);
+      + [...c.querySelectorAll('.frente')].reduce((m, t) => m + Math.max(0, t.scrollHeight - t.clientHeight), 0);
     secciones.forEach((c) => {
       if (sobra(c) <= 1) return;
       // búsqueda binaria de la mayor escala que cabe completa
@@ -117,7 +116,7 @@
   pedirMovil();
 
   addEventListener('wheel', (e) => {
-    if (!modo.matches || e.ctrlKey || pausa() || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    if (!modo.matches || e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
     const ahora = performance.now();
     const pausaEntreGestos = ahora - ultimoGesto;
     ultimoGesto = ahora;
@@ -148,7 +147,7 @@
   }, { passive: false });
 
   addEventListener('keydown', (e) => {
-    if (!modo.matches || e.altKey || e.ctrlKey || e.metaKey || pausa()) return;
+    if (!modo.matches || e.altKey || e.ctrlKey || e.metaKey) return;
     if (/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) return;
     const k = e.key;
     const dir = (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) ? 1
@@ -183,7 +182,7 @@
     [...fila.children].forEach((p, j) => p.classList.toggle('activo', j === i));
   }
   function carruseles() {
-    document.querySelectorAll('.frentes, .srv-grid, .piezas').forEach((car) => {
+    document.querySelectorAll('.frentes, .piezas').forEach((car) => {
       if (car.children.length > 1) puntos(car);
       if (!car.dataset.puntosObs) { car.dataset.puntosObs = '1'; new MutationObserver(() => puntos(car)).observe(car, { childList: true }); }
     });
