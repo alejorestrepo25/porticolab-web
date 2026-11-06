@@ -15,20 +15,23 @@
   if (boardUrl.protocol !== 'https:' || !/(^|\.)pinterest\.com$/i.test(boardUrl.hostname)) return;
   boardUrl.search = '';
   boardUrl.hash = '';
-  const boardPath = boardUrl.pathname.replace(/\/+$/, '');
-  if (!/^\/[^/]+\/[^/]+$/.test(boardPath)) return;
-  boardUrl.pathname = `${boardPath}/`;
+  // Acepta un tablero (/usuario/tablero/) o el perfil (/usuario/ o /usuario/_saved/)
+  const partes = boardUrl.pathname.split('/').filter(Boolean);
+  if (!partes.length || partes.length > 2) return;
+  const esPerfil = partes.length === 1 || /^_(saved|created|profile)$/.test(partes[1]);
+  boardUrl.pathname = esPerfil ? `/${partes[0]}/` : `/${partes[0]}/${partes[1]}/`;
 
   const anchor = document.createElement('a');
-  anchor.dataset.pinDo = 'embedBoard';
+  anchor.dataset.pinDo = esPerfil ? 'embedUser' : 'embedBoard';
   section.hidden = false;
   anchor.dataset.pinBoardWidth = String(Math.max(320, Math.floor(section.getBoundingClientRect().width)));
   anchor.dataset.pinScaleHeight = '520';
   anchor.dataset.pinScaleWidth = '100';
   anchor.href = boardUrl.href;
-  anchor.textContent = 'Ver tablero en Pinterest';
+  anchor.textContent = esPerfil ? 'Ver Pórtico Lab en Pinterest' : 'Ver tablero en Pinterest';
   section.querySelector('.pinterest-board__embed').appendChild(anchor);
-  section.querySelector('.pinterest-board__link').href = boardUrl.href;
+  const enlace = section.querySelector('.pinterest-board__link');
+  if (enlace) enlace.href = boardUrl.href;
 
   let loaded = false;
   const loadPinterest = () => {
