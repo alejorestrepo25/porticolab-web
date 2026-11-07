@@ -8,11 +8,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cenit | Pórtico Lab</title>
+<title>Cenit · Luminaria en concreto | Pórtico Lab</title>
   <meta name="description" content="Prototipo de lámpara curva en microconcreto. Su forma se abre hacia arriba y dirige la luz ligeramente hacia un costado. Molde impreso en PETG, diseñado para…">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Pórtico Lab">
-  <meta property="og:title" content="Cenit | Pórtico Lab">
+  <meta property="og:title" content="Cenit · Luminaria en concreto | Pórtico Lab">
   <meta property="og:description" content="Prototipo de lámpara curva en microconcreto. Su forma se abre hacia arriba y dirige la luz ligeramente hacia un costado. Molde impreso en PETG, diseñado para…">
   <meta property="og:image" content="https://cdn.sanity.io/images/32sykluw/production/a0dabbf2762e7ceb6003cebd3b6578f8301a53da-941x1672.webp?w=1200&amp;h=630&amp;fit=fill&amp;bg=ffffff&amp;fm=jpg&amp;q=85">
   <meta property="og:image:width" content="1200">
@@ -393,7 +393,8 @@ async function loadPost() {
   if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
 
   const titulo = S.texto(result.title);
-  document.title = `${titulo} | Pórtico Lab`;
+  const subPagina = S.subtitulo ? S.subtitulo(titulo) : '';
+  document.title = `${titulo}${subPagina ? ' · ' + subPagina : ''} | Pórtico Lab`;
   document.getElementById('post-title').textContent = titulo;
   const cod = S.codigo(titulo);
   document.getElementById('ficha-codigo').textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';

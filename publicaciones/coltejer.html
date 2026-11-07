@@ -8,11 +8,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coltejer | Pórtico Lab</title>
+<title>Coltejer · Arquitectura icónica | Pórtico Lab</title>
   <meta name="description" content="Modelo a escala del edificio Coltejer en microconcreto blanco.">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Pórtico Lab">
-  <meta property="og:title" content="Coltejer | Pórtico Lab">
+  <meta property="og:title" content="Coltejer · Arquitectura icónica | Pórtico Lab">
   <meta property="og:description" content="Modelo a escala del edificio Coltejer en microconcreto blanco.">
   <meta property="og:image" content="https://cdn.sanity.io/images/32sykluw/production/f8c88f19b8fb865a93ff1050877b5ff258cb935d-768x1365.jpg?w=1200&amp;h=630&amp;fit=fill&amp;bg=ffffff&amp;fm=jpg&amp;q=85">
   <meta property="og:image:width" content="1200">
@@ -393,7 +393,8 @@ async function loadPost() {
   if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
 
   const titulo = S.texto(result.title);
-  document.title = `${titulo} | Pórtico Lab`;
+  const subPagina = S.subtitulo ? S.subtitulo(titulo) : '';
+  document.title = `${titulo}${subPagina ? ' · ' + subPagina : ''} | Pórtico Lab`;
   document.getElementById('post-title').textContent = titulo;
   const cod = S.codigo(titulo);
   document.getElementById('ficha-codigo').textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';
