@@ -386,7 +386,8 @@ async function loadPost() {
   if (!result || !S.texto(result.title)) { aviso.textContent = 'Proyecto no encontrado.'; return; }
 
   const titulo = S.texto(result.title);
-  document.title = `${titulo} | Pórtico Lab`;
+  const subPagina = S.subtitulo ? S.subtitulo(titulo) : '';
+  document.title = `${titulo}${subPagina ? ' · ' + subPagina : ''} | Pórtico Lab`;
   document.getElementById('post-title').textContent = titulo;
   const cod = S.codigo(titulo);
   document.getElementById('ficha-codigo').textContent = cod ? `PORTICO_LAB · ${cod}` : 'PORTICO_LAB';

@@ -49,6 +49,17 @@ const dir = join(RAIZ, 'publicaciones');
 const usados = new Map();
 const fichas = [];
 
+// Subtítulo de cada proyecto (Excel «publicaciones-portico-lab»; igual que en sanity.js): va en el título de la página
+const SUBTITULOS = [
+  ['piel tejida', 'Recubrimiento en bambú'], ['edificio san german', 'Vivienda multifamiliar'], ['edif san german', 'Vivienda multifamiliar'],
+  ['atalaya', 'Mirador en bambú'], ['astra', 'Estación de servicio'], ['girder box', 'Elemento estructural de concreto'],
+  ['bridge box', 'Elemento estructural de concreto'], ['cenit', 'Luminaria en concreto'], ['moai', 'Estatua en cemento'],
+  ['tangara', 'Mueble expositivo'], ['coltejer', 'Arquitectura icónica'], ['jersey', 'Portalápices en microconcreto'],
+  ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento']
+];
+const normal = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+const subtitulo = t => { const n = normal(t); const par = SUBTITULOS.find(([k]) => n === k) || SUBTITULOS.find(([k]) => n.includes(k)); return par ? par[1] : ''; };
+
 for (const p of lista) {
   const nombre = nombreFicha(p.title);
   if (!nombre || nombre === 'post') continue;
@@ -56,6 +67,8 @@ for (const p of lista) {
   usados.set(nombre, p._id);
 
   const titulo = String(p.title).trim();
+  const sub = subtitulo(titulo);
+  const tituloPagina = sub ? `${titulo} · ${sub}` : titulo;
   const desc = corto(p.description || `${titulo}, proyecto de Pórtico Lab en Medellín.`, 160);
   const url = `${SITIO}/publicaciones/${nombre}.html`;
   const img = imagenCompartir(p.portada, p.tags);
@@ -63,10 +76,10 @@ for (const p of lista) {
     creator: { '@type': 'Organization', name: 'Pórtico Lab', url: SITIO } };
 
   let html = plantilla
-    .replace(/<title>[^<]*<\/title>/, `<title>${esc(titulo)} | Pórtico Lab</title>`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${esc(tituloPagina)} | Pórtico Lab</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(desc)}">`)
     .replace(/<meta property="og:type" content="[^"]*">/, '<meta property="og:type" content="article">')
-    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${esc(titulo)} | Pórtico Lab">`)
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${esc(tituloPagina)} | Pórtico Lab">`)
     .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${esc(desc)}">`)
     .replace(/<meta property="og:image" content="[^"]*">/,
       `<meta property="og:image" content="${esc(img)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta property="og:url" content="${url}">\n  <link rel="canonical" href="${url}">`)
