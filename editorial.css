@@ -1289,3 +1289,27 @@ html:root body.home.y2k #preguntas .combo__faq>.ver-todo{display:table!important
 @media(max-width:360px){
  html:root body.y2k header .nav a,html:root body header nav.nav a{font-size:9.5px!important;letter-spacing:.04em!important}
 }
+/* Tarjetas de servicio: primero el problema del cliente, después el servicio */
+:is(body.home,body.srvposter) .frentes--srv .frente__dolor{margin:6px 0 0;color:var(--pl-muted)!important;font-size:15px!important;line-height:1.5!important}
+:is(body.home,body.srvposter) .frentes--srv .frente__servicio{margin:14px 0 0;font-family:'Montserrat',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;background:var(--pl-text-gradient,linear-gradient(105deg,#b9a7ff,#7ee8ff));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__servicio{background:linear-gradient(105deg,#6b4fe0,#2a8fb0);-webkit-background-clip:text;background-clip:text}
+:is(body.home,body.srvposter) .frentes--srv .frente__servicio+.frente__promesa{margin-top:4px!important}
+:is(body.home,body.srvposter) .frentes--srv .frente__caso{margin:12px 0 0;padding-left:10px;border-left:2px solid #8b6cff;font-size:13px;line-height:1.45;color:var(--pl-ink)}
+@media(max-width:900px){
+ html:root body.y2k [data-pantalla] .frentes--srv h3{font-size:14px!important;line-height:1.25!important}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__dolor{font-size:11.5px!important;line-height:1.4!important;margin-top:3px}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__servicio{font-size:12px;margin-top:6px}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__promesa{font-size:11.5px!important;line-height:1.4!important}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__caso{font-size:10.5px;margin-top:6px;padding-left:7px}
+}
+@media(max-width:900px){
+ /* Celular: la tarjeta cuenta problema → servicio → promesa → caso; la lista detallada queda para escritorio */
+ html:root body.y2k [data-pantalla] .frentes--srv .incluye{display:none!important}
+ html:root body.y2k [data-pantalla] .frentes--srv h3{font-size:15px!important}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__dolor,html:root body.y2k [data-pantalla] .frentes--srv .frente__promesa{font-size:12.5px!important}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__servicio{font-size:13px}
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__caso{font-size:11.5px}
+}
+@media(max-width:380px){
+ html:root body.y2k [data-pantalla] .frentes--srv .frente__promesa{display:none!important}
+}

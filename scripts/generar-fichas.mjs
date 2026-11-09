@@ -55,7 +55,8 @@ const SUBTITULOS = [
   ['atalaya', 'Mirador en bambú'], ['astra', 'Estación de servicio'], ['girder box', 'Elemento estructural de concreto'],
   ['bridge box', 'Elemento estructural de concreto'], ['cenit', 'Luminaria en concreto'], ['moai', 'Estatua en cemento'],
   ['tangara', 'Mueble expositivo'], ['coltejer', 'Arquitectura icónica'], ['jersey', 'Portalápices en microconcreto'],
-  ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento']
+  ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento'],
+  ['casa yarumo', 'Control presupuestal de obra']
 ];
 const normal = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
 const subtitulo = t => { const n = normal(t); const par = SUBTITULOS.find(([k]) => n === k) || SUBTITULOS.find(([k]) => n.includes(k)); return par ? par[1] : ''; };

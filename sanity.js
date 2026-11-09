@@ -111,7 +111,8 @@
     ['atalaya', 'Mirador en bambú'], ['astra', 'Estación de servicio'], ['girder box', 'Elemento estructural de concreto'],
     ['bridge box', 'Elemento estructural de concreto'], ['cenit', 'Luminaria en concreto'], ['moai', 'Estatua en cemento'],
     ['tangara', 'Mueble expositivo'], ['coltejer', 'Arquitectura icónica'], ['jersey', 'Portalápices en microconcreto'],
-    ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento']
+    ['dorica', 'Maceta en concreto pigmentado'], ['zarcillo', 'Tutor para plantas trepadoras'], ['skull', 'Figura de cemento'],
+    ['casa yarumo', 'Control presupuestal de obra']
   ];
   // Hashtags de cada publicación (Excel «publicaciones-portico-lab»)
   const HASHTAGS = [
@@ -129,7 +130,8 @@
     ['tangara', '#Laboratorio #Diseño #Moderno #Mobiliario #Madera #CNC #Ferias'],
     ['coltejer', '#Laboratorio #Coltejer #ConcretoBlanco #Emblemático'],
     ['atalaya', '#Laboratorio #Arquitectura #Diseño #Hiperboloide #Bambú #Ligera'],
-    ['moai', '#Laboratorio #Concreto #Escultura #Moai #Yeso #Cemento #Pigmentado #Silicona']
+    ['moai', '#Laboratorio #Concreto #Escultura #Moai #Yeso #Cemento #Pigmentado #Silicona'],
+    ['casa yarumo', '#Laboratorio #Arquitectura #ControlDeCostos #Presupuesto #BIM']
   ];
   function hashtags(titulo) {
     const t = normal(titulo);
