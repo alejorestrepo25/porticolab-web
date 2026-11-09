@@ -110,6 +110,8 @@
   const pedirMovil = () => { clearTimeout(reloj2); reloj2 = setTimeout(ajustarMovil, 120); };
   addEventListener('resize', pedirMovil);
   addEventListener('load', pedirMovil);
+  // la tipografía y las ilustraciones terminan de acomodarse después del load: se repite el ajuste
+  addEventListener('load', () => { setTimeout(pedirMovil, 500); setTimeout(pedirMovil, 1600); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedirMovil);
   document.addEventListener('load', pedirMovil, true);
   movil.addEventListener('change', pedirMovil);

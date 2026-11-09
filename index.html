@@ -40,7 +40,7 @@
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=3">
   <link rel="stylesheet" href="motion-graphics.css?v=7">
-  <link rel="stylesheet" href="editorial.css?v=107">
+  <link rel="stylesheet" href="editorial.css?v=108">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Pórtico Lab","url":"https://porticolab.com/","image":"https://porticolab.com/img/og/inicio.jpg","description":"Diseño arquitectónico con el presupuesto bajo control: presupuestos de obra, seguimiento de costos y auditoría BIM. Para promotores, constructoras y propietarios en Medellín.","email":"contacto@porticolab.com","telephone":"+57 314 792 4600","address":{"@type":"PostalAddress","addressLocality":"Medellín","addressRegion":"Antioquia","addressCountry":"CO"},"areaServed":{"@type":"City","name":"Medellín"},"sameAs":["https://www.instagram.com/portico_lab/","https://www.linkedin.com/company/107975627/"]}</script>
 </head>
 
@@ -112,17 +112,19 @@
 <section class="seccion" id="frentes" data-pantalla>
   <div class="seccion__cab rev">
     <span class="hud">[ 01 / 04 ] Servicios</span>
-    <h2>Dos vías para <em>cuidar su proyecto</em></h2>
+    <h2>¿Qué le preocupa de <em>su proyecto</em>?</h2>
   </div>
   <div class="frentes frentes--srv">
     <a class="frente rev" href="#contacto" data-servicio="bim" style="--d:.15s">
       <div class="frente__img" data-ilustracion="bim"><img src="img/home/servicio-bim.svg?v=2" alt="Sección técnica de un edificio en BIM con el costo de cada nivel frente al presupuesto" loading="lazy" width="300" height="400"></div>
       <div class="frente__txt">
         <span class="frente__num">[01]</span>
-        <h3>Auditoría BIM + Costos de Obra</h3>
-        <p class="frente__promesa">Detectamos imprecisiones antes de que se conviertan en sobrecostos en obra.</p>
-        <ul class="incluye"><li>Coordinación del modelo BIM</li><li>Seguimiento de costos del proyecto</li><li>Cómputos métricos automatizados (en desarrollo)</li></ul>
-        <div class="meta"><span><b>Propuesta a la medida</b></span><span>Revisión + control de costos</span></div>
+        <h3>¿Su obra va a costar lo que dice el presupuesto?</h3>
+        <p class="frente__dolor">Sobrecostos imprevistos, presupuestos inflados y errores de diseño que aparecen en obra, cuando corregir ya es caro.</p>
+        <p class="frente__servicio">Arquitectura + costos con metodología BIM</p>
+        <p class="frente__promesa">Diseñamos su proyecto y controlamos su costo en el mismo modelo, del primer plano a la última factura.</p>
+        <ul class="incluye"><li>Diseño arquitectónico</li><li>Presupuesto por capítulos desde el diseño</li><li>Modelos BIM ordenados, sin cruces</li><li>Control presupuestal de obra: versiones fechadas, cada factura a su partida</li></ul>
+        <p class="frente__caso">Caso Casa Yarumo: 9 meses de obra con variaciones promedio de 2% y una utilidad clara para la constructora.</p>
         <span class="frente__cta">Solicitar propuesta</span>
       </div>
     </a>
@@ -130,10 +132,11 @@
       <div class="frente__img" data-ilustracion="maquetas"><img src="img/home/servicio-maquetas.svg?v=2" alt="Maqueta de exhibición: conjunto de torres residenciales sobre una base de madera" loading="lazy" width="300" height="400"></div>
       <div class="frente__txt">
         <span class="frente__num">[02]</span>
-        <h3>Modelos a escala</h3>
-        <p class="frente__promesa">Una maqueta que el comprador entiende en segundos y que sostiene la conversación de venta.</p>
+        <h3>¿Sus compradores entienden su proyecto?</h3>
+        <p class="frente__dolor">Los planos y los renders no siempre convencen. Una pieza física sí.</p>
+        <p class="frente__servicio">Arquitectura a escala</p>
+        <p class="frente__promesa">Maquetas y objetos a escala que el comprador entiende en segundos y que sostienen la conversación de venta.</p>
         <ul class="incluye"><li>Diseño estratégico</li><li>Fabricación con impresión 3D, corte láser y acabados a mano</li><li>Electrónica e iluminación integrada</li></ul>
-        <div class="meta"><span><b>Propuesta a la medida</b></span><span>Exhibición física</span></div>
         <span class="frente__cta">Solicitar propuesta</span>
       </div>
     </a>
@@ -243,7 +246,7 @@
 
 
 
-<script src="sanity.js?v=15"></script>
+<script src="sanity.js?v=16"></script>
 <script src="ilustraciones-servicios.js?v=2"></script>
 <script>
 // Las tarjetas de servicios usan las mismas ilustraciones de la página de Servicios
@@ -299,7 +302,7 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
   const f = document.getElementById('consulta');
   if (!f) return;
   // Los botones de cotizar del sitio llegan aquí; si traen el servicio, se anota en el mensaje
-  const SERVICIOS = { maquetas: 'Maqueta de exhibición', bim: 'Auditoría BIM y control de costos' };
+  const SERVICIOS = { bim: 'Arquitectura + costos con metodología BIM', maquetas: 'Arquitectura a escala' };
   const prellenar = id => { const t = f.querySelector('[name=mensaje]'); if (SERVICIOS[id] && t && !t.value.trim()) t.value = `Me interesa: ${SERVICIOS[id]}. `; };
   prellenar(new URLSearchParams(location.search).get('servicio'));
   document.querySelectorAll('a[data-servicio]').forEach(a => a.addEventListener('click', () => prellenar(a.dataset.servicio)));
@@ -362,7 +365,7 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
 })();
 </script>
 <script src="home.js?v=31" defer></script>
-<script src="pantallas.js?v=7" defer></script>
+<script src="pantallas.js?v=8" defer></script>
 <script src="y2k.js?v=4" defer></script>
 <script src="mascota.js?v=21" defer></script>
 <script src="navegacion-teclado.js?v=1" defer></script>
