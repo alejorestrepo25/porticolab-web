@@ -406,3 +406,16 @@ body.home.y2k .hero-foto .destello { z-index: 1; }
 @media (max-width: 900px) and (max-height: 760px) {
   html.js body.home.y2k #inicio.y2k-hero { height: auto; min-height: 0; }
 }
+
+/* Titulares de fichas: más grandes, texto más corto */
+body.srvposter .frente__txt h3, body.home .frente__txt h3 { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.15; }
+@media (max-width: 900px) { body.srvposter .frente__txt h3, body.home .frente__txt h3 { font-size: clamp(20px, 5.4vw, 26px); } }
+/* Menos saturación: etiqueta y CTA en tonos neutros, con los tokens de tema */
+html:root :is(body.home,body.srvposter) .frentes--srv .frente__servicio { color: var(--pl-muted) !important; -webkit-text-fill-color: var(--pl-muted) !important; background: none !important; }
+html:root :is(body.home,body.srvposter) .frentes--srv .frente .frente__cta.frente__cta { background: transparent !important; color: var(--pl-ink) !important; border: 1px solid var(--pl-line) !important; opacity: 1 !important; }
+html:root :is(body.home,body.srvposter) .frentes--srv .frente:hover .frente__cta.frente__cta { border-color: var(--pl-ink) !important; }
+/* Modo claro: texto de tarjetas con tokens del tema */
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt h3 { color: var(--pl-ink) !important; }
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt p:not(.frente__dolor):not(.frente__servicio),
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt li { color: var(--pl-ink) !important; }
+:root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt .frente__dolor { color: var(--pl-muted) !important; }
