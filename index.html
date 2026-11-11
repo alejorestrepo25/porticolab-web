@@ -25,13 +25,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css?v=6">
   <link rel="icon" href="iconos/favicon.ico" type="image/ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://32sykluw.apicdn.sanity.io" crossorigin>
   <link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
+  <link rel="preload" as="style" href="/fonts/fuentes.css" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/fonts/fuentes.css"></noscript>
   <link rel="stylesheet" href="y2k.css?v=8">
-  <link rel="stylesheet" href="home.css?v=39">
+  <link rel="stylesheet" href="home.css?v=40">
   <script>document.documentElement.classList.add('js')</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=3">
@@ -129,9 +127,9 @@
       <div class="frente__txt">
         <span class="frente__num">[02]</span>
         <p class="frente__servicio">EXHIBICIÓN Y VENTAS</p>
-        <h3>Un render no cierra ventas complejas. Una pieza física, sí.</h3>
-        <p class="frente__dolor">Los planos 2D no convencen a todos los compradores.</p>
-        <p class="frente__promesa">Maquetas físicas para acelerar la decisión de compra.</p>
+        <h3>Las imágenes ayudan. Una maqueta física cierra la venta.</h3>
+        <p class="frente__dolor">Renders y planos en pantalla no siempre convencen al comprador.</p>
+        <p class="frente__promesa">Maqueta física para decidir, con recorridos virtuales y renders interactivos como apoyo.</p>
         <ul class="incluye"><li>Materialidad real: microconcreto y madera.</li><li>Impresión 3D y corte láser desde sus planos.</li><li>Iluminación integrada por tipología.</li></ul>
         <span class="frente__cta">Cotice su maqueta</span>
       </div>
@@ -307,17 +305,30 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
   prellenar(new URLSearchParams(location.search).get('servicio'));
   document.querySelectorAll('a[data-servicio]').forEach(a => a.addEventListener('click', () => prellenar(a.dataset.servicio)));
   const error = f.querySelector('.consulta__error');
+  ['input','change'].forEach(ev => f.addEventListener(ev, e => { const b = e.target.closest && e.target.closest('.is-invalid'); if (b) b.classList.remove('is-invalid'); }));
   f.addEventListener('submit', e => {
     e.preventDefault();
     error.textContent = '';
     const d = Object.fromEntries(new FormData(f));
     const limpio = k => String(d[k] || '').trim();
-    if (!limpio('nombre') || !limpio('correo') || !limpio('telefono') || !limpio('mensaje')) { error.textContent = 'Complete nombre, correo, teléfono y qué necesita.'; return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(limpio('correo'))) { error.textContent = 'Revise el correo.'; return; }
-    if (!limpio('presupuesto')) { error.textContent = 'Elija un presupuesto disponible.'; return; }
-    if (!limpio('plazo')) { error.textContent = 'Indique para cuándo lo necesita.'; return; }
-    if (limpio('telefono').replace(/\D/g, '').length < 7) { error.textContent = 'Revise el número de teléfono.'; return; }
-    if (!f.elements.acepto_terminos.checked || !f.elements.acepto_privacidad.checked) { error.textContent = 'Para enviar su consulta, acepte los términos y condiciones y la política de privacidad.'; return; }
+    const reglas = [
+      { ok: !!limpio('nombre'), t: 'Nombre', el: f.elements.nombre },
+      { ok: /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(limpio('correo')), t: limpio('correo') ? 'Correo (revise que esté bien escrito)' : 'Correo', el: f.elements.correo },
+      { ok: limpio('telefono').replace(/\D/g, '').length >= 7, t: limpio('telefono') ? 'Teléfono (revise el número)' : 'Teléfono / WhatsApp', el: f.elements.telefono },
+      { ok: !!limpio('mensaje'), t: '¿Qué necesita?', el: f.elements.mensaje },
+      { ok: !!limpio('presupuesto'), t: 'Presupuesto disponible', el: f.elements.presupuesto[0] },
+      { ok: !!limpio('plazo'), t: '¿Para cuándo lo necesita?', el: f.elements.plazo[0] },
+      { ok: f.elements.acepto_terminos.checked, t: 'Aceptar términos y condiciones', el: f.elements.acepto_terminos },
+      { ok: f.elements.acepto_privacidad.checked, t: 'Aceptar política de privacidad', el: f.elements.acepto_privacidad }
+    ];
+    f.querySelectorAll('.is-invalid').forEach(x => x.classList.remove('is-invalid'));
+    const faltan = reglas.filter(r => !r.ok);
+    if (faltan.length) {
+      faltan.forEach(r => { const bloque = r.el.closest('.consulta__campo, .consulta__opciones, .consulta__check'); if (bloque) bloque.classList.add('is-invalid'); });
+      try { faltan[0].el.focus(); faltan[0].el.scrollIntoView({ block: 'center' }); } catch (e) {}
+      error.textContent = 'Falta por completar: ' + faltan.map(r => r.t).join(' · ');
+      return;
+    }
     if (!window.PL_LEGAL) { error.textContent = 'No pudimos registrar su aceptación. Recargue la página e inténtelo de nuevo.'; return; }
     // Prueba de aceptación: código único, fecha y hora, versión de los documentos, texto de las casillas, página y navegador
     const textoCasilla = n => f.elements[n].closest('label').querySelector('span').textContent.trim();
