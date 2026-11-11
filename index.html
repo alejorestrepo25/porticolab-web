@@ -4,8 +4,6 @@
   <script src="tema.js?v=2"></script>
   <meta charset="UTF-8">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZW7VQF6PR"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LZW7VQF6PR');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
   // iPhone: Safari no hace zoom al tocar los campos del formulario (el zoom con los dedos sigue disponible)
@@ -33,15 +31,14 @@
   <link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"></noscript>
   <link rel="stylesheet" href="y2k.css?v=8">
-  <link rel="stylesheet" href="home.css?v=37">
+  <link rel="stylesheet" href="home.css?v=38">
   <script>document.documentElement.classList.add('js')</script>
-  <!-- Metricool -->
-  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e399044339d195af0c08d307ff70b030"})});</script>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=3">
   <link rel="stylesheet" href="motion-graphics.css?v=7">
   <link rel="stylesheet" href="editorial.css?v=110">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Pórtico Lab","url":"https://porticolab.com/","image":"https://porticolab.com/img/og/inicio.jpg","description":"Diseño arquitectónico con el presupuesto bajo control: presupuestos de obra, seguimiento de costos y auditoría BIM. Para promotores, constructoras y propietarios en Medellín.","email":"contacto@porticolab.com","telephone":"+57 314 792 4600","address":{"@type":"PostalAddress","addressLocality":"Medellín","addressRegion":"Antioquia","addressCountry":"CO"},"areaServed":{"@type":"City","name":"Medellín"},"sameAs":["https://www.instagram.com/portico_lab/","https://www.linkedin.com/company/107975627/"]}</script>
+<script src="/legal.js?v=2"></script>
 </head>
 
 <body class="y2k home">
@@ -212,6 +209,10 @@
           <label><input type="radio" name="plazo" value="En más de 3 meses"><span>Más de 3 meses</span></label>
           <label><input type="radio" name="plazo" value="Estoy explorando"><span>Estoy explorando</span></label>
         </fieldset>
+        <div class="consulta__acepto">
+          <label class="consulta__check"><input type="checkbox" name="acepto_terminos" value="si"><span>He leído y acepto los <a href="terminos.html" target="_blank" rel="noopener">términos y condiciones</a>.</span></label>
+          <label class="consulta__check"><input type="checkbox" name="acepto_privacidad" value="si"><span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y autorizo el tratamiento de mis datos personales.</span></label>
+        </div>
         <input class="consulta__trampa" name="pl_confirmacion_humana" type="text" tabindex="-1" autocomplete="new-password" aria-hidden="true">
         <p class="consulta__error" role="alert" aria-live="polite"></p>
         <button class="btn-cromo" type="submit">Enviar consulta →</button>
@@ -316,7 +317,19 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
     if (!limpio('presupuesto')) { error.textContent = 'Elija un presupuesto disponible.'; return; }
     if (!limpio('plazo')) { error.textContent = 'Indique para cuándo lo necesita.'; return; }
     if (limpio('telefono').replace(/\D/g, '').length < 7) { error.textContent = 'Revise el número de teléfono.'; return; }
-    const listo = () => { f.innerHTML = '<p class="consulta__gracias"><b>Recibimos su consulta.</b> Le escribimos pronto por WhatsApp o correo.</p>'; };
+    if (!f.elements.acepto_terminos.checked || !f.elements.acepto_privacidad.checked) { error.textContent = 'Para enviar su consulta, acepte los términos y condiciones y la política de privacidad.'; return; }
+    if (!window.PL_LEGAL) { error.textContent = 'No pudimos registrar su aceptación. Recargue la página e inténtelo de nuevo.'; return; }
+    // Prueba de aceptación: código único, fecha y hora, versión de los documentos, texto de las casillas, página y navegador
+    const textoCasilla = n => f.elements[n].closest('label').querySelector('span').textContent.trim();
+    const prueba = PL_LEGAL.prueba('consulta_inicio', { terminos: textoCasilla('acepto_terminos'), privacidad: textoCasilla('acepto_privacidad') });
+    const resumenPrueba = PL_LEGAL.resumen(prueba);
+    const codigoAceptacion = prueba.id;
+    try {
+      const guardadas = JSON.parse(localStorage.getItem('pl_aceptaciones') || '[]');
+      guardadas.push({ id: prueba.id, fecha: prueba.fecha_utc, version: prueba.version_documentos });
+      localStorage.setItem('pl_aceptaciones', JSON.stringify(guardadas.slice(-10)));
+    } catch (e) {}
+    const listo = () => { f.innerHTML = '<p class="consulta__gracias"><b>Recibimos su consulta.</b> Le escribimos pronto por WhatsApp o correo.' + (codigoAceptacion ? '<br><small>Código de su aceptación: ' + codigoAceptacion + '</small>' : '') + '</p>'; };
     if (limpio('pl_confirmacion_humana')) { listo(); return; }   // campo trampa: solo lo llenan los bots
     try {
       const ultimo = Number(localStorage.getItem('pl_ultima_consulta') || 0);
@@ -329,14 +342,16 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
       tipo: 'cotizacion', web: '', referencia: ref,
       servicio: 'Consulta desde el Inicio', detalle,
       valor: 'Propuesta a la medida', plazo: limpio('plazo'), anticipo: '', oferta: 'Consulta del formulario',
-      extras: [`Presupuesto disponible: ${limpio('presupuesto')}`],
+      extras: [`Presupuesto disponible: ${limpio('presupuesto')}`, resumenPrueba],
+      consentimiento: prueba,
       cliente: { nombre: limpio('nombre'), telefono: limpio('telefono'), correo: limpio('correo'), ciudad: '', notas: limpio('mensaje') },
       archivo: null, archivos: [], imagenes: [], omitidos: []
     };
     // 2) Registro en la hoja de pedidos (respaldo)
     const fila = {
       referencia: ref,
-      producto: `CONSULTA INICIO | Presupuesto: ${limpio('presupuesto')} | Plazo: ${limpio('plazo')} | Correo ${limpio('correo')} | ${limpio('mensaje').replace(/\n/g, ' / ')}`,
+      consentimiento: prueba,
+      producto: `CONSULTA INICIO | Presupuesto: ${limpio('presupuesto')} | Plazo: ${limpio('plazo')} | Correo ${limpio('correo')} | ${limpio('mensaje').replace(/\n/g, ' / ')} | ${resumenPrueba}`,
       precio: 0, nombre: limpio('nombre'), telefono: limpio('telefono'), direccion: limpio('correo'), ciudad: '', estadoPago: 'Consulta desde el Inicio'
     };
     fetch(HOJA, { method: 'POST', body: JSON.stringify(fila), keepalive: true }).catch(() => {});

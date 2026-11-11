@@ -33,9 +33,12 @@
   const enlace = section.querySelector('.pinterest-board__link');
   if (enlace) enlace.href = boardUrl.href;
 
+  // Pinterest instala sus propias cookies: solo se carga si la persona aceptó las cookies opcionales
+  const permitido = () => { try { const c = JSON.parse(localStorage.getItem('pl_consent') || 'null'); return !!(c && c.analitica); } catch (e) { return false; } };
   let loaded = false;
   const loadPinterest = () => {
     if (loaded) return;
+    if (!permitido()) { document.addEventListener('pl:consent', () => { if (permitido()) loadPinterest(); }, { once: true }); return; }
     loaded = true;
     const script = document.createElement('script');
     script.async = true;
