@@ -3,9 +3,16 @@
   const figuras = [...document.querySelectorAll('object[data-proceso]')];
   if (!figuras.length || !('IntersectionObserver' in window)) return;
 
+  // El SVG no ve el tema de la página: se lo pasamos con la clase .tema-claro
+  const tema = (obj) => {
+    const root = obj.contentDocument?.documentElement;
+    if (root) root.classList.toggle('tema-claro', document.documentElement.dataset.theme === 'light');
+  };
+
   const actualizar = (obj) => {
     const root = obj.contentDocument?.documentElement;
     if (!root) return;
+    tema(obj);
     const pausa = document.hidden || obj.dataset.enVista !== 'true';
     root.classList.toggle('en-pausa', pausa);
     if (!pausa) requestAnimationFrame(() => sincronizar(obj));
@@ -33,4 +40,5 @@
     observer.observe(obj);
   });
   document.addEventListener('visibilitychange', () => figuras.forEach(actualizar));
+  new MutationObserver(() => figuras.forEach(tema)).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 })();
