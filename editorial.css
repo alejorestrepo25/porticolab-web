@@ -1329,3 +1329,6 @@ html:root body.home.y2k #preguntas .combo__faq>.ver-todo{display:table!important
 :is(body.home,body.srvposter) .frentes--srv .frente__cta{margin-top:18px!important;min-height:50px!important;border-radius:999px!important;background:var(--acc)!important;color:#0b0a0e!important;border:0!important;font-weight:700!important;letter-spacing:.06em!important;text-transform:uppercase!important;font-size:13px!important;box-shadow:0 10px 24px -12px var(--acc)}
 :is(body.home,body.srvposter) .frentes--srv .frente:hover .frente__cta{filter:brightness(1.08)}
 html:root :is(body.home,body.srvposter) .frentes--srv .frente .frente__cta{color:#0b0a0e!important;background:var(--acc)!important;opacity:1!important}
+/* Ilustraciones de servicios 01 y 02: llenan la ficha de borde a borde */
+html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion][data-ilustracion][data-ilustracion]{padding:0!important;overflow:hidden!important}
+html:root :is(body.home,body.srvposter) .frente__img[data-ilustracion][data-ilustracion][data-ilustracion]>svg{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;transform:none!important}
