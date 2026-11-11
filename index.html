@@ -365,7 +365,7 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
       producto: `CONSULTA INICIO | Presupuesto: ${limpio('presupuesto')} | Plazo: ${limpio('plazo')} | Correo ${limpio('correo')} | ${limpio('mensaje').replace(/\n/g, ' / ')} | ${resumenPrueba}`,
       precio: 0, nombre: limpio('nombre'), telefono: limpio('telefono'), direccion: limpio('correo'), ciudad: '', estadoPago: 'Consulta desde el Inicio'
     };
-    fetch(HOJA, { method: 'POST', body: JSON.stringify(fila), keepalive: true }).catch(() => {});
+    // La consulta se guarda desde el guion de Cotizaciones (correo + hoja PEDIDOS + consentimiento).
     const boton = f.querySelector('[type=submit]');
     const textoBoton = boton.textContent;
     boton.disabled = true; boton.textContent = 'Enviando…';
