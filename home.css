@@ -423,3 +423,6 @@ html:root body.y2k #contacto .consulta .consulta__check { display: flex !importa
 html:root body.y2k #contacto .consulta .consulta__check input[type="checkbox"] { width: 18px !important; height: 18px !important; min-height: 0 !important; padding: 0 !important; margin: 1px 0 0 !important; flex: none !important; border-radius: 4px !important; accent-color: #9d7bff; cursor: pointer; position: static !important; opacity: 1 !important; }
 html:root body.y2k #contacto .consulta .consulta__check span { flex: 1 1 auto; font-size: inherit !important; text-transform: none !important; letter-spacing: normal !important; font-family: inherit !important; font-weight: 400 !important; color: inherit !important; }
 html:root body.y2k #contacto .consulta .consulta__check a { color: var(--pl-ink, #f1f0f2) !important; text-decoration: underline; text-underline-offset: 3px; }
+/* Alertas del formulario: campo que falta por completar */
+body.home #contacto .consulta .is-invalid { outline: 1px solid #ff8a80; outline-offset: 4px; border-radius: 6px; }
+body.home #contacto .consulta .is-invalid > span:first-child { color: #ff8a80 !important; }
