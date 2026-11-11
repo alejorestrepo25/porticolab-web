@@ -50,8 +50,6 @@ body.srvposter .frente__txt h3, body.home .frente__txt h3 { font-size: clamp(24p
 @media (max-width: 900px) { body.srvposter .frente__txt h3, body.home .frente__txt h3 { font-size: clamp(20px, 5.4vw, 26px); } }
 /* Menos saturación: etiqueta y CTA en tonos neutros, con los tokens de tema */
 html:root :is(body.home,body.srvposter) .frentes--srv .frente__servicio { color: var(--pl-muted) !important; -webkit-text-fill-color: var(--pl-muted) !important; background: none !important; }
-html:root :is(body.home,body.srvposter) .frentes--srv .frente .frente__cta.frente__cta { background: var(--pl-ink) !important; color: var(--pl-bg) !important; border: 0 !important; border-radius: 4px !important; box-shadow: none !important; opacity: 1 !important; letter-spacing: .12em !important; }
-html:root :is(body.home,body.srvposter) .frentes--srv .frente:hover .frente__cta.frente__cta { filter: brightness(.88); }
 /* Modo claro: texto de tarjetas con tokens del tema */
 :root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt h3 { color: var(--pl-ink) !important; }
 :root[data-theme="light"] :is(body.home,body.srvposter) .frentes--srv .frente__txt p:not(.frente__dolor):not(.frente__servicio),
