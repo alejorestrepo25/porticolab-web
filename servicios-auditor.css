@@ -15,33 +15,45 @@ html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { displa
 html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__cta { margin-top: auto !important; }
 html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__prox { margin-bottom: 12px; }
 
-/* Escritorio, formato horizontal ~9:3 (3:1):
+/* Escritorio, formato horizontal ~9:3 (3:1) sin encogimiento (--k = 1):
    [01] Auditor centrado arriba; [02] y [03] debajo, lado a lado y del mismo tamaño.
-   Cada tarjeta tiene ilustración a la izquierda (~28%) y texto a la derecha (~72%), sin recortar contenido. */
+   Texto grande y legible, ilustración alineada a la izquierda en las 3 tarjetas, todo cabe en 1 pantalla (1366x768+). */
 @media (min-width: 901px) {
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla] {
+    padding-top: clamp(18px, 2.6vh, 32px) !important;
+    padding-bottom: clamp(46px, 6.5vh, 64px) !important;
+    justify-content: center !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla] > h2.seccion,
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla] > .seccion__cab {
+    margin-bottom: 14px !important;
+  }
   html:root body.y2k :is(#servicios, #frentes)[data-pantalla] .frentes.frentes--srv,
   html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-auto-rows: auto !important;
-    gap: 18px !important;
+    gap: 14px 18px !important;
+    width: 100% !important;
+    max-width: 1240px !important;
+    margin-inline: auto !important;
   }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente {
     flex-direction: row !important;
     align-items: stretch !important;
     aspect-ratio: auto !important;
     height: auto !important;
-    min-height: 215px !important;
+    min-height: 196px !important;
   }
-  /* [01] Auditor centrado arriba en proporción ~9:3 (3:1) cómoda para su contenido */
+  /* [01] Auditor centrado arriba, ancho panorámico ~9:3 (3:1) */
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente--destacado {
     grid-column: 1 / -1 !important;
     justify-self: center !important;
-    width: min(760px, 66%) !important;
-    min-height: 240px !important;
+    width: min(820px, 70%) !important;
+    min-height: 204px !important;
   }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img {
-    flex: 0 0 28% !important;
-    width: 28% !important;
+    flex: 0 0 185px !important;
+    width: 185px !important;
     height: auto !important;
     aspect-ratio: auto !important;
     min-height: 0 !important;
@@ -51,34 +63,44 @@ html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__prox { margi
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt {
     flex: 1 1 auto !important;
     width: auto !important;
-    padding: 16px 20px !important;
-    gap: 4px !important;
+    padding: 16px 22px !important;
+    gap: 5px !important;
     justify-content: flex-start !important;
   }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__num { font-size: 11px !important; line-height: 1.2 !important; }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__servicio { font-size: 10.5px !important; letter-spacing: .08em !important; margin: 0 !important; }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt h3 {
-    font-size: clamp(14px, 1.25vw, 18px) !important;
-    line-height: 1.18 !important;
-    margin: 2px 0 !important;
-  }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__dolor,
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__promesa {
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__num {
     font-size: 12px !important;
-    line-height: 1.35 !important;
+    line-height: 1.2 !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__servicio {
+    font-size: 11px !important;
+    letter-spacing: .1em !important;
+    margin: 0 !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt h3 {
+    font-size: clamp(17px, 1.4vw, 21px) !important;
+    line-height: 1.2 !important;
+    margin: 2px 0 4px !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__dolor {
+    display: none !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__promesa {
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
     margin: 0 !important;
   }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__prox {
     margin-top: 6px !important;
     margin-bottom: 6px !important;
-    padding: 5px 8px !important;
-    font-size: 9.5px !important;
-    line-height: 1.3 !important;
+    padding: 6px 9px !important;
+    font-size: 10.5px !important;
+    line-height: 1.35 !important;
   }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__cta {
     margin-top: auto !important;
-    padding-top: 8px !important;
-    font-size: 11px !important;
+    padding-top: 10px !important;
+    font-size: 12px !important;
+    letter-spacing: .12em !important;
   }
   /* las listas «incluye» se omiten en vista horizontal para preservar la proporción 9:3 */
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
