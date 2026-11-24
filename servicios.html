@@ -115,7 +115,7 @@
   <link rel="stylesheet" href="motion-graphics.css?v=7">
   <link rel="stylesheet" href="motion.css?v=6">
   <link rel="stylesheet" href="editorial.css?v=115">
-<link rel="stylesheet" href="servicios-pestanas.css?v=2">
+<link rel="stylesheet" href="servicios-pestanas.css?v=3">
 <script src="/legal.js?v=5"></script>
 </head>
 
@@ -159,43 +159,13 @@
   <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">¿Qué le preocupa de <em>su proyecto</em>?</h2>
     <div class="pestanas" role="tablist" aria-label="Servicios">
-      <button class="pestana" type="button" role="tab" id="pestana-auditor" aria-controls="servicio-auditor" aria-selected="true"><b>[01]</b>Auditor</button>
-      <button class="pestana" type="button" role="tab" id="pestana-bim" aria-controls="servicio-bim" aria-selected="false" tabindex="-1"><b>[02]</b>Arquitectura + costos</button>
-      <button class="pestana" type="button" role="tab" id="pestana-maquetas" aria-controls="servicio-maquetas" aria-selected="false" tabindex="-1"><b>[03]</b>Arquitectura a escala</button>
+      <button class="pestana" type="button" role="tab" id="pestana-auditor" data-servicio="auditor" aria-controls="servicio-auditor" aria-selected="true"><b>[01]</b>Auditor</button>
+      <button class="pestana" type="button" role="tab" id="pestana-bim" data-servicio="bim" aria-controls="servicio-bim" aria-selected="false" tabindex="-1"><b>[02]</b>Arquitectura + costos</button>
+      <button class="pestana" type="button" role="tab" id="pestana-maquetas" data-servicio="maquetas" aria-controls="servicio-maquetas" aria-selected="false" tabindex="-1"><b>[03]</b>Arquitectura a escala</button>
     </div>
     <div class="frentes frentes--srv">
       <a class="frente" href="https://auditor.porticolab.com" target="_blank" rel="noopener" data-servicio="auditor" id="servicio-auditor" role="tabpanel" aria-labelledby="pestana-auditor">
-        <div class="frente__img"><svg class="ilus-auditor" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Informe del Auditor con la calificación del presupuesto y la ubicación de cada hallazgo. Cifras ilustrativas.">
-          <defs><linearGradient id="au-grad" x1="0" x2="1"><stop offset="0" stop-color="#e7e0ff"/><stop offset=".56" stop-color="#b59aff"/><stop offset="1" stop-color="#a8dff0"/></linearGradient></defs>
-          <rect width="300" height="400" fill="var(--au-fondo)"/>
-          <g stroke="var(--au-reticula)" stroke-opacity=".25" stroke-width="1"><path d="M30 0V400M60 0V400M90 0V400M120 0V400M150 0V400M180 0V400M210 0V400M240 0V400M270 0V400M0 30H300M0 60H300M0 90H300M0 120H300M0 150H300M0 180H300M0 210H300M0 240H300M0 270H300M0 300H300M0 330H300M0 360H300"/></g>
-          <rect x="30" y="40" width="240" height="308" rx="10" fill="var(--au-papel)" stroke="var(--au-linea)"/>
-          <text class="m" x="48" y="66" font-size="8.5" letter-spacing=".8">AUDITOR · INFORME</text>
-          <rect x="48" y="74" width="86" height="2" rx="1" fill="url(#au-grad)"/>
-          <circle cx="82" cy="124" r="27" fill="none" stroke="var(--au-linea)" stroke-width="6"/>
-          <circle cx="82" cy="124" r="27" fill="none" stroke="url(#au-grad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="163 170" transform="rotate(-90 82 124)"/>
-          <text class="t" x="82" y="129" font-size="17" font-weight="800" text-anchor="middle">96</text>
-          <text class="m" x="82" y="140" font-size="6.5" text-anchor="middle">/100</text>
-          <text class="t" x="122" y="119" font-size="11.5" font-weight="700">CONFIABLE</text>
-          <text class="m" x="122" y="133" font-size="7">566 APU · 2.011 RECURSOS</text>
-          <g font-size="8.5">
-            <rect x="48" y="172" width="38" height="13" rx="3" fill="#d99a2b" fill-opacity=".18"/><text x="67" y="181.5" font-size="7" font-weight="700" fill="#d99a2b" text-anchor="middle" class="t" style="fill:#d99a2b">Revisar</text>
-            <text class="t" x="94" y="181.5" font-weight="700">Precio sobre el mercado</text>
-            <text class="m" x="94" y="194" font-size="7">RECURSOS · FILA 1012</text>
-            <rect x="48" y="208" width="38" height="13" rx="3" fill="#d99a2b" fill-opacity=".18"/><text x="67" y="217.5" font-size="7" font-weight="700" text-anchor="middle" class="t" style="fill:#d99a2b">Revisar</text>
-            <text class="t" x="94" y="217.5" font-weight="700">Desperdicio fuera de rango</text>
-            <text class="m" x="94" y="230" font-size="7">APU 3.2.14 · 20 %</text>
-            <rect x="48" y="244" width="38" height="13" rx="3" fill="#e0525c" fill-opacity=".16"/><text x="67" y="253.5" font-size="7" font-weight="700" text-anchor="middle" class="t" style="fill:#e0525c">Urgente</text>
-            <text class="t" x="94" y="253.5" font-weight="700">Fórmula rota</text>
-            <text class="m" x="94" y="266" font-size="7">COTIZACIONES · CELDA J5</text>
-          </g>
-          <rect x="48" y="290" width="204" height="40" rx="6" fill="none" stroke="var(--au-linea)" stroke-dasharray="4 3"/>
-          <text class="m" x="60" y="307" font-size="7.5">IFC · INTERFERENCIAS ENTRE</text>
-          <text class="m" x="60" y="319" font-size="7.5">DISCIPLINAS</text>
-          <rect x="168" y="301" width="74" height="14" rx="3" fill="url(#au-grad)"/>
-          <text x="205" y="311" font-size="7" font-weight="700" text-anchor="middle" style="font-family:var(--pl-tecnica,'Space Mono',monospace);fill:#141316">PRÓXIMAMENTE</text>
-          <text class="m" x="150" y="374" font-size="7" text-anchor="middle">CIFRAS ILUSTRATIVAS</text>
-        </svg></div>
+        <div class="frente__img" data-ilustracion="auditor"></div>
         <div class="frente__txt">
         <span class="frente__num">[01]</span>
         <p class="frente__servicio">AUDITOR EN LÍNEA</p>
@@ -275,46 +245,19 @@
 
 </main>
 
-<script src="ilustraciones-servicios.js?v=8"></script>
+<script src="ilustraciones-servicios.js?v=9"></script>
 <script>
 // Las tarjetas de servicios usan las mismas ilustraciones que en el Inicio
 document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
-  const svg = { maquetas: ILUSTRACION_MAQUETA, bim: ILUSTRACION_BIM }[el.dataset.ilustracion];
+  const svg = { maquetas: ILUSTRACION_MAQUETA, bim: ILUSTRACION_BIM, auditor: ILUSTRACION_AUDITOR }[el.dataset.ilustracion];
   if (svg) el.innerHTML = svg;
 });
 </script>
+<script src="servicios-pestanas.js?v=2"></script>
 <script>
-// Pestañas de servicios: una tarjeta a la vez. ?servicio=auditor|bim|maquetas abre esa pestaña
+// Al llegar con ?servicio=…, ir a la pantalla de servicios cuando el resto de scripts terminó de acomodar la página
 (() => {
-  const lista = document.querySelector('.pestanas');
-  const frentes = document.querySelector('.frentes--srv');
-  if (!lista || !frentes) return;
-  const pestanas = [...lista.querySelectorAll('[role="tab"]')];
-  frentes.classList.add('frentes--pestanas');
-  function mostrar(p, foco) {
-    pestanas.forEach((t) => {
-      const activa = t === p;
-      t.setAttribute('aria-selected', activa ? 'true' : 'false');
-      t.tabIndex = activa ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !activa;
-    });
-    if (foco) p.focus();
-    p.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-    dispatchEvent(new Event('resize'));   // pantallas.js vuelve a ajustar la escala en celular
-  }
-  pestanas.forEach((t, i) => {
-    t.addEventListener('click', () => mostrar(t));
-    t.addEventListener('keydown', (e) => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!d) return;
-      e.preventDefault();
-      mostrar(pestanas[(i + d + pestanas.length) % pestanas.length], true);
-    });
-  });
   const pedido = new URLSearchParams(location.search).get('servicio');
-  const inicial = pestanas.find((t) => t.id === 'pestana-' + pedido) || pestanas[0];
-  mostrar(inicial);
-  // al llegar con ?servicio=…, ir a la pantalla de servicios cuando el resto de scripts terminó de acomodar la página
   if (pedido && /^[a-z]+$/.test(pedido)) addEventListener('load', () => setTimeout(() => document.getElementById('servicios')?.scrollIntoView({ block: 'start' }), 150));
 })();
 </script>

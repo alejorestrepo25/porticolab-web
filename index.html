@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="coherencia.css?v=3">
   <link rel="stylesheet" href="motion-graphics.css?v=7">
   <link rel="stylesheet" href="editorial.css?v=115">
+<link rel="stylesheet" href="servicios-pestanas.css?v=3">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Pórtico Lab","url":"https://porticolab.com/","image":"https://porticolab.com/img/og/inicio.jpg","description":"Diseño arquitectónico con el presupuesto bajo control: presupuestos de obra, seguimiento de costos y auditoría BIM. Para promotores, constructoras y propietarios en Medellín.","email":"contacto@porticolab.com","telephone":"+57 314 792 4600","address":{"@type":"PostalAddress","addressLocality":"Medellín","addressRegion":"Antioquia","addressCountry":"CO"},"areaServed":{"@type":"City","name":"Medellín"},"sameAs":["https://www.instagram.com/portico_lab/","https://www.linkedin.com/company/107975627/"]}</script>
 <script src="/legal.js?v=5"></script>
 </head>
@@ -109,11 +110,29 @@
     <span class="hud">[ 01 / 04 ] Servicios</span>
     <h2>¿Qué le preocupa de <em>su proyecto</em>?</h2>
   </div>
+  <div class="pestanas rev" role="tablist" aria-label="Servicios" style="--d:.1s">
+    <button class="pestana" type="button" role="tab" id="pestana-auditor" data-servicio="auditor" aria-controls="servicio-auditor" aria-selected="true"><b>[01]</b>Auditor</button>
+    <button class="pestana" type="button" role="tab" id="pestana-bim" data-servicio="bim" aria-controls="servicio-bim" aria-selected="false" tabindex="-1"><b>[02]</b>Arquitectura + costos</button>
+    <button class="pestana" type="button" role="tab" id="pestana-maquetas" data-servicio="maquetas" aria-controls="servicio-maquetas" aria-selected="false" tabindex="-1"><b>[03]</b>Arquitectura a escala</button>
+  </div>
   <div class="frentes frentes--srv">
-    <a class="frente rev" href="#contacto" data-servicio="bim" style="--d:.15s">
-      <div class="frente__img" data-ilustracion="bim"><img src="img/home/servicio-bim.svg?v=3" alt="Edificio modelado en BIM con su presupuesto al día al frente: cada capítulo avanza según lo programado y el total queda congelado" loading="lazy" width="300" height="400"></div>
+    <a class="frente rev" href="https://auditor.porticolab.com" target="_blank" rel="noopener" data-servicio="auditor" id="servicio-auditor" role="tabpanel" aria-labelledby="pestana-auditor" style="--d:.15s">
+      <div class="frente__img" data-ilustracion="auditor"></div>
       <div class="frente__txt">
         <span class="frente__num">[01]</span>
+        <p class="frente__servicio">AUDITOR EN LÍNEA</p>
+        <h3>Sepa si su presupuesto está bien antes de firmar.</h3>
+        <p class="frente__dolor">Precios fuera de mercado, desperdicios mal puestos y fórmulas rotas que nadie revisó.</p>
+        <p class="frente__promesa">Suba su Excel y reciba gratis la calificación. El informe con la ubicación de cada hallazgo llega a su correo en minutos.</p>
+        <ul class="incluye"><li>Precios contra referencias de obra en Medellín.</li><li>Cada hallazgo con su hoja y su fila.</li><li>Tarifa según el tamaño del presupuesto, sin reuniones.</li></ul>
+        <span class="frente__prox"><b>Próximamente</b>Modelos IFC: calidad BIM 5D e interferencias entre disciplinas (arquitectura, estructura y redes).</span>
+        <span class="frente__cta">Revisar mi presupuesto</span>
+      </div>
+    </a>
+    <a class="frente rev" href="#contacto" data-servicio="bim" id="servicio-bim" role="tabpanel" aria-labelledby="pestana-bim" style="--d:.15s">
+      <div class="frente__img" data-ilustracion="bim"><img src="img/home/servicio-bim.svg?v=3" alt="Edificio modelado en BIM con su presupuesto al día al frente: cada capítulo avanza según lo programado y el total queda congelado" loading="lazy" width="300" height="400"></div>
+      <div class="frente__txt">
+        <span class="frente__num">[02]</span>
         <p class="frente__servicio">ARQUITECTURA + COSTOS</p>
         <h3>No deje que las imprecisiones de obra devoren la utilidad de su proyecto.</h3>
         <p class="frente__dolor">Sobrecostos y errores que llegan a obra.</p>
@@ -122,11 +141,11 @@
         <span class="frente__cta">Revisemos su proyecto</span>
       </div>
     </a>
-    <a class="frente rev" href="#contacto" data-servicio="maquetas" style="--d:.05s">
+    <a class="frente rev" href="#contacto" data-servicio="maquetas" id="servicio-maquetas" role="tabpanel" aria-labelledby="pestana-maquetas" style="--d:.05s">
       <div class="frente__img" data-ilustracion="maquetas"><img src="img/home/servicio-maquetas.svg?v=3" alt="Maqueta física de un edificio residencial sobre base de madera, con el render, el interior y la planta detrás" loading="lazy" width="300" height="400"></div>
       <div class="frente__txt">
-        <span class="frente__num">[02]</span>
-        <p class="frente__servicio">EXHIBICIÓN Y VENTAS</p>
+        <span class="frente__num">[03]</span>
+        <p class="frente__servicio">ARQUITECTURA A ESCALA</p>
         <h3>Las imágenes ayudan. Una maqueta física cierra la venta.</h3>
         <p class="frente__dolor">Renders y planos en pantalla no siempre convencen al comprador.</p>
         <p class="frente__promesa">Maqueta física para decidir, con recorridos virtuales y renders interactivos como apoyo.</p>
@@ -245,14 +264,15 @@
 
 
 <script src="sanity.js?v=16"></script>
-<script src="ilustraciones-servicios.js?v=8"></script>
+<script src="ilustraciones-servicios.js?v=9"></script>
 <script>
 // Las tarjetas de servicios usan las mismas ilustraciones de la página de Servicios
 document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
-  const svg = { maquetas: ILUSTRACION_MAQUETA, bim: ILUSTRACION_BIM }[el.dataset.ilustracion];
+  const svg = { maquetas: ILUSTRACION_MAQUETA, bim: ILUSTRACION_BIM, auditor: ILUSTRACION_AUDITOR }[el.dataset.ilustracion];
   if (svg) el.innerHTML = svg;
 });
 </script>
+<script src="servicios-pestanas.js?v=2"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
