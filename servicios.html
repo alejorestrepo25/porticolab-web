@@ -115,7 +115,7 @@
   <link rel="stylesheet" href="motion-graphics.css?v=7">
   <link rel="stylesheet" href="motion.css?v=6">
   <link rel="stylesheet" href="editorial.css?v=115">
-<link rel="stylesheet" href="servicios-pestanas.css?v=3">
+<link rel="stylesheet" href="servicios-auditor.css?v=1">
 <script src="/legal.js?v=5"></script>
 </head>
 
@@ -158,16 +158,11 @@
 
   <section id="servicios" data-pantalla data-nombre="Servicios">
     <h2 class="seccion">¿Qué le preocupa de <em>su proyecto</em>?</h2>
-    <div class="pestanas" role="tablist" aria-label="Servicios">
-      <button class="pestana" type="button" role="tab" id="pestana-auditor" data-servicio="auditor" aria-controls="servicio-auditor" aria-selected="true"><b>[01]</b>Auditor</button>
-      <button class="pestana" type="button" role="tab" id="pestana-bim" data-servicio="bim" aria-controls="servicio-bim" aria-selected="false" tabindex="-1"><b>[02]</b>Arquitectura + costos</button>
-      <button class="pestana" type="button" role="tab" id="pestana-maquetas" data-servicio="maquetas" aria-controls="servicio-maquetas" aria-selected="false" tabindex="-1"><b>[03]</b>Arquitectura a escala</button>
-    </div>
     <div class="frentes frentes--srv">
-      <a class="frente" href="https://auditor.porticolab.com" target="_blank" rel="noopener" data-servicio="auditor" id="servicio-auditor" role="tabpanel" aria-labelledby="pestana-auditor">
+      <a class="frente frente--destacado" href="https://auditor.porticolab.com" id="servicio-auditor" target="_blank" rel="noopener" data-servicio="auditor">
         <div class="frente__img" data-ilustracion="auditor"></div>
         <div class="frente__txt">
-        <span class="frente__num">[01]</span>
+        <span class="frente__num">[01]<b class="frente__nuevo">Nuevo · en línea</b></span>
         <p class="frente__servicio">AUDITOR EN LÍNEA</p>
         <h3>Sepa si su presupuesto está bien antes de firmar.</h3>
         <p class="frente__dolor">Precios fuera de mercado, desperdicios mal puestos y fórmulas rotas que nadie revisó.</p>
@@ -177,7 +172,7 @@
         <span class="frente__cta">Revisar mi presupuesto</span>
       </div>
       </a>
-      <a class="frente" href="index.html?servicio=bim#contacto" data-servicio="bim" id="servicio-bim" role="tabpanel" aria-labelledby="pestana-bim">
+      <a class="frente" href="index.html?servicio=bim#contacto" data-servicio="bim">
         <div class="frente__img" data-ilustracion="bim"><img src="img/home/servicio-bim.svg?v=3" alt="Edificio modelado en BIM con su presupuesto al día al frente: cada capítulo avanza según lo programado y el total queda congelado" loading="lazy" width="300" height="400"></div>
         <div class="frente__txt">
         <span class="frente__num">[02]</span>
@@ -189,7 +184,7 @@
         <span class="frente__cta">Revisemos su proyecto</span>
       </div>
       </a>
-      <a class="frente" href="index.html?servicio=maquetas#contacto" data-servicio="maquetas" id="servicio-maquetas" role="tabpanel" aria-labelledby="pestana-maquetas">
+      <a class="frente" href="index.html?servicio=maquetas#contacto" data-servicio="maquetas">
         <div class="frente__img" data-ilustracion="maquetas"><img src="img/home/servicio-maquetas.svg?v=3" alt="Maqueta física de un edificio residencial sobre base de madera, con el render, el interior y la planta detrás" loading="lazy" width="300" height="400"></div>
         <div class="frente__txt">
         <span class="frente__num">[03]</span>
@@ -253,7 +248,6 @@ document.querySelectorAll('.frente__img[data-ilustracion]').forEach(el => {
   if (svg) el.innerHTML = svg;
 });
 </script>
-<script src="servicios-pestanas.js?v=2"></script>
 <script>
 // Al llegar con ?servicio=…, ir a la pantalla de servicios cuando el resto de scripts terminó de acomodar la página
 (() => {

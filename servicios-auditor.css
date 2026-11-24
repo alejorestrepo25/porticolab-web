@@ -1,0 +1,47 @@
+/* Servicios: las 3 tarjetas juntas, con el Auditor destacado.
+   Escritorio: [01] Auditor arriba a todo el ancho; [02] y [03] lado a lado debajo.
+   editorial.css usa :is(.frentes, #srv-grid), que pesa como un id: por eso estas reglas se anclan en #servicios / #frentes */
+@media (min-width: 901px) {
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla] .frentes.frentes--srv,
+  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
+    display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-auto-rows: auto !important;
+    overflow: visible !important; scroll-snap-type: none !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente--destacado { grid-column: 1 / -1 !important; }
+  /* con 3 tarjetas en una pantalla, las listas «incluye» la hacen tan alta que el sitio la reduce a la mitad: se omiten aquí */
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente:not(.frente--destacado) .frente__promesa { display: none !important; }
+  /* la ilustración cuadrada (369 px) fija la altura de cada fila: más angosta, las dos filas caben sin reducir la pantalla */
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img {
+    flex: 0 0 230px !important; width: 230px !important; height: auto !important; min-height: 0 !important; align-self: stretch !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente { height: auto !important; min-height: 0 !important; }
+}
+
+/* Tarjeta destacada: borde y resplandor violeta, como el degradado del sitio */
+html:root body.y2k :is(#servicios, #frentes) .frente.frente--destacado {
+  box-shadow: 0 0 0 2px #b59aff, 0 22px 60px -26px rgba(122, 85, 232, .6) !important;
+}
+.frente__nuevo {
+  display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 3px; vertical-align: 1px;
+  background: var(--pl-gradient); color: #141316; font-family: var(--pl-tecnica, 'Space Mono', monospace);
+  font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+
+/* Aviso «Próximamente» dentro de la tarjeta del Auditor */
+.frente__prox {
+  display: block; margin-top: 12px; padding: 9px 11px; border: 1px dashed var(--pl-line, #77727b); border-radius: 8px;
+  font-family: var(--pl-tecnica, 'Space Mono', monospace); font-size: 11px; line-height: 1.45; letter-spacing: .02em;
+  text-transform: uppercase; color: var(--pl-muted, #514d56);
+}
+.frente__prox b {
+  display: inline-block; margin-right: 6px; padding: 1px 6px; border-radius: 3px;
+  background: var(--pl-gradient); color: #141316; font-weight: 700;
+}
+
+/* Ilustración del Auditor: informe con calificación y hallazgos (cifras ilustrativas) */
+.ilus-auditor { width: 100%; height: 100%; display: block; }
+.ilus-auditor { --au-fondo: #0b0b0b; --au-reticula: #74727d; --au-papel: #141416; --au-linea: #303034; --au-tinta: #f1f0f2; --au-muted: #a9a6ae; }
+:root[data-theme="light"] .ilus-auditor { --au-fondo: #f3f2ee; --au-reticula: #b9b6bf; --au-papel: #ffffff; --au-linea: #d5d3d5; --au-tinta: #222124; --au-muted: #66646a; }
+.ilus-auditor .t { font-family: Montserrat, system-ui, sans-serif; fill: var(--au-tinta); }
+.ilus-auditor .m { font-family: var(--pl-tecnica, 'Space Mono', monospace); fill: var(--au-muted); }
