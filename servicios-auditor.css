@@ -1,21 +1,31 @@
-/* Servicios: las 3 tarjetas juntas, con el Auditor destacado.
-   Escritorio: [01] Auditor arriba a todo el ancho; [02] y [03] lado a lado debajo.
+/* Servicios: las 3 tarjetas juntas, del mismo alto y ancho; el Auditor se distingue por el borde violeta y la etiqueta.
    editorial.css usa :is(.frentes, #srv-grid), que pesa como un id: por eso estas reglas se anclan en #servicios / #frentes */
+
+/* Todas las medidas: filas de igual alto (1fr) que crecen hasta el contenido más alto, sin recortar ninguna tarjeta */
+html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes.frentes--srv,
+html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
+  display: grid !important; grid-auto-rows: 1fr !important;
+  /* el alto sale del contenido, no de la pantalla: así 1fr iguala todas las filas a la tarjeta más alta */
+  flex: 0 0 auto !important; height: max-content !important; min-height: 0 !important; max-height: none !important;
+  overflow: visible !important; scroll-snap-type: none !important;
+}
+html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes--srv > .frente,
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente { height: auto !important; min-height: 0 !important; }
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { display: flex !important; flex-direction: column !important; }
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__cta { margin-top: auto !important; }
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__prox { margin-bottom: 12px; }
+
+/* Escritorio: 3 columnas iguales; en cada tarjeta, la ilustración arriba y el texto debajo */
 @media (min-width: 901px) {
   html:root body.y2k :is(#servicios, #frentes)[data-pantalla] .frentes.frentes--srv,
-  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
-    display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-auto-rows: auto !important;
-    overflow: visible !important; scroll-snap-type: none !important;
-  }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente--destacado { grid-column: 1 / -1 !important; }
-  /* con 3 tarjetas en una pantalla, las listas «incluye» la hacen tan alta que el sitio la reduce a la mitad: se omiten aquí */
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente:not(.frente--destacado) .frente__promesa { display: none !important; }
-  /* la ilustración cuadrada (369 px) fija la altura de cada fila: más angosta, las dos filas caben sin reducir la pantalla */
+  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente { flex-direction: column !important; }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img {
-    flex: 0 0 230px !important; width: 230px !important; height: auto !important; min-height: 0 !important; align-self: stretch !important;
+    flex: 0 0 200px !important; width: 100% !important; height: 200px !important; min-height: 0 !important; max-width: none !important;
   }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente { height: auto !important; min-height: 0 !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { flex: 1 1 auto !important; width: auto !important; }
+  /* en tarjetas angostas las listas «incluye» alargan la pantalla y el sitio la reduce: se omiten aquí */
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
 }
 
 /* Tarjeta destacada: borde y resplandor violeta, como el degradado del sitio */
