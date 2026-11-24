@@ -1,4 +1,4 @@
-/* Servicios: las 3 tarjetas juntas, del mismo alto y ancho; el Auditor se distingue por el borde violeta y la etiqueta.
+/* Servicios: las 3 tarjetas juntas; el Auditor se distingue por el borde violeta y la etiqueta.
    editorial.css usa :is(.frentes, #srv-grid), que pesa como un id: por eso estas reglas se anclan en #servicios / #frentes */
 
 /* Todas las medidas: filas de igual alto (1fr) que crecen hasta el contenido más alto, sin recortar ninguna tarjeta */
@@ -15,16 +15,21 @@ html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { displa
 html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__cta { margin-top: auto !important; }
 html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__prox { margin-bottom: 12px; }
 
-/* Escritorio: 3 columnas iguales; en cada tarjeta, la ilustración arriba y el texto debajo */
+/* Escritorio, formato horizontal: [01] Auditor arriba a todo el ancho; [02] y [03] debajo, lado a lado y del mismo tamaño.
+   Cada tarjeta es una fila: ilustración a la izquierda y texto a la derecha. Las dos de abajo comparten fila, por eso miden igual. */
 @media (min-width: 901px) {
   html:root body.y2k :is(#servicios, #frentes)[data-pantalla] .frentes.frentes--srv,
-  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente { flex-direction: column !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-auto-rows: auto !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente--destacado { grid-column: 1 / -1 !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente { flex-direction: row !important; }
+  /* la ilustración cuadrada (369 px) fija la altura de la fila: más angosta, las dos filas caben sin reducir la pantalla */
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img {
-    flex: 0 0 200px !important; width: 100% !important; height: 200px !important; min-height: 0 !important; max-width: none !important;
+    flex: 0 0 230px !important; width: 230px !important; height: auto !important; min-height: 0 !important; max-width: none !important; align-self: stretch !important;
   }
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { flex: 1 1 auto !important; width: auto !important; }
-  /* en tarjetas angostas las listas «incluye» alargan la pantalla y el sitio la reduce: se omiten aquí */
+  /* las listas «incluye» alargan la pantalla y el sitio la reduce: se omiten aquí */
   html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
 }
 
