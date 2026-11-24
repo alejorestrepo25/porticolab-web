@@ -160,3 +160,31 @@ html:root body.y2k :is(#servicios, #frentes) .frente.frente--destacado {
 :root[data-theme="light"] .ilus-auditor { --au-fondo: #f3f2ee; --au-reticula: #b9b6bf; --au-papel: #ffffff; --au-linea: #d5d3d5; --au-tinta: #222124; --au-muted: #66646a; }
 .ilus-auditor .t { font-family: Montserrat, system-ui, sans-serif; fill: var(--au-tinta); }
 .ilus-auditor .m { font-family: var(--pl-tecnica, 'Space Mono', monospace); fill: var(--au-muted); }
+
+/* ── Pasada intermedia (2026-11-24): menos juguete, SIN quitar el color ──
+   La versión en escala de grises se pasó de sobria y se revirtió. Aquí se conserva el violeta y los acentos de la marca:
+   - Ilustraciones con la saturación a ~60 %: siguen en color, pero el violeta y los azules ya no gritan.
+   - Auditor: filete violeta de 1 px (sin halo grande) y chip «Nuevo» con degradado, más pequeño y recto.
+   - «Próximamente»: contorno violeta fino en vez de relleno.
+   - Esquinas de 8 px y resplandores suaves en lugar de los halos grandes. */
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img :is(svg, img) {
+  filter: saturate(.6) contrast(1.04) !important;
+}
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente {
+  border-radius: 8px !important;
+  box-shadow: 0 16px 36px -30px rgba(122, 85, 232, .4) !important;
+}
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente .frente__img { border-radius: 8px 0 0 8px !important; }
+html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente.frente--destacado {
+  box-shadow: 0 0 0 1px #b59aff, 0 18px 44px -30px rgba(122, 85, 232, .5) !important;
+}
+:root[data-theme="light"] body.y2k :is(#servicios, #frentes) .frentes--srv > .frente.frente--destacado {
+  box-shadow: 0 0 0 1px #7a55e8, 0 18px 44px -30px rgba(122, 85, 232, .45) !important;
+}
+html:root body.y2k :is(#servicios, #frentes) .frente__nuevo { border-radius: 2px !important; padding: 1px 6px !important; font-size: 9.5px !important; }
+html:root body.y2k :is(#servicios, #frentes) .frente__prox { border-style: solid !important; border-color: #b59aff !important; border-radius: 4px !important; }
+:root[data-theme="light"] body.y2k :is(#servicios, #frentes) .frente__prox { border-color: #7a55e8 !important; }
+html:root body.y2k :is(#servicios, #frentes) .frente__prox b {
+  background: transparent !important; color: #b59aff !important; border: 1px solid #b59aff; border-radius: 2px !important;
+}
+:root[data-theme="light"] body.y2k :is(#servicios, #frentes) .frente__prox b { color: #5b3fd0 !important; border-color: #7a55e8; }
