@@ -100,11 +100,20 @@
       .nav { gap: 16px; }
       .nav a { font-size: 11px; letter-spacing: 0.5px; }
     }
+    .insp-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 24px 80px; }
+    .insp-kicker { font: 400 11px/1.4 'Space Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--pl-muted, #9a98a2); margin-bottom: 10px; }
+    .insp-wrap h1 { font-size: clamp(28px, 4vw, 46px); line-height: 1.1; letter-spacing: -.035em; font-weight: 700; color: var(--pl-ink, #f1f0f2); max-width: 760px; }
+    .insp-wrap h1 em { font-style: normal; background: var(--pl-gradient, linear-gradient(105deg,#4b2fb8 0%,#7a55e8 56%,#3d6fa8 100%)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .insp-lead { color: var(--pl-muted, #9a98a2); font-size: 15px; line-height: 1.7; max-width: 620px; margin: 16px 0 28px; }
+    .insp-acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+    .pinterest-board { border: 1px solid var(--pl-line, #303034); border-radius: 14px; padding: 24px; background: var(--pl-surface, rgba(255,255,255,.02)); }
+    .pinterest-board__embed a { display: inline-flex; align-items: center; gap: 8px; font: 700 12px/1 'Space Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--pl-ink, #f1f0f2); text-decoration: none; padding: 12px 18px; border: 1px solid var(--pl-line, #5f5c66); border-radius: 6px; }
+    .pinterest-board__embed a:hover { border-color: var(--pl-ink, #f1f0f2); }
   </style>
 <script src="barra.js?v=1"></script>
   <link rel="stylesheet" href="coherencia.css?v=3">
   <link rel="stylesheet" href="editorial.css?v=115">
-<script src="/legal.js?v=5"></script>
+<script src="/legal.js?v=6"></script>
 </head>
 
 <body class="y2k" data-filter="inspiración">
@@ -114,7 +123,7 @@
   <nav class="nav">
     <a href="laboratorio.html">LABORATORIO</a>
     <a href="servicios.html">SERVICIOS</a>
-    <a href="https://co.pinterest.com/portico_lab/_saved/" target="_blank" rel="noopener noreferrer">INSPIRACIÓN</a>
+    <a href="https://co.pinterest.com/portico_lab/_saved/" target="_blank" rel="noopener noreferrer" class="activo">INSPIRACIÓN</a>
     <a href="nosotros.html">NOSOTROS</a>
   <button class="theme-toggle" type="button" aria-label="Cambiar tema"><svg data-theme-icon="light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-theme-icon="dark" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.7 8.7 0 1 0 12 12Z"/></svg><span class="theme-toggle__label">Claro</span></button></nav>
 </header>
@@ -126,9 +135,15 @@
   </div>
 </div>
 
-<main>
-  <h1 class="solo-lector">Inspiración: referencias de arquitectura, materiales y objetos</h1>
-  <section class="pinterest-board" id="pinterest-board" data-board-url="https://co.pinterest.com/portico_lab/_saved/" aria-labelledby="pinterest-board-title" hidden>
+<main class="insp-wrap">
+  <p class="insp-kicker">// Referencias visuales</p>
+  <h1>Referencias de arquitectura, materiales y <em>objetos</em></h1>
+  <p class="insp-lead">Archivo curado en Pinterest con sistemas constructivos, texturas en concreto y madera, maquetas y detalles que alimentan el trabajo diario del estudio.</p>
+  <div class="insp-acciones">
+    <a class="btn-cromo" href="https://co.pinterest.com/portico_lab/_saved/" target="_blank" rel="noopener noreferrer">Abrir tablero en Pinterest →</a>
+    <a class="btn-fantasma" href="laboratorio.html">Ver proyectos del laboratorio</a>
+  </div>
+  <section class="pinterest-board" id="pinterest-board" data-board-url="https://co.pinterest.com/portico_lab/_saved/" aria-label="Tablero de Pinterest de Pórtico Lab" hidden>
     <div class="pinterest-board__embed"></div>
   </section>
 </main>

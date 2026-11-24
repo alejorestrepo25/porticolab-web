@@ -66,22 +66,23 @@
 
   // ---------- Aviso de cookies ----------
   var estilo = '' +
-    '.pl-cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:520px;margin:0 auto 0 0;background:#111114;color:#f1f0f2;border:1px solid #34323c;border-radius:10px;padding:16px 18px;font:400 13px/1.55 Montserrat,system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.45)}' +
-    '.pl-cookies p{margin:0 0 12px;color:#d7d6dc}.pl-cookies a{color:#fff;text-decoration:underline}' +
+    '.pl-cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:520px;margin:0 auto 0 0;background:var(--pl-bg,#050505);color:var(--pl-ink,#f1f0f2);border:1px solid var(--pl-line,#34323c);border-radius:12px;padding:18px 20px;font:400 13px/1.55 Montserrat,system-ui,sans-serif;box-shadow:0 16px 44px rgba(0,0,0,.28)}' +
+    '.pl-cookies p{margin:0 0 14px;color:var(--pl-muted,#b6b4ba)}.pl-cookies a{color:var(--pl-ink,#f1f0f2);text-decoration:underline;text-underline-offset:3px}' +
     '.pl-cookies__fila{display:flex;gap:10px;flex-wrap:wrap}' +
-    '.pl-cookies button{flex:1 1 150px;min-height:42px;padding:0 14px;border-radius:4px;border:1px solid rgba(241,240,242,.4);background:transparent;color:#f1f0f2;font:600 11px/1 Montserrat,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}' +
-    '.pl-cookies button:hover{border-color:#f1f0f2;background:rgba(241,240,242,.1)}.pl-cookies button:focus-visible{outline:2px solid #7ee8ff;outline-offset:2px}' +
-    '.pl-legal{position:fixed;left:12px;bottom:2px;z-index:900;font:500 10px/1.4 Montserrat,system-ui,sans-serif;letter-spacing:.04em;color:#8d8c96;display:flex;gap:10px;flex-wrap:wrap;max-width:calc(100vw - 24px)}' +
-    '.pl-legal a,.pl-legal button{color:inherit;text-decoration:none;background:none;border:0;padding:2px 0;font:inherit;letter-spacing:inherit;cursor:pointer}.pl-legal a:hover,.pl-legal button:hover{color:#fff;text-decoration:underline}' +
-    ':root[data-theme="light"] .pl-legal{color:#55535c}:root[data-theme="light"] .pl-legal a:hover,:root[data-theme="light"] .pl-legal button:hover{color:#000}' +
+    '.pl-cookies button{flex:1 1 150px;min-height:42px;padding:0 14px;border-radius:6px;border:1px solid var(--pl-line,#5f5c66);background:transparent;color:var(--pl-ink,#f1f0f2);font:700 11px/1 "Space Mono",Montserrat,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:opacity .2s,border-color .2s}' +
+    '.pl-cookies button[data-d="si"]{background:var(--pl-ink,#f1f0f2);color:var(--pl-bg,#050505);border-color:var(--pl-ink,#f1f0f2)}' +
+    '.pl-cookies button:hover{opacity:.88;border-color:var(--pl-ink,#f1f0f2)}.pl-cookies button:focus-visible{outline:2px solid #b59aff;outline-offset:2px}' +
+    '.pl-legal{position:relative;z-index:10;width:100%;margin-top:48px;padding:18px 40px 26px;border-top:1px solid var(--pl-line,#303034);font:400 10.5px/1.6 "Space Mono",Montserrat,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--pl-muted,#8d8c96);display:flex;gap:12px 20px;flex-wrap:wrap;align-items:center}' +
+    '.pl-legal a,.pl-legal button{color:inherit;text-decoration:none;background:none;border:0;padding:2px 0;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}.pl-legal a:hover,.pl-legal button:hover{color:var(--pl-ink,#fff);text-decoration:underline;text-underline-offset:3px}' +
     '.pl-legal-pie{display:flex;gap:14px;flex-wrap:wrap}.pl-legal-pie a,.pl-legal-pie button{color:inherit;background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}' +
+    '@media(max-width:768px){.pl-legal{padding:18px 16px 84px;gap:10px 16px;font-size:10px}}' +
     '@media(max-width:600px){.pl-cookies{left:10px;right:10px;bottom:10px;padding:14px}}';
 
   function aviso() {
     if (document.getElementById('pl-cookies')) return;
     var d = document.createElement('div');
     d.id = 'pl-cookies'; d.className = 'pl-cookies'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Aviso de cookies');
-    d.innerHTML = '<p>Usamos cookies necesarias para que el sitio funcione y, con su permiso, cookies opcionales: analítica (Google Analytics y Metricool) para saber qué páginas se visitan y contenido de Pinterest. Puede cambiar su decisión cuando quiera. <a href="cookies.html">Política de cookies</a></p>' +
+    d.innerHTML = '<p>Usamos cookies necesarias para que el sitio funcione y, con su permiso, cookies opcionales: analítica (Google Analytics y Metricool) para saber qué páginas se visitan y contenido de Pinterest. Puede cambiar su decisión cuando quiera. <a href="/cookies.html">Política de cookies</a></p>' +
       '<div class="pl-cookies__fila"><button type="button" data-d="no">Solo necesarias</button><button type="button" data-d="si">Aceptar todas</button></div>';
     d.addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('button[data-d]'); if (!b) return;
@@ -101,7 +102,7 @@
 
   // ---------- Enlaces legales ----------
   function enlaces() {
-    var html = '<a href="terminos.html">Términos y condiciones</a><a href="privacidad.html">Política de privacidad</a><a href="cookies.html">Cookies</a><a href="reembolso.html">Reembolsos</a><button type="button" data-pl="cookies">Preferencias de cookies</button>';
+    var html = '<a href="/terminos.html">Términos y condiciones</a><a href="/privacidad.html">Política de privacidad</a><a href="/cookies.html">Cookies</a><a href="/reembolso.html">Reembolsos</a><button type="button" data-pl="cookies">Preferencias de cookies</button>';
     var pie = document.querySelector('footer.pie-home');
     if (pie) {
       var n = document.createElement('span'); n.className = 'pl-legal-pie'; n.innerHTML = html; pie.appendChild(n); pie.style.flexWrap = 'wrap';
