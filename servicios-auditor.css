@@ -160,27 +160,3 @@ html:root body.y2k :is(#servicios, #frentes) .frente.frente--destacado {
 :root[data-theme="light"] .ilus-auditor { --au-fondo: #f3f2ee; --au-reticula: #b9b6bf; --au-papel: #ffffff; --au-linea: #d5d3d5; --au-tinta: #222124; --au-muted: #66646a; }
 .ilus-auditor .t { font-family: Montserrat, system-ui, sans-serif; fill: var(--au-tinta); }
 .ilus-auditor .m { font-family: var(--pl-tecnica, 'Space Mono', monospace); fill: var(--au-muted); }
-
-/* ── Pasada sobria (2026-11-24): la sección le habla a gerentes de constructoras, no debe verse como juguete ──
-   - Ilustraciones en escala de grises: se conserva el dibujo técnico, desaparecen el violeta y los azules «Lego».
-   - Chips «Nuevo» y «Próximamente» sin degradado: tinta sólida y contorno fino.
-   - Esquinas casi rectas (6 px, las del botón del sitio) y sin resplandores de color.
-   - Auditor destacado por un filete de tinta de 1 px, no por un halo violeta. */
-html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img :is(svg, img) {
-  filter: grayscale(1) contrast(1.06) !important;
-}
-html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente {
-  border-radius: 6px !important;
-  box-shadow: none !important;
-}
-html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente .frente__img { border-radius: 6px 0 0 6px !important; }
-html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente.frente--destacado {
-  box-shadow: 0 0 0 1px var(--pl-ink, #222124) !important;
-}
-html:root body.y2k :is(#servicios, #frentes) .frente__nuevo {
-  background: var(--pl-ink, #222124) !important; color: var(--pl-bg, #fff) !important; border-radius: 2px !important;
-}
-html:root body.y2k :is(#servicios, #frentes) .frente__prox { border-style: solid !important; border-width: 1px !important; border-radius: 4px !important; }
-html:root body.y2k :is(#servicios, #frentes) .frente__prox b {
-  background: transparent !important; color: var(--pl-ink, #222124) !important; border: 1px solid var(--pl-line, #77727b); border-radius: 2px !important;
-}
