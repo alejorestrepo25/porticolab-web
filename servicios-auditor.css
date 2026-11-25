@@ -188,3 +188,51 @@ html:root body.y2k :is(#servicios, #frentes) .frente__prox b {
   background: transparent !important; color: #b59aff !important; border: 1px solid #b59aff; border-radius: 2px !important;
 }
 :root[data-theme="light"] body.y2k :is(#servicios, #frentes) .frente__prox b { color: #5b3fd0 !important; border-color: #7a55e8; }
+
+/* ── Anchos intermedios (2026-11-24): al achicar la ventana la sección se «ponía fea» ──
+   Entre 521 y 1099 px las ilustraciones (3:4) ocupaban casi la mitad de cada tarjeta, el Auditor quedaba angosto y el sitio
+   encogía toda la pantalla hasta el 55-60 %, con texto diminuto. Aquí: una columna, tarjetas horizontales y compactas,
+   ilustración de 170 px y texto a tamaño normal. A partir de 1100 px sigue el diseño de escritorio (Auditor arriba, dos debajo). */
+@media (min-width: 521px) and (max-width: 1099px) {
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes.frentes--srv,
+  html:root body.y2k :is(#servicios, #frentes) .frentes.frentes--srv {
+    grid-template-columns: minmax(0, 1fr) !important; grid-auto-rows: auto !important; gap: 12px !important; width: 100% !important; max-width: none !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes--srv > .frente,
+  html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes--srv > .frente.frente--destacado,
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente,
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente.frente--destacado {
+    flex-direction: row !important; width: 100% !important; justify-self: stretch !important; grid-column: 1 / -1 !important;
+    height: auto !important; min-height: 0 !important; aspect-ratio: auto !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img {
+    flex: 0 0 170px !important; width: 170px !important; height: auto !important; min-height: 0 !important; aspect-ratio: auto !important; align-self: stretch !important;
+  }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt { padding: 14px 18px !important; gap: 4px !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__txt h3 { font-size: 19px !important; line-height: 1.2 !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__dolor { display: block !important; font-size: 13px !important; line-height: 1.4 !important; margin: 0 !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__promesa { font-size: 14px !important; line-height: 1.4 !important; margin: 0 !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .incluye { display: none !important; }
+}
+
+/* La ilustración se ajusta a la tarjeta en vez de fijarle la altura (la imagen 3:4 de 195 px mide 260 px y obligaba al sitio
+   a encoger toda la pantalla al 55-60 % en portátiles). Así la altura de cada tarjeta la da su texto. */
+@media (min-width: 521px) {
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img { position: relative !important; overflow: hidden !important; }
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv .frente__img > :is(svg, img) {
+    position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important;
+  }
+}
+
+/* [02] y [03] tienen una sola línea de descripción (en «promesa»). El sitio oculta la promesa en pantallas bajas;
+   para estas dos tarjetas es todo su texto, así que siempre se muestra. */
+html:root body.y2k :is(#servicios, #frentes)[data-pantalla][data-pantalla] .frentes--srv > .frente:not(.frente--destacado) .frente__promesa {
+  display: block !important;
+}
+
+/* El Auditor muestra también su primera frase (precios, APUs, fórmulas) en escritorio */
+@media (min-width: 1100px) {
+  html:root body.y2k :is(#servicios, #frentes) .frentes--srv > .frente.frente--destacado .frente__dolor {
+    display: block !important; font-size: 13.5px !important; line-height: 1.4 !important; margin: 0 !important; color: var(--pl-muted, #514d56);
+  }
+}
